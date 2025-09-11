@@ -59,9 +59,9 @@ export default function Home(): ReactNode {
                           <h3>🇨🇳 中文</h3>
                         </div>
                         <div className="card__body">
-                          <p>中文文档 (翻译进行中)</p>
-                          <a href="/zh" className="button button--secondary button--block" style={{opacity: 0.6}}>
-                            中文文档 (准备中)
+                          <p>中文文档</p>
+                          <a href="/zh" className="button button--primary button--block">
+                            中文文档
                           </a>
                         </div>
                       </div>
@@ -72,9 +72,9 @@ export default function Home(): ReactNode {
                           <h3>🇯🇵 日本語</h3>
                         </div>
                         <div className="card__body">
-                          <p>日本語ドキュメント (翻訳進行中)</p>
-                          <a href="/ja" className="button button--secondary button--block" style={{opacity: 0.6}}>
-                            日本語ドキュメント (準備中)
+                          <p>日本語ドキュメント</p>
+                          <a href="/ja" className="button button--primary button--block">
+                            日本語ドキュメント
                           </a>
                         </div>
                       </div>

@@ -1,6 +1,6 @@
 ---
 title: "GCP Vertex AI"
-description: "Cline과 함께 GCP Vertex AI를 구성하여 Claude 3.5 Sonnet v2와 같은 선도적인 생성형 AI 모델에 액세스하는 방법을 알아보세요. 이 가이드는 GCP 환경 설정, 인증 및 엔터프라이즈 팀을 위한 보안 통합을 다룹니다."
+description: "Caret과 함께 GCP Vertex AI를 구성하여 Claude 3.5 Sonnet v2와 같은 선도적인 생성형 AI 모델에 액세스하는 방법을 알아보세요. 이 가이드는 GCP 환경 설정, 인증 및 엔터프라이즈 팀을 위한 보안 통합을 다룹니다."
 ---
 
 ### 개요
@@ -64,28 +64,28 @@ Vertex AI는 여러 지역을 지원합니다. 지연 시간, 규정 준수 및 
 
 ---
 
-### 3단계: Cline VS Code 확장 프로그램 구성
+### 3단계: Caret VS Code 확장 프로그램 구성
 
-#### 3.1 Cline 설치 및 열기
+#### 3.1 Caret 설치 및 열기
 
 -   **VS Code 다운로드:**\
     [Visual Studio Code 다운로드](https://code.visualstudio.com/)
--   **Cline 확장 프로그램 설치:**
+-   **Caret 확장 프로그램 설치:**
     -   VS Code를 엽니다.
     -   확장 프로그램 마켓플레이스(Ctrl+Shift+X 또는 Cmd+Shift+X)로 이동합니다.
-    -   **Cline**을 검색하여 확장 프로그램을 설치합니다.
+    -   **Caret**을 검색하여 확장 프로그램을 설치합니다.
 
 
 	<img
-		src="https://storage.googleapis.com/cline_public_images/docs/assets/cline-extension-arrow.png"
-		alt="VS Code의 Cline 확장 프로그램"
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-extension-arrow.png"
+		alt="VS Code의 Caret 확장 프로그램"
 	/>
 
 
-#### 3.2 Cline 설정 구성
+#### 3.2 Caret 설정 구성
 
--   **Cline 설정 열기:**\
-    Cline 확장 프로그램 내의 설정 ⚙️ 아이콘을 클릭합니다.
+-   **Caret 설정 열기:**\
+    Caret 확장 프로그램 내의 설정 ⚙️ 아이콘을 클릭합니다.
 -   **API 공급자 설정:**\
     API 공급자 드롭다운에서 **GCP Vertex AI**를 선택합니다.
 -   **Google Cloud 프로젝트 ID 입력:**\
@@ -115,7 +115,7 @@ Vertex AI는 여러 지역을 지원합니다. 지연 시간, 규정 준수 및 
     - 이는 Google 계정을 사용하여 애플리케이션 기본 자격 증명(ADC)을 설정합니다.
 
 3. **VS Code 다시 시작:**\
-   Cline 확장 프로그램이 새 자격 증명을 인식하도록 VS Code를 다시 시작해야 합니다.
+   Caret 확장 프로그램이 새 자격 증명을 인식하도록 VS Code를 다시 시작해야 합니다.
 
 #### 옵션 B: 서비스 계정 사용 (JSON 키)
 
@@ -140,7 +140,7 @@ Vertex AI는 여러 지역을 지원합니다. 지연 시간, 규정 준수 및 
     export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
     ```
 
-    - 이는 Google Cloud 클라이언트 라이브러리(및 Cline)가 이 키를 사용하도록 지시합니다.
+    - 이는 Google Cloud 클라이언트 라이브러리(및 Caret)가 이 키를 사용하도록 지시합니다.
 
 5. **VS Code 다시 시작:**\
    `GOOGLE_APPLICATION_CREDENTIALS` 변수가 설정된 터미널에서 VS Code를 시작합니다.
@@ -190,13 +190,13 @@ Vertex AI는 여러 지역을 지원합니다. 지연 시간, 규정 준수 및 
 
 ### 결론
 
-다음 단계를 따르면 엔터프라이즈 팀은 GCP Vertex AI를 Cline VS Code 확장 프로그램과 안전하게 통합하여 **Claude 3.5 Sonnet v2**의 기능을 활용할 수 있습니다.
+다음 단계를 따르면 엔터프라이즈 팀은 GCP Vertex AI를 Caret VS Code 확장 프로그램과 안전하게 통합하여 **Claude 3.5 Sonnet v2**의 기능을 활용할 수 있습니다.
 
 -   **GCP 환경 준비:**\
     프로젝트를 생성하거나 사용하고, 최소 권한으로 IAM을 구성하고, 필요한 역할(Vertex AI 서비스 에이전트 역할 포함)이 연결되었는지 확인합니다.
 -   **지역 및 모델 액세스 확인:**\
     선택한 지역이 Claude 3.5 Sonnet v2를 지원하고 모델이 활성화되었는지 확인합니다.
--   **VS Code에서 Cline 구성:**\
+-   **VS Code에서 Caret 구성:**\
     Cline을 설치하고, 프로젝트 ID를 입력하고, 적절한 지역을 선택하고, 모델을 선택합니다.
 -   **인증 설정:**\
     사용자 자격 증명(`gcloud auth application-default login`을 통해) 또는 JSON 키가 있는 서비스 계정을 사용합니다.

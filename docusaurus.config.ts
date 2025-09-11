@@ -57,6 +57,26 @@ const config: Config = {
         editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ko/',
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs-zh',
+        path: './docs-zh',
+        routeBasePath: 'zh',
+        sidebarPath: './sidebars-zh.ts',
+        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-zh/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs-ja',
+        path: './docs-ja',
+        routeBasePath: 'ja',
+        sidebarPath: './sidebars-ja.ts',
+        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ja/',
+      },
+    ],
   ],
   presets: [
     [

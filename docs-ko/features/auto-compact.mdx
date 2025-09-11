@@ -41,11 +41,11 @@ Cline은 대화 중에 토큰 사용량을 모니터링합니다. 제한에 가�
 
 요약은 이미 사용 중인 동일한 모델을 사용하여 구성된 API 공급자를 통해 이루어집니다. 프롬프트 캐싱을 활용하여 비용을 최소화합니다.
 
-1.  Cline은 [요약 프롬프트](https://github.com/cline/cline/blob/main/src/core/prompts/contextManagement.ts)를 사용하여 대화 요약을 요청합니다.
+1.  Cline은 [요약 프롬프트](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts)를 사용하여 대화 요약을 요청합니다.
 
-2.  요약이 생성되면 Cline은 대화 기록을 Cline에게 작업을 계속하도록 요청하고 요약을 컨텍스트로 제공하는 [연속 프롬프트](https://github.com/cline/cline/blob/main/src/core/prompts/contextManagement.ts#L69)로 대체합니다.
+2.  요약이 생성되면 Cline은 대화 기록을 Cline에게 작업을 계속하도록 요청하고 요약을 컨텍스트로 제공하는 [연속 프롬프트](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69)로 대체합니다.
 
-자동 요약이 시작되는 시점에 대한 모델마다 다른 컨텍스트 창 임계값이 있습니다. [context-window-utils.ts](https://github.com/cline/cline/blob/main/src/core/context/context-management/context-window-utils.ts)에서 임계값이 어떻게 결정되는지 확인할 수 있습니다.
+자동 요약이 시작되는 시점에 대한 모델마다 다른 컨텍스트 창 임계값이 있습니다. [context-window-utils.ts](https://github.com/caret/caret/blob/main/src/core/context/context-management/context-window-utils.ts)에서 임계값이 어떻게 결정되는지 확인할 수 있습니다.
 
 ## 비용 고려 사항
 

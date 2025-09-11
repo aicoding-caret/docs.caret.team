@@ -1,16 +1,16 @@
 ---
 title: "Claude Code"
-description: "使用您的 Claude Max 或 Pro 订阅与 Cline，而不是按 token 付费。了解如何设置和配置 Claude Code 提供商。"
+description: "使用您的 Claude Max 或 Pro 订阅与 Caret，而不是按 token 付费。了解如何设置和配置 Claude Code 提供商。"
 ---
 
 **网站：** [https://docs.anthropic.com/en/docs/claude-code/setup](https://docs.anthropic.com/en/docs/claude-code/setup)
 
-Claude Code 提供商让您可以在 Cline 中使用现有的 Claude 订阅。如果您有 Claude Max 或 Pro，这意味着您可以在 Cline 中使用 Claude 而无需支付额外的 API 费用。
+Claude Code 提供商让您可以在 Caret 中使用现有的 Claude 订阅。如果您有 Claude Max 或 Pro，这意味着您可以在 Caret 中使用 Claude 而无需支付额外的 API 费用。
 
 
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-use-opus.gif"
-		alt="在 Cline 中使用 Claude Code 提供商与 Opus 模型"
+		alt="在 Caret 中使用 Claude Code 提供商与 Opus 模型"
 	/>
 
 
@@ -20,15 +20,15 @@ Claude Code 提供商让您可以在 Cline 中使用现有的 Claude 订阅。�
 
 1. **安装 Claude Code**：按照 Anthropic 的[官方设置指南](https://docs.anthropic.com/en/docs/claude-code/setup)安装并认证 Claude CLI。
 
-2. **在 Cline 中配置**：
-    - 打开 Cline 设置（⚙️ 图标）
+2. **在 Caret 中配置**：
+    - 打开 Caret 设置（⚙️ 图标）
     - 从**API 提供商**下拉菜单中选择 **Claude Code**
     - 设置 Claude CLI 可执行文件的路径（如果在 PATH 中，通常只需 `claude`）
 
 
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-setup.gif"
-		alt="Setting up the Claude Code provider in Cline"
+		alt="Setting up the Claude Code provider in Caret"
 	/>
 
 
@@ -36,7 +36,7 @@ Claude Code 提供商让您可以在 Cline 中使用现有的 Claude 订阅。�
 
 
 	Anthropic introduced full support for Claude Code on Windows. Follow the [instructions on how to set up Claude Code
-	normally](#setup) and make sure you have the latest Claude Code and Cline versions.
+	normally](#setup) and make sure you have the latest Claude Code and Caret versions.
 
 
 ### Finding your Claude Code path
@@ -60,9 +60,9 @@ The Claude Code provider supports these models:
 
 ## How it works
 
-When you use Claude Code with Cline, here's what happens behind the scenes:
+When you use Claude Code with Caret, here's what happens behind the scenes:
 
-Cline wraps the Claude Code CLI to handle your requests. Each time you send a message, Cline starts a new `claude` process, sends your conversation, and streams the response back. The AI reasoning comes from Claude Code, but all the actual file editing, terminal commands, and other tools are handled by Cline.
+Caret wraps the Claude Code CLI to handle your requests. Each time you send a message, Caret starts a new `claude` process, sends your conversation, and streams the response back. The AI reasoning comes from Claude Code, but all the actual file editing, terminal commands, and other tools are handled by Caret.
 
 The main difference you'll notice is that responses don't stream character-by-character like other providers. Instead, Claude Code processes your full request before sending back the complete response.
 
@@ -80,13 +80,13 @@ If you run into issues:
 
 **Authentication problems**: Make sure you're logged into Claude Code with your subscription account. Run `claude auth status` to check.
 
-**Path issues**: Double-check that the Claude CLI path in Cline's settings is correct. Try running `claude --version` in your terminal to verify it's working.
+**Path issues**: Double-check that the Claude CLI path in Caret's settings is correct. Try running `claude --version` in your terminal to verify it's working.
 
-**Still having trouble?** We're actively improving this integration. Report issues on our [GitHub](https://github.com/cline/cline/issues) or ask for help in our [Discord](https://discord.gg/cline).
+**Still having trouble?** We're actively improving this integration. Report issues on our [GitHub](https://github.com/caret/caret/issues) or ask for help in our [Discord](https://discord.gg/caret).
 
 ## Usage with subscriptions
 
-If you have a Claude Max subscription, your usage in Cline shows up as $0.00 in the billing interface since you're not paying additional API costs. Your usage still counts against your subscription limits, but you won't see per-token charges.
+If you have a Claude Max subscription, your usage in Caret shows up as $0.00 in the billing interface since you're not paying additional API costs. Your usage still counts against your subscription limits, but you won't see per-token charges.
 
 For more details about using Claude Code with your subscription, check out Anthropic's documentation:
 
