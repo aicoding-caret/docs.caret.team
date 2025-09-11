@@ -6,7 +6,14 @@ This repository contains the source code for [docs.caret.team](https://docs.care
 
 ## 🎯 About This Project
 
-Caret is built on the proven foundation of [Cline](https://github.com/cline/cline), adding enhanced features, persona system, and comprehensive multilingual support. This documentation site serves developers worldwide with comprehensive guides, tutorials, and reference materials in multiple languages.
+Caret is built on the proven foundation of [Cline](https://github.com/cline/cline), adding enhanced features and comprehensive multilingual support. This documentation site serves developers worldwide with comprehensive guides, tutorials, and reference materials in multiple languages.
+
+### ✨ Key Features Documented
+- 🎭 **Persona System**: Personalized AI coding companions (Caret, Oh Sarang, Madobe Ichika, etc.)
+- 🔄 **Cline/Caret Toggle**: Seamless switching between classic Cline and enhanced Caret modes  
+- 🧠 **Enhanced System Prompts**: Smarter AI responses for better coding assistance
+- 🎯 **25 Providers, 223 Models**: Complete compatibility with Cline v3.26.6 + extensions
+- 🌍 **True Multilingual Support**: Native language documentation and UI
 
 ### Supported Languages
 - 🇺🇸 **English** (`/en`) - Complete documentation

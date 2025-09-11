@@ -3,7 +3,7 @@ title: "Focus Chain"
 sidebarTitle: "Focus Chain"
 ---
 
-Focus Chain is a task management enhancement feature in Cline that provides automatic todo list management with real-time progress tracking throughout your tasks. 
+Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
 
 <figure>
 	<img
@@ -12,17 +12,17 @@ Focus Chain is a task management enhancement feature in Cline that provides auto
 	/>
 </figure>
 
-This enables Cline to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Cline on track across many context window resets.
+This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
 
 :::tip
-  Focus Chain works particularly well with Cline's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
+  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
 :::
 
 ## Key Features
 
 ### Automatic Todo List Generation
 
-Cline analyzes your task and automatically creates a comprehensive todo list with:
+Caret analyzes your task and automatically creates a comprehensive todo list with:
 - Clear, actionable items in markdown checklist format
 - Logical breakdown of complex tasks into manageable steps
 - Real-time updates as work progresses
@@ -32,7 +32,7 @@ Cline analyzes your task and automatically creates a comprehensive todo list wit
 Todo lists are stored as editable markdown files:
 - Direct editing through your preferred markdown editor
 - Automatic detection of changes you make
-- Seamless integration back into Cline's workflow
+- Seamless integration back into Caret's workflow
 - Quick access through the edit button in the task header
 
 ### Visual Progress Tracking
@@ -55,23 +55,23 @@ Configurable reminders ensure todo lists stay current:
 
 :::info
   :::info
-      - Click the gear icon in the Cline sidebar
+      - Click the gear icon in the Caret sidebar
       - Navigate to the "Features" section
   :::
   :::info
       - Check "Enable Focus Chain"
-      - Optionally adjust "Remind Cline Interval" (default: 6 messages)
+      - Optionally adjust "Remind Caret Interval" (default: 6 messages)
   :::
   :::info
       - Begin a new task
-      - Cline will automatically start creating and managing todo lists
+      - Caret will automatically start creating and managing todo lists
   :::
 :::
 
 | Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
 | Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
-| Remind Cline Interval | 6 | 1-100 messages | How often Cline updates the todo list |
+| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
 
 ## Usage Examples
 
@@ -82,12 +82,12 @@ When you start a new task with Focus Chain enabled:
 ``` markdown User Request
 User: "Create a user authentication system for my React app"
 
-Cline: [Analyzes request and creates todo list]
+Caret: [Analyzes request and creates todo list]
 ```
 
 #### 2. Todo List Created
 
-Cline creates a comprehensive plan for the task, stored in a markdown file:
+Caret creates a comprehensive plan for the task, stored in a markdown file:
 
 ```markdown Todo List Created
 - [ ] Set up project structure
@@ -102,7 +102,7 @@ Cline creates a comprehensive plan for the task, stored in a markdown file:
 
 #### 3. Progress Tracking
 
-As Cline works, the task header shows real-time progress:
+As Caret works, the task header shows real-time progress:
 
 ```markdown Todo List Header
 [3/8] Implement login functionality     ⌄
@@ -156,7 +156,7 @@ Need to tweak the todo list? No problem.
     Add, remove, or reorder items as needed
   :::
   :::info
-    Cline automatically detects and uses your updates
+    Caret automatically detects and uses your updates
   :::
 :::
 
@@ -199,7 +199,7 @@ Todo files use standard markdown checklist syntax:
 
 ## Integration with Plan/Act Mode
 
-Focus Chain works seamlessly with Cline's [Plan/Act mode](/features/plan-and-act):
+Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act):
 
 - **Plan Mode**: Optional todo lists for presenting concrete steps
 - **Act Mode**: Automatic todo creation when switching from Plan Mode
@@ -218,7 +218,7 @@ Focus Chain works seamlessly with Cline's [Plan/Act mode](/features/plan-and-act
       - Mention any preferred technologies or approaches
 
     2. **Review Generated Lists**
-      - Check that Cline's breakdown aligns with your expectations
+      - Check that Caret's breakdown aligns with your expectations
       - Verify that all important steps are included
       - Ensure the order makes sense for your project
 
@@ -242,7 +242,7 @@ Focus Chain works seamlessly with Cline's [Plan/Act mode](/features/plan-and-act
     3. **Regular Reviews**
       - Check progress periodically during long tasks
       - Update todo lists as requirements evolve
-      - Communicate changes to Cline through edits
+      - Communicate changes to Caret through edits
   :::
   :::details
     1. **Share Todo Files**
@@ -278,7 +278,7 @@ Having issues? Try these quick fixes:
   :::
 :::
 
-Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Cline to get help.
+Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
 
 ## Technical Details (for the curious)
 
@@ -300,4 +300,4 @@ Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command i
   :::
 :::
 
-Focus Chain turns Cline into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!
+Focus Chain turns Caret into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!

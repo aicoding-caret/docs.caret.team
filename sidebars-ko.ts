@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
       label: '시작하기',
       items: [
         'getting-started/what-is-caret',
-        'getting-started/installing-cline',
+        'getting-started/installing-caret',
         'getting-started/model-selection-guide',
         'getting-started/understanding-context-management',
         'getting-started/for-new-coders',
@@ -36,7 +36,7 @@ const sidebars: SidebarsConfig = {
         'features/auto-compact',
         'features/auto-approve',
         'features/checkpoints',
-        'features/cline-rules',
+        'features/caret-rules',
         'features/editing-messages',
         {
           type: 'category',
@@ -82,7 +82,7 @@ const sidebars: SidebarsConfig = {
       label: '프롬프팅',
       items: [
         'prompting/prompt-engineering-guide',
-        'prompting/cline-memory-bank',
+        'prompting/caret-memory-bank',
       ],
     },
     {
@@ -109,7 +109,7 @@ const sidebars: SidebarsConfig = {
         'provider-config/requesty',
         'provider-config/sap-aicore',
         'provider-config/vscode-language-model-api',
-        'provider-config/litellm-and-cline-using-codestral',
+        'provider-config/litellm-and-caret-using-codestral',
         {
           type: 'category',
           label: 'AWS Bedrock',
@@ -152,11 +152,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Cline 도구 탐색',
+      label: 'Caret 도구 탐색',
       items: [
-        'exploring-clines-tools/cline-tools-guide',
-        'exploring-clines-tools/new-task-tool',
-        'exploring-clines-tools/remote-browser-support',
+        'exploring-carets-tools/caret-tools-guide',
+        'exploring-carets-tools/new-task-tool',
+        'exploring-carets-tools/remote-browser-support',
       ],
     },
     {

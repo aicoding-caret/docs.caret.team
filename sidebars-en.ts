@@ -8,7 +8,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'getting-started/what-is-caret',
         'getting-started/model-selection-guide',
-        'getting-started/installing-cline',
+        'getting-started/installing-caret',
         'getting-started/task-management',
         'getting-started/understanding-context-management',
         {
@@ -26,7 +26,7 @@ const sidebars: SidebarsConfig = {
       label: 'Improving Your Prompting Skills',
       items: [
         'prompting/prompt-engineering-guide',
-        'prompting/cline-memory-bank'
+        'prompting/caret-memory-bank'
       ]
     },
     {
@@ -35,7 +35,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'features/auto-approve',
         'features/checkpoints',
-        'features/cline-rules',
+        'features/caret-rules',
         'features/drag-and-drop',
         'features/plan-and-act',
         'features/slash-commands/workflows',
@@ -80,11 +80,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Exploring Cline\'s Tools',
+      label: 'Exploring Caret\'s Tools',
       items: [
-        'exploring-clines-tools/cline-tools-guide',
-        'exploring-clines-tools/new-task-tool',
-        'exploring-clines-tools/remote-browser-support'
+        'exploring-carets-tools/caret-tools-guide',
+        'exploring-carets-tools/new-task-tool',
+        'exploring-carets-tools/remote-browser-support'
       ]
     },
     {
@@ -126,7 +126,7 @@ const sidebars: SidebarsConfig = {
           ]
         },
         'provider-config/gcp-vertex-ai',
-        'provider-config/litellm-and-cline-using-codestral',
+        'provider-config/litellm-and-caret-using-codestral',
         'provider-config/vscode-language-model-api',
         'provider-config/xai-grok',
         'provider-config/mistral-ai',

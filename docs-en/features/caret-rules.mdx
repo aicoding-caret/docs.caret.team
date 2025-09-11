@@ -1,11 +1,11 @@
-Cline Rules allow you to provide Cline with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+Caret Rules allow you to provide Caret with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
 ## Creating a Rule
 
 You can create a rule by clicking the `+` button in the Rules tab. This will open a new file in your IDE which you can use to write your rule.
 
 <figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/cline-rules.png" alt="Create a Rule" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-rules.png" alt="Create a Rule" />
 </figure>
 
 Once you save the file:
@@ -19,15 +19,15 @@ The location of your Global Rules directory depends on your operating system:
 
 | Operating System | Default Location | Notes |
 |------------------|------------------|-------|
-| **Windows** | `Documents\Cline\Rules` | Uses system Documents folder |
-| **macOS** | `~/Documents/Cline/Rules` | Uses user Documents folder |
-| **Linux/WSL** | `~/Documents/Cline/Rules` | May fall back to `~/Cline/Rules` on some systems |
+| **Windows** | `Documents\Caret\Rules` | Uses system Documents folder |
+| **macOS** | `~/Documents/Caret/Rules` | Uses user Documents folder |
+| **Linux/WSL** | `~/Documents/Caret/Rules` | May fall back to `~/Caret/Rules` on some systems |
 
-> **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Cline/Rules`, check `~/Cline/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
+> **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Caret/Rules`, check `~/Caret/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
 
-You can also have Cline create a rule for you by using the [`/newrule` slash command](/features/slash-commands/new-rule) in the chat.
+You can also have Caret create a rule for you by using the [`/newrule` slash command](/features/slash-commands/new-rule) in the chat.
 
-```markdown Example Cline Rule Structure [expandable]
+```markdown Example Caret Rule Structure [expandable]
 # Project Guidelines
 
 ## Documentation Requirements
@@ -79,9 +79,9 @@ your-project/
 └── ...
 ```
 
-Cline's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/cline/cline/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+Caret's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
 
-### Tips for Writing Effective Cline Rules
+### Tips for Writing Effective Caret Rules
 
 -   Be Clear and Concise: Use simple language and avoid ambiguity.
 -   Focus on Desired Outcomes: Describe the results you want, not the specific steps.
@@ -99,7 +99,7 @@ your-project/
 └── ...
 ```
 
-Cline automatically processes **all Markdown files** inside the `.clinerules/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
+Caret automatically processes **all Markdown files** inside the `.clinerules/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
 
 #### Using a Rules Bank
 
@@ -155,11 +155,11 @@ cp clinerules-bank/frameworks/react.md .clinerules/
 -   Consider git-ignoring the active `.clinerules/` folder while tracking the `clinerules-bank/`
 -   Create team scripts to quickly activate common rule combinations
 
-The folder system transforms your Cline rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
+The folder system transforms your Caret rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
 
 ### Managing Rules with the Toggleable Popover
 
-To make managing both single `.clinerules` files and the folder system even easier, Cline v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
+To make managing both single `.clinerules` files and the folder system even easier, Caret v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
 
 Located conveniently under the chat input field, this popover allows you to:
 
@@ -170,5 +170,5 @@ Located conveniently under the chat input field, this popover allows you to:
 This UI significantly simplifies switching contexts and managing different sets of instructions without needing to manually edit files or configurations during a conversation.
 
 <figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Cline Logo" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
 </figure>

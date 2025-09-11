@@ -4,11 +4,11 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'Getting Started',
+      label: '入门指南',
       items: [
         'getting-started/what-is-caret',
         'getting-started/model-selection-guide',
-        'getting-started/installing-cline',
+        'getting-started/installing-caret',
         'getting-started/task-management',
         'getting-started/understanding-context-management',
         {
@@ -23,19 +23,19 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Improving Your Prompting Skills',
+      label: '提升提示技巧',
       items: [
         'prompting/prompt-engineering-guide',
-        'prompting/cline-memory-bank'
+        'prompting/caret-memory-bank'
       ]
     },
     {
       type: 'category',
-      label: 'Features',
+      label: '功能特性',
       items: [
         'features/auto-approve',
         'features/checkpoints',
-        'features/cline-rules',
+        'features/caret-rules',
         'features/drag-and-drop',
         'features/plan-and-act',
         'features/slash-commands/workflows',
@@ -44,7 +44,7 @@ const sidebars: SidebarsConfig = {
         'features/editing-messages',
         {
           type: 'category',
-          label: '@ Mentions',
+          label: '@ 提及',
           items: [
             'features/at-mentions/overview',
             'features/at-mentions/file-mentions',
@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Slash Commands',
+          label: '斜杠命令',
           items: [
             'features/slash-commands/new-task',
             'features/slash-commands/new-rule',
@@ -67,7 +67,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Commands & Shortcuts',
+          label: '命令与快捷键',
           items: [
             'features/commands-and-shortcuts/overview',
             'features/commands-and-shortcuts/code-commands',
@@ -80,16 +80,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Exploring Cline\'s Tools',
+      label: '探索Caret工具',
       items: [
-        'exploring-clines-tools/cline-tools-guide',
-        'exploring-clines-tools/new-task-tool',
-        'exploring-clines-tools/remote-browser-support'
+        'exploring-carets-tools/caret-tools-guide',
+        'exploring-carets-tools/new-task-tool',
+        'exploring-carets-tools/remote-browser-support'
       ]
     },
     {
       type: 'category',
-      label: 'Enterprise Solutions',
+      label: '企业级解决方案',
       items: [
         'enterprise-solutions/cloud-provider-integration',
         'enterprise-solutions/custom-instructions',
@@ -99,7 +99,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'MCP Servers',
+      label: 'MCP服务器',
       items: [
         'mcp/mcp-overview',
         'mcp/adding-mcp-servers-from-github',
@@ -112,7 +112,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Provider Configuration',
+      label: '供应商配置',
       items: [
         'provider-config/anthropic',
         'provider-config/claude-code',
@@ -126,7 +126,7 @@ const sidebars: SidebarsConfig = {
           ]
         },
         'provider-config/gcp-vertex-ai',
-        'provider-config/litellm-and-cline-using-codestral',
+        'provider-config/litellm-and-caret-using-codestral',
         'provider-config/vscode-language-model-api',
         'provider-config/xai-grok',
         'provider-config/mistral-ai',
@@ -147,7 +147,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Running Models Locally',
+      label: '本地运行模型',
       items: [
         'running-models-locally/read-me-first',
         'running-models-locally/lm-studio',
@@ -156,7 +156,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Troubleshooting',
+      label: '故障排除',
       items: [
         'troubleshooting/terminal-quick-fixes',
         'troubleshooting/terminal-integration-guide'
@@ -164,7 +164,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'More Info',
+      label: '更多信息',
       items: [
         'more-info/telemetry'
       ]

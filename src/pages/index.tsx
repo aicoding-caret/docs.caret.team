@@ -31,7 +31,7 @@ export default function Home(): ReactNode {
                         </div>
                         <div className="card__body">
                           <p>Documentation in English</p>
-                          <a href="/en" className="button button--primary button--block">
+                          <a href="/en/getting-started/what-is-caret" className="button button--primary button--block">
                             Go to English Docs
                           </a>
                         </div>
@@ -43,8 +43,8 @@ export default function Home(): ReactNode {
                           <h3>🇰🇷 한국어</h3>
                         </div>
                         <div className="card__body">
-                          <p>한국어 문서</p>
-                          <a href="/ko" className="button button--primary button--block">
+                          <p>Cline 기반의 향상된 AI 코딩 도구</p>
+                          <a href="/ko/getting-started/what-is-caret" className="button button--primary button--block">
                             한국어 문서 보기
                           </a>
                         </div>
@@ -60,7 +60,7 @@ export default function Home(): ReactNode {
                         </div>
                         <div className="card__body">
                           <p>中文文档</p>
-                          <a href="/zh" className="button button--primary button--block">
+                          <a href="/zh/getting-started/what-is-caret" className="button button--primary button--block">
                             中文文档
                           </a>
                         </div>
@@ -73,7 +73,7 @@ export default function Home(): ReactNode {
                         </div>
                         <div className="card__body">
                           <p>日本語ドキュメント</p>
-                          <a href="/ja" className="button button--primary button--block">
+                          <a href="/ja/getting-started/what-is-caret" className="button button--primary button--block">
                             日本語ドキュメント
                           </a>
                         </div>
