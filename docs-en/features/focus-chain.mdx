@@ -53,20 +53,19 @@ Configurable reminders ensure todo lists stay current:
 
 ## Getting Started
 
-:::info
-  :::info
-      - Click the gear icon in the Caret sidebar
-      - Navigate to the "Features" section
-  :::
-  :::info
-      - Check "Enable Focus Chain"
-      - Optionally adjust "Remind Caret Interval" (default: 6 messages)
-  :::
-  :::info
-      - Begin a new task
-      - Caret will automatically start creating and managing todo lists
-  :::
-:::
+**Getting Started Steps:**
+
+1. **Setup**
+   - Click the gear icon in the Caret sidebar
+   - Navigate to the "Features" section
+
+2. **Configuration**
+   - Check "Enable Focus Chain"
+   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+
+3. **Usage**
+   - Begin a new task
+   - Caret will automatically start creating and managing todo lists
 
 | Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
@@ -125,12 +124,11 @@ Click to expand and see the full list:
 
 Need to tweak the todo list? No problem.
 
-:::info
-  :::info
-    Click the edit button in the expanded todo view
-  :::
-  :::info
-    A markdown file opens in your editor:
+**Editing Process:**
+
+1. **Open Editor**: Click the edit button in the expanded todo view
+
+2. **Edit File**: A markdown file opens in your editor:
 
     ```markdown Editing Todo List
     # Focus Chain Todo List for Task abc123
@@ -151,14 +149,10 @@ Need to tweak the todo list? No problem.
 
     <!-- Save this file to update the task's todo list -->
     ```
-  :::
-  :::info
-    Add, remove, or reorder items as needed
-  :::
-  :::info
-    Caret automatically detects and uses your updates
-  :::
-:::
+
+3. **Customize**: Add, remove, or reorder items as needed
+
+4. **Save**: Caret automatically detects and uses your updates
 
 ## File Structure
 
@@ -211,7 +205,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
 ## Best Practices
 
 :::info
-  :::details
+  :::tip
     1. **Start with Clear Requests**
       - Provide detailed initial task descriptions
       - Include specific requirements and constraints
@@ -228,7 +222,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Reorder steps for better workflow
       - Add more specific details to general items
   :::
-  :::details
+  :::tip
     1. **Use Plan Mode First**
       - Discuss the approach before implementation
       - Refine requirements through conversation
@@ -244,7 +238,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Update todo lists as requirements evolve
       - Communicate changes to Caret through edits
   :::
-  :::details
+  :::tip
     1. **Share Todo Files**
       - Todo markdown files can be shared with team members
       - Include in version control for project documentation
@@ -263,16 +257,16 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
 Having issues? Try these quick fixes:
 
 :::info
-  :::details
+  :::tip
     - Check that Focus Chain is enabled in settings
     - Focus Chain may not work as well with smaller, less capable models
     - Ensure file permissions are correct in the task directory
   :::
-  :::details
+  :::tip
     - Verify your editor supports markdown
     - Check VSCode has write permissions for the directory
   :::
-  :::details
+  :::tip
     - Ensure todo items use correct syntax (`- [ ]` and `- [x]`)
     - Verify the markdown file is properly formatted
   :::
@@ -283,17 +277,17 @@ Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command i
 ## Technical Details (for the curious)
 
 :::info
-  :::details
+  :::tip
     - Real-time file watching detects changes to todo markdown files
     - Automatic synchronization between file edits and UI updates
     - Graceful handling of file creation, modification, and deletion
   :::
-  :::details
+  :::tip
     - Dynamic counting of completed vs. total todo items
     - Support for both `- [x]` and `- [X]` completion syntax
     - Unicode symbols (✓, ○) for enhanced visual display
   :::
-  :::details
+  :::tip
     - Todo lists stored locally in VSCode workspace
     - No todo content transmitted to external services
     - Usage telemetry (can be disabled in settings)

@@ -1,9 +1,9 @@
 ---
-title: "フォーカスチェーン"
-sidebarTitle: "フォーカスチェーン"
+title: "Focus Chain"
+sidebarTitle: "Focus Chain"
 ---
 
-フォーカスチェーンは、Clineのタスク管理を強化する機能で、タスク全体を通してリアルタイムの進捗追跡と自動的なTodoリスト管理を提供します。
+Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
 
 <figure>
 	<img
@@ -12,292 +12,286 @@ sidebarTitle: "フォーカスチェーン"
 	/>
 </figure>
 
-これにより、Clineは長期的なタスクに取り組むことができ、LLMに送信されるコンテキストをシームレスに管理し、多くのコンテキストウィンドウリセットにわたってClineを正しい軌道に保ちます。
+This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
 
-<Tip>
-  フォーカスチェーンは、Clineの[詳細プランニングスラッシュコマンド](/features/slash-commands/deep-planning)と特に相性が良く、[プランニングプロセス](/features/plan-and-act)を通じて作成された実装タスクのシームレスな進捗追跡を提供します。
-</Tip>
+:::tip
+  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
+:::
 
-## 主要機能
+## Key Features
 
-### 自動Todoリスト生成
+### Automatic Todo List Generation
 
-Clineがあなたのタスクを分析し、包括的なTodoリストを自動的に作成します：
-- マークダウンチェックリスト形式による明確で実行可能なアイテム
-- 複雑なタスクを管理可能なステップに論理的に分解
-- 作業進行に応じたリアルタイムでの更新
+Caret analyzes your task and automatically creates a comprehensive todo list with:
+- Clear, actionable items in markdown checklist format
+- Logical breakdown of complex tasks into manageable steps
+- Real-time updates as work progresses
 
-### ユーザー編集可能なTodoリスト
+### User-Editable Todo Lists
 
-Todoリストは編集可能なマークダウンファイルとして保存されます：
-- お好みのマークダウンエディタでの直接編集
-- あなたが行った変更の自動検出
-- Clineのワークフローへのシームレスな統合
-- タスクヘッダーの編集ボタンからの素早いアクセス
+Todo lists are stored as editable markdown files:
+- Direct editing through your preferred markdown editor
+- Automatic detection of changes you make
+- Seamless integration back into Caret's workflow
+- Quick access through the edit button in the task header
 
-### ビジュアル進捗追跡
+### Visual Progress Tracking
 
-タスクヘッダーに明確な進捗インジケーターを表示：
-- 現在の進捗を示す**ステップカウンター**（例：「3/8」）
-- チェックマークで明確にマークされた**完了アイテム**
-- インジケーターでハイライトされた**現在の作業**
-- 完全なTodoリストを確認できる**展開可能なビュー**
+The task header displays clear progress indicators:
+- **Step counters** showing current progress (e.g., "3/8")
+- **Completed items** clearly marked with checkmarks
+- **Current work** highlighted with indicators
+- **Expandable view** to see the full todo list
 
-### スマートリマインダーシステム
+### Smart Reminder System
 
-設定可能なリマインダーがTodoリストを常に最新に保ちます：
-- デフォルトでは6メッセージごとにリマインド（1-100でカスタマイズ可能）
-- プランモードからアクトモードに切り替える際の自動プロンプト
-- Todoリストが手動で編集された際のユーザー起動アップデート
+Configurable reminders ensure todo lists stay current:
+- Default reminder every 6 messages (customizable 1-100)
+- Automatic prompts when switching from Plan Mode to Act Mode
+- User-triggered updates when todo lists are manually edited
 
 
-## はじめに
+## Getting Started
 
-<Steps>
-  <Step title="Cline設定を開く">
-      - Clineサイドバーの歯車アイコンをクリック
-      - 「機能」セクションに移動
-  </Step>
-  <Step title="フォーカスチェーンを有効化">
-      - 「フォーカスチェーンを有効にする」をチェック
-      - オプションで「Clineリマインド間隔」を調整（デフォルト：6メッセージ）
-  </Step>
-  <Step title="新しいタスクを開始">
-      - 新しいタスクを開始
-      - Clineが自動的にTodoリストの作成と管理を開始
-  </Step>
-</Steps>
+**Getting Started Steps:**
 
-| 設定 | デフォルト | 範囲 | 説明 |
+1. **Setup**
+   - Click the gear icon in the Caret sidebar
+   - Navigate to the "Features" section
+
+2. **Configuration**
+   - Check "Enable Focus Chain"
+   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+
+3. **Usage**
+   - Begin a new task
+   - Caret will automatically start creating and managing todo lists
+
+| Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
-| フォーカスチェーンを有効化 | 無効 | オン/オフ | 拡張されたタスク進捗追跡を有効にする |
-| Clineリマインド間隔 | 6 | 1-100メッセージ | Clineがtodoリストを更新する頻度 |
+| Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
+| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
 
-## 使用例
+## Usage Examples
 
-#### 1. タスクの開始
+#### 1. Task Initiation
 
-フォーカスチェーンを有効にして新しいタスクを開始するとき：
+When you start a new task with Focus Chain enabled:
 
-``` markdown ユーザーリクエスト
-ユーザー: "Reactアプリのユーザー認証システムを作成してください"
+``` markdown User Request
+User: "Create a user authentication system for my React app"
 
-Caret: [リクエストを分析してtodoリストを作成]
+Caret: [Analyzes request and creates todo list]
 ```
 
-#### 2. Todoリストの作成
+#### 2. Todo List Created
 
-Clineがタスクの包括的なプランを作成し、マークダウンファイルに保存します：
+Caret creates a comprehensive plan for the task, stored in a markdown file:
 
-```markdown Todoリスト作成
-- [ ] プロジェクト構造のセットアップ
-- [ ] 認証依存関係のインストール
-- [ ] ユーザー登録コンポーネントの作成
-- [ ] ログイン機能の実装
-- [ ] パスワード検証の追加
-- [ ] ユーザーデータベーススキーマのセットアップ
-- [ ] 認証テストの作成
-- [ ] ステージング環境へのデプロイ
+```markdown Todo List Created
+- [ ] Set up project structure
+- [ ] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
 ```
 
-#### 3. 進捗追跡
+#### 3. Progress Tracking
 
-Clineが作業を進める中で、タスクヘッダーにリアルタイムの進捗を表示：
+As Caret works, the task header shows real-time progress:
 
-```markdown Todoリストヘッダー
-[3/8] ログイン機能の実装     ⌄
+```markdown Todo List Header
+[3/8] Implement login functionality     ⌄
 ```
 
-クリックして展開し、完全なリストを確認：
+Click to expand and see the full list:
 
-```markdown 完全なTodoリスト
-✓ プロジェクト構造のセットアップ
-✓ 認証依存関係のインストール
-✓ ユーザー登録コンポーネントの作成
-○ ログイン機能の実装  ← 現在作業中
-○ パスワード検証の追加
-○ ユーザーデータベーススキーマのセットアップ
-○ 認証テストの作成
-○ ステージング環境へのデプロイ
+```markdown Full Todo List
+✓ Set up project structure
+✓ Install authentication dependencies
+✓ Create user registration component
+○ Implement login functionality  ← Currently working
+○ Add password validation
+○ Set up user database schema
+○ Write authentication tests
+○ Deploy to staging environment
 ```
 
-#### 4. ユーザー編集
+#### 4. User Editing
 
-Todoリストを調整したい？問題ありません。
+Need to tweak the todo list? No problem.
 
-<Steps>
-  <Step title="Todoリストを開く">
-    展開されたtodoビューの編集ボタンをクリック
-  </Step>
-  <Step title="マークダウンファイルを編集">
-    エディタでマークダウンファイルが開きます：
+**Editing Process:**
 
-    ```markdown Todoリストの編集
-    # Task abc123のフォーカスチェーンTodoリスト
+1. **Open Editor**: Click the edit button in the expanded todo view
 
-    <!-- このマークダウンファイルを編集してフォーカスチェーンtodoリストを更新 -->
-    <!-- 未完了アイテムは - [ ]、完了アイテムは - [x] を使用 -->
+2. **Edit File**: A markdown file opens in your editor:
 
-    - [x] プロジェクト構造のセットアップ
-    - [x] 認証依存関係のインストール（例：Firebase Auth）
-    - [x] ユーザー登録コンポーネントの作成
-    - [ ] ログイン機能の実装
-    - [ ] パスワードリセット機能の追加
-    - [ ] 保護されたルートのセットアップ
-    - [ ] ログアウト機能の実装
-    - [ ] ユーザープロフィールページの追加
-    - [ ] 認証テストの作成
-    - [ ] ステージング環境へのデプロイ
+    ```markdown Editing Todo List
+    # Focus Chain Todo List for Task abc123
 
-    <!-- このファイルを保存してタスクのtodoリストを更新 -->
+    <!-- Edit this markdown file to update your focus chain todo list -->
+    <!-- Use - [ ] for incomplete items and - [x] for completed items -->
+
+    - [x] Set up project structure
+    - [x] Install authentication dependencies (e.g., Firebase Auth)
+    - [x] Create user registration component
+    - [ ] Implement login functionality
+    - [ ] Add password reset feature
+    - [ ] Set up protected routes
+    - [ ] Implement logout functionality
+    - [ ] Add user profile page
+    - [ ] Write authentication tests
+    - [ ] Deploy to staging environment
+
+    <!-- Save this file to update the task's todo list -->
     ```
-  </Step>
-  <Step title="変更を行う">
-    必要に応じてアイテムを追加、削除、または並べ替え
-  </Step>
-  <Step title="ファイルを保存">
-    Clineが自動的に更新を検出して使用
-  </Step>
-</Steps>
 
-## ファイル構造
+3. **Customize**: Add, remove, or reorder items as needed
 
-### Todoリストの保存
+4. **Save**: Caret automatically detects and uses your updates
 
-Todoリストはタスクディレクトリにマークダウンファイルとして保存されます：
+## File Structure
+
+### Todo List Storage
+
+Todo lists are stored as markdown files in your task directory:
 
 ``` markdown
 <VSCode Global Storage>/
   tasks/
     <taskId>/
       focus_chain_taskid_<taskId>.md
-      ... その他のタスクファイル
+      ... other task files
 ```
 
-### マークダウン形式
+### Markdown Format
 
-Todoファイルは標準的なマークダウンチェックリスト構文を使用します：
+Todo files use standard markdown checklist syntax:
 
-```markdown Todoの構文例
-# Task abc123のフォーカスチェーンTodoリスト
+```markdown Example Todo Syntax
+# Focus Chain Todo List for Task abc123
 
-<!-- このマークダウンファイルを編集してフォーカスチェーンtodoリストを更新 -->
-<!-- 形式：未完了アイテムは - [ ]、完了アイテムは - [x] を使用 -->
+<!-- Edit this markdown file to update your focus chain todo list -->
+<!-- Use the format: - [ ] for incomplete items and - [x] for completed items -->
 
-- [x] プロジェクト構造のセットアップ
-- [x] 認証依存関係のインストール
-- [ ] ユーザー登録コンポーネントの作成
-- [ ] ログイン機能の実装
-- [ ] パスワード検証の追加
-- [ ] ユーザーデータベーススキーマのセットアップ
-- [ ] 認証テストの作成
-- [ ] ステージング環境へのデプロイ
+- [x] Set up project structure
+- [x] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
 
-<!-- このファイルを保存するとタスクのtodoリストが更新されます -->
+<!-- Save this file and the todo list will be updated in the task -->
 ```
 
 
-## プラン/アクトモードとの統合
+## Integration with Plan/Act Mode
 
-フォーカスチェーンはClineの[プラン/アクトモード](/features/plan-and-act)とシームレスに動作します：
+Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act):
 
-- **プランモード**: 具体的なステップを提示するためのオプションのTodoリスト
-- **アクトモード**: プランモードから切り替える際の自動Todo作成
+- **Plan Mode**: Optional todo lists for presenting concrete steps
+- **Act Mode**: Automatic todo creation when switching from Plan Mode
 
-<Tip>
-  複雑なプロジェクトでは、実装のためにアクトモードに切り替える前に、プランモードでアプローチを議論し、洗練させることから始めてください。
-</Tip>
+:::tip
+  For complex projects, start in Plan Mode to discuss and refine your approach before switching to Act Mode for implementation.
+:::
 
-## ベストプラクティス
+## Best Practices
 
 :::info
-  :::details
-    1. **明確なリクエストから始める**
-      - 詳細な初期タスクの説明を提供
-      - 具体的な要件と制約を含める
-      - 好みの技術やアプローチがあれば言及
+  :::tip
+    1. **Start with Clear Requests**
+      - Provide detailed initial task descriptions
+      - Include specific requirements and constraints
+      - Mention any preferred technologies or approaches
 
-    2. **生成されたリストを確認**
-      - Clineの分解があなたの期待と一致するかチェック
-      - すべての重要なステップが含まれているか検証
-      - プロジェクトにとって順序が意味をなすか確認
+    2. **Review Generated Lists**
+      - Check that Caret's breakdown aligns with your expectations
+      - Verify that all important steps are included
+      - Ensure the order makes sense for your project
 
-    3. **必要に応じて編集**
-      - 特定した不足ステップを追加
-      - 不要なアイテムを削除
-      - より良いワークフローのためにステップを並べ替え
-      - 一般的なアイテムにより具体的な詳細を追加
+    3. **Edit When Needed**
+      - Add missing steps you identify
+      - Remove unnecessary items
+      - Reorder steps for better workflow
+      - Add more specific details to general items
   :::
-  :::details
-    1. **最初にプランモードを使用**
-      - 実装前にアプローチを議論
-      - 会話を通じて要件を洗練
-      - 作業開始の準備ができたらアクトモードに切り替え
+  :::tip
+    1. **Use Plan Mode First**
+      - Discuss the approach before implementation
+      - Refine requirements through conversation
+      - Switch to Act Mode when ready to begin work
 
-    2. **大きなタスクを分解**
-      - 複雑なプロジェクトをより小さく管理可能なタスクに分割
-      - 異なるコンポーネントごとに別々のTodoリストを作成
-      - 一度に一つの主要エリアに集中
+    2. **Break Down Large Tasks**
+      - Split complex projects into smaller, manageable tasks
+      - Create separate todo lists for different components
+      - Focus on one major area at a time
 
-    3. **定期的なレビュー**
-      - 長期タスク中は定期的に進捗を確認
-      - 要件の進化に応じてTodoリストを更新
-      - 編集を通じて変更をClineに伝達
+    3. **Regular Reviews**
+      - Check progress periodically during long tasks
+      - Update todo lists as requirements evolve
+      - Communicate changes to Caret through edits
   :::
-  :::details
-    1. **Todoファイルの共有**
-      - Todoマークダウンファイルはチームメンバーと共有可能
-      - プロジェクトドキュメンテーションのためにバージョン管理に含める
-      - プロジェクト計画議論の基礎として使用
+  :::tip
+    1. **Share Todo Files**
+      - Todo markdown files can be shared with team members
+      - Include in version control for project documentation
+      - Use as basis for project planning discussions
 
-    2. **一貫した形式**
-      - 標準的なマークダウンチェックリスト形式に従う
-      - アイテムの説明を明確で実行可能に保つ
-      - Todoリスト間で一貫した用語を使用
+    2. **Consistent Format**
+      - Follow the standard markdown checklist format
+      - Keep item descriptions clear and actionable
+      - Use consistent terminology across todo lists
   :::
 :::
 
 
-## トラブルシューティング
+## Troubleshooting
 
-問題が発生していますか？これらの簡単な修正を試してください：
+Having issues? Try these quick fixes:
 
 :::info
-  :::details
-    - 設定でフォーカスチェーンが有効になっているか確認
-    - フォーカスチェーンは小さく能力の低いモデルでは上手く動作しない場合があります
-    - タスクディレクトリのファイル権限が正しいか確認
+  :::tip
+    - Check that Focus Chain is enabled in settings
+    - Focus Chain may not work as well with smaller, less capable models
+    - Ensure file permissions are correct in the task directory
   :::
-  :::details
-    - エディタがマークダウンをサポートしているか確認
-    - VSCodeがディレクトリに書き込み権限を持っているかチェック
+  :::tip
+    - Verify your editor supports markdown
+    - Check VSCode has write permissions for the directory
   :::
-  :::details
-    - Todoアイテムが正しい構文（`- [ ]`と`- [x]`）を使用しているか確認
-    - マークダウンファイルが適切にフォーマットされているか検証
+  :::tip
+    - Ensure todo items use correct syntax (`- [ ]` and `- [x]`)
+    - Verify the markdown file is properly formatted
   :::
 :::
 
-まだ問題が解決しませんか？Clineの[/reportbug](/features/slash-commands/report-bug)コマンドを使用してヘルプを取得してください。
+Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
 
-## 技術詳細（興味のある方向け）
+## Technical Details (for the curious)
 
 :::info
-  :::details
-    - リアルタイムファイル監視がTodoマークダウンファイルの変更を検出
-    - ファイル編集とUI更新の自動同期
-    - ファイル作成、修正、削除の適切な処理
+  :::tip
+    - Real-time file watching detects changes to todo markdown files
+    - Automatic synchronization between file edits and UI updates
+    - Graceful handling of file creation, modification, and deletion
   :::
-  :::details
-    - 完了対総Todoアイテムの動的カウント
-    - `- [x]`と`- [X]`両方の完了構文をサポート
-    - 強化されたビジュアル表示のためのUnicode記号（✓、○）
+  :::tip
+    - Dynamic counting of completed vs. total todo items
+    - Support for both `- [x]` and `- [X]` completion syntax
+    - Unicode symbols (✓, ○) for enhanced visual display
   :::
-  :::details
-    - TodoリストはVSCodeワークスペースにローカル保存
-    - Todoコンテンツは外部サービスに送信されない
-    - 使用テレメトリ（設定で無効化可能）
+  :::tip
+    - Todo lists stored locally in VSCode workspace
+    - No todo content transmitted to external services
+    - Usage telemetry (can be disabled in settings)
   :::
 :::
 
-フォーカスチェーンはClineをあなたの個人プロジェクトマネージャーに変えて、軌道を保ち、タスクを整理します。次のプロジェクトで試してみてください！
+Focus Chain turns Caret into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!

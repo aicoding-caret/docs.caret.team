@@ -26,6 +26,7 @@ I am Caret, an expert software engineer with a unique characteristic: my memory 
 
 The Memory Bank consists of core files and optional context files, all in Markdown format. Files build upon each other in a clear hierarchy:
 
+```mermaid
 flowchart TD
     PB[projectbrief.md] --> PC[productContext.md]
     PB --> SP[systemPatterns.md]
@@ -36,6 +37,7 @@ flowchart TD
     TC --> AC
 
     AC --> P[progress.md]
+```
 
 ### Core Files (Required)
 1. `projectbrief.md`
@@ -90,6 +92,7 @@ Create additional files/folders within memory-bank/ when they help organize:
 ## Core Workflows
 
 ### Plan Mode
+```mermaid
 flowchart TD
     Start[Start] --> ReadFiles[Read Memory Bank]
     ReadFiles --> CheckFiles{Files Complete?}
@@ -100,13 +103,16 @@ flowchart TD
     CheckFiles -->|Yes| Verify[Verify Context]
     Verify --> Strategy[Develop Strategy]
     Strategy --> Present[Present Approach]
+```
 
 ### Act Mode
+```mermaid
 flowchart TD
     Start[Start] --> Context[Check Memory Bank]
     Context --> Update[Update Documentation]
     Update --> Execute[Execute Task]
     Execute --> Document[Document Changes]
+```
 
 ## Documentation Updates
 
@@ -116,6 +122,7 @@ Memory Bank updates occur when:
 3. When user requests with **update memory bank** (MUST review ALL files)
 4. When context needs clarification
 
+```mermaid
 flowchart TD
     Start[Update Process]
 
@@ -129,6 +136,7 @@ flowchart TD
     end
 
     Start --> Process
+```
 
 Note: When triggered by **update memory bank**, I MUST review every memory bank file, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they track current state.
 
@@ -151,9 +159,9 @@ The Memory Bank is a structured documentation system that allows Caret to mainta
 
 The Memory Bank isn't a Caret-specific feature - it's a methodology for managing AI context through structured documentation. When you instruct Caret to "follow custom instructions," it reads the Memory Bank files to rebuild its understanding of your project.
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(15).png" alt="Memory Bank Workflow" />
-
+</figure>
 
 #### Understanding the Files
 
@@ -161,9 +169,9 @@ Memory Bank files are simply markdown files you create in your project. They're 
 
 Files are organized in a hierarchical structure that builds up a complete picture of your project:
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(16).png" alt="Memory Bank File Structure" />
-
+</figure>
 
 ### Memory Bank Files Explained
 
@@ -222,9 +230,9 @@ Create additional files when needed to organize:
 2. Have a basic project brief ready (can be technical or non-technical)
 3. Ask Caret to "initialize memory bank"
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(17).png" alt="Memory Bank Setup" />
-
+</figure>
 
 #### Project Brief Tips
 
@@ -286,9 +294,9 @@ As you work with Caret, your context window will eventually fill up (note the pr
 
 This workflow ensures that important context is preserved in your Memory Bank files before the context window is cleared, allowing you to continue seamlessly in a fresh conversation.
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(18).png" alt="Memory Bank Context Window" />
-
+</figure>
 
 #### How often should I update the memory bank?
 

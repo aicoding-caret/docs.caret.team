@@ -1,21 +1,21 @@
 ---
-title: "焦点链"
-sidebarTitle: "焦点链"
+title: "Focus Chain"
+sidebarTitle: "Focus Chain"
 ---
 
-焦点链是 Caret 中的任务管理增强功能，提供自动待办事项列表管理，在整个任务过程中进行实时进度跟踪。
+Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
 
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/2dos.gif"
-		alt="焦点链待办事项列表管理，具有实时进度跟踪功能"
+		alt="Focus Chain todo list management with real-time progress tracking"
 	/>
+</figure>
 
-
-这使 Caret 能够处理长期任务，无缝管理发送到 LLM 的上下文，并在多次上下文窗口重置中保持 Caret 的正轨。
+This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
 
 :::tip
-  焦点链与 Caret 的[深度规划斜杠命令](/features/slash-commands/deep-planning)配合得特别好，为通过[规划过程](/features/plan-and-act)创建的实施任务提供无缝的进度跟踪。
+  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
 :::
 
 ## Key Features
@@ -53,20 +53,19 @@ Configurable reminders ensure todo lists stay current:
 
 ## Getting Started
 
-:::info
-  :::info
-      - Click the gear icon in the Caret sidebar
-      - Navigate to the "Features" section
-  :::
-  :::info
-      - Check "Enable Focus Chain"
-      - Optionally adjust "Remind Caret Interval" (default: 6 messages)
-  :::
-  :::info
-      - Begin a new task
-      - Caret will automatically start creating and managing todo lists
-  :::
+**Getting Started Steps:**
 
+1. **Setup**
+   - Click the gear icon in the Caret sidebar
+   - Navigate to the "Features" section
+
+2. **Configuration**
+   - Check "Enable Focus Chain"
+   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+
+3. **Usage**
+   - Begin a new task
+   - Caret will automatically start creating and managing todo lists
 
 | Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
@@ -125,12 +124,11 @@ Click to expand and see the full list:
 
 Need to tweak the todo list? No problem.
 
-:::info
-  :::info
-    Click the edit button in the expanded todo view
-  :::
-  :::info
-    A markdown file opens in your editor:
+**Editing Process:**
+
+1. **Open Editor**: Click the edit button in the expanded todo view
+
+2. **Edit File**: A markdown file opens in your editor:
 
     ```markdown Editing Todo List
     # Focus Chain Todo List for Task abc123
@@ -151,14 +149,10 @@ Need to tweak the todo list? No problem.
 
     <!-- Save this file to update the task's todo list -->
     ```
-  :::
-  :::info
-    Add, remove, or reorder items as needed
-  :::
-  :::info
-    Caret automatically detects and uses your updates
-  :::
 
+3. **Customize**: Add, remove, or reorder items as needed
+
+4. **Save**: Caret automatically detects and uses your updates
 
 ## File Structure
 
@@ -210,8 +204,8 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
 
 ## Best Practices
 
-
-  
+:::info
+  :::tip
     1. **Start with Clear Requests**
       - Provide detailed initial task descriptions
       - Include specific requirements and constraints
@@ -227,8 +221,8 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Remove unnecessary items
       - Reorder steps for better workflow
       - Add more specific details to general items
-  
-  
+  :::
+  :::tip
     1. **Use Plan Mode First**
       - Discuss the approach before implementation
       - Refine requirements through conversation
@@ -243,8 +237,8 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Check progress periodically during long tasks
       - Update todo lists as requirements evolve
       - Communicate changes to Caret through edits
-  
-  
+  :::
+  :::tip
     1. **Share Todo Files**
       - Todo markdown files can be shared with team members
       - Include in version control for project documentation
@@ -254,50 +248,50 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Follow the standard markdown checklist format
       - Keep item descriptions clear and actionable
       - Use consistent terminology across todo lists
-  
-
+  :::
+:::
 
 
 ## Troubleshooting
 
 Having issues? Try these quick fixes:
 
-
-  
+:::info
+  :::tip
     - Check that Focus Chain is enabled in settings
     - Focus Chain may not work as well with smaller, less capable models
     - Ensure file permissions are correct in the task directory
-  
-  
+  :::
+  :::tip
     - Verify your editor supports markdown
     - Check VSCode has write permissions for the directory
-  
-  
+  :::
+  :::tip
     - Ensure todo items use correct syntax (`- [ ]` and `- [x]`)
     - Verify the markdown file is properly formatted
-  
-
+  :::
+:::
 
 Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
 
 ## Technical Details (for the curious)
 
-
-  
+:::info
+  :::tip
     - Real-time file watching detects changes to todo markdown files
     - Automatic synchronization between file edits and UI updates
     - Graceful handling of file creation, modification, and deletion
-  
-  
+  :::
+  :::tip
     - Dynamic counting of completed vs. total todo items
     - Support for both `- [x]` and `- [X]` completion syntax
     - Unicode symbols (✓, ○) for enhanced visual display
-  
-  
+  :::
+  :::tip
     - Todo lists stored locally in VSCode workspace
     - No todo content transmitted to external services
     - Usage telemetry (can be disabled in settings)
-  
-
+  :::
+:::
 
 Focus Chain turns Caret into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!

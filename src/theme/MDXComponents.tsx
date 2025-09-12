@@ -1,5 +1,5 @@
 import React from 'react';
-import MDXComponents from '@theme/MDXComponents';
+import MDXComponents from '@theme-original/MDXComponents';
 import {
   Card,
   Columns,
@@ -8,7 +8,10 @@ import {
   Tip,
   Info,
   Step,
+  Steps,
   Accordion,
+  AccordionGroup,
+  AccordionItem,
 } from '@site/src/components/MDXComponents';
 
 export default {
@@ -20,5 +23,8 @@ export default {
   Tip,
   Info,
   Step,
+  Steps,
   Accordion,
+  AccordionGroup,
+  AccordionItem,
 };

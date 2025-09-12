@@ -72,39 +72,38 @@ Caret will begin his investigation immediately. You'll see him reading files and
 
 Here's how I use `/deep-planning` for a real feature:
 
-:::info
-  :::info
-    I type `/deep-planning implement a caching layer for API responses`
-  :::
-  :::info
-    Caret explores my codebase, examining:
-    - Current API structure and endpoints
-    - Existing data flow patterns
-    - Database queries and performance bottlenecks
-    - Configuration and environment setup
-  :::
-  :::info
-    Caret asks me:
-    - "Should we use Redis or in-memory caching?"
-    - "What's the acceptable cache staleness for user data?"
-    - "Do you need cache invalidation webhooks?"
-  :::
-  :::info
-    Caret generates `implementation_plan.md` with:
-    - Cache service class specifications
-    - Redis connection configuration
-    - Modified API endpoints with caching logic
-    - Cache key generation strategies
-    - TTL configurations for different data types
-  :::
-  :::info
-    Caret creates a new task with:
-    - Reference to the implementation plan
-    - Commands to read specific sections
-    - Trackable todo items for each implementation step
-    - Request to switch to Act Mode for execution
-  :::
-:::
+**Step 1: Initial Request**
+```
+I type `/deep-planning implement a caching layer for API responses`
+```
+
+**Step 2: Investigation Phase**
+Caret explores my codebase, examining:
+- Current API structure and endpoints
+- Existing data flow patterns
+- Database queries and performance bottlenecks
+- Configuration and environment setup
+
+**Step 3: Clarification Questions**
+Caret asks me:
+- "Should we use Redis or in-memory caching?"
+- "What's the acceptable cache staleness for user data?"
+- "Do you need cache invalidation webhooks?"
+
+**Step 4: Plan Generation**
+Caret generates `implementation_plan.md` with:
+- Cache service class specifications
+- Redis connection configuration
+- Modified API endpoints with caching logic
+- Cache key generation strategies
+- TTL configurations for different data types
+
+**Step 5: Task Creation**
+Caret creates a new task with:
+- Reference to the implementation plan
+- Commands to read specific sections
+- Trackable todo items for each implementation step
+- Request to switch to Act Mode for execution
 
 ## Integration with Plan/Act Mode
 
