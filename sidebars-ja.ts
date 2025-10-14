@@ -23,6 +23,20 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: '^ Caret独占機能',
+      items: [
+        { type: 'doc', id: 'caret-exclusive/overview', label: '^ 概要' },
+        { type: 'doc', id: 'caret-exclusive/persona-system', label: '^ ペルソナシステム' },
+        { type: 'doc', id: 'caret-exclusive/dual-prompt-modes', label: '^ デュアルモードシステム' },
+        { type: 'doc', id: 'caret-exclusive/brand-switching', label: '^ OEMブランドカスタマイズ' },
+        { type: 'doc', id: 'caret-exclusive/enhanced-provider-setup', label: '^ 強化されたプロバイダー設定' },
+        { type: 'doc', id: 'caret-exclusive/caret-provider', label: '^ Caretプロバイダー' },
+        { type: 'doc', id: 'caret-exclusive/multilingual-ui', label: '^ 完全な多言語UI' },
+        { type: 'doc', id: 'caret-exclusive/advanced-rules', label: '^ 高度なルールシステム' }
+      ]
+    },
+    {
+      type: 'category',
       label: 'プロンプトスキルの向上',
       items: [
         'prompting/prompt-engineering-guide',
@@ -42,6 +56,10 @@ const sidebars: SidebarsConfig = {
         'features/focus-chain',
         'features/auto-compact',
         'features/editing-messages',
+        { type: 'doc', id: 'features/yolo-mode', label: 'YOLOモード' },
+        { type: 'doc', id: 'features/input-history', label: 'プロンプト履歴' },
+        { type: 'doc', id: 'features/dictation', label: '音声入力' },
+        { type: 'doc', id: 'features/multiroot-workspace', label: 'マルチルートワークスペース' },
         {
           type: 'category',
           label: '@ メンション',

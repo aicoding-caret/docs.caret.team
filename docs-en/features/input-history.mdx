@@ -1,0 +1,155 @@
+---
+title: "Prompt History"
+description: "Quickly reuse previous inputs just like in your terminal"
+---
+
+# Prompt History
+
+Caret's prompt history system lets you navigate and reuse previous messages in the same way you use terminals (bash, zsh). You no longer need to retype frequently used commands or prompts, significantly improving work efficiency.
+
+## How It Works
+
+When the input field is focused, you can use the keyboard's up/down arrow keys to navigate through previously entered messages.
+
+### Basic Usage
+
+**Up Arrow (↑)**: Move to the previous message. Keep pressing to go back to older messages.
+
+**Down Arrow (↓)**: Move to the next message. Press once more past the most recent message to return to the text you were currently typing.
+
+### Practical Usage Example
+
+```
+1. Enter "Show me all TypeScript files in the project" and send
+2. Enter "Read the package.json file" and send
+3. Enter "Add usage instructions to README.md" and send
+
+In the input field:
+↑ once → "Add usage instructions to README.md" appears
+↑ once more → "Read the package.json file" appears
+↑ once more → "Show me all TypeScript files in the project" appears
+↓ once → Returns to "Read the package.json file"
+```
+
+## Key Features
+
+### Persistent Storage
+
+Entered messages are automatically saved and persist even after closing and restarting VS Code. Even after closing and reopening a project, you can immediately recall previously used prompts.
+
+This is managed per workspace, so the history used in Project A and the history used in Project B are stored separately.
+
+### Automatic Duplicate Removal
+
+If you enter the same message consecutively, it's only saved once in history. For example, even if you enter "run tests" three times in a row, only one entry is recorded in history, preventing unnecessary duplication.
+
+```
+❌ Not saved as duplicate:
+"npm run test" entered
+"npm run test" entered again → Not added to history
+
+✅ Saved as duplicate:
+"npm run test" entered
+"Show file list" entered
+"npm run test" entered again → Added to history (different command in between)
+```
+
+### Only User Input Saved
+
+History stores **only messages you entered**. AI responses are not saved, so when navigating with arrow keys, you can cleanly see only what you typed.
+
+### Maximum 1000 Entries
+
+Up to 1000 message histories can be stored. When exceeding 1000, the oldest entries are automatically deleted, efficiently managing memory.
+
+For typical usage patterns, 1000 entries is enough for several months of use.
+
+## Consistency with Terminal
+
+Caret's prompt history works exactly the same as command history in terminal shells like bash or zsh. You get the same experience in Caret as using the `history` command in terminal or navigating previous commands with up/down arrows.
+
+This consistency allows developers to use it immediately in a familiar way without needing to learn a new interface.
+
+## Practical Usage Tips
+
+### Automating Repetitive Tasks
+
+The history feature is a great help when repeating identical or similar tasks.
+
+```
+Work Scenario: Applying the same pattern to multiple files
+
+1. Enter "Add type annotations to all functions in UserController.ts"
+2. After completion
+3. Recall previous message with ↑ key
+4. Change "UserController" to "ProductController"
+5. Send
+
+This way you can quickly apply to multiple files
+```
+
+### Reusing Experimental Prompts
+
+When you want to reuse a prompt that produced good results later, you can easily find it in history.
+
+```
+Effective prompt used 2 weeks ago:
+"Review the code. Analyze from performance, readability, and security
+perspectives and provide improvement suggestions with priorities"
+
+When you want to reuse this pattern in another project:
+Navigate with ↑ key or find content entered around the same time
+```
+
+### When Resuming Projects
+
+When reopening a project after a long time, viewing history helps you quickly understand what work you were doing previously.
+
+```
+Resuming project after 2 weeks:
+Check recent history with ↑ key
+→ "Add JWT refresh token to authentication system"
+→ "Implement Redis session storage"
+→ Ah, I was working on the authentication system!
+```
+
+## Keyboard Shortcut Reference
+
+| Key | Action |
+|---|---|
+| ↑ (Up Arrow) | Move to previous message |
+| ↓ (Down Arrow) | Move to next message |
+| Enter | Send currently displayed message |
+| Esc | Cancel history navigation and return to current input |
+
+## Differences from Cline
+
+Cline does not have a prompt history feature. To reuse a previously entered message, you must retype it from scratch every time.
+
+Caret's history system completely eliminates this inconvenience, greatly reducing repetitive typing work.
+
+## Frequently Asked Questions
+
+**Q: Where is history stored?**
+
+A: It's automatically saved in VS Code's workspace storage. You don't need to manage files separately—VS Code handles it automatically.
+
+**Q: Can I delete or reset history?**
+
+A: Currently it's managed automatically. When exceeding the 1000 limit, old entries are auto-deleted, and deleting the workspace also deletes the history.
+
+**Q: Can I share history between different projects?**
+
+A: History is managed independently per workspace, so each project has separate history. This helps maintain appropriate context for each project.
+
+**Q: I entered sensitive information (API keys, etc.)—does it remain in history?**
+
+A: Yes, all entered content is saved. Entering sensitive information directly in prompts is not recommended. Use environment variables or configuration files instead.
+
+**Q: Are multiline inputs also saved in history?**
+
+A: Yes, messages entered with multiple lines are saved in exactly the same format. Recalling with ↑ key restores them including line breaks.
+
+---
+
+**Prompt history is exclusive to Caret.** The familiar up/down arrow key navigation from terminals can now be used in AI chat as well.

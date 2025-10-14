@@ -1,0 +1,84 @@
+---
+title: "YOLO Mode"
+---
+
+# YOLO Mode
+
+YOLO mode does exactly what the name suggests - Caret auto-approves everything. Check the box in feature settings, and it executes file changes, terminal commands, even transitions from Agent to Act mode without asking.
+
+Think of it as [auto-approve](/en/features/auto-approve) on steroids - instead of granular permissions, YOLO mode gives Caret complete autonomy.
+
+<Note>
+**Warning: This is dangerous.** YOLO mode disables all safety rails. Caret will execute anything it decides to do, without permission.
+</Note>
+
+## What Gets Auto-Approved
+
+When YOLO mode is active, Caret automatically approves:
+
+- **All File Operations** - Reading, writing, modifying files anywhere in your system
+- **All Terminal Commands** - Including potentially destructive operations
+- **Browser Actions** - Web scraping, form submissions, navigation
+- **MCP Server Tools** - External integrations and API calls
+- **Mode Transitions** - Automatic switching from Agent to Act mode
+
+Essentially, all safety guardrails are removed. Caret operates with full autonomy.
+
+## How to Enable YOLO Mode
+
+Go to Caret Settings → Features and check the "YOLO Mode" checkbox. That's it - no confirmation dialog, no additional warnings. Once enabled, Caret immediately starts auto-approving all operations.
+
+To disable, just uncheck the box. Pending operations still require approval once YOLO mode is off.
+
+## When to Use It
+
+YOLO mode was primarily built for scriptable CLI where full autonomous execution is needed. In GUI, you might use it for:
+
+**Rapid Prototyping**: When there's zero friction and you don't care about mistakes. Perfect for throwaway experiments or quickly exploring new ideas.
+
+**Validated Repetitive Tasks**: When you've already validated Caret's approach and want to eliminate approval overhead. Think routine refactoring or established patterns.
+
+**Demo Purposes**: When you want to showcase Caret's capabilities without constant interruptions.
+
+## What Could Go Wrong?
+
+Since YOLO mode removes all safety nets, Caret can:
+
+- Delete critical files without warning
+- Execute commands that modify system settings
+- Make network requests to external services
+- Overwrite configuration files
+- Install or remove software packages
+- Commit and push changes to version control
+
+The risk level entirely depends on what you ask Caret to do. Simple tasks are relatively safe, but complex requests can lead to unpredictable results.
+
+## Best Practices
+
+If you decide to use YOLO mode:
+
+**Start in Isolated Environments.** Use it first in throwaway projects or sandbox environments. Never enable in production codebases until you understand the risks.
+
+**Be Specific with Requests.** Vague instructions combined with unlimited permissions lead to unexpected results. The clearer your requirements, the more predictable Caret's behavior.
+
+**Monitor the Output.** Even though Caret doesn't ask permission, it still shows you what it's doing. Watch terminal output and file changes in real-time.
+
+**Have Version Control Ready.** Make sure you can easily revert changes when something goes wrong. Git becomes your safety net when YOLO mode is your workflow.
+
+## The Inspiration: What Becomes Possible?
+
+With YOLO mode enabled:
+
+**Build Entire Applications in Single Prompts**: Describe what you want and Caret handles everything - creating files, installing dependencies, configuring settings, even deployment scripts.
+
+**Automate Complex Workflows**: Automate tasks that normally require dozens of approval clicks. Data processing pipelines, build system setups, or multi-step refactoring jobs become seamless.
+
+**Rapid Iteration Cycles**: Test ideas quickly without approval friction. Perfect for exploring different approaches or experimenting with new technologies.
+
+**Live Demos**: Showcase Caret's full capabilities without stopping to approve every action. Great for presentations or teaching scenarios.
+
+The key is understanding that YOLO mode transforms Caret from interactive assistant to autonomous agent. Use that power wisely.
+
+---
+
+Questions or feedback? Reach out in [GitHub Discussions](https://github.com/aicoding-caret/caret/discussions).

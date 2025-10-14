@@ -1,11 +1,11 @@
 ---
 title: "LiteLLM & Caret (Codestral 사용)"
-description: "Codestral 모델을 사용하여 LiteLLM을 Cline과 함께 설정하고 실행하는 방법을 알아보세요. 이 가이드는 Docker 설정, 구성 및 Cline과의 통합을 다룹니다."
+description: "Codestral 모델을 사용하여 LiteLLM을 Caret과 함께 설정하고 실행하는 방법을 알아보세요. 이 가이드는 Docker 설정, 구성 및 Caret과의 통합을 다룹니다."
 ---
 
 ### Caret과 함께 LiteLLM 사용
 
-이 가이드는 Cline과 함께 사용할 Codestral 모델부터 시작하여 LiteLLM 데모를 실행하는 방법을 보여줍니다.
+이 가이드는 Caret과 함께 사용할 Codestral 모델부터 시작하여 LiteLLM 데모를 실행하는 방법을 보여줍니다.
 
 #### 전제 조건
 
@@ -52,14 +52,24 @@ description: "Codestral 모델을 사용하여 LiteLLM을 Cline과 함께 설정
 
 2. **Caret 설정**
 
-    LiteLLM 서버가 실행되면 Cline에서 설정할 수 있습니다.
+    LiteLLM 서버가 실행되면 Caret에서 설정할 수 있습니다.
 
     - 기본 URL은 `http://0.0.0.0:4000/v1`이어야 합니다.
     - API 키는 `.env`에 LITELLM_MASTER_KEY로 설정한 것이어야 합니다.
     - 모델 ID는 `codestral` 또는 `config.yaml`에서 지정한 이름입니다.
 
-#### 도움 받기
+---
 
--   [LiteLLM 문서](https://docs.litellm.ai/)
--   [Mistral AI 콘솔](https://console.mistral.ai/)
--   [Caret Discord 커뮤니티](https://discord.gg/caret)
+## 🚀 Caret의 프로바이더 개선사항
+
+Caret은 LiteLLM을 포함한 프로바이더 설정에 **자동 모델 조회 기능**을 추가했습니다.
+
+### 주요 개선사항
+
+**기존 Cline**:
+- 수동으로 모델 ID 입력 필요
+- 지원 모델 확인을 위해 문서 참고 필요
+
+**Caret 개선**:
+- ✅ **자동 모델 조회**: LiteLLM API 연동으로 지원 모델 자동 표시
+- ✅ **실시간 업데이트**: 새 모델 출시 시 Caret 업데이트 불필요

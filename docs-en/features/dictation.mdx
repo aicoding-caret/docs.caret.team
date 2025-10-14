@@ -1,0 +1,159 @@
+---
+title: "Dictation"
+description: "Communicate with Caret by voice for faster, more natural AI collaboration"
+---
+
+# Dictation
+
+Dictation transforms how you work with AI. Instead of typing complex thoughts, speak naturally and share complete intent. It's not just about speed—though voice is faster—it's about enabling fluid collaboration impossible with typing.
+
+<Note>
+**Cline Account Required**: Dictation requires a [Cline account](https://cline.bot/account). Voice transcription services are provided through Cline's servers.
+</Note>
+
+## Why Voice Changes Everything
+
+When typing, you edit yourself. You simplify complex ideas, skip context, lose nuance. When speaking, you share everything on your mind - the full problem, constraints, edge cases you're worried about.
+
+Use dictation continuously for rapid back-and-forth discussions in [Agent mode](/en/caret-exclusive/dual-prompt-modes). Instead of typing careful, structured prompts, think out loud about the problem. When Caret asks clarifying questions, respond immediately and iterate until you have a solid plan.
+
+Typing friction prevented real collaboration. Voice removes that friction.
+
+## Getting Started
+
+**Enable Dictation:**
+1. Go to Settings → Features → Dictation
+2. Toggle "Enable Dictation" on
+3. Sign in with your Cline account when prompted
+4. Install FFmpeg if not already installed (Caret will guide you)
+
+Once enabled, you'll see a microphone button in the chat input area.
+
+**Using Dictation:**
+- Click the microphone button to start recording
+- Speak naturally
+- Click again to stop recording
+- Wait for transcription to appear in chat
+
+<Tip>
+Dictation works with any AI model you've configured. Transcription happens through Cline's service, but conversations continue with whichever model you're using.
+</Tip>
+
+## System Requirements
+
+Dictation uses FFmpeg to capture audio on all platforms:
+
+- **macOS**: FFmpeg (via Homebrew: `brew install ffmpeg`)
+- **Linux**: FFmpeg (via apt: `sudo apt-get install ffmpeg`)
+- **Windows**: FFmpeg (via winget: `winget install Gyan.FFmpeg`)
+
+If FFmpeg isn't installed, Caret will automatically detect this and guide you through one-click installation.
+
+## Where Dictation Shines
+
+### Agent Mode Discussions
+
+Dictation is perfect for [Agent mode](/en/caret-exclusive/dual-prompt-modes) discussions. Instead of carefully crafting prompts:
+
+- Dump full problem context in one voice message
+- Respond immediately to Caret's questions
+- Iterate on ideas without typing friction
+- Think out loud while Caret listens
+
+Start a planning session by speaking for 2-3 minutes straight, explaining the full context. Explain what you're trying to build, what constraints you have, what specific challenges you're facing.
+
+### Explaining Complex Problems
+
+Some problems are hard to type. Things like:
+- Multi-step workflows with edge cases
+- Integration challenges across multiple systems
+- Performance issues with specific reproduction steps
+- UI/UX concerns requiring detailed context
+
+Speaking lets you naturally describe the full situation, including those crucial "oh, and also..." details.
+
+### Code Review and Debugging
+
+When reviewing code or describing bugs, voice lets you follow your thought process:
+- "This function looks okay, but I'm worried about what happens when..."
+- "The issue might be in this section, or maybe it's this other area..."
+- "I tried X and Y, but neither worked because..."
+
+You can share your full debugging journey, not just the final question.
+
+## Technical Requirements
+
+**System Requirements:**
+- FFmpeg installed on your system
+- Active internet connection
+- Cline account with transcription credits
+
+**Audio Quality:**
+- Records in WebM format with Opus codec
+- Mono audio at 16kHz sample rate
+- Optimized for speech recognition
+
+**Privacy:**
+- Audio recorded on your local machine
+- Only audio files sent for transcription
+- Audio not stored after transcription
+- Temporary files cleaned up automatically
+
+## Cost and Credits
+
+Voice transcription costs $0.006 per minute through your Cline account. For most users, this works out to pennies per session.
+
+A typical 5-minute planning conversation costs about 3 cents. Even heavy voice users rarely exceed a few dollars monthly.
+
+<Note>
+Pricing is experimental and may change as we refine the service.
+</Note>
+
+## Best Practices
+
+**Speak Naturally**
+Don't try to speak like you type. Use your normal conversational tone and don't worry about perfect grammar.
+
+**Provide Context First**
+Start with the big picture, then drill into specifics. "I'm building a React app that needs to handle real-time data, and I'm running into performance issues with the WebSocket connection..."
+
+**Use Voice for Exploration**
+Dictation is perfect for exploratory conversations when you're not sure exactly what you need. Start talking about the problem and let the conversation develop.
+
+**Combine with Text**
+You don't have to use voice for everything. Use voice for complex explanations and context, then switch to text for quick follow-ups or code snippets.
+
+## Troubleshooting
+
+**Microphone Not Working**
+- Check microphone access permissions for your IDE
+- Verify FFmpeg is properly installed
+- Try refreshing VSCode/editor
+
+**Poor Transcription Quality**
+- Speak clearly at normal volume
+- Reduce background noise if possible
+- Check microphone settings
+
+**Connection Issues**
+- Verify internet connection
+- Check if firewall is blocking Cline servers
+- Try signing out and back into Cline account
+
+**Authentication Problems**
+- If you see authentication errors, sign out and back into your Cline account
+- Verify your account has sufficient transcription credits
+- Ensure internet connection is stable
+
+**Audio Recording Issues**
+- Verify FFmpeg is properly installed and accessible
+- Check that browser/IDE has microphone permissions
+- Try restarting editor if audio capture fails
+
+## The Future of AI Collaboration
+
+When you can speak thoughts as fast as you think them, you stop self-censoring. You share full context, edge cases, important "what if" scenarios. This leads to better solutions with fewer clarification round-trips.
+
+---
+
+Questions or feedback? Reach out in [GitHub Discussions](https://github.com/aicoding-caret/caret/discussions).

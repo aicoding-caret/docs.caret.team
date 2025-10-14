@@ -30,7 +30,7 @@ export default function Home(): ReactNode {
                           <h3>🇺🇸 English</h3>
                         </div>
                         <div className="card__body">
-                          <p>Documentation in English</p>
+                          <p>Your personalized AI coding partner</p>
                           <a href="/en/getting-started/what-is-caret" className="button button--primary button--block">
                             Go to English Docs
                           </a>
@@ -43,7 +43,7 @@ export default function Home(): ReactNode {
                           <h3>🇰🇷 한국어</h3>
                         </div>
                         <div className="card__body">
-                          <p>Cline 기반의 향상된 AI 코딩 도구</p>
+                          <p>나만의 개인화된 AI 코딩 파트너</p>
                           <a href="/ko/getting-started/what-is-caret" className="button button--primary button--block">
                             한국어 문서 보기
                           </a>
@@ -59,9 +59,9 @@ export default function Home(): ReactNode {
                           <h3>🇨🇳 中文</h3>
                         </div>
                         <div className="card__body">
-                          <p>中文文档</p>
+                          <p>您的个性化 AI 编程伙伴</p>
                           <a href="/zh/getting-started/what-is-caret" className="button button--primary button--block">
-                            中文文档
+                            查看中文文档
                           </a>
                         </div>
                       </div>
@@ -72,9 +72,9 @@ export default function Home(): ReactNode {
                           <h3>🇯🇵 日本語</h3>
                         </div>
                         <div className="card__body">
-                          <p>日本語ドキュメント</p>
+                          <p>あなた専用のパーソナライズド AI コーディングパートナー</p>
                           <a href="/ja/getting-started/what-is-caret" className="button button--primary button--block">
-                            日本語ドキュメント
+                            日本語ドキュメントを見る
                           </a>
                         </div>
                       </div>
@@ -89,19 +89,27 @@ export default function Home(): ReactNode {
                     </div>
                     <div className="card__body">
                       <p>
-                        Caret is an AI-powered coding assistant based on Cline that brings frontier AI models 
-                        directly to your VS Code editor. Unlike autocomplete tools, Caret is a true coding 
-                        agent that can understand entire codebases, plan complex changes, and execute multi-step tasks.
+                        <strong>Caret = Cline + Personalized AI Companion + Enhanced System Prompts</strong>
+                      </p>
+                      <p>
+                        Caret is an enhanced AI coding agent based on Cline that brings frontier AI models
+                        directly to your VS Code editor. What makes Caret unique is its <strong>Persona System</strong> -
+                        customize your AI's name and avatar to create your own personalized coding partner!
+                      </p>
+                      <p>
+                        🎭 <strong>5 Built-in Personas</strong> | 🔄 <strong>Dual Mode System</strong> (Agent/Chatbot) |
+                        🌍 <strong>4 Languages</strong> (English, Korean, Japanese, Chinese) |
+                        ⌨️ <strong>Prompt History</strong> (↑↓ keys)
                       </p>
                       <div className="text--center">
                         <a href="https://marketplace.visualstudio.com/items?itemName=caretive.caret" className="button button--primary margin-right--sm">
                           📥 Download from VS Code Marketplace
                         </a>
                         <a href="https://github.com/aicoding-caret/caret" className="button button--outline button--primary margin-right--sm">
-                          GitHub Repository
+                          🌟 GitHub Repository
                         </a>
                         <a href="https://caret.team" className="button button--outline button--secondary">
-                          Official Website
+                          🌐 Official Website
                         </a>
                       </div>
                     </div>

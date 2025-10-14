@@ -30,6 +30,54 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: '기능',
       items: [
+        {
+          type: 'doc',
+          id: 'caret-exclusive/overview',
+          label: '^ Caret만의 특별한 기능들'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/persona-system',
+          label: '^ 페르소나 시스템'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/dual-prompt-modes',
+          label: '^ 듀얼 모드 시스템'
+        },
+        {
+          type: 'doc',
+          id: 'features/input-history',
+          label: '^ 프롬프트 히스토리'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/brand-switching',
+          label: '^ OEM 브랜드 전환'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/enhanced-provider-setup',
+          label: '^ 향상된 프로바이더 설정'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/caret-provider',
+          label: '^ Caret 제공자'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/multilingual-ui',
+          label: '^ 완전한 다국어 UI'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/advanced-rules',
+          label: '^ 고급 규칙 시스템'
+        },
+        'features/yolo-mode',
+        'features/dictation',
+        'features/multiroot-workspace',
         'features/drag-and-drop',
         'features/focus-chain',
         'features/plan-and-act',

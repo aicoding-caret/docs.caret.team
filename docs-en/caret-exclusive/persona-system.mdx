@@ -1,0 +1,123 @@
+---
+title: AI Persona Customization
+---
+
+# AI Persona Customization
+
+Caret's persona system lets you customize your AI's name and avatar, allowing you to create a personalized coding partner that truly feels like your own.
+
+## What is a Persona?
+
+A persona defines the following elements of your AI assistant:
+
+- **Name**: The display name for your AI
+- **Avatar Image**: The image shown in default state
+- **Thinking Image**: The image displayed when the AI is working
+- **Personality Definition**: Define your AI's tone and behavior with a persona.md file
+
+## Built-in Personas
+
+Caret provides 5 template personas out of the box:
+
+### 🤖 Caret
+- A friendly robot companion
+- Default persona
+
+### 💖 Oh Sarang
+- K-POP idol developer
+- Bright and positive tone
+
+### 🪟 Madobe Ichika
+- Windows 11 OS-tan
+- Professional and efficient
+
+### 🍎 Cyan Macin
+- macOS assistant
+- Refined and elegant style
+
+### 🐧 Tando Ubuntu
+- Open source collaborator
+- Community-oriented
+
+## How to Use Personas
+
+### Selecting a Persona
+
+1. Open settings (⚙️)
+2. Find the **Persona Management** section
+3. Click the **Select Persona Template** button
+4. Choose your desired persona
+
+### Switching Templates
+
+You can switch to a different template at any time from the settings screen.
+
+## Creating a Custom Persona
+
+### Uploading Images
+
+Caret uses **2 different images** for each persona:
+
+**1. Normal Image**
+- Displayed in default state
+- Click "Upload Normal Image" in settings
+- Select an image file (all image formats supported)
+
+**2. Thinking Image**
+- Displayed when AI is working
+- Click "Upload Thinking Image" in settings
+- Select an image file
+
+**Storage**: Images are automatically saved to VS Code's internal storage.
+
+### Defining Personality (persona.md)
+
+You can define your AI's personality and tone of voice using a persona.md file.
+
+**Storage Location**:
+```
+~/Documents/Caret/Rules/persona.md
+```
+
+**Example**:
+```markdown
+You are a kind and professional development partner.
+Always respond in Korean and include comments when explaining code.
+Explain changes step by step and specify the reason for each step.
+```
+
+Changes take effect immediately when you save the file.
+
+## Persona vs Rules
+
+| Item | Persona | Rules (.caretrules) |
+|------|----------|---------------------|
+| Scope | AI name, image, personality | Coding guidelines |
+| Storage Location | Global (VS Code internal + persona.md) | Project folder |
+| Combination | Used together with rules | Used together with persona |
+
+**Best Results**: Use persona + project rules together for optimal results.
+
+## Frequently Asked Questions
+
+**Q: Does the persona affect AI performance?**
+A: If you give negative personality traits in the persona definition (persona.md), it can impact the AI's work quality. Avoid expressions like "makes many mistakes" or "passive."
+
+**Q: Can I use different personas for different projects?**
+A: No. Personas are managed globally only. If you need project-specific customization, write project-specific instructions in your `.caretrules` file. (However, since images are global, they cannot be changed per project)
+
+**Q: Where are personas stored?**
+A: Images are stored in VS Code's internal storage (globalStorage), and persona.md is stored in `~/Documents/Caret/Rules/`.
+
+**Q: Are there size or format restrictions for images?**
+A: All image formats are supported with no size restrictions. Images are automatically converted to base64 when uploaded.
+
+## Next Steps
+
+- [Use with Dual Modes](/en/caret-exclusive/dual-prompt-modes)
+- [Learn About Advanced Rules](/en/caret-exclusive/advanced-rules)
+- [Start Free with Caret Provider](/en/caret-exclusive/caret-provider)
+
+---
+
+**The persona system is exclusive to Caret.** Cline does not have this feature.

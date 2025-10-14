@@ -33,6 +33,60 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Features',
       items: [
+        {
+          type: 'category',
+          label: '^ Caret Exclusive Features',
+          items: [
+            {
+              type: 'doc',
+              id: 'caret-exclusive/overview',
+              label: '^ Overview'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/persona-system',
+              label: '^ Persona System'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/dual-prompt-modes',
+              label: '^ Dual Mode System'
+            },
+            {
+              type: 'doc',
+              id: 'features/input-history',
+              label: '^ Prompt History'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/brand-switching',
+              label: '^ OEM Brand Switching'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/enhanced-provider-setup',
+              label: '^ Enhanced Provider Setup'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/caret-provider',
+              label: '^ Caret Provider'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/multilingual-ui',
+              label: '^ Complete Multilingual UI'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/advanced-rules',
+              label: '^ Advanced Rules System'
+            },
+          ],
+        },
+        'features/yolo-mode',
+        'features/dictation',
+        'features/multiroot-workspace',
         'features/auto-approve',
         'features/checkpoints',
         'features/caret-rules',

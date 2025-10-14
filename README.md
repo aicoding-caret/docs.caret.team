@@ -8,12 +8,16 @@ This repository contains the source code for [docs.caret.team](https://docs.care
 
 Caret is built on the proven foundation of [Cline](https://github.com/cline/cline), adding enhanced features and comprehensive multilingual support. This documentation site serves developers worldwide with comprehensive guides, tutorials, and reference materials in multiple languages.
 
-### ✨ Key Features Documented
-- 🎭 **Persona System**: Personalized AI coding companions (Caret, Oh Sarang, Madobe Ichika, etc.)
-- 🔄 **Cline/Caret Toggle**: Seamless switching between classic Cline and enhanced Caret modes  
-- 🧠 **Enhanced System Prompts**: Smarter AI responses for better coding assistance
-- 🎯 **25 Providers, 223 Models**: Complete compatibility with Cline v3.26.6 + extensions
-- 🌍 **True Multilingual Support**: Native language documentation and UI
+### ✨ Why Choose Caret? 6 Key Reasons
+
+1. **🔄 One-Click Mode Switching** - Perfect Cline compatibility, switch anytime
+2. **🎭 Personalized AI Companion** - Your unique persona for enjoyable coding
+3. **🧠 Enhanced System Prompts** - Smarter and more efficient AI responses
+4. **🌍 4 Languages Support** - English, Korean, Japanese, Chinese + 4-language manuals
+5. **⌨️ Enhanced UX** - Prompt history, automatic model fetching, and more
+6. **🎯 25 Providers, 300 Models** - Cline v3.32.7 fully compatible + extended
+
+👉 **See all exclusive features**: [Complete Features Overview](https://docs.caret.team/en/caret-exclusive/overview)
 
 ### Supported Languages
 - 🇺🇸 **English** (`/en`) - Complete documentation
@@ -221,6 +225,50 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 - **Caret Documentation**: Apache 2.0 © 2025 Caretive INC.
 - **Based on Cline**: This project builds upon [Cline](https://github.com/cline/cline) (Apache 2.0 © 2025 Cline Bot Inc.)
 - **Docusaurus Framework**: MIT License © Meta Platforms, Inc.
+
+## 🔄 Synchronization with Caret Main Repository
+
+This documentation site is synchronized with the [Caret main repository](https://github.com/aicoding-caret/caret) following the Cline merge process.
+
+### For Developers: Syncing Latest Cline Documentation
+
+When Caret merges upstream Cline updates, new documentation must be synced to this site:
+
+1. **Follow the Caret Merge Strategy Guide**:
+   - [English Version](https://github.com/aicoding-caret/caret/blob/main/.caretrules/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
+   - [Korean Version](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
+
+2. **Detailed Sync Analysis**:
+   See the comprehensive synchronization plan:
+   - [docs.caret.team Sync Analysis (Korean)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
+
+3. **Quick Start**:
+   ```bash
+   # Clone this repo inside Caret main repo
+   cd /path/to/caret
+   git clone https://github.com/aicoding-caret/docs.caret.team
+
+   # Follow the merge strategy guide for synchronization
+   ```
+
+### Workflow Overview
+
+```mermaid
+graph LR
+    A[Cline Upstream] --> B[Caret Main Repo]
+    B --> C[caret/docs/]
+    C --> D[docs.caret.team/docs-en/]
+    D --> E[Translate to ko, ja, zh]
+    E --> F[Deploy to https://docs.caret.team]
+```
+
+**Key Process**:
+1. Caret merges from Cline upstream
+2. New Cline docs appear in `caret/docs/`
+3. Brand conversion: Cline → Caret
+4. Sync to `docs.caret.team/docs-en/`
+5. Translate to Korean, Japanese, Chinese
+6. Build and deploy
 
 ## 🔗 Related Projects
 

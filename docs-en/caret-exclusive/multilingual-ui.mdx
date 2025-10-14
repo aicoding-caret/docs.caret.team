@@ -1,0 +1,272 @@
+---
+title: Complete Multilingual UI
+---
+
+# Complete Multilingual UI
+
+Code comfortably in your native language. Caret provides true multilingual support with fully translated UI and documentation.
+
+## Supported Languages
+
+Caret perfectly supports 4 languages:
+
+### 🇰🇷 Korean
+- **UI**: All settings, menus, messages in Korean
+- **Documentation**: docs.caret.team/ko
+- **AI Responses**: Automatic Korean responses
+
+### 🇺🇸 English
+- **UI**: Default language
+- **Documentation**: docs.caret.team/en
+- **AI Responses**: Automatic English responses
+
+### 🇯🇵 Japanese
+- **UI**: Complete Japanese translation
+- **Documentation**: docs.caret.team/ja
+- **AI Responses**: Automatic Japanese responses
+
+### 🇨🇳 Chinese
+- **UI**: Simplified Chinese support
+- **Documentation**: docs.caret.team/zh
+- **AI Responses**: Automatic Chinese responses
+
+## Differences from Cline
+
+| Item | Cline | Caret |
+|------|-------|-------|
+| UI Multilingual | ❌ English only | ✅ 4 languages |
+| Documentation Multilingual | ❌ English only | ✅ 4 languages |
+| Error Messages | ❌ English only | ✅ Translated |
+| Settings Screen | ❌ English only | ✅ Fully translated |
+| AI Response Language | 🔄 On request | ✅ Auto-detected |
+
+## How to Set Language
+
+### 1. Auto-Detection (Recommended)
+
+Caret automatically detects VS Code language settings:
+
+```json
+// VS Code settings.json
+{
+  "locale": "ko"  // Korean automatically applied
+}
+```
+
+### 2. Manual Setting
+
+Select directly in Caret settings:
+
+1. Open settings (⚙️)
+2. **General** tab → **Language** section
+3. Select desired language
+4. Restart VS Code
+
+### 3. Command Palette
+
+```
+Cmd+Shift+P (Mac) / Ctrl+Shift+P (Windows/Linux)
+> Caret: Change Language
+```
+
+## Translated UI Elements
+
+### Settings Screen
+
+**All setting items are translated**:
+
+- ✅ Tab names (General, API, Features, Terminal)
+- ✅ Setting labels (Prompt mode, Brand, API key)
+- ✅ Help text
+- ✅ Buttons ("Save", "Cancel", "Reset")
+- ✅ Dropdown options
+
+**Example (Korean)**:
+```
+일반 설정
+├─ AI 모드: Agent 모드
+├─ 브랜드: Caret
+└─ 자동 승인: 프로젝트 파일 읽기
+```
+
+### Chat Interface
+
+- ✅ Input placeholder: "How can Caret help you?"
+- ✅ Status messages: "Working...", "Complete"
+- ✅ Error messages: "API key not configured"
+- ✅ System notifications
+
+### Sidebar and Menus
+
+- ✅ Sidebar titles
+- ✅ Context menus
+- ✅ Tooltips
+- ✅ Status bar
+
+## Multilingual Documentation Site
+
+### Language-Specific Dedicated Domains
+
+Independent documentation sites for each language:
+
+- **Korean**: https://docs.caret.team/ko
+- **English**: https://docs.caret.team/en
+- **Japanese**: https://docs.caret.team/ja
+- **Chinese**: https://docs.caret.team/zh
+
+### Auto-Redirection
+
+When clicking documentation links from Caret UI:
+
+```typescript
+// Automatically connected based on current language setting
+Language: Korean  → docs.caret.team/ko/getting-started
+Language: English → docs.caret.team/en/getting-started
+Language: Japanese → docs.caret.team/ja/getting-started
+Language: Chinese → docs.caret.team/zh/getting-started
+```
+
+## AI Response Language
+
+### Automatic Language Matching
+
+AI automatically responds in your configured UI language:
+
+**When Korean is set**:
+```
+User: "React 컴포넌트 만들어줘"
+AI: "React 컴포넌트를 생성하겠습니다..."
+```
+
+**When English is set**:
+```
+User: "Create a React component"
+AI: "I'll create a React component..."
+```
+
+### Manual Language Specification
+
+Use different language for specific requests:
+
+```
+"Explain this code in English"
+→ Responds in English despite Korean UI
+
+"이 코드를 한국어로 설명해줘"
+→ Responds in Korean despite English UI
+```
+
+## Regional Formats
+
+### Date and Time
+
+Automatically adjusted by language:
+
+- **Korean**: 2025년 10월 14일 오후 3시 30분
+- **English**: October 14, 2025, 3:30 PM
+- **Japanese**: 2025年10月14日 15時30分
+- **Chinese**: 2025年10月14日 下午3:30
+
+### Number Format
+
+- **Korean**: 1,234,567
+- **English**: 1,234,567
+- **Japanese**: 1,234,567
+- **Chinese**: 1,234,567
+
+## Mixed Language Projects
+
+Works seamlessly even in multilingual teams:
+
+### Scenario: Korea-US Collaboration Team
+
+**Developer A (Korea)**:
+- UI Language: Korean
+- AI Responses: Korean
+- Documentation: docs.caret.team/ko
+
+**Developer B (USA)**:
+- UI Language: English
+- AI Responses: English
+- Documentation: docs.caret.team/en
+
+**Shared Code**: Works identically ✅
+
+### Code Comment Language
+
+Request AI to write comments in specific language:
+
+```
+"Add comments in Korean"
+→ Adds Korean comments
+
+"Add comments in English"
+→ Adds English comments
+```
+
+## Translation Quality
+
+### Professional Translator Review
+
+All UI text has been reviewed by professional translators:
+
+- ✅ Technical term accuracy
+- ✅ Natural sentences
+- ✅ Cultural appropriateness
+- ✅ Consistent tone
+
+### Community Contributions
+
+Translation improvement suggestions are always welcome:
+
+1. Create GitHub issue
+2. Point out incorrect translations
+3. Suggest better expressions
+
+## Language Switching Scenarios
+
+### Learning Purposes
+
+If you're learning a foreign language:
+
+```
+1. UI Language: Language being learned (e.g., Japanese)
+2. AI Responses: Native language (e.g., Korean) - specify in prompt
+3. Code Comments: Language being learned
+
+→ Naturally learn language while coding
+```
+
+### Global Presentations
+
+For investor/customer demos:
+
+```
+Preparation: Develop in Korean
+Demo: Switch to English UI
+After: Return to Korean
+```
+
+## Frequently Asked Questions
+
+**Q: What happens to existing chat history when I change language?**
+A: It's preserved as is. New messages will display in the selected language.
+
+**Q: Do AI models support all languages?**
+A: Yes, major models like Claude, GPT, and Gemini all support multilingual well.
+
+**Q: There's a strange translation.**
+A: Please submit a GitHub issue. We'll fix it quickly.
+
+**Q: Are other languages planned for addition?**
+A: We're considering Spanish, German, etc. based on community requests.
+
+## Next Steps
+
+- [Choose Work Method with Dual Modes](/en/caret-exclusive/dual-prompt-modes)
+- [Set Multilingual Coding Style with Advanced Rules](/en/caret-exclusive/advanced-rules)
+- [Start Free with Caret Provider](/en/caret-exclusive/caret-provider)
+
+---
+
+**Complete multilingual UI is exclusive to Caret.** Cline only supports English.
