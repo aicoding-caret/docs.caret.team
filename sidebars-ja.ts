@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
         { type: 'doc', id: 'caret-exclusive/brand-switching', label: '^ OEMブランドカスタマイズ' },
         { type: 'doc', id: 'caret-exclusive/enhanced-provider-setup', label: '^ 強化されたプロバイダー設定' },
         { type: 'doc', id: 'caret-exclusive/caret-provider', label: '^ Caretプロバイダー' },
+        { type: 'doc', id: 'caret-exclusive/knowledge-parity-system', label: '^ AI-開発者の知識同期' },
         { type: 'doc', id: 'caret-exclusive/multilingual-ui', label: '^ 完全な多言語UI' },
         { type: 'doc', id: 'caret-exclusive/advanced-rules', label: '^ 高度なルールシステム' }
       ]

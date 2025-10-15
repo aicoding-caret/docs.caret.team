@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -71,6 +71,11 @@ const sidebars: SidebarsConfig = {
               type: 'doc',
               id: 'caret-exclusive/caret-provider',
               label: '^ Caret Provider'
+            },
+            {
+              type: 'doc',
+              id: 'caret-exclusive/knowledge-parity-system',
+              label: '^ AI-Developer Knowledge Parity'
             },
             {
               type: 'doc',

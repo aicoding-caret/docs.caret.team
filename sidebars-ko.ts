@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 /**
  * Creating a sidebar enables you to:
@@ -64,6 +64,11 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'caret-exclusive/caret-provider',
           label: '^ Caret 제공자'
+        },
+        {
+          type: 'doc',
+          id: 'caret-exclusive/knowledge-parity-system',
+          label: '^ AI-개발자 지식 동기화'
         },
         {
           type: 'doc',
