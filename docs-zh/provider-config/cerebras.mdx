@@ -33,64 +33,64 @@ Caret 支持以下 Cerebras 模型：
 4.  **选择模型：** 从"模型"下拉菜单中选择您想要的模型。
 5.  **（可选）自定义基本 URL：** 大多数用户不需要调整此设置。
 
-### Cerebras's Wafer-Scale Advantage
+### Cerebras 的晶圆级优势
 
-Cerebras has fundamentally reimagined AI hardware architecture to solve the inference speed problem:
+Cerebras 从根本上重新构想了 AI 硬件架构，以解决推理速度问题：
 
-#### Wafer-Scale Architecture
-Traditional GPUs use separate chips for compute and memory, forcing them to constantly shuttle model weights back and forth. Cerebras built the world's largest AI chip—a wafer-scale engine that stores entire models on-chip. No external memory, no bandwidth bottlenecks, no waiting.
+#### 晶圆级架构
+传统 GPU 使用单独的芯片进行计算和内存，迫使它们不断来回传输模型权重。Cerebras 构建了世界上最大的 AI 芯片——一个晶圆级引擎，可将整个模型存储在芯片上。无外部内存，无带宽瓶颈，无等待。
 
-#### Revolutionary Speed
-- **Up to 2,600 tokens per second** - often 20x faster than GPUs
-- **Single-second reasoning** - what used to take minutes now happens instantly
-- **Real-time applications** - reasoning models become practical for interactive use
-- **No bandwidth limits** - entire models stored on-chip eliminate memory bottlenecks
+#### 革命性速度
+- **每秒高达 2,600 个 tokens** - 通常比 GPU 快 20 倍
+- **单秒推理** - 过去需要几分钟的现在瞬间完成
+- **实时应用** - 推理模型在交互使用中变得实用
+- **无带宽限制** - 芯片上存储的整个模型消除了内存瓶颈
 
-#### The Cerebras Scaling Law
-Cerebras discovered that **faster inference enables smarter AI**. Modern reasoning models generate thousands of tokens as "internal monologue" before answering. On traditional hardware, this takes too long for real-time use. Cerebras makes reasoning models fast enough for everyday applications.
+#### Cerebras 扩展定律
+Cerebras 发现 **更快的推理能够实现更智能的 AI**。现代推理模型在回答之前会生成数千个 tokens 作为"内部独白"。在传统硬件上，这对于实时使用来说太慢了。Cerebras 使推理模型足够快，可用于日常应用。
 
-#### Quality Without Compromise
-Unlike other speed optimizations that sacrifice accuracy, Cerebras maintains full model quality while delivering unprecedented speed. You get the intelligence of frontier models with the responsiveness of lightweight ones.
+#### 质量无妥协
+与其他牺牲准确性的速度优化不同，Cerebras 在提供前所未有的速度的同时保持完整的模型质量。您可以获得前沿模型的智能和轻量级模型的响应能力。
 
-Learn more about Cerebras's technology in their blog posts:
-- [The Cerebras Scaling Law: Faster Inference Is Smarter AI](https://www.cerebras.ai/blog/the-cerebras-scaling-law-faster-inference-is-smarter-ai)
-- [Introducing Cerebras Code](https://www.cerebras.ai/blog/introducing-cerebras-code)
+在他们的博客文章中了解更多关于 Cerebras 技术的信息：
+- [Cerebras 扩展定律：更快的推理是更智能的 AI](https://www.cerebras.ai/blog/the-cerebras-scaling-law-faster-inference-is-smarter-ai)
+- [介绍 Cerebras Code](https://www.cerebras.ai/blog/introducing-cerebras-code)
 
-### Cerebras Code Plans
+### Cerebras Code 计划
 
-Cerebras offers specialized plans for developers:
+Cerebras 为开发者提供专门的计划：
 
-#### Code Pro ($50/month)
-- Access to Qwen3-Coder with fast, high-context completions
-- Up to 24 million tokens per day
-- Ideal for indie developers and weekend projects
-- 3-4 hours of uninterrupted coding per day
+#### Code Pro（50 美元/月）
+- 访问 Qwen3-Coder，具有快速、高上下文补全
+- 每天最多 2400 万 tokens
+- 适合独立开发者和周末项目
+- 每天 3-4 小时不间断编程
 
-#### Code Max ($200/month)
-- Heavy coding workflow support
-- Up to 120 million tokens per day
-- Perfect for full-time development and multi-agent systems
-- No weekly limits, no IDE lock-in
+#### Code Max（200 美元/月）
+- 重度编程工作流支持
+- 每天最多 1.2 亿 tokens
+- 完美适用于全职开发和多智能体系统
+- 无每周限制，无 IDE 锁定
 
-### Special Features
+### 特殊功能
 
-#### Free Tier
-The `qwen-3-coder-480b-free` model provides access to high-performance inference at no cost—unique among speed-focused providers.
+#### 免费层
+`qwen-3-coder-480b-free` 模型免费提供对高性能推理的访问——在专注于速度的提供商中是独一无二的。
 
-#### Real-Time Reasoning
-Reasoning models like `qwen-3-235b-a22b-thinking-2507` can complete complex multi-step reasoning in under a second, making them practical for interactive development workflows.
+#### 实时推理
+像 `qwen-3-235b-a22b-thinking-2507` 这样的推理模型可以在不到一秒的时间内完成复杂的多步推理，使其适用于交互式开发工作流。
 
-#### Coding Specialization
-Qwen3-Coder models are specifically optimized for programming tasks, delivering performance comparable to Claude Sonnet 4 and GPT-4.1 in coding benchmarks.
+#### 编程专业化
+Qwen3-Coder 模型专门针对编程任务进行了优化，在编程基准测试中提供与 Claude Sonnet 4 和 GPT-4.1 相当的性能。
 
-#### No IDE Lock-In
-Works with any OpenAI-compatible tool—Cursor, Continue.dev, Caret, or any other editor that supports OpenAI endpoints.
+#### 无 IDE 锁定
+适用于任何 OpenAI 兼容工具——Cursor、Continue.dev、Caret 或任何其他支持 OpenAI 端点的编辑器。
 
-### Tips and Notes
+### 提示和注意事项
 
--   **Speed Advantage:** Cerebras excels at making reasoning models practical for real-time use. Perfect for agentic workflows that require multiple LLM calls.
--   **Free Tier:** Start with the free model to experience Cerebras speed before upgrading to paid plans.
--   **Context Windows:** Models support context windows ranging from 64K to 128K tokens for including substantial code context.
--   **Rate Limits:** Generous rate limits designed for development workflows. Check your dashboard for current limits.
--   **Pricing:** Competitive pricing with significant speed advantages. Visit [Cerebras Cloud](https://cloud.cerebras.ai/) for current rates.
--   **Real-Time Applications:** Ideal for applications where AI response time matters—code generation, debugging, and interactive development.
+-   **速度优势：** Cerebras 在使推理模型实际用于实时使用方面表现出色。完美适用于需要多次 LLM 调用的智能体工作流。
+-   **免费层：** 从免费模型开始体验 Cerebras 速度，然后再升级到付费计划。
+-   **上下文窗口：** 模型支持从 64K 到 128K tokens 的上下文窗口，以包含大量代码上下文。
+-   **速率限制：** 为开发工作流设计的慷慨速率限制。查看您的仪表板了解当前限制。
+-   **定价：** 具有显著速度优势的竞争性定价。访问 [Cerebras Cloud](https://cloud.cerebras.ai/) 了解当前费率。
+-   **实时应用：** 适合 AI 响应时间很重要的应用——代码生成、调试和交互式开发。

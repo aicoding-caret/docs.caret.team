@@ -35,60 +35,59 @@ Claude Code 提供商让您可以在 Caret 中使用现有的 Claude 订阅。�
 <br />
 
 
-	Anthropic introduced full support for Claude Code on Windows. Follow the [instructions on how to set up Claude Code
-	normally](#setup) and make sure you have the latest Claude Code and Caret versions.
+	Anthropic 在 Windows 上引入了对 Claude Code 的完整支持。按照[正常设置 Claude Code 的说明](#设置)操作，并确保您拥有最新的 Claude Code 和 Caret 版本。
 
 
-### Finding your Claude Code path
+### 查找您的 Claude Code 路径
 
-If you're not sure where Claude Code is installed:
+如果您不确定 Claude Code 安装在哪里：
 
--   **macOS / Linux**: Run `which claude` in your terminal
--   **Windows (Command Prompt)**: Run `where claude`
--   **Windows (PowerShell)**: Run `Get-Command claude`
+-   **macOS / Linux**：在终端中运行 `which claude`
+-   **Windows（命令提示符）**：运行 `where claude`
+-   **Windows（PowerShell）**：运行 `Get-Command claude`
 
-## Supported Models
+## 支持的模型
 
-The Claude Code provider supports these models:
+Claude Code 提供商支持以下模型：
 
--   `claude-sonnet-4-20250514` (Recommended)
+-   `claude-sonnet-4-20250514`（推荐）
 -   `claude-opus-4-1-20250805`
 -   `claude-opus-4-20250514`
 -   `claude-3-7-sonnet-20250219`
 -   `claude-3-5-sonnet-20241022`
 -   `claude-3-5-haiku-20241022`
 
-## How it works
+## 工作原理
 
-When you use Claude Code with Caret, here's what happens behind the scenes:
+当您在 Caret 中使用 Claude Code 时，幕后发生的情况如下：
 
-Caret wraps the Claude Code CLI to handle your requests. Each time you send a message, Caret starts a new `claude` process, sends your conversation, and streams the response back. The AI reasoning comes from Claude Code, but all the actual file editing, terminal commands, and other tools are handled by Caret.
+Caret 封装 Claude Code CLI 来处理您的请求。每次发送消息时，Caret 启动一个新的 `claude` 进程，发送您的对话，并将响应流式传输回来。AI 推理来自 Claude Code，但所有实际的文件编辑、终端命令和其他工具都由 Caret 处理。
 
-The main difference you'll notice is that responses don't stream character-by-character like other providers. Instead, Claude Code processes your full request before sending back the complete response.
+您会注意到的主要区别是响应不像其他提供商那样逐字符流式传输。相反，Claude Code 在发送完整响应之前处理您的完整请求。
 
-## Limitations
+## 限制
 
-There are a few things to keep in mind with Claude Code:
+使用 Claude Code 时需要注意以下几点：
 
--   Images in your messages get converted to text placeholders since Claude Code doesn't support image uploads through the CLI
--   Prompt caching isn't available with this provider
--   Responses don't stream in real-time like other providers
+-   由于 Claude Code 不支持通过 CLI 上传图像，消息中的图像会被转换为文本占位符
+-   此提供商不支持提示缓存
+-   响应不像其他提供商那样实时流式传输
 
-## Troubleshooting
+## 故障排除
 
-If you run into issues:
+如果遇到问题：
 
-**Authentication problems**: Make sure you're logged into Claude Code with your subscription account. Run `claude auth status` to check.
+**身份验证问题**：确保您使用订阅账户登录到 Claude Code。运行 `claude auth status` 进行检查。
 
-**Path issues**: Double-check that the Claude CLI path in Caret's settings is correct. Try running `claude --version` in your terminal to verify it's working.
+**路径问题**：仔细检查 Caret 设置中的 Claude CLI 路径是否正确。尝试在终端中运行 `claude --version` 以验证其是否正常工作。
 
-**Still having trouble?** We're actively improving this integration. Report issues on our [GitHub](https://github.com/caret/caret/issues) or ask for help in our [Discord](https://discord.gg/caret).
+**仍有问题？** 我们正在积极改进这一集成。在我们的 [GitHub](https://github.com/caret/caret/issues) 上报告问题或在我们的 [Discord](https://discord.gg/caret) 中寻求帮助。
 
-## Usage with subscriptions
+## 订阅使用
 
-If you have a Claude Max subscription, your usage in Caret shows up as $0.00 in the billing interface since you're not paying additional API costs. Your usage still counts against your subscription limits, but you won't see per-token charges.
+如果您有 Claude Max 订阅，由于您不支付额外的 API 费用，您在 Caret 中的使用在计费界面中显示为 $0.00。您的使用仍计入订阅限制，但您不会看到按 token 收费。
 
-For more details about using Claude Code with your subscription, check out Anthropic's documentation:
+有关使用 Claude Code 与您的订阅的更多详细信息，请查看 Anthropic 的文档：
 
--   [Claude Code Setup Guide](https://docs.anthropic.com/en/docs/claude-code/setup)
--   [Using Claude Code with Pro/Max Plans](https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)
+-   [Claude Code 设置指南](https://docs.anthropic.com/en/docs/claude-code/setup)
+-   [在 Pro/Max 计划中使用 Claude Code](https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan)

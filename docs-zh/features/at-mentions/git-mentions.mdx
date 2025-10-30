@@ -1,55 +1,55 @@
 ---
-title: "Git Mentions"
-sidebarTitle: "Git Mentions"
+title: "Git 引用"
+sidebarTitle: "Git 引用"
 ---
 
-Git mentions let you bring your repository's history and changes directly into your conversation with Caret. You can reference uncommitted changes with `@git-changes` or specific commits with `@[commit-hash]`.
+Git 引用让您可以将仓库的历史和变更直接带入与 Caret 的对话中。您可以使用 `@git-changes` 引用未提交的更改,或使用 `@[commit-hash]` 引用特定的提交。
 
-When you type `@` in chat, you can select "Git Changes" from the menu or type `@git-changes` directly. For specific commits, type `@` followed by the commit hash (at least 7 characters). Caret will immediately see the git status, diffs, commit messages, and other relevant information.
+在聊天中输入 `@` 时,您可以从菜单中选择"Git Changes"或直接输入 `@git-changes`。对于特定的提交,输入 `@` 后跟提交哈希值(至少 7 个字符)。Caret 会立即看到 git 状态、差异、提交消息和其他相关信息。
 
-I use git mentions constantly when I'm trying to understand code changes or troubleshoot issues introduced by recent commits. Instead of trying to copy and paste diffs or commit logs, I just ask:
-
-```
-I think this commit broke our authentication flow: @a1b2c3d
-
-Can you explain what changed and why it might be causing the issue?
-```
-
-This gives Caret the complete commit information, including the commit message, author, date, and the full diff. Caret can then analyze exactly what changed and how it might affect other parts of the codebase.
-
-The `@git-changes` mention is perfect when you're working on changes and want feedback before committing:
+当我尝试理解代码更改或排查最近提交引入的问题时,我经常使用 git 引用。不用尝试复制粘贴差异或提交日志,我只需询问:
 
 ```
-Here are my current changes: @git-changes
+我认为这个提交破坏了我们的身份验证流程: @a1b2c3d
 
-I'm trying to implement a new feature for user profiles. Does my approach make sense?
-Are there any potential issues or improvements you'd suggest?
+你能解释一下发生了什么变化以及为什么可能导致这个问题吗?
 ```
 
-This shows Caret all your uncommitted changes, including new files, modified files, and their diffs. Caret can then review your changes and provide feedback on your implementation.
+这让 Caret 获得完整的提交信息,包括提交消息、作者、日期和完整的差异。然后 Caret 可以准确分析发生了什么变化以及它如何影响代码库的其他部分。
 
-Git mentions are especially powerful when combined with file mentions. When I'm investigating a bug, I'll often reference both:
+当您正在处理更改并希望在提交之前获得反馈时,`@git-changes` 引用非常完美:
 
 ```
-I think this commit introduced a bug: @a1b2c3d
+这是我当前的更改: @git-changes
 
-Here's the current implementation: @/src/components/Auth.jsx
-
-How can I fix the issue while preserving the intended functionality?
+我正在尝试为用户配置文件实现一个新功能。我的方法合理吗?
+有什么潜在的问题或改进建议吗?
 ```
 
-Next time you're working with code changes or investigating issues, try using git mentions instead of manually describing or copying changes. You'll get more accurate help because Caret can see exactly what changed and in what context.
+这会向 Caret 展示您所有未提交的更改,包括新文件、修改的文件及其差异。然后 Caret 可以审查您的更改并提供关于您的实现的反馈。
 
-## How It Works Under the Hood
+Git 引用与文件引用结合使用时特别强大。当我调查 bug 时,我经常同时引用两者:
 
-When you use git mentions in your message, here's what happens behind the scenes:
+```
+我认为这个提交引入了一个 bug: @a1b2c3d
 
-### For Git Changes (`@git-changes`)
+这是当前的实现: @/src/components/Auth.jsx
 
-1. When you send your message, Caret detects the `@git-changes` pattern in your text
-2. The extension runs git commands to get the current working state of your repository
-3. It captures the output of `git status` and `git diff` to see all uncommitted changes
-4. This information is appended to your message in a structured format:
+我该如何修复问题同时保留预期的功能?
+```
+
+下次处理代码更改或调查问题时,尝试使用 git 引用而不是手动描述或复制更改。您将获得更准确的帮助,因为 Caret 可以确切地看到发生了什么变化以及在什么上下文中。
+
+## 工作原理
+
+当您在消息中使用 git 引用时,后台发生的情况如下:
+
+### 对于 Git Changes (`@git-changes`)
+
+1. 当您发送消息时,Caret 会检测文本中的 `@git-changes` 模式
+2. 扩展运行 git 命令来获取仓库的当前工作状态
+3. 它捕获 `git status` 和 `git diff` 的输出以查看所有未提交的更改
+4. 这些信息以结构化格式附加到您的消息中:
 
     ```
     <git_working_state>
@@ -58,16 +58,16 @@ When you use git mentions in your message, here's what happens behind the scenes
       modified: src/components/Button.jsx
       modified: src/styles/main.css
 
-    [Complete diff output with all changes]
+    [所有更改的完整差异输出]
     </git_working_state>
     ```
 
-### For Specific Commits (`@[commit-hash]`)
+### 对于特定提交 (`@[commit-hash]`)
 
-1. When you send your message, Caret detects the `@` followed by a commit hash pattern
-2. The extension runs `git show` and related commands to get information about that commit
-3. It retrieves the commit message, author, date, and the complete diff
-4. This information is appended to your message in a structured format:
+1. 当您发送消息时,Caret 会检测 `@` 后跟提交哈希值的模式
+2. 扩展运行 `git show` 和相关命令来获取该提交的信息
+3. 它检索提交消息、作者、日期和完整的差异
+4. 这些信息以结构化格式附加到您的消息中:
 
     ```
     <git_commit hash="a1b2c3d">
@@ -77,8 +77,8 @@ When you use git mentions in your message, here's what happens behind the scenes
 
     Fix authentication bug in login form
 
-    [Complete diff output showing all changes in the commit]
+    [显示提交中所有更改的完整差异输出]
     </git_commit>
     ```
 
-This process happens automatically whenever you use git mentions, giving the AI complete visibility into your code changes without you having to copy and paste diffs or commit logs.
+每当您使用 git 引用时,这个过程都会自动发生,让 AI 完全了解您的代码更改,而无需复制粘贴差异或提交日志。

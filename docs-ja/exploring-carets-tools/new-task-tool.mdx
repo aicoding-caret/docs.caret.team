@@ -98,283 +98,283 @@ Clineが`newtask`ツールを提案したり複雑なルールを定義したり
 
 あなたのニーズに最も適したワークフローを発見するために、`.clinerules`での実験をお勧めします！
 
-#### Example `.clinerules`: Task Handoff Strategy Guide
+#### `.clinerules`の例：タスクハンドオフ戦略ガイド
 
-Below is an example `.clinerules` file focused specifically on using `new_task` for context window management. **Remember, this is just one specific strategy; the core `new_task` tool can be used differently with other custom rules.**
+以下は、コンテキストウィンドウ管理のために`new_task`の使用に特に焦点を当てた`.clinerules`ファイルの例です。**これは1つの特定の戦略に過ぎないことを覚えておいてください。コア`new_task`ツールは他のカスタムルールで異なる方法で使用できます。**
 
 ````markdown
-# You MUST use the `new_task` tool: Task Handoff Strategy Guide
+# `new_task`ツールを使用する必要があります：タスクハンドオフ戦略ガイド
 
-**⚠️ CRITICAL INSTRUCTIONS - YOU MUST FOLLOW THESE GUIDELINES ⚠️**
+**⚠️ 重要な指示 - これらのガイドラインに従う必要があります ⚠️**
 
-This guide provides **MANDATORY** instructions for effectively breaking down complex tasks and implementing a smooth handoff process between tasks. You **MUST** follow these guidelines to ensure continuity, context preservation, and efficient task completion.
+このガイドは、複雑なタスクを効果的に分解し、タスク間のスムーズなハンドオフプロセスを実装するための**必須**の指示を提供します。継続性、コンテキストの保存、効率的なタスク完了を確保するために、これらのガイドラインに**従う必要があります**。
 
-## ⚠️ CONTEXT WINDOW MONITORING - MANDATORY ACTION REQUIRED ⚠️
+## ⚠️ コンテキストウィンドウの監視 - 必須アクション ⚠️
 
-You **MUST** monitor the context window usage displayed in the environment details. When usage exceeds 50% of the available context window, you **MUST** initiate a task handoff using the `new_task` tool.
+環境詳細に表示されるコンテキストウィンドウの使用状況を**監視する必要があります**。使用量が利用可能なコンテキストウィンドウの50%を超えた場合、`new_task`ツールを使用してタスクハンドオフを**開始する必要があります**。
 
-Example of context window usage over 50% with a 200K context window:
+200Kコンテキストウィンドウで50%を超えるコンテキストウィンドウ使用量の例：
 
 \`\`\`text
 
-# Context Window Usage
+# コンテキストウィンドウ使用量
 
-105,000 / 200,000 tokens (53%)
-Model: anthropic/claude-sonnet-4 (200K context window)
+105,000 / 200,000 トークン (53%)
+モデル: anthropic/claude-sonnet-4 (200Kコンテキストウィンドウ)
 \`\`\`
 
-**IMPORTANT**: When you see context window usage at or above 50%, you MUST:
+**重要**：コンテキストウィンドウ使用量が50%以上になった場合、以下を**実行する必要があります**：
 
-1. Complete your current logical step
-2. Use the `ask_followup_question` tool to offer creating a new task
-3. If approved, use the `new_task` tool with comprehensive handoff instructions
+1. 現在の論理的ステップを完了する
+2. `ask_followup_question`ツールを使用して新しいタスクの作成を提案する
+3. 承認された場合、包括的なハンドオフ指示を含む`new_task`ツールを使用する
 
-## Task Breakdown in Plan Mode - REQUIRED PROCESS
+## プランモードでのタスク分解 - 必須プロセス
 
-Plan Mode is specifically designed for analyzing complex tasks and breaking them into manageable subtasks. When in Plan Mode, you **MUST**:
+プランモードは、複雑なタスクを分析し、管理可能なサブタスクに分解するために特別に設計されています。プランモードでは、以下を**実行する必要があります**：
 
-### 1. Initial Task Analysis - REQUIRED
+### 1. 初期タスク分析 - 必須
 
--   **MUST** begin by thoroughly understanding the full scope of the user's request
--   **MUST** identify all major components and dependencies of the task
--   **MUST** consider potential challenges, edge cases, and prerequisites
+-   **必須**：ユーザーのリクエストの全範囲を徹底的に理解することから始める
+-   **必須**：タスクのすべての主要コンポーネントと依存関係を特定する
+-   **必須**：潜在的な課題、エッジケース、前提条件を考慮する
 
-### 2. Strategic Task Decomposition - REQUIRED
+### 2. 戦略的タスク分解 - 必須
 
--   **MUST** break the overall task into logical, discrete subtasks
--   **MUST** prioritize subtasks based on dependencies (what must be completed first)
--   **MUST** aim for subtasks that can be completed within a single session (15-30 minutes of work)
--   **MUST** consider natural breaking points where context switching makes sense
+-   **必須**：全体的なタスクを論理的で個別のサブタスクに分解する
+-   **必須**：依存関係に基づいてサブタスクに優先順位を付ける（最初に完了する必要があるもの）
+-   **必須**：単一セッション内（15〜30分の作業）で完了できるサブタスクを目指す
+-   **必須**：コンテキスト切り替えが意味を持つ自然な分岐点を考慮する
 
-### 3. Creating a Task Roadmap - REQUIRED
+### 3. タスクロードマップの作成 - 必須
 
--   **MUST** present a clear, numbered list of subtasks to the user
--   **MUST** explain dependencies between subtasks
--   **MUST** provide time estimates for each subtask when possible
--   **MUST** use Mermaid diagrams to visualize task flow and dependencies when helpful
+-   **必須**：ユーザーに明確で番号付きのサブタスクリストを提示する
+-   **必須**：サブタスク間の依存関係を説明する
+-   **必須**：可能な場合、各サブタスクの時間見積もりを提供する
+-   **必須**：役立つ場合は、Mermaid図を使用してタスクフローと依存関係を視覚化する
 
 \`\`\`mermaid
 graph TD
-A[Main Task] --> B[Subtask 1: Setup]
-A --> C[Subtask 2: Core Implementation]
-A --> D[Subtask 3: Testing]
-A --> E[Subtask 4: Documentation]
+A[メインタスク] --> B[サブタスク1: セットアップ]
+A --> C[サブタスク2: コア実装]
+A --> D[サブタスク3: テスト]
+A --> E[サブタスク4: ドキュメント]
 B --> C
 C --> D
 \`\`\`
 
-### 4. Getting User Approval - REQUIRED
+### 4. ユーザー承認の取得 - 必須
 
--   **MUST** ask for user feedback on the proposed task breakdown
--   **MUST** adjust the plan based on user priorities or additional requirements
--   **MUST** confirm which subtask to begin with
--   **MUST** request the user to toggle to Act Mode when ready to implement
+-   **必須**：提案されたタスク分解についてユーザーのフィードバックを求める
+-   **必須**：ユーザーの優先順位または追加要件に基づいて計画を調整する
+-   **必須**：どのサブタスクから始めるかを確認する
+-   **必須**：実装の準備ができたらアクトモードに切り替えるようユーザーに依頼する
 
-## Task Implementation and Handoff Process - MANDATORY PROCEDURES
+## タスク実装とハンドオフプロセス - 必須手順
 
-When implementing tasks in Act Mode, you **MUST** follow these guidelines for effective task handoff:
+アクトモードでタスクを実装する際は、効果的なタスクハンドオフのために以下のガイドラインに**従う必要があります**：
 
-### 1. Focused Implementation - REQUIRED
+### 1. 集中的な実装 - 必須
 
--   **MUST** focus on completing the current subtask fully
--   **MUST** document progress clearly through comments and commit messages
--   **MUST** create checkpoints at logical completion points
+-   **必須**：現在のサブタスクを完全に完了することに集中する
+-   **必須**：コメントとコミットメッセージを通じて進捗を明確に文書化する
+-   **必須**：論理的な完了ポイントでチェックポイントを作成する
 
-### 2. Recognizing Completion Points - CRITICAL
+### 2. 完了ポイントの認識 - 重要
 
-You **MUST** identify natural handoff points when:
+以下の場合、自然なハンドオフポイントを**特定する必要があります**：
 
--   The current subtask is fully completed
--   You've reached a logical stopping point in a larger subtask
--   The implementation is taking longer than expected and can be continued later
--   The task scope has expanded beyond the original plan
--   **CRITICAL**: The context window usage exceeds 50% (e.g., 100,000+ tokens for a 200K context window)
+-   現在のサブタスクが完全に完了した
+-   より大きなサブタスク内で論理的な停止ポイントに達した
+-   実装が予想よりも長くかかっており、後で続行できる
+-   タスクスコープが元の計画を超えて拡大した
+-   **重要**：コンテキストウィンドウ使用量が50%を超えた（例：200Kコンテキストウィンドウで100,000+トークン）
 
-### 3. Initiating the Handoff Process - MANDATORY ACTION
+### 3. ハンドオフプロセスの開始 - 必須アクション
 
-When you've reached a completion point, you **MUST**:
+完了ポイントに達したら、以下を**実行する必要があります**：
 
-1. Summarize what has been accomplished so far
-2. Clearly state what remains to be done
-3. **MANDATORY**: Use the `ask_followup_question` tool to offer creating a new task:
+1. これまでに達成されたことを要約する
+2. 残りの作業を明確に述べる
+3. **必須**：`ask_followup_question`ツールを使用して新しいタスクの作成を提案する：
 
 \`\`\`xml
 <ask_followup_question>
-<question>I've completed [specific accomplishment]. Would you like me to create a new task to continue with [remaining work]?</question>
-<options>["Yes, create a new task", "No, continue in this session", "Let me think about it"]</options>
+<question>[特定の成果]を完了しました。[残りの作業]を続行するために新しいタスクを作成しますか？</question>
+<options>["はい、新しいタスクを作成", "いいえ、このセッションを続行", "考えさせてください"]</options>
 </ask_followup_question>
 \`\`\`
 
-### 4. Creating a New Task with Context - REQUIRED ACTION
+### 4. コンテキスト付き新しいタスクの作成 - 必須アクション
 
-If the user agrees to create a new task, you **MUST** use the `new_task` tool with comprehensive handoff instructions:
-
-\`\`\`xml
-<new_task>
-<context>
-
-# Task Continuation: [Brief Task Title]
-
-## Completed Work
-
--   [Detailed list of completed items]
--   [Include specific files modified/created]
--   [Note any important decisions made]
-
-## Current State
-
--   [Description of the current state of the project]
--   [Any running processes or environment setup]
--   [Key files and their current state]
-
-## Next Steps
-
--   [Detailed list of remaining tasks]
--   [Specific implementation details to address]
--   [Any known challenges to be aware of]
-
-## Reference Information
-
--   [Links to relevant documentation]
--   [Important code snippets or patterns to follow]
--   [Any user preferences noted during the current session]
-
-Please continue the implementation by [specific next action].
-</context>
-</new_task>
-\`\`\`
-
-### 5. Detailed Context Transfer - MANDATORY COMPONENTS
-
-When creating a new task, you **MUST** always include:
-
-#### Project Context - REQUIRED
-
--   **MUST** include the overall goal and purpose of the project
--   **MUST** include key architectural decisions and patterns
--   **MUST** include technology stack and dependencies
-
-#### Implementation Details - REQUIRED
-
--   **MUST** list files created or modified in the current session
--   **MUST** describe specific functions, classes, or components implemented
--   **MUST** explain design patterns being followed
--   **MUST** outline testing approach
-
-#### Progress Tracking - REQUIRED
-
--   **MUST** provide checklist of completed items
--   **MUST** provide checklist of remaining items
--   **MUST** note any blockers or challenges encountered
-
-#### User Preferences - REQUIRED
-
--   **MUST** note coding style preferences mentioned by the user
--   **MUST** document specific approaches requested by the user
--   **MUST** highlight priority areas identified by the user
-
-## Best Practices for Effective Handoffs - MANDATORY GUIDELINES
-
-### 1. Maintain Continuity - REQUIRED
-
--   **MUST** use consistent terminology between tasks
--   **MUST** reference previous decisions and their rationale
--   **MUST** maintain the same architectural approach unless explicitly changing direction
-
-### 2. Preserve Context - REQUIRED
-
--   **MUST** include relevant code snippets in the handoff
--   **MUST** summarize key discussions from the previous session
--   **MUST** reference specific files and line numbers when applicable
-
-### 3. Set Clear Next Actions - REQUIRED
-
--   **MUST** begin the handoff with a clear, actionable next step
--   **MUST** prioritize remaining tasks
--   **MUST** highlight any decisions that need to be made
-
-### 4. Document Assumptions - REQUIRED
-
--   **MUST** clearly state any assumptions made during implementation
--   **MUST** note areas where user input might be needed
--   **MUST** identify potential alternative approaches
-
-### 5. Optimize for Resumability - REQUIRED
-
--   **MUST** structure the handoff so the next session can begin working immediately
--   **MUST** include setup instructions if environment configuration is needed
--   **MUST** provide a quick summary at the top for rapid context restoration
-
-## Example Task Handoff
-
-### Example #1 of an effective task handoff:
+ユーザーが新しいタスクの作成に同意した場合、包括的なハンドオフ指示を含む`new_task`ツールを**使用する必要があります**：
 
 \`\`\`xml
 <new_task>
 <context>
 
-# Task Continuation: Implement User Authentication System
+# タスク継続：[簡潔なタスクタイトル]
 
-## Completed Work
+## 完了した作業
 
--   Created basic Express.js server structure
--   Implemented MongoDB connection and user schema
--   Completed user registration endpoint with password hashing
--   Added input validation using Joi
--   Created initial test suite for registration endpoint
+-   [完了した項目の詳細なリスト]
+-   [変更/作成された特定のファイルを含める]
+-   [行われた重要な決定を記録]
 
-## Current State
+## 現在の状態
 
--   Server runs successfully on port 3000
--   MongoDB connection is established
--   Registration endpoint (/api/users/register) is fully functional
--   Test suite passes for all registration scenarios
+-   [プロジェクトの現在の状態の説明]
+-   [実行中のプロセスまたは環境セットアップ]
+-   [主要なファイルとその現在の状態]
 
-## Next Steps
+## 次のステップ
 
-1. Implement login endpoint (/api/users/login)
-    - Use bcrypt to compare passwords
-    - Generate JWT token upon successful login
-    - Add proper error handling for invalid credentials
-2. Create authentication middleware
-    - Verify JWT tokens
-    - Extract user information
-    - Handle expired tokens
-3. Add protected routes that require authentication
-4. Implement password reset functionality
+-   [残りのタスクの詳細なリスト]
+-   [対処すべき特定の実装詳細]
+-   [認識すべき既知の課題]
 
-## Reference Information
+## 参考情報
 
--   JWT secret should be stored in .env file
--   Follow the existing error handling pattern in routes/users.js
--   User schema is defined in models/User.js
--   Test patterns are established in tests/auth.test.js
+-   [関連ドキュメントへのリンク]
+-   [従うべき重要なコードスニペットまたはパターン]
+-   [現在のセッション中に記録されたユーザー設定]
 
-Please continue by implementing the login endpoint following the same patterns established in the registration endpoint.
+[特定の次のアクション]によって実装を続行してください。
 </context>
 </new_task>
 \`\`\`
 
-### Example #2 of an ineffective task handoff:
+### 5. 詳細なコンテキスト転送 - 必須コンポーネント
 
-_(Note: The example provided in the original rules showing "YOLO MODE Implementation" seems less like a direct handoff context block and more like a general status update with future considerations. A true ineffective handoff might lack detail in 'Current State' or 'Next Steps')._
+新しいタスクを作成する際は、常に以下を**含める必要があります**：
 
-## When to Use Task Handoffs - MANDATORY TRIGGERS
+#### プロジェクトコンテキスト - 必須
 
-You **MUST** initiate task handoffs in these scenarios:
+-   **必須**：プロジェクトの全体的な目標と目的を含める
+-   **必須**：主要なアーキテクチャの決定とパターンを含める
+-   **必須**：技術スタックと依存関係を含める
 
-1. **CRITICAL**: When context window usage exceeds 50% (e.g., 100,000+ tokens for a 200K context window)
-2. **Long-running projects** that exceed a single session
-3. **Complex implementations** with multiple distinct phases
-4. **When context window limitations** are approaching
-5. **When switching focus areas** within a larger project
-6. **When different expertise** might be beneficial for different parts of the task
+#### 実装詳細 - 必須
 
-**⚠️ FINAL REMINDER - CRITICAL INSTRUCTION ⚠️**
+-   **必須**：現在のセッションで作成または変更されたファイルをリストする
+-   **必須**：実装された特定の関数、クラス、またはコンポーネントを説明する
+-   **必須**：従っているデザインパターンを説明する
+-   **必須**：テストアプローチの概要を示す
 
-You **MUST** monitor the context window usage in the environment details section. When it exceeds 50% (e.g., "105,000 / 200,000 tokens (53%)"), you **MUST** proactively initiate the task handoff process using the `ask_followup_question` tool followed by the `new_task` tool. You MUST use the `new_task` tool.
+#### 進捗追跡 - 必須
 
-By strictly following these guidelines, you'll ensure smooth transitions between tasks, maintain project momentum, and provide the best possible experience for users working on complex, multi-session projects.
+-   **必須**：完了した項目のチェックリストを提供する
+-   **必須**：残りの項目のチェックリストを提供する
+-   **必須**：遭遇したブロッカーまたは課題を記録する
+
+#### ユーザー設定 - 必須
+
+-   **必須**：ユーザーが言及したコーディングスタイルの設定を記録する
+-   **必須**：ユーザーが要求した特定のアプローチを文書化する
+-   **必須**：ユーザーが特定した優先領域を強調する
+
+## 効果的なハンドオフのベストプラクティス - 必須ガイドライン
+
+### 1. 継続性の維持 - 必須
+
+-   **必須**：タスク間で一貫した用語を使用する
+-   **必須**：以前の決定とその根拠を参照する
+-   **必須**：明示的に方向を変更しない限り、同じアーキテクチャアプローチを維持する
+
+### 2. コンテキストの保存 - 必須
+
+-   **必須**：ハンドオフに関連するコードスニペットを含める
+-   **必須**：前のセッションの主要な議論を要約する
+-   **必須**：該当する場合、特定のファイルと行番号を参照する
+
+### 3. 明確な次のアクションの設定 - 必須
+
+-   **必須**：明確で実行可能な次のステップでハンドオフを開始する
+-   **必須**：残りのタスクに優先順位を付ける
+-   **必須**：行う必要がある決定を強調する
+
+### 4. 仮定の文書化 - 必須
+
+-   **必須**：実装中に行われた仮定を明確に述べる
+-   **必須**：ユーザー入力が必要になる可能性がある領域を記録する
+-   **必須**：潜在的な代替アプローチを特定する
+
+### 5. 再開可能性の最適化 - 必須
+
+-   **必須**：次のセッションがすぐに作業を開始できるようにハンドオフを構造化する
+-   **必須**：環境設定が必要な場合はセットアップ指示を含める
+-   **必須**：迅速なコンテキスト復元のために上部に簡単な要約を提供する
+
+## タスクハンドオフの例
+
+### 例 #1 効果的なタスクハンドオフ：
+
+\`\`\`xml
+<new_task>
+<context>
+
+# タスク継続：ユーザー認証システムの実装
+
+## 完了した作業
+
+-   基本的なExpress.jsサーバー構造を作成
+-   MongoDBconnectionとユーザースキーマを実装
+-   パスワードハッシングを使用したユーザー登録エンドポイントを完成
+-   Joiを使用した入力検証を追加
+-   登録エンドポイントの初期テストスイートを作成
+
+## 現在の状態
+
+-   サーバーはポート3000で正常に実行中
+-   MongoDB接続が確立されている
+-   登録エンドポイント（/api/users/register）が完全に機能している
+-   すべての登録シナリオでテストスイートが合格
+
+## 次のステップ
+
+1. ログインエンドポイント（/api/users/login）の実装
+    - bcryptを使用してパスワードを比較
+    - ログイン成功時にJWTトークンを生成
+    - 無効な認証情報の適切なエラー処理を追加
+2. 認証ミドルウェアの作成
+    - JWTトークンの検証
+    - ユーザー情報の抽出
+    - 期限切れトークンの処理
+3. 認証が必要な保護されたルートを追加
+4. パスワードリセット機能の実装
+
+## 参考情報
+
+-   JWTシークレットは.envファイルに保存する必要があります
+-   routes/users.jsの既存のエラー処理パターンに従ってください
+-   ユーザースキーマはmodels/User.jsで定義されています
+-   テストパターンはtests/auth.test.jsで確立されています
+
+登録エンドポイントで確立された同じパターンに従って、ログインエンドポイントの実装を続行してください。
+</context>
+</new_task>
+\`\`\`
+
+### 例 #2 非効果的なタスクハンドオフ：
+
+_（注：元のルールで提供された「YOLO MODE実装」を示す例は、直接的なハンドオフコンテキストブロックというよりは、将来の考慮事項を含む一般的なステータス更新のように見えます。真に非効果的なハンドオフは、「現在の状態」または「次のステップ」に詳細が欠けているかもしれません。）_
+
+## タスクハンドオフを使用するタイミング - 必須トリガー
+
+以下のシナリオでタスクハンドオフを**開始する必要があります**：
+
+1. **重要**：コンテキストウィンドウ使用量が50%を超えた場合（例：200Kコンテキストウィンドウで100,000+トークン）
+2. **長期実行プロジェクト**：単一セッションを超えるもの
+3. **複雑な実装**：複数の明確なフェーズがあるもの
+4. **コンテキストウィンドウ制限**：近づいている場合
+5. **フォーカス領域の切り替え**：より大きなプロジェクト内
+6. **異なる専門知識**：タスクの異なる部分に有益な場合
+
+**⚠️ 最終リマインダー - 重要な指示 ⚠️**
+
+環境詳細セクションのコンテキストウィンドウ使用量を**監視する必要があります**。50%を超えた場合（例：「105,000 / 200,000トークン（53%）」）、`ask_followup_question`ツールに続いて`new_task`ツールを使用してタスクハンドオフプロセスを**積極的に開始する必要があります**。`new_task`ツールを使用する**必要があります**。
+
+これらのガイドラインに厳密に従うことで、タスク間のスムーズな移行を確保し、プロジェクトの勢いを維持し、複雑なマルチセッションプロジェクトに取り組むユーザーに最高の体験を提供できます。
 
 ```markdown
 ## ユーザー対話とワークフローの考慮事項

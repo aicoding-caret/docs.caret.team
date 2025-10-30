@@ -1,80 +1,80 @@
 ---
 title: "Groq"
-description: "Learn how to configure and use Groq's lightning-fast inference with Caret. Access models from OpenAI, Meta, DeepSeek, and more on Groq's purpose-built LPU architecture."
+description: "了解如何配置和使用 Groq 的超快推理与 Caret。在 Groq 专用的 LPU 架构上访问来自 OpenAI、Meta、DeepSeek 等的模型。"
 ---
 
-Groq provides ultra-fast AI inference through their custom LPU™ (Language Processing Unit) architecture, purpose-built for inference rather than adapted from training hardware. Groq hosts open-source models from various providers including OpenAI, Meta, DeepSeek, Moonshot AI, and others.
+Groq 通过其定制的 LPU™（语言处理单元）架构提供超快的 AI 推理，专为推理而设计，而非从训练硬件改造而来。Groq 托管来自多个提供商的开源模型，包括 OpenAI、Meta、DeepSeek、Moonshot AI 等。
 
-**Website:** [https://groq.com/](https://groq.com/)
+**网站：** [https://groq.com/](https://groq.com/)
 
-### Getting an API Key
+### 获取 API 密钥
 
-1.  **Sign Up/Sign In:** Go to [Groq](https://groq.com/) and create an account or sign in.
-2.  **Navigate to Console:** Go to the [Groq Console](https://console.groq.com/) to access your dashboard.
-3.  **Create a Key:** Navigate to the API Keys section and create a new API key. Give your key a descriptive name (e.g., "Caret").
-4.  **Copy the Key:** Copy the API key immediately. You will not be able to see it again. Store it securely.
+1.  **注册/登录：** 前往 [Groq](https://groq.com/) 创建账户或登录。
+2.  **导航到控制台：** 前往 [Groq 控制台](https://console.groq.com/) 访问您的仪表板。
+3.  **创建密钥：** 导航到 API 密钥部分并创建新的 API 密钥。为您的密钥提供一个描述性名称（例如"Caret"）。
+4.  **复制密钥：** 立即复制 API 密钥。您将无法再次查看它。请安全存储。
 
-### Supported Models
+### 支持的模型
 
-Caret supports the following Groq models:
+Caret 支持以下 Groq 模型：
 
--   `llama-3.3-70b-versatile` (Meta) - Balanced performance with 131K context
--   `llama-3.1-8b-instant` (Meta) - Fast inference with 131K context  
--   `openai/gpt-oss-120b` (OpenAI) - Featured flagship model with 131K context
--   `openai/gpt-oss-20b` (OpenAI) - Featured compact model with 131K context
--   `moonshotai/kimi-k2-instruct` (Moonshot AI) - 1 trillion parameter model with prompt caching
--   `deepseek-r1-distill-llama-70b` (DeepSeek/Meta) - Reasoning-optimized model
--   `qwen/qwen3-32b` (Alibaba Cloud) - Enhanced for Q&A tasks
--   `meta-llama/llama-4-maverick-17b-128e-instruct` (Meta) - Latest Llama 4 variant
--   `meta-llama/llama-4-scout-17b-16e-instruct` (Meta) - Latest Llama 4 variant
+-   `llama-3.3-70b-versatile`（Meta）- 具有 131K 上下文的均衡性能
+-   `llama-3.1-8b-instant`（Meta）- 具有 131K 上下文的快速推理
+-   `openai/gpt-oss-120b`（OpenAI）- 具有 131K 上下文的旗舰模型
+-   `openai/gpt-oss-20b`（OpenAI）- 具有 131K 上下文的紧凑模型
+-   `moonshotai/kimi-k2-instruct`（Moonshot AI）- 具有提示缓存的 1 万亿参数模型
+-   `deepseek-r1-distill-llama-70b`（DeepSeek/Meta）- 推理优化模型
+-   `qwen/qwen3-32b`（阿里云）- 增强的问答任务
+-   `meta-llama/llama-4-maverick-17b-128e-instruct`（Meta）- 最新的 Llama 4 变体
+-   `meta-llama/llama-4-scout-17b-16e-instruct`（Meta）- 最新的 Llama 4 变体
 
-### Configuration in Caret
+### 在 Caret 中配置
 
-1.  **Open Caret Settings:** Click the settings icon (⚙️) in the Caret panel.
-2.  **Select Provider:** Choose "Groq" from the "API Provider" dropdown.
-3.  **Enter API Key:** Paste your Groq API key into the "Groq API Key" field.
-4.  **Select Model:** Choose your desired model from the "Model" dropdown.
+1.  **打开 Caret 设置：** 点击 Caret 面板中的设置图标（⚙️）。
+2.  **选择提供商：** 从"API 提供商"下拉菜单中选择"Groq"。
+3.  **输入 API 密钥：** 将您的 Groq API 密钥粘贴到"Groq API Key"字段中。
+4.  **选择模型：** 从"模型"下拉菜单中选择您想要的模型。
 
-### Groq's Speed Revolution
+### Groq 的速度革命
 
-Groq's LPU architecture delivers several key advantages over traditional GPU-based inference:
+Groq 的 LPU 架构相比传统的基于 GPU 的推理提供了几个关键优势：
 
-#### LPU Architecture
-Unlike GPUs that are adapted from training workloads, Groq's LPU is purpose-built for inference. This eliminates architectural bottlenecks that create latency in traditional systems.
+#### LPU 架构
+与从训练工作负载改造而来的 GPU 不同，Groq 的 LPU 是专为推理而设计的。这消除了在传统系统中造成延迟的架构瓶颈。
 
-#### Unmatched Speed
-- **Sub-millisecond latency** that stays consistent across traffic, regions, and workloads
-- **Static scheduling** with pre-computed execution graphs eliminates runtime coordination delays
-- **Tensor parallelism** optimized for low-latency single responses rather than high-throughput batching
+#### 无与伦比的速度
+- **亚毫秒级延迟**，在不同流量、地区和工作负载中保持一致
+- **静态调度**，预先计算的执行图消除了运行时协调延迟
+- **张量并行性**，针对低延迟单响应优化，而非高吞吐量批处理
 
-#### Quality Without Tradeoffs
-- **TruePoint numerics** reduce precision only in areas that don't affect accuracy
-- **100-bit intermediate accumulation** ensures lossless computation
-- **Strategic precision control** maintains quality while achieving 2-4× speedup over BF16
+#### 质量无妥协
+- **TruePoint 数值**仅在不影响准确性的区域降低精度
+- **100 位中间累积**确保无损计算
+- **战略精度控制**在保持质量的同时实现比 BF16 快 2-4 倍的速度
 
-#### Memory Architecture
-- **SRAM as primary storage** (not cache) with hundreds of megabytes on-chip
-- **Eliminates DRAM/HBM latency** that plagues traditional accelerators
-- **Enables true tensor parallelism** by splitting layers across multiple chips
+#### 内存架构
+- **SRAM 作为主存储**（非缓存），芯片上有数百兆字节
+- **消除 DRAM/HBM 延迟**，困扰传统加速器的问题
+- **实现真正的张量并行性**，通过在多个芯片上分割层
 
-Learn more about Groq's technology in their [LPU architecture blog post](https://groq.com/blog/inside-the-lpu-deconstructing-groq-speed).
+在 Groq 的 [LPU 架构博客文章](https://groq.com/blog/inside-the-lpu-deconstructing-groq-speed) 中了解更多关于 Groq 技术的信息。
 
-### Special Features
+### 特殊功能
 
-#### Prompt Caching
-The Kimi K2 model supports prompt caching, which can significantly reduce costs and latency for repeated prompts.
+#### 提示缓存
+Kimi K2 模型支持提示缓存，可以显著降低重复提示的成本和延迟。
 
-#### Vision Support
-Select models support image inputs and vision capabilities. Check the model details in the Groq Console for specific capabilities.
+#### 视觉支持
+部分模型支持图像输入和视觉能力。查看 Groq 控制台中的模型详细信息以了解具体功能。
 
-#### Reasoning Models
-Some models like DeepSeek variants offer enhanced reasoning capabilities with step-by-step thought processes.
+#### 推理模型
+某些模型（如 DeepSeek 变体）提供增强的推理能力，具有逐步思考过程。
 
-### Tips and Notes
+### 提示和注意事项
 
--   **Model Selection:** Choose models based on your specific use case and performance requirements.
--   **Speed Advantage:** Groq excels at single-request latency rather than high-throughput batch processing.
--   **OSS Model Provider:** Groq hosts open-source models from multiple providers (OpenAI, Meta, DeepSeek, etc.) on their fast infrastructure.
--   **Context Windows:** Most models offer large context windows (up to 131K tokens) for including substantial code and context.
--   **Pricing:** Groq offers competitive pricing with their speed advantages. Check the [Groq Pricing](https://groq.com/pricing) page for current rates.
--   **Rate Limits:** Groq has generous rate limits, but check their documentation for current limits based on your usage tier.
+-   **模型选择：** 根据您的具体用例和性能需求选择模型。
+-   **速度优势：** Groq 在单请求延迟方面表现出色，而非高吞吐量批处理。
+-   **开源模型提供商：** Groq 在其快速基础设施上托管来自多个提供商（OpenAI、Meta、DeepSeek 等）的开源模型。
+-   **上下文窗口：** 大多数模型提供大型上下文窗口（高达 131K tokens），用于包含大量代码和上下文。
+-   **定价：** Groq 凭借其速度优势提供有竞争力的定价。查看 [Groq 定价](https://groq.com/pricing) 页面了解当前费率。
+-   **速率限制：** Groq 有慷慨的速率限制，但请查看其文档了解基于您使用层级的当前限制。

@@ -1,90 +1,90 @@
 ---
 title: "LM Studio"
-description: "A quick guide to setting up LM Studio for local AI model execution with Caret."
+description: "使用 Caret 设置 LM Studio 进行本地 AI 模型执行的快速指南。"
 ---
 
-## 🤖 Setting Up LM Studio with Caret
+## 🤖 使用 Caret 设置 LM Studio
 
-Run AI models locally using LM Studio with Caret.
+使用 LM Studio 和 Caret 在本地运行 AI 模型。
 
-### 📋 Prerequisites
+### 📋 前提条件
 
--   Windows, macOS, or Linux computer with AVX2 support
--   Caret installed in VS Code
+-   支持 AVX2 的 Windows、macOS 或 Linux 计算机
+-   在 VS Code 中安装 Caret
 
-### 🚀 Setup Steps
+### 🚀 设置步骤
 
-#### 1. Install LM Studio
+#### 1. 安装 LM Studio
 
--   Visit [lmstudio.ai](https://lmstudio.ai)
--   Download and install for your operating system
+-   访问 [lmstudio.ai](https://lmstudio.ai)
+-   为您的操作系统下载并安装
 
+<figure>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(7).png" alt="LM Studio 下载页面" />
+</figure>
 
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(7).png" alt="LM Studio download page" />
+#### 2. 启动 LM Studio
 
+-   打开已安装的应用程序
+-   您将在左侧看到四个选项卡：**Chat**（聊天）、**Developer**（开发者，您将在此处启动服务器）、**My Models**（我的模型，您下载的模型存储在此处）、**Discover**（发现，添加新模型）
 
-#### 2. Launch LM Studio
-
--   Open the installed application
--   You'll see four tabs on the left: **Chat**, **Developer** (where you will start the server), **My Models** (where your downloaded models are stored), **Discover** (add new models)
-
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(10).png"
-		alt="LM Studio interface overview"
+		alt="LM Studio 界面概览"
 	/>
+</figure>
 
+#### 3. 下载模型
 
-#### 3. Download a Model
+-   浏览"Discover"页面
+-   选择并下载您首选的模型
+-   等待下载完成
 
--   Browse the "Discover" page
--   Select and download your preferred model
--   Wait for download to complete
-
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-download-model.gif"
-		alt="Downloading a model in LM Studio"
+		alt="在 LM Studio 中下载模型"
 	/>
+</figure>
 
+#### 4. 启动服务器
 
-#### 4. Start the Server
+-   导航到"Developer"选项卡
+-   将服务器开关切换到"Running"（运行中）
+-   注意：服务器将在 `http://localhost:1234` 运行
 
--   Navigate to the "Developer" tab
--   Toggle the server switch to "Running"
--   Note: The server will run at `http://localhost:1234`
-
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-starting-server.gif"
-		alt="Starting the LM Studio server"
+		alt="启动 LM Studio 服务器"
 	/>
+</figure>
 
+#### 5. 配置 Caret
 
-#### 5. Configure Caret
+1. 打开 VS Code
+2. 点击 Caret 设置图标
+3. 选择"LM Studio"作为 API 提供商
+4. 从可用选项中选择您的模型
 
-1. Open VS Code
-2. Click Caret settings icon
-3. Select "LM Studio" as API provider
-4. Select your model from the available options
-
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-select-model-caret.gif"
-		alt="Configuring Caret with LM Studio"
+		alt="使用 LM Studio 配置 Caret"
 	/>
+</figure>
 
+### ⚠️ 重要说明
 
-### ⚠️ Important Notes
+-   在与 Caret 一起使用之前启动 LM Studio
+-   保持 LM Studio 在后台运行
+-   首次模型下载可能需要几分钟，具体取决于大小
+-   模型在下载后本地存储
 
--   Start LM Studio before using with Caret
--   Keep LM Studio running in background
--   First model download may take several minutes depending on size
--   Models are stored locally after download
+### 🔧 故障排除
 
-### 🔧 Troubleshooting
-
-1. If Caret can't connect to LM Studio:
-2. Verify LM Studio server is running (check Developer tab)
-3. Ensure a model is loaded
-4. Check your system meets hardware requirements
+1. 如果 Caret 无法连接到 LM Studio：
+2. 验证 LM Studio 服务器是否正在运行（检查 Developer 选项卡）
+3. 确保已加载模型
+4. 检查您的系统是否满足硬件要求

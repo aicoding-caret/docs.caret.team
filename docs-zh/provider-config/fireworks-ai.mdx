@@ -1,51 +1,51 @@
 ---
 title: "Fireworks AI"
-description: "Learn how to configure and use Fireworks AI models with Caret. Access high-performance open-source language models with fast, cost-effective APIs."
+description: "了解如何配置和使用 Fireworks AI 模型与 Caret。访问高性能开源语言模型，具有快速、经济高效的 API。"
 ---
 
-Caret supports accessing models through the Fireworks AI platform, which offers fast, cost-effective access to a wide range of state-of-the-art open-source language models. Built for speed and reliability, Fireworks AI provides serverless deployment options with OpenAI-compatible APIs and context windows up to 256,000 tokens.
+Caret 支持通过 Fireworks AI 平台访问模型，该平台提供对各种最先进的开源语言模型的快速、经济高效的访问。Fireworks AI 专为速度和可靠性而构建，提供无服务器部署选项，具有 OpenAI 兼容的 API 和高达 256,000 tokens 的上下文窗口。
 
-**Website:** [https://fireworks.ai/](https://fireworks.ai/)
+**网站：** [https://fireworks.ai/](https://fireworks.ai/)
 
-### Getting an API Key
+### 获取 API 密钥
 
-1. **Sign Up/Sign In:** Go to [Fireworks AI](https://fireworks.ai/) and create an account or sign in.
-2. **Navigate to API Keys:** After logging in, go to the [API Keys page](https://app.fireworks.ai/settings/users/api-keys) in the account settings.
-3. **Create a Key:** Click "Create API key" and give your key a descriptive name (e.g., "Caret").
-4. **Copy the Key:** **Important:** Copy the API key _immediately_. You will not be able to see it again. Store it securely.
+1. **注册/登录：** 前往 [Fireworks AI](https://fireworks.ai/) 创建账户或登录。
+2. **导航到 API 密钥：** 登录后，转到账户设置中的 [API 密钥页面](https://app.fireworks.ai/settings/users/api-keys)。
+3. **创建密钥：** 点击"创建 API 密钥"并为您的密钥提供一个描述性名称（例如"Caret"）。
+4. **复制密钥：** **重要：** _立即_ 复制 API 密钥。您将无法再次查看它。请安全存储。
 
-### Supported Models
+### 支持的模型
 
-Caret supports the following Fireworks AI models:
+Caret 支持以下 Fireworks AI 模型：
 
--   `accounts/fireworks/models/kimi-k2-instruct` (Default)
+-   `accounts/fireworks/models/kimi-k2-instruct`（默认）
 -   `accounts/fireworks/models/qwen3-235b-a22b-instruct-2507`
 -   `accounts/fireworks/models/qwen3-coder-480b-a35b-instruct`
 -   `accounts/fireworks/models/deepseek-r1-0528`
 -   `accounts/fireworks/models/deepseek-v3`
 
-**Model Details:**
+**模型详情：**
 
-| Model | Context Window | Best For | Pricing (per 1M tokens) |
+| 模型 | 上下文窗口 | 最适合 | 定价（每百万 tokens）|
 |-------|----------------|----------|-------------------------|
-| Kimi K2 | 128K | General tasks, agentic capabilities | \$0.60 input, \$2.50 output |
-| Qwen3 235B | 256K | Cost-effective general use | \$0.22 input, \$0.88 output |
-| Qwen3 Coder | 256K | Code generation and debugging | \$0.45 input, \$1.80 output |
-| DeepSeek R1 | 160K | Complex reasoning, function calling | \$3.00 input, \$8.00 output |
-| DeepSeek V3 | 128K | Strong general performance | \$0.90 input, \$0.90 output |
+| Kimi K2 | 128K | 通用任务，智能体能力 | \$0.60 输入，\$2.50 输出 |
+| Qwen3 235B | 256K | 经济高效的通用使用 | \$0.22 输入，\$0.88 输出 |
+| Qwen3 Coder | 256K | 代码生成和调试 | \$0.45 输入，\$1.80 输出 |
+| DeepSeek R1 | 160K | 复杂推理，函数调用 | \$3.00 输入，\$8.00 输出 |
+| DeepSeek V3 | 128K | 强大的通用性能 | \$0.90 输入，\$0.90 输出 |
 
-### Configuration in Caret
+### 在 Caret 中配置
 
-1. **Open Caret Settings:** Click the settings icon (⚙️) in the Caret panel.
-2. **Select Provider:** Choose "Fireworks AI" from the "API Provider" dropdown.
-3. **Enter API Key:** Paste your Fireworks AI API key into the "Fireworks AI API Key" field.
-4. **Select Model:** Choose your desired model from the "Model" dropdown. The default model is Kimi K2.
+1. **打开 Caret 设置：** 点击 Caret 面板中的设置图标（⚙️）。
+2. **选择提供商：** 从"API 提供商"下拉菜单中选择"Fireworks AI"。
+3. **输入 API 密钥：** 将您的 Fireworks AI API 密钥粘贴到"Fireworks AI API Key"字段中。
+4. **选择模型：** 从"模型"下拉菜单中选择您想要的模型。默认模型是 Kimi K2。
 
-### Tips and Notes
+### 提示和注意事项
 
--   **Cost-Effective:** Fireworks AI offers significantly lower pricing than proprietary models while maintaining competitive performance.
--   **Large Context Windows:** Most models support 128K-256K tokens, suitable for processing large documents and maintaining extended conversations.
--   **OpenAI Compatibility:** The provider uses an OpenAI-compatible API format with streaming support and usage tracking.
--   **Rate Limits:** Fireworks AI has usage-based rate limits. Monitor your usage in the dashboard and consider upgrading your plan if needed.
--   **API Keys:** Stored locally on your machine for security.
--   **Pricing:** See the [Fireworks AI pricing page](https://fireworks.ai/pricing) for current rates. Prices shown are per million tokens.
+-   **经济高效：** Fireworks AI 提供的定价明显低于专有模型，同时保持竞争力的性能。
+-   **大型上下文窗口：** 大多数模型支持 128K-256K tokens，适用于处理大型文档和维持扩展对话。
+-   **OpenAI 兼容性：** 提供商使用 OpenAI 兼容的 API 格式，支持流式传输和使用跟踪。
+-   **速率限制：** Fireworks AI 有基于使用的速率限制。在仪表板中监控您的使用情况，如果需要，考虑升级您的计划。
+-   **API 密钥：** 为了安全，存储在您的机器本地。
+-   **定价：** 请参阅 [Fireworks AI 定价页面](https://fireworks.ai/pricing) 了解当前费率。显示的价格为每百万 tokens。

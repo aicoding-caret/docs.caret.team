@@ -1,297 +1,297 @@
 ---
-title: "Focus Chain"
-sidebarTitle: "Focus Chain"
+title: "聚焦链"
+sidebarTitle: "聚焦链"
 ---
 
-Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
+聚焦链是 Caret 的任务管理增强功能,提供自动待办事项列表管理,并在整个任务过程中实时跟踪进度。
 
 <figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/2dos.gif"
-		alt="Focus Chain todo list management with real-time progress tracking"
+		alt="聚焦链待办事项列表管理与实时进度跟踪"
 	/>
 </figure>
 
-This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
+这使得 Caret 能够处理长期任务,无缝管理发送到 LLM 的上下文,并在多次上下文窗口重置后保持 Caret 的工作状态。
 
 :::tip
-  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
+  聚焦链与 Caret 的[深度规划斜杠命令](/features/slash-commands/deep-planning)配合得特别好,为通过[规划流程](/features/plan-and-act)创建的实施任务提供无缝的进度跟踪。
 :::
 
-## Key Features
+## 主要功能
 
-### Automatic Todo List Generation
+### 自动生成待办事项列表
 
-Caret analyzes your task and automatically creates a comprehensive todo list with:
-- Clear, actionable items in markdown checklist format
-- Logical breakdown of complex tasks into manageable steps
-- Real-time updates as work progresses
+Caret 会分析您的任务并自动创建全面的待办事项列表,包括:
+- 以 markdown 检查清单格式呈现的清晰可操作的项目
+- 将复杂任务逻辑分解为可管理的步骤
+- 随着工作进展实时更新
 
-### User-Editable Todo Lists
+### 用户可编辑的待办事项列表
 
-Todo lists are stored as editable markdown files:
-- Direct editing through your preferred markdown editor
-- Automatic detection of changes you make
-- Seamless integration back into Caret's workflow
-- Quick access through the edit button in the task header
+待办事项列表以可编辑的 markdown 文件形式存储:
+- 通过您喜欢的 markdown 编辑器直接编辑
+- 自动检测您所做的更改
+- 无缝集成回 Caret 的工作流程
+- 通过任务标题中的编辑按钮快速访问
 
-### Visual Progress Tracking
+### 可视化进度跟踪
 
-The task header displays clear progress indicators:
-- **Step counters** showing current progress (e.g., "3/8")
-- **Completed items** clearly marked with checkmarks
-- **Current work** highlighted with indicators
-- **Expandable view** to see the full todo list
+任务标题显示清晰的进度指示器:
+- **步骤计数器**显示当前进度(例如,"3/8")
+- **已完成项目**清楚地标记有复选标记
+- **当前工作**用指示器突出显示
+- **可展开视图**查看完整的待办事项列表
 
-### Smart Reminder System
+### 智能提醒系统
 
-Configurable reminders ensure todo lists stay current:
-- Default reminder every 6 messages (customizable 1-100)
-- Automatic prompts when switching from Plan Mode to Act Mode
-- User-triggered updates when todo lists are manually edited
+可配置的提醒确保待办事项列表保持最新:
+- 默认每 6 条消息提醒一次(可自定义 1-100)
+- 从计划模式切换到执行模式时自动提示
+- 手动编辑待办事项列表时由用户触发更新
 
 
-## Getting Started
+## 入门指南
 
-**Getting Started Steps:**
+**入门步骤:**
 
-1. **Setup**
-   - Click the gear icon in the Caret sidebar
-   - Navigate to the "Features" section
+1. **设置**
+   - 点击 Caret 侧边栏中的齿轮图标
+   - 导航到"功能"部分
 
-2. **Configuration**
-   - Check "Enable Focus Chain"
-   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+2. **配置**
+   - 勾选"启用聚焦链"
+   - 可选调整"提醒 Caret 间隔"(默认:6 条消息)
 
-3. **Usage**
-   - Begin a new task
-   - Caret will automatically start creating and managing todo lists
+3. **使用**
+   - 开始一个新任务
+   - Caret 将自动开始创建和管理待办事项列表
 
-| Setting | Default | Range | Description |
+| 设置 | 默认值 | 范围 | 描述 |
 |---------|---------|-------|-------------|
-| Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
-| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
+| 启用聚焦链 | 禁用 | 开/关 | 启用增强的任务进度跟踪 |
+| 提醒 Caret 间隔 | 6 | 1-100 条消息 | Caret 更新待办事项列表的频率 |
 
-## Usage Examples
+## 使用示例
 
-#### 1. Task Initiation
+#### 1. 任务启动
 
-When you start a new task with Focus Chain enabled:
+当您启用聚焦链启动新任务时:
 
-``` markdown User Request
-User: "Create a user authentication system for my React app"
+``` markdown 用户请求
+用户:"为我的 React 应用创建一个用户身份验证系统"
 
-Caret: [Analyzes request and creates todo list]
+Caret:[分析请求并创建待办事项列表]
 ```
 
-#### 2. Todo List Created
+#### 2. 创建待办事项列表
 
-Caret creates a comprehensive plan for the task, stored in a markdown file:
+Caret 为任务创建一个全面的计划,存储在 markdown 文件中:
 
-```markdown Todo List Created
-- [ ] Set up project structure
-- [ ] Install authentication dependencies
-- [ ] Create user registration component
-- [ ] Implement login functionality
-- [ ] Add password validation
-- [ ] Set up user database schema
-- [ ] Write authentication tests
-- [ ] Deploy to staging environment
+```markdown 创建的待办事项列表
+- [ ] 设置项目结构
+- [ ] 安装身份验证依赖项
+- [ ] 创建用户注册组件
+- [ ] 实现登录功能
+- [ ] 添加密码验证
+- [ ] 设置用户数据库架构
+- [ ] 编写身份验证测试
+- [ ] 部署到暂存环境
 ```
 
-#### 3. Progress Tracking
+#### 3. 进度跟踪
 
-As Caret works, the task header shows real-time progress:
+随着 Caret 的工作,任务标题会显示实时进度:
 
-```markdown Todo List Header
-[3/8] Implement login functionality     ⌄
+```markdown 待办事项列表标题
+[3/8] 实现登录功能     ⌄
 ```
 
-Click to expand and see the full list:
+点击展开并查看完整列表:
 
-```markdown Full Todo List
-✓ Set up project structure
-✓ Install authentication dependencies
-✓ Create user registration component
-○ Implement login functionality  ← Currently working
-○ Add password validation
-○ Set up user database schema
-○ Write authentication tests
-○ Deploy to staging environment
+```markdown 完整待办事项列表
+✓ 设置项目结构
+✓ 安装身份验证依赖项
+✓ 创建用户注册组件
+○ 实现登录功能  ← 当前正在处理
+○ 添加密码验证
+○ 设置用户数据库架构
+○ 编写身份验证测试
+○ 部署到暂存环境
 ```
 
-#### 4. User Editing
+#### 4. 用户编辑
 
-Need to tweak the todo list? No problem.
+需要调整待办事项列表?没问题。
 
-**Editing Process:**
+**编辑流程:**
 
-1. **Open Editor**: Click the edit button in the expanded todo view
+1. **打开编辑器**:点击展开的待办事项视图中的编辑按钮
 
-2. **Edit File**: A markdown file opens in your editor:
+2. **编辑文件**:在编辑器中打开一个 markdown 文件:
 
-    ```markdown Editing Todo List
-    # Focus Chain Todo List for Task abc123
+    ```markdown 编辑待办事项列表
+    # 任务 abc123 的聚焦链待办事项列表
 
-    <!-- Edit this markdown file to update your focus chain todo list -->
-    <!-- Use - [ ] for incomplete items and - [x] for completed items -->
+    <!-- 编辑此 markdown 文件以更新您的聚焦链待办事项列表 -->
+    <!-- 使用 - [ ] 表示未完成的项目,使用 - [x] 表示已完成的项目 -->
 
-    - [x] Set up project structure
-    - [x] Install authentication dependencies (e.g., Firebase Auth)
-    - [x] Create user registration component
-    - [ ] Implement login functionality
-    - [ ] Add password reset feature
-    - [ ] Set up protected routes
-    - [ ] Implement logout functionality
-    - [ ] Add user profile page
-    - [ ] Write authentication tests
-    - [ ] Deploy to staging environment
+    - [x] 设置项目结构
+    - [x] 安装身份验证依赖项(例如,Firebase Auth)
+    - [x] 创建用户注册组件
+    - [ ] 实现登录功能
+    - [ ] 添加密码重置功能
+    - [ ] 设置受保护的路由
+    - [ ] 实现注销功能
+    - [ ] 添加用户个人资料页面
+    - [ ] 编写身份验证测试
+    - [ ] 部署到暂存环境
 
-    <!-- Save this file to update the task's todo list -->
+    <!-- 保存此文件以更新任务的待办事项列表 -->
     ```
 
-3. **Customize**: Add, remove, or reorder items as needed
+3. **自定义**:根据需要添加、删除或重新排序项目
 
-4. **Save**: Caret automatically detects and uses your updates
+4. **保存**:Caret 会自动检测并使用您的更新
 
-## File Structure
+## 文件结构
 
-### Todo List Storage
+### 待办事项列表存储
 
-Todo lists are stored as markdown files in your task directory:
+待办事项列表作为 markdown 文件存储在您的任务目录中:
 
 ``` markdown
-<VSCode Global Storage>/
+<VSCode 全局存储>/
   tasks/
     <taskId>/
       focus_chain_taskid_<taskId>.md
-      ... other task files
+      ... 其他任务文件
 ```
 
-### Markdown Format
+### Markdown 格式
 
-Todo files use standard markdown checklist syntax:
+待办事项文件使用标准 markdown 检查清单语法:
 
-```markdown Example Todo Syntax
-# Focus Chain Todo List for Task abc123
+```markdown 待办事项语法示例
+# 任务 abc123 的聚焦链待办事项列表
 
-<!-- Edit this markdown file to update your focus chain todo list -->
-<!-- Use the format: - [ ] for incomplete items and - [x] for completed items -->
+<!-- 编辑此 markdown 文件以更新您的聚焦链待办事项列表 -->
+<!-- 使用格式:- [ ] 表示未完成的项目,- [x] 表示已完成的项目 -->
 
-- [x] Set up project structure
-- [x] Install authentication dependencies
-- [ ] Create user registration component
-- [ ] Implement login functionality
-- [ ] Add password validation
-- [ ] Set up user database schema
-- [ ] Write authentication tests
-- [ ] Deploy to staging environment
+- [x] 设置项目结构
+- [x] 安装身份验证依赖项
+- [ ] 创建用户注册组件
+- [ ] 实现登录功能
+- [ ] 添加密码验证
+- [ ] 设置用户数据库架构
+- [ ] 编写身份验证测试
+- [ ] 部署到暂存环境
 
-<!-- Save this file and the todo list will be updated in the task -->
+<!-- 保存此文件,待办事项列表将在任务中更新 -->
 ```
 
 
-## Integration with Plan/Act Mode
+## 与计划/执行模式集成
 
-Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act):
+聚焦链与 Caret 的[计划/执行模式](/features/plan-and-act)无缝协作:
 
-- **Plan Mode**: Optional todo lists for presenting concrete steps
-- **Act Mode**: Automatic todo creation when switching from Plan Mode
+- **计划模式**:用于呈现具体步骤的可选待办事项列表
+- **执行模式**:从计划模式切换时自动创建待办事项
 
 :::tip
-  For complex projects, start in Plan Mode to discuss and refine your approach before switching to Act Mode for implementation.
+  对于复杂的项目,先在计划模式下讨论并完善您的方法,然后再切换到执行模式进行实施。
 :::
 
-## Best Practices
+## 最佳实践
 
 :::info
   :::tip
-    1. **Start with Clear Requests**
-      - Provide detailed initial task descriptions
-      - Include specific requirements and constraints
-      - Mention any preferred technologies or approaches
+    1. **以明确的请求开始**
+      - 提供详细的初始任务描述
+      - 包括具体的要求和约束
+      - 提及任何首选的技术或方法
 
-    2. **Review Generated Lists**
-      - Check that Caret's breakdown aligns with your expectations
-      - Verify that all important steps are included
-      - Ensure the order makes sense for your project
+    2. **审查生成的列表**
+      - 检查 Caret 的分解是否符合您的期望
+      - 验证是否包含所有重要步骤
+      - 确保顺序对您的项目有意义
 
-    3. **Edit When Needed**
-      - Add missing steps you identify
-      - Remove unnecessary items
-      - Reorder steps for better workflow
-      - Add more specific details to general items
+    3. **需要时进行编辑**
+      - 添加您识别的缺失步骤
+      - 删除不必要的项目
+      - 重新排序步骤以获得更好的工作流程
+      - 为一般项目添加更具体的细节
   :::
   :::tip
-    1. **Use Plan Mode First**
-      - Discuss the approach before implementation
-      - Refine requirements through conversation
-      - Switch to Act Mode when ready to begin work
+    1. **首先使用计划模式**
+      - 在实施之前讨论方法
+      - 通过对话完善需求
+      - 准备开始工作时切换到执行模式
 
-    2. **Break Down Large Tasks**
-      - Split complex projects into smaller, manageable tasks
-      - Create separate todo lists for different components
-      - Focus on one major area at a time
+    2. **分解大型任务**
+      - 将复杂项目拆分为更小、可管理的任务
+      - 为不同组件创建单独的待办事项列表
+      - 一次专注于一个主要领域
 
-    3. **Regular Reviews**
-      - Check progress periodically during long tasks
-      - Update todo lists as requirements evolve
-      - Communicate changes to Caret through edits
+    3. **定期审查**
+      - 在长期任务期间定期检查进度
+      - 随着需求的发展更新待办事项列表
+      - 通过编辑将更改传达给 Caret
   :::
   :::tip
-    1. **Share Todo Files**
-      - Todo markdown files can be shared with team members
-      - Include in version control for project documentation
-      - Use as basis for project planning discussions
+    1. **共享待办事项文件**
+      - 待办事项 markdown 文件可以与团队成员共享
+      - 包含在版本控制中用于项目文档
+      - 用作项目规划讨论的基础
 
-    2. **Consistent Format**
-      - Follow the standard markdown checklist format
-      - Keep item descriptions clear and actionable
-      - Use consistent terminology across todo lists
+    2. **一致的格式**
+      - 遵循标准的 markdown 检查清单格式
+      - 保持项目描述清晰可操作
+      - 在待办事项列表中使用一致的术语
   :::
 :::
 
 
-## Troubleshooting
+## 故障排除
 
-Having issues? Try these quick fixes:
+遇到问题?尝试这些快速修复:
 
 :::info
   :::tip
-    - Check that Focus Chain is enabled in settings
-    - Focus Chain may not work as well with smaller, less capable models
-    - Ensure file permissions are correct in the task directory
+    - 检查设置中是否启用了聚焦链
+    - 聚焦链可能无法很好地与较小、功能较弱的模型配合使用
+    - 确保任务目录中的文件权限正确
   :::
   :::tip
-    - Verify your editor supports markdown
-    - Check VSCode has write permissions for the directory
+    - 验证您的编辑器支持 markdown
+    - 检查 VSCode 对该目录是否有写权限
   :::
   :::tip
-    - Ensure todo items use correct syntax (`- [ ]` and `- [x]`)
-    - Verify the markdown file is properly formatted
+    - 确保待办事项使用正确的语法(`- [ ]` 和 `- [x]`)
+    - 验证 markdown 文件格式正确
   :::
 :::
 
-Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
+仍然卡住?在 Caret 中使用 [/reportbug](/features/slash-commands/report-bug) 命令获取帮助。
 
-## Technical Details (for the curious)
+## 技术细节(给好奇者)
 
 :::info
   :::tip
-    - Real-time file watching detects changes to todo markdown files
-    - Automatic synchronization between file edits and UI updates
-    - Graceful handling of file creation, modification, and deletion
+    - 实时文件监视检测待办事项 markdown 文件的更改
+    - 文件编辑和 UI 更新之间的自动同步
+    - 优雅地处理文件创建、修改和删除
   :::
   :::tip
-    - Dynamic counting of completed vs. total todo items
-    - Support for both `- [x]` and `- [X]` completion syntax
-    - Unicode symbols (✓, ○) for enhanced visual display
+    - 动态计算已完成与总待办事项的数量
+    - 支持 `- [x]` 和 `- [X]` 两种完成语法
+    - Unicode 符号(✓, ○)用于增强视觉显示
   :::
   :::tip
-    - Todo lists stored locally in VSCode workspace
-    - No todo content transmitted to external services
-    - Usage telemetry (can be disabled in settings)
+    - 待办事项列表本地存储在 VSCode 工作区中
+    - 不会将待办事项内容传输到外部服务
+    - 使用遥测(可在设置中禁用)
   :::
 :::
 
-Focus Chain turns Caret into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!
+聚焦链将 Caret 变成您的个人项目管理器,让您保持在正轨上,任务井井有条。在您的下一个项目中试试吧!

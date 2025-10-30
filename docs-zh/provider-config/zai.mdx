@@ -1,124 +1,124 @@
 ---
-title: "Z AI (Zhipu AI)"
-description: "Learn how to configure and use Z AI's GLM-4.5 models with Caret. Experience advanced hybrid reasoning, agentic capabilities, and open-source excellence with regional optimization."
+title: "Z AI (智谱AI)"
+description: "了解如何配置和使用 Z AI 的 GLM-4.5 模型与 Caret。体验先进的混合推理、智能体能力和开源卓越性以及区域优化。"
 ---
 
-Z AI (formerly Zhipu AI) offers the groundbreaking GLM-4.5 series, featuring hybrid reasoning capabilities and agentic AI design. Released in July 2025, these models excel in unified reasoning, coding, and intelligent agent applications while maintaining open-source accessibility under MIT license.
+Z AI（前身为智谱AI）提供突破性的 GLM-4.5 系列，具有混合推理能力和智能体 AI 设计。这些模型于 2025 年 7 月发布，在统一推理、编程和智能代理应用方面表现出色，同时在 MIT 许可下保持开源可访问性。
 
-**Website:** [https://z.ai/model-api](https://z.ai/model-api) (International) | [https://open.bigmodel.cn/](https://open.bigmodel.cn/) (China)
+**网站：** [https://z.ai/model-api](https://z.ai/model-api)（国际）| [https://open.bigmodel.cn/](https://open.bigmodel.cn/)（中国）
 
-### Getting an API Key
+### 获取 API 密钥
 
-#### International Users
-1.  **Sign Up/Sign In:** Go to [https://z.ai/model-api](https://z.ai/model-api). Create an account or sign in.
-2.  **Navigate to API Keys:** Access your account dashboard and find the API keys section.
-3.  **Create a Key:** Generate a new API key for your application.
-4.  **Copy the Key:** Copy the API key immediately and store it securely.
+#### 国际用户
+1.  **注册/登录：** 前往 [https://z.ai/model-api](https://z.ai/model-api)。创建账户或登录。
+2.  **导航到 API 密钥：** 访问您的账户仪表板并找到 API 密钥部分。
+3.  **创建密钥：** 为您的应用程序生成新的 API 密钥。
+4.  **复制密钥：** 立即复制 API 密钥并安全存储。
 
-#### China Mainland Users
-1.  **Sign Up/Sign In:** Go to [https://open.bigmodel.cn/](https://open.bigmodel.cn/). Create an account or sign in.
-2.  **Navigate to API Keys:** Access your account dashboard and find the API keys section.
-3.  **Create a Key:** Generate a new API key for your application.
-4.  **Copy the Key:** Copy the API key immediately and store it securely.
+#### 中国大陆用户
+1.  **注册/登录：** 前往 [https://open.bigmodel.cn/](https://open.bigmodel.cn/)。创建账户或登录。
+2.  **导航到 API 密钥：** 访问您的账户仪表板并找到 API 密钥部分。
+3.  **创建密钥：** 为您的应用程序生成新的 API 密钥。
+4.  **复制密钥：** 立即复制 API 密钥并安全存储。
 
-### Supported Models
+### 支持的模型
 
-Z AI provides different model catalogs based on your selected region:
+Z AI 根据您选择的地区提供不同的模型目录：
 
-#### GLM-4.5 Series
--   **GLM-4.5** - Flagship model with 355B total parameters, 32B active parameters
--   **GLM-4.5-Air** - Compact model with 106B total parameters, 12B active parameters
+#### GLM-4.5 系列
+-   **GLM-4.5** - 旗舰模型，总参数 355B，活跃参数 32B
+-   **GLM-4.5-Air** - 紧凑模型，总参数 106B，活跃参数 12B
 
-#### GLM-4.5 Hybrid Reasoning Models
--   **GLM-4.5 (Thinking Mode)** - Advanced reasoning with step-by-step analysis
--   **GLM-4.5-Air (Thinking Mode)** - Efficient reasoning for mainstream hardware
+#### GLM-4.5 混合推理模型
+-   **GLM-4.5（思考模式）** - 具有逐步分析的高级推理
+-   **GLM-4.5-Air（思考模式）** - 主流硬件的高效推理
 
-All models feature:
--   **128,000 token context window** for extensive document processing
--   **Mixture of Experts (MoE) architecture** for optimal performance
--   **Agent-native design** integrating reasoning, coding, and tool usage
--   **Open-source availability** under MIT license
+所有模型具有以下特性：
+-   **128,000 token 上下文窗口**，用于广泛的文档处理
+-   **专家混合（MoE）架构**，实现最佳性能
+-   **智能体原生设计**，集成推理、编程和工具使用
+-   **开源可用性**，采用 MIT 许可
 
-### Configuration in Caret
+### 在 Caret 中配置
 
-1.  **Open Caret Settings:** Click the settings icon (⚙️) in the Caret panel.
-2.  **Select Provider:** Choose "Z AI" from the "API Provider" dropdown.
-3.  **Select Region:** Choose your region:
-    -   "International" for global access
-    -   "China" for mainland China access
-4.  **Enter API Key:** Paste your Z AI API key into the "Z AI API Key" field.
-5.  **Select Model:** Choose your desired model from the "Model" dropdown.
+1.  **打开 Caret 设置：** 点击 Caret 面板中的设置图标（⚙️）。
+2.  **选择提供商：** 从"API 提供商"下拉菜单中选择"Z AI"。
+3.  **选择地区：** 选择您的地区：
+    -   "国际"用于全球访问
+    -   "中国"用于中国大陆访问
+4.  **输入 API 密钥：** 将您的 Z AI API 密钥粘贴到"Z AI API Key"字段中。
+5.  **选择模型：** 从"模型"下拉菜单中选择您想要的模型。
 
-### Z AI's Hybrid Intelligence
+### Z AI 的混合智能
 
-Z AI's GLM-4.5 series introduces revolutionary capabilities that set it apart from conventional language models:
+Z AI 的 GLM-4.5 系列引入了革命性的能力，使其与传统语言模型区别开来：
 
-#### Hybrid Reasoning Architecture
-GLM-4.5 operates in two distinct modes:
-- **Thinking Mode:** Designed for complex reasoning tasks and tool usage, engaging in deeper analytical processes
-- **Non-Thinking Mode:** Provides immediate responses for straightforward queries, optimizing efficiency
+#### 混合推理架构
+GLM-4.5 以两种不同模式运行：
+- **思考模式：** 专为复杂推理任务和工具使用而设计，进行更深入的分析过程
+- **非思考模式：** 为直接查询提供即时响应，优化效率
 
-This dual-mode architecture represents an "agent-native" design philosophy that adapts processing intensity based on query complexity.
+这种双模式架构代表了一种"智能体原生"设计理念，根据查询复杂性调整处理强度。
 
-#### Exceptional Performance
-GLM-4.5 achieves a comprehensive score of **63.2** across 12 benchmarks spanning agentic tasks, reasoning, and coding challenges, securing **3rd place** among all proprietary and open-source models. GLM-4.5-Air maintains competitive performance with a score of **59.8** while delivering superior efficiency.
+#### 卓越的性能
+GLM-4.5 在涵盖智能体任务、推理和编程挑战的 12 个基准测试中获得 **63.2** 的综合得分，在所有专有和开源模型中排名**第三**。GLM-4.5-Air 以 **59.8** 的得分保持竞争力，同时提供卓越的效率。
 
-#### Mixture of Experts Excellence
-The sophisticated MoE architecture optimizes performance while maintaining computational efficiency:
-- **GLM-4.5:** 355B total parameters with 32B active parameters
-- **GLM-4.5-Air:** 106B total parameters with 12B active parameters
+#### 专家混合卓越性
+复杂的 MoE 架构在保持计算效率的同时优化性能：
+- **GLM-4.5：** 总参数 355B，活跃参数 32B
+- **GLM-4.5-Air：** 总参数 106B，活跃参数 12B
 
-#### Extended Context Capabilities
-The 128,000-token context window enables comprehensive understanding of lengthy documents and codebases, with real-world testing confirming effective processing of nearly 2,000-line codebases while maintaining remarkable performance.
+#### 扩展的上下文能力
+128,000 token 的上下文窗口使得能够全面理解冗长的文档和代码库，实际测试确认了对近 2,000 行代码库的有效处理，同时保持出色的性能。
 
-#### Open-Source Leadership
-Released under MIT license, GLM-4.5 provides researchers and developers with access to state-of-the-art capabilities without proprietary restrictions, including base models, hybrid reasoning versions, and optimized FP8 variants.
+#### 开源领导地位
+在 MIT 许可下发布，GLM-4.5 为研究人员和开发人员提供了对最先进能力的访问，没有专有限制，包括基础模型、混合推理版本和优化的 FP8 变体。
 
-### Regional Optimization
+### 区域优化
 
-#### API Endpoints
-- **International:** Uses `https://api.z.ai/api/paas/v4`
-- **China:** Uses `https://open.bigmodel.cn/api/paas/v4`
+#### API 端点
+- **国际：** 使用 `https://api.z.ai/api/paas/v4`
+- **中国：** 使用 `https://open.bigmodel.cn/api/paas/v4`
 
-#### Model Availability
-The region setting determines both API endpoint and available models, with automatic filtering to ensure compatibility with your selected region.
+#### 模型可用性
+地区设置决定了 API 端点和可用模型，自动过滤以确保与您选择的地区兼容。
 
-### Special Features
+### 特殊功能
 
-#### Agentic Capabilities
-GLM-4.5's unified architecture makes it particularly suitable for complex intelligent agent applications requiring integrated reasoning, coding, and tool utilization capabilities.
+#### 智能体能力
+GLM-4.5 的统一架构使其特别适合需要集成推理、编程和工具利用能力的复杂智能代理应用。
 
-#### Comprehensive Benchmarking
-Performance evaluation encompasses:
-- **3 agentic task benchmarks**
-- **7 reasoning benchmarks** 
-- **2 coding benchmarks**
+#### 全面的基准测试
+性能评估涵盖：
+- **3 个智能体任务基准**
+- **7 个推理基准**
+- **2 个编程基准**
 
-This comprehensive assessment demonstrates versatility across diverse AI applications.
+这种全面的评估展示了在各种 AI 应用中的多功能性。
 
-#### Developer Integration
-Models support integration through multiple frameworks:
+#### 开发者集成
+模型支持通过多个框架集成：
 - **transformers**
 - **vLLM**
 - **SGLang**
 
-Complete with dedicated model code, tool parser, and reasoning parser implementations.
+配备专用的模型代码、工具解析器和推理解析器实现。
 
-### Performance Comparisons
+### 性能比较
 
-#### vs Claude 4 Sonnet
-GLM-4.5 shows competitive performance in agentic coding and reasoning tasks, though Claude Sonnet 4 maintains advantages in coding success rates and autonomous multi-feature application development.
+#### 与 Claude 4 Sonnet 对比
+GLM-4.5 在智能体编程和推理任务中表现出竞争力，尽管 Claude Sonnet 4 在编程成功率和自主多功能应用开发方面保持优势。
 
-#### vs GPT-4.5
-GLM-4.5 ranks competitively in reasoning and agent benchmarks, with GPT-4.5 generally leading in raw task accuracy on professional benchmarks like MMLU and AIME.
+#### 与 GPT-4.5 对比
+GLM-4.5 在推理和智能体基准测试中排名具有竞争力，GPT-4.5 通常在 MMLU 和 AIME 等专业基准的原始任务准确性方面领先。
 
-### Tips and Notes
+### 提示和注意事项
 
--   **Region Selection:** Choose the appropriate region for optimal performance and compliance with local regulations.
--   **Model Selection:** GLM-4.5 for maximum performance, GLM-4.5-Air for efficiency and mainstream hardware compatibility.
--   **Context Advantage:** Large 128K context window enables processing of substantial codebases and documents.
--   **Open Source Benefits:** MIT license enables both commercial use and secondary development.
--   **Agentic Applications:** Particularly strong for applications requiring reasoning, coding, and tool usage integration.
--   **Hybrid Reasoning:** Use Thinking Mode for complex problems, Non-Thinking Mode for simple queries.
--   **API Compatibility:** OpenAI-compatible API provides streaming responses and usage reporting.
--   **Framework Support:** Multiple integration options available for different deployment scenarios.
+-   **地区选择：** 选择适当的地区以获得最佳性能并遵守当地法规。
+-   **模型选择：** GLM-4.5 用于最大性能，GLM-4.5-Air 用于效率和主流硬件兼容性。
+-   **上下文优势：** 大型 128K 上下文窗口使得能够处理大量代码库和文档。
+-   **开源优势：** MIT 许可使得商业使用和二次开发成为可能。
+-   **智能体应用：** 对于需要推理、编程和工具使用集成的应用特别强大。
+-   **混合推理：** 使用思考模式处理复杂问题，使用非思考模式处理简单查询。
+-   **API 兼容性：** OpenAI 兼容 API 提供流式响应和使用报告。
+-   **框架支持：** 可用于不同部署场景的多个集成选项。

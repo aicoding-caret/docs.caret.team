@@ -21,115 +21,115 @@ description: "上下文是充分利用 Caret 的关键"
 
 把与 Caret 合作想象成与一个彻底、主动的团队成员协作：
 
-### How Context is Built
+### 上下文是如何构建的
 
-Caret actively builds context in two ways:
+Caret 通过两种方式主动构建上下文:
 
-1. **Automatic Context Gathering (i.e. Caret-driven)**
-    - Proactively reads related files
-    - Explores project structure
-    - Analyzes patterns and relationships
-    - Maps dependencies and imports
-    - Asks clarifying questions
-2. **User-Guided Context**
-    - Share specific files
-    - Provide documentation
-    - Answer Caret's questions
-    - Guide focus areas
-    - Share design thoughts and requirements
+1. **自动上下文收集(即 Caret 驱动)**
+    - 主动读取相关文件
+    - 探索项目结构
+    - 分析模式和关系
+    - 映射依赖项和导入
+    - 提出澄清性问题
+2. **用户引导的上下文**
+    - 共享特定文件
+    - 提供文档
+    - 回答 Caret 的问题
+    - 引导关注领域
+    - 分享设计思路和需求
 
-**Key Point**: Caret isn't passive - it actively seeks to understand your project. You can either let it explore or guide its focus, especially in [Plan Mode](/features/plan-and-act).
+**要点**: Caret 不是被动的 - 它主动寻求理解您的项目。您可以让它自由探索，也可以引导它的关注点，特别是在[计划模式](/features/plan-and-act)中。
 
-### Context & Context Windows
+### 上下文与上下文窗口
 
-Think of context like a whiteboard you and Caret share:
+将上下文想象成您和 Caret 共享的白板:
 
--   **Context** is all the information available:
-    -   What Caret has discovered
-    -   What you've shared
-    -   Your conversation history
-    -   Project requirements
-    -   Previous decisions
--   **Context Window** is the size of the whiteboard itself:
-    -   Measured in tokens (1 token ≈ 3/4 of an English word)
-    -   Each model has a fixed size:
-        -   Claude Sonnet 4: 1,000,000 tokens
-        -   Qwen3 Coder: 256,000 tokens
-        -   Gemini 2.5 Pro: 1,000,000+ tokens
-        -   GPT-5: 400,000 tokens
-    -   When the whiteboard is full, Caret automatically summarizes the conversation to free up space
+-   **上下文**是所有可用的信息:
+    -   Caret 发现的内容
+    -   您共享的内容
+    -   您的对话历史
+    -   项目需求
+    -   以前的决策
+-   **上下文窗口**是白板本身的大小:
+    -   以令牌(token)为单位测量(1个令牌 ≈ 3/4个英文单词)
+    -   每个模型都有固定的大小:
+        -   Claude Sonnet 4: 1,000,000 令牌
+        -   Qwen3 Coder: 256,000 令牌
+        -   Gemini 2.5 Pro: 1,000,000+ 令牌
+        -   GPT-5: 400,000 令牌
+    -   当白板满了时，Caret 会自动总结对话以释放空间
 
-**Important**: Having a large context window doesn't mean you should fill it completely. Models start degrading around 400-500K tokens even if they claim higher limits. Just like a cluttered whiteboard, too much information can make it harder to focus on what's important.
+**重要提示**: 拥有大的上下文窗口并不意味着您应该完全填满它。即使模型声称有更高的限制，模型在大约 400-500K 令牌时就会开始降级。就像一个杂乱的白板一样，太多的信息会使您更难专注于重要的内容。
 
-## Understanding the Context Window Progress Bar
+## 理解上下文窗口进度条
 
-Caret provides a visual way to monitor your context window usage through a progress bar:
+Caret 提供了一种可视化的方式来监控您的上下文窗口使用情况:
 
 
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1)%20(1).png"
-		alt="Context window progress bar"
+		alt="上下文窗口进度条"
 	/>
 
 
-### Reading the Bar
+### 读取进度条
 
--   ↑ shows input tokens (what you've sent to the LLM)
--   ↓ shows output tokens (what the LLM has generated)
--   The progress bar visualizes how much of your context window you've used
--   The total shows your model's maximum capacity (e.g., 1M for Claude Sonnet 4)
+-   ↑ 显示输入令牌(您发送给 LLM 的内容)
+-   ↓ 显示输出令牌(LLM 生成的内容)
+-   进度条可视化显示您已使用的上下文窗口量
+-   总数显示您的模型的最大容量(例如，Claude Sonnet 4 为 1M)
 
-### When to Watch the Bar
+### 何时关注进度条
 
--   During long coding sessions
--   When working with multiple files
--   Before starting complex tasks
--   When Caret seems to lose context
+-   在长时间编码会话期间
+-   处理多个文件时
+-   开始复杂任务之前
+-   当 Caret 似乎失去上下文时
 
-**Tip**: With [Auto Compact](/features/auto-compact), Caret can now handle long conversations automatically. When combined with [Focus Chain](/features/focus-chain), you can work on complex projects that span multiple context windows without losing progress.
+**提示**: 使用[自动压缩](/features/auto-compact)，Caret 现在可以自动处理长对话。与[焦点链](/features/focus-chain)结合使用时，您可以处理跨越多个上下文窗口的复杂项目而不会丢失进度。
 
-## Automatic Context Management
+## 自动上下文管理
 
-Caret includes intelligent features to manage context automatically:
+Caret 包含智能功能来自动管理上下文:
 
-### Default Settings You Should Keep On
+### 应保持启用的默认设置
 
-**Focus Chain** - Enabled by default in v3.25. Caret generates a todo list at task start and keeps it in context so the thread doesn't drift. You can edit the markdown to add or reorder steps and Caret will adapt. [Learn more about Focus Chain](/features/focus-chain).
+**焦点链** - 在 v3.25 中默认启用。Caret 在任务开始时生成待办事项列表并将其保留在上下文中，以便线程不会偏离。您可以编辑 markdown 以添加或重新排序步骤，Caret 会相应调整。[了解更多关于焦点链的信息](/features/focus-chain)。
 
-**Auto Compact** - Always on. As the context window reaches its limit, Caret creates a comprehensive summary, replaces the bloated history, and continues where it left off. Decisions, code changes, and state are preserved. [Learn more about Auto Compact](/features/auto-compact).
+**自动压缩** - 始终启用。当上下文窗口达到其限制时，Caret 会创建一个全面的摘要，替换臃肿的历史记录，并从中断处继续。决策、代码更改和状态都会被保留。[了解更多关于自动压缩的信息](/features/auto-compact)。
 
-## Advanced Context Tools
+## 高级上下文工具
 
-When you need more control over context management:
+当您需要对上下文管理进行更多控制时:
 
-### Deep Planning (`/deep-planning`)
-For substantial features, refactors, or integrations. Caret investigates your codebase, asks targeted questions, then writes `implementation_plan.md`. It creates a fresh task with distilled, high-value context. [Learn more about Deep Planning](/features/slash-commands/deep-planning).
+### 深度规划 (`/deep-planning`)
+用于重大功能、重构或集成。Caret 调查您的代码库，提出有针对性的问题，然后编写 `implementation_plan.md`。它创建一个具有精炼高价值上下文的新任务。[了解更多关于深度规划的信息](/features/slash-commands/deep-planning)。
 
-### New Task (`/newtask`)
-At natural transition points, packages only what matters into a fresh task. Clean slate for implementation after research, or crisp handoff between teammates. [Learn more about New Task](/features/slash-commands/new-task).
+### 新任务 (`/newtask`)
+在自然过渡点，仅将重要内容打包到新任务中。研究后实现的干净起点，或团队成员之间的清晰交接。[了解更多关于新任务的信息](/features/slash-commands/new-task)。
 
 ### Smol (`/smol`)
-Compress the conversation in place to keep momentum. Ideal during debugging or exploratory work when you don't want to break flow. [Learn more about Smol](/features/slash-commands/smol).
+在原地压缩对话以保持动力。在调试或探索性工作中理想使用，当您不想中断流程时。[了解更多关于 Smol 的信息](/features/slash-commands/smol)。
 
-### Memory Bank + .clinerules
-For non-trivial projects. The Memory Bank captures project knowledge as Markdown in your repo. `.clinerules` are version-controlled instructions that align Caret's behavior with your team. [Learn more about Memory Bank](/prompting/caret-memory-bank) and [Caret Rules](/features/caret-rules).
+### 内存库 + .clinerules
+用于非平凡项目。内存库将项目知识作为 Markdown 捕获在您的存储库中。`.clinerules` 是版本控制的指令，使 Caret 的行为与您的团队保持一致。[了解更多关于内存库的信息](/prompting/caret-memory-bank)和 [Caret 规则](/features/caret-rules)。
 
-## Working with Context Files
+## 使用上下文文件
 
-Context files help maintain understanding across sessions. They serve as documentation specifically designed to help AI assistants understand your project.
+上下文文件有助于在会话之间保持理解。它们作为专门设计用于帮助 AI 助手理解您的项目的文档。
 
-#### Approaches to Context Files
+#### 上下文文件的方法
 
-1. **Evergreen Project Context (Memory Bank)**
-    - Living documentation that evolves with your project
-    - Updated as architecture and patterns emerge
-    - Example: The Memory Bank pattern maintains files like `techContext.md` and `systemPatterns.md`
-    - Useful for long-running projects and teams
-2. **Task-Specific Context**
+1. **常青项目上下文(内存库)**
+    - 随着项目发展而演变的实时文档
+    - 随着架构和模式的出现而更新
+    - 示例: 内存库模式维护像 `techContext.md` 和 `systemPatterns.md` 这样的文件
+    - 对长期项目和团队有用
+2. **特定任务上下文**
 
-    - Created for specific implementation tasks
-    - Document requirements, constraints, and decisions
-    - Example:
+    - 为特定实现任务创建
+    - 记录需求、约束和决策
+    - 示例:
 
         ```markdown
         # auth-system-implementation.md
@@ -147,50 +147,50 @@ Context files help maintain understanding across sessions. They serve as documen
         -   Redis for rate limiting
         ```
 
-3. **Knowledge Transfer Docs**
-    - Switch to plan mode and ask Caret to document everything you've accomplished so far, along with the remaining steps, in a markdown file.
-    - Copy the contents of the markdown file.
-    - Start a new task using that content as context.
+3. **知识转移文档**
+    - 切换到计划模式并要求 Caret 在 markdown 文件中记录到目前为止您完成的所有内容以及剩余步骤。
+    - 复制 markdown 文件的内容。
+    - 使用该内容作为上下文开始新任务。
 
-#### Using Context Files Effectively
+#### 有效使用上下文文件
 
-1. **Structure and Format**
-    - Use clear, consistent organization
-    - Include relevant examples
-    - Link related concepts
-    - Keep information focused
-2. **Maintenance**
-    - Update after significant changes
-    - Version control your context files
-    - Remove outdated information
-    - Document key decisions
+1. **结构和格式**
+    - 使用清晰、一致的组织
+    - 包括相关示例
+    - 链接相关概念
+    - 保持信息集中
+2. **维护**
+    - 在重大更改后更新
+    - 对上下文文件进行版本控制
+    - 删除过时信息
+    - 记录关键决策
 
-## Practical Tips
+## 实用技巧
 
-1. **Starting New Projects**
-    - Let Caret explore the codebase
-    - Answer its questions about structure and patterns
-    - Consider setting up basic context files
-    - Document key design decisions
-2. **Ongoing Development**
-    - Update context files with significant changes
-    - Share relevant documentation
-    - Use Plan mode for complex discussions
-    - Start fresh sessions when needed
-3. **Team Projects**
-    - Share common context files (consider using [.clinerules](/features/caret-rules) files in project roots)
-    - Document architectural decisions
-    - Maintain consistent patterns
-    - Keep documentation current
+1. **开始新项目**
+    - 让 Caret 探索代码库
+    - 回答关于结构和模式的问题
+    - 考虑设置基本的上下文文件
+    - 记录关键设计决策
+2. **持续开发**
+    - 使用重大更改更新上下文文件
+    - 共享相关文档
+    - 使用计划模式进行复杂讨论
+    - 在需要时开始新会话
+3. **团队项目**
+    - 共享常用上下文文件(考虑在项目根目录中使用 [.clinerules](/features/caret-rules) 文件)
+    - 记录架构决策
+    - 保持一致的模式
+    - 保持文档最新
 
-## Bonus Context Tips
+## 额外的上下文技巧
 
-- You can @ links and have the webpage's context added to Caret (docs, blogs, etc.)
-- Utilize MCP servers to pull in context from your external knowledge bases
-- Screenshots can be used as context for models that support image inputs
+- 您可以 @ 链接并将网页的上下文添加到 Caret (文档、博客等)
+- 利用 MCP 服务器从外部知识库中提取上下文
+- 屏幕截图可以用作支持图像输入的模型的上下文
 
-## The Bottom Line
+## 总结
 
-Caret already does a lot of context work for you - [Focus Chain](/features/focus-chain), [Auto Compact](/features/auto-compact), and the planning flow are designed to keep the thread intact across long horizons. The goal is to help Caret maintain consistent understanding of your project across sessions.
+Caret 已经为您做了很多上下文工作 - [焦点链](/features/focus-chain)、[自动压缩](/features/auto-compact) 和规划流程旨在在长时间范围内保持线程完整。目标是帮助 Caret 在会话之间保持对项目的一致理解。
 
-Remember: The goal is to keep only what matters in view, at every step.
+记住: 目标是在每一步只保留重要的内容。

@@ -1,30 +1,30 @@
 ---
-title: "Caret Memory Bank"
+title: "Caret 记忆库"
 ---
 
-## The Complete Guide to Caret Memory Bank
+## Caret 记忆库完整指南
 
-### Quick Setup Guide
+### 快速设置指南
 
-To get started with Caret Memory Bank:
+开始使用 Caret 记忆库:
 
-1. **Install or Open Caret**
-2. **Copy the Custom Instructions** - Use the code block below
-3. **Paste into Caret** - Add as custom instructions or in a .clinerules file
-4. **Initialize** - Ask Caret to "initialize memory bank"
+1. **安装或打开 Caret**
+2. **复制自定义指令** - 使用下面的代码块
+3. **粘贴到 Caret** - 作为自定义指令添加或添加到 .clinerules 文件中
+4. **初始化** - 让 Caret "初始化记忆库"
 
-[See detailed setup instructions](#getting-started-with-memory-bank)
+[查看详细设置说明](#getting-started-with-memory-bank)
 
-### Caret Memory Bank Custom Instructions \[COPY THIS]
+### Caret 记忆库自定义指令 \[复制此内容]
 
 ```
-# Caret's Memory Bank
+# Caret 的记忆库
 
-I am Caret, an expert software engineer with a unique characteristic: my memory resets completely between sessions. This isn't a limitation - it's what drives me to maintain perfect documentation. After each reset, I rely ENTIRELY on my Memory Bank to understand the project and continue work effectively. I MUST read ALL memory bank files at the start of EVERY task - this is not optional.
+我是 Caret，一位专业的软件工程师，具有一个独特的特征：我的记忆在会话之间会完全重置。这不是局限性 - 这正是驱使我保持完美文档的动力。每次重置后，我完全依赖我的记忆库来理解项目并有效地继续工作。我必须在每个任务开始时阅读所有记忆库文件 - 这不是可选的。
 
-## Memory Bank Structure
+## 记忆库结构
 
-The Memory Bank consists of core files and optional context files, all in Markdown format. Files build upon each other in a clear hierarchy:
+记忆库由核心文件和可选的上下文文件组成，全部采用 Markdown 格式。文件以清晰的层次结构相互构建：
 
 ```mermaid
 flowchart TD
@@ -39,98 +39,98 @@ flowchart TD
     AC --> P[progress.md]
 ```
 
-### Core Files (Required)
+### 核心文件（必需）
 1. `projectbrief.md`
-   - Foundation document that shapes all other files
-   - Created at project start if it doesn't exist
-   - Defines core requirements and goals
-   - Source of truth for project scope
+   - 塑造所有其他文件的基础文档
+   - 如果不存在，在项目开始时创建
+   - 定义核心需求和目标
+   - 项目范围的真相来源
 
 2. `productContext.md`
-   - Why this project exists
-   - Problems it solves
-   - How it should work
-   - User experience goals
+   - 此项目存在的原因
+   - 它解决的问题
+   - 它应该如何工作
+   - 用户体验目标
 
 3. `activeContext.md`
-   - Current work focus
-   - Recent changes
-   - Next steps
-   - Active decisions and considerations
-   - Important patterns and preferences
-   - Learnings and project insights
+   - 当前工作重点
+   - 最近的更改
+   - 下一步
+   - 活跃的决策和考虑事项
+   - 重要的模式和偏好
+   - 学习和项目见解
 
 4. `systemPatterns.md`
-   - System architecture
-   - Key technical decisions
-   - Design patterns in use
-   - Component relationships
-   - Critical implementation paths
+   - 系统架构
+   - 关键技术决策
+   - 使用的设计模式
+   - 组件关系
+   - 关键实现路径
 
 5. `techContext.md`
-   - Technologies used
-   - Development setup
-   - Technical constraints
-   - Dependencies
-   - Tool usage patterns
+   - 使用的技术
+   - 开发设置
+   - 技术约束
+   - 依赖项
+   - 工具使用模式
 
 6. `progress.md`
-   - What works
-   - What's left to build
-   - Current status
-   - Known issues
-   - Evolution of project decisions
+   - 有效的内容
+   - 剩余要构建的内容
+   - 当前状态
+   - 已知问题
+   - 项目决策的演变
 
-### Additional Context
-Create additional files/folders within memory-bank/ when they help organize:
-- Complex feature documentation
-- Integration specifications
-- API documentation
-- Testing strategies
-- Deployment procedures
+### 附加上下文
+在 memory-bank/ 中创建额外的文件/文件夹以帮助组织：
+- 复杂功能文档
+- 集成规范
+- API 文档
+- 测试策略
+- 部署流程
 
-## Core Workflows
+## 核心工作流程
 
-### Plan Mode
+### 计划模式
 ```mermaid
 flowchart TD
-    Start[Start] --> ReadFiles[Read Memory Bank]
-    ReadFiles --> CheckFiles{Files Complete?}
+    Start[开始] --> ReadFiles[读取记忆库]
+    ReadFiles --> CheckFiles{文件完整?}
 
-    CheckFiles -->|No| Plan[Create Plan]
-    Plan --> Document[Document in Chat]
+    CheckFiles -->|否| Plan[创建计划]
+    Plan --> Document[在聊天中记录]
 
-    CheckFiles -->|Yes| Verify[Verify Context]
-    Verify --> Strategy[Develop Strategy]
-    Strategy --> Present[Present Approach]
+    CheckFiles -->|是| Verify[验证上下文]
+    Verify --> Strategy[制定策略]
+    Strategy --> Present[呈现方法]
 ```
 
-### Act Mode
+### 行动模式
 ```mermaid
 flowchart TD
-    Start[Start] --> Context[Check Memory Bank]
-    Context --> Update[Update Documentation]
-    Update --> Execute[Execute Task]
-    Execute --> Document[Document Changes]
+    Start[开始] --> Context[检查记忆库]
+    Context --> Update[更新文档]
+    Update --> Execute[执行任务]
+    Execute --> Document[记录更改]
 ```
 
-## Documentation Updates
+## 文档更新
 
-Memory Bank updates occur when:
-1. Discovering new project patterns
-2. After implementing significant changes
-3. When user requests with **update memory bank** (MUST review ALL files)
-4. When context needs clarification
+记忆库更新发生在：
+1. 发现新的项目模式
+2. 实施重大更改后
+3. 用户使用 **update memory bank** 请求时（必须审查所有文件）
+4. 上下文需要澄清时
 
 ```mermaid
 flowchart TD
-    Start[Update Process]
+    Start[更新过程]
 
     subgraph Process
-        P1[Review ALL Files]
-        P2[Document Current State]
-        P3[Clarify Next Steps]
-        P4[Document Insights & Patterns]
+        P1[审查所有文件]
+        P2[记录当前状态]
+        P3[明确下一步]
+        P4[记录见解和模式]
 
         P1 --> P2 --> P3 --> P4
     end
@@ -138,235 +138,235 @@ flowchart TD
     Start --> Process
 ```
 
-Note: When triggered by **update memory bank**, I MUST review every memory bank file, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they track current state.
+注意：当被 **update memory bank** 触发时，我必须审查每个记忆库文件，即使有些不需要更新。特别关注 activeContext.md 和 progress.md，因为它们跟踪当前状态。
 
-REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.
+记住：每次记忆重置后，我都会完全重新开始。记忆库是我与之前工作的唯一联系。它必须以精确和清晰的方式维护，因为我的效率完全取决于它的准确性。
 ```
 
-### What is the Caret Memory Bank?
+### 什么是 Caret 记忆库？
 
-The Memory Bank is a structured documentation system that allows Caret to maintain context across sessions. It transforms Caret from a stateless assistant into a persistent development partner that can effectively "remember" your project details over time.
+记忆库是一个结构化的文档系统，允许 Caret 在会话之间保持上下文。它将 Caret 从一个无状态助手转变为一个持久的开发伙伴，能够有效地"记住"您的项目详情。
 
-#### Key Benefits
+#### 主要优势
 
--   **Context Preservation**: Maintain project knowledge across sessions
--   **Consistent Development**: Experience predictable interactions with Caret
--   **Self-Documenting Projects**: Create valuable project documentation as a side effect
--   **Scalable to Any Project**: Works with projects of any size or complexity
--   **Technology Agnostic**: Functions with any tech stack or language
+-   **上下文保存**：在会话之间保持项目知识
+-   **一致的开发**：体验与 Caret 可预测的交互
+-   **自动文档化项目**：作为副作用创建有价值的项目文档
+-   **可扩展到任何项目**：适用于任何规模或复杂性的项目
+-   **技术无关**：适用于任何技术栈或语言
 
-### How Memory Bank Works
+### 记忆库的工作原理
 
-The Memory Bank isn't a Caret-specific feature - it's a methodology for managing AI context through structured documentation. When you instruct Caret to "follow custom instructions," it reads the Memory Bank files to rebuild its understanding of your project.
-
-<figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(15).png" alt="Memory Bank Workflow" />
-</figure>
-
-#### Understanding the Files
-
-Memory Bank files are simply markdown files you create in your project. They're not hidden or special files - just regular documentation stored in your repository that both you and Caret can access.
-
-Files are organized in a hierarchical structure that builds up a complete picture of your project:
+记忆库不是 Caret 特有的功能 - 它是通过结构化文档管理 AI 上下文的方法论。当您指示 Caret "遵循自定义指令"时，它会读取记忆库文件以重建对您项目的理解。
 
 <figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(16).png" alt="Memory Bank File Structure" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(15).png" alt="记忆库工作流程" />
 </figure>
 
-### Memory Bank Files Explained
+#### 理解文件
 
-#### Core Files
+记忆库文件只是您在项目中创建的 markdown 文件。它们不是隐藏或特殊的文件 - 只是存储在您的仓库中的常规文档，您和 Caret 都可以访问。
+
+文件以层次结构组织，构建项目的完整图景：
+
+<figure>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(16).png" alt="记忆库文件结构" />
+</figure>
+
+### 记忆库文件详解
+
+#### 核心文件
 
 1. **projectbrief.md**
-    - The foundation of your project
-    - High-level overview of what you're building
-    - Core requirements and goals
-    - Example: "Building a React web app for inventory management with barcode scanning"
+    - 项目的基础
+    - 您正在构建的内容的高级概述
+    - 核心需求和目标
+    - 示例："使用条形码扫描构建用于库存管理的 React Web 应用"
 2. **productContext.md**
-    - Explains why the project exists
-    - Describes the problems being solved
-    - Outlines how the product should work
-    - Example: "The inventory system needs to support multiple warehouses and real-time updates"
+    - 解释项目存在的原因
+    - 描述正在解决的问题
+    - 概述产品应该如何工作
+    - 示例："库存系统需要支持多个仓库和实时更新"
 3. **activeContext.md**
-    - The most frequently updated file
-    - Contains current work focus and recent changes
-    - Tracks active decisions and considerations
-    - Stores important patterns and learnings
-    - Example: "Currently implementing the barcode scanner component; last session completed the API integration"
+    - 最频繁更新的文件
+    - 包含当前工作重点和最近的更改
+    - 跟踪活跃的决策和考虑事项
+    - 存储重要的模式和学习
+    - 示例："目前正在实现条形码扫描器组件；上一个会话完成了 API 集成"
 4. **systemPatterns.md**
-    - Documents the system architecture
-    - Records key technical decisions
-    - Lists design patterns in use
-    - Explains component relationships
-    - Example: "Using Redux for state management with a normalized store structure"
+    - 记录系统架构
+    - 记录关键技术决策
+    - 列出使用的设计模式
+    - 解释组件关系
+    - 示例："使用 Redux 进行状态管理，采用规范化的存储结构"
 5. **techContext.md**
-    - Lists technologies and frameworks used
-    - Describes development setup
-    - Notes technical constraints
-    - Records dependencies and tool configurations
-    - Example: "React 18, TypeScript, Firebase, Jest for testing"
+    - 列出使用的技术和框架
+    - 描述开发设置
+    - 注明技术约束
+    - 记录依赖项和工具配置
+    - 示例："React 18、TypeScript、Firebase、Jest 用于测试"
 6. **progress.md**
-    - Tracks what works and what's left to build
-    - Records current status of features
-    - Lists known issues and limitations
-    - Documents the evolution of project decisions
-    - Example: "User authentication complete; inventory management 80% complete; reporting not started"
+    - 跟踪有效的内容和剩余要构建的内容
+    - 记录功能的当前状态
+    - 列出已知问题和限制
+    - 记录项目决策的演变
+    - 示例："用户认证完成；库存管理完成 80%；报告尚未开始"
 
-#### Additional Context
+#### 附加上下文
 
-Create additional files when needed to organize:
+根据需要创建额外的文件以组织：
 
--   Complex feature documentation
--   Integration specifications
--   API documentation
--   Testing strategies
--   Deployment procedures
+-   复杂功能文档
+-   集成规范
+-   API 文档
+-   测试策略
+-   部署流程
 
-### Getting Started with Memory Bank
+### 开始使用记忆库
 
-#### First-Time Setup
+#### 首次设置
 
-1. Create a `memory-bank/` folder in your project root
-2. Have a basic project brief ready (can be technical or non-technical)
-3. Ask Caret to "initialize memory bank"
-
-<figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(17).png" alt="Memory Bank Setup" />
-</figure>
-
-#### Project Brief Tips
-
--   Start simple - it can be as detailed or high-level as you like
--   Focus on what matters most to you
--   Caret will help fill in gaps and ask questions
--   You can update it as your project evolves
-
-### Working with Caret
-
-#### Core Workflows
-
-**Plan Mode**
-
-Start in this mode for strategy discussions and high-level planning.
-
-**Act Mode**
-
-Use this for implementation and executing specific tasks.
-
-#### Key Commands
-
--   **"follow your custom instructions"** - This tells Caret to read the Memory Bank files and continue where you left off (use this at the start of tasks)
--   **"initialize memory bank"** - Use when starting a new project
--   **"update memory bank"** - Triggers a full documentation review and update during a task
--   Toggle Plan/Act modes based on your current needs
-
-#### Documentation Updates
-
-Memory Bank updates should automatically occur when:
-
-1. You discover new patterns in your project
-2. After implementing significant changes
-3. When you explicitly request with **"update memory bank"**
-4. When you feel context needs clarification
-
-### Frequently Asked Questions
-
-#### Where are the memory bank files stored?
-
-The Memory Bank files are regular markdown files stored in your project repository, typically in a `memory-bank/` folder. They're not hidden system files - they're designed to be part of your project documentation.
-
-#### Should I use custom instructions or .clinerules?
-
-Either approach works - it's based on your preference:
-
--   **Custom Instructions**: Applied globally to all Caret conversations. Good for consistent behavior across all projects.
--   **.clinerules file**: Project-specific and stored in your repository. Good for per-project customization.
-
-Both methods achieve the same goal - the choice depends on whether you want global or local application of the Memory Bank system.
-
-#### Managing Context Windows
-
-As you work with Caret, your context window will eventually fill up (note the progress bar). When you notice Caret's responses slowing down or references to earlier parts of the conversation becoming less accurate, it's time to:
-
-1. Ask Caret to **"update memory bank"** to document the current state
-2. Start a new conversation/task
-3. Ask Caret to **"follow your custom instructions"** in the new conversation
-
-This workflow ensures that important context is preserved in your Memory Bank files before the context window is cleared, allowing you to continue seamlessly in a fresh conversation.
+1. 在项目根目录中创建 `memory-bank/` 文件夹
+2. 准备一个基本的项目简介（可以是技术性的或非技术性的）
+3. 让 Caret "初始化记忆库"
 
 <figure>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(18).png" alt="Memory Bank Context Window" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(17).png" alt="记忆库设置" />
 </figure>
 
-#### How often should I update the memory bank?
+#### 项目简介提示
 
-Update the Memory Bank after significant milestones or changes in direction. For active development, updates every few sessions can be helpful. Use the **"update memory bank"** command when you want to ensure all context is preserved. However, you will notice Caret automatically updating the Memory Bank as well.
+-   从简单开始 - 可以根据您的喜好详细或高层次
+-   专注于对您最重要的内容
+-   Caret 将帮助填补空白并提出问题
+-   您可以随着项目的发展更新它
 
-#### Does this work with other AI tools beyond Caret?
+### 使用 Caret
 
-Yes! The Memory Bank concept is a documentation methodology that can work with any AI assistant that can read documentation files. The specific commands might differ, but the structured approach to maintaining context works across tools.
+#### 核心工作流程
 
-#### How does the memory bank relate to context window limitations?
+**计划模式**
 
-The Memory Bank helps manage context limitations by storing important information in a structured format that can be efficiently loaded when needed. This prevents context bloat while ensuring critical information is available.
+在此模式下开始进行策略讨论和高层次规划。
 
-#### Can the memory bank concept be used for non-coding projects?
+**行动模式**
 
-Absolutely! The Memory Bank approach works for any project that benefits from structured documentation - from writing books to planning events. The file structure might vary, but the concept remains powerful.
+用于实施和执行特定任务。
 
-#### Is this different from using README files?
+#### 关键命令
 
-While similar in concept, the Memory Bank provides a more structured and comprehensive approach specifically designed to maintain context across AI sessions. It goes beyond what a single README typically covers.
+-   **"follow your custom instructions"** - 这告诉 Caret 读取记忆库文件并从您离开的地方继续（在任务开始时使用）
+-   **"initialize memory bank"** - 启动新项目时使用
+-   **"update memory bank"** - 在任务期间触发完整的文档审查和更新
+-   根据您的当前需求切换计划/行动模式
 
-### Best Practices
+#### 文档更新
 
-#### Getting Started
+记忆库更新应在以下情况下自动发生：
 
--   Start with a basic project brief and let the structure evolve
--   Let Caret help create the initial structure
--   Review and adjust files as needed to match your workflow
+1. 在项目中发现新模式时
+2. 实施重大更改后
+3. 明确请求 **"update memory bank"** 时
+4. 感觉上下文需要澄清时
 
-#### Ongoing Work
+### 常见问题
 
--   Let patterns emerge naturally as you work
--   Don't force documentation updates - they should happen organically
--   Trust the process - the value compounds over time
--   Watch for context confirmation at the start of sessions
+#### 记忆库文件存储在哪里？
 
-#### Documentation Flow
+记忆库文件是存储在项目仓库中的常规 markdown 文件，通常在 `memory-bank/` 文件夹中。它们不是隐藏的系统文件 - 它们被设计为项目文档的一部分。
 
--   **projectbrief.md** is your foundation
--   **activeContext.md** changes most frequently
--   **progress.md** tracks your milestones
--   All files collectively maintain project intelligence
+#### 我应该使用自定义指令还是 .clinerules？
 
-### Detailed Setup Instructions
+两种方法都有效 - 取决于您的偏好：
 
-#### For Custom Instructions (Global)
+-   **自定义指令**：全局应用于所有 Caret 对话。适合跨所有项目的一致行为。
+-   **.clinerules 文件**：特定于项目并存储在您的仓库中。适合每个项目的自定义。
 
-1. Open VSCode
-2. Click the Caret extension settings ⚙️
-3. Find "Custom Instructions"
-4. Copy and paste the complete Memory Bank instructions from the top of this guide
+两种方法都实现相同的目标 - 选择取决于您是否希望全局或本地应用记忆库系统。
 
-#### For .clinerules (Project-Specific)
+#### 管理上下文窗口
 
-1. Create a `.clinerules` file in your project root
-2. Copy and paste the Memory Bank instructions from the top of this guide
-3. Save the file
-4. Caret will automatically apply these rules when working in this project
+当您使用 Caret 工作时，您的上下文窗口最终会填满（注意进度条）。当您注意到 Caret 的响应变慢或对对话早期部分的引用变得不太准确时，是时候：
 
-### Remember
+1. 让 Caret **"update memory bank"** 来记录当前状态
+2. 开始新的对话/任务
+3. 在新对话中让 Caret **"follow your custom instructions"**
 
-The Memory Bank is Caret's only link to previous work. Its effectiveness depends entirely on maintaining clear, accurate documentation and confirming context preservation in every interaction.
+此工作流程确保在清除上下文窗口之前，重要的上下文保存在您的记忆库文件中，允许您在新的对话中无缝继续。
 
-_For more information, reference our_ [_blog_](https://caret.bot/blog/memory-bank-how-to-make-caret-an-ai-agent-that-never-forgets) _on Caret Memory Bank_
+<figure>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(18).png" alt="记忆库上下文窗口" />
+</figure>
+
+#### 我应该多久更新一次记忆库？
+
+在重要的里程碑或方向变化后更新记忆库。对于积极开发，每隔几个会话更新一次会很有帮助。当您想确保保存所有上下文时，使用 **"update memory bank"** 命令。但是，您会注意到 Caret 也会自动更新记忆库。
+
+#### 这适用于 Caret 以外的其他 AI 工具吗？
+
+是的！记忆库概念是一种文档方法论，可以与任何能够读取文档文件的 AI 助手一起使用。具体命令可能不同，但维护上下文的结构化方法适用于各种工具。
+
+#### 记忆库与上下文窗口限制有何关系？
+
+记忆库通过以结构化格式存储重要信息来帮助管理上下文限制，可以在需要时有效加载。这可以防止上下文膨胀，同时确保关键信息可用。
+
+#### 记忆库概念可以用于非编码项目吗？
+
+当然可以！记忆库方法适用于任何受益于结构化文档的项目 - 从写书到规划活动。文件结构可能有所不同，但概念仍然强大。
+
+#### 这与使用 README 文件有什么不同？
+
+虽然概念相似，但记忆库提供了一种更结构化和全面的方法，专门设计用于在 AI 会话之间维护上下文。它超越了单个 README 通常涵盖的内容。
+
+### 最佳实践
+
+#### 入门
+
+-   从基本的项目简介开始，让结构自然演变
+-   让 Caret 帮助创建初始结构
+-   根据需要审查和调整文件以匹配您的工作流程
+
+#### 持续工作
+
+-   让模式在工作中自然出现
+-   不要强制文档更新 - 它们应该有机地发生
+-   相信这个过程 - 价值会随着时间的推移而累积
+-   注意会话开始时的上下文确认
+
+#### 文档流程
+
+-   **projectbrief.md** 是您的基础
+-   **activeContext.md** 变化最频繁
+-   **progress.md** 跟踪您的里程碑
+-   所有文件共同维护项目智能
+
+### 详细设置说明
+
+#### 自定义指令（全局）
+
+1. 打开 VSCode
+2. 点击 Caret 扩展设置 ⚙️
+3. 找到"自定义指令"
+4. 从本指南顶部复制并粘贴完整的记忆库指令
+
+#### .clinerules（特定于项目）
+
+1. 在项目根目录中创建 `.clinerules` 文件
+2. 从本指南顶部复制并粘贴记忆库指令
+3. 保存文件
+4. Caret 在此项目中工作时将自动应用这些规则
+
+### 记住
+
+记忆库是 Caret 与之前工作的唯一联系。它的有效性完全取决于维护清晰、准确的文档并在每次交互中确认上下文保存。
+
+_有关更多信息，请参阅我们的_ [_博客_](https://caret.bot/blog/memory-bank-how-to-make-caret-an-ai-agent-that-never-forgets) _关于 Caret 记忆库_
 
 ---
 
-### Contributing to Caret Memory Bank
+### 为 Caret 记忆库做贡献
 
-This guide is maintained by the Caret and the Caret Discord Community:
+本指南由 Caret 和 Caret Discord 社区维护：
 
 -   nickbaumann98
 -   Krylo
@@ -374,4 +374,4 @@ This guide is maintained by the Caret and the Caret Discord Community:
 
 ---
 
-_The Memory Bank methodology is an open approach to AI context management and can be adapted to different tools and workflows._
+_记忆库方法论是 AI 上下文管理的开放方法，可以适应不同的工具和工作流程。_

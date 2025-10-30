@@ -29,13 +29,15 @@ Caret 支持主要的云服务提供商，如 AWS Bedrock 和 Google 的 Cloud V
 1. 参考 [AWS 指南](https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html)创建 VPC 端点。此文档指定先决条件并描述用于创建 VPC 端点的语法。
 2. 按照在 AWS 控制台中[创建 VPC 端点](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws)的指示进行操作。下图涉及上面链接的 AWS 指南的第 4 步和第 5 步。
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-console.png" alt="VPC 控制台" />
+</figure>
 
 
 3. 记录您的 VPC 端点的 IP 地址，打开 Caret 的设置菜单，并从 API 提供商下拉菜单中选择 `AWS Bedrock`。
 4. 勾选 `使用自定义 VPC 端点` 复选框并输入您的 VPC 端点的 IP 地址
 
-
+<figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-settings-menu.png" alt="VPC 设置菜单" />
+</figure>
 

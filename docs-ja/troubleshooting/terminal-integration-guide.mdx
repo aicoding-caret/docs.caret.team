@@ -1,38 +1,38 @@
 ---
-title: "Terminal Integration Troubleshooting Guide"
-sidebarTitle: "Terminal Troubleshooting"
-description: "Complete guide to resolving terminal integration issues in Caret"
+title: "ターミナル統合トラブルシューティングガイド"
+sidebarTitle: "ターミナルトラブルシューティング"
+description: "Caretのターミナル統合問題を解決するための完全ガイド"
 ---
 
-This guide helps you resolve terminal integration issues in Caret. Terminal integration is crucial for Caret to execute commands and read their output, enabling it to understand errors, test results, and command responses.
+このガイドは、Caretのターミナル統合問題を解決するのに役立ちます。ターミナル統合は、Caretがコマンドを実行し、その出力を読み取るために不可欠であり、エラー、テスト結果、コマンド応答を理解できるようにします。
 
 <Tip>
-	If you're experiencing terminal issues, try switching to a simpler shell like `bash` in the Caret settings, under "Terminal Settings"
+	ターミナルの問題が発生している場合は、Caret設定の「Terminal Settings」で`bash`のようなシンプルなシェルに切り替えてみてください
 
-    This resolves most terminal integration problems.
+    これにより、ほとんどのターミナル統合問題が解決されます。
 
 </Tip>
 
-## Quick Diagnosis Flowchart
+## クイック診断フローチャート
 
-Follow this flowchart to quickly identify your issue:
+このフローチャートに従って、問題を迅速に特定します：
 
 ```mermaid
 graph TD
-    A[Terminal Issue] --> B{Can Caret execute commands?}
-    B -->|No| C[Shell Integration Unavailable]
-    B -->|Yes| D{Can Caret see the output?}
-    D -->|No| E[Output Capture Failed]
-    D -->|Yes| F{Is the output corrupted?}
-    F -->|Yes| G[Character Filtering Issue]
-    F -->|No| H{Does the command hang?}
-    H -->|Yes| I[Long-Running Command Issue]
-    H -->|No| J[Check Terminal Settings]
+    A[ターミナル問題] --> B{Caretはコマンドを実行できますか？}
+    B -->|いいえ| C[シェル統合が利用できない]
+    B -->|はい| D{Caretは出力を見ることができますか？}
+    D -->|いいえ| E[出力キャプチャ失敗]
+    D -->|はい| F{出力が破損していますか？}
+    F -->|はい| G[文字フィルタリング問題]
+    F -->|いいえ| H{コマンドがハングしますか？}
+    H -->|はい| I[長時間実行コマンド問題]
+    H -->|いいえ| J[ターミナル設定を確認]
 
-    C --> K[Try Solution 1]
-    E --> L[Try Solution 2]
-    G --> M[Try Solution 3]
-    I --> N[Try Solution 4]
+    C --> K[ソリューション1を試す]
+    E --> L[ソリューション2を試す]
+    G --> M[ソリューション3を試す]
+    I --> N[ソリューション4を試す]
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style K fill:#9f9,stroke:#333,stroke-width:2px
@@ -41,191 +41,189 @@ graph TD
     style N fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
-## Common Issues & Quick Solutions
+## 一般的な問題とクイックソリューション
 
-### 1. Shell Integration Unavailable
+### 1. シェル統合が利用できない
 
-**Symptoms:**
+**症状：**
 
--   Message: "Shell Integration Unavailable"
--   Commands execute but Caret can't read output
--   Terminal works fine manually but not with Caret
+-   メッセージ：「Shell Integration Unavailable」
+-   コマンドは実行されるがCaretは出力を読み取れない
+-   ターミナルは手動では正常に動作するがCaretでは動作しない
 
-**Quick Solutions:**
+**クイックソリューション：**
 
 #### macOS
 
--   **Switch to bash**
+-   **bashに切り替える**
 
-    1. Go to Caret Settings
-    2. Left-Click the **"Terminal Settings"** tab
-    3. Navigate to **"Default Terminal Profile"** and select **"bash"** from the drop-down menu
+    1. Caret設定に移動
+    2. **「Terminal Settings」**タブを左クリック
+    3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「bash」**を選択
 
--   **Disable Oh-My-Zsh temporarily**:
+-   **Oh-My-Zshを一時的に無効にする**：
 
-    1. If using zsh, enter `mv ~/.zshrc ~/.zshrc.backup` into the terminal
-    2. Restart VSCode
+    1. zshを使用している場合、ターミナルに`mv ~/.zshrc ~/.zshrc.backup`を入力
+    2. VSCodeを再起動
 
--   **Set environment**:
-    1.a For Zsh users, use one of the following Zsh commands to edit your shell profile:
+-   **環境を設定**：
+    1.a Zshユーザーの場合、以下のZshコマンドのいずれかを使用してシェルプロファイルを編集：
 
           - `nano ~/.zshrc`
           - `vim ~/.zshrc`
           - `code ~/.zshrc`
 
-    1.b For Bash users
+    1.b Bashユーザーの場合
 
           - nano ~/.bash_profile
 
-    2. Add the following to your shell config: `export TERM=xterm-256color`
-    3. Save your configuration
+    2. シェル設定に以下を追加：`export TERM=xterm-256color`
+    3. 設定を保存
 
 #### Windows
 
--   **Use PowerShell 7**
+-   **PowerShell 7を使用**
 
-    1. Install from Microsoft Store
-    2. Go to Caret Settings
-    3. Left-Click the **"Terminal Settings"** tab
-    4. Navigate to **"Default Terminal Profile"** and select **"PowerShell 7"** from the drop-down menu
+    1. Microsoft Storeからインストール
+    2. Caret設定に移動
+    3. **「Terminal Settings」**タブを左クリック
+    4. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「PowerShell 7」**を選択
 
--   **Disable Windows ConPTY**
+-   **Windows ConPTYを無効にする**
 
-    1. Navigate to your VSCode Settings
-    2. Enter "Integrated: Windows Enable Conpty" into the Settings searchbar
-    3. Uncheck the option
+    1. VSCode設定に移動
+    2. 設定検索バーに「Integrated: Windows Enable Conpty」を入力
+    3. オプションのチェックを外す
 
--   **Try Command Prompt**
-    1. Go to Caret Settings
-    2. Left-Click the **"Terminal Settings"** tab
-    3. Navigate to **"Default Terminal Profile"** and select **"Command Prompt"** from the drop-down menu
+-   **コマンドプロンプトを試す**
+    1. Caret設定に移動
+    2. **「Terminal Settings」**タブを左クリック
+    3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「Command Prompt」**を選択
 
 #### Linux
 
--   **Use bash**
+-   **bashを使用**
 
-    1. Go to Caret Settings
-    2. Left-Click the **"Terminal Settings"** tab
-    3. Navigate to **"Default Terminal Profile"** and select **"bash"** from the drop-down menu
+    1. Caret設定に移動
+    2. **「Terminal Settings」**タブを左クリック
+    3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「bash」**を選択
 
--   **Check permissions**
+-   **権限を確認**
 
-    1. Ensure VSCode has terminal access permissions
+    1. VSCodeにターミナルアクセス権限があることを確認
 
--   **Disable custom prompts**
-    1. Comment out prompt customizations in `.bashrc`
+-   **カスタムプロンプトを無効にする**
+    1. `.bashrc`内のプロンプトカスタマイズをコメントアウト
 
-### 2. Command Output Not Visible
+### 2. コマンド出力が表示されない
 
-**Symptoms:**
+**症状：**
 
--   Caret states in chat: "[Command is running but producing no output]"
--   Commands complete but Caret doesn't see results
--   Commands work sometimes but not consistently
+-   Caretがチャットで述べる：「[Command is running but producing no output]」
+-   コマンドは完了するがCaretは結果を見ることができない
+-   コマンドが時々動作するが一貫性がない
 
-**Solutions:**
+**ソリューション：**
 
--   **Increase Shell Integration Timeout**
+-   **シェル統合タイムアウトを増やす**
 
-    1. Within Caret, left-click the **Settings** button in the top right-hand corner of the chat window
-    2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
-    3. Navigate to "Shell integration timeout (seconds)" and enter **"10"** into the text field
+    1. Caret内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
+    2. **Settings**ウィンドウに入ったら、左側の列から**「Terminal Settings」**タブを左クリック
+    3. 「Shell integration timeout (seconds)」に移動し、テキストフィールドに**「10」**を入力
 
--   **Disable Terminal Reuse**
+-   **ターミナル再利用を無効にする**
 
-    1. Within Caret, left-click the **Settings** button in the top right-hand corner of the chat window
-    2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
-    3. Look for **"Enable aggressive terminal reuse"**, and **uncheck** this option
+    1. Caret内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
+    2. **Settings**ウィンドウに入ったら、左側の列から**「Terminal Settings」**タブを左クリック
+    3. **「Enable aggressive terminal reuse」**を探し、このオプションの**チェックを外す**
 
--   **Check for interfering extensions**
-    1. Disable other terminal-related VSCode extensions
+-   **干渉する拡張機能を確認**
+    1. 他のターミナル関連のVSCode拡張機能を無効にする
 
-### 3. Character Filtering Issues
+### 3. 文字フィルタリング問題
 
-**Symptoms:**
+**症状：**
 
--   Commas missing from output (JSON appears corrupted)
--   Special characters stripped from terminal output
--   Syntax errors that don't appear when running manually
+-   出力からカンマが欠落（JSONが破損して表示される）
+-   ターミナル出力から特殊文字が削除される
+-   手動で実行すると表示されない構文エラー
 
-**Solution:**
-This is a known bug in output processing. Workarounds:
+**ソリューション：**
+これは出力処理の既知のバグです。回避策：
 
--   Recommend AI to use file output instead
-    1. Tell Caret in chat or Caret rules, to use `command > output.txt` before reading the file/s
-
-<Tip>
-	This family of issues is only partially solved in the latest Caret versions, so if you still face this, create a GitHub issue
-	if it is a persistent problem.
-</Tip>
-
-### 4. Long-Running Commands & Progress Bars
-
-**Symptoms:**
-
--   Docker builds never complete in Caret
--   Progress bars consume thousands of tokens
--   The Caret button "Proceed while running" doesn't work properly in chat
+-   AIにファイル出力の使用を推奨
+    1. チャットまたはCaretルールでCaretに、ファイルを読み取る前に`command > output.txt`を使用するように指示
 
 <Tip>
-	This family of issues has been solved in latest Caret versions but if you still face any issues, then create a GitHub issue
-	for this.
+	この問題ファミリーは最新のCaretバージョンで部分的にのみ解決されているため、まだこの問題に直面している場合は、持続的な問題である場合はGitHub issueを作成してください。
 </Tip>
 
-## Terminal Settings Explained
+### 4. 長時間実行コマンドとプログレスバー
 
-Access these in Caret by clicking the settings icon, and navigating to the "Terminal Settings" section:
+**症状：**
 
-### Default Terminal Profile
+-   Dockerビルドがcaretで完了しない
+-   プログレスバーが数千のトークンを消費する
+-   チャット内のCaretボタン「Proceed while running」が正常に動作しない
 
--   **What it does**: Selects which shell Caret uses for commands
--   **When to change**: If experiencing shell integration issues with your default shell
--   **Recommended**: - macOS: bash (if zsh has issues) - Windows: PowerShell 7 - Linux: bash
+<Tip>
+	この問題ファミリーは最新のCaretバージョンで解決されていますが、まだ問題が発生する場合は、GitHub issueを作成してください。
+</Tip>
 
-### Shell Integration Timeout
+## ターミナル設定の説明
 
--   **What it does**: How long Caret waits for the terminal to be ready
--   **Default**: 4 seconds
--   **When to increase**:
-    -   Slow shell startup (heavy .zshrc/.bashrc)
-    -   WSL environments
-    -   SSH connections
--   **Recommended**: - Start with 10 seconds if having issues
+設定アイコンをクリックし、「Terminal Settings」セクションに移動してCaretでこれらにアクセスします：
+
+### デフォルトターミナルプロファイル
+
+-   **機能**：Caretがコマンドに使用するシェルを選択
+-   **変更するタイミング**：デフォルトシェルでシェル統合問題が発生している場合
+-   **推奨**：- macOS：bash（zshに問題がある場合）- Windows：PowerShell 7 - Linux：bash
+
+### シェル統合タイムアウト
+
+-   **機能**：Caretがターミナルの準備を待機する時間
+-   **デフォルト**：4秒
+-   **増やすタイミング**：
+    -   シェル起動が遅い（重い.zshrc/.bashrc）
+    -   WSL環境
+    -   SSH接続
+-   **推奨**：- 問題がある場合は10秒から始める
 
 ### Enable Aggressive Terminal Reuse
 
--   **What it does**: Reuses existing terminals even if not in the correct directory
--   **When to disable**:
-    -   Commands execute in wrong directory
-    -   Virtual environment issues
-    -   Terminal state corruption
--   **Trade-off**: - Disabling creates more terminals but ensures clean state
+-   **機能**：正しいディレクトリにいない場合でも既存のターミナルを再利用
+-   **無効にするタイミング**：
+    -   コマンドが間違ったディレクトリで実行される
+    -   仮想環境の問題
+    -   ターミナル状態の破損
+-   **トレードオフ**：- 無効にするとより多くのターミナルを作成するが、クリーンな状態を確保
 
-### Terminal Output Line Limit
+### ターミナル出力行制限
 
--   **What it does**: Limits how many lines Caret reads from terminal output
--   **Default**: 500 lines
--   **When to adjust**:
-    -   Increase for verbose build outputs
-    -   Decrease if hitting token limits
-    -   Set to 100 for commands with progress bars
+-   **機能**：Caretがターミナル出力から読み取る行数を制限
+-   **デフォルト**：500行
+-   **調整するタイミング**：
+    -   詳細なビルド出力のために増やす
+    -   トークン制限に達する場合は減らす
+    -   プログレスバーのあるコマンドには100に設定
 
-## Platform-Specific Solutions
+## プラットフォーム固有のソリューション
 
-### macOS Issues
+### macOSの問題
 
-#### Oh-My-Zsh Conflicts
+#### Oh-My-Zshの競合
 
-Oh-My-Zsh often interferes with shell integration. Solutions:
+Oh-My-Zshはしばしばシェル統合を妨害します。ソリューション：
 
-1. Create a minimal `.zshrc` for VSCode:
+1. VSCode用の最小限の`.zshrc`を作成：
     ```bash
     # ~/.zshrc-vscode
     export TERM=xterm-256color
     export PAGER=cat
-    # Minimal PATH and environment setup
+    # 最小限のPATHと環境セットアップ
     ```
-2. Configure VSCode to use it:
+2. VSCodeを設定して使用：
     ```json
     {
     	"terminal.integrated.env.osx": {
@@ -234,114 +232,114 @@ Oh-My-Zsh often interferes with shell integration. Solutions:
     }
     ```
 
-#### macOS 15+ Issues
+#### macOS 15+の問題
 
-Recent macOS versions have stricter terminal permissions:
+最近のmacOSバージョンはより厳格なターミナル権限を持っています：
 
-1. System Preferences → Privacy & Security → Developer Tools
-2. Add Visual Studio Code
-3. Restart VSCode completely
+1. システム環境設定 → プライバシーとセキュリティ → 開発者ツール
+2. Visual Studio Codeを追加
+3. VSCodeを完全に再起動
 
-### Windows Issues
+### Windowsの問題
 
-If you're using Windows and still experiencing issues with shell integration after trying the previous steps, it's recommended you use Git Bash (or PowerShell).
+Windowsを使用していて、前の手順を試した後もシェル統合に問題がある場合は、Git Bash（またはPowerShell）を使用することをお勧めします。
 
 ### Git Bash
 
-Git Bash is a terminal emulator that provides a Unix-like command line experience on Windows. To use Git Bash, you need to:
+Git Bashは、Windows上でUnixライクなコマンドライン体験を提供するターミナルエミュレータです。Git Bashを使用するには：
 
-1. Download and run the Git for Windows installer from [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
-2. Quit and re-open VSCode
-3. Press `Ctrl + Shift + P` to open the Command Palette
-4. Type "Terminal: Select Default Profile" and choose it
-5. Select "Git Bash"
+1. [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)からGit for Windowsインストーラーをダウンロードして実行
+2. VSCodeを終了して再度開く
+3. `Ctrl + Shift + P`を押してコマンドパレットを開く
+4. 「Terminal: Select Default Profile」と入力して選択
+5. 「Git Bash」を選択
 
 ### PowerShell
 
-If you'd still like to use PowerShell, make sure you're using an updated version (at least v7+).
-  - Check your current PowerShell version by running: `$PSVersionTable.PSVersion`
-  - If your version is below 7, [update PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7?view=powershell-7.4#installing-powershell-7).
+それでもPowerShellを使用したい場合は、更新されたバージョン（少なくともv7+）を使用していることを確認してください。
+  - 現在のPowerShellバージョンを実行して確認：`$PSVersionTable.PSVersion`
+  - バージョンが7未満の場合、[PowerShellを更新](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7?view=powershell-7.4#installing-powershell-7)してください。
 
-You may also need to adjust your PowerShell execution policy. By default, PowerShell restricts script execution for security reasons.
+PowerShell実行ポリシーを調整する必要がある場合もあります。デフォルトでは、PowerShellはセキュリティ上の理由からスクリプトの実行を制限しています。
 
-#### Understanding PowerShell Execution Policies
+#### PowerShell実行ポリシーの理解
 
-PowerShell uses execution policies to determine which scripts can run on your system. Here are the most common policies:
+PowerShellは実行ポリシーを使用して、システムでどのスクリプトを実行できるかを決定します。最も一般的なポリシーは次のとおりです：
 
-- `Restricted`: No PowerShell scripts can run. This is the default setting.
-- `AllSigned`: All scripts, including local ones, must be signed by a trusted publisher.
-- `RemoteSigned`: Scripts created locally can run, but scripts downloaded from the internet must be signed.
-- `Unrestricted`: No restrictions. Any script can run, though you will be warned before running internet-downloaded scripts.
+- `Restricted`：PowerShellスクリプトは実行できません。これがデフォルト設定です。
+- `AllSigned`：ローカルのものを含むすべてのスクリプトは、信頼できる発行者によって署名されている必要があります。
+- `RemoteSigned`：ローカルで作成されたスクリプトは実行できますが、インターネットからダウンロードされたスクリプトは署名されている必要があります。
+- `Unrestricted`：制限なし。任意のスクリプトを実行できますが、インターネットからダウンロードされたスクリプトを実行する前に警告されます。
 
-For development work in VSCode, the `RemoteSigned` policy is generally recommended. It allows locally created scripts to run without restrictions while maintaining security for downloaded scripts. To learn more about PowerShell execution policies and understand the security implications of changing them, visit Microsoft's documentation: [About Execution Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies).
+VSCodeでの開発作業には、`RemoteSigned`ポリシーが一般的に推奨されます。これにより、ローカルで作成されたスクリプトは制限なく実行でき、ダウンロードされたスクリプトのセキュリティを維持します。PowerShell実行ポリシーについて詳しく学び、変更のセキュリティへの影響を理解するには、Microsoftのドキュメントを参照してください：[About Execution Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies)。
 
-#### Steps to Change the Execution Policy
+#### 実行ポリシーを変更する手順
 
-1. Open PowerShell as an Administrator: Press `Win + X` and select "Windows PowerShell (Administrator)" or "Windows Terminal (Administrator)".
+1. 管理者としてPowerShellを開く：`Win + X`を押して「Windows PowerShell (Administrator)」または「Windows Terminal (Administrator)」を選択。
 
-2. Check Current Execution Policy by running this command:
+2. 次のコマンドを実行して現在の実行ポリシーを確認：
      ```powershell
      Get-ExecutionPolicy
      ```
-   - If the output is already `RemoteSigned`, `Unrestricted`, or `Bypass`, you likely don't need to change your execution policy. These policies should allow shell integration to work.
-   - If the output is `Restricted` or `AllSigned`, you may need to change your policy to enable shell integration.
+   - 出力がすでに`RemoteSigned`、`Unrestricted`、または`Bypass`の場合、おそらく実行ポリシーを変更する必要はありません。これらのポリシーはシェル統合が機能するようにする必要があります。
+   - 出力が`Restricted`または`AllSigned`の場合、シェル統合を有効にするためにポリシーを変更する必要がある場合があります。
 
-3. Change the Execution Policy by running the following command:
+3. 次のコマンドを実行して実行ポリシーを変更：
      ```powershell
      Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
      ```
-   - This sets the policy to `RemoteSigned` for the current user only, which is safer than changing it system-wide.
+   - これにより、現在のユーザーのみのポリシーが`RemoteSigned`に設定されます。これはシステム全体で変更するよりも安全です。
 
-4. Confirm the Change by typing `Y` and pressing Enter when prompted.
+4. プロンプトが表示されたら`Y`を入力してEnterを押して変更を確認。
 
-5. Verify the Policy Change by running `Get-ExecutionPolicy` again to confirm the new setting.
+5. `Get-ExecutionPolicy`を再度実行してポリシー変更を確認し、新しい設定を確認。
 
-6. Restart VSCode and try the shell integration again.
+6. VSCodeを再起動し、シェル統合を再度試す。
 
 
-#### WSL Integration
+#### WSL統合
 
-For WSL issues:
+WSLの問題：
 
-1. Use WSL extension for VSCode
-2. Open folder in WSL: `code .` from WSL terminal
-3. Select "WSL Bash" as terminal profile in Caret
+1. VSCode用のWSL拡張機能を使用
+2. WSLでフォルダーを開く：WSLターミナルから`code .`
+3. Caretでターミナルプロファイルとして「WSL Bash」を選択
 
-#### Path Issues
+#### パスの問題
 
-Windows path problems:
+Windowsパスの問題：
 
-1. Use forward slashes in Caret: `C:/Users/...`
-2. Quote paths with spaces: `"C:/Program Files/..."`
-3. Avoid `~` - use full paths
+1. Caretでスラッシュを使用：`C:/Users/...`
+2. スペースを含むパスを引用符で囲む：`"C:/Program Files/..."`
+3. `~`を避ける - フルパスを使用
 
-### Linux/SSH/Container Issues
+### Linux/SSH/コンテナの問題
 
-#### SSH Connections
+#### SSH接続
 
-For remote development:
+リモート開発の場合：
 
-1. Install Caret on the remote machine, not locally
-2. Use SSH extension's integrated terminal
-3. Increase timeout to 15+ seconds
+1. ローカルではなくリモートマシンにCaretをインストール
+2. SSH拡張機能の統合ターミナルを使用
+3. タイムアウトを15秒以上に増やす
 
-#### Docker Containers
+#### Dockerコンテナ
 
-When developing in containers:
+コンテナで開発する場合：
 
-1. Install Caret in the container
-2. Use Dev Containers extension
-3. Ensure shell integration scripts are available
+1. コンテナにCaretをインストール
+2. Dev Containers拡張機能を使用
+3. シェル統合スクリプトが利用可能であることを確認
 
-## Shell-Specific Fixes
+## シェル固有の修正
 
 ### Zsh
 
 ```bash
-# Add to ~/.zshrc
+# ~/.zshrcに追加
 export TERM=xterm-256color
 export PAGER=cat
-# Disable fancy prompts for VSCode
+# VSCode用のファンシープロンプトを無効にする
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     PS1="%n@%m %1~ %# "
 fi
@@ -350,10 +348,10 @@ fi
 ### Bash
 
 ```bash
-# Add to ~/.bashrc
+# ~/.bashrcに追加
 export TERM=xterm-256color
 export PAGER=cat
-# Simple prompt for VSCode
+# VSCode用のシンプルなプロンプト
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     PS1='\u@\h:\w\$ '
 fi
@@ -362,10 +360,10 @@ fi
 ### Fish
 
 ```fish
-# Add to ~/.config/fish/config.fish
+# ~/.config/fish/config.fishに追加
 set -x TERM xterm-256color
 set -x PAGER cat
-# Disable fancy features in VSCode
+# VSCodeでファンシー機能を無効にする
 if test "$TERM_PROGRAM" = "vscode"
     function fish_prompt
         echo (whoami)'@'(hostname)':'(pwd)'> '
@@ -376,56 +374,56 @@ end
 ### PowerShell
 
 ```powershell
-# Add to $PROFILE
+# $PROFILEに追加
 $env:PAGER = "cat"
-# Disable progress bars
+# プログレスバーを無効にする
 $ProgressPreference = 'SilentlyContinue'
 ```
 
-## Advanced Troubleshooting
+## 高度なトラブルシューティング
 
-### Debug Mode
+### デバッグモード
 
-Enable terminal debugging to see what's happening:
+ターミナルデバッグを有効にして何が起こっているかを確認：
 
-1. Open VSCode Command Palette (Cmd/Ctrl+Shift+P)
-2. Run: "Developer: Set Log Level..."
-3. Choose "Trace"
-4. Check Output panel → "Caret" for terminal logs
+1. VSCodeコマンドパレットを開く（Cmd/Ctrl+Shift+P）
+2. 実行：「Developer: Set Log Level...」
+3. 「Trace」を選択
+4. 出力パネル → 「Caret」でターミナルログを確認
 
-### Manual Shell Integration Test
+### 手動シェル統合テスト
 
-Test if shell integration works at all:
+シェル統合が全く機能するかテスト：
 
 ```bash
-# In VSCode terminal
-echo $TERM_PROGRAM  # Should show "vscode"
-echo $VSCODE_SHELL_INTEGRATION  # Should be "1"
+# VSCodeターミナルで
+echo $TERM_PROGRAM  # 「vscode」を表示する必要があります
+echo $VSCODE_SHELL_INTEGRATION  # 「1」である必要があります
 ```
 
 ## FAQ
 
-### Why does Caret create so many terminals?
+### なぜCaretは多くのターミナルを作成するのですか？
 
-When shell integration fails, Caret can't reuse terminals safely (they might be running long processes). Enable shell integration or adjust the terminal reuse setting.
+シェル統合が失敗すると、Caretはターミナルを安全に再利用できません（長いプロセスが実行されている可能性があります）。シェル統合を有効にするか、ターミナル再利用設定を調整してください。
 
-### Can I use my custom shell (nushell, xonsh, etc.)?
+### カスタムシェル（nushell、xonshなど）を使用できますか？
 
-Caret officially supports bash, zsh, fish, and PowerShell. Custom shells may work but aren't guaranteed. Use bash as a fallback.
+Caretは公式にbash、zsh、fish、PowerShellをサポートしています。カスタムシェルは動作する可能性がありますが、保証されていません。フォールバックとしてbashを使用してください。
 
-### Why do some commands work but others don't?
+### 一部のコマンドは動作するのに他のコマンドは動作しないのはなぜですか？
 
-Commands that use interactive features (pagers, progress bars, curses) often fail. Set `PAGER=cat` and use non-interactive flags.
+対話的機能（ページャー、プログレスバー、curses）を使用するコマンドはしばしば失敗します。`PAGER=cat`を設定し、非対話的フラグを使用してください。
 
-### How do I know if shell integration is working?
+### シェル統合が機能しているかどうかをどのように知ることができますか？
 
-Working integration shows command output in Caret's chat. Failed integration shows "Shell Integration Unavailable" or "[Command is running but producing no output]".
+動作している統合は、Caretのチャットにコマンド出力を表示します。失敗した統合は「Shell Integration Unavailable」または「[Command is running but producing no output]」を表示します。
 
-## Still Having Issues?
+## まだ問題がありますか？
 
-If you've tried everything:
+すべてを試した場合：
 
-1. **Collect Debug Info**:
+1. **デバッグ情報を収集**：
 
     ```bash
     echo "Shell: $SHELL"
@@ -435,12 +433,11 @@ If you've tried everything:
     bash --version
     ```
 
-2. **Report the Issue**:
-    - Use `/reportbug` in Caret github issues
-    - Include your debug info
-    - Mention which solutions you tried
+2. **問題を報告**：
+    - Caret github issuesで`/reportbug`を使用
+    - デバッグ情報を含める
+    - 試したソリューションを言及
 
 <Tip>
-	Remember: Most terminal issues are resolved by switching to bash and increasing the timeout. Start there before trying complex
-	solutions.
+	覚えておいてください：ほとんどのターミナル問題は、bashに切り替えてタイムアウトを増やすことで解決されます。複雑なソリューションを試す前に、まずそこから始めてください。
 </Tip>

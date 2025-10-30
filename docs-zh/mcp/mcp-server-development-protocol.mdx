@@ -1,95 +1,95 @@
 ---
-title: "MCP Server Development Protocol"
-description: "This protocol is designed to streamline the development process of building MCP servers with Caret."
+title: "MCP 服务器开发协议"
+description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过程。"
 ---
 
-> 🚀 **Build and share your MCP servers with the world.** Once you've created a great MCP server, submit it to the [Caret MCP Marketplace](https://github.com/caret/mcp-marketplace) to make it discoverable and one-click installable by thousands of developers.
+> 🚀 **构建并与世界分享您的 MCP 服务器。** 创建出色的 MCP 服务器后，将其提交到 [Caret MCP 市场](https://github.com/caret/mcp-marketplace)，使其可被数千名开发人员发现并一键安装。
 
-## What Are MCP Servers?
+## 什么是 MCP 服务器？
 
-Model Context Protocol (MCP) servers extend AI assistants like Caret by giving them the ability to:
+模型上下文协议（MCP）服务器通过赋予 AI 助手（如 Caret）以下能力来扩展它们：
 
--   Access external APIs and services
--   Retrieve real-time data
--   Control applications and local systems
--   Perform actions beyond what text prompts alone can achieve
+-   访问外部 API 和服务
+-   检索实时数据
+-   控制应用程序和本地系统
+-   执行单靠文本提示无法实现的操作
 
-Without MCP, AI assistants are powerful but isolated. With MCP, they gain the ability to interact with virtually any digital system.
+没有 MCP，AI 助手虽然强大但是孤立的。有了 MCP，它们获得了与几乎任何数字系统交互的能力。
 
-## The Development Protocol
+## 开发协议
 
-The heart of effective MCP server development is following a structured protocol. This protocol is implemented through a `.clinerules` file that lives at the **root** of your MCP working directory (/Users/your-name/Documents/Caret/MCP).
+有效 MCP 服务器开发的核心是遵循结构化协议。该协议通过位于 MCP 工作目录**根目录**（/Users/your-name/Documents/Caret/MCP）的 `.clinerules` 文件实现。
 
-### Using `.clinerules` Files
+### 使用 `.clinerules` 文件
 
-A `.clinerules` file is a special configuration that Caret reads automatically when working in the directory where it's placed. These files:
+`.clinerules` 文件是 Caret 在其所在目录工作时自动读取的特殊配置。这些文件：
 
--   Configure Caret's behavior and enforce best practices
--   Switch Caret into a specialized MCP development mode
--   Provide a step-by-step protocol for building servers
--   Implement safety measures like preventing premature completion
--   Guide you through planning, implementation, and testing phases
+-   配置 Caret 的行为并强制执行最佳实践
+-   将 Caret 切换到专门的 MCP 开发模式
+-   提供构建服务器的分步协议
+-   实施安全措施，如防止过早完成
+-   引导您完成规划、实施和测试阶段
 
-Here's the complete MCP Server Development Protocol that should be placed in your `.clinerules` file:
+以下是应放置在 `.clinerules` 文件中的完整 MCP 服务器开发协议：
 
 ````markdown
-# MCP Server Development Protocol
+# MCP 服务器开发协议
 
-⚠️ CRITICAL: DO NOT USE attempt_completion BEFORE TESTING ⚠️
+⚠️ 关键：在测试之前不要使用 attempt_completion ⚠️
 
-## Step 1: Planning (PLAN MODE)
+## 步骤 1：规划（PLAN 模式）
 
--   What problem does this tool solve?
--   What API/service will it use?
--   What are the authentication requirements?
-    □ Standard API key
-    □ OAuth (requires separate setup script)
-    □ Other credentials
+-   此工具解决什么问题？
+-   它将使用什么 API/服务？
+-   身份验证要求是什么？
+    □ 标准 API 密钥
+    □ OAuth（需要单独的设置脚本）
+    □ 其他凭据
 
-## Step 2: Implementation (ACT MODE)
+## 步骤 2：实施（ACT 模式）
 
-1. Bootstrap
+1. 引导
 
-    - For web services, JavaScript integration, or Node.js environments:
+    - 对于 Web 服务、JavaScript 集成或 Node.js 环境：
         ```bash
         npx @modelcontextprotocol/create-server my-server
         cd my-server
         npm install
         ```
-    - For data science, ML workflows, or Python environments:
+    - 对于数据科学、ML 工作流或 Python 环境：
         ```bash
         pip install mcp
-        # Or with uv (recommended)
+        # 或使用 uv（推荐）
         uv add "mcp[cli]"
         ```
 
-2. Core Implementation
+2. 核心实施
 
-    - Use MCP SDK
-    - Implement comprehensive logging
-        - TypeScript (for web/JS projects):
+    - 使用 MCP SDK
+    - 实施全面的日志记录
+        - TypeScript（用于 Web/JS 项目）：
             ```typescript
             console.error("[Setup] Initializing server...")
             console.error("[API] Request to endpoint:", endpoint)
             console.error("[Error] Failed with:", error)
             ```
-        - Python (for data science/ML projects):
+        - Python（用于数据科学/ML 项目）：
             ```python
             import logging
             logging.error('[Setup] Initializing server...')
             logging.error(f'[API] Request to endpoint: {endpoint}')
             logging.error(f'[Error] Failed with: {str(error)}')
             ```
-    - Add type definitions
-    - Handle errors with context
-    - Implement rate limiting if needed
+    - 添加类型定义
+    - 使用上下文处理错误
+    - 如果需要，实施速率限制
 
-3. Configuration
+3. 配置
 
-    - Get credentials from user if needed
-    - Add to MCP settings:
+    - 如果需要，从用户获取凭据
+    - 添加到 MCP 设置：
 
-        - For TypeScript projects:
+        - 对于 TypeScript 项目：
             ```json
             {
             	"mcpServers": {
@@ -105,13 +105,13 @@ Here's the complete MCP Server Development Protocol that should be placed in you
             	}
             }
             ```
-        - For Python projects:
+        - 对于 Python 项目：
 
             ```bash
-            # Directly with command line
+            # 直接使用命令行
             mcp install server.py -v API_KEY=key
 
-            # Or in settings.json
+            # 或在 settings.json 中
             {
               "mcpServers": {
                 "my-server": {
@@ -127,156 +127,156 @@ Here's the complete MCP Server Development Protocol that should be placed in you
             }
             ```
 
-## Step 3: Testing (BLOCKER ⛔️)
+## 步骤 3：测试（阻断器 ⛔️）
 
 <thinking>
-BEFORE using attempt_completion, I MUST verify:
-□ Have I tested EVERY tool?
-□ Have I confirmed success from the user for each test?
-□ Have I documented the test results?
+在使用 attempt_completion 之前，我必须验证：
+□ 我是否测试了每个工具？
+□ 我是否确认了每个测试的用户成功？
+□ 我是否记录了测试结果？
 
-If ANY answer is "no", I MUST NOT use attempt_completion.
+如果任何答案是"否"，我不得使用 attempt_completion。
 </thinking>
 
-1. Test Each Tool (REQUIRED)
-   □ Test each tool with valid inputs
-   □ Verify output format is correct
-   ⚠️ DO NOT PROCEED UNTIL ALL TOOLS TESTED
+1. 测试每个工具（必需）
+   □ 使用有效输入测试每个工具
+   □ 验证输出格式是否正确
+   ⚠️ 在所有工具测试之前不要继续
 
-## Step 4: Completion
+## 步骤 4：完成
 
-❗ STOP AND VERIFY:
-□ Every tool has been tested with valid inputs
-□ Output format is correct for each tool
+❗ 停止并验证：
+□ 每个工具都已使用有效输入进行测试
+□ 每个工具的输出格式都是正确的
 
-Only after ALL tools have been tested can attempt_completion be used.
+只有在所有工具都经过测试后才能使用 attempt_completion。
 
-## Key Requirements
+## 关键要求
 
--   ✓ Must use MCP SDK
--   ✓ Must have comprehensive logging
--   ✓ Must test each tool individually
--   ✓ Must handle errors gracefully
--   ⛔️ NEVER skip testing before completion
+-   ✓ 必须使用 MCP SDK
+-   ✓ 必须有全面的日志记录
+-   ✓ 必须单独测试每个工具
+-   ✓ 必须优雅地处理错误
+-   ⛔️ 永远不要在完成前跳过测试
 ````
 
-When this `.clinerules` file is present in your working directory, Caret will:
+当此 `.clinerules` 文件存在于您的工作目录中时，Caret 将：
 
-1. Start in **PLAN MODE** to design your server before implementation
-2. Enforce proper implementation patterns in **ACT MODE**
-3. Require testing of all tools before allowing completion
-4. Guide you through the entire development lifecycle
+1. 在**PLAN 模式**下启动，在实施之前设计您的服务器
+2. 在**ACT 模式**下强制执行适当的实施模式
+3. 在允许完成之前要求测试所有工具
+4. 引导您完成整个开发生命周期
 
-## Getting Started
+## 入门
 
-Creating an MCP server requires just a few simple steps to get started:
+创建 MCP 服务器只需要几个简单的步骤即可开始：
 
-### 1. Create a `.clinerules` file (🚨 IMPORTANT)
+### 1. 创建 `.clinerules` 文件（🚨 重要）
 
-First, add a `.clinerules` file to the root of your MCP working directory using the protocol above. This file configures Caret to use the MCP development protocol when working in this folder.
+首先，使用上述协议将 `.clinerules` 文件添加到 MCP 工作目录的根目录。此文件配置 Caret 在此文件夹中工作时使用 MCP 开发协议。
 
-### 2. Start a Chat with a Clear Description
+### 2. 从清晰的描述开始聊天
 
-Begin your Caret chat by clearly describing what you want to build. Be specific about:
+通过清晰地描述您想要构建的内容来开始您的 Caret 聊天。具体说明：
 
--   The purpose of your MCP server
--   Which API or service you want to integrate with
--   Any specific tools or features you need
+-   MCP 服务器的目的
+-   您想要集成的 API 或服务
+-   您需要的任何特定工具或功能
 
-For example:
-
-```plaintext
-I want to build an MCP server for the AlphaAdvantage financial API.
-It should allow me to get real-time stock data, perform technical
-analysis, and retrieve company financial information.
-```
-
-### 3. Work Through the Protocol
-
-Caret will automatically start in PLAN MODE, guiding you through the planning process:
-
--   Discussing the problem scope
--   Reviewing API documentation
--   Planning authentication methods
--   Designing tool interfaces
-
-When ready, switch to ACT MODE using the toggle at the bottom of the chat to begin implementation.
-
-### 4. Provide API Documentation Early
-
-One of the most effective ways to help Caret build your MCP server is to share official API documentation right at the start:
+例如：
 
 ```plaintext
-Here's the API documentation for the service:
-[Paste API documentation here]
+我想为 AlphaAdvantage 金融 API 构建一个 MCP 服务器。
+它应该允许我获取实时股票数据、进行技术分析
+并检索公司财务信息。
 ```
 
-Providing comprehensive API details (endpoints, authentication, data structures) significantly improves Caret's ability to implement an effective MCP server.
+### 3. 完成协议
 
-## Understanding the Two Modes
+Caret 将自动在 PLAN 模式下启动，引导您完成规划过程：
 
-### PLAN MODE
+-   讨论问题范围
+-   审查 API 文档
+-   规划身份验证方法
+-   设计工具接口
 
-In this collaborative phase, you work with Caret to design your MCP server:
+准备好后，使用聊天底部的切换开关切换到 ACT 模式以开始实施。
 
--   Define the problem scope
--   Choose appropriate APIs
--   Plan authentication methods
--   Design the tool interfaces
--   Determine data formats
+### 4. 尽早提供 API 文档
 
-### ACT MODE
+帮助 Caret 构建 MCP 服务器的最有效方法之一是在开始时就分享官方 API 文档：
 
-Once planning is complete, Caret helps implement the server:
+```plaintext
+这是该服务的 API 文档：
+[在此粘贴 API 文档]
+```
 
--   Set up the project structure
--   Write the implementation code
--   Configure settings
--   Test each component thoroughly
--   Finalize documentation
+提供全面的 API 详细信息（端点、身份验证、数据结构）显著提高了 Caret 实现有效 MCP 服务器的能力。
 
-## Case Study: AlphaAdvantage Stock Analysis Server
+## 理解两种模式
 
-Let's walk through the development process of our AlphaAdvantage MCP server, which provides stock data analysis and reporting capabilities.
+### PLAN 模式
 
-### Planning Phase
+在此协作阶段，您与 Caret 一起设计 MCP 服务器：
 
+-   定义问题范围
+-   选择适当的 API
+-   规划身份验证方法
+-   设计工具接口
+-   确定数据格式
 
+### ACT 模式
+
+规划完成后，Caret 帮助实施服务器：
+
+-   设置项目结构
+-   编写实施代码
+-   配置设置
+-   彻底测试每个组件
+-   完成文档
+
+## 案例研究：AlphaAdvantage 股票分析服务器
+
+让我们详细了解 AlphaAdvantage MCP 服务器的开发过程，该服务器提供股票数据分析和报告功能。
+
+### 规划阶段
+
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/planning-phase.gif"
-		alt="Planning phase demonstration"
+		alt="规划阶段演示"
 	/>
+</figure>
 
+在规划阶段，我们：
 
-During the planning phase, we:
+1. **定义了问题**：用户需要通过其 AI 助手直接访问金融数据、股票分析和市场见解
+2. **选择了 API**：AlphaAdvantage API 用于金融市场数据
+    - 标准 API 密钥身份验证
+    - 速率限制为每分钟 5 个请求（免费层）
+    - 不同金融数据类型的各种端点
+3. **设计了所需的工具**：
+    - 股票概览信息（当前价格、公司详细信息）
+    - 带指标的技术分析（RSI、MACD 等）
+    - 基本面分析（财务报表、比率）
+    - 收益报告数据
+    - 新闻和情绪分析
+4. **规划了数据格式**：
+    - 干净、格式良好的 markdown 输出
+    - 结构化数据的表格
+    - 趋势的视觉指标（↑/↓）
+    - 适当的财务数字格式
 
-1. **Defined the problem**: Users need access to financial data, stock analysis, and market insights directly through their AI assistant
-2. **Selected the API**: AlphaAdvantage API for financial market data
-    - Standard API key authentication
-    - Rate limits of 5 requests per minute (free tier)
-    - Various endpoints for different financial data types
-3. **Designed the tools needed**:
-    - Stock overview information (current price, company details)
-    - Technical analysis with indicators (RSI, MACD, etc.)
-    - Fundamental analysis (financial statements, ratios)
-    - Earnings report data
-    - News and sentiment analysis
-4. **Planned data formatting**:
-    - Clean, well-formatted markdown output
-    - Tables for structured data
-    - Visual indicators (↑/↓) for trends
-    - Proper formatting of financial numbers
+### 实施
 
-### Implementation
-
-
+<figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/building-mcp-plugin.gif"
-		alt="Building MCP plugin demonstration"
+		alt="构建 MCP 插件演示"
 	/>
+</figure>
 
-
-We began by bootstrapping the project:
+我们从引导项目开始：
 
 ```bash
 npx @modelcontextprotocol/create-server alphaadvantage-mcp
@@ -284,38 +284,38 @@ cd alphaadvantage-mcp
 npm install axios node-cache
 ```
 
-Next, we structured our project with:
+接下来，我们使用以下结构构建项目：
 
 ```plaintext
 src/
   ├── api/
-  │   └── alphaAdvantageClient.ts  # API client with rate limiting & caching
+  │   └── alphaAdvantageClient.ts  # 具有速率限制和缓存的 API 客户端
   ├── formatters/
-  │   └── markdownFormatter.ts     # Output formatters for clean markdown
-  └── index.ts                     # Main MCP server implementation
+  │   └── markdownFormatter.ts     # 用于干净 markdown 的输出格式化程序
+  └── index.ts                     # 主 MCP 服务器实施
 ```
 
-#### API Client Implementation
+#### API 客户端实施
 
-The API client implementation included:
+API 客户端实施包括：
 
--   **Rate limiting**: Enforcing the 5 requests per minute limit
--   **Caching**: Reducing API calls with strategic caching
--   **Error handling**: Robust error detection and reporting
--   **Typed interfaces**: Clear TypeScript types for all data
+-   **速率限制**：强制执行每分钟 5 个请求的限制
+-   **缓存**：通过战略缓存减少 API 调用
+-   **错误处理**：强大的错误检测和报告
+-   **类型化接口**：所有数据的清晰 TypeScript 类型
 
-Key implementation details:
+关键实施详细信息：
 
 ```typescript
 /**
- * Manage rate limiting based on free tier (5 calls per minute)
+ * 根据免费层管理速率限制（每分钟 5 次调用）
  */
 private async enforceRateLimit() {
   if (this.requestsThisMinute >= 5) {
     console.error("[Rate Limit] Rate limit reached. Waiting for next minute...");
     return new Promise<void>((resolve) => {
       const remainingMs = 60 * 1000 - (Date.now() % (60 * 1000));
-      setTimeout(resolve, remainingMs + 100); // Add 100ms buffer
+      setTimeout(resolve, remainingMs + 100); // 添加 100ms 缓冲
     });
   }
 
@@ -324,36 +324,36 @@ private async enforceRateLimit() {
 }
 ```
 
-#### Markdown Formatting
+#### Markdown 格式化
 
-We implemented formatters to display financial data beautifully:
+我们实施了格式化程序以精美地显示金融数据：
 
 ```typescript
 /**
- * Format company overview into markdown
+ * 将公司概览格式化为 markdown
  */
 export function formatStockOverview(overviewData: any, quoteData: any): string {
-	// Extract data
+	// 提取数据
 	const overview = overviewData
 	const quote = quoteData["Global Quote"]
 
-	// Calculate price change
+	// 计算价格变化
 	const currentPrice = parseFloat(quote["05. price"] || "0")
 	const priceChange = parseFloat(quote["09. change"] || "0")
 	const changePercent = parseFloat(quote["10. change percent"]?.replace("%", "") || "0")
 
-	// Format markdown
+	// 格式化 markdown
 	let markdown = `# ${overview.Symbol} (${overview.Name}) - ${formatCurrency(currentPrice)} ${addTrendIndicator(priceChange)}${changePercent > 0 ? "+" : ""}${changePercent.toFixed(2)}%\n\n`
 
-	// Add more details...
+	// 添加更多详细信息...
 
 	return markdown
 }
 ```
 
-#### Tool Implementation
+#### 工具实施
 
-We defined five tools with clear interfaces:
+我们定义了五个具有清晰接口的工具：
 
 ```typescript
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -363,41 +363,41 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 		tools: [
 			{
 				name: "get_stock_overview",
-				description: "Get basic company info and current quote for a stock symbol",
+				description: "获取股票代码的基本公司信息和当前报价",
 				inputSchema: {
 					type: "object",
 					properties: {
 						symbol: {
 							type: "string",
-							description: "Stock symbol (e.g., 'AAPL')",
+							description: "股票代码（例如，'AAPL'）",
 						},
 						market: {
 							type: "string",
-							description: "Optional market (e.g., 'US')",
+							description: "可选市场（例如，'US'）",
 							default: "US",
 						},
 					},
 					required: ["symbol"],
 				},
 			},
-			// Additional tools defined here...
+			// 在此定义其他工具...
 		],
 	}
 })
 ```
 
-Each tool's handler included:
+每个工具的处理程序包括：
 
--   Input validation
--   API client calls with error handling
--   Markdown formatting of responses
--   Comprehensive logging
+-   输入验证
+-   带错误处理的 API 客户端调用
+-   响应的 Markdown 格式化
+-   全面的日志记录
 
-### Testing Phase
+### 测试阶段
 
-This critical phase involved systematically testing each tool:
+此关键阶段涉及系统地测试每个工具：
 
-1. First, we configured the MCP server in the settings:
+1. 首先，我们在设置中配置了 MCP 服务器：
 
 ```json
 {
@@ -415,103 +415,103 @@ This critical phase involved systematically testing each tool:
 }
 ```
 
-2. Then we tested each tool individually:
+2. 然后我们单独测试每个工具：
 
--   **get_stock_overview**: Retrieved AAPL stock overview information
+-   **get_stock_overview**：检索 AAPL 股票概览信息
 
     ```markdown
     # AAPL (Apple Inc) - $241.84 ↑+1.91%
 
-    **Sector:** TECHNOLOGY
-    **Industry:** ELECTRONIC COMPUTERS
-    **Market Cap:** 3.63T
-    **P/E Ratio:** 38.26
+    **行业：** 技术
+    **产业：** 电子计算机
+    **市值：** 3.63T
+    **市盈率：** 38.26
     ...
     ```
 
--   **get_technical_analysis**: Obtained price action and RSI data
+-   **get_technical_analysis**：获取价格行为和 RSI 数据
 
     ```markdown
-    # Technical Analysis: AAPL
+    # 技术分析：AAPL
 
-    ## Daily Price Action
+    ## 日价格行为
 
-    Current Price: $241.84 (↑$4.54, +1.91%)
+    当前价格：$241.84（↑$4.54，+1.91%）
 
-    ### Recent Daily Prices
+    ### 最近的每日价格
 
-    | Date       | Open    | High    | Low     | Close   | Volume |
+    | 日期       | 开盘    | 最高    | 最低    | 收盘    | 成交量 |
     | ---------- | ------- | ------- | ------- | ------- | ------ |
     | 2025-02-28 | $236.95 | $242.09 | $230.20 | $241.84 | 56.83M |
 
     ...
     ```
 
--   **get_earnings_report**: Retrieved MSFT earnings history and formatted report
+-   **get_earnings_report**：检索 MSFT 收益历史和格式化报告
 
     ```markdown
-    # Earnings Report: MSFT (Microsoft Corporation)
+    # 收益报告：MSFT（微软公司）
 
-    **Sector:** TECHNOLOGY
-    **Industry:** SERVICES-PREPACKAGED SOFTWARE
-    **Current EPS:** $12.43
+    **行业：** 技术
+    **产业：** 服务-预打包软件
+    **当前每股收益：** $12.43
 
-    ## Recent Quarterly Earnings
+    ## 最近的季度收益
 
-    | Quarter    | Date       | EPS Estimate | EPS Actual | Surprise % |
-    | ---------- | ---------- | ------------ | ---------- | ---------- |
-    | 2024-12-31 | 2025-01-29 | $3.11        | $3.23      | ↑4.01%     |
+    | 季度       | 日期       | 每股收益预估 | 实际每股收益 | 惊喜 % |
+    | ---------- | ---------- | ------------ | ------------ | ------ |
+    | 2024-12-31 | 2025-01-29 | $3.11        | $3.23        | ↑4.01% |
 
     ...
     ```
 
-### Challenges and Solutions
+### 挑战和解决方案
 
-During development, we encountered several challenges:
+在开发过程中，我们遇到了几个挑战：
 
-1. **API Rate Limiting**:
-    - **Challenge**: Free tier limited to 5 calls per minute
-    - **Solution**: Implemented queuing, enforced rate limits, and added comprehensive caching
-2. **Data Formatting**:
-    - **Challenge**: Raw API data not user-friendly
-    - **Solution**: Created formatting utilities for consistent display of financial data
-3. **Timeout Issues**:
-    - **Challenge**: Complex tools making multiple API calls could timeout
-    - **Solution**: Suggested breaking complex tools into smaller pieces, optimizing caching
+1. **API 速率限制**：
+    - **挑战**：免费层限制为每分钟 5 次调用
+    - **解决方案**：实施了队列、强制执行速率限制并添加了全面的缓存
+2. **数据格式化**：
+    - **挑战**：原始 API 数据不够用户友好
+    - **解决方案**：创建了格式化实用程序以一致地显示金融数据
+3. **超时问题**：
+    - **挑战**：进行多个 API 调用的复杂工具可能会超时
+    - **解决方案**：建议将复杂工具分解为更小的部分，优化缓存
 
-### Lessons Learned
+### 经验教训
 
-Our AlphaAdvantage implementation taught us several key lessons:
+我们的 AlphaAdvantage 实施教会了我们几个关键教训：
 
-1. **Plan for API Limits**: Understand and design around API rate limits from the beginning
-2. **Cache Strategically**: Identify high-value caching opportunities to improve performance
-3. **Format for Readability**: Invest in good data formatting for improved user experience
-4. **Test Every Path**: Test all tools individually before completion
-5. **Handle API Complexity**: For APIs requiring multiple calls, design tools with simpler scopes
+1. **规划 API 限制**：从一开始就理解并围绕 API 速率限制进行设计
+2. **战略缓存**：识别高价值缓存机会以提高性能
+3. **格式化可读性**：投资于良好的数据格式化以改善用户体验
+4. **测试每条路径**：在完成之前单独测试所有工具
+5. **处理 API 复杂性**：对于需要多次调用的 API，设计具有更简单范围的工具
 
-## Core Implementation Best Practices
+## 核心实施最佳实践
 
-### Comprehensive Logging
+### 全面的日志记录
 
-Effective logging is essential for debugging MCP servers:
+有效的日志记录对于调试 MCP 服务器至关重要：
 
 ```typescript
-// Start-up logging
+// 启动日志记录
 console.error("[Setup] Initializing AlphaAdvantage MCP server...")
 
-// API request logging
+// API 请求日志记录
 console.error(`[API] Getting stock overview for ${symbol}`)
 
-// Error handling with context
+// 带上下文的错误处理
 console.error(`[Error] Tool execution failed: ${error.message}`)
 
-// Cache operations
+// 缓存操作
 console.error(`[Cache] Using cached data for: ${cacheKey}`)
 ```
 
-### Strong Typing
+### 强类型
 
-Type definitions prevent errors and improve maintainability:
+类型定义防止错误并提高可维护性：
 
 ```typescript
 export interface AlphaAdvantageConfig {
@@ -521,14 +521,14 @@ export interface AlphaAdvantageConfig {
 }
 
 /**
- * Validate that a stock symbol is provided and looks valid
+ * 验证是否提供了股票代码并且看起来有效
  */
 function validateSymbol(symbol: unknown): asserts symbol is string {
 	if (typeof symbol !== "string" || symbol.trim() === "") {
 		throw new McpError(ErrorCode.InvalidParams, "A valid stock symbol is required")
 	}
 
-	// Basic symbol validation (letters, numbers, dots)
+	// 基本符号验证（字母、数字、点）
 	const symbolRegex = /^[A-Za-z0-9.]+$/
 	if (!symbolRegex.test(symbol)) {
 		throw new McpError(ErrorCode.InvalidParams, `Invalid stock symbol: ${symbol}`)
@@ -536,43 +536,43 @@ function validateSymbol(symbol: unknown): asserts symbol is string {
 }
 ```
 
-### Intelligent Caching
+### 智能缓存
 
-Reduce API calls and improve performance:
+减少 API 调用并提高性能：
 
 ```typescript
-// Default cache TTL in seconds
+// 默认缓存 TTL（秒）
 const DEFAULT_CACHE_TTL = {
-	STOCK_OVERVIEW: 60 * 60, // 1 hour
-	TECHNICAL_ANALYSIS: 60 * 30, // 30 minutes
-	FUNDAMENTAL_ANALYSIS: 60 * 60 * 24, // 24 hours
-	EARNINGS_REPORT: 60 * 60 * 24, // 24 hours
-	NEWS: 60 * 15, // 15 minutes
+	STOCK_OVERVIEW: 60 * 60, // 1 小时
+	TECHNICAL_ANALYSIS: 60 * 30, // 30 分钟
+	FUNDAMENTAL_ANALYSIS: 60 * 60 * 24, // 24 小时
+	EARNINGS_REPORT: 60 * 60 * 24, // 24 小时
+	NEWS: 60 * 15, // 15 分钟
 }
 
-// Check cache first
+// 首先检查缓存
 const cachedData = this.cache.get<T>(cacheKey)
 if (cachedData) {
 	console.error(`[Cache] Using cached data for: ${cacheKey}`)
 	return cachedData
 }
 
-// Cache successful responses
+// 缓存成功的响应
 this.cache.set(cacheKey, response.data, cacheTTL)
 ```
 
-### Graceful Error Handling
+### 优雅的错误处理
 
-Implement robust error handling that maintains a good user experience:
+实施保持良好用户体验的强大错误处理：
 
 ```typescript
 try {
 	switch (request.params.name) {
 		case "get_stock_overview": {
-			// Implementation...
+			// 实施...
 		}
 
-		// Other cases...
+		// 其他情况...
 
 		default:
 			throw new McpError(ErrorCode.MethodNotFound, `Unknown tool: ${request.params.name}`)
@@ -596,13 +596,13 @@ try {
 }
 ```
 
-## MCP Resources
+## MCP 资源
 
-Resources let your MCP servers expose data to Caret without executing code. They're perfect for providing context like files, API responses, or database records that Caret can reference during conversations.
+资源让您的 MCP 服务器在不执行代码的情况下向 Caret 公开数据。它们非常适合提供上下文，如文件、API 响应或 Caret 在对话期间可以引用的数据库记录。
 
-### Adding Resources to Your MCP Server
+### 向 MCP 服务器添加资源
 
-1. **Define the resources** your server will expose:
+1. **定义资源**您的服务器将公开：
 
 ```typescript
 server.setRequestHandler(ListResourcesRequestSchema, async () => {
@@ -618,7 +618,7 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
 })
 ```
 
-2. **Implement read handlers** to deliver the content:
+2. **实施读取处理程序**以传递内容：
 
 ```typescript
 server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
@@ -639,67 +639,67 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 })
 ```
 
-Resources make your MCP servers more context-aware, allowing Caret to access specific information without requiring you to copy/paste. For more information, refer to the [official documentation](https://modelcontextprotocol.io/docs/concepts/resources).
+资源使您的 MCP 服务器更具上下文感知能力，允许 Caret 访问特定信息而无需您复制/粘贴。有关更多信息，请参阅[官方文档](https://modelcontextprotocol.io/docs/concepts/resources)。
 
-## Common Challenges and Solutions
+## 常见挑战和解决方案
 
-### API Authentication Complexities
+### API 身份验证复杂性
 
-**Challenge**: APIs often have different authentication methods.
+**挑战**：API 通常有不同的身份验证方法。
 
-**Solution**:
+**解决方案**：
 
--   For API keys, use environment variables in the MCP configuration
--   For OAuth, create a separate script to obtain refresh tokens
--   Store sensitive tokens securely
+-   对于 API 密钥，在 MCP 配置中使用环境变量
+-   对于 OAuth，创建单独的脚本以获取刷新令牌
+-   安全地存储敏感令牌
 
 ```typescript
-// Authenticate using API key from environment
+// 使用环境中的 API 密钥进行身份验证
 const API_KEY = process.env.ALPHAVANTAGE_API_KEY
 if (!API_KEY) {
 	console.error("[Error] Missing ALPHAVANTAGE_API_KEY environment variable")
 	process.exit(1)
 }
 
-// Initialize API client
+// 初始化 API 客户端
 const apiClient = new AlphaAdvantageClient({
 	apiKey: API_KEY,
 })
 ```
 
-### Missing or Limited API Features
+### 缺失或有限的 API 功能
 
-**Challenge**: APIs may not provide all the functionality you need.
+**挑战**：API 可能不提供您需要的所有功能。
 
-**Solution**:
+**解决方案**：
 
--   Implement fallbacks using available endpoints
--   Create simulated functionality where necessary
--   Transform API data to match your needs
+-   使用可用端点实施回退
+-   在必要时创建模拟功能
+-   转换 API 数据以满足您的需求
 
-### API Rate Limiting
+### API 速率限制
 
-**Challenge**: Most APIs have rate limits that can cause failures.
+**挑战**：大多数 API 都有可能导致失败的速率限制。
 
-**Solution**:
+**解决方案**：
 
--   Implement proper rate limiting
--   Add intelligent caching
--   Provide graceful degradation
--   Add transparent errors about rate limits
+-   实施适当的速率限制
+-   添加智能缓存
+-   提供优雅降级
+-   添加关于速率限制的透明错误
 
 ```typescript
 if (this.requestsThisMinute >= 5) {
 	console.error("[Rate Limit] Rate limit reached. Waiting for next minute...")
 	return new Promise<void>((resolve) => {
 		const remainingMs = 60 * 1000 - (Date.now() % (60 * 1000))
-		setTimeout(resolve, remainingMs + 100) // Add 100ms buffer
+		setTimeout(resolve, remainingMs + 100) // 添加 100ms 缓冲
 	})
 }
 ```
 
-## Additional Resources
+## 其他资源
 
--   [MCP Protocol Documentation](https://github.com/modelcontextprotocol/mcp)
--   [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk-js)
--   [MCP Server Examples](https://github.com/modelcontextprotocol/servers)
+-   [MCP 协议文档](https://github.com/modelcontextprotocol/mcp)
+-   [MCP SDK 文档](https://github.com/modelcontextprotocol/sdk-js)
+-   [MCP 服务器示例](https://github.com/modelcontextprotocol/servers)

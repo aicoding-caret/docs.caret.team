@@ -1,40 +1,40 @@
 ---
-title: "Cloud Provider Integration"
+title: "クラウドプロバイダー統合"
 ---
 
-Caret supports major cloud providers like AWS Bedrock and Google's Cloud Vertex; whichever your team currently uses is appropriate, and there's no need to change providers to utilize Caret's features.
+Caretは、AWS BedrockやGoogle Cloud Vertexなどの主要なクラウドプロバイダーをサポートしています。チームが現在使用しているものがどれであれ適切であり、Caretの機能を利用するためにプロバイダーを変更する必要はありません。
 
-For the purpose of this document, we assume your organization will use cloud-based frontier models. Cloud inference providers offer cutting-edge capabilities and the flexibility to select models which best suit your needs.
+このドキュメントの目的として、組織がクラウドベースのフロンティアモデルを使用すると想定しています。クラウド推論プロバイダーは、最先端の機能と、ニーズに最適なモデルを選択する柔軟性を提供します。
 
-Certain scenarios may warrant using local models, including handling highly sensitive data, applications requiring consistent low-latency responses, or compliance with strict data sovereignty requirements. If your team needs to utilize local models, see [Running Local Models ](/running-models-locally/read-me-first.mdx)with Caret.
-
----
-
-## AWS Bedrock Setup Guides
-
-#### [IAM Security Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) (For administrators)
-
-#### [AWS Bedrock setup for API Keys](/provider-config/aws-bedrock-with-apikey-authentication)
-
-#### [AWS Bedrock setup for Legacy IAM (AWS Credentials)](/provider-config/aws-bedrock-with-credentials-authentication)
-
-#### [AWS Bedrock setup for SSO token (AWS Profile)](/provider-config/aws-bedrock-with-profile-authentication)
-
-#### VPC Endpoint Setup
-
-To protect your team's data, Caret supports VPC (Virtual Private Cloud) endpoints, which create private connections between your data and AWS Bedrock. AWS VPCs enhance security by eliminating the need for public IP addresses, network gateways, or complex firewall rules—essentially creating a private highway for data that bypasses the public internet entirely. By keeping traffic within AWS's private network, teams also benefit from lower latency and more predictable performance when accessing services like AWS Bedrock or custom APIs. For those working with confidential information or operating in highly regulated industries like healthcare or finance, VPCs offers the perfect balance between the accessibility of cloud services and the security of private infrastructure.
+特定のシナリオでは、高度に機密性の高いデータの処理、一貫した低レイテンシー応答を必要とするアプリケーション、または厳格なデータ主権要件へのコンプライアンスを含め、ローカルモデルの使用が正当化される場合があります。チームがローカルモデルを利用する必要がある場合は、[Running Local Models](/running-models-locally/read-me-first.mdx)with Caretを参照してください。
 
 ---
 
-1. Consult the [AWS guide](https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html) to creating VPC endpoints. This document specifies pre-requisites and describes the syntax used for creating VPC endpoints.
-2. Follow the directions for [creating a VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws) in the AWS console. The image below pertains to steps 4 and 5 of the AWS guide linked above.
+## AWS Bedrockセットアップガイド
+
+#### [IAMセキュリティのベストプラクティス](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)（管理者向け）
+
+#### [APIキーを使用したAWS Bedrockセットアップ](/provider-config/aws-bedrock-with-apikey-authentication)
+
+#### [レガシーIAM（AWS認証情報）を使用したAWS Bedrockセットアップ](/provider-config/aws-bedrock-with-credentials-authentication)
+
+#### [SSOトークン（AWSプロファイル）を使用したAWS Bedrockセットアップ](/provider-config/aws-bedrock-with-profile-authentication)
+
+#### VPCエンドポイントのセットアップ
+
+チームのデータを保護するために、CaretはVPC（Virtual Private Cloud）エンドポイントをサポートしています。これにより、データとAWS Bedrock間にプライベート接続が作成されます。AWS VPCは、パブリックIPアドレス、ネットワークゲートウェイ、または複雑なファイアウォールルールの必要性を排除することでセキュリティを強化します。本質的には、パブリックインターネットをバイパスするデータ用のプライベートハイウェイを作成します。トラフィックをAWSのプライベートネットワーク内に保つことで、チームはAWS BedrockやカスタムAPIなどのサービスにアクセスする際に、より低いレイテンシーとより予測可能なパフォーマンスからも恩恵を受けます。医療や金融などの高度に規制された業界で機密情報を扱ったり運営したりする人々にとって、VPCはクラウドサービスのアクセシビリティとプライベートインフラストラクチャのセキュリティとの完璧なバランスを提供します。
+
+---
+
+1. VPCエンドポイントの作成については、[AWSガイド](https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html)を参照してください。このドキュメントは、前提条件を指定し、VPCエンドポイントを作成するために使用される構文について説明しています。
+2. AWSコンソールでの[VPCエンドポイントの作成](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws)の手順に従ってください。以下の画像は、上記にリンクされたAWSガイドのステップ4と5に関係します。
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-console.png" alt="VPC Console" />
 </figure>
 
-3. Note the IP address of your VPC endpoint, open Caret's settings menu, and select `AWS Bedrock`from the API Provider dropdown.
-4. Click the `Use Custom VPC endpoint`checkbox and enter the IP address of your VPC endpoint
+3. VPCエンドポイントのIPアドレスをメモし、Caretの設定メニューを開き、APIプロバイダードロップダウンから`AWS Bedrock`を選択します。
+4. `Use Custom VPC endpoint`チェックボックスをクリックし、VPCエンドポイントのIPアドレスを入力します
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-settings-menu.png" alt="VPC Settings Menu" />

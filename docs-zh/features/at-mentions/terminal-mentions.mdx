@@ -1,45 +1,45 @@
 ---
-title: "Terminal Mentions"
-sidebarTitle: "Terminal Mentions"
+title: "终端引用"
+sidebarTitle: "终端引用"
 ---
 
-The terminal mention lets you bring your terminal output directly into your conversation with Caret. Just type `@terminal` and Caret can see the recent output from your terminal.
+终端引用允许您将终端输出直接带入与 Caret 的对话中。只需输入 `@terminal`,Caret 就能看到您终端的最近输出。
 
-When you type `@` in chat, select "Terminal" from the menu or just type `@terminal` directly. Caret will immediately see the recent output from your active terminal, including error messages, build logs, or command results.
+在聊天中输入 `@` 时,从菜单中选择"终端"或直接输入 `@terminal`。Caret 会立即看到活动终端的最近输出,包括错误消息、构建日志或命令结果。
 
-I use the terminal mention all the time when I'm dealing with build errors, test failures, or debugging output. Instead of trying to copy and paste terminal output (which often loses formatting), I just ask:
-
-```
-I'm getting this error when running my tests: @terminal
-
-What's causing this and how can I fix it?
-```
-
-This gives Caret the complete terminal output with all its formatting intact. Caret can then analyze the error messages, stack traces, and surrounding context to provide more accurate help.
-
-The terminal mention is especially powerful when combined with file mentions. When I'm debugging a failed API call, I'll reference both:
+当我处理构建错误、测试失败或调试输出时,我一直在使用终端引用。不用尝试复制粘贴终端输出(这通常会丢失格式),我只需询问:
 
 ```
-I'm getting this error when calling my API: @terminal
+运行测试时出现这个错误: @terminal
 
-Here's my API client code: @/src/api/client.js
-And the endpoint implementation: @/src/server/routes/users.js
-
-What am I doing wrong?
+是什么原因导致的?我该如何修复它?
 ```
 
-This approach gives Caret everything it needs - the exact error output, the client code, and the server implementation - all without me having to copy anything manually.
+这让 Caret 获得完整的终端输出及其所有格式。然后 Caret 可以分析错误消息、堆栈跟踪和周围的上下文,提供更准确的帮助。
 
-Next time you're running into issues with command output or build errors, try using `@terminal` instead of copying the output. You'll get more accurate help because Caret can see the complete terminal context with proper formatting.
+终端引用与文件引用结合使用时特别强大。当我调试失败的 API 调用时,我会同时引用两者:
 
-## How It Works Under the Hood
+```
+调用 API 时出现这个错误: @terminal
 
-When you use the terminal mention in your message, here's what happens behind the scenes:
+这是我的 API 客户端代码: @/src/api/client.js
+这是端点实现: @/src/server/routes/users.js
 
-1. When you send your message, Caret detects the `@terminal` pattern in your text
-2. The extension calls `getLatestTerminalOutput()` which accesses VSCode's terminal API
-3. It captures the recent output buffer from your active terminal
-4. The terminal output is appended to your message in a structured format:
+我做错了什么?
+```
+
+这种方法为 Caret 提供了所需的一切 - 确切的错误输出、客户端代码和服务器实现 - 所有这些都无需我手动复制任何内容。
+
+下次遇到命令输出或构建错误问题时,尝试使用 `@terminal` 而不是复制输出。您将获得更准确的帮助,因为 Caret 可以看到完整的终端上下文及其正确的格式。
+
+## 工作原理
+
+当您在消息中使用终端引用时,后台发生的情况如下:
+
+1. 当您发送消息时,Caret 会检测文本中的 `@terminal` 模式
+2. 扩展调用 `getLatestTerminalOutput()`,该函数访问 VSCode 的终端 API
+3. 它从您的活动终端捕获最近的输出缓冲区
+4. 终端输出以结构化格式附加到您的消息中:
 
     ```
     <terminal_output>
@@ -50,24 +50,24 @@ When you use the terminal mention in your message, here's what happens behind th
     FAIL src/components/__tests__/Button.test.js
     ● Button component › renders correctly
 
-    [Complete terminal output with formatting preserved]
+    [保留格式的完整终端输出]
     </terminal_output>
     ```
 
-5. This enhanced message with the embedded terminal output is sent to the AI
-6. The AI can now "see" the complete terminal output with all formatting preserved
+5. 这条包含嵌入式终端输出的增强消息被发送给 AI
+6. AI 现在可以"看到"完整的终端输出及其所有格式
 
-This process happens automatically whenever you use the terminal mention, giving the AI access to your command results, error messages, and other terminal output without you having to copy it manually.
+每当您使用终端引用时,这个过程都会自动发生,让 AI 访问您的命令结果、错误消息和其他终端输出,而无需手动复制。
 
-## Troubleshooting Terminal Issues
+## 终端问题故障排除
 
-If you're experiencing issues with terminal mentions or terminal integration in general (such as "Shell Integration Unavailable" or commands not showing output), please refer to our comprehensive [Terminal Integration Troubleshooting Guide](/troubleshooting/terminal-integration-guide).
+如果您遇到终端引用或终端集成的问题(例如"Shell 集成不可用"或命令未显示输出),请参考我们的综合[终端集成故障排除指南](/troubleshooting/terminal-integration-guide)。
 
-Common issues include:
+常见问题包括:
 
--   Terminal mentions not capturing output
--   "Shell Integration Unavailable" messages in Caret chat
--   Commands executing but output not visible to Caret
--   Terminal integration working inconsistently
+-   终端引用未捕获输出
+-   Caret 聊天中出现"Shell 集成不可用"消息
+-   命令执行但输出对 Caret 不可见
+-   终端集成工作不稳定
 
-The troubleshooting guide provides platform-specific solutions and detailed configuration steps to resolve these issues.
+故障排除指南提供了特定于平台的解决方案和详细的配置步骤来解决这些问题。

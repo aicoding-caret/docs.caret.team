@@ -1,59 +1,59 @@
 ---
-title: "Security Concerns"
+title: "セキュリティ上の懸念"
 ---
 
-## Enterprise Security with Caret
+## Caretによるエンタープライズセキュリティ
 
-#### Caret addresses enterprise security concerns through its unique client-side architecture that prioritizes data privacy, secure cloud integration, and transparent operations. Below is a comprehensive overview of how Caret maintains robust security measures for enterprise environments.
+#### Caretは、データプライバシー、安全なクラウド統合、透明な運用を優先する独自のクライアントサイドアーキテクチャを通じて、エンタープライズのセキュリティ上の懸念に対処します。以下は、Caretがエンタープライズ環境向けに堅牢なセキュリティ対策を維持する方法の包括的な概要です。
 
 ---
 
-### Client-Side Architecture
+### クライアントサイドアーキテクチャ
 
-Caret operates exclusively as a client-side VSCode extension with zero server-side components. This fundamental design choice ensures that your code and data remain within your secure environment at all times. Unlike traditional AI assistants that send data to external servers for processing, Caret connects directly to your chosen cloud provider's AI endpoints, keeping all sensitive information within your infrastructure boundaries.
+Caretは、サーバーサイドコンポーネントを一切持たない、純粋にクライアントサイドのVSCode拡張機能として動作します。この基本的な設計選択により、コードとデータは常に安全な環境内に留まることが保証されます。データを処理のために外部サーバーに送信する従来のAIアシスタントとは異なり、Caretは選択したクラウドプロバイダーのAIエンドポイントに直接接続し、すべての機密情報をインフラストラクチャの境界内に保持します。
 
 <figure>
 </figure>
 
-### Data Privacy Commitment
+### データプライバシーへのコミットメント
 
-Caret implements a strict zero data retention policy, meaning your intellectual property never leaves your secure environment. The extension does not collect, store, or transmit your code to any central servers. This approach significantly reduces potential attack vectors that might otherwise be introduced through data transmission to third-party systems. Telemetry collection is optional and requires explicit consent.
+Caretは厳格なゼロデータ保持ポリシーを実装しており、知的財産が安全な環境から外に出ることはありません。この拡張機能は、コードを収集、保存、または中央サーバーに送信することはありません。このアプローチにより、サードパーティシステムへのデータ送信によって導入される可能性のある攻撃ベクトルが大幅に削減されます。テレメトリ収集はオプションであり、明示的な同意が必要です。
 
-### Cloud Provider Integration
+### クラウドプロバイダー統合
 
-Enterprise teams can access cutting-edge AI models through their existing cloud deployments. Caret supports seamless integration with:
+エンタープライズチームは、既存のクラウドデプロイメントを通じて最先端のAIモデルにアクセスできます。Caretは以下とのシームレスな統合をサポートしています：
 
 -   AWS Bedrock
 -   Google Cloud Vertex AI
 -   Microsoft Azure
 
-These integrations utilize your organization's existing security credentials, including native IAM role assumption for AWS. This ensures that all AI processing occurs within your corporate cloud environment, maintaining compliance with your established security protocols.
+これらの統合は、AWSのネイティブIAMロールの引き受けを含む、組織の既存のセキュリティ認証情報を利用します。これにより、すべてのAI処理が企業のクラウド環境内で行われ、確立されたセキュリティプロトコルへのコンプライアンスが維持されます。
 
-### Open-Source Transparency
+### オープンソースの透明性
 
-Caret's codebase is completely open-source, allowing for comprehensive security auditing by your internal teams. This transparency enables security professionals to verify exactly how the extension functions and confirm that it adheres to your organization's security requirements. Organizations can review the code to ensure it aligns with their security policies before deployment.
+Caretのコードベースは完全にオープンソースであり、社内チームによる包括的なセキュリティ監査が可能です。この透明性により、セキュリティ専門家は拡張機能がどのように機能するかを正確に検証し、組織のセキュリティ要件に準拠していることを確認できます。組織は、デプロイ前にコードをレビューして、セキュリティポリシーに整合していることを確認できます。
 
-### Controlled Modifications
+### 制御された変更
 
-The extension implements safeguards against unauthorized changes to your codebase. Caret requires explicit user approval for all file modifications and terminal commands, preventing accidental or unwanted alterations. This approval-based workflow maintains the integrity of your projects while still providing AI assistance.
+拡張機能は、コードベースへの不正な変更に対する保護機能を実装しています。Caretは、すべてのファイル変更とターミナルコマンドに対して明示的なユーザー承認を要求し、偶発的または望ましくない変更を防ぎます。この承認ベースのワークフローは、AI支援を提供しながらプロジェクトの整合性を維持します。
 
-### Enterprise Deployment Support
+### エンタープライズデプロイメントサポート
 
-For organizations with strict security review processes, Caret provides comprehensive documentation including detailed deployment diagrams, sequence diagrams illustrating all data flows, and complete security posture documentation. These materials facilitate thorough security reviews and help demonstrate compliance with enterprise data handling standards and regulations.
+厳格なセキュリティレビュープロセスを持つ組織のために、Caretは詳細なデプロイメント図、すべてのデータフローを示すシーケンス図、完全なセキュリティ態勢文書を含む包括的なドキュメントを提供します。これらの資料は、徹底的なセキュリティレビューを容易にし、エンタープライズデータ処理標準と規制へのコンプライアンスを実証するのに役立ちます。
 
-### Access Control
+### アクセス制御
 
-Enterprise editions of Caret (planned for Q2 2025) will include centralized administration features that allow organizations to:
+Caretのエンタープライズエディション（2025年第2四半期リリース予定）には、組織が以下を可能にする集中管理機能が含まれます：
 
--   Manage user access with customizable permission levels
--   Provision accounts with corporate credentials
--   Immediately revoke access when needed
--   Control which AI providers and LLM endpoints can be used
--   Deploy standardized settings across the organization
--   Prevent unauthorized use of personal API keys
+-   カスタマイズ可能な権限レベルでのユーザーアクセス管理
+-   企業認証情報によるアカウントのプロビジョニング
+-   必要に応じた即座のアクセス取り消し
+-   使用可能なAIプロバイダーとLLMエンドポイントの制御
+-   組織全体への標準化された設定のデプロイ
+-   個人APIキーの不正使用の防止
 
-### Compliance and Governance
+### コンプライアンスとガバナンス
 
-Caret's architecture supports compliance with data sovereignty requirements and enterprise data handling regulations. The planned Enterprise Complete edition will further enhance governance with detailed audit logging, compliance reporting, and automated policy enforcement mechanisms.
+Caretのアーキテクチャは、データ主権要件とエンタープライズデータ処理規制へのコンプライアンスをサポートします。計画されているEnterprise Completeエディションでは、詳細な監査ログ、コンプライアンスレポート、自動化されたポリシー実施メカニズムにより、ガバナンスがさらに強化されます。
 
-By combining client-side processing, direct cloud provider integration, and transparent operations, Caret offers enterprise teams a secure way to leverage AI assistance while maintaining strict control over their sensitive code and data.
+クライアントサイド処理、直接的なクラウドプロバイダー統合、透明な運用を組み合わせることで、Caretはエンタープライズチームに、機密コードとデータに対する厳格な制御を維持しながら、AI支援を活用する安全な方法を提供します。

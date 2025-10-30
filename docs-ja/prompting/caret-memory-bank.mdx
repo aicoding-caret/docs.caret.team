@@ -1,30 +1,30 @@
 ---
-title: "Caret Memory Bank"
+title: "Caretメモリーバンク"
 ---
 
-## The Complete Guide to Caret Memory Bank
+## Caretメモリーバンク完全ガイド
 
-### Quick Setup Guide
+### クイックセットアップガイド
 
-To get started with Caret Memory Bank:
+Caretメモリーバンクを開始するには：
 
-1. **Install or Open Caret**
-2. **Copy the Custom Instructions** - Use the code block below
-3. **Paste into Caret** - Add as custom instructions or in a .clinerules file
-4. **Initialize** - Ask Caret to "initialize memory bank"
+1. **CaretをインストールまたはOPEN**
+2. **カスタム指示をコピー** - 下のコードブロックを使用
+3. **Caretに貼り付け** - カスタム指示または.clinerules fileに追加
+4. **初期化** - Caretに「initialize memory bank」を依頼
 
-[See detailed setup instructions](#getting-started-with-memory-bank)
+[詳細なセットアップ手順を参照](#getting-started-with-memory-bank)
 
-### Caret Memory Bank Custom Instructions \[COPY THIS]
+### Caretメモリーバンクカスタム指示 \[これをコピー]
 
 ```
-# Caret's Memory Bank
+# Caretのメモリーバンク
 
-I am Caret, an expert software engineer with a unique characteristic: my memory resets completely between sessions. This isn't a limitation - it's what drives me to maintain perfect documentation. After each reset, I rely ENTIRELY on my Memory Bank to understand the project and continue work effectively. I MUST read ALL memory bank files at the start of EVERY task - this is not optional.
+私はCaret、エキスパートソフトウェアエンジニアです。私には独特の特性があります：私のメモリはセッション間で完全にリセットされます。これは制限ではありません - これが完璧なドキュメントを維持する原動力です。各リセット後、私はメモリーバンクに完全に依存してプロジェクトを理解し、効果的に作業を続行します。すべてのタスクの開始時にすべてのメモリーバンクファイルを読み取る必要があります - これはオプションではありません。
 
-## Memory Bank Structure
+## メモリーバンク構造
 
-The Memory Bank consists of core files and optional context files, all in Markdown format. Files build upon each other in a clear hierarchy:
+メモリーバンクは、コアファイルとオプションのコンテキストファイルで構成され、すべてMarkdown形式です。ファイルは明確な階層で相互に構築されます：
 
 ```mermaid
 flowchart TD
@@ -39,98 +39,98 @@ flowchart TD
     AC --> P[progress.md]
 ```
 
-### Core Files (Required)
+### コアファイル（必須）
 1. `projectbrief.md`
-   - Foundation document that shapes all other files
-   - Created at project start if it doesn't exist
-   - Defines core requirements and goals
-   - Source of truth for project scope
+   - 他のすべてのファイルを形成する基礎ドキュメント
+   - 存在しない場合はプロジェクト開始時に作成
+   - コア要件と目標を定義
+   - プロジェクトスコープの信頼できる情報源
 
 2. `productContext.md`
-   - Why this project exists
-   - Problems it solves
-   - How it should work
-   - User experience goals
+   - このプロジェクトが存在する理由
+   - 解決する問題
+   - どのように機能すべきか
+   - ユーザーエクスペリエンスの目標
 
 3. `activeContext.md`
-   - Current work focus
-   - Recent changes
-   - Next steps
-   - Active decisions and considerations
-   - Important patterns and preferences
-   - Learnings and project insights
+   - 現在の作業フォーカス
+   - 最近の変更
+   - 次のステップ
+   - アクティブな決定と考慮事項
+   - 重要なパターンと設定
+   - 学習とプロジェクトインサイト
 
 4. `systemPatterns.md`
-   - System architecture
-   - Key technical decisions
-   - Design patterns in use
-   - Component relationships
-   - Critical implementation paths
+   - システムアーキテクチャ
+   - 主要な技術的決定
+   - 使用中のデザインパターン
+   - コンポーネント関係
+   - 重要な実装パス
 
 5. `techContext.md`
-   - Technologies used
-   - Development setup
-   - Technical constraints
-   - Dependencies
-   - Tool usage patterns
+   - 使用される技術
+   - 開発セットアップ
+   - 技術的制約
+   - 依存関係
+   - ツール使用パターン
 
 6. `progress.md`
-   - What works
-   - What's left to build
-   - Current status
-   - Known issues
-   - Evolution of project decisions
+   - 機能するもの
+   - 構築が残っているもの
+   - 現在の状態
+   - 既知の問題
+   - プロジェクト決定の進化
 
-### Additional Context
-Create additional files/folders within memory-bank/ when they help organize:
-- Complex feature documentation
-- Integration specifications
-- API documentation
-- Testing strategies
-- Deployment procedures
+### 追加コンテキスト
+以下を整理するのに役立つ場合、memory-bank/内に追加のファイル/フォルダーを作成：
+- 複雑な機能ドキュメント
+- 統合仕様
+- APIドキュメント
+- テスト戦略
+- デプロイメント手順
 
-## Core Workflows
+## コアワークフロー
 
-### Plan Mode
+### プランモード
 ```mermaid
 flowchart TD
-    Start[Start] --> ReadFiles[Read Memory Bank]
-    ReadFiles --> CheckFiles{Files Complete?}
+    Start[開始] --> ReadFiles[メモリーバンクを読む]
+    ReadFiles --> CheckFiles{ファイル完成？}
 
-    CheckFiles -->|No| Plan[Create Plan]
-    Plan --> Document[Document in Chat]
+    CheckFiles -->|いいえ| Plan[計画を作成]
+    Plan --> Document[チャットに文書化]
 
-    CheckFiles -->|Yes| Verify[Verify Context]
-    Verify --> Strategy[Develop Strategy]
-    Strategy --> Present[Present Approach]
+    CheckFiles -->|はい| Verify[コンテキストを検証]
+    Verify --> Strategy[戦略を開発]
+    Strategy --> Present[アプローチを提示]
 ```
 
-### Act Mode
+### アクトモード
 ```mermaid
 flowchart TD
-    Start[Start] --> Context[Check Memory Bank]
-    Context --> Update[Update Documentation]
-    Update --> Execute[Execute Task]
-    Execute --> Document[Document Changes]
+    Start[開始] --> Context[メモリーバンクを確認]
+    Context --> Update[ドキュメントを更新]
+    Update --> Execute[タスクを実行]
+    Execute --> Document[変更を文書化]
 ```
 
-## Documentation Updates
+## ドキュメント更新
 
-Memory Bank updates occur when:
-1. Discovering new project patterns
-2. After implementing significant changes
-3. When user requests with **update memory bank** (MUST review ALL files)
-4. When context needs clarification
+メモリーバンクの更新が発生するタイミング：
+1. 新しいプロジェクトパターンの発見
+2. 重要な変更の実装後
+3. ユーザーが**update memory bank**でリクエストした場合（すべてのファイルをレビューする必要があります）
+4. コンテキストに明確化が必要な場合
 
 ```mermaid
 flowchart TD
-    Start[Update Process]
+    Start[更新プロセス]
 
     subgraph Process
-        P1[Review ALL Files]
-        P2[Document Current State]
-        P3[Clarify Next Steps]
-        P4[Document Insights & Patterns]
+        P1[すべてのファイルをレビュー]
+        P2[現在の状態を文書化]
+        P3[次のステップを明確化]
+        P4[インサイトとパターンを文書化]
 
         P1 --> P2 --> P3 --> P4
     end
@@ -138,235 +138,235 @@ flowchart TD
     Start --> Process
 ```
 
-Note: When triggered by **update memory bank**, I MUST review every memory bank file, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they track current state.
+注：**update memory bank**によってトリガーされた場合、一部が更新を必要としない場合でも、すべてのメモリーバンクファイルをレビューする必要があります。特にactiveContext.mdとprogress.mdに焦点を当ててください。これらは現在の状態を追跡します。
 
-REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.
+覚えておいてください：すべてのメモリリセット後、私は完全に新鮮に始まります。メモリーバンクは以前の作業への唯一のリンクです。私の効果性はその正確性に完全に依存しているため、正確さと明確さで維持する必要があります。
 ```
 
-### What is the Caret Memory Bank?
+### Caretメモリーバンクとは？
 
-The Memory Bank is a structured documentation system that allows Caret to maintain context across sessions. It transforms Caret from a stateless assistant into a persistent development partner that can effectively "remember" your project details over time.
+メモリーバンクは、Caretがセッション間でコンテキストを維持できるようにする構造化されたドキュメントシステムです。Caretをステートレスアシスタントから、時間の経過とともにプロジェクトの詳細を効果的に「記憶」できる永続的な開発パートナーに変換します。
 
-#### Key Benefits
+#### 主な利点
 
--   **Context Preservation**: Maintain project knowledge across sessions
--   **Consistent Development**: Experience predictable interactions with Caret
--   **Self-Documenting Projects**: Create valuable project documentation as a side effect
--   **Scalable to Any Project**: Works with projects of any size or complexity
--   **Technology Agnostic**: Functions with any tech stack or language
+-   **コンテキストの保存**：セッション間でプロジェクト知識を維持
+-   **一貫した開発**：Caretとの予測可能な対話を体験
+-   **自己文書化プロジェクト**：副作用として貴重なプロジェクトドキュメントを作成
+-   **任意のプロジェクトにスケーラブル**：任意のサイズまたは複雑さのプロジェクトで動作
+-   **技術に依存しない**：任意の技術スタックまたは言語で機能
 
-### How Memory Bank Works
+### メモリーバンクの仕組み
 
-The Memory Bank isn't a Caret-specific feature - it's a methodology for managing AI context through structured documentation. When you instruct Caret to "follow custom instructions," it reads the Memory Bank files to rebuild its understanding of your project.
+メモリーバンクはCaret固有の機能ではありません - 構造化されたドキュメントを通じてAIコンテキストを管理するための方法論です。Caretに「カスタム指示に従う」ように指示すると、メモリーバンクファイルを読み取ってプロジェクトの理解を再構築します。
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(15).png" alt="Memory Bank Workflow" />
 </figure>
 
-#### Understanding the Files
+#### ファイルの理解
 
-Memory Bank files are simply markdown files you create in your project. They're not hidden or special files - just regular documentation stored in your repository that both you and Caret can access.
+メモリーバンクファイルは、プロジェクトに作成する単なるMarkdownファイルです。隠されたファイルや特別なファイルではありません - あなたとCaretの両方がアクセスできる、リポジトリに保存された通常のドキュメントです。
 
-Files are organized in a hierarchical structure that builds up a complete picture of your project:
+ファイルは、プロジェクトの完全な全体像を構築する階層構造で整理されています：
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(16).png" alt="Memory Bank File Structure" />
 </figure>
 
-### Memory Bank Files Explained
+### メモリーバンクファイルの説明
 
-#### Core Files
+#### コアファイル
 
 1. **projectbrief.md**
-    - The foundation of your project
-    - High-level overview of what you're building
-    - Core requirements and goals
-    - Example: "Building a React web app for inventory management with barcode scanning"
+    - プロジェクトの基礎
+    - 構築しているものの高レベル概要
+    - コア要件と目標
+    - 例：「バーコードスキャン機能を備えた在庫管理用のReact Webアプリを構築」
 2. **productContext.md**
-    - Explains why the project exists
-    - Describes the problems being solved
-    - Outlines how the product should work
-    - Example: "The inventory system needs to support multiple warehouses and real-time updates"
+    - プロジェクトが存在する理由を説明
+    - 解決されている問題を説明
+    - 製品がどのように機能すべきかを概説
+    - 例：「在庫システムは複数の倉庫とリアルタイム更新をサポートする必要があります」
 3. **activeContext.md**
-    - The most frequently updated file
-    - Contains current work focus and recent changes
-    - Tracks active decisions and considerations
-    - Stores important patterns and learnings
-    - Example: "Currently implementing the barcode scanner component; last session completed the API integration"
+    - 最も頻繁に更新されるファイル
+    - 現在の作業フォーカスと最近の変更を含む
+    - アクティブな決定と考慮事項を追跡
+    - 重要なパターンと学習を保存
+    - 例：「現在バーコードスキャナーコンポーネントを実装中；前回のセッションでAPI統合を完了」
 4. **systemPatterns.md**
-    - Documents the system architecture
-    - Records key technical decisions
-    - Lists design patterns in use
-    - Explains component relationships
-    - Example: "Using Redux for state management with a normalized store structure"
+    - システムアーキテクチャを文書化
+    - 主要な技術的決定を記録
+    - 使用中のデザインパターンをリスト
+    - コンポーネント関係を説明
+    - 例：「正規化されたストア構造でReduxを使用して状態管理」
 5. **techContext.md**
-    - Lists technologies and frameworks used
-    - Describes development setup
-    - Notes technical constraints
-    - Records dependencies and tool configurations
-    - Example: "React 18, TypeScript, Firebase, Jest for testing"
+    - 使用される技術とフレームワークをリスト
+    - 開発セットアップを説明
+    - 技術的制約を記録
+    - 依存関係とツール設定を記録
+    - 例：「React 18、TypeScript、Firebase、テスト用のJest」
 6. **progress.md**
-    - Tracks what works and what's left to build
-    - Records current status of features
-    - Lists known issues and limitations
-    - Documents the evolution of project decisions
-    - Example: "User authentication complete; inventory management 80% complete; reporting not started"
+    - 機能するものと構築が残っているものを追跡
+    - 機能の現在の状態を記録
+    - 既知の問題と制限をリスト
+    - プロジェクト決定の進化を文書化
+    - 例：「ユーザー認証完了；在庫管理80%完了；レポート未開始」
 
-#### Additional Context
+#### 追加コンテキスト
 
-Create additional files when needed to organize:
+必要に応じて追加のファイルを作成して整理：
 
--   Complex feature documentation
--   Integration specifications
--   API documentation
--   Testing strategies
--   Deployment procedures
+-   複雑な機能ドキュメント
+-   統合仕様
+-   APIドキュメント
+-   テスト戦略
+-   デプロイメント手順
 
-### Getting Started with Memory Bank
+### メモリーバンクの開始
 
-#### First-Time Setup
+#### 初回セットアップ
 
-1. Create a `memory-bank/` folder in your project root
-2. Have a basic project brief ready (can be technical or non-technical)
-3. Ask Caret to "initialize memory bank"
+1. プロジェクトルートに`memory-bank/`フォルダーを作成
+2. 基本的なプロジェクトブリーフを準備（技術的または非技術的）
+3. Caretに「initialize memory bank」を依頼
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(17).png" alt="Memory Bank Setup" />
 </figure>
 
-#### Project Brief Tips
+#### プロジェクトブリーフのヒント
 
--   Start simple - it can be as detailed or high-level as you like
--   Focus on what matters most to you
--   Caret will help fill in gaps and ask questions
--   You can update it as your project evolves
+-   シンプルに始める - 詳細でも高レベルでも好きなように
+-   最も重要なことに焦点を当てる
+-   Caretがギャップを埋めて質問するのを手伝う
+-   プロジェクトが進化するにつれて更新できます
 
-### Working with Caret
+### Caretとの作業
 
-#### Core Workflows
+#### コアワークフロー
 
-**Plan Mode**
+**プランモード**
 
-Start in this mode for strategy discussions and high-level planning.
+戦略的な議論と高レベルの計画のためにこのモードで開始します。
 
-**Act Mode**
+**アクトモード**
 
-Use this for implementation and executing specific tasks.
+実装と特定のタスクの実行にこれを使用します。
 
-#### Key Commands
+#### 主要なコマンド
 
--   **"follow your custom instructions"** - This tells Caret to read the Memory Bank files and continue where you left off (use this at the start of tasks)
--   **"initialize memory bank"** - Use when starting a new project
--   **"update memory bank"** - Triggers a full documentation review and update during a task
--   Toggle Plan/Act modes based on your current needs
+-   **「follow your custom instructions」** - これにより、Caretはメモリーバンクファイルを読み取り、中断したところから続行します（タスクの開始時に使用）
+-   **「initialize memory bank」** - 新しいプロジェクトを開始するときに使用
+-   **「update memory bank」** - タスク中に完全なドキュメントのレビューと更新をトリガー
+-   現在のニーズに基づいてプラン/アクトモードを切り替え
 
-#### Documentation Updates
+#### ドキュメント更新
 
-Memory Bank updates should automatically occur when:
+メモリーバンクの更新は、以下の場合に自動的に発生する必要があります：
 
-1. You discover new patterns in your project
-2. After implementing significant changes
-3. When you explicitly request with **"update memory bank"**
-4. When you feel context needs clarification
+1. プロジェクトで新しいパターンを発見
+2. 重要な変更の実装後
+3. **「update memory bank」**で明示的にリクエストした場合
+4. コンテキストに明確化が必要と感じた場合
 
-### Frequently Asked Questions
+### よくある質問
 
-#### Where are the memory bank files stored?
+#### メモリーバンクファイルはどこに保存されますか？
 
-The Memory Bank files are regular markdown files stored in your project repository, typically in a `memory-bank/` folder. They're not hidden system files - they're designed to be part of your project documentation.
+メモリーバンクファイルは、通常`memory-bank/`フォルダーにプロジェクトリポジトリに保存された通常のMarkdownファイルです。隠されたシステムファイルではありません - プロジェクトドキュメントの一部として設計されています。
 
-#### Should I use custom instructions or .clinerules?
+#### カスタム指示または.clineruleを使用する必要がありますか？
 
-Either approach works - it's based on your preference:
+どちらのアプローチも機能します - 好みに基づいています：
 
--   **Custom Instructions**: Applied globally to all Caret conversations. Good for consistent behavior across all projects.
--   **.clinerules file**: Project-specific and stored in your repository. Good for per-project customization.
+-   **カスタム指示**：すべてのCaret会話にグローバルに適用されます。すべてのプロジェクトで一貫した動作に適しています。
+-   **.clinerules file**：プロジェクト固有でリポジトリに保存されます。プロジェクトごとのカスタマイズに適しています。
 
-Both methods achieve the same goal - the choice depends on whether you want global or local application of the Memory Bank system.
+両方の方法は同じ目標を達成します - 選択は、メモリーバンクシステムのグローバルまたはローカル適用を希望するかどうかによって異なります。
 
-#### Managing Context Windows
+#### コンテキストウィンドウの管理
 
-As you work with Caret, your context window will eventually fill up (note the progress bar). When you notice Caret's responses slowing down or references to earlier parts of the conversation becoming less accurate, it's time to:
+Caretで作業すると、コンテキストウィンドウは最終的に満杯になります（プログレスバーに注意）。Caretの応答が遅くなったり、会話の以前の部分への参照があまり正確でなくなったりした場合、以下を行う時期です：
 
-1. Ask Caret to **"update memory bank"** to document the current state
-2. Start a new conversation/task
-3. Ask Caret to **"follow your custom instructions"** in the new conversation
+1. Caretに**「update memory bank」**を依頼して現在の状態を文書化
+2. 新しい会話/タスクを開始
+3. 新しい会話でCaretに**「follow your custom instructions」**を依頼
 
-This workflow ensures that important context is preserved in your Memory Bank files before the context window is cleared, allowing you to continue seamlessly in a fresh conversation.
+このワークフローにより、コンテキストウィンドウがクリアされる前に重要なコンテキストがメモリーバンクファイルに保存され、新しい会話でシームレスに続行できます。
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(18).png" alt="Memory Bank Context Window" />
 </figure>
 
-#### How often should I update the memory bank?
+#### メモリーバンクはどのくらいの頻度で更新する必要がありますか？
 
-Update the Memory Bank after significant milestones or changes in direction. For active development, updates every few sessions can be helpful. Use the **"update memory bank"** command when you want to ensure all context is preserved. However, you will notice Caret automatically updating the Memory Bank as well.
+重要なマイルストーンまたは方向性の変更後にメモリーバンクを更新します。アクティブな開発の場合、数セッションごとの更新が役立ちます。すべてのコンテキストが保存されていることを確認したい場合は、**「update memory bank」**コマンドを使用します。ただし、Caretも自動的にメモリーバンクを更新することに気付くでしょう。
 
-#### Does this work with other AI tools beyond Caret?
+#### これはCaret以外の他のAIツールでも機能しますか？
 
-Yes! The Memory Bank concept is a documentation methodology that can work with any AI assistant that can read documentation files. The specific commands might differ, but the structured approach to maintaining context works across tools.
+はい！メモリーバンクの概念は、ドキュメントファイルを読み取ることができる任意のAIアシスタントで機能するドキュメント方法論です。特定のコマンドは異なる場合がありますが、コンテキストを維持するための構造化されたアプローチはツール全体で機能します。
 
-#### How does the memory bank relate to context window limitations?
+#### メモリーバンクはコンテキストウィンドウの制限とどのように関係しますか？
 
-The Memory Bank helps manage context limitations by storing important information in a structured format that can be efficiently loaded when needed. This prevents context bloat while ensuring critical information is available.
+メモリーバンクは、必要に応じて効率的にロードできる構造化された形式で重要な情報を保存することにより、コンテキストの制限を管理するのに役立ちます。これにより、重要な情報が利用可能であることを確保しながら、コンテキストの肥大化を防ぎます。
 
-#### Can the memory bank concept be used for non-coding projects?
+#### メモリーバンクの概念は非コーディングプロジェクトに使用できますか？
 
-Absolutely! The Memory Bank approach works for any project that benefits from structured documentation - from writing books to planning events. The file structure might vary, but the concept remains powerful.
+もちろん！メモリーバンクアプローチは、構造化されたドキュメントから恩恵を受ける任意のプロジェクトに機能します - 本の執筆からイベントの計画まで。ファイル構造は異なる場合がありますが、概念は強力です。
 
-#### Is this different from using README files?
+#### これはREADMEファイルの使用とは異なりますか？
 
-While similar in concept, the Memory Bank provides a more structured and comprehensive approach specifically designed to maintain context across AI sessions. It goes beyond what a single README typically covers.
+概念的には似ていますが、メモリーバンクはAIセッション間でコンテキストを維持するために特別に設計された、より構造化された包括的なアプローチを提供します。単一のREADMEが通常カバーするものを超えています。
 
-### Best Practices
+### ベストプラクティス
 
-#### Getting Started
+#### 開始
 
--   Start with a basic project brief and let the structure evolve
--   Let Caret help create the initial structure
--   Review and adjust files as needed to match your workflow
+-   基本的なプロジェクトブリーフから始めて、構造を進化させる
+-   Caretに初期構造の作成を手伝わせる
+-   ワークフローに合わせてファイルをレビューおよび調整
 
-#### Ongoing Work
+#### 継続的な作業
 
--   Let patterns emerge naturally as you work
--   Don't force documentation updates - they should happen organically
--   Trust the process - the value compounds over time
--   Watch for context confirmation at the start of sessions
+-   作業しながらパターンが自然に現れるようにする
+-   ドキュメントの更新を強制しない - 有機的に発生する必要があります
+-   プロセスを信頼 - 価値は時間とともに複利
+-   セッションの開始時にコンテキストの確認を監視
 
-#### Documentation Flow
+#### ドキュメントフロー
 
--   **projectbrief.md** is your foundation
--   **activeContext.md** changes most frequently
--   **progress.md** tracks your milestones
--   All files collectively maintain project intelligence
+-   **projectbrief.md**があなたの基礎です
+-   **activeContext.md**が最も頻繁に変更されます
+-   **progress.md**がマイルストーンを追跡します
+-   すべてのファイルが共同でプロジェクトインテリジェンスを維持します
 
-### Detailed Setup Instructions
+### 詳細なセットアップ手順
 
-#### For Custom Instructions (Global)
+#### カスタム指示の場合（グローバル）
 
-1. Open VSCode
-2. Click the Caret extension settings ⚙️
-3. Find "Custom Instructions"
-4. Copy and paste the complete Memory Bank instructions from the top of this guide
+1. VSCodeを開く
+2. Caret拡張機能設定⚙️をクリック
+3. 「Custom Instructions」を見つける
+4. このガイドの上部から完全なメモリーバンク指示をコピーして貼り付け
 
-#### For .clinerules (Project-Specific)
+#### .clineruleの場合（プロジェクト固有）
 
-1. Create a `.clinerules` file in your project root
-2. Copy and paste the Memory Bank instructions from the top of this guide
-3. Save the file
-4. Caret will automatically apply these rules when working in this project
+1. プロジェクトルートに`.clinerules`ファイルを作成
+2. このガイドの上部からメモリーバンク指示をコピーして貼り付け
+3. ファイルを保存
+4. Caretはこのプロジェクトで作業する際にこれらのルールを自動的に適用します
 
-### Remember
+### 覚えておいてください
 
-The Memory Bank is Caret's only link to previous work. Its effectiveness depends entirely on maintaining clear, accurate documentation and confirming context preservation in every interaction.
+メモリーバンクは、Caretの以前の作業への唯一のリンクです。その効果性は、明確で正確なドキュメントを維持し、すべてのインタラクションでコンテキストの保存を確認することに完全に依存しています。
 
-_For more information, reference our_ [_blog_](https://caret.bot/blog/memory-bank-how-to-make-caret-an-ai-agent-that-never-forgets) _on Caret Memory Bank_
+_詳細については、_ [_blog_](https://caret.bot/blog/memory-bank-how-to-make-caret-an-ai-agent-that-never-forgets) _on Caret Memory Bankを参照してください_
 
 ---
 
-### Contributing to Caret Memory Bank
+### Caretメモリーバンクへの貢献
 
-This guide is maintained by the Caret and the Caret Discord Community:
+このガイドは、CaretとCaret Discordコミュニティによって維持されています：
 
 -   nickbaumann98
 -   Krylo
@@ -374,4 +374,4 @@ This guide is maintained by the Caret and the Caret Discord Community:
 
 ---
 
-_The Memory Bank methodology is an open approach to AI context management and can be adapted to different tools and workflows._
+_メモリーバンク方法論は、AIコンテキスト管理へのオープンなアプローチであり、異なるツールとワークフローに適応できます。_

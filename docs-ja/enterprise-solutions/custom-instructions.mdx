@@ -1,22 +1,22 @@
 ---
-title: "Custom Instructions"
+title: "カスタム指示"
 ---
 
-## Building Custom Instructions for Teams
+## チーム向けカスタム指示の構築
 
-**Creating standardized project instructions ensures that all team members work within consistent guidelines. Start by documenting your project's technical foundation, then identify which information needs to be included in the instructions. The exact scope will vary depending on your team's needs, but generally it's best to provide as much information as possible. By creating comprehensive instructions that all team members follow, you establish a shared understanding of how code should be written, tested, and deployed across your project, resulting in more maintainable and consistent software.**
+**標準化されたプロジェクト指示を作成することで、すべてのチームメンバーが一貫したガイドラインの中で作業することが保証されます。まず、プロジェクトの技術的基盤を文書化し、次にどの情報を指示に含める必要があるかを特定します。正確な範囲はチームのニーズによって異なりますが、一般的には可能な限り多くの情報を提供することが最善です。すべてのチームメンバーが従う包括的な指示を作成することで、プロジェクト全体でコードをどのように記述、テスト、デプロイするかについての共通理解が確立され、より保守性が高く一貫性のあるソフトウェアが実現します。**
 
 ---
 
-Here are a few topics and examples to consider for your team's custom instructions:
+チームのカスタム指示に含めるべきトピックと例をいくつか示します：
 
-1. **Testing framework and specific commands**
-    - "All components must include Jest tests with at least 85% coverage. Run tests using `npm run test:coverage` before submitting any pull request."
-2. **Explicit library preferences**
-    - "Use React Query for data fetching and state management. Avoid Redux unless specifically required for complex global state. For styling, use Tailwind CSS with our custom theme configuration found in `src/styles/theme.js.`"
-3. **Where to find documentation**
-    - "All API documentation is available in our internal Notion workspace under 'Engineering > API Reference'. For component usage examples, refer to our Storybook instance at `https://storybook.internal.company.com`"
-4. **Which MCP servers to use, and for which purposes**
-    - "For database operations, use the Postgres MCP server with credentials stored in 1Password under 'Development > Database'. For deployments, use the AWS MCP server which requires the deployment role from IAM. Refer to `docs/mcp-setup.md` for configuration instructions."
-5. **Coding conventions specific to your project**
-    - "Name all React components using PascalCase and all helper functions using camelCase. Place components in the `src/components` directory organized by feature, not by type. Always use TypeScript interfaces for prop definitions."
+1. **テストフレームワークと特定のコマンド**
+    - 「すべてのコンポーネントには、少なくとも85%のカバレッジを持つJestテストを含める必要があります。プルリクエストを送信する前に、`npm run test:coverage`を使用してテストを実行してください。」
+2. **明示的なライブラリの選好**
+    - 「データ取得と状態管理にはReact Queryを使用してください。複雑なグローバル状態に特別に必要な場合を除き、Reduxは避けてください。スタイリングには、`src/styles/theme.js`にあるカスタムテーマ設定でTailwind CSSを使用してください。」
+3. **ドキュメントの場所**
+    - 「すべてのAPIドキュメントは、「Engineering > API Reference」の下にある内部Notionワークスペースで利用できます。コンポーネント使用例については、`https://storybook.internal.company.com`のStorybookインスタンスを参照してください。」
+4. **使用するMCPサーバーとその目的**
+    - 「データベース操作には、「Development > Database」の下に1Passwordに保存されている認証情報を使用して、Postgres MCPサーバーを使用してください。デプロイメントには、IAMからのデプロイメントロールを必要とするAWS MCPサーバーを使用してください。設定手順については、`docs/mcp-setup.md`を参照してください。」
+5. **プロジェクト固有のコーディング規約**
+    - 「すべてのReactコンポーネントにはPascalCaseを使用し、すべてのヘルパー関数にはcamelCaseを使用してください。コンポーネントは、タイプ別ではなく機能別に整理された`src/components`ディレクトリに配置してください。prop定義には常にTypeScriptインターフェースを使用してください。」

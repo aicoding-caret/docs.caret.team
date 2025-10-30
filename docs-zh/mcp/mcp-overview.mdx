@@ -19,87 +19,87 @@ description: "了解模型上下文协议（MCP）服务器、其功能以及 Ca
 	/>
 
 
-## Key Concepts
+## 核心概念
 
-MCP servers define a set of "**tools,**" which are functions the LLM can execute. These tools offer a wide range of capabilities.
+MCP 服务器定义了一组"**工具**"，这些工具是 LLM 可以执行的函数。这些工具提供了广泛的功能。
 
-**Here's how MCP works:**
+**MCP 的工作原理:**
 
--   **MCP hosts** discover the capabilities of connected servers and load their tools, prompts, and resources.
--   **Resources** provide consistent access to read-only data, akin to file paths or database queries.
--   **Security** is ensured as servers isolate credentials and sensitive data. Interactions require explicit user approval.
+-   **MCP 主机**发现连接的服务器的功能并加载它们的工具、提示和资源。
+-   **资源**提供对只读数据的一致访问，类似于文件路径或数据库查询。
+-   **安全性**得到保证，因为服务器隔离了凭据和敏感数据。交互需要明确的用户批准。
 
-## Use Cases
+## 使用场景
 
-The potential of MCP servers is vast. They can be used for a variety of purposes.
+MCP 服务器的潜力巨大。它们可以用于各种目的。
 
-**Here are some concrete examples of how MCP servers can be used:**
+**以下是 MCP 服务器使用的一些具体示例:**
 
--   **Web Services and API Integration:**
-    -   Monitor GitHub repositories for new issues
-    -   Post updates to Twitter based on specific triggers
-    -   Retrieve real-time weather data for location-based services
--   **Browser Automation:**
-    -   Automate web application testing
-    -   Scrape e-commerce sites for price comparisons
-    -   Generate screenshots for website monitoring
--   **Database Queries:**
-    -   Generate weekly sales reports
-    -   Analyze customer behavior patterns
-    -   Create real-time dashboards for business metrics
--   **Project and Task Management:**
-    -   Automate Jira ticket creation based on code commits
-    -   Generate weekly progress reports
-    -   Create task dependencies based on project requirements
--   **Codebase Documentation:**
-    -   Generate API documentation from code comments
-    -   Create architecture diagrams from code structure
-    -   Maintain up-to-date README files
+-   **Web 服务和 API 集成:**
+    -   监控 GitHub 存储库以查找新问题
+    -   根据特定触发器将更新发布到 Twitter
+    -   检索基于位置的服务的实时天气数据
+-   **浏览器自动化:**
+    -   自动化 Web 应用程序测试
+    -   抓取电子商务网站进行价格比较
+    -   为网站监控生成屏幕截图
+-   **数据库查询:**
+    -   生成每周销售报告
+    -   分析客户行为模式
+    -   为业务指标创建实时仪表板
+-   **项目和任务管理:**
+    -   根据代码提交自动创建 Jira 工单
+    -   生成每周进度报告
+    -   根据项目需求创建任务依赖关系
+-   **代码库文档:**
+    -   从代码注释生成 API 文档
+    -   从代码结构创建架构图
+    -   维护最新的 README 文件
 
-## Getting Started
+## 入门指南
 
-Caret does not come with any pre-installed MCP servers. You'll need to find and install them separately.
+Caret 不附带任何预安装的 MCP 服务器。您需要单独查找和安装它们。
 
-**Choose the right approach for your needs:**
+**选择适合您需求的方法:**
 
--   **Community Repositories:** Check for community-maintained lists of MCP servers on GitHub. See [Adding MCP Servers from Github](/mcp/adding-mcp-servers-from-github)
--   **Caret Marketplace:** Install one from Caret's [MCP Marketplace](/mcp/mcp-marketplace)
--   **Ask Caret:** You can ask Caret to help you find or create MCP servers
--   **Build Your Own:** Create custom MCP servers using the [MCP SDK](https://github.com/modelcontextprotocol/)
--   **Customize Existing Servers:** Modify existing servers to fit your specific requirements
+-   **社区存储库:** 在 GitHub 上查找社区维护的 MCP 服务器列表。请参阅[从 Github 添加 MCP 服务器](/mcp/adding-mcp-servers-from-github)
+-   **Caret 市场:** 从 Caret 的 [MCP 市场](/mcp/mcp-marketplace)安装一个
+-   **咨询 Caret:** 您可以要求 Caret 帮助您查找或创建 MCP 服务器
+-   **构建您自己的:** 使用 [MCP SDK](https://github.com/modelcontextprotocol/) 创建自定义 MCP 服务器
+-   **自定义现有服务器:** 修改现有服务器以满足您的特定需求
 
-## Integration with Caret
+## 与 Caret 集成
 
-Caret simplifies the building and use of MCP servers through its AI capabilities.
+Caret 通过其 AI 功能简化了 MCP 服务器的构建和使用。
 
-### Building MCP Servers
+### 构建 MCP 服务器
 
--   **Natural language understanding:** Instruct Caret in natural language to build an MCP server by describing its functionalities. Caret will interpret your instructions and generate the necessary code.
--   **Cloning and building servers:** Caret can clone existing MCP server repositories from GitHub and build them automatically.
--   **Configuration and dependency management:** Caret handles configuration files, environment variables, and dependencies.
--   **Troubleshooting and debugging:** Caret helps identify and resolve errors during development.
+-   **自然语言理解:** 通过描述其功能以自然语言指示 Caret 构建 MCP 服务器。Caret 将解释您的指令并生成必要的代码。
+-   **克隆和构建服务器:** Caret 可以从 GitHub 克隆现有的 MCP 服务器存储库并自动构建它们。
+-   **配置和依赖管理:** Caret 处理配置文件、环境变量和依赖项。
+-   **故障排除和调试:** Caret 帮助识别和解决开发过程中的错误。
 
-### Using MCP Servers
+### 使用 MCP 服务器
 
--   **Tool execution:** Caret seamlessly integrates with MCP servers, allowing you to execute their defined tools.
--   **Context-aware interactions:** Caret can intelligently suggest using relevant tools based on conversation context.
--   **Dynamic integrations:** Combine multiple MCP server capabilities for complex tasks. For example, Caret could use a GitHub server to get data and a Notion server to create a formatted report.
+-   **工具执行:** Caret 与 MCP 服务器无缝集成，允许您执行它们定义的工具。
+-   **上下文感知交互:** Caret 可以根据对话上下文智能地建议使用相关工具。
+-   **动态集成:** 为复杂任务组合多个 MCP 服务器功能。例如，Caret 可以使用 GitHub 服务器获取数据，使用 Notion 服务器创建格式化报告。
 
-## Security Considerations
+## 安全注意事项
 
-When working with MCP servers, it's important to follow security best practices:
+在使用 MCP 服务器时，遵循安全最佳实践非常重要:
 
--   **Authentication:** Always use secure authentication methods for API access
--   **Environment Variables:** Store sensitive information in environment variables
--   **Access Control:** Limit server access to authorized users only
--   **Data Validation:** Validate all inputs to prevent injection attacks
--   **Logging:** Implement secure logging practices without exposing sensitive data
+-   **身份验证:** 始终使用安全的身份验证方法进行 API 访问
+-   **环境变量:** 将敏感信息存储在环境变量中
+-   **访问控制:** 仅限授权用户访问服务器
+-   **数据验证:** 验证所有输入以防止注入攻击
+-   **日志记录:** 实施安全的日志记录实践，不暴露敏感数据
 
-## Resources
+## 资源
 
-There are various resources available for finding and learning about MCP servers.
+有各种资源可用于查找和学习 MCP 服务器。
 
-**Here are some links to resources for finding and learning about MCP servers:**
+**以下是查找和学习 MCP 服务器的一些资源链接:**
 
 -   **GitHub Repositories:** [https://github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) and [https://github.com/punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
 -   **Online Directories:** [https://mcpservers.org/](https://mcpservers.org/), [https://mcp.so/](https://mcp.so/), and [https://glama.ai/mcp/servers](https://glama.ai/mcp/servers)
