@@ -3,27 +3,27 @@ title: "키보드 단축키"
 sidebarTitle: "키보드 단축키"
 ---
 
-Cline의 키보드 단축키를 사용하면 키보드에서 손을 떼지 않고도 AI 지원에 액세스할 수 있습니다. 일반적인 Caret 작업에 단축키를 사용하여 워크플로 속도를 높이십시오.
+Caret의 키보드 단축키를 사용하면 키보드에서 손을 떼지 않고도 AI 지원에 액세스할 수 있습니다. 일반적인 Caret 작업에 단축키를 사용하여 워크플로 속도를 높이십시오.
 
 ## 기본 키보드 단축키
 
-Cline은 워크플로를 간소화하기 위해 다음과 같은 내장 키보드 단축키를 제공합니다.
+기본으로 제공되는 단축키는 다음과 같습니다.
 
 | 작업 | Windows/Linux | macOS | 조건 | 설명 |
 |---|---|---|---|---|
-| Cline에 추가 | `Ctrl+'` | `Cmd+'` | 텍스트가 선택된 경우 | 선택한 코드를 Caret 채팅에 추가 |
+| Caret에 추가 | `Ctrl+'` | `Cmd+'` | 텍스트가 선택된 경우 | 선택한 코드를 Caret 채팅에 추가 |
 | 채팅 입력 포커스 | `Ctrl+'` | `Cmd+'` | 텍스트가 선택되지 않은 경우 | Caret 채팅 입력 필드에 포커스 |
 | 커밋 메시지 생성 | (설정되지 않음) | (설정되지 않음) | Git이 SCM 공급자인 경우 | 소스 제어 보기를 통해 사용 가능 |
 
 ## 사용자 지정 단축키에 사용 가능한 명령
 
-Cline에는 몇 가지 기본 키보드 단축키만 있지만, 다음 명령 중 하나에 사용자 지정 단축키를 할당할 수 있습니다.
+필요한 명령에 사용자 지정 단축키를 할당할 수 있습니다.
 
 | 명령 ID | 설명 |
 |---|---|
 | [`caret.openInNewTab`](/ko/features/commands-and-shortcuts/overview) | 새 편집기 탭에서 Caret 열기 |
 | [`caret.addToChat`](/ko/features/commands-and-shortcuts/code-commands) | 선택한 코드를 Caret 채팅에 추가 |
-| [`caret.addTerminalOutputToChat`](/ko/features/commands-and-shortcuts/terminal-integration) | 터미널 출력을 Cline에 추가 |
+| [`caret.addTerminalOutputToChat`](/ko/features/commands-and-shortcuts/terminal-integration) | 터미널 출력을 Caret에 추가 |
 | `caret.focusChatInput` | Caret 채팅 입력 필드에 포커스 |
 | [`caret.generateGitCommitMessage`](/ko/features/commands-and-shortcuts/git-integration) | 스테이징된 변경 사항에 대한 커밋 메시지 생성 |
 | [`caret.explainCode`](/ko/features/commands-and-shortcuts/code-commands) | 선택한 코드 설명 |
@@ -33,7 +33,7 @@ Cline에는 몇 가지 기본 키보드 단축키만 있지만, 다음 명령 �
 
 ## 키보드 단축키 사용자 지정
 
-Cline의 키보드 단축키를 기본 설정에 맞게 사용자 지정할 수 있습니다.
+Caret의 키보드 단축키를 기본 설정에 맞게 사용자 지정할 수 있습니다.
 
 1.  VSCode에서 키보드 단축키 편집기 열기:
 
@@ -56,24 +56,24 @@ Cline의 키보드 단축키를 기본 설정에 맞게 사용자 지정할 수 
 |---|---|---|---|
 | Caret 사이드바 열기 | `Ctrl+Shift+C` / `Cmd+Shift+C` | `claude-dev.SidebarProvider.focus` | Caret 사이드바 패널 열기 |
 | 새 작업 | `Alt+N` | `caret.plusButtonClicked` | 새 Caret 작업 시작 |
-| 터미널을 Cline에 추가 | `Alt+T` | `caret.addTerminalOutputToChat` | 터미널 출력을 Cline에 추가 |
+| 터미널을 Caret에 추가 | `Alt+T` | `caret.addTerminalOutputToChat` | 터미널 출력을 Caret에 추가 |
 | 현재 작업 지우기 | `Alt+C` | (UI 작업에 대한 사용자 지정 키 바인딩 필요) | 현재 작업 지우기 |
 
 ## 키보드 전용 워크플로
 
-올바른 단축키를 사용하면 마우스를 전혀 만지지 않고도 Cline을 사용할 수 있습니다.
+올바른 단축키를 사용하면 마우스를 전혀 만지지 않고도 Caret을 사용할 수 있습니다.
 
 1.  키보드 탐색(`Shift+화살표` 키)으로 코드 선택
-2.  `Ctrl+'` / `Cmd+'`로 Cline에 보내기
+2.  `Ctrl+'` / `Cmd+'`로 Caret에 보내기
 3.  질문 입력 후 Enter 누르기
 4.  응답 검토 및 제안 적용
 
 ## 편집기 통합 단축키
 
-Cline의 키보드 단축키는 VSCode의 내장 단축키와 원활하게 통합됩니다.
+Caret의 키보드 단축키는 VSCode의 내장 단축키와 원활하게 통합됩니다.
 
--   코드를 Cline에 보내기 전에 VSCode의 선택 단축키(`Ctrl+L` / `Cmd+L`로 줄 선택 등) 사용
--   VSCode의 분할 편집기 단축키와 결합하여 코드와 Cline을 나란히 보기
+-   코드를 Caret에 보내기 전에 VSCode의 선택 단축키(`Ctrl+L` / `Cmd+L`로 줄 선택 등) 사용
+-   VSCode의 분할 편집기 단축키와 결합하여 코드와 Caret을 나란히 보기
 -   터미널 출력을 캡처하기 전에 VSCode의 터미널 포커스 단축키(`` Ctrl+` `` / `` Cmd+` ``) 사용
 
 ## 효과적인 사용을 위한 팁

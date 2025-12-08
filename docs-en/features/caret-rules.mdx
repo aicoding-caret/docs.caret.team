@@ -1,9 +1,22 @@
 Caret Rules allow you to provide Caret with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
+Caret Rules allow you to provide Caret with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+캐럿 Rule Priority: `caret-docs/features/f05-rule-priority-system.md` 기준으로 `.caretrules > .clinerules > .cursorrules > .windsurfrules` 단일 선택 우선순위를 적용하여 중복 로딩을 막습니다. 캐럿에서는 우선순위가 높은 파일 하나만 사용되므로 룰 작성 시 이 점을 명시하세요.
+</Note>
+
 ## Creating a Rule
 
 You can create a rule by clicking the `+` button in the Rules tab. This will open a new file in your IDE which you can use to write your rule.
 
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-rules.png" alt="Create a Rule" />
+</Frame>
 
 Once you save the file:
 
@@ -22,7 +35,7 @@ The location of your Global Rules directory depends on your operating system:
 
 > **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Caret/Rules`, check `~/Caret/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
 
-You can also have Caret create a rule for you by using the [`/newrule` slash command](/features/slash-commands/new-rule) in the chat.
+You can also have Caret create a rule for you by using the [`/newrule` slash command](/en/features/slash-commands/new-rule) in the chat.
 
 ```markdown Example Caret Rule Structure [expandable]
 # Project Guidelines
@@ -77,6 +90,20 @@ your-project/
 ```
 
 Caret's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+
+### AGENTS.md Standard Support
+
+Caret also supports the [AGENTS.md](https://agents.md/) standard as a fallback 
+(in addition to Caret Rules) by automatically detecting `AGENTS.md` files in 
+your workspace root. This allows you to use the same rules file across different AI 
+coding tools.
+
+```
+your-project/
+├── AGENTS.md
+├── src/
+└── ...
+```
 
 ### Tips for Writing Effective Caret Rules
 
@@ -165,3 +192,7 @@ Located conveniently under the chat input field, this popover allows you to:
 -   **Easily Add/Manage Rules:** Quickly create a workspace `.clinerules` file or folder if one doesn't exist, or add new rule files to an existing folder.
 
 This UI significantly simplifies switching contexts and managing different sets of instructions without needing to manually edit files or configurations during a conversation.
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+</Frame>

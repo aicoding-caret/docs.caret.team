@@ -2,22 +2,22 @@
 title: "プロンプトエンジニアリングガイド"
 ---
 
-Clineプロンプトガイドへようこそ！このガイドでは、効果的なプロンプトとカスタム指示の書き方を学び、Clineでの生産性を最大化する知識を身に付けることができます。
+Caretプロンプトガイドへようこそ！このガイドでは、効果的なプロンプトとカスタム指示の書き方を学び、Caretでの生産性を最大化する知識を身に付けることができます。
 
-## .clineignoreファイルガイド
+## .caretignoreファイルガイド
 
 ### 概要
 
-`.clineignore`ファイルは、Clineがコードベースを分析する際に無視するファイルとディレクトリをClineに指示するプロジェクトレベルの設定ファイルです。`.gitignore`と同様に、パターンマッチングを使用して、Clineのコンテキストと操作から除外するファイルを指定します。
+`.caretignore`ファイルは、Caretがコードベースを分析する際に無視するファイルとディレクトリをCaretに指示するプロジェクトレベルの設定ファイルです。`.gitignore`と同様に、パターンマッチングを使用して、Caretのコンテキストと操作から除外するファイルを指定します。
 
 ### 目的
 
 -   **ノイズの削減**: 自動生成されたファイル、ビルド成果物、その他の重要でないコンテンツを除外
--   **パフォーマンスの向上**: Clineが処理する必要があるコードの量を制限
--   **注意の集中**: Clineをコードベースの関連部分に誘導
--   **機密データの保護**: Clineが機密設定ファイルにアクセスすることを防ぐ
+-   **パフォーマンスの向上**: Caretが処理する必要があるコードの量を制限
+-   **注意の集中**: Caretをコードベースの関連部分に誘導
+-   **機密データの保護**: Caretが機密設定ファイルにアクセスすることを防ぐ
 
-### Example .clineignore File
+### Example .caretignore File
 
 ```
 # Dependencies
@@ -63,7 +63,7 @@ Effective prompting involves:
 #### Context Management
 
 -   **Starting a New Task:** "Caret, let's start a new task. Create `user-authentication.js`. We need to implement user login with JWT tokens. Here are the requirements…"
--   **Summarizing Previous Work:** "Caret, summarize what we did in the last user dashboard task. I want to capture the main features and outstanding issues. Save this to `cline_docs/user-dashboard-summary.md`."
+-   **Summarizing Previous Work:** "Caret, summarize what we did in the last user dashboard task. I want to capture the main features and outstanding issues. Save this to `caret_docs/user-dashboard-summary.md`."
 
 #### Debugging
 

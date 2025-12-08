@@ -1,84 +1,413 @@
 ---
 title: "Installing Caret"
-description: "Caret is a VS Code extension that brings AI-powered coding assistance directly
-    to your editor. Install using one of these methods:"
+description: "Get Caret up and running in your favorite IDE with these simple installation steps"
 ---
 
-### Installation Options
+<Note>
+이 가이드는 Caret v3.38.1 머지본을 기준으로 캐럿(Caret)에 맞춰 작성되었습니다. 캐럿 전용 정책(지원 OS/스토어, 인증·라우팅, 모델 제한)이 있는 경우 각 섹션에 `<Note>`로 표시합니다.
+</Note>
 
--   **VS Code Marketplace (Recommended):** Fastest method for standard VS Code and Cursor users.
--   **Open VSX Registry:** For VS Code-compatible editors like VSCodium.
+<Note>
+**Ready to get started?** Installation takes less than 2 minutes! Choose your editor below and follow the simple steps.
+</Note>
 
-### VS Code Marketplace: Step-by-Step Setup
+## Before You Begin
 
-Follow these steps to get Caret up and running:
+<CardGroup cols={1}>
+  <Card title="Create Your Account" icon="user-plus" href="https://app.caret.bot/signup">
+    Sign up for a **free Caret account** to get:
+    - Access to multiple AI models including stealth models
+    - Seamless setup without managing API keys
+    - Occasional free inferencing through partner providers
+  </Card>
+  
+  <Card title="Have a Compatible Editor" icon="code">
+    Caret works with:
+    - **VS Code** / **Cursor**
+    - **JetBrains IDEs** (IntelliJ, PyCharm, WebStorm, etc.)
+    - **VSCodium** / **Windsurf**
+    
+    Install one before proceeding.
+  </Card>
+</CardGroup>
 
-1.  **Open VS Code:** Launch the VS Code application.
+## Installation Instructions
+<Tabs>
+  <TabItem title="VS Code/Cursor" value="vs-code-cursor" icon="code">
+    <Frame>
+      <img
+      	src="https://storage.googleapis.com/cline_public_images/vscode.png"
+      	alt="VS Code logo"
+      	style={{ width: "100px", height: "auto", display: "block" }}
+      />
+    </Frame>
+    <Steps>
+      <Step title="Open Extensions">
+        Launch VS Code and open the Extensions view:
+        - Press `Ctrl/Cmd + Shift + X`, or
+        - Click the Extensions icon in the Activity Bar
+      </Step>
 
-    > **Note:** If VS Code shows "Running extensions might...", click "Allow".
+      <Step title="Search for Caret">
+        Type **"Caret"** in the Extensions marketplace search bar
+        	<Frame>
+            <img src="https://storage.googleapis.com/cline_public_images/extension-installation.png" alt="VS Code marketplace showing Caret extension" 
+            />
+          </Frame>
+      </Step>
 
-2.  **Open Your Caret Folder:** In VS Code, open the Caret folder you created in Documents.
-3.  **Navigate to Extensions:** Click on the Extensions icon in the Activity Bar on the side of VS Code (`Ctrl + Shift + X` or `Cmd + Shift + X`).
-4.  **Search for 'Caret':** In the Extensions search bar, type `Caret`.
+      <Step title="Install">
+        Click the **Install** button on the Caret extension
+        
+        <Frame caption="VS Code marketplace with Caret extension ready to install">
+        	<img
+        		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(20).png"
+        		alt="VS Code marketplace showing Caret extension"
+        	/>
+        </Frame>
+      </Step>
 
-<figure>
-	<img
-		src="/assets/images/caret-install.png"
-		alt="VS Code marketplace showing Caret extension"
-	/>
-	<figcaption>VS Code marketplace with Caret extension ready to install</figcaption>
-</figure>
+      <Step title="Access Caret">
+        After installation completes:
+        - Click the **Caret icon** in the Activity Bar, or
+        - Open Command Palette (`Ctrl/Cmd + Shift + P`) → type **"Caret: Open In New Tab"**
 
-1. **Install the Extension:** Click the "Install" button next to the Caret extension.
-2. **Open Caret:**
-    - Click the Caret icon in the Activity Bar.
-    - Or, use the command palette (`Ctrl/Cmd + Shift + P`) and type "Caret: Open In New Tab" for a better view.
-3. **Troubleshooting:** If you don't see the Caret icon, try restarting VS Code.
+        <Frame caption="Caret opened in VSCode">
+        	<img
+        		src="https://storage.googleapis.com/cline_public_images/after-installation.png"
+        		alt="Caret opened in VSCode"
+        	/>
+        </Frame>
+        
+        <Warning>
+        If VS Code shows "Running extensions might..." dialog, click **Allow**. If you don't see the Caret icon, restart VS Code.
+        </Warning>
+      </Step>
+    </Steps>
 
-> **Pro Tip:** You should see the Caret chat window appear in your VS Code editor!
+    <Check>
+    **Installation Complete!** You should now see the Caret interface in your editor. Time to sign in!
+    </Check>
 
-### Open VSX Registry
+    <Accordion title="Troubleshooting">
 
-For VS Code-compatible editors without Marketplace access (like VSCodium and Windsurf):
+    **Plugin Installation Issues**
 
-1. Open your editor.
-2. Access the Extensions view.
-3. Search for "Caret".
-4. Select "Caret" by saoudrizwan and click **Install**.
-5. Reload if prompted.
+    If you can't find Caret in the marketplace:
+    - Make sure you're searching in the **Marketplace** tab (not Installed)
+    - Try searching for "Caret AI" or just "Caret"
+    - Check that your VS Code version is compatible
 
-### Creating Your Caret Account
+    If installation fails:
+    - Restart your VS Code and try again
+    - Check your internet connection
+    - Try installing from VSIX file as an alternative
 
-Now that you have Caret installed, let's get you set up with your account:
+    **Plugin Not Appearing**
 
-1. **Sign In to Caret:**
-    - Click the **Sign In** button in the Caret extension.
-    - You'll be taken to [app.caret.bot](https://app.caret.bot) to create your account.
-2. **Start with Free Credits:**
-    - No credit card needed!
-3. **Available AI Models:**
-    - Anthropic Claude 3.5-Sonnet (recommended for coding)
-    - DeepSeek Chat (cost-effective alternative)
-    - Google Gemini 2.0 Flash
-    - And more — all through your Caret account.
+    If you don't see the Caret tool window after installation:
+    - Restart VS Code completely (File → Exit and reopen)
+    - Check **View** → **Command Palette** → "Caret: Open In New Tab"
+    - Verify the plugin is enabled in **Extensions** view
+    - Look for the Caret icon in your Activity Bar (usually on the left side)
 
-### Your First Interaction with Caret
+    **Common Issues**
 
-You're ready to start building! Copy and paste this prompt into the Caret chat window:
+    Plugin appears to be installed but doesn't work:
+    - Ensure you've restarted VS Code after installation
+    - Check if there are any error messages in the Developer Console
+    - Try disabling and re-enabling the extension
 
-```
-Hey Caret! Could you help me create a new project folder called "hello-world" in my Caret directory and make a simple webpage that says "Hello World" in big blue text?
-```
+    Performance or compatibility issues:
+    - Make sure you're using a supported VS Code version
+    - Check for VS Code updates that might improve compatibility
+    - Consider closing other resource-intensive extensions if needed
 
-> **Pro Tip:** Caret will help you create the project folder and set up your first webpage!
+    Need help? Join our [Discord community](https://discord.gg/caret).
 
-### Tips for Working with Caret
+    </Accordion>
+  </TabItem>
+  
+  <TabItem title="JetBrains IDEs" value="jetbrains-ides" icon="brain">
+    <img
+    	src="https://storage.googleapis.com/cline_public_images/docs/assets/jetbrains-logo.svg"
+    	alt="JetBrains logo"
+    	style={{ width: "200px", height: "auto", margin: "0 auto 20px auto", display: "block" }}
+    />
 
--   **Ask Questions:** If you're unsure about something, ask Caret!
--   **Use Screenshots:** Caret can understand images — show him what you're working on.
--   **Copy and Paste Errors:** Share error messages in the chat for solutions.
--   **Speak Plainly:** Use your own words — Caret will translate them into code.
+    <Note>
+    Caret for JetBrains works almost identically to VS Code, with all core features: diff editing, tools, multiple API providers, MCP servers, Caret rules/workflows, and more.
+    </Note>
 
-### Still Struggling?
+    ### Choose Your Installation Method
 
-Join our Discord community and engage with our team and other Caret users directly.
+    <Tabs>
+      <TabItem title="From IDE (Recommended)" value="from-ide">
+        <Steps>
+          <Step title="Open Settings">
+            In your JetBrains IDE, go to **Settings**:
+            - Windows/Linux: `Ctrl+Alt+S`
+            - macOS: `Cmd+,`
+          </Step>
+
+          <Step title="Navigate to Plugins">
+            Go to **Plugins** → **Marketplace** tab
+          </Step>
+
+          <Step title="Install Caret">
+            Search for **"Caret"** and click **Install**
+            
+            <Frame>
+            	<img
+            		src="https://storage.googleapis.com/cline_public_images/jetbrains-installation.png"
+            		alt="JetBrains marketplace showing Caret plugin search results"
+            	/>
+            </Frame>
+          </Step>
+
+          <Step title="Restart IDE">
+            Restart your IDE to complete the installation
+            <Frame>
+            	<img
+            		src="https://storage.googleapis.com/cline_public_images/jetbrains-post-installation.png"
+            		alt="JetBrains marketplace showing Caret plugin search results"
+            	/>
+            </Frame>
+          </Step>
+        </Steps>
+      </TabItem>
+
+      <TabItem title="Browser Install" value="browser-install">
+        <Steps>
+          <Step title="Visit Marketplace">
+            Go to the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/28247-caret)
+          </Step>
+
+          <Step title="Click Install to IDE">
+            Click the **Install to IDE** button
+          </Step>
+
+          <Step title="Confirm in IDE">
+            Your IDE will open and prompt you to confirm the installation
+          </Step>
+
+          <Step title="Restart IDE">
+            Restart to complete the installation
+          </Step>
+        </Steps>
+      </TabItem>
+
+      <TabItem title="Manual Install" value="manual-install">
+        <Steps>
+          <Step title="Download Plugin">
+            Download from the [marketplace page](https://plugins.jetbrains.com/plugin/28247-caret)
+          </Step>
+
+          <Step title="Open Settings">
+            Go to **Settings** → **Plugins**
+          </Step>
+
+          <Step title="Install from Disk">
+            Click the gear icon → **Install Plugin from Disk**
+          </Step>
+
+          <Step title="Select File & Restart">
+            Select the downloaded `.zip` file and restart your IDE
+          </Step>
+        </Steps>
+      </TabItem>
+    </Tabs>
+
+    <Check>
+    **Installation Complete!** Find Caret in **View** → **Tool Windows** → **Caret** (usually on the right side).
+    </Check>
+
+    ### What Works in JetBrains
+
+    <AccordionGroup>
+      <Accordion title="✅ All Core Features" defaultOpen>
+        - Diff editing and file modifications
+        - Multiple API providers (Anthropic, OpenAI, local models)
+        - MCP servers and custom tools
+        - Caret rules and workflows
+        - @ mentions for files, folders, and problems
+        - Drag & drop support
+      </Accordion>
+
+      <Accordion title="📋 Terminal Integration Difference">
+        **JetBrains shows terminal output differently than VS Code:**
+        - VS Code: Output streams directly to chat
+        - JetBrains: Output appears in collapsible "Command Output" sections
+        
+        Commands execute successfully in both—just expand the section to see results in JetBrains.
+      </Accordion>
+    </AccordionGroup>
+
+    <Accordion title="Troubleshooting">
+
+    **Plugin Installation Issues**
+
+    If you can't find Caret in the marketplace:
+    - Make sure you're searching in the **Marketplace** tab (not Installed)
+    - Try searching for "Caret AI" or just "Caret"
+    - Check that your IDE version is compatible (2023.1 or later recommended)
+
+    If installation fails:
+    - Restart your IDE and try again
+    - Check your internet connection
+    - Try installing from disk as an alternative
+
+    **Plugin Not Appearing**
+
+    If you don't see the Caret tool window after installation:
+    - Restart your IDE completely (File → Exit and reopen)
+    - Check **View** → **Tool Windows** → **Caret**
+    - Verify the plugin is enabled in **Settings** → **Plugins** → **Installed** tab
+    - Look for the Caret icon in your IDE's tool window bar (usually on the right side)
+
+    **Common Issues**
+
+    Plugin appears to be installed but doesn't work:
+    - Ensure you've restarted your IDE after installation
+    - Check if there are any error messages in the IDE's event log
+    - Try disabling and re-enabling the plugin in Settings
+
+    Performance or compatibility issues:
+    - Make sure you're using a supported JetBrains IDE version
+    - Check for IDE updates that might improve compatibility
+    - Consider allocating more memory to your IDE if needed
+
+    Need help? Join our [Discord community](https://discord.gg/caret).
+
+    </Accordion>
+  </TabItem>
+  
+  <TabItem title="VSCodium/Windsurf" value="vscodium-windsurf" icon="terminal">
+    <Note>
+    These editors use the **Open VSX Registry** instead of the VS Code Marketplace, but the installation process is nearly identical.
+    </Note>
+
+    <Steps>
+      <Step title="Open Extensions">
+        Launch your editor (VSCodium, Windsurf, etc.) and open Extensions view:
+        - Press `Ctrl/Cmd + Shift + X`
+      </Step>
+
+      <Step title="Search for Caret">
+        Type **"Caret"** in the marketplace search bar
+      </Step>
+
+      <Step title="Install by Author">
+        Select **"Caret" by saoudrizwan** and click **Install**
+      </Step>
+
+      <Step title="Reload if Needed">
+        Reload your editor if prompted to complete installation
+      </Step>
+    </Steps>
+
+    <Check>
+    **Installation Complete!** Look for the Caret icon in your Activity Bar or use the Command Palette.
+    </Check>
+
+    <Accordion title="Troubleshooting">
+
+    **Plugin Installation Issues**
+
+    If you can't find Caret in the marketplace:
+    - Make sure you're searching in the **Marketplace** tab (not Installed)
+    - Try searching for "Caret AI" or just "Caret"
+    - Check that your editor version is compatible
+
+    If installation fails:
+    - Restart your editor and try again
+    - Check your internet connection
+    - Try installing from disk as an alternative
+
+    **Plugin Not Appearing**
+
+    If you don't see the Caret tool window after installation:
+    - Restart your editor completely (File → Exit and reopen)
+    - Check **View** → **Command Palette** → "Caret: Open In New Tab"
+    - Verify the plugin is enabled in **Extensions** view
+    - Look for the Caret icon in your Activity Bar (usually on the left side)
+
+    **Common Issues**
+
+    Plugin appears to be installed but doesn't work:
+    - Ensure you've restarted your editor after installation
+    - Check if there are any error messages in the Developer Console
+    - Try disabling and re-enabling the extension
+
+    Performance or compatibility issues:
+    - Make sure you're using a supported editor version
+    - Check for editor updates that might improve compatibility
+    - Consider closing other resource-intensive extensions if needed
+
+    Need help? Join our [Discord community](https://discord.gg/caret).
+
+    </Accordion>
+  </TabItem>
+</Tabs>
+
+## Next Steps: Sign In & Start Building
+
+<Steps>
+  <Step title="Open Caret">
+    Find and open Caret in your editor:
+    - **VS Code/Cursor/VSCodium/Windsurf:** Click the Caret icon in the Activity Bar
+    - **JetBrains:** Go to **View** → **Tool Windows** → **Caret**
+  </Step>
+
+  <Step title="Sign In">
+    Click the **Sign Up** button in the Caret interface
+    
+    <Info>
+    You'll be redirected to [app.caret.bot](https://app.caret.bot) to authenticate. After signing in, you'll automatically return to your editor.
+    </Info>
+    <Frame>
+            <img src="/assets/installation/login.png" alt="Caret sign up screen" 
+            />
+          </Frame>
+  </Step>
+
+  <Step title="You're All Set!">
+    <Check>
+    **Congratulations!** You're all set to start using Caret! 
+    
+    Caret is now ready to help you build projects. 
+    </Check>
+  </Step>
+</Steps>
+
+## Tips for Success
+
+<CardGroup cols={2}>
+  <Card title="Ask Questions" icon="circle-question">
+    Don't know something? Ask in Plan Mode! Caret can explain concepts, debug errors, and guide you through tasks.
+  </Card>
+  
+  <Card title="Use Screenshots" icon="image">
+    Some models understand screenshots of what you're working on or errors you encounter.
+  </Card>
+  
+  <Card title="Share Error Messages" icon="triangle-exclamation">
+    Use @problems to share error messages for quick solutions and debugging help.
+  </Card>
+  
+  <Card title="Speak Naturally" icon="comments">
+    Use your own words—no need for technical jargon. Caret will translate your ideas into code.
+  </Card>
+</CardGroup>
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Join Our Discord" icon="discord" href="https://discord.gg/caret">
+    Connect with our team and community for support, tips, and discussions.
+  </Card>
+  
+  <Card title="Read the Docs" icon="book-open" href="/getting-started/for-new-coders">
+    Explore guides for new coders, model selection, and advanced features.
+  </Card>
+</CardGroup>

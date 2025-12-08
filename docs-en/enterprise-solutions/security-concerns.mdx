@@ -2,18 +2,24 @@
 title: "Security Concerns"
 ---
 
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(인증/라우팅, 텔레메트리/로그 정책, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
 ## Enterprise Security with Caret
 
-#### Caret addresses enterprise security concerns through its unique client-side architecture that prioritizes data privacy, secure cloud integration, and transparent operations. Below is a comprehensive overview of how Caret maintains robust security measures for enterprise environments.
-
----
+Caret addresses enterprise security concerns through its unique client-side architecture that prioritizes data privacy, secure cloud integration, and transparent operations. Below is a comprehensive overview of how Caret maintains robust security measures for enterprise environments.
 
 ### Client-Side Architecture
 
 Caret operates exclusively as a client-side VSCode extension with zero server-side components. This fundamental design choice ensures that your code and data remain within your secure environment at all times. Unlike traditional AI assistants that send data to external servers for processing, Caret connects directly to your chosen cloud provider's AI endpoints, keeping all sensitive information within your infrastructure boundaries.
 
-<figure>
-</figure>
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-arch.png"
+		alt="Caret's relationship to local and remote assets"
+	/>
+</Frame>
 
 ### Data Privacy Commitment
 

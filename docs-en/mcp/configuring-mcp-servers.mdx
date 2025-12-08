@@ -7,15 +7,15 @@ title: "Configuring MCP Servers"
 Utilizing MCP servers will increase your token usage. Caret offers the ability to restrict or disable MCP server functionality as desired.
 
 1. Click the "MCP Servers" icon in the top navigation bar of the Caret extension.
-2. Select the "Installed" tab, and then Click the "Advanced MCP Settings" link at the bottom of that pane.
+2. Select the "Configure" tab, and then Click the "Advanced MCP Settings" link at the bottom of that pane.
 3. Caret will open a new settings window. find `Caret>Mcp:Mode` and make your selection from the dropdown menu.
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-edit%20(1).png"
 		alt="MCP settings edit"
 	/>
-</figure>
+</Frame>
 
 ## Managing Individual MCP Servers
 
@@ -24,12 +24,12 @@ Each MCP server has its own configuration panel where you can modify settings, m
 1. Click the "MCP Servers" icon in the top navigation bar of the Caret extension.
 2. Locate the MCP server you want to manage in the list, and open it by clicking on its name.
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-individual.png"
 		alt="MCP settings individual"
 	/>
-</figure>
+</Frame>
 
 ### Deleting a Server
 
@@ -56,7 +56,7 @@ To set the maximum time to wait for a response after a tool call to the MCP serv
 Settings for all installed MCP servers are located in the `cline_mcp_settings.json` file:
 
 1. Click the MCP Servers icon at the top navigation bar of the Caret pane.
-2. Select the "Installed" tab.
+2. Select the "Configure" tab.
 3. Click the "Configure MCP Servers" button at the bottom of the pane.
 
 The file uses a JSON format with a `mcpServers` object containing named server configurations:
@@ -95,7 +95,7 @@ Used for local servers running on your machine:
 -   Simpler setup (no HTTP server needed)
 -   Runs as a child process on your machine
 
-For more in-depth information about how STDIO transport works, see [MCP Transport Mechanisms](/mcp/mcp-transport-mechanisms).
+For more in-depth information about how STDIO transport works, see [MCP Transport Mechanisms](/en/mcp/mcp-transport-mechanisms).
 
 STDIO configuration example:
 
@@ -125,7 +125,7 @@ Used for remote servers accessed over HTTP/HTTPS:
 -   Requires network access
 -   Allows centralized deployment and management
 
-For more in-depth information about how SSE transport works, see [MCP Transport Mechanisms](/mcp/mcp-transport-mechanisms).
+For more in-depth information about how SSE transport works, see [MCP Transport Mechanisms](/en/mcp/mcp-transport-mechanisms).
 
 SSE configuration example:
 

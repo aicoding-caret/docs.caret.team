@@ -7,18 +7,17 @@ const sidebars: SidebarsConfig = {
       label: 'Getting Started',
       items: [
         'getting-started/what-is-caret',
-        'getting-started/model-selection-guide',
         'getting-started/installing-caret',
-        'getting-started/task-management',
-        'getting-started/understanding-context-management',
-        {
-          type: 'category',
-          label: 'For New Coders',
-          items: [
-            'getting-started/for-new-coders',
-            'getting-started/installing-dev-essentials'
-          ]
-        }
+        'getting-started/selecting-your-model',
+        'getting-started/your-first-project'
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Introduction',
+      items: [
+        'introduction/overview',
+        'introduction/welcome'
       ]
     },
     {
@@ -31,64 +30,15 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Core Features',
+      items: [
+        'core-features/model-selection-guide'
+      ]
+    },
+    {
+      type: 'category',
       label: 'Features',
       items: [
-        {
-          type: 'category',
-          label: '^ Caret Exclusive Features',
-          items: [
-            {
-              type: 'doc',
-              id: 'caret-exclusive/overview',
-              label: '^ Overview'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/persona-system',
-              label: '^ Persona System'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/dual-prompt-modes',
-              label: '^ Dual Mode System'
-            },
-            {
-              type: 'doc',
-              id: 'features/input-history',
-              label: '^ Prompt History'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/brand-switching',
-              label: '^ OEM Brand Switching'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/enhanced-provider-setup',
-              label: '^ Enhanced Provider Setup'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/caret-provider',
-              label: '^ Caret Provider'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/knowledge-parity-system',
-              label: '^ AI-Developer Knowledge Parity'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/multilingual-ui',
-              label: '^ Complete Multilingual UI'
-            },
-            {
-              type: 'doc',
-              id: 'caret-exclusive/advanced-rules',
-              label: '^ Advanced Rules System'
-            },
-          ],
-        },
         'features/yolo-mode',
         'features/dictation',
         'features/multiroot-workspace',
@@ -101,6 +51,7 @@ const sidebars: SidebarsConfig = {
         'features/focus-chain',
         'features/auto-compact',
         'features/editing-messages',
+        'features/hooks',
         {
           type: 'category',
           label: '@ Mentions',
@@ -117,6 +68,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Slash Commands',
           items: [
+            'features/slash-commands/slash-commands',
             'features/slash-commands/new-task',
             'features/slash-commands/new-rule',
             'features/slash-commands/smol',
@@ -134,6 +86,56 @@ const sidebars: SidebarsConfig = {
             'features/commands-and-shortcuts/git-integration',
             'features/commands-and-shortcuts/keyboard-shortcuts'
           ]
+        },
+        {
+          type: 'category',
+          label: 'Customization',
+          items: [
+            'features/customization/opening-caret-in-sidebar',
+            'features/customization/disable-terminal-pagers'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Tasks',
+          items: [
+            'features/tasks/understanding-tasks',
+            'features/tasks/task-management'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Caret Exclusive',
+          items: [
+            'caret-exclusive/overview',
+            'caret-exclusive/persona-system',
+            'caret-exclusive/dual-prompt-modes',
+            'caret-exclusive/brand-switching',
+            'caret-exclusive/enhanced-provider-setup',
+            'caret-exclusive/caret-provider',
+            'caret-exclusive/knowledge-parity-system',
+            'caret-exclusive/multilingual-ui',
+            'caret-exclusive/advanced-rules'
+          ]
+        }
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Caret CLI',
+      items: [
+        'caret-cli/overview',
+        'caret-cli/installation',
+        'caret-cli/three-core-flows',
+        'caret-cli/cli-reference',
+        {
+          type: 'category',
+          label: 'Samples',
+          items: [
+            'caret-cli/samples/overview',
+            'caret-cli/samples/github-integration',
+            'caret-cli/samples/github-issue-rca'
+          ]
         }
       ]
     },
@@ -150,9 +152,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Enterprise Solutions',
       items: [
-        'enterprise-solutions/cloud-provider-integration',
-        'enterprise-solutions/custom-instructions',
-        'enterprise-solutions/mcp-servers',
+        'enterprise-solutions/overview',
         'enterprise-solutions/security-concerns'
       ]
     },
@@ -208,17 +208,9 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Running Models Locally',
       items: [
-        'running-models-locally/read-me-first',
+        'running-models-locally/overview',
         'running-models-locally/lm-studio',
         'running-models-locally/ollama'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Troubleshooting',
-      items: [
-        'troubleshooting/terminal-quick-fixes',
-        'troubleshooting/terminal-integration-guide'
       ]
     },
     {

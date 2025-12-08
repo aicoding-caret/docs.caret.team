@@ -29,10 +29,10 @@ As a quick alternative to Caret suggesting the `newtask` tool or defining comple
 -   **Action:** Caret will propose creating a new task, typically suggesting context based on the current session (similar to its default behavior when using the tool). You will still get the `ask_followup_question` prompt to confirm and potentially modify the context before the new task is created.
 -   **Benefit:** Provides a fast, user-initiated way to leverage the `new_task` functionality for branching explorations or managing long sessions without waiting for Caret to suggest it.
 
-:::note
-	For more details on using the `/newtask` slash command, see the [New Task Command](/features/slash-commands/new-task)
+<Note>
+	For more details on using the `/newtask` slash command, see the [New Task Command](/en/features/slash-commands/new-task)
 	documentation.
-:::
+</Note>
 
 #### Default Behavior (Without `.clinerules`)
 
@@ -105,11 +105,11 @@ Below is an example `.clinerules` file focused specifically on using `new_task` 
 ````markdown
 # You MUST use the `new_task` tool: Task Handoff Strategy Guide
 
-**⚠️ CRITICAL INSTRUCTIONS - YOU MUST FOLLOW THESE GUIDELINES ⚠️**
+**CRITICAL INSTRUCTIONS - YOU MUST FOLLOW THESE GUIDELINES**
 
 This guide provides **MANDATORY** instructions for effectively breaking down complex tasks and implementing a smooth handoff process between tasks. You **MUST** follow these guidelines to ensure continuity, context preservation, and efficient task completion.
 
-## ⚠️ CONTEXT WINDOW MONITORING - MANDATORY ACTION REQUIRED ⚠️
+## CONTEXT WINDOW MONITORING - MANDATORY ACTION REQUIRED
 
 You **MUST** monitor the context window usage displayed in the environment details. When usage exceeds 50% of the available context window, you **MUST** initiate a task handoff using the `new_task` tool.
 
@@ -370,7 +370,7 @@ You **MUST** initiate task handoffs in these scenarios:
 5. **When switching focus areas** within a larger project
 6. **When different expertise** might be beneficial for different parts of the task
 
-**⚠️ FINAL REMINDER - CRITICAL INSTRUCTION ⚠️**
+**FINAL REMINDER - CRITICAL INSTRUCTION**
 
 You **MUST** monitor the context window usage in the environment details section. When it exceeds 50% (e.g., "105,000 / 200,000 tokens (53%)"), you **MUST** proactively initiate the task handoff process using the `ask_followup_question` tool followed by the `new_task` tool. You MUST use the `new_task` tool.
 

@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://docs.caret.team',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -99,8 +99,8 @@ const config: Config = {
 
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // Default social card (overridden per-locale in LayoutHead)
+    image: 'og/ogtag-en.webp',
     navbar: {
       title: 'Caret Docs',
       logo: {
@@ -113,12 +113,24 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           docsPluginId: 'docs-en',
           position: 'left',
-          label: 'Docs',
+          label: 'Service',
+          href: 'https://caret.team',
         },
         {
           href: 'https://marketplace.visualstudio.com/items?itemName=caretive.caret',
           label: 'Download',
           position: 'right',
+        },
+        {
+          type: 'dropdown',
+          label: 'Language',
+          position: 'right',
+          items: [
+            { label: 'English', href: '/en/getting-started/what-is-caret' },
+            { label: '한국어', href: '/ko/getting-started/what-is-caret' },
+            { label: '日本語', href: '/ja/getting-started/what-is-caret' },
+            { label: '中文', href: '/zh/getting-started/what-is-caret' },
+          ],
         },
         {
           href: 'https://github.com/aicoding-caret/caret',
@@ -157,14 +169,6 @@ const config: Config = {
             {
               label: 'Customer Service',
               href: 'mailto:support@caretive.ai',
-            },
-            {
-              label: 'Terms of Service',
-              href: 'https://caret.team/terms',
-            },
-            {
-              label: 'Privacy Policy',
-              href: 'https://caret.team/privacy',
             },
           ],
         },

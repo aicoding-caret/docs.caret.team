@@ -1,5 +1,7 @@
 # Caret Documentation Site
 
+[English](README.md) | [한국어](README.ko.md)
+
 🌍 **Multilingual Documentation Site for Caret AI Coding Assistant**
 
 This repository contains the source code for [docs.caret.team](https://docs.caret.team), the official multilingual documentation website for Caret - an AI-powered coding assistant based on [Cline](https://github.com/cline/cline).

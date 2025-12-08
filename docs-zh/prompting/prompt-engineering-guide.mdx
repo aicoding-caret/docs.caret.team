@@ -4,11 +4,11 @@ title: "提示工程指南"
 
 欢迎使用 Caret 提示指南！本指南将为您提供编写有效提示和自定义指令的知识，最大化您使用 Caret 的生产力。
 
-## .clineignore 文件指南
+## .caretignore 文件指南
 
 ### 概述
 
-`.clineignore` 文件是一个项目级配置文件，告诉 Caret 在分析您的代码库时要忽略哪些文件和目录。类似于 `.gitignore`，它使用模式匹配来指定应从 Caret 的上下文和操作中排除哪些文件。
+`.caretignore` 文件是一个项目级配置文件，告诉 Caret 在分析您的代码库时要忽略哪些文件和目录。类似于 `.gitignore`，它使用模式匹配来指定应从 Caret 的上下文和操作中排除哪些文件。
 
 ### 目的
 
@@ -17,7 +17,7 @@ title: "提示工程指南"
 -   **集中注意力**：将 Caret 引导到代码库的相关部分
 -   **保护敏感数据**：防止 Caret 访问敏感配置文件
 
-### .clineignore 文件示例
+### .caretignore 文件示例
 
 ```
 # Dependencies
@@ -63,7 +63,7 @@ node_modules/
 #### 上下文管理
 
 -   **开始新任务：** "Caret，让我们开始一个新任务。创建 `user-authentication.js`。我们需要使用 JWT 令牌实现用户登录。需求如下…"
--   **总结之前的工作：** "Caret，总结我们在上一个用户仪表板任务中所做的工作。我想要记录主要功能和未解决的问题。将其保存到 `cline_docs/user-dashboard-summary.md`。"
+-   **总结之前的工作：** "Caret，总结我们在上一个用户仪表板任务中所做的工作。我想要记录主要功能和未解决的问题。将其保存到 `caret_docs/user-dashboard-summary.md`。"
 
 #### 调试
 

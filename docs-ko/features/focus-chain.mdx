@@ -1,9 +1,9 @@
 ---
-title: "Focus Chain"
-sidebarTitle: "Focus Chain"
+title: "포커스 체인"
+sidebarTitle: "포커스 체인"
 ---
 
-Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
+Caret의 포커스 체인은 장기 작업을 위한 자동 TODO 관리 기능입니다. LLM에 전달되는 컨텍스트를 지속적으로 관리하며, 여러 번의 컨텍스트 리셋에서도 진행 상황을 유지합니다.
 
 <figure>
 	<img
@@ -12,113 +12,42 @@ Focus Chain is a task management enhancement feature in Caret that provides auto
 	/>
 </figure>
 
-This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
-
 :::tip
-  Focus Chain works particularly well with Caret's [Deep Planning slash command](/ko/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/ko/features/plan-and-act).
+[딥 플래닝 슬래시 명령](/ko/features/slash-commands/deep-planning)과 함께 사용하면, 계획 단계에서 만든 구현 TODO를 실시간으로 추적할 수 있습니다.
 :::
 
-## Key Features
+## 주요 기능
 
-### Automatic Todo List Generation
+### 자동 TODO 생성
+- 작업을 분석해 체크리스트 형태의 TODO를 자동 생성
+- 복잡한 작업을 단계별로 쪼개어 관리
+- 진행 상황에 따라 실시간 업데이트
 
-Caret analyzes your task and automatically creates a comprehensive todo list with:
-- Clear, actionable items in markdown checklist format
-- Logical breakdown of complex tasks into manageable steps
-- Real-time updates as work progresses
+### 직접 편집 가능한 TODO
+- TODO는 마크다운 파일로 저장되어 바로 수정 가능
+- 수정 사항을 자동으로 감지해 워크플로에 반영
+- 작업 헤더의 편집 버튼으로 빠르게 접근
 
-### User-Editable Todo Lists
+### 시각적 진행 표시
+- 작업 헤더에 현재 진행도(예: 3/8)를 표시
+- 완료 항목 체크, 진행 중 항목 강조
+- 확장 뷰로 전체 목록 확인
 
-Todo lists are stored as editable markdown files:
-- Direct editing through your preferred markdown editor
-- Automatic detection of changes you make
-- Seamless integration back into Caret's workflow
-- Quick access through the edit button in the task header
+### 리마인더
+- 기본 6메시지 간격(1~100까지 설정 가능)으로 TODO 갱신 알림
+- Plan → Act 전환 시 자동 알림
+- 수동 편집 시 즉시 업데이트
 
-### Visual Progress Tracking
+## 시작하기
 
-The task header displays clear progress indicators:
-- **Step counters** showing current progress (e.g., "3/8")
-- **Completed items** clearly marked with checkmarks
-- **Current work** highlighted with indicators
-- **Expandable view** to see the full todo list
+1. Caret 설정(⚙️) → **Features**에서 **Enable Focus Chain** 활성화  
+2. **Remind Caret Interval** 값 조정(기본 6)  
+3. 새 작업 시작 → TODO 자동 생성/관리 시작
 
-### Smart Reminder System
-
-Configurable reminders ensure todo lists stay current:
-- Default reminder every 6 messages (customizable 1-100)
-- Automatic prompts when switching from Plan Mode to Act Mode
-- User-triggered updates when todo lists are manually edited
-
-
-## Getting Started
-
-**Getting Started Steps:**
-
-1. **Setup**
-   - Click the gear icon in the Caret sidebar
-   - Navigate to the "Features" section
-
-2. **Configuration**
-   - Check "Enable Focus Chain"
-   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
-
-3. **Usage**
-   - Begin a new task
-   - Caret will automatically start creating and managing todo lists
-
-| Setting | Default | Range | Description |
+| 설정 | 기본값 | 범위 | 설명 |
 |---------|---------|-------|-------------|
-| Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
-| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
-
-## Usage Examples
-
-#### 1. Task Initiation
-
-When you start a new task with Focus Chain enabled:
-
-``` markdown User Request
-User: "Create a user authentication system for my React app"
-
-Caret: [Analyzes request and creates todo list]
-```
-
-#### 2. Todo List Created
-
-Caret creates a comprehensive plan for the task, stored in a markdown file:
-
-```markdown Todo List Created
-- [ ] Set up project structure
-- [ ] Install authentication dependencies
-- [ ] Create user registration component
-- [ ] Implement login functionality
-- [ ] Add password validation
-- [ ] Set up user database schema
-- [ ] Write authentication tests
-- [ ] Deploy to staging environment
-```
-
-#### 3. Progress Tracking
-
-As Caret works, the task header shows real-time progress:
-
-```markdown Todo List Header
-[3/8] Implement login functionality     ⌄
-```
-
-Click to expand and see the full list:
-
-```markdown Full Todo List
-✓ Set up project structure
-✓ Install authentication dependencies
-✓ Create user registration component
-○ Implement login functionality  ← Currently working
-○ Add password validation
-○ Set up user database schema
-○ Write authentication tests
-○ Deploy to staging environment
-```
+| Enable Focus Chain | Disabled | On/Off | 향상된 진행 추적 활성화 |
+| Remind Caret Interval | 6 | 1-100 messages | TODO 갱신 알림 주기 |
 
 #### 4. User Editing
 

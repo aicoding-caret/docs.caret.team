@@ -5,9 +5,9 @@ sidebarTitle: "Overview"
 
 @ mentions are one of Caret's most powerful features, letting you seamlessly bring external context into your conversations. Instead of copying and pasting code, error messages, or documentation, you can simply reference them with an @ symbol.
 
-<figure>
+<Frame>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/at-mentions.png" alt="@ Mentions Overview" />
-</figure>
+</Frame>
 
 When you type `@` in the chat input, Caret shows a menu of available mention types. These mentions let you reference files, folders, problems, terminal output, git changes, and even web content directly in your conversations.
 
@@ -16,43 +16,43 @@ When you type `@` in the chat input, Caret shows a menu of available mention typ
 Caret supports several types of @ mentions, each designed to bring different kinds of context into your conversations:
 
 <Columns cols={2}>
-  :::note
+  <Card title="File Mentions" icon="file" href="/features/at-mentions/file-mentions">
     Reference any file in your workspace with `@/path/to/file`. Caret sees the complete file content, including imports, related
     functions, and surrounding context.
-  :::
+  </Card>
 
 {" "}
 
-:::note
+<Card title="Folder Mentions" icon="folder" href="/features/at-mentions/folder-mentions">
 	Reference entire directories with `@/path/to/folder/`. Caret sees the folder structure and all file contents, perfect for
 	understanding complex interactions between multiple files.
-:::
+</Card>
 
 {" "}
 
-:::note
+<Card title="Problem Mentions" icon="triangle-exclamation" href="/features/at-mentions/problem-mentions">
 	Use `@problems` to show Caret all the errors and warnings in your workspace. Caret sees the complete list with file locations
 	and error messages.
-:::
+</Card>
 
 {" "}
 
-:::note
+<Card title="Terminal Mentions" icon="terminal" href="/features/at-mentions/terminal-mentions">
 	Use `@terminal` to share your recent terminal output. Caret sees the complete output with formatting preserved, perfect for
 	debugging build errors or test failures.
-:::
+</Card>
 
 {" "}
 
-:::note
+<Card title="Git Mentions" icon="code-branch" href="/features/at-mentions/git-mentions">
 	Reference uncommitted changes with `@git-changes` or specific commits with `@[commit-hash]`. Caret sees the complete diff,
 	commit message, and other relevant information.
-:::
+</Card>
 
-  :::note
+  <Card title="URL Mentions" icon="globe" href="/features/at-mentions/url-mentions">
     Reference web content with `@https://example.com`. Caret fetches and sees the complete webpage content, perfect for
     referencing documentation or GitHub issues.
-  :::
+  </Card>
 </Columns>
 
 ## Why @ Mentions Matter

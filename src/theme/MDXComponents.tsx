@@ -4,7 +4,12 @@ import {
   Card,
   Columns,
   Column,
+  CardGroup,
+  Frame,
+  Check,
   Note,
+  Warning,
+  Callout,
   Tip,
   Info,
   Step,
@@ -12,6 +17,9 @@ import {
   Accordion,
   AccordionGroup,
   AccordionItem,
+  TabsWrapper,
+  TabItem,
+  Tab,
 } from '@site/src/components/MDXComponents';
 
 export default {
@@ -19,7 +27,12 @@ export default {
   Card,
   Columns,
   Column,
+  CardGroup,
+  Frame,
+  Check,
   Note,
+  Warning,
+  Callout,
   Tip,
   Info,
   Step,
@@ -27,4 +40,7 @@ export default {
   Accordion,
   AccordionGroup,
   AccordionItem,
+  TabItem,
+  Tabs: TabsWrapper,
+  Tab,
 };

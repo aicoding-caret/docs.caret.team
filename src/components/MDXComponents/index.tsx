@@ -1,4 +1,6 @@
 import React from 'react';
+import Tabs from '@theme/Tabs';
+import TabItemComponent from '@theme/TabItem';
 
 // Card Component
 export const Card = ({ children, title }: { children: React.ReactNode; title?: string }) => (
@@ -40,6 +42,39 @@ export const Info = ({ children }: { children: React.ReactNode }) => (
   <div className="admonition admonition-info alert alert--info">
     <div className="admonition-heading">
       <h5><span className="admonition-icon">ℹ️</span>Info</h5>
+    </div>
+    <div className="admonition-content">{children}</div>
+  </div>
+);
+
+export const Warning = ({ children }: { children: React.ReactNode }) => (
+  <div className="admonition admonition-warning alert alert--warning">
+    <div className="admonition-heading">
+      <h5><span className="admonition-icon">⚠️</span>Warning</h5>
+    </div>
+    <div className="admonition-content">{children}</div>
+  </div>
+);
+
+export const Callout = ({ children, title }: { children: React.ReactNode; title?: string }) => (
+  <div className="admonition admonition-note alert alert--secondary">
+    <div className="admonition-heading">
+      <h5><span className="admonition-icon">💬</span>{title ?? 'Callout'}</h5>
+    </div>
+    <div className="admonition-content">{children}</div>
+  </div>
+);
+
+export const Frame = ({ children }: { children: React.ReactNode }) => (
+  <div className="margin-vert--md" style={{ border: '1px solid var(--ifm-color-emphasis-300)', borderRadius: 6, overflow: 'hidden' }}>
+    {children}
+  </div>
+);
+
+export const Check = ({ children }: { children: React.ReactNode }) => (
+  <div className="admonition admonition-tip alert alert--success">
+    <div className="admonition-heading">
+      <h5><span className="admonition-icon">✅</span>Success</h5>
     </div>
     <div className="admonition-content">{children}</div>
   </div>
@@ -92,12 +127,52 @@ export const AccordionItem = ({ children, title }: { children: React.ReactNode; 
   );
 };
 
+export const CardGroup = ({ children, cols }: { children: React.ReactNode; cols?: number }) => (
+  <div className="row margin-bottom--lg" style={{ gap: '1rem' }}>
+    {React.Children.map(children, (child, idx) => (
+      <div key={idx} className={`col col--${cols ?? 3}`}>
+        {child}
+      </div>
+    ))}
+  </div>
+);
+
+export const TabsWrapper = Tabs;
+export const TabItem = TabItemComponent;
+export const Tab = ({
+  children,
+  title,
+  value,
+  icon,
+}: {
+  children: React.ReactNode;
+  title: string;
+  value?: string;
+  icon?: string;
+}) => {
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return (
+    <TabItemComponent
+      value={value ?? (slug || 'tab')}
+      label={title}
+      attributes={icon ? { icon } : undefined}
+    >
+      {children}
+    </TabItemComponent>
+  );
+};
+
 // Export all components
 const MDXComponents = {
   Card,
   Columns,
   Column,
+  CardGroup,
+  Frame,
+  Check,
   Note,
+  Warning,
+  Callout,
   Tip,
   Info,
   Step,
@@ -105,6 +180,9 @@ const MDXComponents = {
   Accordion,
   AccordionGroup,
   AccordionItem,
+  TabItem,
+  Tabs: TabsWrapper,
+  Tab,
 };
 
 export default MDXComponents;

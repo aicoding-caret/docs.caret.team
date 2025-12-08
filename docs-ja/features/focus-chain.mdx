@@ -1,124 +1,53 @@
 ---
-title: "Focus Chain"
-sidebarTitle: "Focus Chain"
+title: "フォーカスチェーン"
+sidebarTitle: "フォーカスチェーン"
 ---
 
-Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
+フォーカスチェーンは長期タスク向けの自動TODO管理機能です。LLMに渡すコンテキストを途切れず管理し、複数回のコンテキストリセットでも進行状況を維持します。
 
 <figure>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/2dos.gif"
-		alt="Focus Chain todo list management with real-time progress tracking"
+		alt="フォーカスチェーン"
 	/>
 </figure>
 
-This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
-
 :::tip
-  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
+[ディーププランニングスラッシュコマンド](/ja/features/slash-commands/deep-planning)と組み合わせると、計画で作ったTODOを実装中もシームレスに追跡できます。
 :::
 
-## Key Features
+## 主な機能
 
-### Automatic Todo List Generation
+### 自動TODO生成
+- タスクを分析し、チェックリスト形式のTODOを自動生成
+- 複雑な作業をステップに分割
+- 進行に応じてリアルタイム更新
 
-Caret analyzes your task and automatically creates a comprehensive todo list with:
-- Clear, actionable items in markdown checklist format
-- Logical breakdown of complex tasks into manageable steps
-- Real-time updates as work progresses
+### 編集可能なTODO
+- マークダウンファイルで保存・直接編集可能
+- 変更を自動検知してワークフローに反映
+- タスクヘッダーの編集ボタンから即アクセス
 
-### User-Editable Todo Lists
+### 進捗の可視化
+- ヘッダーに現在の進捗（例: 3/8）を表示
+- 完了項目のチェック、進行中の強調
+- 展開ビューで全TODOを確認
 
-Todo lists are stored as editable markdown files:
-- Direct editing through your preferred markdown editor
-- Automatic detection of changes you make
-- Seamless integration back into Caret's workflow
-- Quick access through the edit button in the task header
+### リマインダー
+- 6メッセージごと（1〜100設定可）に更新リマインド
+- Plan→Act 切り替え時に自動通知
+- 手動編集時も即時更新
 
-### Visual Progress Tracking
+## はじめ方
 
-The task header displays clear progress indicators:
-- **Step counters** showing current progress (e.g., "3/8")
-- **Completed items** clearly marked with checkmarks
-- **Current work** highlighted with indicators
-- **Expandable view** to see the full todo list
+1. Caret設定(⚙️) → **Features**で **Enable Focus Chain** をオン  
+2. **Remind Caret Interval** を調整（デフォルト6）  
+3. 新しいタスクを開始すると自動でTODO生成・管理開始
 
-### Smart Reminder System
-
-Configurable reminders ensure todo lists stay current:
-- Default reminder every 6 messages (customizable 1-100)
-- Automatic prompts when switching from Plan Mode to Act Mode
-- User-triggered updates when todo lists are manually edited
-
-
-## Getting Started
-
-**Getting Started Steps:**
-
-1. **Setup**
-   - Click the gear icon in the Caret sidebar
-   - Navigate to the "Features" section
-
-2. **Configuration**
-   - Check "Enable Focus Chain"
-   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
-
-3. **Usage**
-   - Begin a new task
-   - Caret will automatically start creating and managing todo lists
-
-| Setting | Default | Range | Description |
+| 設定 | デフォルト | 範囲 | 説明 |
 |---------|---------|-------|-------------|
-| Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
-| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
-
-## Usage Examples
-
-#### 1. Task Initiation
-
-When you start a new task with Focus Chain enabled:
-
-``` markdown User Request
-User: "Create a user authentication system for my React app"
-
-Caret: [Analyzes request and creates todo list]
-```
-
-#### 2. Todo List Created
-
-Caret creates a comprehensive plan for the task, stored in a markdown file:
-
-```markdown Todo List Created
-- [ ] Set up project structure
-- [ ] Install authentication dependencies
-- [ ] Create user registration component
-- [ ] Implement login functionality
-- [ ] Add password validation
-- [ ] Set up user database schema
-- [ ] Write authentication tests
-- [ ] Deploy to staging environment
-```
-
-#### 3. Progress Tracking
-
-As Caret works, the task header shows real-time progress:
-
-```markdown Todo List Header
-[3/8] Implement login functionality     ⌄
-```
-
-Click to expand and see the full list:
-
-```markdown Full Todo List
-✓ Set up project structure
-✓ Install authentication dependencies
-✓ Create user registration component
-○ Implement login functionality  ← Currently working
-○ Add password validation
-○ Set up user database schema
-○ Write authentication tests
-○ Deploy to staging environment
-```
+| Enable Focus Chain | Disabled | On/Off | 進捗トラッキングを有効化 |
+| Remind Caret Interval | 6 | 1-100 messages | TODO更新リマインド間隔 |
 
 #### 4. User Editing
 
@@ -193,7 +122,7 @@ Todo files use standard markdown checklist syntax:
 
 ## Integration with Plan/Act Mode
 
-Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act):
+Focus Chain works seamlessly with Caret's [Plan/Act mode](/ja/features/plan-and-act):
 
 - **Plan Mode**: Optional todo lists for presenting concrete steps
 - **Act Mode**: Automatic todo creation when switching from Plan Mode
@@ -272,7 +201,7 @@ Having issues? Try these quick fixes:
   :::
 :::
 
-Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
+Still stuck? Use the [/reportbug](/ja/features/slash-commands/report-bug) command in Caret to get help.
 
 ## Technical Details (for the curious)
 

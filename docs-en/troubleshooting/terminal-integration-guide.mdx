@@ -6,12 +6,12 @@ description: "Complete guide to resolving terminal integration issues in Caret"
 
 This guide helps you resolve terminal integration issues in Caret. Terminal integration is crucial for Caret to execute commands and read their output, enabling it to understand errors, test results, and command responses.
 
-:::tip
+<Tip>
 	If you're experiencing terminal issues, try switching to a simpler shell like `bash` in the Caret settings, under "Terminal Settings"
 
     This resolves most terminal integration problems.
 
-:::
+</Tip>
 
 ## Quick Diagnosis Flowchart
 
@@ -154,10 +154,10 @@ This is a known bug in output processing. Workarounds:
 -   Recommend AI to use file output instead
     1. Tell Caret in chat or Caret rules, to use `command > output.txt` before reading the file/s
 
-:::tip
+<Tip>
 	This family of issues is only partially solved in the latest Caret versions, so if you still face this, create a GitHub issue
 	if it is a persistent problem.
-:::
+</Tip>
 
 ### 4. Long-Running Commands & Progress Bars
 
@@ -167,10 +167,10 @@ This is a known bug in output processing. Workarounds:
 -   Progress bars consume thousands of tokens
 -   The Caret button "Proceed while running" doesn't work properly in chat
 
-:::tip
+<Tip>
 	This family of issues has been solved in latest Caret versions but if you still face any issues, then create a GitHub issue
 	for this.
-:::
+</Tip>
 
 ## Terminal Settings Explained
 
@@ -440,7 +440,7 @@ If you've tried everything:
     - Include your debug info
     - Mention which solutions you tried
 
-:::tip
+<Tip>
 	Remember: Most terminal issues are resolved by switching to bash and increasing the timeout. Start there before trying complex
 	solutions.
-:::
+</Tip>

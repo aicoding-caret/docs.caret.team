@@ -5,12 +5,12 @@ sidebarTitle: "Auto Compact"
 
 When your conversation approaches the model's context window limit, Caret automatically summarizes it to free up space and keep working. 
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/condensing.png"
 		alt="Auto-compact feature condensing conversation context"
 	/>
-</figure>
+</Frame>
 
 ## How It Works
 
@@ -33,9 +33,9 @@ Now with summarization:
 - Caret remembers everything he's done
 - You can work on much larger projects without interruption
 
-:::tip
-Context Summarization synergizes beautifully with [Focus Chain](/features/focus-chain). When Focus Chain is enabled, todo lists persist across summarizations. This means Caret can work on long-horizon tasks that span multiple context windows while staying on track with the todo list guiding him through each reset.
-:::
+<Tip>
+Context Summarization synergizes beautifully with [Focus Chain](/en/features/focus-chain). When Focus Chain is enabled, todo lists persist across summarizations. This means Caret can work on long-horizon tasks that span multiple context windows while staying on track with the todo list guiding him through each reset.
+</Tip>
 
 ## Technical Details
 
@@ -55,11 +55,11 @@ Since most input tokens are already cached, you're primarily paying for the summ
 
 ## Restoring Context with Checkpoints
 
-You can use [checkpoints](/features/checkpoints) to restore your task state from before a summarization occurred. This means you never truly lose context - you can always roll back to previous versions of your conversation. 
+You can use [checkpoints](/en/features/checkpoints) to restore your task state from before a summarization occurred. This means you never truly lose context - you can always roll back to previous versions of your conversation. 
 
-:::note
+<Note>
   Editing a message before a summarization tool call will work similarly to a checkpoint, allowing you to restore the conversation to that point.
-:::
+</Note>
 
 ## Next Generation Model Support
 
@@ -70,6 +70,6 @@ Auto Compact uses advanced LLM-based summarization which we've found works signi
 - **GPT-5**
 - **Grok 4**
 
-:::note
+<Note>
 When using other models, Caret automatically falls back to the standard rule-based context truncation method, even if Auto Compact is enabled in settings.
-:::
+</Note>

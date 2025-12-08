@@ -1,8 +1,8 @@
 The Auto Approve menu lets you set fine-grained permissions on what you allow Caret to do in an automated way.
 
-<figure>
+<Frame>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/auto-approve.png" alt="Auto Approve" />
-</figure>
+</Frame>
 
 ## How it works
 
@@ -43,17 +43,11 @@ If you want to allow Caret to do something without asking, you can set the Auto 
 
 ## Best Practices
 
-Personally, I like to keep auto-editing disabled because it gives me a chance to review changes every step of the way.
-
-For most serious development workflows, I recommend starting with:
+Suggested starting defaults for most workflows:
 
 -   Auto-approving read access to project files
 -   Setting a reasonable maximum request limit (10-20)
 
-This gives Caret enough freedom to explore your codebase without constant interruptions, while still requiring permission for edits or potentially destructive actions.
+This gives Caret room to explore without constant prompts while still requiring approval for edits or destructive actions.
 
-As you build more trust in Caret's capabilities with your specific projects, you can gradually increase the permissions to match your comfort level.
-
-Remember that you can always adjust these settings as your needs change - tighten permissions for critical production work, or loosen them when prototyping and exploring.
-
-You can even use the quick "star" actions to quickly toggle your auto-approved selections on and off as you go.
+Adjust permissions to fit the situation: tighten for production, relax for prototyping. Use the quick “star” actions to toggle auto-approved items on or off as needed.

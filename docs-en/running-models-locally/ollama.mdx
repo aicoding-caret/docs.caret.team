@@ -3,24 +3,28 @@ title: "Ollama"
 description: "A quick guide to setting up Ollama for local AI model execution with Caret."
 ---
 
-### 📋 Prerequisites
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(지원 로컬 런타임, 인증/라우팅, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+### Prerequisites
 
 -   Windows, macOS, or Linux computer
 -   Caret installed in VS Code
 
-### 🚀 Setup Steps
+### Setup Steps
 
 #### 1. Install Ollama
 
 -   Visit [ollama.com](https://ollama.com)
 -   Download and install for your operating system
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2)%20(1)%20(1).png"
 		alt="Ollama download page"
 	/>
-</figure>
+</Frame>
 
 #### 2. Choose and Download a Model
 
@@ -31,12 +35,12 @@ description: "A quick guide to setting up Ollama for local AI model execution wi
     ollama run [model-name]
     ```
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/ollama-model-grab%20(2).gif"
 		alt="Selecting a model in Ollama"
 	/>
-</figure>
+</Frame>
 
 -   Open your Terminal and run the command:
 
@@ -46,38 +50,57 @@ description: "A quick guide to setting up Ollama for local AI model execution wi
         ollama run llama2
         ```
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/starting-ollama-terminal%20(2).gif"
 		alt="Running Ollama in terminal"
 	/>
-</figure>
+</Frame>
 
-**✨ Your model is now ready to use within Caret!**
+Your model is now ready to use within Caret.
 
 #### 3. Configure Caret
 
-1. Open VS Code
-2. Click Caret settings icon
-3. Select "Ollama" as API provider
-4. Enter configuration:
-    - Base URL: `http://localhost:11434/` (default value, can be left as is)
-    - Select the model from your available options
-
-<figure>
+<Frame>
 	<img
-		src="https://storage.googleapis.com/cline_public_images/docs/assets/selecting-ollama-model-caret%20(3).gif"
-		alt="Configuring Caret with Ollama"
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/ollama-setup.gif"
+		alt="Complete Ollama setup process"
 	/>
-</figure>
+</Frame>
 
-### ⚠️ Important Notes
+Open VS Code and configure Caret:
+
+1. Click the Caret settings icon
+2. Select "Ollama" as your API provider
+3. Base URL: `http://localhost:11434/` (default, usually no need to change)
+4. Select your model from the dropdown
+
+### Recommended Models
+
+For the best experience with Caret, use **Qwen3 Coder 30B**. This model provides strong coding capabilities and reliable tool use for local development.
+
+To download it:
+```bash
+ollama run qwen3-coder-30b
+```
+
+Other capable models include:
+- `mistral-small` - Good balance of performance and speed
+- `devstral-small` - Optimized for coding tasks
+
+### Important Notes
 
 -   Start Ollama before using with Caret
 -   Keep Ollama running in background
 -   First model download may take several minutes
 
-### 🔧 Troubleshooting
+### Enable Compact Prompts
+
+For better performance with local models, enable compact prompts in Caret settings. This reduces the prompt size by 90% while maintaining core functionality.
+
+Navigate to Caret Settings → Features → Use Compact Prompt and toggle it on.
+
+### Troubleshooting
 
 If Caret can't connect to Ollama:
 

@@ -1,61 +1,98 @@
 ---
-title: "Multiroot Workspaces"
+title: "Multiroot Workspace Support"
+sidebarTitle: "Multiroot Workspace"
 ---
 
-# Multiroot Workspace Support
+Caret's Multiroot feature works seamlessly with VSCode's multi-root workspaces, letting you manage multiple project folders in a single workspace.
 
-Caret's multiroot feature _(experimental - October 1, 2025)_ works seamlessly with VSCode's multiroot workspaces, allowing you to manage multiple project folders in a single workspace.
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
 
-## What are Multiroot Workspaces?
+<Note>
+**Important:** Multi-root workspaces are currently an experimental feature and have the following limitations:
+- **Caret rules** only work in the first workspace folder
+- **Checkpoints** are automatically disabled with a warning message
+- Both features are restored when you return to a single-folder workspace
+</Note>
 
-Instead of being limited to one project folder, Caret can read files, write code, and execute commands across all folders in your VSCode workspace. Great for monorepos, microservices, or working on related projects simultaneously.
+## What is multiroot workspace support?
+
+Instead of being limited to one project folder, Caret can read files, write code, and run commands across all folders in your VSCode workspace. This is helpful when working with monorepos, microservices, or when you're working on related projects simultaneously.
+
+### How it works
+
+When you open multiple workspace folders in VSCode, Caret automatically:
+- Designates one folder as the **primary workspace** (typically the first folder added)
+- Tracks all workspace folders and their paths
+- Resolves file paths intelligently across workspaces
+- Displays workspace information in the environment details for each API request
 
 ## Getting Started
 
-### Setting Up a Multiroot Workspace
+### Setting Up Multi-Root Workspaces
 
-1. **Add Folders to Workspace:**
+1. **Add folders to your workspace:**
    - Use `File > Add Folder to Workspace` in VSCode
    - Or create a `.code-workspace` file with multiple folder paths
-   - Drag and drop folders into the file explorer
+   - Drag and drop folders to the File Explorer
    - Select multiple folders when opening a new workspace
 
-2. **Start Using Caret** - Caret automatically detects all workspace folders and interacts with them as needed.
+2. **Start using Caret** - Caret will automatically detect all your workspace folders and interact with them as needed.
 
-For detailed instructions on setting up multiroot workspaces, see [Microsoft's official guide](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces).
+For detailed instructions on setting up multi-root workspaces in VS Code, see [Microsoft's official guide](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces).
 
-### How Caret Handles Multiple Workspaces
+### Technical behavior
 
-When you have multiple folders, Caret automatically:
+**Workspace detection**
+- Caret detects all workspace folders when a task starts
+- The first workspace folder becomes the primary workspace by default
+- Each workspace can have its own VCS (Git, SVN, etc.)
 
-- Detects all workspace folders
-- Works with files across different projects
-- Executes commands in the right context
-- Handles path resolution intelligently
+**Path resolution**
+- Relative paths are resolved relative to the primary workspace
+- You can use workspace hints to target specific workspaces: `@workspaceName:path/to/file`
+- Caret attempts to intelligently determine which workspace a file belongs to
 
-## Working Across Workspaces
+**Command execution**
+- Commands execute in the appropriate workspace context
+- The working directory is set based on where files are being accessed
 
-### Let Caret Navigate or Be Specific
+## Working across workspaces
 
-You can naturally reference different workspaces in your prompts:
+### Referencing specific workspaces
+
+You can reference different workspaces naturally in your prompts:
 
 ```
-"Read the package.json in the frontend folder and compare with backend dependencies"
+"Read the package.json in my frontend folder and compare it with the backend dependencies"
 ```
 
 ```
-"Create a shared utility function and update both client and server to use it"
+"Create a shared utility function and update both the client and server to use it"
 ```
 
 ```
-"Search for TODO comments across all workspace folders"
+"Search for TODO comments across all my workspace folders"
 ```
 
-## Common Use Cases
+### Workspace hints
+
+Use workspace hints to explicitly reference files in specific workspaces:
+
+```
+@frontend:src/App.tsx
+@backend:server.ts
+```
+
+This syntax helps Caret resolve ambiguity when multiple workspaces contain similarly named files.
+
+
+## Common use cases
 
 ### Monorepo Development
 
-Perfect for related projects in one repository:
+Perfect for when you have related projects in one repository:
 
 ```
 my-app.code-workspace
@@ -65,16 +102,16 @@ my-app.code-workspace
 └── shared/       (Common utilities)
 ```
 
-Ask Caret: *"Update the API endpoints in both web and mobile apps to match the new backend route"*
+Ask Caret: *"Update the API endpoint in both web and mobile apps to match the new backend route"*
 
 ### Microservices Architecture
 
-Manage multiple services in one workspace:
+Manage multiple services from one workspace:
 
 ```
 services.code-workspace
 ├── user-service/
-├── payment-service/
+├── payment-service/  
 ├── notifications/
 └── infrastructure/
 ```
@@ -87,59 +124,45 @@ Keep everything together while maintaining separation:
 fullstack.code-workspace
 ├── client/       (Frontend)
 ├── server/       (Backend API)
-├── docs/         (Documentation)
-└── deploy/       (Scripts & configs)
+├── docs/         (Documentation)  
+└── deploy/       (Scripts & config)
 ```
+
 
 ### Auto-Approve Integration
 
-Multiroot workspaces work with [auto-approve](/en/features/auto-approve):
+Multiroot workspaces work with [Auto Approve](/en/features/auto-approve):
 
 - Enable permissions for operations within workspace folders
-- Restrict auto-approval to files outside workspace
+- Restrict auto-approve for files outside your workspace(s)
 - Configure different levels for different workspace folders
 
-### Working Across Workspaces
+### Cross-Workspace Operations
 
 Caret can complete tasks spanning multiple workspaces:
 
 - **Refactoring**: Update imports and references across projects
-- **Feature Development**: Implement features requiring changes in multiple services
+- **Feature development**: Implement features requiring changes in multiple services  
 - **Documentation**: Generate docs referencing code from multiple folders
-- **Testing**: Build and run tests across all workspaces, analyze results
+- **Testing**: Build & run tests across all workspaces and analyze results
 
-When working with large multiroot workspaces, start with [Agent mode](/en/caret-exclusive/dual-prompt-modes) to let Caret understand the project structure before making changes.
+When working with large multiroot workspaces, start in [Plan mode](/en/features/plan-and-act) to let Caret understand your project structure before making changes.
 
 ## Best Practices
 
-### Workspace Organization
+### Organizing Your Workspaces
 
-1. **Group Related Projects**: Projects that frequently need coordinated changes
-2. **Use Consistent Folder Structure**: Across workspaces when possible
-3. **Name Folders Clearly**: So Caret can understand your project structure
+1. **Group related projects** that often need coordinated changes
+2. **Use consistent folder structures** across workspaces when possible
+3. **Name folders clearly** so Caret can understand your project structure
 
-### Effective Prompts and Tips
+### Effective Prompting & Tips
 
-These approaches work best when working with multiroot workspaces:
+When working with multiroot workspaces, these approaches work best:
 
-- **Be Workspace-Specific When It Matters**: *"Update the user model in the backend workspace"*
-- **Reference Relationships**: *"The frontend should use the API types from the shared workspace"*
-- **Describe Cross-Workspace Work**: *"This change needs to be reflected in both web and mobile apps"*
-- **Specify Search Scope**: When dealing with large codebases: *"Search for 'TODO' in the frontend workspace only"*
-- **Break Down Large Tasks**: Into workspace-specific tasks when possible
-- **Consider Excluding Large Folders**: Exclude folders like `node_modules` from workspace search scope
-
-## Frequently Asked Questions
-
-**Q: Can I use different settings for each workspace?**
-A: Yes, each workspace folder can have its own `.vscode/settings.json`.
-
-**Q: How does Caret know which workspace it's working in?**
-A: Caret automatically detects based on the context in your prompt, or you can explicitly specify the workspace name.
-
-**Q: Is there a performance impact?**
-A: Multiple workspaces mean more files, which can slow initial indexing, but once set up, performance is similar.
-
----
-
-Questions or feedback? Reach out in [GitHub Discussions](https://github.com/aicoding-caret/caret/discussions).
+- **Be specific** about which workspace when it matters: *"Update the user model in the backend workspace"*
+- **Reference relationships**: *"The frontend uses the API types from the shared workspace"*
+- **Describe cross-workspace operations**: *"This change needs to be reflected in both the web and mobile apps"*
+- **Scope your searches** when dealing with large codebases: *"Search for 'TODO' in just the frontend workspace"*
+- **Break down large tasks** into workspace-specific operations when possible
+- **Consider excluding large folders** like `node_modules` from your workspace search Scope

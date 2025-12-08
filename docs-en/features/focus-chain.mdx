@@ -1,6 +1,5 @@
 ---
 title: "Focus Chain"
-sidebarTitle: "Focus Chain"
 ---
 
 Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
@@ -15,7 +14,7 @@ Focus Chain is a task management enhancement feature in Caret that provides auto
 This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
 
 :::tip
-  Focus Chain works particularly well with Caret's [Deep Planning slash command](/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/features/plan-and-act).
+  Focus Chain works particularly well with Caret's [Deep Planning slash command](/en/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/en/features/plan-and-act).
 :::
 
 ## Key Features
@@ -53,19 +52,20 @@ Configurable reminders ensure todo lists stay current:
 
 ## Getting Started
 
-**Getting Started Steps:**
-
-1. **Setup**
-   - Click the gear icon in the Caret sidebar
-   - Navigate to the "Features" section
-
-2. **Configuration**
-   - Check "Enable Focus Chain"
-   - Optionally adjust "Remind Caret Interval" (default: 6 messages)
-
-3. **Usage**
-   - Begin a new task
-   - Caret will automatically start creating and managing todo lists
+<Steps>
+  <Step title="Open Caret Settings">
+      - Click the gear icon in the Caret sidebar
+      - Navigate to the "Features" section
+  </Step>
+  <Step title="Enable Focus Chain">
+      - Check "Enable Focus Chain"
+      - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+  </Step>
+  <Step title="Start a New Task">
+      - Begin a new task
+      - Caret will automatically start creating and managing todo lists
+  </Step>
+</Steps>
 
 | Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
@@ -124,11 +124,12 @@ Click to expand and see the full list:
 
 Need to tweak the todo list? No problem.
 
-**Editing Process:**
-
-1. **Open Editor**: Click the edit button in the expanded todo view
-
-2. **Edit File**: A markdown file opens in your editor:
+<Steps>
+  <Step title="Open the todo list">
+    Click the edit button in the expanded todo view
+  </Step>
+  <Step title="Edit the markdown file">
+    A markdown file opens in your editor:
 
     ```markdown Editing Todo List
     # Focus Chain Todo List for Task abc123
@@ -149,10 +150,14 @@ Need to tweak the todo list? No problem.
 
     <!-- Save this file to update the task's todo list -->
     ```
-
-3. **Customize**: Add, remove, or reorder items as needed
-
-4. **Save**: Caret automatically detects and uses your updates
+  </Step>
+  <Step title="Make your changes">
+    Add, remove, or reorder items as needed
+  </Step>
+  <Step title="Save the file">
+    Caret automatically detects and uses your updates
+  </Step>
+</Steps>
 
 ## File Structure
 
@@ -193,7 +198,7 @@ Todo files use standard markdown checklist syntax:
 
 ## Integration with Plan/Act Mode
 
-Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act):
+Focus Chain works seamlessly with Caret's [Plan/Act mode](/en/features/plan-and-act):
 
 - **Plan Mode**: Optional todo lists for presenting concrete steps
 - **Act Mode**: Automatic todo creation when switching from Plan Mode
@@ -205,7 +210,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
 ## Best Practices
 
 :::info
-  :::tip
+  :::details Accordion
     1. **Start with Clear Requests**
       - Provide detailed initial task descriptions
       - Include specific requirements and constraints
@@ -222,7 +227,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Reorder steps for better workflow
       - Add more specific details to general items
   :::
-  :::tip
+  :::details Accordion
     1. **Use Plan Mode First**
       - Discuss the approach before implementation
       - Refine requirements through conversation
@@ -238,7 +243,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
       - Update todo lists as requirements evolve
       - Communicate changes to Caret through edits
   :::
-  :::tip
+  :::details Accordion
     1. **Share Todo Files**
       - Todo markdown files can be shared with team members
       - Include in version control for project documentation
@@ -257,37 +262,37 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/features/plan-and-act
 Having issues? Try these quick fixes:
 
 :::info
-  :::tip
+  :::details Accordion
     - Check that Focus Chain is enabled in settings
     - Focus Chain may not work as well with smaller, less capable models
     - Ensure file permissions are correct in the task directory
   :::
-  :::tip
+  :::details Accordion
     - Verify your editor supports markdown
     - Check VSCode has write permissions for the directory
   :::
-  :::tip
+  :::details Accordion
     - Ensure todo items use correct syntax (`- [ ]` and `- [x]`)
     - Verify the markdown file is properly formatted
   :::
 :::
 
-Still stuck? Use the [/reportbug](/features/slash-commands/report-bug) command in Caret to get help.
+Still stuck? Use the [/reportbug](/en/features/slash-commands/report-bug) command in Caret to get help.
 
 ## Technical Details (for the curious)
 
 :::info
-  :::tip
+  :::details Accordion
     - Real-time file watching detects changes to todo markdown files
     - Automatic synchronization between file edits and UI updates
     - Graceful handling of file creation, modification, and deletion
   :::
-  :::tip
+  :::details Accordion
     - Dynamic counting of completed vs. total todo items
     - Support for both `- [x]` and `- [X]` completion syntax
     - Unicode symbols (✓, ○) for enhanced visual display
   :::
-  :::tip
+  :::details Accordion
     - Todo lists stored locally in VSCode workspace
     - No todo content transmitted to external services
     - Usage telemetry (can be disabled in settings)

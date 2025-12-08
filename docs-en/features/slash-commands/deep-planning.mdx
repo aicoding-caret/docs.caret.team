@@ -5,12 +5,12 @@ sidebarTitle: "/deep-planning"
 
 `/deep-planning` transforms Caret into a meticulous architect who investigates your codebase, asks clarifying questions, and creates a comprehensive implementation plan before writing a single line of code. 
 
-<figure>
+<Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/deep-planning.png"
 		alt="Deep Planning command in action showing investigation and planning process"
 	/>
-</figure>
+</Frame>
 
 When you use `/deep-planning`, Caret follows a four-step process that mirrors how senior developers approach complex features: thorough investigation, discussion & clarification of requirements, detailed planning, and structured task creation with progress tracking.
 
@@ -54,9 +54,9 @@ The plan includes eight comprehensive sections:
 
 Caret creates a new task that references the plan document and includes trackable implementation steps. The task comes with specific commands to read each section of the plan, ensuring the implementing agent (whether that's you or Caret in Act Mode) can navigate the blueprint efficiently.
 
-:::tip
-  Deep Planning works beautifully with [Focus Chain](/features/focus-chain). The implementation steps automatically become a todo list with real-time progress tracking, keeping complex projects organized and on track.
-:::
+<Tip>
+  Deep Planning works beautifully with [Focus Chain](/en/features/focus-chain). The implementation steps automatically become a todo list with real-time progress tracking, keeping complex projects organized and on track.
+</Tip>
 
 ## Using Deep Planning
 
@@ -72,42 +72,43 @@ Caret will begin his investigation immediately. You'll see him reading files and
 
 Here's how I use `/deep-planning` for a real feature:
 
-**Step 1: Initial Request**
-```
-I type `/deep-planning implement a caching layer for API responses`
-```
-
-**Step 2: Investigation Phase**
-Caret explores my codebase, examining:
-- Current API structure and endpoints
-- Existing data flow patterns
-- Database queries and performance bottlenecks
-- Configuration and environment setup
-
-**Step 3: Clarification Questions**
-Caret asks me:
-- "Should we use Redis or in-memory caching?"
-- "What's the acceptable cache staleness for user data?"
-- "Do you need cache invalidation webhooks?"
-
-**Step 4: Plan Generation**
-Caret generates `implementation_plan.md` with:
-- Cache service class specifications
-- Redis connection configuration
-- Modified API endpoints with caching logic
-- Cache key generation strategies
-- TTL configurations for different data types
-
-**Step 5: Task Creation**
-Caret creates a new task with:
-- Reference to the implementation plan
-- Commands to read specific sections
-- Trackable todo items for each implementation step
-- Request to switch to Act Mode for execution
+<Steps>
+  <Step title="Initiate Planning">
+    I type `/deep-planning implement a caching layer for API responses`
+  </Step>
+  <Step title="Silent Investigation">
+    Caret explores my codebase, examining:
+    - Current API structure and endpoints
+    - Existing data flow patterns
+    - Database queries and performance bottlenecks
+    - Configuration and environment setup
+  </Step>
+  <Step title="Targeted Discussion">
+    Caret asks me:
+    - "Should we use Redis or in-memory caching?"
+    - "What's the acceptable cache staleness for user data?"
+    - "Do you need cache invalidation webhooks?"
+  </Step>
+  <Step title="Plan Creation">
+    Caret generates `implementation_plan.md` with:
+    - Cache service class specifications
+    - Redis connection configuration
+    - Modified API endpoints with caching logic
+    - Cache key generation strategies
+    - TTL configurations for different data types
+  </Step>
+  <Step title="Task Generation">
+    Caret creates a new task with:
+    - Reference to the implementation plan
+    - Commands to read specific sections
+    - Trackable todo items for each implementation step
+    - Request to switch to Act Mode for execution
+  </Step>
+</Steps>
 
 ## Integration with Plan/Act Mode
 
-Deep Planning is designed to work seamlessly with [Plan/Act Mode](/features/plan-and-act):
+Deep Planning is designed to work seamlessly with [Plan/Act Mode](/en/features/plan-and-act):
 
 - Use `/deep-planning` in Plan Mode for the investigation and planning phases
 - The generated task requests switching to Act Mode for implementation
@@ -152,8 +153,8 @@ I use `/deep-planning` whenever I'm about to build something that would normally
 
 The power of `/deep-planning` is that it forces thoughtful architecture before implementation. It's like having a senior developer review your approach before you write code, except that developer has perfect knowledge of your entire codebase.
 
-:::note
+<Note>
   Deep Planning requires models with strong reasoning capabilities. It works best with the latest generation of models, like GPT-5, Claude 4, Gemini 2.5, or Grok 4. Smaller models may struggle with the comprehensive analysis required.
-:::
+</Note>
 
-For simpler tasks that don't require extensive planning, consider using [/newtask](/features/slash-commands/new-task) to create focused tasks with context, or jump straight into implementation if the path forward is clear.
+For simpler tasks that don't require extensive planning, consider using [/newtask](/en/features/slash-commands/new-task) to create focused tasks with context, or jump straight into implementation if the path forward is clear.
