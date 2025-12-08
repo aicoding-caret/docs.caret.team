@@ -109,12 +109,10 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          docsPluginId: 'docs-en',
-          position: 'left',
-          label: 'Service',
           href: 'https://caret.team',
+          label: 'Service',
+          position: 'left',
+          target: '_self',
         },
         {
           href: 'https://marketplace.visualstudio.com/items?itemName=caretive.caret',
