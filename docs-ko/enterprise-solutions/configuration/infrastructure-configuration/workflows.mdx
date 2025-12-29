@@ -1,0 +1,330 @@
+---
+title: "Workflows"
+sidebarTitle: "Workflows"
+description: "슬래시 명령으로 호출하는 재사용 가능한 지침 세트"
+---
+
+Workflows는 **필요할 때만 호출**하는 재사용 가능한 지침 파일입니다. 항상 적용되는 규칙(Rules)과 달리, 특정 작업에서만 사용합니다.
+
+## Workflows란?
+
+Workflows는 [Rules](/enterprise-solutions/configuration/infrastructure-configuration/rules)와 유사하지만 차이가 있습니다.
+
+<CardGroup cols={2}>
+  <Card title="Rules" icon="book">
+    **항상 활성**
+    
+    토글된 모든 작업에 자동 적용
+    
+    예: 코딩 표준, 스타일 가이드
+  </Card>
+  
+  <Card title="Workflows" icon="diagram-project">
+    **온디맨드**
+    
+    슬래시 명령으로 호출될 때만 적용
+    
+    예: 배포 체크리스트, 리뷰 프로세스
+  </Card>
+</CardGroup>
+
+<Tip>
+Workflows는 단순한 Markdown 파일입니다. 복잡한 설정이 필요하지 않습니다.
+</Tip>
+
+## 간단 예시
+
+배포 워크플로 예시:
+
+**파일:** `.agents/context/workflows/deploy.md`
+
+```markdown
+# Deployment Workflow
+
+Before deploying to production, ensure:
+
+## Pre-Deployment Checklist
+1. All tests passing (unit, integration, e2e)
+2. Code review approved by 2+ engineers
+3. Staging environment tested successfully
+4. Database migrations reviewed
+5. Rollback plan documented
+
+## Deployment Steps
+1. Create deployment branch from main
+2. Run final test suite
+3. Deploy to production
+4. Monitor error rates for 30 minutes
+5. Verify key user flows
+
+## Post-Deployment
+1. Update deployment log
+2. Notify team in #deployments channel
+3. Monitor metrics for 24 hours
+```
+
+**사용 예시:**
+```
+/deploy
+
+새 인증 기능 배포를 시작할게
+```
+
+호출되면 Caret는 해당 워크플로 내용을 **현재 작업 컨텍스트**에만 추가합니다.
+
+## Workflows 만들기
+
+<Tabs>
+  <Tab title="수동 생성">
+    `.agents/context/workflows/`에 파일을 생성합니다.
+    
+    1. 저장소 루트에 `.agents/context/workflows/` 생성
+    2. Markdown으로 워크플로 작성
+    3. 슬래시 명령과 동일한 이름 사용
+    
+    **파일 구조:**
+    ```
+    your-repo/
+    ├── .agents/context/
+    │   └── workflows/
+    │       ├── deploy.md
+    │       ├── code-review.md
+    │       └── bug-triage.md
+    └── src/
+    ```
+  </Tab>
+  
+  <Tab title="슬래시 명령">
+    대화 중 워크플로를 생성할 수 있습니다.
+    
+    1. 정리하고 싶은 프로세스를 설명
+    2. `/newrule` 입력 후 워크플로 생성 요청
+    3. `.agents/context/workflows/`에 파일 생성
+    
+    <Note>
+    `/newrule`은 Rules/Workflows 모두 생성할 수 있으므로 의도를 명확히 전달하세요.
+    </Note>
+  </Tab>
+</Tabs>
+
+## Workflows 사용하기
+
+### 호출 방법
+
+`/` + 파일명(확장자 제외)을 입력합니다.
+
+```
+/deploy
+/code-review
+/bug-triage
+```
+
+### 네이밍 규칙
+
+- 소문자 + 하이픈 사용: `deploy.md`, `code-review.md`
+- 짧고 기억하기 쉬운 이름
+- 목적을 명확하게 표현
+
+<Warning>
+파일 이름이 슬래시 명령이 되므로 입력하기 쉬운 이름을 사용하세요.
+</Warning>
+
+## 전역 vs 워크스페이스 Workflows
+
+<CardGroup cols={2}>
+  <Card title="워크스페이스 Workflows" icon="folder">
+    **위치:** `.agents/context/workflows/`
+    
+    **범위:** 해당 프로젝트
+    
+    **용도:** 프로젝트별 프로세스/체크리스트
+  </Card>
+  
+  <Card title="전역 Workflows" icon="globe">
+    **위치:** `Documents/Caret/Workflows/`
+    
+    **범위:** 모든 프로젝트
+    
+    **용도:** 개인 공통 워크플로
+  </Card>
+</CardGroup>
+
+<Info>
+**우선순위:** 같은 이름이 있으면 로컬 워크플로가 전역 워크플로보다 우선합니다.
+</Info>
+
+## Workflows 관리
+
+### 토글
+
+워크플로는 켜고 끌 수 있습니다.
+
+1. Caret UI에서 규칙 아이콘 클릭
+2. "Workflows" 탭 선택
+3. 워크플로 토글
+
+<Note>
+워크플로를 끄면 호출이 불가능하지만 파일은 유지됩니다.
+</Note>
+
+### 엔터프라이즈 원격 Workflows
+
+<Info>
+엔터프라이즈 배포는 **원격 전역 워크플로**를 모든 구성원에게 배포할 수 있습니다. 이 워크플로는 인프라 구성으로 관리됩니다.
+</Info>
+
+**예시 구성**
+```json
+{
+  "globalWorkflows": [
+    {
+      "name": "deploy.md",
+      "alwaysEnabled": true,
+      "contents": "# Deploy Checklist\n- 테스트 통과 확인"
+    }
+  ]
+}
+```
+
+## 예시 Workflows
+
+<AccordionGroup>
+  <Accordion title="코드 리뷰 워크플로" icon="code-review">
+```markdown
+# Code Review Workflow
+
+## Pre-Review Checklist
+- [ ] Code follows project style guide
+- [ ] All tests pass locally
+- [ ] No console.log or debugging code
+- [ ] Comments explain "why" not "what"
+- [ ] PR description is clear and complete
+
+## Review Focus Areas
+1. **Architecture**: Does this fit our existing patterns?
+2. **Security**: Any potential vulnerabilities?
+3. **Performance**: Any obvious bottlenecks?
+4. **Testing**: Are edge cases covered?
+5. **Documentation**: Is it clear how to use new features?
+
+## Review Response
+- Address all feedback within 24 hours
+- Mark conversations as resolved when addressed
+- Re-request review after major changes
+```
+  </Accordion>
+  
+  <Accordion title="버그 트리아지 워크플로" icon="bug">
+```markdown
+# Bug Triage Workflow
+
+## Information Gathering
+1. Reproduce the bug in local environment
+2. Identify affected versions/environments
+3. Check if similar issues exist
+4. Gather error logs and stack traces
+
+## Priority Assessment
+**P0 (Critical)**: Production down, data loss, security breach
+**P1 (High)**: Major feature broken, significant user impact
+**P2 (Medium)**: Minor feature broken, workaround available
+**P3 (Low)**: Cosmetic issue, minimal impact
+
+## Create Ticket
+- Use template: "Bug Report"
+- Add reproduction steps
+- Include screenshots/videos if applicable
+- Tag with affected component
+- Assign priority label
+
+## Next Steps
+- P0/P1: Immediate fix required
+- P2: Schedule for current sprint
+- P3: Add to backlog
+```
+  </Accordion>
+  
+  <Accordion title="기능 기획 워크플로" icon="lightbulb">
+```markdown
+# Feature Planning Workflow
+
+## Requirements Gathering
+1. Define the user problem we're solving
+2. List success criteria (measurable)
+3. Identify edge cases and constraints
+4. Document technical dependencies
+
+## Design Considerations
+1. How does this fit existing architecture?
+2. What data models are needed?
+3. What API changes are required?
+4. How will this impact performance?
+
+## Implementation Plan
+1. Break into smaller, shippable pieces
+2. Identify which pieces can be done in parallel
+3. Note any feature flags needed
+4. Plan for backwards compatibility
+
+## Testing Strategy
+1. What unit tests are needed?
+2. What integration tests are needed?
+3. How will we test edge cases?
+4. What manual testing is required?
+```
+  </Accordion>
+</AccordionGroup>
+
+## 모범 사례
+
+<AccordionGroup>
+  <Accordion title="행동 지향 워크플로" icon="list-check">
+    실행 가능한 단계로 작성하세요.
+    - ✅ "`npm test` 실행 후 통과 확인"
+    - ❌ "테스트가 잘 되었는지 확인"
+  </Accordion>
+  
+  <Accordion title="체크리스트 활용" icon="square-check">
+    - 단계별 진행이 쉬움
+    - 누락 방지
+    - 진행 상황 추적 가능
+  </Accordion>
+  
+  <Accordion title="맥락 추가" icon="circle-info">
+    단계의 **이유**를 덧붙이세요.
+    ```markdown
+    1. 스테이징 환경 먼저 확인
+       (프로덕션 사고를 방지)
+    ```
+  </Accordion>
+  
+  <Accordion title="코드처럼 버전 관리" icon="code-branch">
+    - git으로 변경 추적
+    - PR로 리뷰
+    - 프로세스 진화 기록
+  </Accordion>
+</AccordionGroup>
+
+## Workflows vs Rules
+
+| Rules를 사용할 때 | Workflows를 사용할 때 |
+|------------------|-----------------------|
+| 모든 작업에 적용해야 할 때 | 특정 상황에만 적용할 때 |
+| 변경이 거의 없는 표준 | 특정 시나리오 체크리스트 |
+| 항상 필요한 코딩 컨벤션 | 배포/리뷰 같은 절차 |
+
+**예시**
+- **Rule**: "TypeScript strict 모드 사용"
+- **Workflow**: "프로덕션 배포 10단계"
+
+## 다음 단계
+
+<CardGroup cols={2}>
+  <Card title="Rules" icon="book" href="/enterprise-solutions/configuration/infrastructure-configuration/rules">
+    항상 활성 규칙 이해하기
+  </Card>
+  
+  <Card title="원격 구성" icon="cloud" href="/enterprise-solutions/configuration/remote-configuration/overview">
+    전역 워크플로 배포
+  </Card>
+</CardGroup>

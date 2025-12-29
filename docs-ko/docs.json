@@ -55,6 +55,13 @@
 	"navigation": {
 		"groups": [
 			{
+				"group": "Introduction",
+				"pages": [
+					"introduction/welcome",
+					"introduction/overview"
+				]
+			},
+			{
 				"group": "Getting Started",
 				"pages": [
 					"getting-started/what-is-caret",
@@ -76,6 +83,7 @@
 			{
 				"group": "Improving Your Prompting Skills",
 				"pages": [
+					"prompting/understanding-context-management",
 					"prompting/prompt-engineering-guide",
 					"prompting/caret-memory-bank"
 				]
@@ -83,24 +91,6 @@
 			{
 				"group": "Features",
 				"pages": [
-					"features/auto-approve",
-					"features/checkpoints",
-					"features/explain-changes",
-					"features/caret-rules",
-					"features/hooks/index",
-					"features/drag-and-drop",
-					"features/plan-and-act",
-					"features/slash-commands/workflows",
-					"features/focus-chain",
-					"features/auto-compact",
-					"features/editing-messages",
-					{
-						"group": "Tasks",
-						"pages": [
-							"features/tasks/understanding-tasks",
-							"features/tasks/task-management"
-						]
-					},
 					{
 						"group": "@ Mentions",
 						"pages": [
@@ -112,6 +102,43 @@
 							"features/at-mentions/url-mentions"
 						]
 					},
+					"features/auto-approve",
+					"features/auto-compact",
+					"features/checkpoints",
+					"features/caret-rules",
+					{
+						"group": "Commands & Shortcuts",
+						"pages": [
+							"features/commands-and-shortcuts/overview",
+							"features/commands-and-shortcuts/code-commands",
+							"features/commands-and-shortcuts/terminal-integration",
+							"features/commands-and-shortcuts/git-integration",
+							"features/commands-and-shortcuts/keyboard-shortcuts"
+						]
+					},
+					{
+						"group": "Customization",
+						"pages": [
+							"features/customization/opening-caret-in-sidebar",
+							"features/customization/disable-terminal-pagers"
+						]
+					},
+					"features/dictation",
+					"features/drag-and-drop",
+					"features/editing-messages",
+					"features/explain-changes",
+					"features/focus-chain",
+					{
+						"group": "Hooks",
+						"pages": [
+							"features/hooks/index",
+							"features/hooks/hook-reference",
+							"features/hooks/samples"
+						]
+					},
+					"features/input-history",
+					"features/multiroot-workspace",
+					"features/plan-and-act",
 					{
 						"group": "Slash Commands",
 						"pages": [
@@ -124,22 +151,21 @@
 						]
 					},
 					{
-						"group": "Customization",
+						"group": "Workflows",
 						"pages": [
-							"features/customization/opening-caret-in-sidebar",
-							"features/customization/disable-terminal-pagers"
+							"features/slash-commands/workflows/index",
+							"features/slash-commands/workflows/quickstart",
+							"features/slash-commands/workflows/best-practices"
 						]
 					},
 					{
-						"group": "Commands & Shortcuts",
+						"group": "Tasks",
 						"pages": [
-							"features/commands-and-shortcuts/overview",
-							"features/commands-and-shortcuts/code-commands",
-							"features/commands-and-shortcuts/terminal-integration",
-							"features/commands-and-shortcuts/git-integration",
-							"features/commands-and-shortcuts/keyboard-shortcuts"
+							"features/tasks/understanding-tasks",
+							"features/tasks/task-management"
 						]
-					}
+					},
+					"features/yolo-mode"
 				]
 			},
 			{
@@ -151,12 +177,112 @@
 				]
 			},
 			{
+				"group": "Caret CLI",
+				"pages": [
+					"caret-cli/overview",
+					"caret-cli/installation",
+					"caret-cli/three-core-flows",
+					{
+						"group": "CLI Samples",
+						"pages": [
+							"caret-cli/samples/overview",
+							"caret-cli/samples/github-issue-rca",
+							"caret-cli/samples/github-integration"
+						]
+					},
+					"caret-cli/cli-reference"
+				]
+			},
+			{
 				"group": "Enterprise Solutions",
 				"pages": [
-					"enterprise-solutions/cloud-provider-integration",
+					"enterprise-solutions/overview",
+					"enterprise-solutions/onboarding",
 					"enterprise-solutions/custom-instructions",
+					"enterprise-solutions/security-concerns",
+					"enterprise-solutions/cloud-provider-integration",
 					"enterprise-solutions/mcp-servers",
-					"enterprise-solutions/security-concerns"
+					{
+						"group": "Team Management",
+						"pages": [
+							"enterprise-solutions/team-management/managing-members"
+						]
+					},
+					{
+						"group": "Configuration",
+						"pages": [
+							"enterprise-solutions/configuration/overview",
+							"enterprise-solutions/configuration/choosing-your-deployment",
+							{
+								"group": "Remote Configuration",
+								"pages": [
+									"enterprise-solutions/configuration/remote-configuration/overview",
+									{
+										"group": "AWS Bedrock",
+										"pages": [
+											"enterprise-solutions/configuration/remote-configuration/aws-bedrock/admin-configuration",
+											"enterprise-solutions/configuration/remote-configuration/aws-bedrock/member-configuration"
+										]
+									},
+									{
+										"group": "LiteLLM",
+										"pages": [
+											"enterprise-solutions/configuration/remote-configuration/litellm/admin-configuration",
+											"enterprise-solutions/configuration/remote-configuration/litellm/member-configuration"
+										]
+									},
+									{
+										"group": "Google Vertex AI",
+										"pages": [
+											"enterprise-solutions/configuration/remote-configuration/google-vertex/admin-configuration",
+											"enterprise-solutions/configuration/remote-configuration/google-vertex/member-configuration"
+										]
+									}
+								]
+							},
+							{
+								"group": "Infrastructure Configuration",
+								"pages": [
+									"enterprise-solutions/configuration/infrastructure-configuration/overview",
+									{
+										"group": "Providers",
+										"pages": [
+											"enterprise-solutions/configuration/infrastructure-configuration/providers/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/providers/aws-bedrock/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/providers/google-vertex/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/providers/litellm/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/providers/custom"
+										]
+									},
+									{
+										"group": "MCP",
+										"pages": [
+											"enterprise-solutions/configuration/infrastructure-configuration/mcp/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/mcp/remote-mcp-servers",
+											"enterprise-solutions/configuration/infrastructure-configuration/mcp/mcp-marketplace"
+										]
+									},
+									"enterprise-solutions/configuration/infrastructure-configuration/rules",
+									"enterprise-solutions/configuration/infrastructure-configuration/workflows",
+									{
+										"group": "Control Other Features",
+										"pages": [
+											"enterprise-solutions/configuration/infrastructure-configuration/control-other-cline-features/overview",
+											"enterprise-solutions/configuration/infrastructure-configuration/control-other-cline-features/yolo-mode"
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"group": "Monitoring",
+						"pages": [
+							"enterprise-solutions/monitoring/overview",
+							"enterprise-solutions/monitoring/telemetry",
+							"enterprise-solutions/monitoring/opentelemetry"
+						]
+					}
 				]
 			},
 			{
@@ -201,6 +327,7 @@
 					"provider-config/cerebras",
 					"provider-config/baseten",
 					"provider-config/doubao",
+					"provider-config/fireworks-ai",
 					"provider-config/fireworks",
 					"provider-config/zai",
 					"provider-config/ollama",
@@ -224,6 +351,7 @@
 			{
 				"group": "Troubleshooting",
 				"pages": [
+					"troubleshooting/networking-and-proxies",
 					"troubleshooting/task-history-recovery",
 					"troubleshooting/terminal-quick-fixes",
 					"troubleshooting/terminal-integration-guide"

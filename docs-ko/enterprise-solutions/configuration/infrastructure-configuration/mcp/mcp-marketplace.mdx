@@ -1,0 +1,553 @@
+---
+title: "MCP 마켓플레이스"
+sidebarTitle: "MCP 마켓플레이스"
+description: "Caret 마켓플레이스에서 엔터프라이즈 MCP 서버를 원클릭으로 배포합니다"
+---
+
+MCP 마켓플레이스는 인기 개발 도구/서비스에 대한 **엔터프라이즈급 통합**을 제공합니다. 모든 서버는 보안/컴플라이언스/확장성을 고려해 설계되어 있습니다.
+
+## 엔터프라이즈 마켓플레이스의 장점
+
+<CardGroup cols={2}>
+  <Card title="원클릭 배포" icon="rocket">
+    복잡한 통합을 사전 구성으로 즉시 배포
+  </Card>
+  
+  <Card title="보안 강화" icon="shield-check">
+    보안 기능, 감사 로깅, 컴플라이언스 제어 포함
+  </Card>
+  
+  <Card title="유지보수/업데이트" icon="sync">
+    보안 업데이트와 기능 개선을 정기 반영
+  </Card>
+  
+  <Card title="엔터프라이즈 지원" icon="headset">
+    마켓플레이스 통합을 위한 전용 지원 채널 제공
+  </Card>
+</CardGroup>
+
+## 제공 통합
+
+### 개발 도구
+
+<CardGroup cols={3}>
+  <Card title="GitHub Enterprise" icon="github">
+    저장소/이슈/PR/코드 분석
+  </Card>
+  
+  <Card title="GitLab Enterprise" icon="gitlab">
+    프로젝트 관리, CI/CD, MR, 보안 스캔
+  </Card>
+  
+  <Card title="Bitbucket Enterprise" icon="bitbucket">  
+    소스 관리, 빌드 파이프라인, 배포 자동화
+  </Card>
+</CardGroup>
+
+### 프로젝트 관리
+
+<CardGroup cols={3}>
+  <Card title="Jira Enterprise" icon="jira">
+    이슈/스프린트/커스텀 필드/워크플로 자동화
+  </Card>
+  
+  <Card title="Azure DevOps" icon="microsoft">
+    워크 아이템/보드/리포/파이프라인/테스트 관리
+  </Card>
+  
+  <Card title="Linear" icon="linear">
+    이슈 트래킹/프로젝트 계획/개발 워크플로
+  </Card>
+</CardGroup>
+
+### 커뮤니케이션 & 협업
+
+<CardGroup cols={3}>
+  <Card title="Slack Enterprise Grid" icon="slack">
+    알림, 봇 상호작용, 파일 공유, 자동화
+  </Card>
+  
+  <Card title="Microsoft Teams" icon="microsoft-teams">
+    채팅 알림, 미팅 연동, 협업 워크플로
+  </Card>
+  
+  <Card title="Discord" icon="discord">
+    커뮤니티 관리, 봇 상호작용, 개발 알림
+  </Card>
+</CardGroup>
+
+### 클라우드 서비스
+
+<CardGroup cols={3}>
+  <Card title="AWS Services" icon="aws">
+    EC2, S3, Lambda, RDS, CloudWatch 등
+  </Card>
+  
+  <Card title="Google Cloud" icon="google-cloud">
+    Compute Engine, Cloud Storage, BigQuery 등
+  </Card>
+  
+  <Card title="Azure Services" icon="azure">
+    VM, Storage, Functions, 리소스 관리
+  </Card>
+</CardGroup>
+
+## 마켓플레이스 서버 설치
+
+### Caret Enterprise 대시보드에서
+
+1. **마켓플레이스 접근**: `Settings > Enterprise > MCP Marketplace` 이동
+2. **통합 탐색**: 카테고리/인기도/검색으로 필터링
+3. **상세 확인**: 호환성, 권한, 구성 요건 확인
+4. **설치**: "Install" 클릭 후 설정 입력
+5. **배포 승인**: 선택한 환경으로 배포 승인
+
+### 구성 파일로 설치
+
+```yaml
+# enterprise-mcp-config.yaml
+mcp:
+  marketplace_servers:
+    - name: "github-enterprise"
+      package: "@cline/mcp-github-enterprise"
+      version: "2.1.0"
+      environment: "production"
+      
+      config:
+        github:
+          base_url: "https://github.company.com/api/v3"
+          token: "${GITHUB_ENTERPRISE_TOKEN}"
+          organization: "company"
+          
+        features:
+          issue_management: true
+          pull_request_automation: true
+          code_analysis: true
+          security_scanning: true
+          
+        permissions:
+          repositories: "read-write"
+          issues: "write"
+          pull_requests: "write"
+          
+        compliance:
+          audit_logging: true
+          data_retention_days: 365
+          encryption_at_rest: true
+          
+    - name: "jira-enterprise"
+      package: "@cline/mcp-jira-enterprise"
+      version: "1.8.3"
+      environment: "production"
+      
+      config:
+        jira:
+          base_url: "https://company.atlassian.net"
+          username: "${JIRA_USERNAME}"
+          api_token: "${JIRA_API_TOKEN}"
+          
+        projects:
+          - key: "DEV"
+            permissions: ["read", "write", "transition"]
+          - key: "OPS"
+            permissions: ["read", "comment"]
+            
+        compliance:
+          field_encryption: ["description", "comments"]
+          audit_trail: true
+```
+
+### CLI로 설치
+
+```bash
+# GitHub Enterprise 통합 설치
+caret-enterprise mcp install github-enterprise \
+  --version 2.1.0 \
+  --config-file github-config.yaml \
+  --environment production
+
+# Slack Enterprise Grid 통합 설치
+caret-enterprise mcp install slack-enterprise-grid \
+  --version 1.5.2 \
+  --config workspace_id=T1234567890 \
+  --config bot_token=${SLACK_BOT_TOKEN} \
+  --environment production
+
+# 설치된 서버 목록
+caret-enterprise mcp list --environment production
+
+# 서버 상태 확인
+caret-enterprise mcp status github-enterprise --environment production
+```
+
+## 구성 예시
+
+### GitHub Enterprise 통합
+
+```yaml
+# github-enterprise-config.yaml
+github:
+  base_url: "https://github.company.com/api/v3"
+  token: "${GITHUB_ENTERPRISE_TOKEN}"
+  organization: "company"
+  
+  # 저장소 접근 제어
+  repositories:
+    allowed_patterns:
+      - "company/*"
+      - "internal/*"
+    blocked_patterns:
+      - "*/secrets"
+      - "*/private-keys"
+      
+  # 기능 구성
+  features:
+    issue_management:
+      enabled: true
+      auto_assign: true
+      labels:
+        - "ai-generated"
+        - "caret-task"
+        
+    pull_requests:
+      enabled: true
+      auto_review_request: true
+      required_approvals: 2
+      enforce_branch_protection: true
+      
+    code_analysis:
+      enabled: true
+      languages: ["typescript", "python", "go", "rust"]
+      security_scan: true
+      
+  # 보안/컴플라이언스
+  security:
+    webhook_secret: "${GITHUB_WEBHOOK_SECRET}"
+    rate_limiting:
+      requests_per_hour: 5000
+      burst_limit: 100
+    ip_whitelist:
+      - "10.0.0.0/8"
+      - "192.168.0.0/16"
+      
+  audit:
+    log_level: "INFO"
+    include_payloads: false
+    retention_days: 365
+    destinations: ["datadog", "splunk"]
+```
+
+### Jira Enterprise 통합
+
+```yaml
+# jira-enterprise-config.yaml
+jira:
+  base_url: "https://company.atlassian.net"
+  username: "${JIRA_USERNAME}"
+  api_token: "${JIRA_API_TOKEN}"
+  
+  # 프로젝트 접근
+  projects:
+    - key: "DEV"
+      name: "Development"
+      permissions: ["read", "write", "transition", "assign"]
+      issue_types: ["Story", "Bug", "Task", "Subtask"]
+      
+    - key: "OPS"
+      name: "Operations"  
+      permissions: ["read", "comment", "watch"]
+      
+  # 커스텀 필드 매핑
+  custom_fields:
+    story_points: "customfield_10002"
+    epic_link: "customfield_10014"
+    sprint: "customfield_10020"
+    
+  # 워크플로 자동화
+  automation:
+    auto_transition:
+      enabled: true
+      rules:
+        - from_status: "To Do"
+          to_status: "In Progress"
+          condition: "assignee_changed"
+          
+    auto_assign:
+      enabled: true
+      rules:
+        - issue_type: "Bug"
+          component: "Frontend"
+          assignee: "frontend-team-lead"
+          
+  # 보안/컴플라이언스
+  security:
+    encrypt_fields: ["description", "comment"]
+    mask_sensitive_data: true
+    audit_changes: true
+    
+  compliance:
+    gdpr_compliant: true
+    data_retention_policy: "365_days"
+    audit_log_retention: "7_years"
+```
+
+### Slack Enterprise Grid 통합
+
+```yaml
+# slack-enterprise-config.yaml
+slack:
+  workspace_id: "T1234567890"
+  bot_token: "${SLACK_BOT_TOKEN}"
+  signing_secret: "${SLACK_SIGNING_SECRET}"
+  
+  # 채널 관리
+  channels:
+    notifications:
+      - name: "#dev-alerts"
+        types: ["deployments", "errors", "security"]
+      - name: "#ai-activity"
+        types: ["caret-tasks", "completions"]
+        
+    private_channels:
+      - name: "#security-incidents"
+        members: ["security-team"]
+        types: ["security-alerts", "compliance-issues"]
+        
+  # 봇 동작
+  bot:
+    display_name: "Caret Enterprise"
+    default_channel: "#general"
+    response_delay_ms: 1000
+    
+    commands:
+      - command: "/caret-status"
+        description: "Caret Enterprise 상태 확인"
+        permission: "all"
+        
+      - command: "/caret-deploy"
+        description: "배포 트리거"
+        permission: "admin"
+        
+  # 엔터프라이즈 기능
+  enterprise:
+    app_approval_required: true
+    data_residency: "US"
+    compliance_export: true
+    
+    dlp:
+      enabled: true
+      scan_messages: true
+      block_sensitive_data: true
+      
+  # 보안 설정
+  security:
+    require_app_approval: true
+    audit_api_calls: true
+    encrypt_messages: true
+    retain_audit_logs_days: 2555  # 7년
+```
+
+## 엔터프라이즈 운영
+
+### 멀티 환경 배포
+
+```yaml
+# environments-config.yaml
+environments:
+  development:
+    marketplace_servers:
+      - github-enterprise:
+          version: "2.1.0-beta"
+          config_override:
+            github:
+              base_url: "https://github-dev.company.com/api/v3"
+              organization: "company-dev"
+              
+  staging:
+    marketplace_servers:
+      - github-enterprise:
+          version: "2.1.0-rc1"  
+          config_override:
+            github:
+              base_url: "https://github-staging.company.com/api/v3"
+              organization: "company-staging"
+              
+  production:
+    marketplace_servers:
+      - github-enterprise:
+          version: "2.1.0"
+          config_override:
+            github:
+              base_url: "https://github.company.com/api/v3"
+              organization: "company"
+```
+
+### 버전 관리
+
+```bash
+# 버전 목록
+caret-enterprise mcp versions github-enterprise
+
+# 최신 버전 업그레이드
+caret-enterprise mcp upgrade github-enterprise --version 2.2.0 --environment staging
+
+# 이전 버전 롤백
+caret-enterprise mcp rollback github-enterprise --version 2.1.0 --environment staging
+
+# 특정 버전 고정
+caret-enterprise mcp pin github-enterprise --version 2.1.0
+```
+
+### 헬스 모니터링
+
+```yaml
+# monitoring-config.yaml
+monitoring:
+  marketplace_servers:
+    health_checks:
+      interval_seconds: 30
+      timeout_seconds: 10
+      
+    metrics:
+      - server_status
+      - request_latency
+      - error_rate
+      - resource_usage
+      
+    alerts:
+      - name: "marketplace-server-down"
+        condition: "server_status != 1"
+        severity: "critical"
+        
+      - name: "high-error-rate"
+        condition: "error_rate > 0.05"  
+        severity: "warning"
+        
+      - name: "performance-degradation"
+        condition: "request_latency > 5s"
+        severity: "warning"
+```
+
+## 보안 & 컴플라이언스
+
+### 엔터프라이즈 보안 기능
+
+모든 마켓플레이스 서버는 다음을 포함합니다.
+
+- **인증 통합**: SSO/SAML/OAuth2
+- **인가 제어**: RBAC 및 세밀한 권한
+- **감사 로깅**: 활동 추적
+- **데이터 암호화**: 저장/전송 시 암호화
+- **네트워크 보안**: VPN/IP 화이트리스트/프라이빗 엔드포인트
+- **컴플라이언스**: SOC2/GDPR/HIPAA 프레임워크 대응
+
+### 데이터 거버넌스
+
+```yaml
+# data-governance-config.yaml
+data_governance:
+  classification:
+    public:
+      retention_days: 90
+      backup_required: false
+      
+    internal:
+      retention_days: 365
+      backup_required: true
+      encryption_required: false
+      
+    confidential:
+      retention_days: 2555  # 7년
+      backup_required: true
+      encryption_required: true
+      audit_access: true
+      
+    restricted:
+      retention_days: 2555
+      backup_required: true  
+      encryption_required: true
+      audit_access: true
+      approval_required: true
+      
+  privacy:
+    pii_detection: true
+    pii_masking: true
+    gdpr_compliance: true
+    data_subject_requests: true
+    
+  compliance:
+    frameworks: ["SOC2", "GDPR", "CCPA", "HIPAA"]
+    audit_frequency: "quarterly"
+    certification_renewal: "annual"
+```
+
+## 모범 사례
+
+### 설치
+1. **권한 검토**: 설치 전 권한 확인
+2. **스테이징 테스트**: 먼저 스테이징에 배포
+3. **구성 검증**: 배포 전 구성 파일 검증
+4. **백업**: 변경 전 상태 백업
+5. **배포 모니터링**: 롤아웃 동안 지표 확인
+
+### 구성
+1. **환경 분리**: 환경별 설정 분리
+2. **시크릿 관리**: 민감 정보는 안전한 저장소에
+3. **버전 고정**: 프로덕션은 버전 고정
+4. **접근 제어**: 최소 권한 원칙
+5. **정기 업데이트**: 보안/기능 업데이트 스케줄링
+
+### 모니터링
+1. **헬스 체크**: 지속적으로 상태 확인
+2. **성능 지표**: 지연/처리량 추적
+3. **오류 추적**: 오류율 알림
+4. **리소스 사용량**: CPU/메모리/네트워크 모니터링
+5. **감사 리뷰**: 감사 로그 정기 검토
+
+## 문제 해결
+
+### 일반 이슈
+
+**설치 실패:**
+```bash
+# 마켓플레이스 연결 상태 확인
+caret-enterprise mcp marketplace-status
+
+# 인증 확인
+caret-enterprise auth verify --service marketplace
+
+# 설치 로그 확인
+caret-enterprise logs mcp-installer --lines 100
+```
+
+**구성 오류:**
+```bash
+# 구성 검증
+caret-enterprise mcp validate-config --file config.yaml
+
+# 연결 테스트
+caret-enterprise mcp test-connection github-enterprise --environment staging
+
+# 서버 상태 확인
+caret-enterprise mcp status --all
+```
+
+**성능 문제:**
+```bash
+# 서버 메트릭 확인
+caret-enterprise mcp metrics github-enterprise --duration 1h
+
+# 최근 오류 로그
+caret-enterprise logs github-enterprise --level error --lines 50
+```
+
+## 지원
+
+마켓플레이스 서버 문제:
+
+- **문서**: 대시보드 내 서버별 문서 확인
+- **커뮤니티**: Caret Enterprise 커뮤니티 포럼
+- **지원 티켓**: 중요 이슈는 지원 티켓 발행
+- **프로 서비스**: 커스텀 구성은 프로페셔널 서비스 이용
+
+엔터프라이즈 고객은 SLA가 보장된 전용 지원 채널을 이용할 수 있습니다.

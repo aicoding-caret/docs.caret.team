@@ -1,0 +1,295 @@
+---
+title: "멤버 관리"
+sidebarTitle: "멤버 관리"
+description: "Caret Enterprise에서 팀 멤버, 역할, 권한을 관리하는 전체 가이드"
+---
+
+효율적인 멤버 관리는 보안을 유지하고 팀 생산성을 높이는 핵심입니다. 이 문서는 역할/권한과 실무적인 멤버 운영 절차를 안내합니다.
+
+## 역할 이해하기
+
+보안과 생산성의 균형을 위해 역할을 적절히 선택하세요.
+
+<CardGroup cols={3}>
+  <Card title="Owner" icon="crown" color="#9D4EDD">
+    **조직 대표 계정**
+    
+    결제/보안/소유권 이전까지 모든 권한. 1~2명의 핵심 리더에만 부여하세요.
+  </Card>
+  
+  <Card title="Admin" icon="user-gear" color="#7209B7">
+    **팀 리드 & IT 관리자**
+    
+    사용자 관리/공급자 구성 가능. 결제 권한 없이 운영 제어가 필요한 관리자에게 적합.
+  </Card>
+  
+  <Card title="Member" icon="user" color="#560BAD">
+    **개발자 & 기여자**
+    
+    공유 리소스 사용 가능, 설정 변경 불가. 대부분의 팀원에게 권장.
+  </Card>
+</CardGroup>
+
+## 권한 매트릭스
+
+| 권한 | Member | Admin | Owner |
+| :--- | :---: | :---: | :---: |
+| **일반 사용** | | | |
+| Caret 사용 | ✅ | ✅ | ✅ |
+| 공유 API 공급자 접근 | ✅ | ✅ | ✅ |
+| | | | |
+| **멤버 관리** | | | |
+| 멤버 조회 | ❌ | ✅ | ✅ |
+| 멤버 초대 | ❌ | ✅ | ✅ |
+| 역할 변경 | ❌ | ✅ | ✅ |
+| 멤버 제거 | ❌ | ✅ | ✅ |
+| Admin 제거 | ❌ | ❌ | ✅ |
+| | | | |
+| **구성** | | | |
+| 공급자 구성 | ❌ | ✅ | ✅ |
+| 보안 설정 관리 | ❌ | ❌ | ✅ |
+| | | | |
+| **결제/소유권** | | | |
+| 결제 정보 조회 | ❌ | ❌ | ✅ |
+| 구독 관리 | ❌ | ❌ | ✅ |
+| 소유권 이전 | ❌ | ❌ | ✅ |
+
+<Note>
+**요약:** 대부분의 사용자는 **Member**로 충분합니다. **Admin**은 운영 담당자에게만, **Owner**는 1~2명으로 제한하세요.
+</Note>
+
+## 멤버 관리 작업
+
+<Tabs>
+  <Tab title="멤버 추가">
+    ### 새 멤버 초대
+    
+    1. **Members 페이지 이동**
+       - app.caret.bot의 조직 대시보드로 이동
+       - 사이드바에서 "Members" 클릭
+    
+    2. **초대 발송**
+       - "Invite Member" 클릭
+       - 이메일 입력(검증된 도메인 필요)
+       - 역할 선택(Member/Admin/Owner)
+       - "Send Invite" 클릭
+    
+    3. **초대 상태 확인**
+       - 초대된 사용자는 이메일을 받음
+       - 멤버 목록에 "Pending"으로 표시
+       - Pending 초대는 좌석 1개를 점유
+    
+    <Tip>
+    **대량 초대:** 여러 명을 추가해야 한다면 support@caret.team으로 CSV 일괄 등록을 문의하세요.
+    </Tip>
+  </Tab>
+  
+  <Tab title="역할 변경">
+    ### 멤버 권한 변경
+    
+    1. **멤버 찾기**
+       - Members 페이지 이동
+       - 변경할 사용자를 찾기
+    
+    2. **역할 변경**
+       - 현재 역할 옆 드롭다운 클릭
+       - 새 역할 선택
+       - 변경 확인
+    
+    3. **즉시 적용**
+       - 역할 변경은 즉시 반영
+       - 사용자는 로그아웃/로그인이 필요할 수 있음
+    
+    <Warning>
+    **Admin → Member 변경:** 사용자 관리/구성 권한이 즉시 회수됩니다. 변경 전에 필요 권한 여부를 확인하세요.
+    </Warning>
+  </Tab>
+  
+  <Tab title="멤버 제거">
+    ### 멤버 오프보딩
+    
+    1. **멤버 목록 접근**
+       - Members 페이지에서 대상 사용자 찾기
+    
+    2. **제거**
+       - 사용자 옆 메뉴(⋮) 클릭
+       - "Remove from Organization" 선택
+       - 제거 확인
+    
+    3. **즉시 효과**
+       - 조직 접근 즉시 차단
+       - 좌석이 즉시 해제됨
+       - 감사 로그는 유지됨
+    
+    <Info>
+    **데이터 보존:** 멤버 제거 시 활동 로그는 삭제되지 않습니다. 감사 추적용으로 유지됩니다.
+    </Info>
+  </Tab>
+  
+  <Tab title="초대 취소">
+    ### 대기 초대 취소
+    
+    대기 중인 초대는 언제든 취소할 수 있습니다.
+    
+    1. Members 목록에서 Pending 초대 찾기
+    2. "Revoke Invitation" 클릭
+    3. 좌석이 즉시 해제됨
+    
+    사용 사례:
+    - 이메일을 잘못 입력한 경우
+    - 접근이 더 이상 필요 없는 경우
+    - 좌석을 긴급 재할당해야 하는 경우
+  </Tab>
+</Tabs>
+
+## ID/접근 요건
+
+사용자가 조직에 참여하려면 다음 조건을 충족해야 합니다.
+
+<Steps>
+  <Step title="검증된 IDP">
+    조직은 검증된 **IDP**를 사용해야 합니다.
+    - Microsoft Entra ID(Azure AD)
+    - Okta
+    - Google Workspace
+    - AWS IAM Identity Center
+    
+    사용자는 IDP를 통해 인증해야 접근할 수 있습니다.
+  </Step>
+  
+  <Step title="도메인 검증">
+    조직은 **검증된 도메인**이 있어야 합니다. 도메인 소유권을 확인해야 합니다.
+    
+    검증된 도메인의 이메일만 참여 가능합니다.
+  </Step>
+</Steps>
+
+<Note>
+이 요건은 회사 외부의 무단 접근을 차단하기 위해 필요합니다.
+</Note>
+
+## 좌석(Seat) 관리
+
+좌석 관리로 라이선스를 효율적으로 운영하세요.
+
+<AccordionGroup>
+  <Accordion title="좌석 계산 방식" icon="chair">
+    - 사용자(Owner/Admin/Member) 1명당 좌석 1개 사용
+    - Pending 초대도 좌석 1개 점유
+    - 멤버 제거/초대 취소 시 즉시 좌석 해제
+    - 라이선스가 최대 좌석 수 결정
+  </Accordion>
+  
+  <Accordion title="좌석 사용 시점" icon="user-plus">
+    - 초대 발송 시(대기 상태)
+    - 초대 수락 후 조직 참여
+    - SSO를 통한 신규 사용자 자동 추가
+  </Accordion>
+  
+  <Accordion title="좌석 해제 방법" icon="user-minus">
+    - 활성 멤버 제거
+    - 대기 초대 취소
+    - 대기 초대 만료(설정된 경우)
+  </Accordion>
+  
+  <Accordion title="라이선스 업그레이드" icon="arrow-up">
+    더 많은 좌석이 필요하다면:
+    - **Teams 플랜:** 계정 매니저 또는 app.caret.bot/settings/billing
+    - **Enterprise 플랜:** 사용자 수 제한 없음
+  </Accordion>
+</AccordionGroup>
+
+## 보안 모범 사례
+
+<CardGroup cols={2}>
+  <Card title="최소 권한 원칙" icon="shield-check">
+    업무에 필요한 최소 권한만 부여하세요. 대부분은 Member, 일부 관리자만 Admin/Owner.
+  </Card>
+  
+  <Card title="Owner 최소화" icon="user-lock">
+    Owner는 1~2명으로 제한하세요. 결제/보안 변경 위험을 줄입니다.
+  </Card>
+  
+  <Card title="정기 감사" icon="clipboard-check">
+    분기별로 멤버 목록을 검토하고 비활성 사용자를 정리하세요.
+  </Card>
+  
+  <Card title="오프보딩 프로세스" icon="door-open">
+    Caret 제거 → IDP 접근 회수 → 감사 로그 기록 → 책임 재할당 순서로 운영하세요.
+  </Card>
+</CardGroup>
+
+<Warning>
+**Owner 책임:** Owner는 결제/소유권 이전 권한이 있으므로 신중히 지정하고 보안 정책에 기록하세요.
+</Warning>
+
+## 고급 시나리오
+
+<AccordionGroup>
+  <Accordion title="소유권 이전" icon="exchange">
+    소유권 이전은 현재 Owner만 수행할 수 있습니다.
+    
+    1. Organization Settings 이동
+    2. "Ownership" 섹션 선택
+    3. 새 Owner 선택
+    4. 인증 후 이전 확정
+    5. 새 Owner가 즉시 권한 획득
+    
+    **중요:** 이전은 되돌릴 수 없으며, 역이전은 새 Owner가 수행해야 합니다.
+  </Accordion>
+  
+  <Accordion title="다중 Admin 관리" icon="users-gear">
+    - 각 Admin의 책임 범위 문서화
+    - 감사 로그로 설정 변경 추적
+    - 대규모 팀은 순번/온콜 체계 고려
+    - Owner 승인 경로 명확화
+  </Accordion>
+  
+  <Accordion title="임시 접근" icon="clock">
+    - 계약직은 Member로 추가하고 만료 일정 기록
+    - 내부 시스템에 접근 기간 기록
+    - 계약 종료 시 제거 알림 설정
+    - IDP에서 만료 계정 사용 고려
+  </Accordion>
+</AccordionGroup>
+
+## 문제 해결
+
+<AccordionGroup>
+  <Accordion title="초대 수락 불가" icon="circle-exclamation">
+    **원인:**
+    - 도메인 미검증
+    - IDP 접근 미부여
+    - 초대 링크 만료
+    
+    **해결:** 도메인 검증 완료 여부 확인 후 초대 재발송
+  </Accordion>
+  
+  <Accordion title="Admin 제거 불가" icon="user-slash">
+    **원인:** Admin 제거는 Owner만 가능
+    
+    **해결:** Owner에게 제거 요청. 조직의 유일한 Owner 제거가 필요하면 support@caret.team에 문의하세요.
+  </Accordion>
+  
+  <Accordion title="좌석 부족" icon="triangle-exclamation">
+    - 비활성 멤버 제거
+    - 대기 초대 취소
+    - 라이선스 업그레이드
+  </Accordion>
+</AccordionGroup>
+
+## 다음 단계
+
+<CardGroup cols={2}>
+  <Card title="공급자 구성" icon="plug" href="/enterprise-solutions/configuration/choosing-your-deployment">
+    팀용 API 공급자 설정
+  </Card>
+  
+  <Card title="사용량 모니터링" icon="chart-line" href="/enterprise-solutions/monitoring/overview">
+    팀 활동 및 리소스 소비 추적
+  </Card>
+</CardGroup>
+
+<Tip>
+**빠른 시작:** 1) 멤버를 Member로 초대 → 2) 공급자 하나 설정 → 3) 팀이 Caret 사용 시작. 역할/설정은 이후 조정 가능.
+</Tip>

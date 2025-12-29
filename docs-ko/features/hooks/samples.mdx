@@ -1,0 +1,755 @@
+---
+title: "샘플"
+sidebarTitle: "샘플"
+description: "초급부터 고급까지 난이도별 실전 Hook 예시"
+---
+
+이 문서는 난이도별로 정리한 **완전한 Hook 예시**를 제공합니다. 각 예시는 동작 가능한 코드, 상세 설명, 활용 시점을 함께 담고 있습니다.
+
+## 샘플 활용 방법
+
+각 샘플은 다음을 목표로 합니다:
+- **바로 복사해서 사용 가능**: 그대로 쓰거나 출발점으로 활용
+- **학습용**: 난이도가 점진적으로 올라가며 Hook 개념을 이해
+- **실전용**: 실제 개발 워크플로의 문제를 해결
+
+경험 수준에 맞는 샘플부터 시작해 점차 고급 패턴으로 확장해 보세요.
+
+---
+
+## 초급 예시
+
+Hooks를 처음 시작할 때 적합한 예시입니다. 단순한 로직으로 핵심 개념을 보여줍니다.
+
+### 1. 프로젝트 유형 감지
+
+**Hook:** `TaskStart`
+
+```bash
+#!/usr/bin/env bash
+# Project Type Detection Hook
+#
+# Overview: Automatically detects project type at task start and injects relevant
+# coding standards and best practices into the AI context. This helps Caret understand
+# your project structure and apply appropriate conventions from the beginning.
+#
+# Demonstrates: Basic hook input/output, file system checks, conditional logic,
+# and context injection to guide AI behavior.
+
+input=$(cat)
+
+# Read basic JSON structure and detect project type
+context=""
+
+# Check for different project indicators
+if [[ -f "package.json" ]]; then
+  if grep -q "react" package.json; then
+    context="PROJECT_TYPE: React application detected. Follow component-based architecture and use functional components."
+  elif grep -q "express" package.json; then
+    context="PROJECT_TYPE: Express.js API detected. Follow RESTful patterns and proper middleware structure."
+  else
+    context="PROJECT_TYPE: Node.js project detected. Use proper npm scripts and dependency management."
+  fi
+elif [[ -f "requirements.txt" ]] || [[ -f "pyproject.toml" ]]; then
+  context="PROJECT_TYPE: Python project detected. Follow PEP 8 standards and use virtual environments."
+elif [[ -f "Cargo.toml" ]]; then
+  context="PROJECT_TYPE: Rust project detected. Follow Rust conventions and use proper error handling."
+elif [[ -f "go.mod" ]]; then
+  context="PROJECT_TYPE: Go project detected. Follow Go conventions and use proper package structure."
+fi
+
+# Return the context to guide Caret's behavior
+if [[ -n "$context" ]]; then
+  jq -n --arg ctx "$context" '{"cancel": false, "contextModification": $ctx}'
+else
+  echo '{"cancel": false}'
+fi
+```
+
+**핵심 개념:**
+- `input=$(cat)`로 Hook 입력 읽기
+- 파일 시스템 체크로 프로젝트 유형 감지
+- 컨텍스트 주입으로 AI 동작 유도
+- `jq`로 JSON 출력 구성
+
+### 2. 파일 확장자 검증
+
+**Hook:** `PreToolUse`
+
+```bash
+#!/usr/bin/env bash
+# File Extension Validator Hook
+#
+# Overview: Enforces TypeScript file extensions in TypeScript projects by blocking
+# creation of .js and .jsx files. This prevents common mistakes where developers
+# accidentally create JavaScript files when they should be using TypeScript.
+#
+# Demonstrates: PreToolUse blocking, parameter extraction, conditional validation,
+# and providing clear error messages to guide users toward correct file extensions.
+
+input=$(cat)
+
+# Extract tool information
+tool_name=$(echo "$input" | jq -r '.preToolUse.toolName')
+
+# Only process file creation tools
+if [[ "$tool_name" != "write_to_file" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Check if this is a TypeScript project
+if [[ ! -f "tsconfig.json" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Get the file path from tool parameters
+file_path=$(echo "$input" | jq -r '.preToolUse.parameters.path // empty')
+
+if [[ -z "$file_path" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Block .js files in TypeScript projects
+if [[ "$file_path" == *.js ]]; then
+  echo '{"cancel": true, "errorMessage": "JavaScript files (.js) are not allowed in TypeScript projects. Use .ts extension instead."}'
+  exit 0
+fi
+
+# Block .jsx files, suggest .tsx
+if [[ "$file_path" == *.jsx ]]; then
+  echo '{"cancel": true, "errorMessage": "JSX files (.jsx) are not allowed in TypeScript projects. Use .tsx extension instead."}'
+  exit 0
+fi
+
+# Everything is OK
+echo '{"cancel": false}'
+```
+
+**핵심 개념:**
+- 도구 이름과 파라미터 추출
+- 프로젝트 상태 기반 조건 분기
+- `"cancel": true`로 동작 차단
+- 명확한 오류 메시지 제공
+
+### 3. 기본 성능 모니터
+
+**Hook:** `PostToolUse`
+
+```bash
+#!/usr/bin/env bash
+# Basic Performance Monitor Hook
+#
+# Overview: Monitors tool execution times and logs operations that exceed a 3-second
+# threshold. This helps identify performance bottlenecks and provides feedback to
+# users about system resource issues that may be slowing down Caret's operations.
+#
+# Demonstrates: PostToolUse hook usage, arithmetic operations in bash, simple file
+# logging, and conditional context injection based on performance metrics.
+
+input=$(cat)
+
+# Extract performance information
+tool_name=$(echo "$input" | jq -r '.postToolUse.toolName')
+execution_time=$(echo "$input" | jq -r '.postToolUse.executionTimeMs // 0')
+success=$(echo "$input" | jq -r '.postToolUse.success')
+
+# Log slow operations (threshold: 3 seconds)
+if (( execution_time > 3000 )); then
+  # Create simple log directory
+  mkdir -p "$HOME/.caret_logs"
+
+  # Log the slow operation
+  echo "$(date -Iseconds): SLOW OPERATION - $tool_name took ${execution_time}ms" >> "$HOME/.caret_logs/performance.log"
+
+  # Provide feedback to user
+  context="PERFORMANCE: Operation $tool_name took ${execution_time}ms. Consider checking system resources if this happens frequently."
+  jq -n --arg ctx "$context" '{"cancel": false, "contextModification": $ctx}'
+else
+  echo '{"cancel": false}'
+fi
+```
+
+**핵심 개념:**
+- 도구 실행 결과 처리
+- bash 산술 연산
+- 간단한 로그 파일 기록
+- 조건부 컨텍스트 주입
+
+## 중급 예시
+
+외부 도구 연동, 패턴 매칭, 구조화된 로깅 등 고급 개념을 포함합니다.
+
+### 4. 린팅 기반 코드 품질 검사
+
+**Hook:** `PreToolUse`
+
+```bash
+#!/usr/bin/env bash
+# Code Quality Linting Hook
+#
+# Overview: Integrates ESLint and Flake8 to enforce code quality standards before
+# files are written. Blocks file creation if linting errors are detected, ensuring
+# all code meets quality standards. Supports TypeScript, JavaScript, and Python files.
+#
+# Demonstrates: External tool integration, temporary file handling, regex pattern
+# matching, and comprehensive error reporting with actionable feedback.
+
+input=$(cat)
+
+tool_name=$(echo "$input" | jq -r '.preToolUse.toolName')
+
+# Only lint file write operations
+if [[ "$tool_name" != "write_to_file" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+file_path=$(echo "$input" | jq -r '.preToolUse.parameters.path // empty')
+
+# Skip non-code files
+if [[ ! "$file_path" =~ \.(ts|tsx|js|jsx|py|rs)$ ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Get file content from the tool parameters
+content=$(echo "$input" | jq -r '.preToolUse.parameters.content // empty')
+
+if [[ -z "$content" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Create temporary file for linting
+temp_file=$(mktemp)
+echo "$content" > "$temp_file"
+
+# Run appropriate linter based on file extension
+lint_errors=""
+if [[ "$file_path" =~ \.(ts|tsx)$ ]] && command -v eslint > /dev/null; then
+  lint_output=$(eslint "$temp_file" --format=json 2>/dev/null || true)
+  if [[ "$lint_output" != "[]" ]] && [[ -n "$lint_output" ]]; then
+    error_count=$(echo "$lint_output" | jq '.[0].errorCount // 0')
+    if (( error_count > 0 )); then
+      messages=$(echo "$lint_output" | jq -r '.[0].messages[] | "\(.line):\(.column) \(.message)"')
+      lint_errors="ESLint errors found:\n$messages"
+    fi
+  fi
+elif [[ "$file_path" =~ \.py$ ]] && command -v flake8 > /dev/null; then
+  lint_output=$(flake8 "$temp_file" 2>/dev/null || true)
+  if [[ -n "$lint_output" ]]; then
+    lint_errors="Flake8 errors found:\n$lint_output"
+  fi
+fi
+
+# Cleanup
+rm -f "$temp_file"
+
+# Block if linting errors found
+if [[ -n "$lint_errors" ]]; then
+  error_message="Code quality check failed. Please fix these issues:\n\n$lint_errors"
+  jq -n --arg msg "$error_message" '{"cancel": true, "errorMessage": $msg}'
+else
+  echo '{"cancel": false}'
+fi
+```
+
+**핵심 개념:**
+- 임시 파일 생성 및 정리
+- 외부 도구 연동 (eslint, flake8)
+- 정규식 기반 패턴 매칭
+- 구조화된 오류 리포팅
+
+### 5. 보안 스캐너
+
+**Hook:** `PreToolUse`
+
+```bash
+#!/usr/bin/env bash
+# Security Scanner Hook
+#
+# Overview: Scans file content for hardcoded secrets (API keys, tokens, passwords)
+# before files are written. Blocks creation of files containing secrets except in
+# safe locations like .env.example files or documentation, preventing credential leaks.
+#
+# Demonstrates: Pattern matching with regex arrays, file path exception handling,
+# security-focused validation, and clear user guidance in error messages.
+
+input=$(cat)
+
+tool_name=$(echo "$input" | jq -r '.preToolUse.toolName')
+
+# Only check file operations
+if [[ "$tool_name" != "write_to_file" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+content=$(echo "$input" | jq -r '.preToolUse.parameters.content // empty')
+file_path=$(echo "$input" | jq -r '.preToolUse.parameters.path // empty')
+
+# Skip if no content
+if [[ -z "$content" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Define secret patterns (simplified for readability)
+secrets_found=""
+
+# Check for API keys
+if echo "$content" | grep -qi "api[_-]*key.*[=:].*['\"][a-z0-9_-]{10,}['\"]"; then
+  secrets_found+="- API key pattern detected\n"
+fi
+
+# Check for tokens
+if echo "$content" | grep -qi "token.*[=:].*['\"][a-z0-9_-]{10,}['\"]"; then
+  secrets_found+="- Token pattern detected\n"
+fi
+
+# Check for passwords
+if echo "$content" | grep -qi "password.*[=:].*['\"][^'\"]{8,}['\"]"; then
+  secrets_found+="- Password pattern detected\n"
+fi
+
+# Allow secrets in safe files
+safe_patterns=("\.env\.example$" "\.env\.template$" "/docs/" "\.md$")
+is_safe_file=false
+for safe_pattern in "${safe_patterns[@]}"; do
+  if [[ "$file_path" =~ $safe_pattern ]]; then
+    is_safe_file=true
+    break
+  fi
+done
+
+if [[ -n "$secrets_found" ]] && [[ "$is_safe_file" == false ]]; then
+  error_message="🔒 SECURITY ALERT: Potential secrets detected in $file_path
+
+$secrets_found
+Please use environment variables or a secrets management service instead."
+
+  jq -n --arg msg "$error_message" '{"cancel": true, "errorMessage": $msg}'
+else
+  echo '{"cancel": false}'
+fi
+```
+
+**핵심 개념:**
+- 패턴 배열과 반복 처리
+- 파일 경로 예외 처리
+- 보안 중심 검증 로직
+- 명확한 사용자 가이드 메시지
+
+### 6. Git 워크플로 어시스턴트
+
+**Hook:** `PostToolUse`
+
+```bash
+#!/usr/bin/env bash
+# Git Workflow Assistant Hook
+#
+# Overview: Analyzes file modifications and provides intelligent git workflow suggestions
+# based on file types and current branch. Encourages best practices like feature branches
+# for components and test branches for test files, with actionable git commands.
+#
+# Demonstrates: Git integration, branch analysis, file path pattern matching, and
+# contextual suggestions to guide users toward better git practices.
+
+input=$(cat)
+
+tool_name=$(echo "$input" | jq -r '.postToolUse.toolName')
+success=$(echo "$input" | jq -r '.postToolUse.success')
+
+# Only process successful file modifications
+if [[ "$success" != "true" ]] || [[ "$tool_name" != "write_to_file" && "$tool_name" != "replace_in_file" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Check if we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+file_path=$(echo "$input" | jq -r '.postToolUse.parameters.path // empty')
+current_branch=$(git branch --show-current 2>/dev/null || echo "main")
+
+# Analyze file type and suggest appropriate branch naming
+context=""
+if [[ "$file_path" == *"component"* ]] && [[ "$current_branch" == "main" || "$current_branch" == "master" ]]; then
+  component_name=$(basename "$file_path" .tsx .ts .jsx .js)
+  context="GIT_WORKFLOW: Consider creating a feature branch: git checkout -b feature/add-${component_name,,}-component"
+elif [[ "$file_path" == *"test"* ]] || [[ "$file_path" == *"spec"* ]]; then
+  if [[ "$current_branch" == "main" || "$current_branch" == "master" ]]; then
+    context="GIT_WORKFLOW: Consider creating a test branch: git checkout -b test/add-tests-$(basename "$(dirname "$file_path")")"
+  fi
+fi
+
+# Add staging guidance
+if [[ -n "$context" ]]; then
+  context="$context After completing changes, use 'git add $file_path' to stage for commit."
+else
+  context="GIT_WORKFLOW: File modified: $file_path. Use 'git add $file_path' when ready to commit."
+fi
+
+jq -n --arg ctx "$context" '{"cancel": false, "contextModification": $ctx}'
+```
+
+**핵심 개념:**
+- Git 저장소 감지
+- 브랜치 분석과 추천
+- 파일 경로 패턴 분석
+- 실행 가능한 가이드 제공
+
+## 고급 예시
+
+외부 시스템 연동, 비동기 처리, 복잡한 상태 관리를 다루는 고급 패턴입니다.
+
+### 7. 작업 수명주기 관리자
+
+**Hook:** `TaskComplete`
+
+```bash
+#!/usr/bin/env bash
+# Comprehensive Task Lifecycle Manager Hook
+#
+# Overview: Tracks task completions by generating detailed markdown reports with
+# workspace information and git state, and optionally sends webhook notifications
+# to external systems. Perfect for enterprise environments requiring audit trails.
+#
+# Demonstrates: Complex data extraction, structured report generation, markdown
+# heredocs, asynchronous webhook notifications, and robust error handling.
+
+input=$(cat)
+
+# Extract task metadata using proper API field paths
+task_id=$(echo "$input" | jq -r '.taskId')
+ulid=$(echo "$input" | jq -r '.taskComplete.taskMetadata.ulid // "unknown"')
+completion_time=$(echo "$input" | jq -r '.timestamp')
+
+# Create completion report directory with error handling
+reports_dir="$HOME/.caret_reports"
+if [[ ! -d "$(dirname "$reports_dir")" ]]; then
+  echo '{"cancel": false, "errorMessage": "Cannot access home directory"}'
+  exit 0
+fi
+mkdir -p "$reports_dir" || exit 0
+
+# Generate safe, unique report filename
+safe_task_id=$(echo "$task_id" | tr -cd '[:alnum:]_-' | head -c 50)
+report_file="$reports_dir/completion_$(date +%Y%m%d_%H%M%S)_${safe_task_id}.md"
+
+# Collect comprehensive workspace information
+git_branch=$(git branch --show-current 2>/dev/null || echo "No git repository")
+git_status_count=$(git status --porcelain 2>/dev/null | wc -l || echo "0")
+project_name=$(basename "$PWD")
+
+# Generate detailed completion report
+cat > "$report_file" << EOF
+# Caret Task Completion Report
+
+**Task ID:** $task_id
+**ULID:** $ulid
+**Completed:** $(date -Iseconds)
+**Completion Time:** $completion_time
+
+## Workspace Information
+- **Project:** $project_name
+- **Git Branch:** $git_branch
+- **Modified Files:** $git_status_count
+
+## Completion Status
+✅ Task completed successfully
+
+## Next Steps
+- Review changes made during this task
+- Consider committing changes if appropriate
+- Run tests to verify functionality
+EOF
+
+# Send webhook notification if configured
+webhook_url="${COMPLETION_WEBHOOK_URL:-}"
+if [[ -n "$webhook_url" ]]; then
+  payload=$(jq -n \
+    --arg task_id "$task_id" \
+    --arg ulid "$ulid" \
+    --arg workspace "$project_name" \
+    --arg timestamp "$completion_time" \
+    '{
+      event: "task_completed",
+      task_id: $task_id,
+      ulid: $ulid,
+      workspace: $workspace,
+      timestamp: $timestamp
+    }')
+
+  # Send notification in background with timeout
+  (curl -X POST \
+    -H "Content-Type: application/json" \
+    -d "$payload" \
+    "$webhook_url" \
+    --max-time 5 \
+    --silent > /dev/null 2>&1) &
+fi
+
+context="TASK_COMPLETED: ✅ Task $task_id finished successfully. Report saved to: $(basename "$report_file")"
+jq -n --arg ctx "$context" '{"cancel": false, "contextModification": $ctx}'
+```
+
+**핵심 개념:**
+- 복잡한 데이터 추출과 검증
+- 구조화된 리포트 생성
+- 비동기 웹훅 전송
+- 에러 처리 및 리소스 관리
+
+### 8. 사용자 입력 강화기
+
+**Hook:** `UserPromptSubmit`
+
+```bash
+#!/usr/bin/env bash
+# Intelligent User Input Enhancer Hook
+#
+# Overview: Analyzes user prompts to detect potentially harmful commands, logs user
+# activity for analytics, and intelligently injects project and git context based on
+# prompt keywords. Provides safety guards while enhancing AI responses with relevant context.
+#
+# Demonstrates: UserPromptSubmit hook usage, multi-pattern safety validation, intelligent
+# context detection from prompts, structured JSON logging, and dynamic suggestion generation.
+
+input=$(cat)
+
+user_prompt=$(echo "$input" | jq -r '.userPromptSubmit.prompt')
+task_id=$(echo "$input" | jq -r '.taskId')
+user_id=$(echo "$input" | jq -r '.userId')
+
+# Log user activity for analytics
+activity_log="$HOME/.caret_user_activity/$(date +%Y-%m-%d).log"
+mkdir -p "$(dirname "$activity_log")"
+
+activity_entry=$(jq -n \
+  --arg timestamp "$(date -Iseconds)" \
+  --arg task_id "$task_id" \
+  --arg user_id "$user_id" \
+  --arg prompt_length "${#user_prompt}" \
+  '{
+    timestamp: $timestamp,
+    task_id: $task_id,
+    user_id: $user_id,
+    prompt_length: ($prompt_length | tonumber),
+    workspace: env.PWD
+  }')
+
+echo "$activity_entry" >> "$activity_log"
+
+context_modifications=""
+cancel_request=false
+
+# Safety validation
+harmful_patterns=("rm -rf" "delete.*all" "format.*drive" "sudo.*passwd")
+for pattern in "${harmful_patterns[@]}"; do
+  if echo "$user_prompt" | grep -qi "$pattern"; then
+    cancel_request=true
+    error_message="🚨 SAFETY ALERT: Potentially harmful command detected. Please review your request."
+    break
+  fi
+done
+
+# Intelligent context enhancement
+if [[ "$cancel_request" == false ]]; then
+  # Detect project context
+  if echo "$user_prompt" | grep -qi "file\|directory\|folder"; then
+    if [[ -f "package.json" ]]; then
+      project_name=$(jq -r '.name // "unknown"' package.json 2>/dev/null)
+      context_modifications+="PROJECT_CONTEXT: Working in Node.js project '$project_name'. "
+    elif [[ -f "requirements.txt" ]]; then
+      context_modifications+="PROJECT_CONTEXT: Working in Python project. "
+    fi
+  fi
+
+  # Git context enhancement
+  if echo "$user_prompt" | grep -qi "git\|commit\|branch" && git rev-parse --git-dir > /dev/null 2>&1; then
+    current_branch=$(git branch --show-current 2>/dev/null)
+    uncommitted=$(git status --porcelain | wc -l)
+    context_modifications+="GIT_CONTEXT: On branch '$current_branch' with $uncommitted uncommitted changes. "
+  fi
+
+  # Tool suggestions
+  if echo "$user_prompt" | grep -qi "search.*code\|find.*function"; then
+    context_modifications+="SUGGESTION: Consider using search_files tool for code exploration. "
+  fi
+fi
+
+# Return response
+if [[ "$cancel_request" == true ]]; then
+  jq -n --arg msg "$error_message" '{"cancel": true, "errorMessage": $msg}'
+else
+  if [[ -n "$context_modifications" ]]; then
+    jq -n --arg ctx "$context_modifications" '{"cancel": false, "contextModification": $ctx}'
+  else
+    echo '{"cancel": false}'
+  fi
+fi
+```
+
+**핵심 개념:**
+- 사용자 입력 분석/로깅
+- 다중 패턴 안전성 검증
+- 프롬프트 기반 컨텍스트 감지
+- 동적 가이드 생성
+
+### 9. 멀티 서비스 통합 허브
+
+**Hook:** `PostToolUse`
+
+```bash
+#!/usr/bin/env bash
+# Multi-Service Integration Hub Hook
+#
+# Overview: Detects file modifications by type (dependencies, CI/CD, frontend, backend, tests)
+# and sends asynchronous webhook notifications to multiple external services like Slack and
+# CI/CD systems. Enables seamless integration of Caret operations into enterprise workflows.
+#
+# Demonstrates: Advanced pattern matching with associative arrays, multi-service webhook
+# orchestration, asynchronous background processing, and enterprise notification patterns.
+
+input=$(cat)
+
+tool_name=$(echo "$input" | jq -r '.postToolUse.toolName')
+success=$(echo "$input" | jq -r '.postToolUse.success')
+file_path=$(echo "$input" | jq -r '.postToolUse.parameters.path // empty')
+
+# Only process successful file operations
+if [[ "$success" != "true" ]] || [[ "$tool_name" != "write_to_file" && "$tool_name" != "replace_in_file" ]]; then
+  echo '{"cancel": false}'
+  exit 0
+fi
+
+# Define workflow triggers
+declare -A triggers=(
+  ["package\\.json|yarn\\.lock"]="dependencies"
+  ["\\.github/workflows/"]="ci_cd"
+  ["src/.*component"]="frontend"
+  ["api/.*\\.(ts|js)"]="backend"
+  [".*\\.(test|spec)\\."]="testing"
+)
+
+# Determine triggered workflows
+triggered_workflows=""
+for pattern in "${!triggers[@]}"; do
+  if [[ "$file_path" =~ $pattern ]]; then
+    workflow_type="${triggers[$pattern]}"
+    triggered_workflows+="$workflow_type "
+  fi
+done
+
+context="WORKFLOW: File modified: $file_path"
+
+if [[ -n "$triggered_workflows" ]]; then
+  # Slack notification (async)
+  slack_webhook="${SLACK_WEBHOOK_URL:-}"
+  if [[ -n "$slack_webhook" ]]; then
+    slack_payload=$(jq -n \
+      --arg file "$file_path" \
+      --arg workflows "$triggered_workflows" \
+      --arg workspace "$(basename "$PWD")" \
+      '{
+        text: ("🔧 Caret modified `" + $file + "` in " + $workspace),
+        color: "good",
+        fields: [{
+          title: "Triggered Workflows",
+          value: $workflows,
+          short: true
+        }]
+      }')
+
+    (curl -X POST -H "Content-Type: application/json" -d "$slack_payload" "$slack_webhook" --max-time 5 --silent > /dev/null 2>&1) &
+  fi
+
+  # CI/CD webhook (async)
+  ci_webhook="${CI_WEBHOOK_URL:-}"
+  if [[ -n "$ci_webhook" ]]; then
+    ci_payload=$(jq -n \
+      --arg file "$file_path" \
+      --arg workflows "$triggered_workflows" \
+      '{
+        event: "file_modified",
+        file_path: $file,
+        workflows: ($workflows | split(" "))
+      }')
+
+    (curl -X POST -H "Content-Type: application/json" -d "$ci_payload" "$ci_webhook" --max-time 5 --silent > /dev/null 2>&1) &
+  fi
+
+  context+=" Triggered workflows: $triggered_workflows. Notifications sent to configured services."
+fi
+
+jq -n --arg ctx "$context" '{"cancel": false, "contextModification": $ctx}'
+```
+
+**핵심 개념:**
+- 멀티 서비스 통합 패턴
+- 비동기 웹훅 오케스트레이션
+- 복잡한 워크플로 감지
+- 엔터프라이즈 알림 구조
+
+## 사용 팁
+
+### 여러 Hook 동시 사용
+
+각 Hook 타입을 별도 파일로 두면 동시에 사용할 수 있습니다:
+
+```bash
+# hooks 디렉터리 생성
+mkdir -p .agents/hooks
+
+# 여러 Hook 생성
+touch .agents/hooks/PreToolUse
+touch .agents/hooks/PostToolUse
+touch .agents/hooks/TaskStart
+
+# 실행 권한 부여
+chmod +x .agents/hooks/*
+```
+
+### 환경 변수 설정
+
+외부 통합을 위해 환경 변수를 설정합니다:
+
+```bash
+# .bashrc 또는 .zshrc에 추가
+export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/..."
+export JIRA_URL="https://yourcompany.atlassian.net"
+export JIRA_USER="your-email@company.com"
+export JIRA_TOKEN="your-api-token"
+export CI_WEBHOOK_URL="https://your-ci-system.com/hooks/caret"
+```
+
+### Hook 테스트
+
+입력을 직접 흘려보내면서 Hook을 테스트할 수 있습니다:
+
+```bash
+# PreToolUse Hook 테스트
+echo '{
+  "clineVersion": "1.0.0",
+  "hookName": "PreToolUse",
+  "timestamp": "2024-01-01T12:00:00Z",
+  "taskId": "test",
+  "workspaceRoots": ["/path/to/workspace"],
+  "userId": "test-user",
+  "preToolUse": {
+    "toolName": "write_to_file",
+    "parameters": {
+      "path": "test.js",
+      "content": "console.log(\"test\");"
+    }
+  }
+}' | .agents/hooks/PreToolUse
+```
+
+이 샘플들은 Hooks를 실전 워크플로에 적용하기 위한 탄탄한 출발점입니다. 팀의 환경과 요구에 맞게 변형해 사용하세요.

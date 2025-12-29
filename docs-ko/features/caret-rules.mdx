@@ -1,20 +1,29 @@
-Caret 규칙을 사용하면 Cline에 시스템 수준 지침을 제공할 수 있습니다. 프로젝트 또는 모든 대화에 대해 전역적으로 컨텍스트 및 기본 설정을 포함하는 영구적인 방법이라고 생각하십시오.
+Caret 규칙을 사용하면 Caret에 시스템 수준 지침을 제공할 수 있습니다. 프로젝트 또는 모든 대화에 대해 전역적으로 컨텍스트와 기본 설정을 포함하는 **지속적인 규칙**이라고 생각하면 됩니다.
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+캐럿 Agent Standardization: `caret-docs/features/f06-agent-standardization.md` 기준으로 `.agents/context` SoT + `AGENTS.md` 계층 + `/init` 스캐폴드로 표준화합니다. 레거시 규칙 경로는 읽지 않습니다.
+</Note>
 
 ## 규칙 생성
 
-규칙 탭에서 `+` 버튼을 클릭하여 규칙을 생성할 수 있습니다. 그러면 IDE에 새 파일이 열리고 이 파일을 사용하여 규칙을 작성할 수 있습니다.
+Rules 탭의 `+` 버튼을 클릭하면 규칙을 생성할 수 있습니다. IDE에 새 파일이 열리고, 그곳에서 규칙을 작성합니다.
 
-
-
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-rules.png" alt="Create a Rule" />
+</Frame>
 
 파일을 저장하면:
 
--   규칙은 프로젝트의 `.agents/context/` 디렉토리에 저장됩니다(작업 공간 규칙인 경우).
--   또는 전역 규칙 디렉토리에 저장됩니다(전역 규칙인 경우).
+-   워크스페이스 규칙은 프로젝트의 `.agents/context/` 디렉토리에 저장됩니다.
+-   전역 규칙은 전역 규칙 디렉토리에 저장됩니다.
 
 ### 전역 규칙 디렉토리 위치
 
-전역 규칙 디렉토리의 위치는 운영 체제에 따라 다릅니다.
+전역 규칙 디렉토리 위치는 운영체제에 따라 다릅니다.
 
 | 운영 체제 | 기본 위치 | 참고 |
 |---|---|---|
@@ -22,53 +31,53 @@ Caret 규칙을 사용하면 Cline에 시스템 수준 지침을 제공할 수 �
 | **macOS** | `~/Documents/Caret/Rules` | 사용자 문서 폴더 사용 |
 | **Linux/WSL** | `~/Documents/Caret/Rules` | 일부 시스템에서는 `~/Caret/Rules`로 대체될 수 있습니다. |
 
-> **Linux/WSL 사용자 참고**: `~/Documents/Caret/Rules`에서 전역 규칙을 찾을 수 없는 경우, `~/Caret/Rules`를 확인하십시오. 위치는 시스템 구성 및 문서 디렉토리 존재 여부에 따라 달라질 수 있습니다.
+> **Linux/WSL 사용자 참고**: `~/Documents/Caret/Rules`에서 전역 규칙을 찾을 수 없으면 `~/Caret/Rules`도 확인하세요. 문서 디렉토리 유무에 따라 위치가 달라질 수 있습니다.
 
-채팅에서 [`/newrule` 슬래시 명령](/ko/features/slash-commands/new-rule)을 사용하여 Cline이 규칙을 생성하도록 할 수도 있습니다.
+채팅에서 [`/newrule` 슬래시 명령](/ko/features/slash-commands/new-rule)을 사용해 Caret이 규칙 파일을 생성하도록 할 수도 있습니다.
 
-```markdown 예시 Caret 규칙 구조 [확장 가능]
-# 프로젝트 지침
+```markdown Example Caret Rule Structure [expandable]
+# Project Guidelines
 
-## 문서 요구 사항
+## Documentation Requirements
 
--   기능 수정 시 /docs의 관련 문서 업데이트
--   README.md를 새 기능과 동기화 유지
--   CHANGELOG.md에 변경 로그 항목 유지
+-   Update relevant documentation in /docs when modifying features
+-   Keep README.md in sync with new capabilities
+-   Maintain changelog entries in CHANGELOG.md
 
-## 아키텍처 결정 기록
+## Architecture Decision Records
 
-다음과 같은 경우 /docs/adr에 ADR 생성:
+Create ADRs in /docs/adr for:
 
--   주요 종속성 변경
--   아키텍처 패턴 변경
--   새로운 통합 패턴
--   데이터베이스 스키마 변경
-    /docs/adr/template.md의 템플릿 따르기
+-   Major dependency changes
+-   Architectural pattern changes
+-   New integration patterns
+-   Database schema changes
+    Follow template in /docs/adr/template.md
 
-## 코드 스타일 및 패턴
+## Code Style & Patterns
 
--   OpenAPI Generator를 사용하여 API 클라이언트 생성
--   TypeScript axios 템플릿 사용
--   생성된 코드를 /src/generated에 배치
--   상속보다 구성을 선호
--   데이터 액세스에 리포지토리 패턴 사용
--   /src/utils/errors.ts의 오류 처리 패턴 따르기
+-   Generate API clients using OpenAPI Generator
+-   Use TypeScript axios template
+-   Place generated code in /src/generated
+-   Prefer composition over inheritance
+-   Use repository pattern for data access
+-   Follow error handling pattern in /src/utils/errors.ts
 
-## 테스트 표준
+## Testing Standards
 
--   비즈니스 로직에 대한 단위 테스트 필요
--   API 엔드포인트에 대한 통합 테스트
--   중요한 사용자 흐름에 대한 E2E 테스트
+-   Unit tests required for business logic
+-   Integration tests for API endpoints
+-   E2E tests for critical user flows
 ```
 
 ### 주요 이점
 
-1.  **버전 관리**: `.agents/context` 파일이 프로젝트의 소스 코드의 일부가 됩니다.
-2.  **팀 일관성**: 모든 팀 구성원에게 일관된 동작을 보장합니다.
-3.  **프로젝트별**: 각 프로젝트의 필요에 맞게 조정된 규칙 및 표준
-4.  **기관 지식**: 코드에서 프로젝트 표준 및 관행을 유지합니다.
+1. **버전 관리**: `.agents/context` 파일이 프로젝트 소스의 일부가 됩니다.
+2. **팀 일관성**: 팀 전원이 동일한 동작을 유지할 수 있습니다.
+3. **프로젝트 맞춤**: 프로젝트 요구에 맞춰 규칙과 표준을 조정합니다.
+4. **지식 보존**: 프로젝트 표준과 관행을 코드로 유지합니다.
 
-`.agents/context` 파일을 프로젝트의 루트 디렉토리에 배치하십시오.
+`.agents/context` 파일을 프로젝트 루트에 배치합니다:
 
 ```
 your-project/
@@ -78,61 +87,72 @@ your-project/
 └── ...
 ```
 
-반면에 Cline의 시스템 프롬프트는 사용자가 편집할 수 없습니다([여기에서 찾을 수 있습니다](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). 프롬프트 엔지니어링 모범 사례에 대한 더 넓은 시야를 보려면 [이 리소스](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)를 확인하십시오.
+Caret의 시스템 프롬프트는 사용자가 편집할 수 없습니다([여기에서 확인](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). 프롬프트 엔지니어링 모범 사례는 [이 리소스](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)를 참고하세요.
 
-### 효과적인 Caret 규칙 작성을 위한 팁
+### AGENTS.md 표준 지원
 
--   명확하고 간결하게: 간단한 언어를 사용하고 모호함을 피하십시오.
--   원하는 결과에 집중: 원하는 결과를 설명하고 특정 단계를 설명하지 마십시오.
--   테스트 및 반복: 워크플로에 가장 적합한 것을 찾기 위해 실험하십시오.
+Caret는 Caret 규칙과 별도로 [AGENTS.md](https://agents.md/) 표준도 지원합니다. 워크스페이스 루트에 `AGENTS.md`가 있을 때 자동으로 감지합니다. 이를 통해 다른 AI 코딩 도구에서도 동일한 규칙 파일을 재사용할 수 있습니다.
+
+```
+your-project/
+├── AGENTS.md
+├── src/
+└── ...
+```
+
+### 효과적인 Caret 규칙 작성 팁
+
+-   명확하고 간결하게 작성
+-   원하는 결과에 집중(세부 절차보다 목표 중심)
+-   반복적으로 테스트하고 개선
 
 ### .agents/context/ 폴더 시스템
 
 ```
 your-project/
-├── .agents/context/              # 활성 규칙을 포함하는 폴더
+├── .agents/context/         # 활성 규칙을 포함하는 폴더
 │   ├── 01-coding.md          # 핵심 코딩 표준
 │   ├── 02-documentation.md   # 문서 요구 사항
-│   └── current-sprint.md     # 현재 작업에 특정한 규칙
+│   └── current-sprint.md     # 현재 작업 전용 규칙
 ├── src/
 └── ...
 ```
 
-Caret는 `.agents/context/` 디렉토리 내의 **모든 Markdown 파일**을 자동으로 처리하여 통합된 규칙 세트로 결합합니다. 숫자 접두사(선택 사항)는 파일을 논리적 순서로 구성하는 데 도움이 됩니다.
+Caret는 `.agents/context/` 디렉토리 내의 **모든 Markdown 파일**을 자동으로 결합해 하나의 규칙 세트로 사용합니다. 숫자 접두사(선택)는 논리적 순서를 잡는 데 도움이 됩니다.
 
 #### 비활성 규칙 보관 (선택)
 
-여러 컨텍스트 또는 팀이 있는 프로젝트라면 비활성 규칙을 별도 폴더에 보관하고, 필요할 때만 `.agents/context/`로 이동하세요. 이 보관 폴더는 자동 로딩되지 않습니다.
+프로젝트/팀 맥락이 다양한 경우 비활성 규칙을 별도 폴더에 보관하고 필요할 때 `.agents/context/`로 복사하세요. 보관 폴더는 자동 로딩되지 않습니다.
 
 ```
 your-project/
-├── .agents/context/              # 활성 규칙 - 자동으로 적용됨
+├── .agents/context/         # 활성 규칙 - 자동 적용
 │   ├── 01-coding.md
 │   └── client-a.md
 │
-├── rules-bank/               # 보관용 규칙 라이브러리
-│   ├── clients/              # 클라이언트별 규칙 세트
+├── rules-bank/              # 비활성 규칙 라이브러리
+│   ├── clients/             # 클라이언트별 규칙
 │   │   ├── client-a.md
 │   │   └── client-b.md
-│   ├── frameworks/           # 프레임워크별 규칙
+│   ├── frameworks/          # 프레임워크별 규칙
 │   │   ├── react.md
 │   │   └── vue.md
-│   └── project-types/        # 프로젝트 유형 표준
+│   └── project-types/       # 프로젝트 유형 표준
 │       ├── api-service.md
 │       └── frontend-app.md
 └── ...
 ```
 
-#### 폴더 접근 방식의 이점
+#### 폴더 접근 방식의 장점
 
-1.  **컨텍스트 활성화**: 뱅크에서 활성 폴더로 관련 규칙만 복사
-2.  **쉬운 유지 관리**: 다른 파일에 영향을 주지 않고 개별 규칙 파일 업데이트
-3.  **팀 유연성**: 다른 팀 구성원이 현재 작업에 특정한 규칙을 활성화할 수 있습니다.
-4.  **노이즈 감소**: 활성 규칙 세트를 집중적이고 관련성 있게 유지
+1. **컨텍스트별 활성화**: 필요한 규칙만 활성 폴더로 복사
+2. **유지 보수 용이**: 다른 규칙에 영향을 주지 않고 업데이트 가능
+3. **팀 유연성**: 현재 작업에 맞는 규칙만 활성화
+4. **노이즈 감소**: 활성 규칙 세트를 작고 명확하게 유지
 
 #### 사용 예시
 
-클라이언트 프로젝트 간 전환:
+클라이언트 프로젝트 전환:
 
 ```bash
 # 클라이언트 B 프로젝트로 전환
@@ -140,7 +160,7 @@ rm .agents/context/client-a.md
 cp rules-bank/clients/client-b.md .agents/context/
 ```
 
-다른 기술 스택에 적응:
+기술 스택 전환:
 
 ```bash
 # 프론트엔드 React 프로젝트
@@ -149,21 +169,23 @@ cp rules-bank/frameworks/react.md .agents/context/
 
 #### 구현 팁
 
--   개별 규칙 파일은 특정 관심사에 집중하도록 유지
--   규칙의 목적을 명확하게 나타내는 설명적인 파일 이름 사용
--   `rules-bank/`를 추적하면서 활성 `.agents/context/` 폴더를 git-ignore하는 것을 고려
--   일반적인 규칙 조합을 빠르게 활성화하는 팀 스크립트 생성
+-   규칙 파일은 하나의 관심사에 집중
+-   목적이 드러나는 파일명 사용
+-   활성 `.agents/context/`는 git-ignore하고 `rules-bank/`만 추적하는 방식을 고려
+-   자주 쓰는 조합은 팀 스크립트로 자동화
 
-폴더 시스템은 Caret 규칙을 정적 문서에서 팀의 변화하는 컨텍스트 및 요구 사항에 적응하는 동적 지식 시스템으로 변환합니다.
+폴더 시스템은 Caret 규칙을 정적 문서에서 팀 컨텍스트에 맞게 진화하는 지식 시스템으로 바꿔줍니다.
 
 ### 토글 가능한 팝오버로 규칙 관리
 
-단일 `.agents/context` 파일과 폴더 시스템을 모두 더 쉽게 관리할 수 있도록 Caret v3.13은 채팅 인터페이스에서 직접 액세스할 수 있는 전용 팝오버 UI를 도입합니다.
+Caret v3.13은 채팅 인터페이스에서 바로 접근 가능한 **규칙 관리 팝오버 UI**를 제공합니다. 이 UI를 통해:
 
-채팅 입력 필드 아래에 편리하게 위치한 이 팝오버를 통해 다음을 수행할 수 있습니다.
+-   **활성 규칙 즉시 확인**: 전역 규칙과 워크스페이스 규칙을 한눈에 확인
+-   **규칙 빠르게 토글**: `.agents/context/` 폴더 내 규칙 파일을 클릭 한 번으로 활성/비활성화
+-   **규칙 추가/관리**: 규칙 파일 또는 폴더가 없을 때 즉시 생성하고 관리
 
--   **활성 규칙 즉시 확인**: 현재 활성화된 전역 규칙(사용자 설정에서) 및 작업 공간 규칙(`.agents/context` 파일 또는 폴더 내용)을 봅니다.
--   **규칙 빠르게 토글**: 작업 공간 `.agents/context/` 폴더 내의 특정 규칙 파일을 한 번의 클릭으로 활성화 또는 비활성화합니다. 이는 필요할 때만 컨텍스트별 규칙(예: `react-rules.md` 또는 `api-rules.md`)을 활성화하는 데 적합합니다.
--   **규칙 쉽게 추가/관리**: 작업 공간 `.agents/context` 파일 또는 폴더가 없는 경우 빠르게 생성하거나 기존 폴더에 새 규칙 파일을 추가합니다.
+대화 중 파일을 수동 편집하지 않고도 컨텍스트를 전환할 수 있어 워크플로가 훨씬 매끄러워집니다.
 
-이 UI는 대화 중에 파일을 수동으로 편집하거나 구성을 변경할 필요 없이 컨텍스트를 전환하고 다른 지침 세트를 관리하는 것을 크게 단순화합니다.
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+</Frame>
