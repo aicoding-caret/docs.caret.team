@@ -1,0 +1,254 @@
+---
+title: "커스텀 공급자 구성"
+sidebarTitle: "Custom Providers"
+description: "Caret 배포를 위한 OpenAI 호환 커스텀 공급자를 구성합니다"
+---
+
+<Info>
+**구성 경로: Self-Hosted**
+
+이 문서는 Self-Hosted 배포의 커스텀 공급자 구성 가이드입니다.
+</Info>
+
+Azure OpenAI, 자체 호스팅 추론 서버 등 **OpenAI 호환 API**를 제공하는 모든 공급자를 Caret에 연결할 수 있습니다.
+
+## 커스텀 공급자란?
+
+OpenAI API 포맷을 구현하는 모든 서비스가 포함됩니다.
+
+- **Azure OpenAI Service**: Microsoft의 관리형 OpenAI 모델
+- **vLLM**: 자체 호스팅 추론 서버
+- **Ollama**: 로컬 모델 런타임
+- **Text Generation Inference(TGI)**: Hugging Face 추론 서버
+- **LocalAI**: 로컬 OpenAI API 대체
+- **기타 OpenAI 호환 API**
+
+## 구성 형식
+
+원격 구성 JSON의 `providerSettings.OpenAiCompatible`에 커스텀 공급자 설정을 추가합니다.
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "https://your-api.company.com/v1"
+    }
+  }
+}
+```
+
+## 구성 필드
+
+| 필드 | 타입 | 설명 | 필수 |
+|-------|------|-------------|----------|
+| `models` | Array | 모델 구성 목록 | Yes |
+| `openAiBaseUrl` | String | API 엔드포인트 베이스 URL | Yes |
+| `openAiApiKey` | String | 인증용 API 키 | No |
+| `openAiModelId` | String | 기본 모델 식별자 | No |
+
+### Azure OpenAI 전용 필드
+
+Azure OpenAI 사용 시 다음 필드를 추가할 수 있습니다.
+
+| 필드 | 타입 | 설명 |
+|-------|------|-------------|
+| `azureApiVersion` | String | Azure API 버전(e.g., `2024-02-15-preview`) |
+
+## 예시 구성
+
+### Azure OpenAI
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "https://your-resource.openai.azure.com/openai/deployments/gpt-4-turbo",
+      "openAiApiKey": "your-azure-api-key",
+      "azureApiVersion": "2024-02-15-preview"
+    }
+  }
+}
+```
+
+### 자체 호스팅 vLLM
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "meta-llama/Llama-2-70b-chat-hf",
+          "name": "Llama 2 70B"
+        }
+      ],
+      "openAiBaseUrl": "http://vllm.company.com:8000/v1"
+    }
+  }
+}
+```
+
+### 로컬 Ollama
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "codellama",
+          "name": "Code Llama"
+        }
+      ],
+      "openAiBaseUrl": "http://localhost:11434/v1"
+    }
+  }
+}
+```
+
+### Text Generation Inference(TGI)
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "mistralai/Mistral-7B-Instruct-v0.2",
+          "name": "Mistral 7B Instruct"
+        }
+      ],
+      "openAiBaseUrl": "http://tgi.company.com:8080/v1",
+      "openAiApiKey": "your-tgi-api-key"
+    }
+  }
+}
+```
+
+### LocalAI
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-3.5-turbo",
+          "name": "Local GPT-3.5"
+        }
+      ],
+      "openAiBaseUrl": "http://localhost:8080/v1"
+    }
+  }
+}
+```
+
+### 내부 네트워크(인증 없음)
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "custom-model",
+          "name": "Custom Model"
+        }
+      ],
+      "openAiBaseUrl": "http://internal.api:8000/v1"
+    }
+  }
+}
+```
+
+## 모델 구성
+
+각 모델에는 기본 정보가 필요합니다.
+
+```json
+{
+  "id": "model-identifier",
+  "name": "Display Name",
+  "info": {
+    "maxTokens": 4096,
+    "contextWindow": 128000,
+    "supportsImages": true,
+    "supportsPromptCache": false
+  }
+}
+```
+
+## 사전 요구 사항
+
+커스텀 공급자를 구성하기 전에 다음이 필요합니다.
+
+1. **API 엔드포인트**: OpenAI 호환 API URL
+2. **API 키**(필요한 경우)
+3. **모델 ID**: 사용 가능한 모델 이름
+4. **네트워크 접근**: Caret 사용 환경에서 접근 가능해야 함
+
+## 문제 해결
+
+**연결 오류**
+
+엔드포인트 접근 가능 여부를 확인하세요.
+```bash
+curl https://your-api.company.com/v1/models
+```
+
+**인증 오류**
+
+API 키로 인증을 테스트하세요.
+```bash
+curl -H "Authorization: Bearer your-api-key" \
+  https://your-api.company.com/v1/models
+```
+
+**모델을 찾을 수 없음**
+
+모델 ID가 API에서 기대하는 값과 일치하는지 확인하세요.
+```bash
+curl -H "Authorization: Bearer your-api-key" \
+  https://your-api.company.com/v1/models
+```
+
+**타임아웃 문제**
+
+응답이 느리다면:
+- 네트워크 지연 확인
+- 서버 리소스 확인
+- 더 빠른 모델 사용 고려
+
+## 공급자 문서
+
+해당 서비스의 공식 문서를 참고하세요.
+
+<CardGroup cols={2}>
+  <Card title="Azure OpenAI" icon="microsoft" href="https://learn.microsoft.com/en-us/azure/ai-services/openai/">
+    Microsoft의 관리형 OpenAI 서비스
+  </Card>
+  
+  <Card title="vLLM" icon="server" href="https://docs.vllm.ai/">
+    고성능 추론 엔진
+  </Card>
+  
+  <Card title="Ollama" icon="download" href="https://ollama.ai/">
+    로컬 모델 실행
+  </Card>
+  
+  <Card title="Text Generation Inference" icon="code" href="https://huggingface.co/docs/text-generation-inference/">
+    Hugging Face 추론 서버
+  </Card>
+</CardGroup>
