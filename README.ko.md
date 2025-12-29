@@ -237,7 +237,7 @@ npm run typecheck      # TypeScript 타입 체크
 Caret이 Cline 업스트림을 병합할 때, 새 문서는 이 사이트와 동기화해야 합니다.
 
 1. **Caret 병합 전략 가이드 확인**:
-   - [영어 버전](https://github.com/aicoding-caret/caret/blob/main/.caretrules/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
+   - [영어 버전](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
    - [한국어 버전](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **상세 동기화 분석**:

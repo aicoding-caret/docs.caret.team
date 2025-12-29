@@ -111,8 +111,8 @@ Clineには、コンテキストを自動的に管理するインテリジェン
 ### Smol（`/smol`）
 勢いを保つために会話をその場で圧縮します。フローを壊したくないデバッグまたは探索作業中に最適です。[Smolの詳細](/ja/features/slash-commands/smol)。
 
-### メモリバンク + .clinerules
-重要でないプロジェクトに対して。メモリバンクは、プロジェクトの知識をリポジトリ内のMarkdownとしてキャプチャします。`.clinerules`は、Clineの動作をチームと整合させるバージョン管理された指示です。[メモリバンクの詳細](/ja/prompting/caret-memory-bank)と[Clineルール](/ja/features/caret-rules)。
+### メモリバンク + .agents/context
+重要でないプロジェクトに対して。メモリバンクは、プロジェクトの知識をリポジトリ内のMarkdownとしてキャプチャします。`.agents/context`は、Clineの動作をチームと整合させるバージョン管理された指示です。[メモリバンクの詳細](/ja/prompting/caret-memory-bank)と[Clineルール](/ja/features/caret-rules)。
 
 ## コンテキストファイルの使用
 
@@ -178,7 +178,7 @@ Clineには、コンテキストを自動的に管理するインテリジェン
     - 複雑な議論にはプランモードを使用する
     - 必要に応じて新しいセッションを開始する
 3. **チームプロジェクト**
-    - 共通のコンテキストファイルを共有する（プロジェクトルートで[.clinerules](/ja/features/caret-rules)ファイルの使用を検討）
+    - 共通のコンテキストファイルを共有する（プロジェクトルートで[.agents/context](/ja/features/caret-rules)ファイルの使用を検討）
     - アーキテクチャの決定を文書化する
     - 一貫したパターンを維持する
     - ドキュメントを最新に保つ

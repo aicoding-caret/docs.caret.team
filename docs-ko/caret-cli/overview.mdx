@@ -1,31 +1,31 @@
 ---
-title: "Overview"
-description: "Install the CLI, run your first task, and learn to automate code reviews and integrate AI agents into your development workflow"
+title: "개요"
+description: "CLI 설치, 첫 작업 실행, 코드 리뷰 자동화와 AI 에이전트 통합 방법을 안내합니다"
 ---
 
 <Warning>
-**Preview Release - macOS and Linux Only**
+**프리뷰 릴리스 - macOS 및 Linux 전용**
 
-Caret CLI is currently in preview and only available for macOS and Linux users. Windows support is coming soon.
+Caret CLI는 현재 프리뷰이며 macOS와 Linux에서만 제공됩니다. Windows 지원은 곧 추가될 예정입니다.
 </Warning>
 
 <Note>
 이 매뉴얼은 Caret 기반으로 빌드된 캐럿 CLI를 기준으로 합니다. 기능·옵션은 Caret v3.38.1 머지본을 따르며, 캐럿 브랜딩/UI 차이는 최소화되어 있습니다.
 </Note>
 
-## What is Caret CLI?
+## Caret CLI란?
 
-Caret CLI runs AI coding agents directly in your terminal. Pipe git diffs for automated code reviews in CI/CD, run multiple instances simultaneously for parallel development, or integrate Caret into your existing shell workflows.
+Caret CLI는 터미널에서 AI 코딩 에이전트를 실행합니다. git diff를 파이프해 CI/CD에서 자동 코드 리뷰를 돌리고, 여러 인스턴스를 동시에 실행해 병렬 개발을 수행하거나, 기존 셸 워크플로우에 Caret을 통합할 수 있습니다.
 
-The CLI tracks instances across your system and outputs in formats designed for both humans and scripts—JSON, plain text, or rich terminal output.
+이 CLI는 시스템 전체의 인스턴스를 추적하고, 사람이 읽기 쉬운 출력부터 스크립트용 JSON/평문/리치 출력까지 다양한 형식으로 결과를 제공합니다.
 
 <Tip>
-Ready to get started? Check out the [installation guide](/ko/caret-cli/installation) to install Caret CLI and run your first task.
+지금 바로 시작하려면 [설치 가이드](/caret-cli/installation)에서 Caret CLI를 설치하고 첫 작업을 실행해 보세요.
 </Tip>
 
-## Supported Model Providers
+## 지원하는 모델 프로바이더
 
-Caret CLI supports multiple AI model providers, giving you flexibility in choosing the best model for your needs:
+Caret CLI는 여러 AI 모델 프로바이더를 지원하므로, 상황에 맞는 모델을 자유롭게 선택할 수 있습니다:
 
 - **Anthropic**
 - **OpenAI**
@@ -37,38 +37,52 @@ Caret CLI supports multiple AI model providers, giving you flexibility in choosi
 - **Ollama**
 - **Cerebras**
 
-During installation, you'll authenticate and configure your preferred provider using the `caret auth` command.
+설치 과정에서 `caret auth` 명령으로 인증을 진행하고 선호하는 프로바이더를 구성합니다.
 
-## What you can build with this
+## 무엇을 만들 수 있나요
 
-**Automated code maintenance**
-- Schedule daily runs to identify and fix linting issues across your codebase
-- Create tasks that scan for security vulnerabilities and automatically patch them
-- Build scripts that update deprecated dependencies and run tests
+**자동 코드 유지보수**
+- 매일 실행해 린트 이슈를 찾아 자동 수정
+- 보안 취약점 스캔 후 자동 패치
+- 레거시 의존성 업데이트 및 테스트 자동 실행
 
-**Multi-instance development**
-- Run separate Caret instances for frontend and backend simultaneously
-- Spawn instances for different feature branches, each with isolated state
-- Create parallel review processes for multiple PRs
+**멀티 인스턴스 개발**
+- 프론트엔드/백엔드 작업을 서로 다른 Caret 인스턴스로 병렬 수행
+- 기능 브랜치마다 독립 인스턴스를 생성해 컨텍스트 격리
+- 여러 PR을 병렬 리뷰하는 자동화 프로세스 구성
 
-**Custom workflows**
-- Build shell scripts that combine Caret with git hooks for pre-commit analysis
-- Create custom commands that pipe complex data structures through Caret for processing
-- Integrate with your existing toolchain (jq, grep, awk) for sophisticated automation
+**커스텀 워크플로우**
+- git hooks와 Caret을 결합한 사전 분석 스크립트
+- 복잡한 데이터 구조를 파이프하여 처리하는 커스텀 명령
+- jq/grep/awk 등 기존 도구 체인과 통합해 고급 자동화 구축
 
-**CI/CD integration**
-- Add Caret to GitHub Actions for automatic code review on every PR
-- Create GitLab pipelines that generate migration scripts from schema changes
-- Build Jenkins jobs that use Caret to analyze test failures and suggest fixes
+**CI/CD 통합**
+- GitHub Actions에 Caret을 붙여 PR 자동 코드 리뷰 수행
+- GitLab 파이프라인에서 스키마 변경 기반 마이그레이션 스크립트 생성
+- Jenkins에서 테스트 실패 원인 분석 및 수정 제안 자동화
 
-## Learn more
+## Hooks 통합
+
+[Hooks](/features/hooks/index)는 Caret 작업 흐름에 사용자 정의 로직을 삽입해 검증과 정책 적용을 자동화합니다. CLI에서도 다음과 같이 활성화할 수 있습니다:
+
+```bash
+# 특정 작업에서 Hooks 사용
+caret "이 저장소가 하는 일을 요약해줘" -s hooks_enabled=true
+
+# 전역 설정으로 Hooks 사용
+caret config set hooks-enabled=true
+```
+
+이렇게 설정하면 자동화 워크플로우, CI/CD 파이프라인, 헤드리스 실행 환경에서도 동일한 정책을 일관되게 적용할 수 있습니다.
+
+## 더 알아보기
 
 <Columns cols={2}>
-  <Card title="Installation" icon="download" href="/caret-cli/installation">
-    Install Caret CLI and authenticate with your account to get started.
+  <Card title="설치" icon="download" href="/caret-cli/installation">
+    Caret CLI를 설치하고 계정을 인증해 바로 시작하세요.
   </Card>
   
-  <Card title="Three Core Flows" icon="route" href="/caret-cli/three-core-flows">
-    Master the three ways to use Caret CLI: interactive mode, headless automation, and multi-instance parallelization.
+  <Card title="세 가지 핵심 흐름" icon="route" href="/caret-cli/three-core-flows">
+    대화형 모드, 헤드리스 자동화, 멀티 인스턴스 병렬 실행 3가지 사용법을 익혀보세요.
   </Card>
 </Columns>

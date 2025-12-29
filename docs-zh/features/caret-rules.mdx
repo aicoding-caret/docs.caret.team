@@ -13,7 +13,7 @@ Caret 规则允许您为 Caret 提供系统级指导。将它们视为为您的�
 
 保存文件后：
 
--   您的规则将存储在项目的 `.clinerules/` 目录中（如果是工作空间规则）
+-   您的规则将存储在项目的 `.agents/context/` 目录中（如果是工作空间规则）
 -   或者在全局规则目录中（如果是全局规则）：
 
 ### 全局规则目录位置
@@ -67,16 +67,16 @@ Caret 规则允许您为 Caret 提供系统级指导。将它们视为为您的�
 
 ### 主要优势
 
-1. **版本控制**：`.clinerules` 文件成为项目源代码的一部分
+1. **版本控制**：`.agents/context` 文件成为项目源代码的一部分
 2. **团队一致性**：确保所有团队成员行为一致
 3. **项目特定**：针对每个项目需求量身定制的规则和标准
 4. **制度知识**：在代码中维护项目标准和实践
 
-将 `.clinerules` 文件放在项目的根目录中：
+将 `.agents/context` 文件放在项目的根目录中：
 
 ```
 your-project/
-├── .clinerules
+├── .agents/context
 ├── src/
 ├── docs/
 └── ...
@@ -90,11 +90,11 @@ your-project/
 -   专注于期望结果：描述您想要的结果，而不是具体步骤。
 -   测试和迭代：实验找到最适合您工作流程的方法。
 
-### .clinerules/ 文件夹系统
+### .agents/context/ 文件夹系统
 
 ```
 your-project/
-├── .clinerules/              # 包含活动规则的文件夹
+├── .agents/context/              # 包含活动规则的文件夹
 │   ├── 01-coding.md          # 核心编码标准
 │   ├── 02-documentation.md   # 文档要求
 │   └── current-sprint.md     # 当前工作特定规则
@@ -102,7 +102,7 @@ your-project/
 └── ...
 ```
 
-Caret 自动处理 `.clinerules/` 目录内的**所有 Markdown 文件**，将它们组合成统一的规则集。数字前缀（可选）有助于按逻辑顺序组织文件。
+Caret 自动处理 `.agents/context/` 目录内的**所有 Markdown 文件**，将它们组合成统一的规则集。数字前缀（可选）有助于按逻辑顺序组织文件。
 
 #### 使用规则库
 
@@ -110,7 +110,7 @@ Caret 自动处理 `.clinerules/` 目录内的**所有 Markdown 文件**，将�
 
 ```
 your-project/
-├── .clinerules/              # 活动规则 - 自动应用
+├── .agents/context/              # 活动规则 - 自动应用
 │   ├── 01-coding.md
 │   └── client-a.md
 │
@@ -140,34 +140,34 @@ your-project/
 
 ```bash
 # 切换到客户 B 项目
-rm .clinerules/client-a.md
-cp clinerules-bank/clients/client-b.md .clinerules/
+rm .agents/context/client-a.md
+cp clinerules-bank/clients/client-b.md .agents/context/
 ```
 
 适应不同的技术栈：
 
 ```bash
 # 前端 React 项目
-cp clinerules-bank/frameworks/react.md .clinerules/
+cp clinerules-bank/frameworks/react.md .agents/context/
 ```
 
 #### 实施技巧
 
 -   保持各个规则文件专注于特定关注点
 -   使用明确指示规则目的的描述性文件名
--   考虑 git 忽略活动的 `.clinerules/` 文件夹，同时跟踪 `clinerules-bank/`
+-   考虑 git 忽略活动的 `.agents/context/` 文件夹，同时跟踪 `clinerules-bank/`
 -   创建团队脚本以快速激活常见规则组合
 
 文件夹系统将您的 Caret 规则从静态文档转变为适应团队不断变化的上下文和需求的动态知识系统。
 
 ### 使用可切换弹出窗口管理规则
 
-为了让管理单个 `.clinerules` 文件和文件夹系统变得更加容易，Caret v3.13 引入了一个专门的弹出窗口用户界面，可直接从聊天界面访问。
+为了让管理单个 `.agents/context` 文件和文件夹系统变得更加容易，Caret v3.13 引入了一个专门的弹出窗口用户界面，可直接从聊天界面访问。
 
 方便地位于聊天输入字段下方，此弹出窗口允许您：
 
--   **即时查看活动规则：** 查看当前激活的全局规则（来自用户设置）和工作空间规则（`.clinerules` 文件或文件夹内容）。
--   **快速切换规则：** 只需单击即可启用或禁用工作空间 `.clinerules/` 文件夹内的特定规则文件。这非常适合仅在需要时激活上下文特定规则（如 `react-rules.md` 或 `memory-bank.md`）。
--   **轻松添加/管理规则：** 如果不存在工作空间 `.clinerules` 文件或文件夹，快速创建，或向现有文件夹添加新规则文件。
+-   **即时查看活动规则：** 查看当前激活的全局规则（来自用户设置）和工作空间规则（`.agents/context` 文件或文件夹内容）。
+-   **快速切换规则：** 只需单击即可启用或禁用工作空间 `.agents/context/` 文件夹内的特定规则文件。这非常适合仅在需要时激活上下文特定规则（如 `react-rules.md` 或 `memory-bank.md`）。
+-   **轻松添加/管理规则：** 如果不存在工作空间 `.agents/context` 文件或文件夹，快速创建，或向现有文件夹添加新规则文件。
 
 此用户界面显著简化了在对话期间切换上下文和管理不同指令集，而无需手动编辑文件或配置。

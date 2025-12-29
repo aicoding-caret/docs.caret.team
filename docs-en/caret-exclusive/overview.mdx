@@ -13,7 +13,7 @@ Caret is not simply a rebranded version of Cline. Built on Cline's solid foundat
 | Persona System | ❌ | ✅ |
 | Dual Mode (Agent/Chatbot) | ❌ | ✅ |
 | Prompt History (↑↓ keys) | ❌ | ✅ |
-| Rule Priority System | ❌ | ✅ |
+| Agent Standardization (AAIF SoT) | ❌ | ✅ |
 | Full Multilingual UI | ❌ | ✅ (4 languages) |
 | Auto Provider Lookup | ❌ | ✅ |
 
@@ -50,16 +50,14 @@ Quickly reuse previous inputs with ↑↓ arrow keys, just like in your terminal
 
 [Learn more →](/en/features/commands-and-shortcuts/overview)
 
-### 📋 Rule Priority System
+### 📋 Agent Standardization (AAIF SoT)
 
-Intelligently merges multiple rule files with a clear priority order:
+Standardizes agent rules with a clear structure:
 
-```
-Priority: .caretrules > .clinerules > .cursorrules
-```
-
-- Automatically blocks duplicate rules (saves tokens)
-- Only highest priority rules included in prompts
+- `.agents/context` as the SoT
+- Hierarchical `AGENTS.md`
+- `/init` scaffold for fast setup
+- Legacy rule paths removed
 
 [Learn more →](/en/caret-exclusive/advanced-rules)
 

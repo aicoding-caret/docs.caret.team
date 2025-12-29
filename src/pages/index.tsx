@@ -1,226 +1,337 @@
-import type {ReactNode} from 'react';
-import {useEffect, useMemo, useState} from 'react';
-import Layout from '@theme/Layout';
-import Heading from '@theme/Heading';
+import Heading from "@theme/Heading"
+import Layout from "@theme/Layout"
+import type { ReactNode } from "react"
+import { useEffect, useMemo, useState } from "react"
 
-type Locale = 'en' | 'ko' | 'ja' | 'zh';
+type Locale = "en" | "ko" | "ja" | "zh"
 
-const localeList: Locale[] = ['en', 'ko', 'ja', 'zh'];
+const localeList: Locale[] = ["en", "ko", "ja", "zh"]
 
 type LangCopy = {
-  heroTitle: string;
-  heroSubtitle: string;
-  chooseLanguage: string;
-  cards: {flag: string; title: string; desc: string; button: string; href: string; locale: Locale}[];
-  aboutTitle: string;
-  aboutLines: string[];
-};
+	heroTitle: string
+	heroSubtitle: string
+	chooseLanguage: string
+	cards: { flag: string; title: string; desc: string; button: string; href: string; locale: Locale }[]
+	aboutTitle: string
+	aboutLines: string[]
+}
 
 const copy: Record<Locale, LangCopy> = {
-  en: {
-    heroTitle: 'Welcome to Caret Documentation',
-    heroSubtitle: 'AI-powered coding assistant based on Cline',
-    chooseLanguage: 'Choose Your Language',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
-    ],
-    aboutTitle: 'About Caret',
-    aboutLines: [
-      'Caret = Cline v3.38.2 + Dual Mode + Persona + Full Localization',
-      'Keep Cline 100% compatible while adding personalized AI companions, Chatbot/Agent flows, and native docs/UI in 4 languages.',
-      '🎭 Persona | 🔄 Dual Mode (Caret/Cline) | 🌍 4 languages | 🤖 251 models / 20 providers',
-      'Official Caret provider: monthly free credits to start instantly (Gemini first; ChatGPT/Claude/others to follow).',
-    ],
-  },
-  ko: {
-    heroTitle: '캐럿 문서에 오신 것을 환영합니다',
-    heroSubtitle: 'Cline을 기반으로 한 AI 코딩 어시스턴트',
-    chooseLanguage: '언어를 선택하세요',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
-    ],
-    aboutTitle: 'About Caret',
-    aboutLines: [
-      'Caret = Cline v3.38.2 + 듀얼 모드 + 페르소나 + 풀 로컬라이제이션',
-      'Cline 100% 호환을 유지하면서 개인화 페르소나, Chatbot/Agent 흐름, 4개 언어 UI/문서를 제공합니다.',
-      '🎭 페르소나 | 🔄 듀얼 모드(Caret/Cline) | 🌍 4개 언어 | 🤖 251개 모델/20개 프로바이더',
-      '공식 Caret 프로바이더: 매월 무료 크레딧으로 즉시 시작(Gemini 우선, ChatGPT/Claude 등 순차 지원).',
-    ],
-  },
-  ja: {
-    heroTitle: 'Caret ドキュメントへようこそ',
-    heroSubtitle: 'Cline を基盤とした AI コーディングアシスタント',
-    chooseLanguage: '言語を選択してください',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
-    ],
-    aboutTitle: 'About Caret',
-    aboutLines: [
-      'Caret = Cline v3.38.2 + デュアルモード + ペルソナ + 多言語化',
-      'Cline 互換を保ちつつ、ペルソナ/Chatbot・Agent フロー、4言語 UI/ドキュメントを提供します。',
-      '🎭 ペルソナ | 🔄 デュアルモード(Caret/Cline) | 🌍 4言語 | 🤖 251モデル/20プロバイダー',
-      '公式 Caret プロバイダー: 毎月の無料クレジットで即スタート(Gemini から順次)。',
-    ],
-  },
-  zh: {
-    heroTitle: '欢迎使用 Caret 文档',
-    heroSubtitle: '基于 Cline 的 AI 编码助手',
-    chooseLanguage: '请选择语言',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
-    ],
-    aboutTitle: 'About Caret',
-    aboutLines: [
-      'Caret = Cline v3.38.2 + 双模式 + 人格系统 + 全面本地化',
-      '保持与 Cline 完全兼容，同时提供个性化人格、Chatbot/Agent 流程及 4 种语言的 UI/文档。',
-      '🎭 人格 | 🔄 双模式(Caret/Cline) | 🌍 4 种语言 | 🤖 251 模型/20 提供方',
-      '官方 Caret 提供方：每月免费额度可立即开始（先支持 Gemini，后续 ChatGPT/Claude 等）。',
-    ],
-  },
-};
+	en: {
+		heroTitle: "Welcome to Caret Documentation",
+		heroSubtitle: "AI-powered coding assistant based on Cline",
+		chooseLanguage: "Choose Your Language",
+		cards: [
+			{
+				flag: "🇺🇸",
+				title: "English",
+				desc: "Your personalized AI coding partner",
+				button: "Go to English Docs",
+				href: "/en/getting-started/what-is-caret",
+				locale: "en",
+			},
+			{
+				flag: "🇰🇷",
+				title: "한국어",
+				desc: "나만의 개인화된 AI 코딩 파트너",
+				button: "한국어 문서 보기",
+				href: "/ko/getting-started/what-is-caret",
+				locale: "ko",
+			},
+			{
+				flag: "🇨🇳",
+				title: "中文",
+				desc: "您的个性化 AI 编程伙伴",
+				button: "查看中文文档",
+				href: "/zh/getting-started/what-is-caret",
+				locale: "zh",
+			},
+			{
+				flag: "🇯🇵",
+				title: "日本語",
+				desc: "あなた専用のパーソナライズド AI コーディングパートナー",
+				button: "日本語ドキュメントを見る",
+				href: "/ja/getting-started/what-is-caret",
+				locale: "ja",
+			},
+		],
+		aboutTitle: "About Caret",
+		aboutLines: [
+			"Caret = Cline v3.38.2 + Dual Mode + Persona + Full Localization",
+			"Keep Cline 100% compatible while adding personalized AI companions, Chatbot/Agent flows, and native docs/UI in 4 languages.",
+			"🎭 Persona | 🔄 Dual Mode (Caret/Cline) | 🌍 4 languages | 🤖 251 models / 20 providers",
+			"Official Caret provider: monthly free credits to start instantly (Gemini first; ChatGPT/Claude/others to follow).",
+		],
+	},
+	ko: {
+		heroTitle: "캐럿 문서에 오신 것을 환영합니다",
+		heroSubtitle: "Cline을 기반으로 한 AI 코딩 어시스턴트",
+		chooseLanguage: "언어를 선택하세요",
+		cards: [
+			{
+				flag: "🇺🇸",
+				title: "English",
+				desc: "Your personalized AI coding partner",
+				button: "Go to English Docs",
+				href: "/en/getting-started/what-is-caret",
+				locale: "en",
+			},
+			{
+				flag: "🇰🇷",
+				title: "한국어",
+				desc: "나만의 개인화된 AI 코딩 파트너",
+				button: "한국어 문서 보기",
+				href: "/ko/getting-started/what-is-caret",
+				locale: "ko",
+			},
+			{
+				flag: "🇨🇳",
+				title: "中文",
+				desc: "您的个性化 AI 编程伙伴",
+				button: "查看中文文档",
+				href: "/zh/getting-started/what-is-caret",
+				locale: "zh",
+			},
+			{
+				flag: "🇯🇵",
+				title: "日本語",
+				desc: "あなた専用のパーソナライズド AI コーディングパートナー",
+				button: "日本語ドキュメントを見る",
+				href: "/ja/getting-started/what-is-caret",
+				locale: "ja",
+			},
+		],
+		aboutTitle: "About Caret",
+		aboutLines: [
+			"Caret = Cline v3.38.2 + 듀얼 모드 + 페르소나 + 풀 로컬라이제이션",
+			"Cline 100% 호환을 유지하면서 개인화 페르소나, Chatbot/Agent 흐름, 4개 언어 UI/문서를 제공합니다.",
+			"🎭 페르소나 | 🔄 듀얼 모드(Caret/Cline) | 🌍 4개 언어 | 🤖 251개 모델/20개 프로바이더",
+			"공식 Caret 프로바이더: 매월 무료 크레딧으로 즉시 시작(Gemini 우선, ChatGPT/Claude 등 순차 지원).",
+		],
+	},
+	ja: {
+		heroTitle: "Caret ドキュメントへようこそ",
+		heroSubtitle: "Cline を基盤とした AI コーディングアシスタント",
+		chooseLanguage: "言語を選択してください",
+		cards: [
+			{
+				flag: "🇺🇸",
+				title: "English",
+				desc: "Your personalized AI coding partner",
+				button: "Go to English Docs",
+				href: "/en/getting-started/what-is-caret",
+				locale: "en",
+			},
+			{
+				flag: "🇰🇷",
+				title: "한국어",
+				desc: "나만의 개인화된 AI 코딩 파트너",
+				button: "한국어 문서 보기",
+				href: "/ko/getting-started/what-is-caret",
+				locale: "ko",
+			},
+			{
+				flag: "🇨🇳",
+				title: "中文",
+				desc: "您的个性化 AI 编程伙伴",
+				button: "查看中文文档",
+				href: "/zh/getting-started/what-is-caret",
+				locale: "zh",
+			},
+			{
+				flag: "🇯🇵",
+				title: "日本語",
+				desc: "あなた専用のパーソナライズド AI コーディングパートナー",
+				button: "日本語ドキュメントを見る",
+				href: "/ja/getting-started/what-is-caret",
+				locale: "ja",
+			},
+		],
+		aboutTitle: "About Caret",
+		aboutLines: [
+			"Caret = Cline v3.38.2 + デュアルモード + ペルソナ + 多言語化",
+			"Cline 互換を保ちつつ、ペルソナ/Chatbot・Agent フロー、4言語 UI/ドキュメントを提供します。",
+			"🎭 ペルソナ | 🔄 デュアルモード(Caret/Cline) | 🌍 4言語 | 🤖 251モデル/20プロバイダー",
+			"公式 Caret プロバイダー: 毎月の無料クレジットで即スタート(Gemini から順次)。",
+		],
+	},
+	zh: {
+		heroTitle: "欢迎使用 Caret 文档",
+		heroSubtitle: "基于 Cline 的 AI 编码助手",
+		chooseLanguage: "请选择语言",
+		cards: [
+			{
+				flag: "🇺🇸",
+				title: "English",
+				desc: "Your personalized AI coding partner",
+				button: "Go to English Docs",
+				href: "/en/getting-started/what-is-caret",
+				locale: "en",
+			},
+			{
+				flag: "🇰🇷",
+				title: "한국어",
+				desc: "나만의 개인화된 AI 코딩 파트너",
+				button: "한국어 문서 보기",
+				href: "/ko/getting-started/what-is-caret",
+				locale: "ko",
+			},
+			{
+				flag: "🇨🇳",
+				title: "中文",
+				desc: "您的个性化 AI 编程伙伴",
+				button: "查看中文文档",
+				href: "/zh/getting-started/what-is-caret",
+				locale: "zh",
+			},
+			{
+				flag: "🇯🇵",
+				title: "日本語",
+				desc: "あなた専用のパーソナライズド AI コーディングパートナー",
+				button: "日本語ドキュメントを見る",
+				href: "/ja/getting-started/what-is-caret",
+				locale: "ja",
+			},
+		],
+		aboutTitle: "About Caret",
+		aboutLines: [
+			"Caret = Cline v3.38.2 + 双模式 + 人格系统 + 全面本地化",
+			"保持与 Cline 完全兼容，同时提供个性化人格、Chatbot/Agent 流程及 4 种语言的 UI/文档。",
+			"🎭 人格 | 🔄 双模式(Caret/Cline) | 🌍 4 种语言 | 🤖 251 模型/20 提供方",
+			"官方 Caret 提供方：每月免费额度可立即开始（先支持 Gemini，后续 ChatGPT/Claude 等）。",
+		],
+	},
+}
 
 const detectLocale = (): Locale => {
-  if (typeof window === 'undefined') return 'en';
-  const stored = window.localStorage.getItem('caretPreferredLang');
-  if (stored && localeList.includes(stored as Locale)) return stored as Locale;
-  const nav = navigator.language?.toLowerCase().split('-')[0];
-  if (nav && localeList.includes(nav as Locale)) return nav as Locale;
-  return 'en';
-};
+	if (typeof window === "undefined") return "en"
+	const stored = window.localStorage.getItem("caretPreferredLang")
+	if (stored && localeList.includes(stored as Locale)) return stored as Locale
+	const nav = navigator.language?.toLowerCase().split("-")[0]
+	if (nav && localeList.includes(nav as Locale)) return nav as Locale
+	return "en"
+}
 
 export default function Home(): ReactNode {
-  const [lang, setLang] = useState<Locale>('en');
+	const [lang, setLang] = useState<Locale>("en")
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const detected = detectLocale();
-    setLang(detected);
-  }, []);
+	useEffect(() => {
+		if (typeof window === "undefined") return
+		const detected = detectLocale()
+		setLang(detected)
+	}, [])
 
-  const strings = useMemo(() => copy[lang] ?? copy.en, [lang]);
+	const strings = useMemo(() => copy[lang] ?? copy.en, [lang])
 
-  const handleLangSelect = (next: Locale, href?: string) => {
-    if (typeof window === 'undefined') return;
-    window.localStorage.setItem('caretPreferredLang', next);
-    setLang(next);
-    if (href) window.location.href = href;
-  };
+	const handleLangSelect = (next: Locale, href?: string) => {
+		if (typeof window === "undefined") return
+		window.localStorage.setItem("caretPreferredLang", next)
+		setLang(next)
+		if (href) window.location.href = href
+	}
 
-  return (
-    <Layout
-      title="Caret Documentation"
-      description="AI-powered coding assistant based on Cline">
-      <main>
-        <div className="container margin-vert--lg">
-          <div className="row">
-            <div className="col col--8 col--offset-2">
-              <div className="text--center margin-vert--lg">
-                <Heading as="h1" className="hero__title">
-                  {strings.heroTitle}
-                </Heading>
-                <p className="hero__subtitle">
-                  {strings.heroSubtitle}
-                </p>
-                <div className="lang-switch">
-                  {[
-                    {locale: 'en', label: 'English'},
-                    {locale: 'ko', label: '한국어'},
-                    {locale: 'ja', label: '日本語'},
-                    {locale: 'zh', label: '中文'},
-                  ].map((opt) => (
-                    <button
-                      key={opt.locale}
-                      className={`button button--sm ${lang === opt.locale ? 'button--primary' : 'button--secondary'}`}
-                      onClick={() => handleLangSelect(opt.locale as Locale)}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
-                </div>
-                
-                <div className="margin-vert--lg">
-                  <h2>{strings.chooseLanguage}</h2>
-                  <div className="row">
-                    {strings.cards.slice(0, 2).map((card) => (
-                      <div key={card.locale} className="col col--6">
-                        <div className="card lang-card">
-                          <div className="card__header">
-                            <h3>{`${card.flag} ${card.title}`}</h3>
-                          </div>
-                          <div className="card__body">
-                            <p className="lang-desc">{card.desc}</p>
-                            <button
-                              className="button button--primary button--block"
-                              onClick={() => handleLangSelect(card.locale, card.href)}>
-                              {card.button}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="row margin-top--md">
-                    {strings.cards.slice(2).map((card) => (
-                      <div key={card.locale} className="col col--6">
-                        <div className="card lang-card">
-                          <div className="card__header">
-                            <h3>{`${card.flag} ${card.title}`}</h3>
-                          </div>
-                          <div className="card__body">
-                            <p className="lang-desc">{card.desc}</p>
-                            <button
-                              className="button button--primary button--block"
-                              onClick={() => handleLangSelect(card.locale, card.href)}>
-                              {card.button}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+	return (
+		<Layout description="AI-powered coding assistant based on Cline" title="Caret Documentation">
+			<main>
+				<div className="container margin-vert--lg">
+					<div className="row">
+						<div className="col col--8 col--offset-2">
+							<div className="text--center margin-vert--lg">
+								<Heading as="h1" className="hero__title">
+									{strings.heroTitle}
+								</Heading>
+								<p className="hero__subtitle">{strings.heroSubtitle}</p>
+								<div className="lang-switch">
+									{[
+										{ locale: "en", label: "English" },
+										{ locale: "ko", label: "한국어" },
+										{ locale: "ja", label: "日本語" },
+										{ locale: "zh", label: "中文" },
+									].map((opt) => (
+										<button
+											className={`button button--sm ${lang === opt.locale ? "button--primary" : "button--secondary"}`}
+											key={opt.locale}
+											onClick={() => handleLangSelect(opt.locale as Locale)}>
+											{opt.label}
+										</button>
+									))}
+								</div>
 
-                <div className="margin-vert--xl">
-                  <div className="card">
-                    <div className="card__header">
-                      <h3>{strings.aboutTitle}</h3>
-                    </div>
-                    <div className="card__body">
-                      {strings.aboutLines.map((line, idx) => (
-                        <p key={idx}>{line}</p>
-                      ))}
-                      <div className="text--center">
-                        <a href="https://marketplace.visualstudio.com/items?itemName=caretive.caret" className="button button--primary margin-right--sm">
-                          📥 Download from VS Code Marketplace
-                        </a>
-                        <a href="https://github.com/aicoding-caret/caret" className="button button--outline button--primary margin-right--sm">
-                          🌟 GitHub Repository
-                        </a>
-                        <a href="https://caret.team" className="button button--outline button--secondary">
-                          🌐 Official Website
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </Layout>
-  );
+								<div className="margin-vert--lg">
+									<h2>{strings.chooseLanguage}</h2>
+									<div className="row">
+										{strings.cards.slice(0, 2).map((card) => (
+											<div className="col col--6" key={card.locale}>
+												<div className="card lang-card">
+													<div className="card__header">
+														<h3>{`${card.flag} ${card.title}`}</h3>
+													</div>
+													<div className="card__body">
+														<p className="lang-desc">{card.desc}</p>
+														<button
+															className="button button--primary button--block"
+															onClick={() => handleLangSelect(card.locale, card.href)}>
+															{card.button}
+														</button>
+													</div>
+												</div>
+											</div>
+										))}
+									</div>
+
+									<div className="row margin-top--md">
+										{strings.cards.slice(2).map((card) => (
+											<div className="col col--6" key={card.locale}>
+												<div className="card lang-card">
+													<div className="card__header">
+														<h3>{`${card.flag} ${card.title}`}</h3>
+													</div>
+													<div className="card__body">
+														<p className="lang-desc">{card.desc}</p>
+														<button
+															className="button button--primary button--block"
+															onClick={() => handleLangSelect(card.locale, card.href)}>
+															{card.button}
+														</button>
+													</div>
+												</div>
+											</div>
+										))}
+									</div>
+								</div>
+
+								<div className="margin-vert--xl">
+									<div className="card">
+										<div className="card__header">
+											<h3>{strings.aboutTitle}</h3>
+										</div>
+										<div className="card__body">
+											{strings.aboutLines.map((line, idx) => (
+												<p key={idx}>{line}</p>
+											))}
+											<div className="text--center">
+												<a
+													className="button button--primary margin-right--sm"
+													href="https://marketplace.visualstudio.com/items?itemName=caretive.caret">
+													📥 Download from VS Code Marketplace
+												</a>
+												<a
+													className="button button--outline button--primary margin-right--sm"
+													href="https://github.com/aicoding-caret/caret">
+													🌟 GitHub Repository
+												</a>
+												<a className="button button--outline button--secondary" href="https://caret.team">
+													🌐 Official Website
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</Layout>
+	)
 }

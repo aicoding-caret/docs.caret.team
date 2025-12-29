@@ -1,226 +1,204 @@
-import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs"
 
 const sidebars: SidebarsConfig = {
-  tutorialSidebar: [
-    {
-      type: 'category',
-      label: 'Getting Started',
-      items: [
-        'getting-started/what-is-caret',
-        'getting-started/installing-caret',
-        'getting-started/selecting-your-model',
-        'getting-started/your-first-project'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Introduction',
-      items: [
-        'introduction/overview',
-        'introduction/welcome'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Improving Your Prompting Skills',
-      items: [
-        'prompting/prompt-engineering-guide',
-        'prompting/caret-memory-bank'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Core Features',
-      items: [
-        'core-features/model-selection-guide'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Features',
-      items: [
-        'features/yolo-mode',
-        'features/dictation',
-        'features/multiroot-workspace',
-        'features/auto-approve',
-        'features/checkpoints',
-        'features/caret-rules',
-        'features/drag-and-drop',
-        'features/plan-and-act',
-        'features/slash-commands/workflows',
-        'features/focus-chain',
-        'features/auto-compact',
-        'features/editing-messages',
-        'features/hooks',
-        {
-          type: 'category',
-          label: '@ Mentions',
-          items: [
-            'features/at-mentions/overview',
-            'features/at-mentions/file-mentions',
-            'features/at-mentions/terminal-mentions',
-            'features/at-mentions/problem-mentions',
-            'features/at-mentions/git-mentions',
-            'features/at-mentions/url-mentions'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Slash Commands',
-          items: [
-            'features/slash-commands/slash-commands',
-            'features/slash-commands/new-task',
-            'features/slash-commands/new-rule',
-            'features/slash-commands/smol',
-            'features/slash-commands/report-bug',
-            'features/slash-commands/deep-planning'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Commands & Shortcuts',
-          items: [
-            'features/commands-and-shortcuts/overview',
-            'features/commands-and-shortcuts/code-commands',
-            'features/commands-and-shortcuts/terminal-integration',
-            'features/commands-and-shortcuts/git-integration',
-            'features/commands-and-shortcuts/keyboard-shortcuts'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Customization',
-          items: [
-            'features/customization/opening-caret-in-sidebar',
-            'features/customization/disable-terminal-pagers'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Tasks',
-          items: [
-            'features/tasks/understanding-tasks',
-            'features/tasks/task-management'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Caret Exclusive',
-          items: [
-            'caret-exclusive/overview',
-            'caret-exclusive/persona-system',
-            'caret-exclusive/dual-prompt-modes',
-            'caret-exclusive/brand-switching',
-            'caret-exclusive/enhanced-provider-setup',
-            'caret-exclusive/caret-provider',
-            'caret-exclusive/knowledge-parity-system',
-            'caret-exclusive/multilingual-ui',
-            'caret-exclusive/advanced-rules'
-          ]
-        }
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Caret CLI',
-      items: [
-        'caret-cli/overview',
-        'caret-cli/installation',
-        'caret-cli/three-core-flows',
-        'caret-cli/cli-reference',
-        {
-          type: 'category',
-          label: 'Samples',
-          items: [
-            'caret-cli/samples/overview',
-            'caret-cli/samples/github-integration',
-            'caret-cli/samples/github-issue-rca'
-          ]
-        }
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Exploring Caret\'s Tools',
-      items: [
-        'exploring-carets-tools/caret-tools-guide',
-        'exploring-carets-tools/new-task-tool',
-        'exploring-carets-tools/remote-browser-support'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Enterprise Solutions',
-      items: [
-        'enterprise-solutions/overview',
-        'enterprise-solutions/security-concerns'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'MCP Servers',
-      items: [
-        'mcp/mcp-overview',
-        'mcp/adding-mcp-servers-from-github',
-        'mcp/configuring-mcp-servers',
-        'mcp/connecting-to-a-remote-server',
-        'mcp/mcp-marketplace',
-        'mcp/mcp-server-development-protocol',
-        'mcp/mcp-transport-mechanisms'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Provider Configuration',
-      items: [
-        'provider-config/anthropic',
-        'provider-config/claude-code',
-        {
-          type: 'category',
-          label: 'AWS Bedrock',
-          items: [
-            'provider-config/aws-bedrock/api-key',
-            'provider-config/aws-bedrock/iam-credentials',
-            'provider-config/aws-bedrock/cli-profile'
-          ]
-        },
-        'provider-config/gcp-vertex-ai',
-        'provider-config/litellm-and-caret-using-codestral',
-        'provider-config/vscode-language-model-api',
-        'provider-config/xai-grok',
-        'provider-config/mistral-ai',
-        'provider-config/deepseek',
-        'provider-config/groq',
-        'provider-config/cerebras',
-        'provider-config/doubao',
-        'provider-config/fireworks',
-        'provider-config/zai',
-        'provider-config/ollama',
-        'provider-config/openai',
-        'provider-config/openai-compatible',
-        'provider-config/openrouter',
-        'provider-config/sap-aicore',
-        'provider-config/vercel-ai-gateway',
-        'provider-config/requesty'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Running Models Locally',
-      items: [
-        'running-models-locally/overview',
-        'running-models-locally/lm-studio',
-        'running-models-locally/ollama'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'More Info',
-      items: [
-        'more-info/telemetry'
-      ]
-    }
-  ],
-};
+	tutorialSidebar: [
+		{
+			type: "category",
+			label: "Getting Started",
+			items: [
+				"getting-started/what-is-caret",
+				"getting-started/installing-caret",
+				"getting-started/selecting-your-model",
+				"getting-started/your-first-project",
+				"getting-started/understanding-context-management",
+			],
+		},
+		{
+			type: "category",
+			label: "Introduction",
+			items: ["introduction/overview", "introduction/welcome"],
+		},
+		{
+			type: "category",
+			label: "Improving Your Prompting Skills",
+			items: ["prompting/prompt-engineering-guide", "prompting/caret-memory-bank"],
+		},
+		{
+			type: "category",
+			label: "Core Features",
+			items: ["core-features/model-selection-guide"],
+		},
+		{
+			type: "category",
+			label: "Features",
+			items: [
+				"features/yolo-mode",
+				"features/dictation",
+				"features/multiroot-workspace",
+				"features/auto-approve",
+				"features/checkpoints",
+				"features/caret-rules",
+				"features/drag-and-drop",
+				"features/plan-and-act",
+				"features/slash-commands/workflows",
+				"features/focus-chain",
+				"features/auto-compact",
+				"features/editing-messages",
+				"features/hooks",
+				{
+					type: "category",
+					label: "@ Mentions",
+					items: [
+						"features/at-mentions/overview",
+						"features/at-mentions/file-mentions",
+						"features/at-mentions/terminal-mentions",
+						"features/at-mentions/problem-mentions",
+						"features/at-mentions/git-mentions",
+						"features/at-mentions/url-mentions",
+					],
+				},
+				{
+					type: "category",
+					label: "Slash Commands",
+					items: [
+						"features/slash-commands/slash-commands",
+						"features/slash-commands/new-task",
+						"features/slash-commands/new-rule",
+						"features/slash-commands/smol",
+						"features/slash-commands/report-bug",
+						"features/slash-commands/deep-planning",
+					],
+				},
+				{
+					type: "category",
+					label: "Commands & Shortcuts",
+					items: [
+						"features/commands-and-shortcuts/overview",
+						"features/commands-and-shortcuts/code-commands",
+						"features/commands-and-shortcuts/terminal-integration",
+						"features/commands-and-shortcuts/git-integration",
+						"features/commands-and-shortcuts/keyboard-shortcuts",
+					],
+				},
+				{
+					type: "category",
+					label: "Customization",
+					items: ["features/customization/opening-caret-in-sidebar", "features/customization/disable-terminal-pagers"],
+				},
+				{
+					type: "category",
+					label: "Tasks",
+					items: ["features/tasks/understanding-tasks", "features/tasks/task-management"],
+				},
+				{
+					type: "category",
+					label: "Caret Exclusive",
+					items: [
+						"caret-exclusive/overview",
+						"caret-exclusive/persona-system",
+						"caret-exclusive/dual-prompt-modes",
+						"caret-exclusive/brand-switching",
+						"caret-exclusive/enhanced-provider-setup",
+						"caret-exclusive/caret-provider",
+						"caret-exclusive/knowledge-parity-system",
+						"caret-exclusive/multilingual-ui",
+						"caret-exclusive/advanced-rules",
+					],
+				},
+			],
+		},
+		{
+			type: "category",
+			label: "Caret CLI",
+			items: [
+				"caret-cli/overview",
+				"caret-cli/installation",
+				"caret-cli/three-core-flows",
+				"caret-cli/cli-reference",
+				{
+					type: "category",
+					label: "Samples",
+					items: [
+						"caret-cli/samples/overview",
+						"caret-cli/samples/github-integration",
+						"caret-cli/samples/github-issue-rca",
+					],
+				},
+			],
+		},
+		{
+			type: "category",
+			label: "Exploring Caret's Tools",
+			items: [
+				"exploring-carets-tools/caret-tools-guide",
+				"exploring-carets-tools/new-task-tool",
+				"exploring-carets-tools/remote-browser-support",
+			],
+		},
+		{
+			type: "category",
+			label: "Enterprise Solutions",
+			items: ["enterprise-solutions/overview", "enterprise-solutions/security-concerns"],
+		},
+		{
+			type: "category",
+			label: "MCP Servers",
+			items: [
+				"mcp/mcp-overview",
+				"mcp/adding-mcp-servers-from-github",
+				"mcp/configuring-mcp-servers",
+				"mcp/connecting-to-a-remote-server",
+				"mcp/mcp-marketplace",
+				"mcp/mcp-server-development-protocol",
+				"mcp/mcp-transport-mechanisms",
+			],
+		},
+		{
+			type: "category",
+			label: "Provider Configuration",
+			items: [
+				"provider-config/anthropic",
+				"provider-config/claude-code",
+				{
+					type: "category",
+					label: "AWS Bedrock",
+					items: [
+						"provider-config/aws-bedrock/api-key",
+						"provider-config/aws-bedrock/iam-credentials",
+						"provider-config/aws-bedrock/cli-profile",
+					],
+				},
+				"provider-config/gcp-vertex-ai",
+				"provider-config/litellm-and-caret-using-codestral",
+				"provider-config/vscode-language-model-api",
+				"provider-config/xai-grok",
+				"provider-config/mistral-ai",
+				"provider-config/deepseek",
+				"provider-config/groq",
+				"provider-config/cerebras",
+				"provider-config/doubao",
+				"provider-config/fireworks",
+				"provider-config/zai",
+				"provider-config/ollama",
+				"provider-config/openai",
+				"provider-config/openai-compatible",
+				"provider-config/openrouter",
+				"provider-config/sap-aicore",
+				"provider-config/vercel-ai-gateway",
+				"provider-config/requesty",
+			],
+		},
+		{
+			type: "category",
+			label: "Running Models Locally",
+			items: ["running-models-locally/overview", "running-models-locally/lm-studio", "running-models-locally/ollama"],
+		},
+		{
+			type: "category",
+			label: "More Info",
+			items: ["more-info/telemetry"],
+		},
+	],
+}
 
-export default sidebars;
+export default sidebars

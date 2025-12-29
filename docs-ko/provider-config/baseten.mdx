@@ -1,0 +1,80 @@
+---
+title: "Baseten"
+description: "Baseten Model API를 Caret에서 설정하는 방법을 안내합니다. 엔터프라이즈급 성능과 합리적인 가격으로 최신 오픈소스 모델을 사용할 수 있습니다."
+---
+
+Baseten은 프로덕션을 위한 모델 API를 제공합니다. Baseten Inference Stack 기반으로 OpenAI, DeepSeek, Moonshot AI, Alibaba Cloud 등의 최신 오픈소스 모델을 최적화된 형태로 제공합니다.
+
+**웹사이트:** [https://www.baseten.co/products/model-apis/](https://www.baseten.co/products/model-apis/)
+
+### API 키 발급
+
+1. **가입/로그인:** [Baseten](https://www.baseten.co/) 접속
+2. **API Keys 메뉴 이동**
+3. **새 키 생성:** 예: "Caret"
+4. **키 복사:** 즉시 안전하게 보관
+
+### Caret에서 설정
+
+1. **Caret 설정 열기:** Caret 패널의 톱니바퀴(⚙️) 클릭
+2. **프로바이더 선택:** "Baseten" 선택
+3. **API 키 입력:** "Baseten API Key" 필드에 키 입력
+4. **모델 선택:** 원하는 모델 선택
+
+**중요: Kimi K2 Thinking 사용 시**
+`moonshotai/Kimi-K2-Thinking` 모델을 사용하려면 Caret 설정에서 **Native Tool Call (Experimental)**을 활성화해야 합니다. 이 설정은 모델의 네이티브 도구 호출을 허용하며, 해당 추론 모델에서 필수입니다.
+
+### 지원 모델
+
+Caret은 Baseten Model APIs의 최신 모델을 지원합니다. 최신 가격 정보는 Baseten 페이지를 확인하세요: https://www.baseten.co/products/model-apis/
+
+- `moonshotai/Kimi-K2-Thinking` (Moonshot AI) - 단계별 추론 강화 (262K) - $0.60/$2.50 per 1M tokens
+- `zai-org/GLM-4.6` (Z AI) - 고급 에이전트/추론/코딩 (200K) - $0.60/$2.20 per 1M tokens
+- `moonshotai/Kimi-K2-Instruct-0905` (Moonshot AI) - 9월 업데이트 (262K) - $0.60/$2.50 per 1M tokens
+- `openai/gpt-oss-120b` (OpenAI) - 120B MoE (128K) - $0.10/$0.50 per 1M tokens
+- `Qwen/Qwen3-Coder-480B-A35B-Instruct` - 고급 코딩/추론 (262K) - $0.38/$1.53 per 1M tokens
+- `Qwen/Qwen3-235B-A22B-Instruct-2507` - 수학/추론 특화 (262K) - $0.22/$0.80 per 1M tokens
+- `deepseek-ai/DeepSeek-R1` - DeepSeek 1세대 추론 모델 (163K) - $2.55/$5.95 per 1M tokens
+- `deepseek-ai/DeepSeek-R1-0528` - 최신 리비전 (163K) - $2.55/$5.95 per 1M tokens
+- `deepseek-ai/DeepSeek-V3.1` - 하이브리드 추론 + 도구 호출 (163K) - $0.50/$1.50 per 1M tokens
+- `deepseek-ai/DeepSeek-V3-0324` - 빠른 범용 (163K) - $0.77/$0.77 per 1M tokens
+- `deepseek-ai/DeepSeek-V3.2` - 빠른 범용 (163K) - $0.77/$0.77 per 1M tokens
+
+### 프로덕션 중심 아키텍처
+
+Baseten Model APIs는 프로덕션 환경에 맞춰 설계되었습니다.
+
+#### 엔터프라이즈급 안정성
+- **99.99% 가용성** (active-active 이중화)
+- **멀티 클러스터 오토스케일링**
+- **SOC 2 Type II 인증**, **HIPAA 준수**
+
+#### 최적화된 성능
+- Baseten Inference Stack에 최적화된 모델 제공
+- 최신 GPU 기반 멀티 클라우드 인프라
+- 프로덕션 워크로드에 맞춘 초고속 추론
+
+#### 비용 효율
+- 폐쇄형 모델 대비 **5~10배 저렴**
+- 멀티 클라우드 최적화로 효율적인 리소스 사용
+- 투명한 가격 구조
+
+#### 개발자 경험
+- **OpenAI 호환 API** - URL만 바꿔 마이그레이션 가능
+- 높은 관측성/분석 기능
+- Model API부터 전용 배포까지 매끄러운 확장
+
+### 특수 기능
+
+#### 함수 호출 & 도구 사용
+Baseten 모델은 구조화 출력, 함수 호출, 도구 사용을 지원합니다. 에이전트 워크플로나 코딩 작업에 적합합니다.
+
+### 팁 & 노트
+
+- **실시간 모델 업데이트:** Caret은 Baseten의 최신 모델 목록을 자동으로 가져옵니다.
+- **MCM(Multi-Cloud Capacity Management):** 전 세계 낮은 지연/고가용성 제공
+- **지원:** 프로덕션 배포를 위한 전담 지원 가능
+
+### 가격 정보
+
+Baseten은 경쟁력 있는 가격을 제공합니다. 최신 가격은 [Baseten Model APIs](https://www.baseten.co/products/model-apis/) 페이지를 확인하세요. 일반적으로 백만 토큰당 $0.10~$6.00 범위이며, 폐쇄형 모델보다 비용 효율적입니다.

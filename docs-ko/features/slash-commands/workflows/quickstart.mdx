@@ -1,0 +1,111 @@
+---
+title: "워크플로 빠른 시작"
+sidebarTitle: "빠른 시작"
+description: "첫 Caret 워크플로를 만드는 단계별 가이드"
+---
+
+이 튜토리얼에서는 GitHub Pull Request 리뷰를 자동화하는 워크플로를 만듭니다. CLI 도구, 파일 분석, 사용자 상호작용을 결합하는 방법을 보여줍니다.
+
+### 사전 준비
+
+* Caret 설치 완료
+* [GitHub CLI(`gh`)](https://cli.github.com/) 설치 및 인증
+* 테스트할 PR이 있는 Git 저장소 열기
+
+## PR 리뷰 워크플로 만들기
+
+이 워크플로는 PR 정보를 가져오고 변경 내용을 분석한 뒤 리뷰 코멘트를 작성합니다.
+
+<Steps>
+  <Step title="워크플로 파일 생성">
+    프로젝트 전용 워크플로 디렉터리를 만듭니다.
+
+    1. 프로젝트 루트에 `.agents/context/workflows` 폴더 생성
+    2. 그 안에 `pr-review.md` 파일 생성
+  </Step>
+
+  <Step title="워크플로 내용 작성">
+    `pr-review.md` 파일에 아래 내용을 추가합니다.
+
+    ````markdown pr-review.md
+    # Pull Request Reviewer
+
+    This workflow helps me review a pull request by analyzing the changes and drafting a review.
+
+    ## 1. Gather PR Information
+    First, I need to understand what this PR is about. I'll fetch the title, description, and list of changed files.
+
+    ```bash
+    gh pr view PR_NUMBER --json title,body,files
+    ```
+
+    ## 2. Examine Modified Files
+    Now I will examine the diff to understand the specific code changes.
+
+    ```bash
+    gh pr diff PR_NUMBER
+    ```
+
+    ## 3. Analyze Changes
+    I will analyze the code changes for:
+    *   **Bugs:** Logic errors or edge cases.
+    *   **Performance:** Inefficient loops or operations.
+    *   **Security:** Vulnerabilities or unsafe practices.
+
+    ## 4. Confirm Assessment
+    Based on my analysis, I will present my findings and ask how you want to proceed.
+
+    ```xml
+    <ask_followup_question>
+      <question>I've reviewed PR #PR_NUMBER. Here is my assessment:
+
+    [Insert Analysis Here]
+
+    Do you want me to approve this PR, request changes, or just leave a comment?</question>
+      <options>["Approve", "Request Changes", "Comment", "Do nothing"]</options>
+    </ask_followup_question>
+    ```
+
+    ## 5. Execute Review
+    Finally, I will execute the review command based on your decision.
+
+    ```bash
+    # If approving:
+    gh pr review PR_NUMBER --approve --body "Looks good to me! [Summary of analysis]"
+
+    # If requesting changes:
+    gh pr review PR_NUMBER --request-changes --body "Please address the following: [Issues list]"
+
+    # If commenting:
+    gh pr review PR_NUMBER --comment --body "[Comments]"
+    ```
+    ````
+
+    <Note>
+      실행 시 `PR_NUMBER`를 실제 PR 번호로 바꿔야 합니다. 예: `/pr-review.md 123`
+    </Note>
+  </Step>
+
+  <Step title="워크플로 실행">
+    이제 워크플로를 실행합니다.
+
+    1. Caret 채팅 패널 열기
+    2. `/pr-review.md` 뒤에 PR 번호를 입력 (예: `/pr-review.md 42`)
+    3. Caret이 PR 정보를 가져오고 분석한 뒤 결과를 보여줌
+
+    <Tip>
+      `gh pr view` 같은 명령 실행 후 Caret이 멈추면 **Proceed While Running** 버튼을 눌러 계속 진행하세요.
+    </Tip>
+  </Step>
+</Steps>
+
+### 다른 활용 예시
+
+이 예시는 시작일 뿐입니다. 다음과 같은 워크플로도 만들 수 있습니다:
+
+* **컴포넌트 생성**: React 컴포넌트/엔드포인트 보일러플레이트 자동 생성
+* **테스트 실행**: 테스트 실행 후 결과 요약
+* **배포 자동화**: `docker`, `kubectl` 등과 연동
+* **리팩터링 가이드**: 복잡한 리팩터링을 단계별로 수행
+
+프로젝트에서 반복되는 작업을 찾고 워크플로로 만들어보세요.

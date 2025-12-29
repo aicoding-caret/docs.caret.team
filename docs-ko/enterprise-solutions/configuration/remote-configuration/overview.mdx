@@ -1,0 +1,100 @@
+---
+title: "SaaS 공급자 구성"
+sidebarTitle: "개요"
+description: "Caret 호스팅 관리자 콘솔에서 추론 공급자를 중앙 구성합니다"
+---
+
+SaaS 공급자 구성은 **Caret 호스팅 관리자 콘솔**을 통해 조직 전체의 추론 공급자를 중앙에서 설정하는 방식입니다. 개별 개발자 설정이나 인프라 배포 없이도, 동일한 보안 정책/비용 관리/모델 접근을 전사적으로 적용할 수 있습니다.
+
+## 원격 구성 방식
+
+원격 구성은 [app.caret.bot](https://app.caret.bot)에서 운영되는 Caret 호스팅 서비스를 통해 제공됩니다. 관리자는 다음을 수행합니다.
+
+<CardGroup cols={2}>
+  <Card title="중앙 설정" icon="gear">
+    웹 기반 관리자 콘솔에서 조직 전체에 대한 공급자 설정을 한 번에 구성합니다.
+  </Card>
+  
+  <Card title="자동 적용" icon="shield-check">
+    조직에 로그인한 모든 구성원에게 설정이 자동 배포됩니다.
+  </Card>
+  
+  <Card title="간편 온보딩" icon="user-plus">
+    신규 구성원도 복잡한 설정 없이 즉시 공급자 접근이 가능합니다.
+  </Card>
+  
+  <Card title="일관된 경험" icon="users">
+    조직 전체가 동일한 모델/리전/설정을 사용합니다.
+  </Card>
+</CardGroup>
+
+## 지원 공급자
+
+Caret는 다음 추론 공급자에 대한 원격 구성을 지원합니다.
+
+| 공급자 | 사용 사례 | 구성 항목 | 멤버 설정 |
+|----------|----------|---------------|--------------|
+| **Caret** | Caret 기본 공급자를 사용하는 조직 | API 공급자 선택, 모델 접근 | 개별 API 키 불필요(조직에서 관리) |
+| **Amazon Bedrock** | AWS 인프라를 사용하는 조직 | 리전 선택, VPC 엔드포인트, 크로스 리전 추론, 프롬프트 캐싱 | VS Code에서 AWS 자격 증명 구성 |
+| **LiteLLM** | 통합 프록시로 다수 모델을 사용하는 조직 | 프록시 엔드포인트, 인증, 모델 라우팅 | VS Code에서 API 키/엔드포인트 구성(또는 마스터 키로 중앙화) |
+| **Google Vertex AI** | Google Cloud Platform 기반 조직 | 프로젝트 ID, 리전 선택, 모델 접근 | VS Code에서 서비스 계정 또는 자격 증명 구성 |
+
+## 구성 절차
+
+원격 구성은 일반적으로 아래 흐름을 따릅니다.
+
+<Steps>
+<Step title="관리자 설정">
+Caret 관리자 콘솔에서 공급자 설정을 구성합니다.
+</Step>
+
+<Step title="자동 배포">
+설정은 조직 구성원에게 자동 배포됩니다.
+</Step>
+
+<Step title="멤버 자격 증명 설정">
+구성원은 자신의 자격 증명(API 키, AWS 프로필 등)을 입력합니다.
+</Step>
+
+<Step title="즉시 사용">
+자격 증명을 설정하면 즉시 Caret에서 공급자를 사용할 수 있습니다.
+</Step>
+</Steps>
+
+## 원격 구성의 장점
+
+### **관리자에게 유리한 점**
+- **중앙 통제**: 한 곳에서 모든 공급자 설정 관리
+- **보안 준수**: 조직 전반에 동일한 보안 정책 적용
+- **신속한 변경**: 설정 변경을 즉시 전사 반영
+
+### **구성원에게 유리한 점**
+- **간단한 설정**: 복잡한 공급자 옵션 조사 불필요
+- **일관된 경험**: 동일한 모델과 기능 사용
+- **빠른 온보딩**: 사전 구성된 공급자로 즉시 시작
+- **개발 집중**: 설정 대신 개발에 집중
+
+## 시작하기
+
+원격 구성 시작 방법:
+
+1. **공급자 선택**: 조직의 요구 사항에 맞는 공급자 선택
+2. **관리자 구성**: 공급자별 관리자 가이드를 따라 설정
+3. **멤버 온보딩**: 구성원이 멤버 가이드를 따라 연결
+4. **개발 시작**: 중앙 관리된 공급자 접근으로 개발 진행
+
+아래에서 공급자를 선택하세요.
+
+<CardGroup cols={3}>
+  <Card title="Amazon Bedrock" icon="aws" href="/enterprise-solutions/configuration/remote-configuration/aws-bedrock/admin-configuration">
+    엔터프라이즈 보안/컴플라이언스를 갖춘 AWS 기반 모델.
+  </Card>
+  
+  <Card title="LiteLLM" icon="layer-group" href="/enterprise-solutions/configuration/remote-configuration/litellm/admin-configuration">
+    하나의 인터페이스로 100+ 모델에 접근하는 통합 프록시.
+  </Card>
+  
+  <Card title="Google Vertex AI" icon="google" href="/enterprise-solutions/configuration/remote-configuration/google-vertex/admin-configuration">
+    글로벌 인프라를 가진 Google Cloud AI 플랫폼.
+  </Card>
+</CardGroup>

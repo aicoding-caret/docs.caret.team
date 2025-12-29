@@ -57,25 +57,18 @@
 			{
 				"group": "Getting Started",
 				"pages": [
-					"getting-started/what-is-cline",
-					"getting-started/model-selection-guide",
-					"getting-started/installing-cline",
-					"getting-started/task-management",
-					"getting-started/understanding-context-management",
-					{
-						"group": "For New Coders",
-						"pages": [
-							"getting-started/for-new-coders",
-							"getting-started/installing-dev-essentials"
-						]
-					}
+					"getting-started/what-is-caret",
+					"getting-started/selecting-your-model",
+					"getting-started/installing-caret",
+					"getting-started/your-first-project",
+					"getting-started/understanding-context-management"
 				]
 			},
 			{
 				"group": "Improving Your Prompting Skills",
 				"pages": [
 					"prompting/prompt-engineering-guide",
-					"prompting/cline-memory-bank"
+					"prompting/caret-memory-bank"
 				]
 			},
 			{
@@ -83,7 +76,7 @@
 				"pages": [
 					"features/auto-approve",
 					"features/checkpoints",
-					"features/cline-rules",
+					"features/caret-rules",
 					"features/drag-and-drop",
 					"features/plan-and-act",
 					"features/slash-commands/workflows",
@@ -124,19 +117,17 @@
 				]
 			},
 			{
-				"group": "Exploring Cline's Tools",
+				"group": "Exploring Caret's Tools",
 				"pages": [
-					"exploring-clines-tools/cline-tools-guide",
-					"exploring-clines-tools/new-task-tool",
-					"exploring-clines-tools/remote-browser-support"
+					"exploring-carets-tools/caret-tools-guide",
+					"exploring-carets-tools/new-task-tool",
+					"exploring-carets-tools/remote-browser-support"
 				]
 			},
 			{
 				"group": "Enterprise Solutions",
 				"pages": [
-					"enterprise-solutions/cloud-provider-integration",
-					"enterprise-solutions/custom-instructions",
-					"enterprise-solutions/mcp-servers",
+					"enterprise-solutions/overview",
 					"enterprise-solutions/security-concerns"
 				]
 			},
@@ -166,7 +157,7 @@
 						]
 					},
 					"provider-config/gcp-vertex-ai",
-					"provider-config/litellm-and-cline-using-codestral",
+					"provider-config/litellm-and-caret-using-codestral",
 					"provider-config/vscode-language-model-api",
 					"provider-config/xai-grok",
 					"provider-config/mistral-ai",
@@ -188,7 +179,7 @@
 			{
 				"group": "Running Models Locally",
 				"pages": [
-					"running-models-locally/read-me-first",
+					"running-models-locally/overview",
 					"running-models-locally/lm-studio",
 					"running-models-locally/ollama"
 				]
@@ -217,13 +208,13 @@
 	},
 	"anchors": [
 		{
-			"name": "What is Cline",
+			"name": "What is Caret",
 			"icon": "house",
-			"url": "getting-started/what-is-cline"
+			"url": "getting-started/what-is-caret"
 		}
 	],
 	"search": {
-		"prompt": "Search Cline documentation..."
+		"prompt": "Search Caret documentation..."
 	},
 	"contextual": {
 		"options": [

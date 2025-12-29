@@ -1,0 +1,222 @@
+---
+title: "네트워킹 및 프록시"
+sidebarTitle: "네트워킹 & 프록시"
+description: "방화벽 및 프록시 환경에서 Caret를 설정하는 방법"
+---
+
+기업용 프록시나 방화벽 뒤에서 작업하는 경우, Caret가 AI 프로바이더에 연결할 수 있도록
+프록시 설정이 필요합니다. 구성 방법은 사용 중인 Caret 유형에 따라 달라집니다.
+
+## VSCode 확장
+
+VSCode 확장은 VSCode의 내장 프록시 설정을 자동으로 사용합니다.  
+[Visual Studio Code 네트워크 연결, Proxy 지원](https://code.visualstudio.com/docs/setup/network#_proxy-server-support)
+문서를 참고해 VSCode 프록시를 설정하세요. Caret 자체에 대한 추가 설정은 필요하지 않습니다.
+
+## CLI
+
+Caret CLI는 표준 HTTP 프록시 환경 변수를 사용합니다. `caret` 실행 전에 설정하세요.
+
+### 기본 설정
+
+**Windows (명령 프롬프트)**
+```cmd
+set https_proxy=http://proxy.company.com:8080
+set http_proxy=http://proxy.company.com:8080
+caret
+```
+
+**Windows (PowerShell)**
+```powershell
+$env:https_proxy="http://proxy.company.com:8080"
+$env:http_proxy="http://proxy.company.com:8080"
+caret
+```
+
+**macOS/Linux**
+```bash
+export https_proxy=http://proxy.company.com:8080
+export http_proxy=http://proxy.company.com:8080
+caret
+```
+
+### 인증이 필요한 프록시
+
+프록시에 인증이 필요한 경우, URL에 자격 증명을 포함합니다.
+
+```bash
+export https_proxy=http://username:password@proxy.company.com:8080
+export http_proxy=http://username:password@proxy.company.com:8080
+```
+
+<Warning>
+환경 변수에 자격 증명을 저장하는 것은 보안 위험이 될 수 있습니다.
+</Warning>
+
+### 로컬호스트 프록시 예외
+
+localhost 트래픽이 프록시를 거치지 않도록 `no_proxy` 환경 변수를 설정합니다.
+
+**Windows**
+```cmd
+set no_proxy=localhost,127.0.0.1,.local
+```
+
+**macOS/Linux**
+```bash
+export no_proxy=localhost,127.0.0.1,.local
+```
+
+### 사용자 지정 CA 인증서
+
+프록시가 커스텀 CA 인증서를 사용하는 경우:
+
+**Windows**
+```cmd
+set NODE_EXTRA_CA_CERTS=C:\path\to\ca-certificate.crt
+caret
+```
+
+**macOS/Linux**
+```bash
+export NODE_EXTRA_CA_CERTS=/path/to/ca-certificate.pem
+caret
+```
+
+### 영구 설정
+
+매번 환경 변수를 설정하지 않으려면 셸 프로필 또는 시스템 환경 변수에 추가하세요.
+
+**macOS/Linux** (`~/.bashrc`, `~/.zshrc`, `~/.profile`에 추가)
+```bash
+# 프록시 설정
+export https_proxy=http://proxy.company.com:8080
+export http_proxy=http://proxy.company.com:8080
+export no_proxy=localhost,127.0.0.1,.local
+export NODE_EXTRA_CA_CERTS=/path/to/ca-certificate.pem
+```
+
+**Windows** (시스템 환경 변수)
+1. Windows 설정에서 "환경 변수" 검색
+2. "사용자 변수" 또는 "시스템 변수"에 추가
+3. 터미널 또는 IDE 재시작
+
+### 알려진 제한 사항
+
+Caret CLI는 HTTP 프록시만 지원합니다. SOCKS 프록시, PAC 스크립트,
+또는 기본 사용자/비밀번호 이상의 인증이 필요한 HTTP 프록시는 지원하지 않습니다.
+
+## JetBrains IDE
+
+JetBrains 플러그인은 IDE의 HTTP 프록시 설정을 사용합니다.
+
+### JetBrains 프록시 설정
+
+1. 설정/환경설정을 엽니다:
+   - **Windows/Linux**: File > Settings
+   - **macOS**: IntelliJ IDEA > Preferences
+   - 또는 `Ctrl+Alt+S` (Windows/Linux), `Cmd+,` (macOS)
+
+2. 다음 경로로 이동:
+   ```
+   Appearance & Behavior > System Settings > HTTP Proxy
+   ```
+
+3. "Manual proxy configuration" 선택
+
+4. 프록시 설정:
+   - **Host name**: `proxy.company.com`
+   - **Port number**: `8080`
+   - **No proxy for**: `localhost,127.0.0.1`
+   - 필요 시 "Proxy authentication" 체크
+   - 사용자명/비밀번호 입력
+
+5. "Check connection"으로 연결 확인
+6. "OK"로 적용
+7. IDE 재시작
+
+### 연결 테스트
+
+프록시 설정 후 Caret가 AI 프로바이더에 연결되는지 확인하세요.
+
+1. Caret 패널 열기
+2. 간단한 메시지 전송
+3. 실패하면 IDE 이벤트 로그에서 오류 확인
+
+### 사용자 지정 CA 인증서
+
+프록시에 커스텀 CA가 필요한 경우:
+
+1. 시스템 신뢰 저장소에 추가하거나
+2. JetBrains IDE에 가져오기:
+   - Settings > Tools > Server Certificates
+   - "+" 클릭 후 인증서 추가
+
+### 알려진 제한 사항
+
+JetBrains에서 Caret는 HTTP 프록시만 지원합니다. SOCKS 프록시, PAC 스크립트,
+또는 기본 사용자/비밀번호 이상의 인증이 필요한 HTTP 프록시는 지원하지 않습니다.
+
+프록시 설정 변경 후에는 IDE를 재시작해야 Caret가 새 설정을 반영합니다.
+
+## 문제 해결
+
+### 연결 타임아웃
+
+타임아웃이 발생하면:
+
+1. 프록시 주소/포트가 올바른지 확인
+2. 인증이 필요한지 확인
+3. AI 프로바이더 엔드포인트가 방화벽에 의해 차단되지 않았는지 확인
+
+### SSL/TLS 인증서 오류
+
+인증서 오류가 발생하면:
+
+1. `NODE_EXTRA_CA_CERTS` 경로가 올바른지 확인
+2. 인증서가 PEM 형식인지 확인
+3. `curl`로 인증서 확인:
+   `curl -x proxy.corp.example:8080 --cacert /path/to/ca-cert.pem -o - -vv https://api.cline.bot/`
+4. VSCode의 `http.proxyStrictSSL` 비활성화 고려 (운영 환경에서는 권장하지 않음)
+
+### 프록시 설정 테스트
+
+Caret 네트워킹 문제가 있다면, 먼저 `curl`로 프록시 동작을 확인하세요:
+
+```bash
+# Linux/macOS
+export https_proxy=http://proxy.company.com:8080
+curl -vv https://api.anthropic.com
+
+# Windows PowerShell
+$env:https_proxy="http://proxy.company.com:8080"
+curl.exe -vv https://api.anthropic.com
+```
+
+필요한 경우 `--cacert $NODE_EXTRA_CA_CERTS`로 인증서를 지정하세요.
+
+이후 `~/.caret/caret-core-service.log`(CLI) 또는 IDE 로그를 확인하여
+프록시 설정 및 네트워크 오류 내용을 점검합니다.
+
+## 자주 쓰는 프록시 패턴
+
+### 인증이 필요한 HTTPS 프록시
+
+```bash
+export https_proxy=http://username:password@proxy.company.com:8080
+export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem
+```
+
+### 인증 없는 프록시
+
+```bash
+export https_proxy=http://proxy.company.com:8080
+export http_proxy=http://proxy.company.com:8080
+```
+
+### 예외 규칙 포함
+
+```bash
+export https_proxy=http://proxy.company.com:8080
+export no_proxy=localhost,127.0.0.1,.company.local,192.168.0.0/16
+```

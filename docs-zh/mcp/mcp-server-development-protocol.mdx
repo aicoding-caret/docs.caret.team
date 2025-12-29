@@ -18,11 +18,11 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 
 ## 开发协议
 
-有效 MCP 服务器开发的核心是遵循结构化协议。该协议通过位于 MCP 工作目录**根目录**（/Users/your-name/Documents/Caret/MCP）的 `.clinerules` 文件实现。
+有效 MCP 服务器开发的核心是遵循结构化协议。该协议通过位于 MCP 工作目录**根目录**（/Users/your-name/Documents/Caret/MCP）的 `.agents/context` 文件实现。
 
-### 使用 `.clinerules` 文件
+### 使用 `.agents/context` 文件
 
-`.clinerules` 文件是 Caret 在其所在目录工作时自动读取的特殊配置。这些文件：
+`.agents/context` 文件是 Caret 在其所在目录工作时自动读取的特殊配置。这些文件：
 
 -   配置 Caret 的行为并强制执行最佳实践
 -   将 Caret 切换到专门的 MCP 开发模式
@@ -30,7 +30,7 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 -   实施安全措施，如防止过早完成
 -   引导您完成规划、实施和测试阶段
 
-以下是应放置在 `.clinerules` 文件中的完整 MCP 服务器开发协议：
+以下是应放置在 `.agents/context` 文件中的完整 MCP 服务器开发协议：
 
 ````markdown
 # MCP 服务器开发协议
@@ -160,7 +160,7 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 -   ⛔️ 永远不要在完成前跳过测试
 ````
 
-当此 `.clinerules` 文件存在于您的工作目录中时，Caret 将：
+当此 `.agents/context` 文件存在于您的工作目录中时，Caret 将：
 
 1. 在**PLAN 模式**下启动，在实施之前设计您的服务器
 2. 在**ACT 模式**下强制执行适当的实施模式
@@ -171,9 +171,9 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 
 创建 MCP 服务器只需要几个简单的步骤即可开始：
 
-### 1. 创建 `.clinerules` 文件（🚨 重要）
+### 1. 创建 `.agents/context` 文件（🚨 重要）
 
-首先，使用上述协议将 `.clinerules` 文件添加到 MCP 工作目录的根目录。此文件配置 Caret 在此文件夹中工作时使用 MCP 开发协议。
+首先，使用上述协议将 `.agents/context` 文件添加到 MCP 工作目录的根目录。此文件配置 Caret 在此文件夹中工作时使用 MCP 开发协议。
 
 ### 2. 从清晰的描述开始聊天
 

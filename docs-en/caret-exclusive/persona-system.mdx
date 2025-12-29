@@ -90,7 +90,7 @@ Changes take effect immediately when you save the file.
 
 ## Persona vs Rules
 
-| Item | Persona | Rules (.caretrules) |
+| Item | Persona | Rules (.agents/context) |
 |------|----------|---------------------|
 | Scope | AI name, image, personality | Coding guidelines |
 | Storage Location | Global (VS Code internal + persona.md) | Project folder |
@@ -104,7 +104,7 @@ Changes take effect immediately when you save the file.
 A: If you give negative personality traits in the persona definition (persona.md), it can impact the AI's work quality. Avoid expressions like "makes many mistakes" or "passive."
 
 **Q: Can I use different personas for different projects?**
-A: No. Personas are managed globally only. If you need project-specific customization, write project-specific instructions in your `.caretrules` file. (However, since images are global, they cannot be changed per project)
+A: No. Personas are managed globally only. If you need project-specific customization, write project-specific instructions in your `.agents/context` file. (However, since images are global, they cannot be changed per project)
 
 **Q: Where are personas stored?**
 A: Images are stored in VS Code's internal storage (globalStorage), and persona.md is stored in `~/Documents/Caret/Rules/`.

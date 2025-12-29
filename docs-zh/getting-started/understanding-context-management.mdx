@@ -111,8 +111,8 @@ Caret 包含智能功能来自动管理上下文:
 ### Smol (`/smol`)
 在原地压缩对话以保持动力。在调试或探索性工作中理想使用，当您不想中断流程时。[了解更多关于 Smol 的信息](/zh/features/slash-commands/smol)。
 
-### 内存库 + .clinerules
-用于非平凡项目。内存库将项目知识作为 Markdown 捕获在您的存储库中。`.clinerules` 是版本控制的指令，使 Caret 的行为与您的团队保持一致。[了解更多关于内存库的信息](/zh/prompting/caret-memory-bank)和 [Caret 规则](/zh/features/caret-rules)。
+### 内存库 + .agents/context
+用于非平凡项目。内存库将项目知识作为 Markdown 捕获在您的存储库中。`.agents/context` 是版本控制的指令，使 Caret 的行为与您的团队保持一致。[了解更多关于内存库的信息](/zh/prompting/caret-memory-bank)和 [Caret 规则](/zh/features/caret-rules)。
 
 ## 使用上下文文件
 
@@ -178,7 +178,7 @@ Caret 包含智能功能来自动管理上下文:
     - 使用计划模式进行复杂讨论
     - 在需要时开始新会话
 3. **团队项目**
-    - 共享常用上下文文件(考虑在项目根目录中使用 [.clinerules](/zh/features/caret-rules) 文件)
+    - 共享常用上下文文件(考虑在项目根目录中使用 [.agents/context](/zh/features/caret-rules) 文件)
     - 记录架构决策
     - 保持一致的模式
     - 保持文档最新

@@ -237,7 +237,7 @@ This documentation site is synchronized with the [Caret main repository](https:/
 When Caret merges upstream Cline updates, new documentation must be synced to this site:
 
 1. **Follow the Caret Merge Strategy Guide**:
-   - [English Version](https://github.com/aicoding-caret/caret/blob/main/.caretrules/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
+   - [English Version](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
    - [Korean Version](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **Detailed Sync Analysis**:

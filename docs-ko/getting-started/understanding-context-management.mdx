@@ -111,8 +111,8 @@ Cline은 컨텍스트를 자동으로 관리하는 지능적인 기능을 포함
 ### Smol (`/smol`)
 모멘텀을 유지하기 위해 대화를 제자리에서 압축합니다. 흐름을 깨고 싶지 않을 때 디버깅 또는 탐색 작업 중에 이상적입니다. [Smol에 대해 자세히 알아보기](/ko/features/slash-commands/smol).
 
-### 메모리 뱅크 + .clinerules
-사소하지 않은 프로젝트를 위한 것입니다. 메모리 뱅크는 저장소에 프로젝트 지식을 마크다운으로 캡처합니다. `.clinerules`는 Cline의 동작을 팀과 일치시키는 버전 관리 지침입니다. [메모리 뱅크](/ko/prompting/caret-memory-bank) 및 [Caret 규칙](/ko/features/caret-rules)에 대해 자세히 알아보기.
+### Caret 컨텍스트 시스템 (AGENTS.md + .agents/context)
+사소하지 않은 프로젝트를 위한 표준 컨텍스트 체계입니다. Caret는 **Memory Bank 대신** `AGENTS.md` + `.agents/context` + `caret-docs/` + `work-logs/`로 컨텍스트를 관리합니다. [Caret 컨텍스트 시스템](/ko/prompting/caret-memory-bank) 및 [Caret 규칙](/ko/features/caret-rules)을 확인하세요.
 
 ## 컨텍스트 파일 작업
 
@@ -120,10 +120,10 @@ Cline은 컨텍스트를 자동으로 관리하는 지능적인 기능을 포함
 
 #### 컨텍스트 파일에 대한 접근 방식
 
-1.  **상시 프로젝트 컨텍스트 (메모리 뱅크)**
-    -   프로젝트와 함께 발전하는 살아있는 문서
-    -   아키텍처 및 패턴이 나타남에 따라 업데이트됨
-    -   예시: 메모리 뱅크 패턴은 `techContext.md` 및 `systemPatterns.md`와 같은 파일을 유지합니다.
+1.  **상시 프로젝트 컨텍스트 (Caret 컨텍스트 시스템)**
+    -   `AGENTS.md` + `.agents/context` + `caret-docs/` + `work-logs/`로 구성
+    -   규칙/워크플로는 온디맨드로 로딩
+    -   예시: `caret-docs/development/index.md`, `caret-docs/features.en/**`, `work-logs/**`
     -   장기 실행 프로젝트 및 팀에 유용합니다.
 2.  **작업별 컨텍스트**
 
@@ -148,9 +148,9 @@ Cline은 컨텍스트를 자동으로 관리하는 지능적인 기능을 포함
         ```
 
 3.  **지식 이전 문서**
-    -   계획 모드로 전환하고 Cline에게 지금까지 달성한 모든 내용과 남은 단계를 마크다운 파일로 문서화하도록 요청합니다.
-    -   마크다운 파일의 내용을 복사합니다.
-    -   해당 내용을 컨텍스트로 사용하여 새 작업을 시작합니다.
+    -   계획 모드로 전환해 지금까지의 성과와 다음 단계를 문서화합니다.
+    -   문서 요약을 `work-logs/`에 기록하거나 새 작업의 컨텍스트로 사용합니다.
+    -   필요하면 `/newtask`로 안전하게 핸드오프합니다.
 
 #### 컨텍스트 파일을 효과적으로 사용하는 방법
 
@@ -178,7 +178,7 @@ Cline은 컨텍스트를 자동으로 관리하는 지능적인 기능을 포함
     -   복잡한 논의를 위해 계획 모드 사용
     -   필요할 때 새로운 세션 시작
 3.  **팀 프로젝트**
-    -   공통 컨텍스트 파일 공유(프로젝트 루트에 [.clinerules](/ko/features/caret-rules) 파일 사용 고려)
+    -   공통 컨텍스트 파일 공유(프로젝트 루트에 [.agents/context](/ko/features/caret-rules) 파일 사용 고려)
     -   아키텍처 결정 문서화
     -   일관된 패턴 유지
     -   문서 최신 상태 유지

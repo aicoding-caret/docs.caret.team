@@ -1,21 +1,21 @@
 ---
-title: "CLI Reference"
-description: "Complete command reference for Caret CLI including configuration, instance management, and task commands"
+title: "CLI 레퍼런스"
+description: "설정, 인스턴스 관리, 작업 명령까지 Caret CLI의 전체 명령 레퍼런스"
 ---
 
-Complete command reference for Caret CLI. Use this for detailed documentation on all commands, options, and configuration.
+Caret CLI 전체 명령 레퍼런스입니다. 모든 명령, 옵션, 설정에 대한 상세 문서를 확인할 때 사용하세요.
 
-For quick help in your terminal:
+터미널에서 빠르게 도움말을 보려면:
 
 ```bash
-caret --help          # Show all commands
-caret task --help     # Show task-specific commands
-man caret            # View the full manual page
+caret --help          # 전체 명령 보기
+caret task --help     # 작업 관련 명령 보기
+man caret            # 전체 매뉴얼 페이지
 ```
 
-## Manual Page
+## 매뉴얼 페이지
 
-The complete manual page for the Caret CLI:
+Caret CLI의 전체 매뉴얼 페이지:
 
 ```
 CARET(1)                         User Commands                        CARET(1)
@@ -94,6 +94,12 @@ INSTANT TASK OPTIONS
 
        -m, --mode mode
               Starting mode.  Options: act (default), plan
+
+       -w, --workspace path
+              Additional workspace paths.  Can be specified multiple times to
+              include multiple directories.  The current working directory is
+              always included as the first workspace.  Example: caret -w
+              /path/to/other/project "refactor shared code"
 
 GLOBAL OPTIONS
        These options apply to all subcommands:
@@ -254,6 +260,19 @@ COMMANDS
        caret c l
               List all configuration variables and their values.
 
+   Context Window Configuration
+       For local model providers, you can configure the context window size:
+
+       Ollama
+              caret config s ollama-api-options-ctx-num=32768
+
+       LM Studio
+              caret config s lm-studio-max-tokens=32768
+
+       For other providers (Anthropic, OpenRouter, etc.), the context window
+       is defined per model in the model metadata and is not user-settable.
+       Caret uses each model's built-in context limits automatically.
+
 TASK SETTINGS
        Task settings are persisted in the ~/.caret/x/tasks directory.  When
        resuming a task with caret task open, task settings are automatically
@@ -264,6 +283,29 @@ TASK SETTINGS
        yolo   Enable autonomous mode (true/false)
 
        mode   Starting mode (act/plan)
+
+       hooks_enabled
+              Enable or disable hooks for the task (true/false)
+
+HOOKS INTEGRATION
+       Hooks let you inject custom logic into Caret's workflow at key moments.
+       They can validate operations before they execute, monitor tool usage,
+       and shape AI decisions. This allows you to integrate hooks into
+       automated workflows, CI/CD pipelines, and headless task execution.
+
+       Enable hooks for a task:
+
+              caret "prompt" -s hooks_enabled=true
+
+       Configure hooks globally:
+
+              caret config set hooks-enabled=true
+              caret config get hooks-enabled
+
+       Note: Hooks in the CLI are only supported on macOS and Linux.
+
+       For complete hooks documentation, see:
+       <https://docs.caret.team/features/hooks/index>
 
 NOTES & EXAMPLES
        The caret task send and caret task new commands support reading from
@@ -320,13 +362,13 @@ ARCHITECTURE
               system
 
 BUGS
-       Report bugs at: <https://github.com/caret/caret/issues>
+       Report bugs at: <https://github.com/aicoding-caret/caret/issues>
 
        For real-time help, join the Discord community at:
        <https://discord.gg/caret>
 
 SEE ALSO
-       Full documentation: <https://docs.caret.bot>
+       Full documentation: <https://docs.caret.team>
 
 AUTHORS
        Caret is developed by the Caret Bot Inc. and the open source community.
@@ -335,69 +377,106 @@ COPYRIGHT
        Copyright © 2025 Caret Bot Inc. Licensed under the Apache License 2.0.
 ```
 
-### Shell Completion
+## JSON 출력 (-F json)
 
-Generate autocompletion scripts for various shells:
+`-F json`(또는 `--output-format json`)으로 실행하면 Caret이 각 메시지를 JSON으로 출력합니다.
+
+### CaretMessage 스키마
+
+| 필드 | 타입 | 필수 | 설명 |
+| --- | --- | --- | --- |
+| `type` | `"ask"` 또는 `"say"` | 예 | 최상위 메시지 유형입니다. |
+| `text` | `string` | 예 | 사람이 읽을 수 있는 메시지 내용입니다. |
+| `ts` | `number` | 예 | 밀리초 단위 Unix epoch 타임스탬프입니다. |
+| `reasoning` | `string` | 아니오 | 비어 있으면 생략됩니다. |
+| `say` | `string` | 아니오 | 비어 있으면 생략됩니다. `type`이 `"say"`일 때 포함됩니다. |
+| `ask` | `string` | 아니오 | 비어 있으면 생략됩니다. `type`이 `"ask"`일 때 포함됩니다. |
+| `partial` | `boolean` | 아니오 | false면 생략됩니다. 스트리밍 업데이트는 `true`로 표시됩니다. |
+| `images` | `string[]` | 아니오 | 비어 있으면 생략됩니다. 메시지에 포함된 이미지 URI입니다. |
+| `files` | `string[]` | 아니오 | 비어 있으면 생략됩니다. 메시지에 첨부된 파일 경로입니다. |
+| `lastCheckpointHash` | `string` | 아니오 | 비어 있으면 생략됩니다. Git 체크포인트 해시입니다. |
+| `isCheckpointCheckedOut` | `boolean` | 아니오 | false면 생략됩니다. 체크포인트를 체크아웃한 상태면 `true`입니다. |
+| `isOperationOutsideWorkspace` | `boolean` | 아니오 | false면 생략됩니다. 워크스페이스 밖에서 작업이 발생하면 `true`입니다. |
+
+<Note>
+대부분의 필드는 비어 있으면 생략됩니다. 파싱할 때는 누락된 필드를 “빈 문자열”이 아니라 “존재하지 않음”으로 처리하세요.
+</Note>
+
+### 예시
+
+```json
+{
+  "type": "say",
+  "text": "Caret is about to run a command.",
+  "ts": 1760501486669,
+  "say": "command",
+  "partial": false
+}
+```
+
+### 셸 자동완성
+
+여러 셸용 자동완성 스크립트를 생성할 수 있습니다:
 
 #### Bash
 
 ```bash
-# Generate bash completion
+# Bash 자동완성 생성
 caret completion bash > /etc/bash_completion.d/caret
 
-# Or for user-level installation
+# 사용자 레벨 설치
 caret completion bash > ~/.local/share/bash-completion/completions/caret
 ```
 
 #### Zsh
 
 ```bash
-# Generate zsh completion
-caret completion zsh > "${fpath[1]}/_cline"
+# Zsh 자동완성 생성
+caret completion zsh > "${fpath[1]}/_caret"
 
-# Or add to your .zshrc
+# 또는 .zshrc에 추가
 echo 'source <(caret completion zsh)' >> ~/.zshrc
 ```
 
 #### Fish
 
 ```bash
-# Generate fish completion
+# Fish 자동완성 생성
 caret completion fish > ~/.config/fish/completions/caret.fish
 ```
 
 #### PowerShell
 
 ```powershell
-# Generate PowerShell completion
+# PowerShell 자동완성 생성
 caret completion powershell > caret.ps1
 
-# Add to your PowerShell profile
+# PowerShell 프로필에 추가
 Add-Content $PROFILE "caret completion powershell | Out-String | Invoke-Expression"
 ```
 
-### Version Command
+### 버전 명령
 
 ```bash
-# Show version information
+# 버전 정보 확인
 caret version
 ```
 
-### Environment Variables
+### 환경 변수
 
 #### CLINE_DIR
 
-Override the default Caret directory location:
+Caret 기본 디렉터리 위치를 재정의합니다:
 
 ```bash
-# Override default Caret directory
+# 기본 Caret 디렉터리 변경
 export CLINE_DIR=/custom/path
 
-# Default: ~/.caret
+# 기본값: ~/.caret
 ```
 
-This directory is used for:
-- Instance registry database
-- Configuration files
-- Task history
-- Checkpoints
+이 디렉터리는 아래 용도로 사용됩니다:
+- 인스턴스 레지스트리 데이터베이스
+- 설정 파일
+- 작업 히스토리
+- 체크포인트
