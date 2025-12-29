@@ -1,0 +1,144 @@
+---
+title: "AI 공급자 구성"
+sidebarTitle: "개요"
+description: "Caret 배포를 위한 AI 공급자 설정 구성"
+---
+
+<Info>
+**구성 경로: Self-Hosted**
+
+이 섹션은 Self-Hosted 배포의 공급자 구성 가이드입니다. 웹 기반 구성은 [SaaS 공급자 구성](/enterprise-solutions/configuration/remote-configuration/overview)을 참고하세요.
+</Info>
+
+조직이 사용할 AI 공급자를 선택하고 자격 증명을 중앙에서 관리합니다. Caret는 엔터프라이즈 인증 옵션을 포함한 주요 공급자를 지원합니다.
+
+## 지원 공급자
+
+<CardGroup cols={2}>
+  <Card title="AWS Bedrock" icon="aws" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/aws-bedrock">
+    Amazon의 관리형 기반 모델 서비스(Claude 등)
+  </Card>
+  
+  <Card title="Google Vertex AI" icon="google" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/google-vertex">
+    Gemini/PaLM 모델을 제공하는 Google Cloud AI 플랫폼
+  </Card>
+  
+  <Card title="LiteLLM" icon="zap" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/litellm">
+    하나의 API로 100+ 모델에 접근하는 통합 프록시
+  </Card>
+  
+  <Card title="Custom Providers" icon="plug" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/custom">
+    OpenAI 호환 API 및 자체 호스팅 모델
+  </Card>
+</CardGroup>
+
+## 공급자 구성의 의미
+
+Caret에서 공급자 구성은 다음을 가능하게 합니다.
+
+1. **자격 증명 중앙 관리**: API 키와 인증 정보를 한 곳에서 관리
+2. **모델 접근 제어**: 팀이 사용할 수 있는 모델 정의
+3. **공급자 사용 강제**: 승인된 공급자만 사용하도록 제한
+
+## 동작 방식
+
+공급자 설정은 원격 구성 JSON으로 정의됩니다.
+
+```json
+{
+  "providerSettings": {
+    "provider": "bedrock",
+    "bedrockRegion": "us-east-1",
+    "bedrockServiceRole": "arn:aws:iam::..."
+  }
+}
+```
+
+설정이 적용되면:
+- 모든 구성원에게 자동 적용
+- 개인 설정을 덮어씀
+- 조직 전체에서 동일한 공급자 정책 유지
+
+## 구성 옵션
+
+### 공급자 선택
+
+지원되는 공급자:
+- **bedrock**: AWS Bedrock
+- **vertex**: Google Vertex AI
+- **openai**: OpenAI API
+- **azure**: Azure OpenAI
+- **litellm**: LiteLLM 프록시
+
+### 인증 방식
+
+공급자별 지원 인증:
+
+**AWS Bedrock**
+- 크로스 계정 IAM 역할
+- Access Key(프로덕션 비권장)
+
+**Google Vertex AI**
+- 서비스 계정 JSON 키
+- Workload Identity(GKE)
+
+**OpenAI/Azure**
+- API 키
+
+**LiteLLM**
+- 엔드포인트 URL + API 키
+
+## 예시 구성
+
+### AWS Bedrock + IAM 역할
+```json
+{
+  "providerSettings": {
+    "provider": "bedrock",
+    "bedrockRegion": "us-east-1",
+    "bedrockServiceRole": "arn:aws:iam::123456789012:role/CaretBedrockRole"
+  }
+}
+```
+
+### Google Vertex AI
+```json
+{
+  "providerSettings": {
+    "provider": "vertex",
+    "vertexProject": "my-project-id",
+    "vertexRegion": "us-central1"
+  }
+}
+```
+
+### LiteLLM 프록시
+```json
+{
+  "providerSettings": {
+    "provider": "litellm",
+    "litellmBaseUrl": "https://litellm.company.com",
+    "litellmApiKey": "sk-..."
+  }
+}
+```
+
+## 다음 단계
+
+<CardGroup cols={2}>
+  <Card title="AWS Bedrock 구성" icon="aws" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/aws-bedrock">
+    AWS Bedrock 통합 설정
+  </Card>
+  
+  <Card title="Google Vertex 구성" icon="google" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/google-vertex">
+    Google Vertex AI 통합 설정
+  </Card>
+  
+  <Card title="LiteLLM 구성" icon="zap" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/litellm">
+    LiteLLM 프록시 통합 설정
+  </Card>
+  
+  <Card title="Custom Provider 구성" icon="plug" href="/enterprise-solutions/configuration/infrastructure-configuration/providers/custom">
+    OpenAI 호환 공급자 통합 설정
+  </Card>
+</CardGroup>

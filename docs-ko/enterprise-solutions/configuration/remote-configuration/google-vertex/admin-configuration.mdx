@@ -1,0 +1,110 @@
+---
+title: "Google Vertex AI 공급자 구성(관리자)"
+sidebarTitle: "Google Vertex 구성(관리자)"
+description: "관리자가 조직 전체 LLM 공급자로 Google Vertex AI를 설정하는 방법"
+---
+
+관리자는 호스팅된 관리자 콘솔에서 Google Vertex AI를 **조직 전체 LLM 공급자**로 설정할 수 있습니다. 이 방식은 Gemini 모델에 대한 일관된 접근을 제공하면서, 프로젝트 경계와 리전 설정을 유지할 수 있습니다.
+
+## 시작 전 확인
+
+Google Vertex AI를 조직 공급자로 설정하려면 아래가 필요합니다.
+
+**Caret 관리자 콘솔 접근 권한**  
+조직 전체 설정을 적용하려면 관리자 권한이 필요합니다. [app.caret.bot](https://app.caret.bot)에서 **Settings → Caret Settings**로 이동할 수 있다면 권한이 있습니다.
+
+**Vertex AI가 활성화된 Google Cloud 프로젝트**  
+Vertex AI API가 활성화되어 있고 필요한 모델 접근 권한이 설정된 프로젝트가 필요합니다.
+
+<Note>
+아직 Google Cloud 또는 Vertex AI를 설정하지 않았다면 클라우드 팀과 협업해 Vertex AI API 활성화 및 쿼터 설정을 먼저 완료하세요.
+</Note>
+
+**프로젝트 구성 정보**  
+Google Cloud 프로젝트 ID와 사용할 리전 정보를 준비하세요.
+
+<Tip>
+서비스 계정은 보안 모범 사례에 따라 최소 권한으로 설정하세요.
+</Tip>
+
+## 구성 단계
+
+<Steps>
+<Step title="Caret 설정 열기">
+[app.caret.bot](https://app.caret.bot)에 관리자 계정으로 로그인한 뒤 **Settings → Caret Settings**로 이동합니다.
+
+<Info>
+올바른 관리자 권한이 있다면 공급자 구성 옵션이 표시됩니다.
+</Info>
+</Step>
+
+<Step title="원격 공급자 구성 활성화">
+**Enable settings** 토글을 켜서 원격 공급자 구성 옵션을 노출합니다. 이 설정으로 조직 전체에 공급자 구성을 적용할 수 있습니다.
+</Step>
+
+<Step title="API 공급자로 Google Vertex AI 선택">
+**API Provider** 드롭다운에서 **Google Vertex AI**를 선택합니다. Vertex AI 구성 패널이 열립니다.
+</Step>
+
+<Step title="Vertex AI 설정 구성">
+구성 패널에서 다음 항목을 설정합니다.
+
+<AccordionGroup>
+<Accordion title="Project ID (필수)">
+Vertex AI가 활성화된 Google Cloud 프로젝트 ID를 입력합니다. 이 프로젝트가 조직 전체 요청에 사용됩니다.
+
+<Tip>
+AI 워크로드 전용 프로젝트를 사용하면 사용량/비용 추적이 쉬워집니다. 팀 규모에 맞는 쿼터를 확인하세요.
+</Tip>
+</Accordion>
+
+<Accordion title="Region (필수)">
+Vertex AI 모델에 접근할 리전을 선택합니다. 예: `us-central1`, `us-east4`, `europe-west4`.
+
+[Google Cloud Regions 보기](https://cloud.google.com/docs/geography-and-regions)
+
+<Note>
+팀 위치에 가까운 리전을 선택하면 성능이 좋습니다. 모델마다 지원 리전이 다를 수 있습니다.
+</Note>
+</Accordion>
+</AccordionGroup>
+</Step>
+
+<Step title="구성 저장">
+설정이 끝나면 공급자 패널을 닫고 설정 페이지에서 **Save**를 클릭해 저장합니다.
+
+저장 후 Caret 확장에 로그인한 모든 구성원이 Google Vertex AI를 사용하게 됩니다. 다른 공급자 선택이나 개인 Caret 계정 전환은 제한됩니다.
+
+<Warning>
+원격 구성이 활성화되면 구성원은 개인 Caret 계정으로 전환하거나 다른 조직에 참여할 수 없습니다. 이는 조직 단위 공급자 정책을 유지하기 위한 제한입니다.
+</Warning>
+</Step>
+</Steps>
+
+## 검증
+
+다음 사항으로 구성을 확인하세요.
+
+1. Enabled provider에 "Google Vertex AI" 표시 여부 확인
+2. 페이지 새로고침 후 설정 유지 확인
+3. 멤버 계정에서 Vertex AI만 보이는지 확인
+4. 모델 드롭다운에 Gemini 모델 표시 여부 확인
+
+## 문제 해결
+
+**구성원이 공급자를 보지 못함**  
+설정 저장 여부를 확인하세요. 구성원이 올바른 조직에 속해 있는지, 그리고 프로젝트에 Vertex AI API가 활성화되어 있는지 확인하세요.
+
+**프로젝트 접근 오류**  
+프로젝트 ID가 정확한지, Vertex AI API가 활성화되었는지 확인하세요. 결제 설정 및 쿼터 초과 여부도 점검하세요.
+
+**리전 가용성 문제**  
+선택한 리전이 필요한 Gemini 모델을 지원하는지 확인하세요. 일부 최신 모델은 특정 리전에서만 제공됩니다.
+
+**설정 변경이 유지되지 않음**  
+공급자 패널을 닫는 것만으로는 저장되지 않습니다. 반드시 설정 페이지의 Save 버튼을 클릭하세요.
+
+**프로젝트/리전 변경 필요**  
+언제든지 업데이트할 수 있습니다. 구성원은 새 프로젝트/리전에 접근 가능한 Google Cloud 자격 증명을 갖고 있어야 합니다.
+
+추가 정보는 [Google Cloud Vertex AI 문서](https://cloud.google.com/vertex-ai/docs)를 확인하고 조직의 클라우드 팀과 협의하세요.

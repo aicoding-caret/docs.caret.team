@@ -1,0 +1,262 @@
+---
+title: "OpenTelemetry 통합"
+sidebarTitle: "OpenTelemetry"
+description: "OpenTelemetry Protocol(OTLP)로 Caret 텔레메트리를 관측성 플랫폼으로 내보냅니다"
+---
+
+Caret는 OpenTelemetry를 통한 선택적 텔레메트리 내보내기를 지원합니다. OTLP를 사용해 메트릭과 로그를 기존 관측성 인프라로 전달할 수 있습니다.
+
+<Note>
+OpenTelemetry 통합은 **선택 사항**이며, 관측성 인프라를 갖춘 고급 사용자용입니다. 대부분의 사용자는 기본 텔레메트리만으로 충분합니다.
+</Note>
+
+## OpenTelemetry란?
+
+[OpenTelemetry](https://opentelemetry.io/)는 메트릭, 로그, 트레이스를 수집/전송하기 위한 업계 표준 관측성 프레임워크입니다.
+
+Caret의 OpenTelemetry 지원으로 다음이 가능합니다.
+- 자체 관측성 시스템으로 텔레메트리 전송
+- Datadog, New Relic, Grafana Cloud 등과 통합
+- 모니터링 데이터에 대한 통제 유지
+- 조직의 기존 모니터링 인프라 활용
+
+## 지원 기능
+
+Caret는 OTLP(OpenTelemetry Protocol) 기반 내보내기를 지원합니다.
+
+<CardGroup cols={2}>
+  <Card title="메트릭 내보내기" icon="chart-bar">
+    사용량, 성능, 오류 관련 메트릭 전송
+  </Card>
+  
+  <Card title="로그 내보내기" icon="file-lines">
+    디버깅/분석을 위한 구조화 로그 전송
+  </Card>
+</CardGroup>
+
+### 전송 프로토콜
+
+OTLP는 다음 프로토콜을 지원합니다.
+
+- **gRPC** (기본값)
+- **HTTP/protobuf**
+- **HTTP/JSON**
+
+### 전송 대상
+
+- **Console** (테스트용)
+- **OTLP 엔드포인트** (자체 Collector 또는 관측성 플랫폼)
+
+## 설정
+
+OpenTelemetry는 **실행 전에 환경 변수**로 설정합니다.
+
+### 기본 설정
+
+```bash
+# OpenTelemetry 활성화
+export OTEL_TELEMETRY_ENABLED=1
+
+# 메트릭/로그 내보내기 활성화
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_LOGS_EXPORTER=otlp
+
+# OTLP 엔드포인트 지정
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://your-collector:4317
+
+# 프로토콜 지정(기본: grpc)
+export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+```
+
+### 환경 변수
+
+| 변수 | 설명 | 기본값 |
+|----------|-------------|---------|
+| `OTEL_TELEMETRY_ENABLED` | OpenTelemetry 활성화(`1` 또는 `true`) | 비활성 |
+| `OTEL_METRICS_EXPORTER` | 메트릭 내보내기 방식(`console`, `otlp` 또는 복수) | 없음 |
+| `OTEL_LOGS_EXPORTER` | 로그 내보내기 방식(`console`, `otlp` 또는 복수) | 없음 |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | 프로토콜(`grpc`, `http/protobuf`, `http/json`) | `grpc` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP 엔드포인트 | 없음 |
+| `OTEL_EXPORTER_OTLP_METRICS_PROTOCOL` | 메트릭 전용 프로토콜 | 없음 |
+| `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT` | 메트릭 전용 엔드포인트 | 없음 |
+| `OTEL_EXPORTER_OTLP_LOGS_PROTOCOL` | 로그 전용 프로토콜 | 없음 |
+| `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT` | 로그 전용 엔드포인트 | 없음 |
+| `OTEL_METRIC_EXPORT_INTERVAL` | 메트릭 전송 주기(ms) | `60000` |
+| `OTEL_EXPORTER_OTLP_INSECURE` | gRPC에서 TLS 비활성화 | `false` |
+| `OTEL_LOG_BATCH_SIZE` | 로그 배치 크기 | `512` |
+| `OTEL_LOG_BATCH_TIMEOUT` | 로그 배치 타임아웃(ms) | `5000` |
+| `OTEL_LOG_MAX_QUEUE_SIZE` | 로그 큐 최대 크기 | `2048` |
+
+<Note>
+환경 변수 변경은 **VS Code 재시작** 후 반영됩니다.
+</Note>
+
+### 고급 설정
+
+**메트릭/로그 엔드포인트 분리:**
+```bash
+export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://metrics-collector:4317
+export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=https://logs-collector:4317
+```
+
+**복수 내보내기(콘솔 + OTLP):**
+```bash
+export OTEL_METRICS_EXPORTER=console,otlp
+export OTEL_LOGS_EXPORTER=console,otlp
+```
+
+**배치/주기 설정:**
+```bash
+export OTEL_METRIC_EXPORT_INTERVAL=30000
+export OTEL_LOG_BATCH_SIZE=512
+export OTEL_LOG_BATCH_TIMEOUT=5000
+export OTEL_LOG_MAX_QUEUE_SIZE=2048
+```
+
+## 통합 예시
+
+### Datadog
+
+```bash
+export OTEL_TELEMETRY_ENABLED=1
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://api.datadoghq.com
+export OTEL_EXPORTER_OTLP_HEADERS="dd-api-key=YOUR_DD_API_KEY"
+```
+
+### New Relic
+
+```bash
+export OTEL_TELEMETRY_ENABLED=1
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp.nr-data.net:4317
+export OTEL_EXPORTER_OTLP_HEADERS="api-key=YOUR_NEW_RELIC_LICENSE_KEY"
+```
+
+### Grafana Cloud
+
+```bash
+export OTEL_TELEMETRY_ENABLED=1
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp-gateway-prod-us-central-0.grafana.net/otlp
+export OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic YOUR_BASE64_CREDENTIALS"
+```
+
+<Note>
+HTTP 기반 OTLP exporter는 `OTEL_EXPORTER_OTLP_HEADERS`를 통해 인증 헤더를 전달할 수 있습니다. 환경에 따라 Collector 구성이 필요할 수 있습니다.
+</Note>
+
+## 설정 테스트
+
+실제 엔드포인트로 보내기 전에 콘솔 출력으로 확인하세요.
+
+```bash
+export OTEL_TELEMETRY_ENABLED=1
+export OTEL_METRICS_EXPORTER=console
+export OTEL_LOGS_EXPORTER=console
+```
+
+Caret를 실행한 뒤 콘솔에서 출력되는 메트릭/로그를 확인합니다.
+
+## 문제 해결
+
+### 데이터가 전송되지 않을 때
+
+1. **활성화 확인**
+   ```bash
+   echo $OTEL_TELEMETRY_ENABLED
+   ```
+   `1` 또는 `true`여야 합니다.
+
+2. **Exporter 설정 확인**
+   ```bash
+   echo $OTEL_METRICS_EXPORTER
+   echo $OTEL_LOGS_EXPORTER
+   ```
+
+3. **콘솔 출력으로 먼저 테스트**
+   ```bash
+   export OTEL_METRICS_EXPORTER=console
+   export OTEL_LOGS_EXPORTER=console
+   ```
+
+### 연결 오류
+
+1. **엔드포인트 접근 확인**
+   ```bash
+   curl -v https://your-otlp-endpoint:4317
+   ```
+
+2. **TLS 비활성화 필요 여부 확인**
+   ```bash
+   export OTEL_EXPORTER_OTLP_INSECURE=true
+   ```
+
+3. **인증 헤더 재확인**
+   API 키와 헤더 형식을 다시 점검하세요.
+
+### 디버그 모드
+
+진단 로그를 활성화해 상세 정보를 확인할 수 있습니다.
+
+```bash
+export TEL_DEBUG_DIAGNOSTICS=true
+```
+
+추가로 로그 페이로드를 확인하려면 다음을 사용합니다(PII 포함 가능).
+
+```bash
+export TEL_DEBUG_OTLP_LOGS_PAYLOAD=true
+```
+
+## 내보내는 데이터
+
+OpenTelemetry가 활성화되면 다음이 내보내집니다.
+
+### 메트릭
+- 기능 사용 카운트
+- 작업 실행 지표
+- 오류율 및 유형
+- 성능 측정 값
+
+### 로그
+- 시스템 이벤트
+- 오류 로그(컨텍스트 포함)
+- 운영 정보
+
+<Warning>
+내보내는 데이터는 익명화되며 코드/파일 내용은 포함하지 않습니다. 단, 전송된 데이터의 보안은 조직에서 책임지고 관리해야 합니다.
+</Warning>
+
+## 제한 사항
+
+현재 Caret의 OpenTelemetry 지원 범위:
+- ✅ OTLP 메트릭 내보내기(console, gRPC, HTTP)
+- ✅ OTLP 로그 내보내기(console, gRPC, HTTP)
+- ✅ 환경 변수 기반 구성
+- ❌ 분산 트레이싱(아직 미지원)
+- ❌ 커스텀 인스트루먼테이션 API(미노출)
+- ❌ 샘플링 설정(기본값 사용)
+
+## 권장 사항
+
+1. **먼저 테스트**: 콘솔 exporter로 데이터 형식을 확인
+2. **자격 증명 보호**: API 키는 안전한 환경 변수 관리 사용
+3. **비용 확인**: 관측성 플랫폼의 수집 비용 확인
+4. **단순 시작**: 메트릭만 먼저 수집하고 로그는 필요 시 추가
+5. **전송 보안**: OTLP 엔드포인트의 TLS/접근 제어 확인
+
+## 다음 단계
+
+<CardGroup cols={2}>
+  <Card title="Caret 텔레메트리" icon="chart-simple" href="/enterprise-solutions/monitoring/telemetry">
+    기본 텔레메트리 설정
+  </Card>
+  
+  <Card title="OpenTelemetry 문서" icon="book" href="https://opentelemetry.io/docs/">
+    OpenTelemetry 공식 문서
+  </Card>
+</CardGroup>
