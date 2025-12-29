@@ -1,0 +1,215 @@
+---
+title: "LiteLLM 구성"
+sidebarTitle: "LiteLLM"
+description: "Caret 배포에서 LiteLLM 프록시를 구성합니다"
+---
+
+<Info>
+**구성 경로: Self-Hosted**
+
+이 문서는 Self-Hosted 배포용 LiteLLM 구성 가이드입니다. 웹 기반 설정은 [LiteLLM SaaS 구성](/enterprise-solutions/configuration/remote-configuration/litellm/admin-configuration)을 참고하세요.
+</Info>
+
+Caret를 LiteLLM 프록시에 연결해 하나의 엔드포인트로 여러 모델에 접근합니다.
+
+## LiteLLM이란?
+
+[LiteLLM](https://github.com/BerriAI/litellm)은 100개 이상의 모델을 **OpenAI 호환 API**로 통합하는 오픈 소스 프록시입니다. Caret는 조직이 배포한 LiteLLM 인스턴스에 연결합니다.
+
+<Note>
+LiteLLM은 별도의 서비스입니다. 이 문서는 Caret에서 **기존 LiteLLM 배포**를 연결하는 방법을 다룹니다.
+</Note>
+
+## 구성 형식
+
+원격 구성 JSON의 `providerSettings.OpenAiCompatible`에 LiteLLM 설정을 추가합니다.
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "https://litellm.yourcompany.com/v1"
+    }
+  }
+}
+```
+
+## 구성 필드
+
+| 필드 | 타입 | 설명 | 필수 |
+|-------|------|-------------|----------|
+| `models` | Array | 모델 구성 목록 | Yes |
+| `openAiBaseUrl` | String | LiteLLM 프록시 엔드포인트 URL | Yes |
+| `openAiApiKey` | String | 인증용 API 키 | No |
+
+### 모델 구성
+
+각 모델 항목은 다음을 포함합니다.
+
+```json
+{
+  "id": "gpt-4-turbo",
+  "name": "GPT-4 Turbo",
+  "info": {
+    "maxTokens": 4096,
+    "contextWindow": 128000,
+    "supportsImages": true
+  }
+}
+```
+
+<Note>
+모델 ID는 LiteLLM 프록시에 설정된 모델 이름과 일치해야 합니다.
+</Note>
+
+## 예시 구성
+
+### 기본 구성
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "https://litellm.company.com/v1"
+    }
+  }
+}
+```
+
+### 인증 포함
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "https://litellm.company.com/v1",
+      "openAiApiKey": "sk-your-litellm-key"
+    }
+  }
+}
+```
+
+### 다중 모델 구성
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        },
+        {
+          "id": "claude-3-5-sonnet",
+          "name": "Claude 3.5 Sonnet"
+        },
+        {
+          "id": "gemini-pro",
+          "name": "Gemini Pro"
+        }
+      ],
+      "openAiBaseUrl": "https://litellm.company.com/v1",
+      "openAiApiKey": "sk-your-litellm-key"
+    }
+  }
+}
+```
+
+### 내부 네트워크(인증 없음)
+
+```json
+{
+  "providerSettings": {
+    "OpenAiCompatible": {
+      "models": [
+        {
+          "id": "gpt-4-turbo",
+          "name": "GPT-4 Turbo"
+        }
+      ],
+      "openAiBaseUrl": "http://litellm.internal:4000/v1"
+    }
+  }
+}
+```
+
+## 사전 요구 사항
+
+LiteLLM을 사용하려면 다음이 필요합니다.
+
+1. **LiteLLM 프록시 배포** 및 접근 가능 상태
+2. **LiteLLM 설정**(사용할 모델 활성화)
+3. **API 키**(인증이 필요한 경우)
+4. **네트워크 접근**(Caret 사용 환경에서 프록시 접근 가능)
+
+<Tip>
+LiteLLM 배포/구성은 [LiteLLM 문서](https://docs.litellm.ai/docs/proxy/quick_start)를 참고하세요.
+</Tip>
+
+## 문제 해결
+
+**연결 오류**
+
+LiteLLM 프록시가 실행 중이고 접근 가능한지 확인하세요.
+```bash
+curl https://litellm.yourcompany.com/health
+```
+
+**인증 오류**
+
+API 키가 유효한지 확인하세요.
+```bash
+curl -H "Authorization: Bearer sk-your-key" \
+  https://litellm.yourcompany.com/v1/models
+```
+
+**모델을 찾을 수 없음**
+
+LiteLLM 설정에 모델이 등록되어 있는지 확인하세요. Caret 구성의 모델 ID는 LiteLLM 모델 이름과一致해야 합니다.
+
+## LiteLLM 사용 이점
+
+- **멀티 공급자 접근**: 하나의 엔드포인트로 다양한 공급자 사용
+- **로드 밸런싱**: 요청을 공급자 간 분산
+- **폴백 지원**: 실패 시 다른 모델로 자동 재시도
+- **비용 추적**: 모델별 사용량/비용 집계
+- **속도 제한**: 프록시 단에서 사용량 제어
+
+## 관련 리소스
+
+<CardGroup cols={2}>
+  <Card title="LiteLLM 문서" icon="book" href="https://docs.litellm.ai/">
+    LiteLLM 전체 문서
+  </Card>
+  
+  <Card title="LiteLLM GitHub" icon="github" href="https://github.com/BerriAI/litellm">
+    소스 코드 및 배포 예제
+  </Card>
+  
+  <Card title="Proxy 설정" icon="server" href="https://docs.litellm.ai/docs/proxy/quick_start">
+    LiteLLM 프록시 배포 가이드
+  </Card>
+  
+  <Card title="지원 공급자" icon="list" href="https://docs.litellm.ai/docs/providers">
+    지원되는 AI 공급자 목록
+  </Card>
+</CardGroup>
