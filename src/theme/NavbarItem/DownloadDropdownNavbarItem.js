@@ -1,7 +1,7 @@
-// CARET MODIFICATION: Locale-aware service link for multi-doc layout.
+// CARET MODIFICATION: Locale-aware download dropdown items.
+import React, { useEffect, useState } from "react"
 import { useLocation } from "@docusaurus/router"
-import { useEffect, useState } from "react"
-import clsx from "clsx"
+import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
 
 const localePrefixes = ["en", "ko", "ja", "zh"]
 
@@ -26,12 +26,26 @@ const resolveLocale = (pathname) => {
 	return pathLocale
 }
 
-export default function LocaleServiceNavbarItem(props) {
+const buildItems = (locale) => [
+	{
+		label: "VS Code Marketplace",
+		href: "https://marketplace.visualstudio.com/items?itemName=caretive.caret",
+	},
+	{
+		label: "Open VSX",
+		href: "https://open-vsx.org/extension/Caretive/caret",
+	},
+	{
+		label: "Brochure",
+		href: `https://caret.team/${locale}/brochure`,
+	},
+]
+
+export default function DownloadDropdownNavbarItem({ items, labels, ...props }) {
 	const { pathname } = useLocation()
 	const [locale, setLocale] = useState(() => resolveLocale(pathname))
-	const labels = props.labels ?? {}
-	const label = labels[locale] ?? props.label
-	const href = `https://caret.team/${locale}`
+	const resolvedItems = buildItems(locale)
+	const label = labels?.[locale] ?? props.label
 
 	useEffect(() => {
 		setLocale(resolveLocale(pathname))
@@ -57,9 +71,5 @@ export default function LocaleServiceNavbarItem(props) {
 		}
 	}, [])
 
-	return (
-		<a className={clsx("navbar__item", "navbar__link", props.className)} href={href} rel="noreferrer" target="_self">
-			{label}
-		</a>
-	)
+	return <DropdownNavbarItem {...props} label={label} items={resolvedItems} />
 }

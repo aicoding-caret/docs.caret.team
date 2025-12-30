@@ -35,7 +35,7 @@ Caret 업데이트나 설정 변경 후 이전 작업이 보이지 않는 경우
 ### 저장 경로
 
 <Tabs>
-	<Tab title="VS Code">
+	<TabItem value="vs-code" title="VS Code">
 		```bash
 		# macOS
 		~/Library/Application Support/Code/User/globalStorage/caretive.caret/
@@ -44,8 +44,8 @@ Caret 업데이트나 설정 변경 후 이전 작업이 보이지 않는 경우
 		# Linux
 		~/.config/Code/User/globalStorage/caretive.caret/
 		```
-	</Tab>
-	<Tab title="JetBrains">
+	</TabItem>
+	<TabItem value="jetbrains" title="JetBrains">
 		```bash
 		# macOS
 		~/Library/Application Support/JetBrains/<IDE>/globalStorage/caretive.caret/
@@ -54,7 +54,7 @@ Caret 업데이트나 설정 변경 후 이전 작업이 보이지 않는 경우
 		# Linux
 		~/.config/JetBrains/<IDE>/globalStorage/caretive.caret/
 		```
-	</Tab>
+	</TabItem>
 </Tabs>
 
 VS Code Insiders는 `Code` 대신 `Code - Insiders`를 사용합니다. JetBrains는 `<IDE>`를 실제 제품명(예: `IntelliJIdea2023.3`, `PyCharm2023.3`)으로 바꾸세요.
@@ -109,7 +109,7 @@ graph LR
 Caret은 자동으로 백업을 만듭니다. `state/` 폴더에서 확인하세요:
 
 <Tabs>
-	<Tab title="VS Code">
+	<TabItem value="vs-code" title="VS Code">
 		```bash
 		# macOS/Linux
 		cd ~/.config/Code/User/globalStorage/caretive.caret/state/
@@ -118,8 +118,8 @@ Caret은 자동으로 백업을 만듭니다. `state/` 폴더에서 확인하세
 		# 가장 최신 파일로 복원
 		cp taskHistory.backup.1234567890.json taskHistory.json
 		```
-	</Tab>
-	<Tab title="JetBrains">
+	</TabItem>
+	<TabItem value="jetbrains" title="JetBrains">
 		```bash
 		# macOS
 		cd ~/Library/Application\ Support/JetBrains/<IDE>/globalStorage/caretive.caret/state/
@@ -128,7 +128,7 @@ Caret은 자동으로 백업을 만듭니다. `state/` 폴더에서 확인하세
 		# 가장 최신 파일로 복원
 		cp taskHistory.backup.1234567890.json taskHistory.json
 		```
-	</Tab>
+	</TabItem>
 </Tabs>
 
 ### 새 머신으로 이동

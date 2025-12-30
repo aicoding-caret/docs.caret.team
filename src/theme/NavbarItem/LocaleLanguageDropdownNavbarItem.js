@@ -1,7 +1,7 @@
-// CARET MODIFICATION: Locale-aware service link for multi-doc layout.
+// CARET MODIFICATION: Locale-aware label for the language dropdown.
+import React, { useEffect, useState } from "react"
 import { useLocation } from "@docusaurus/router"
-import { useEffect, useState } from "react"
-import clsx from "clsx"
+import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
 
 const localePrefixes = ["en", "ko", "ja", "zh"]
 
@@ -26,12 +26,17 @@ const resolveLocale = (pathname) => {
 	return pathLocale
 }
 
-export default function LocaleServiceNavbarItem(props) {
+const languageItems = [
+	{ label: "English", href: "/en/getting-started/what-is-caret" },
+	{ label: "한국어", href: "/ko/getting-started/what-is-caret" },
+	{ label: "日本語", href: "/ja/getting-started/what-is-caret" },
+	{ label: "中文", href: "/zh/getting-started/what-is-caret" },
+]
+
+export default function LocaleLanguageDropdownNavbarItem({ labels, ...props }) {
 	const { pathname } = useLocation()
 	const [locale, setLocale] = useState(() => resolveLocale(pathname))
-	const labels = props.labels ?? {}
-	const label = labels[locale] ?? props.label
-	const href = `https://caret.team/${locale}`
+	const label = labels?.[locale] ?? props.label
 
 	useEffect(() => {
 		setLocale(resolveLocale(pathname))
@@ -57,9 +62,5 @@ export default function LocaleServiceNavbarItem(props) {
 		}
 	}, [])
 
-	return (
-		<a className={clsx("navbar__item", "navbar__link", props.className)} href={href} rel="noreferrer" target="_self">
-			{label}
-		</a>
-	)
+	return <DropdownNavbarItem {...props} label={label} items={languageItems} />
 }

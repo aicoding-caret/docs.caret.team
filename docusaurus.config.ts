@@ -4,10 +4,42 @@ import { themes as prismThemes } from "prism-react-renderer"
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const siteUrl = "https://docs.caret.team"
+const localePrefixes = ["en", "ko", "ja", "zh"] as const
+type LocalePrefix = (typeof localePrefixes)[number]
+const defaultLocale: LocalePrefix = "en"
+const hreflangByLocale: Record<LocalePrefix, string> = {
+	en: "en-US",
+	ko: "ko-KR",
+	ja: "ja-JP",
+	zh: "zh-CN",
+}
+
+const buildAlternateLinks = (pathname: string) => {
+	const trimmed = pathname.replace(/^\/+/, "")
+	const parts = trimmed.split("/")
+	const locale = parts[0] as LocalePrefix
+	if (!localePrefixes.includes(locale)) {
+		return []
+	}
+
+	const rest = parts.slice(1).join("/")
+	const suffix = rest ? `/${rest}` : ""
+	const base = siteUrl.replace(/\/$/, "")
+
+	const links = localePrefixes.map((value) => ({
+		lang: hreflangByLocale[value],
+		url: `${base}/${value}${suffix}`,
+	}))
+
+	links.push({ lang: "x-default", url: `${base}/${defaultLocale}${suffix}` })
+	return links
+}
+
 const config: Config = {
-	title: "Caret Documentation",
-	tagline: "AI-powered coding assistant based on Cline",
-	favicon: "img/favicon.ico",
+	title: "Caret Docs",
+	tagline: "Caret, your AI coding partner",
+	favicon: "favicon.png",
 
 	// Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
 	future: {
@@ -15,7 +47,7 @@ const config: Config = {
 	},
 
 	// Set the production url of your site here
-	url: "https://docs.caret.team",
+	url: siteUrl,
 	// Set the /<baseUrl>/ pathname under which your site is served
 	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: "/",
@@ -84,6 +116,22 @@ const config: Config = {
 			{
 				docs: false, // Disable default docs
 				blog: false, // Disable blog
+				sitemap: {
+					changefreq: "weekly",
+					priority: 0.5,
+					createSitemapItems: async (params) => {
+						const items = await params.defaultCreateSitemapItems(params)
+						const base = siteUrl.replace(/\/$/, "")
+						return items.map((item) => {
+							if (!item.url) {
+								return item
+							}
+							const path = item.url.startsWith(base) ? item.url.slice(base.length) : item.url
+							const links = buildAlternateLinks(path)
+							return links.length ? { ...item, links } : item
+						})
+					},
+				},
 				theme: {
 					customCss: "./src/css/custom.css",
 				},
@@ -108,26 +156,38 @@ const config: Config = {
 			},
 			items: [
 				{
-					href: "https://caret.team",
+					type: "custom-localeService",
 					label: "Service",
+					labels: {
+						en: "Service",
+						ko: "서비스",
+						ja: "サービス",
+						zh: "服务",
+					},
 					position: "left",
 					target: "_self",
 				},
 				{
-					href: "https://marketplace.visualstudio.com/items?itemName=caretive.caret",
+					type: "custom-downloadDropdown",
 					label: "Download",
+					labels: {
+						en: "Download",
+						ko: "다운로드",
+						ja: "ダウンロード",
+						zh: "下载",
+					},
 					position: "right",
 				},
 				{
-					type: "dropdown",
+					type: "custom-localeLanguageDropdown",
 					label: "Language",
+					labels: {
+						en: "Language",
+						ko: "언어",
+						ja: "言語",
+						zh: "语言",
+					},
 					position: "right",
-					items: [
-						{ label: "English", href: "/en/getting-started/what-is-caret" },
-						{ label: "한국어", href: "/ko/getting-started/what-is-caret" },
-						{ label: "日本語", href: "/ja/getting-started/what-is-caret" },
-						{ label: "中文", href: "/zh/getting-started/what-is-caret" },
-					],
 				},
 				{
 					href: "https://github.com/aicoding-caret/caret",
@@ -141,42 +201,13 @@ const config: Config = {
 				},
 			],
 		},
-		footer: {
-			style: "dark",
-			links: [
-				{
-					title: "Company",
-					items: [
-						{
-							label: "Download Caret",
-							href: "https://marketplace.visualstudio.com/items?itemName=caretive.caret",
-						},
-						{
-							label: "Caret GitHub",
-							href: "https://github.com/aicoding-caret/caret",
-						},
-						{
-							label: "Service Introduction",
-							href: "https://caret.team",
-						},
-						{
-							label: "Caretive Inc",
-							href: "https://caretive.ai",
-						},
-					],
-				},
-				{
-					title: "Support",
-					items: [
-						{
-							label: "Customer Service",
-							href: "mailto:support@caretive.ai",
-						},
-					],
-				},
-			],
-			copyright: `ⓒ ${new Date().getFullYear()} Caretive INC | Business Registration: 459-81-03703`,
-		},
+		metadata: [
+			{
+				name: "keywords",
+				content:
+					"캐럿, 캐럿 AI 코딩 파트너, Caret, Cline, AI Vibe Coding Partner, AI 바이브 코딩 파트너, AX, AI Transformation, AI Native SW Development, AI 네이티브 SW 개발, AI coding agent, LLM, developer tools, code assistant, software development",
+			},
+		],
 		prism: {
 			theme: prismThemes.github,
 			darkTheme: prismThemes.dracula,

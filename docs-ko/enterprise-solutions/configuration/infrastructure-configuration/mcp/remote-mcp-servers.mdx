@@ -241,7 +241,7 @@ services:
 ### VM 배포
 
 <Tabs>
-<Tab title="Terraform">
+<TabItem value="terraform" title="Terraform">
 ```hcl
 # main.tf
 resource "aws_instance" "mcp_server" {
@@ -301,9 +301,9 @@ resource "aws_lb" "mcp_server" {
   enable_deletion_protection = var.environment == "production"
 }
 ```
-</Tab>
+</TabItem>
 
-<Tab title="Ansible">
+<TabItem value="ansible" title="Ansible">
 ```yaml
 # deploy-mcp-server.yml
 ---
@@ -389,7 +389,7 @@ resource "aws_lb" "mcp_server" {
         name: mcp-server
         restart: yes
 ```
-</Tab>
+</TabItem>
 </Tabs>
 
 ## 서버 구성

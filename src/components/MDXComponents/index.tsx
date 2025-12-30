@@ -140,15 +140,25 @@ export const AccordionItem = ({ children, title }: { children: React.ReactNode; 
 	)
 }
 
-export const CardGroup = ({ children, cols }: { children: React.ReactNode; cols?: number }) => (
-	<div className="row margin-bottom--lg" style={{ gap: "1rem" }}>
-		{React.Children.map(children, (child, idx) => (
-			<div className={`col col--${cols ?? 3}`} key={idx}>
-				{child}
-			</div>
-		))}
-	</div>
-)
+const clampColSpan = (value: number) => Math.max(1, Math.min(12, value))
+
+const resolveColSpan = (cols?: number) => {
+	if (!cols || Number.isNaN(cols)) return 4
+	return clampColSpan(Math.floor(12 / Math.max(1, cols)))
+}
+
+export const CardGroup = ({ children, cols }: { children: React.ReactNode; cols?: number }) => {
+	const span = resolveColSpan(cols)
+	return (
+		<div className="row margin-bottom--lg" style={{ gap: "1rem" }}>
+			{React.Children.map(children, (child, idx) => (
+				<div className={`col col--${span}`} key={idx}>
+					{child}
+				</div>
+			))}
+		</div>
+	)
+}
 
 export const TabsWrapper = Tabs
 export const TabItem = TabItemComponent

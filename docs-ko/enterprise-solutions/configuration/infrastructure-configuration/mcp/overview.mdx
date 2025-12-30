@@ -55,11 +55,11 @@ graph TB
 ## 핵심 구성 요소
 
 <CardGroup cols={2}>
-  <Card title="MCP 마켓플레이스" icon="store" href="/enterprise-solutions/configuration/infrastructure-configuration/mcp/mcp-marketplace">
+  <Card title="MCP 마켓플레이스" icon="store" href="/ko/enterprise-solutions/configuration/infrastructure-configuration/mcp/mcp-marketplace">
     사전 구성된 MCP 서버를 기업 환경에 맞게 배포
   </Card>
   
-  <Card title="원격 MCP 서버" icon="server" href="/enterprise-solutions/configuration/infrastructure-configuration/mcp/remote-mcp-servers">
+  <Card title="원격 MCP 서버" icon="server" href="/ko/enterprise-solutions/configuration/infrastructure-configuration/mcp/remote-mcp-servers">
     커스텀 MCP 서버를 인프라 전반에 배포/관리
   </Card>
 </CardGroup>
@@ -102,7 +102,7 @@ mcp:
 ### 환경별 구성
 
 <Tabs>
-<Tab title="Development">
+<TabItem value="development" title="Development">
 ```yaml
 # mcp-dev-config.yaml
 mcp:
@@ -130,9 +130,9 @@ mcp:
     rate_limits:
       relaxed: true
 ```
-</Tab>
+</TabItem>
 
-<Tab title="Production">
+<TabItem value="production" title="Production">
 ```yaml
 # mcp-prod-config.yaml
 mcp:
@@ -173,7 +173,7 @@ mcp:
     health_checks: true
     alert_on_failure: true
 ```
-</Tab>
+</TabItem>
 </Tabs>
 
 ## 서버 관리
@@ -544,6 +544,6 @@ jobs:
 
 ## 시작하기
 
-1. [MCP 마켓플레이스](/enterprise-solutions/configuration/infrastructure-configuration/mcp/mcp-marketplace)
-2. [원격 MCP 서버](/enterprise-solutions/configuration/infrastructure-configuration/mcp/remote-mcp-servers)
-3. [MCP 개발 가이드](/mcp/mcp-overview)
+1. [MCP 마켓플레이스](/ko/enterprise-solutions/configuration/infrastructure-configuration/mcp/mcp-marketplace)
+2. [원격 MCP 서버](/ko/enterprise-solutions/configuration/infrastructure-configuration/mcp/remote-mcp-servers)
+3. [MCP 개발 가이드](/ko/mcp/mcp-overview)

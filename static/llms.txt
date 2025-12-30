@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
 Sitemap: https://docs.caret.team/sitemap.xml
+
+Locale: en-US https://docs.caret.team/en/
+Locale: ko-KR https://docs.caret.team/ko/
+Locale: ja-JP https://docs.caret.team/ja/
+Locale: zh-CN https://docs.caret.team/zh/
