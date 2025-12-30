@@ -1,93 +1,93 @@
 ---
 title: "개요"
-description: "현대적인 개발을 위한 AI 기반 코딩 에이전트, Caret을 소개합니다."
+description: "현대 개발을 위한 AI 코딩 에이전트 Caret 소개"
 ---
 
 <Note>
 이 문서는 Caret v3.38.1 머지본을 기반으로 캐럿(Caret)에 맞춰 정리되었습니다. 캐럿 전용 정책/제한(모델 지원, 인증/라우팅)이 있는 경우 해당 섹션에 별도 `<Note>`로 표기합니다.
 </Note>
 
-## 타협 없는 오픈 소스 AI 코딩
+## 제약 없는 오픈소스 AI 코딩
 
-Caret은 제한이나 놀라움, 모델 생태계에 대한 종속 없이 최첨단 AI에 직접적이고 투명하게 접근할 수 있는 환경을 제공합니다. 모든 결정을 확인하고, 원하는 모델을 선택하며, 비용을 직접 관리하세요.
+Caret는 한계 없는 프런티어 AI 접근을 제공합니다. 모든 결정은 투명하게 드러나며, 모델 생태계에 종속되지 않습니다. 어떤 모델이든 선택하고 비용을 통제할 수 있습니다.
 
 <CardGroup cols={1}>
   <Card title="완전한 투명성" icon="eye">
-    Caret이 파일을 읽고, 접근 방식을 고민하고, 변경 사항을 제안하는 과정을 실시간으로 지켜보세요. 모든 결정은 가시적이며, 모든 편집은 적용되기 전에 검토할 수 있습니다.
+    Caret가 파일을 읽고 접근법을 고민하며 변경을 제안하는 과정을 실시간으로 확인할 수 있습니다. 모든 결정은 가시적이고, 모든 수정은 사전에 검토 가능합니다.
   </Card>
 
-  <Card title="원하는 추론 모델 선택" icon="sliders">
-    복잡한 추론에는 Claude를, 방대한 컨텍스트에는 Gemini를, 효율성을 위해서는 Qwen3 Coder를 사용하세요. 새로운 모델이 출시되면 즉시 전환할 수 있습니다. 여러분의 API 키로, 여러분이 선택하세요.
+  <Card title="추론 선택권" icon="sliders">
+    복잡한 추론은 Claude, 대용량 컨텍스트는 Gemini, 효율성은 Qwen3 Coder처럼 상황에 맞게 선택할 수 있습니다. 새로운 모델이 등장하면 즉시 전환하고, API 키는 직접 관리합니다.
   </Card>
 
-  <Card title="설계부터 제로 트러스트(Zero Trust)" icon="lock">
-    여러분의 코드는 절대 저희 서버에 닿지 않습니다. Caret은 여러분의 API 키를 사용하여 전적으로 클라이언트 측에서 실행됩니다. 오픈 소스이므로 보안 팀이 모든 코드를 검토할 수 있습니다.
+  <Card title="제로 트러스트 설계" icon="lock">
+    코드는 서버로 전송되지 않습니다. Caret는 클라이언트에서 API 키로 동작하며, 오픈소스라 보안 팀이 전체 코드를 검토할 수 있습니다.
   </Card>
 </CardGroup>
 
-## 실제 엔지니어링을 위한 설계
+## 실무 엔지니어링을 위한 설계
 
 <CardGroup cols={3}>
-  <Card title="파일 읽기 및 쓰기" icon="file-code">
-    지능적인 파일 작업을 통해 전체 코드베이스를 아우르며 작업하세요.
+  <Card title="파일 읽기/쓰기" icon="file-code">
+    코드베이스 전반에서 지능적인 파일 작업 수행
   </Card>
 
-  <Card title="명령어 실행" icon="terminal">
-    터미널 명령어를 실행하고 실시간으로 오류를 디버깅하세요.
+  <Card title="명령 실행" icon="terminal">
+    터미널 명령을 실행하고 실시간으로 디버깅
   </Card>
 
   <Card title="복잡한 기능 계획" icon="brain">
-    코드 한 줄을 작성하기 전에 먼저 탐색하고 계획을 수립하세요.
+    코드를 작성하기 전에 충분히 탐색하고 계획
   </Card>
 
   <Card title="외부 시스템 연결" icon="plug">
-    MCP 서버를 통해 데이터베이스, API, 문서와 통합하세요.
+    MCP 서버로 데이터베이스, API, 문서를 연결
   </Card>
 
   <Card title="대규모 코드베이스 이해" icon="magnifying-glass">
-    거대한 프로젝트를 위한 지능적인 컨텍스트 관리를 제공합니다.
+    거대한 프로젝트에 대한 지능형 컨텍스트 관리
   </Card>
 
   <Card title="다단계 작업" icon="list-check">
-    복잡한 워크플로우를 처음부터 끝까지 실행하세요.
+    복잡한 워크플로우를 처음부터 끝까지 실행
   </Card>
 </CardGroup>
 
 ## Plan & Act 모드
 
-Caret은 코드를 작성하기 전에 코드베이스를 탐색하고 여러분과 함께 포괄적인 계획을 수립하여, 프로젝트의 전체 맥락을 확실히 이해합니다.
+Caret는 코드를 쓰기 전에 전체 맥락을 이해하도록 탐색하고, 계획을 만들어 사용자와 합의한 뒤 실행합니다.
 
 <Tabs>
   <TabItem title="Plan 모드" value="plan-mode" icon="lightbulb">
-    복잡한 작업의 경우, Caret은 변경을 가하기 전에 코드베이스를 탐색하고, 명확히 하기 위한 질문을 하며, 상세한 구현 계획을 수립합니다.
+    복잡한 작업에서 Caret가 코드베이스를 탐색하고 질문을 던지며 상세 실행 계획을 수립합니다.
 
-    - 정보 수집 및 컨텍스트 구축
-    - 명확히 하기 위한 질문
-    - 상세 실행 계획 수립
-    - 접근 방식에 대한 논의
+    - 정보 수집과 컨텍스트 구성
+    - 확인 질문 제기
+    - 상세 실행 계획 생성
+    - 사용자와 접근 방식 논의
   </TabItem>
 
   <TabItem title="Act 모드" value="act-mode" icon="play">
-    계획을 승인하면, Caret은 완전한 투명성과 통제 하에 솔루션을 구현합니다.
+    계획이 승인되면 Caret가 도구를 사용해 실행에 들어갑니다.
 
-    - 계획된 작업 실행
-    - 도구를 사용하여 파일 수정 및 명령어 실행
+    - 승인된 계획 실행
+    - 파일 수정 및 명령 실행
     - 솔루션 구현
-    - 결과 및 완료 피드백 제공
+    - 완료 결과 보고
   </TabItem>
 </Tabs>
 
 
-## 주요 기능
+## 핵심 기능
 
 <AccordionGroup>
-  <Accordion title="지능형 계획 및 실행" icon="brain">
+  <Accordion title="지능형 계획 & 실행" icon="brain">
     <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
       <div>
-        <strong><a href="/ko/features/plan-and-act">Plan & Act 모드</a></strong> • 코드를 작성하기 전에 복잡한 기능을 계획하고, 완전한 투명성으로 실행하세요.
+        <strong><a href="/ko/features/plan-and-act">Plan & Act 모드</a></strong> • 코드 작성 전에 계획을 세우고 투명하게 실행
       </div>
       <div>
-        <strong><a href="/ko/features/focus-chain">포커스 체인 (Focus Chain)</a></strong> • 실시간 진행 상황 추적과 함께 할 일 목록을 자동으로 관리합니다.
+        <strong><a href="/ko/features/focus-chain">Focus Chain</a></strong> • 자동 할 일 목록 관리와 실시간 진행 추적
       </div>
     </div>
   </Accordion>
@@ -95,56 +95,36 @@ Caret은 코드를 작성하기 전에 코드베이스를 탐색하고 여러분
   <Accordion title="워크플로우 최적화" icon="bolt">
     <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
       <div>
-        <strong><a href="/ko/features/auto-approve">자동 승인 (Auto Approve)</a></strong> • 신뢰할 수 있는 작업을 자동으로 승인하여 워크플로우를 간소화하세요.
+        <strong><a href="/ko/features/auto-approve">자동 승인</a></strong> • 신뢰할 수 있는 작업을 자동 승인해 속도 향상
       </div>
       <div>
-        <strong><a href="/ko/features/auto-compact">자동 압축 (Auto Compact)</a></strong> • 공간을 확보하면서 컨텍스트를 보존하기 위해 대화를 자동으로 요약합니다.
+        <strong><a href="/ko/features/auto-compact">자동 컴팩트</a></strong> • 대화를 요약해 컨텍스트를 절약
       </div>
       <div>
-        <strong><a href="/ko/features/dictation">음성 입력 (Dictation)</a></strong> • 빠른 계획 수립과 복잡한 요구 사항 전달을 위해 Caret에게 자연스럽게 말하세요.
-      </div>
-    </div>
-  </Accordion>
-
-  <Accordion title="확장 및 통합" icon="plug">
-    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
-      <div>
-        <strong><a href="/ko/mcp/mcp-overview">MCP 통합</a></strong> • Model Context Protocol을 통해 데이터베이스, API, 문서에 연결하세요.
-      </div>
-      <div>
-        <strong><a href="/ko/exploring-carets-tools/remote-browser-support">원격 브라우저</a></strong> • 브라우저 자동화를 통해 웹 애플리케이션을 테스트하고 상호 작용하세요.
+        <strong><a href="/ko/features/dictation">음성 입력</a></strong> • 자연스럽게 말로 요구사항 전달
       </div>
     </div>
   </Accordion>
 
-  <Accordion title="커스터마이징 및 제어" icon="gear">
+  <Accordion title="확장 & 통합" icon="plug">
     <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
       <div>
-        <strong><a href="/ko/features/caret-rules">.agents/context</a></strong> • 코딩 표준 및 패턴을 포함한 프로젝트별 지침을 정의하세요.
+        <strong><a href="/ko/mcp/mcp-overview">MCP 통합</a></strong> • 데이터베이스, API, 문서를 MCP로 연결
       </div>
       <div>
-        <strong><a href="/ko/features/checkpoints">체크포인트</a></strong> • Git 기반 체크포인트로 프로젝트 상태를 저장하고 복원하세요.
+        <strong><a href="/ko/exploring-carets-tools/remote-browser-support">원격 브라우저</a></strong> • 브라우저 자동화로 웹앱 테스트/상호작용
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="커스터마이징 & 제어" icon="gear">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/ko/features/caret-rules">Caret 규칙</a></strong> • 프로젝트별 가이드라인을 강제
+      </div>
+      <div>
+        <strong><a href="/ko/features/commands-and-shortcuts/overview">명령과 단축키</a></strong> • 키보드 중심 워크플로우로 생산성 향상
       </div>
     </div>
   </Accordion>
 </AccordionGroup>
-
-## 개발자들이 Caret을 선택하는 이유
-
-<CardGroup cols={2}>
-  <Card title="100% 오픈 소스" icon="github">
-    GitHub의 모든 코드 한 줄 한 줄이 공개되어 있습니다. **5만 개 이상의 스타**를 받은, 개발자들이 사용하고 개선하며 신뢰하는 도구입니다.
-  </Card>
-
-  <Card title="추론 비용으로 장난치지 않음" icon="ban">
-    저희는 AI 사용으로 수익을 창출하지 않습니다. 다른 곳들이 컨텍스트를 제한하거나 저렴한 모델로 라우팅할 때, 저희는 모든 모델의 전체 기능에 제한 없이 접근할 수 있게 해드립니다.
-  </Card>
-
-  <Card title="미래 지향적 설계" icon="rocket">
-    새로운 모델이 출시되었나요? 즉시 사용하세요. Caret은 다양한 AI 제공업체와 호환됩니다.
-  </Card>
-
-  <Card title="진정한 가시성" icon="eye">
-    읽은 모든 파일, 고려한 모든 결정, 사용된 모든 토큰을 확인하세요. 블랙박스도, 놀라움도 없습니다.
-  </Card>
-</CardGroup>

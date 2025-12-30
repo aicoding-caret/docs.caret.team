@@ -1,0 +1,68 @@
+---
+title: "选择你的模型"
+description: "在 Caret 中设置你的第一个 AI 模型"
+---
+
+<Note>
+本指南以 Caret 为基准，基于 Caret v3.38.1 合并版本编写。如存在 Caret 专属政策（支持/屏蔽模型、地区限制、认证/路由），将以 `<Note>` 标注。
+</Note>
+
+Caret 需要 AI 模型来理解你的需求并编写代码。就像挑选合作的专家一样，不同模型有不同的优势与成本。
+
+## 快速开始：选择提供商
+
+最简单的方式是选择 **Caret** 作为提供商：
+
+1. **打开 Caret 设置**：点击 Caret 聊天窗口右上角的齿轮(⚙️)
+2. 在 API Provider 下拉框中选择 **"Caret"**
+3. 选择模型 - 推荐从 **Claude Sonnet 4.5** 或 **DeepSeek V3** 开始
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Select Caret Provider" />
+</Frame>
+
+**就是这么简单!** 无需管理 API Key，即可立刻访问多个模型。
+
+<Tip>
+**免费模型**: Caret 有时会通过合作伙伴提供免费推理。届时会在模型下拉框中显示。
+</Tip>
+
+## 使用其他提供商
+
+如果你希望使用自己的 API Key，可以选择以下提供商：
+
+- **OpenRouter** - 价格实惠，模型丰富
+- **Anthropic** - 直接使用 Claude 模型
+- **OpenAI** - 使用 GPT 模型
+- **Google Gemini** - Google 的 AI 模型
+- **Ollama** - 本地运行模型
+
+选择提供商后需要：
+1. 在提供商网站生成 API Key
+2. 粘贴到 Caret 设置中的 API Key 字段
+3. 选择模型
+
+<Note>
+多数提供商在生成 API Key 之前需要绑定付款信息。
+</Note>
+
+## 应该选择哪个模型？
+
+如果你刚开始，推荐如下：
+
+| 优先级 | 推荐模型 | 原因 |
+|---------------|-------------------|-----|
+| **稳定性** | Claude Sonnet 4.5 | 在编程任务中最稳定 |
+| **性价比** | DeepSeek V3 | 低成本但性能优秀 |
+| **速度** | Qwen3 Coder | 响应更快 |
+| **隐私** | Ollama 模型 | 在本地电脑运行 |
+
+你可以随时切换模型，聊天记录不会丢失。
+
+## 下一步
+
+模型设置完成后就准备好了！在下一部分，我们将带你完成第一个任务，并学习如何与 AI 对话来编写/调试/重构代码。
+
+<Card title="深入了解：模型选择指南" icon="graduation-cap" href="/zh/core-features/model-selection-guide">
+  想了解价格、上下文窗口与高级选择策略，请阅读完整的模型选择指南。
+</Card>

@@ -1,0 +1,134 @@
+---
+title: "工作流最佳实践"
+sidebarTitle: "最佳实践"
+description: "构建高效且稳定的 Caret 工作流的技巧与策略"
+---
+
+要写出好的工作流，需要在 **清晰指令**、**模块化** 和 **工具使用** 之间取得平衡。请参考以下建议。
+
+## 使用 Caret 构建工作流
+
+Caret 能理解项目上下文，是工作流设计的优秀搭档。
+
+### 用工作流来生成工作流
+
+写工作流没有想象中困难，甚至可以用工作流来创建。
+
+先将 [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) 保存到工作区（例如 `.agents/context/workflows/`）。
+
+然后运行 `/create-new-workflow.md`，Caret 会按以下步骤引导你：
+
+1. 询问目的和简短名称
+2. 描述目标与预期结果
+3. 整理关键步骤
+4. 生成结构化的工作流文件
+
+<Tip>
+  **自动化工作记录：** 完成的任务是最佳工作流候选。任务结束后说“把刚才的过程变成工作流”，Caret 会分析对话并生成工作流文件。
+</Tip>
+
+项目级工作流放在 `.agents/context/workflows/`，全局工作流放在 `~/Documents/Caret/Workflows/`。同名时以项目工作流为准。
+
+## 工作流设计
+
+<Tip>
+  **从小开始：** 先做单一任务的工作流，熟练后再扩展。
+</Tip>
+
+### 模块化
+
+小而可复用的工作流比一个庞大的工作流更易维护和调试。
+
+### 清晰的注释
+
+像写代码一样，解释“为什么”很重要。清晰的注释能让 Caret 和团队更理解你的意图。
+
+### 版本管理
+
+把工作流放在 `.agents/context/workflows/` 并纳入 Git，方便版本管理和团队共享。
+
+## Caret 的提示词设计
+
+### 明确指定工具
+
+不要只说“找文件”，要明确使用哪种工具与位置。
+
+* **不好的例子：** “找一下用户控制器”
+* **好的例子：** “用 `search_files` 在 `src/controllers` 中查找 `UserController`”
+
+## 高级技巧
+
+### 常用工具
+
+工作流中常用的工具如下：
+
+#### execute_command
+执行终端命令（测试、构建、git 等）
+
+```xml
+<execute_command>
+  <command>npm run test</command>
+  <requires_approval>false</requires_approval>
+</execute_command>
+```
+
+#### read_file
+读取文件（代码/配置分析）
+
+```xml
+<read_file>
+  <path>src/config.json</path>
+</read_file>
+```
+
+#### search_files
+全项目搜索
+
+```xml
+<search_files>
+  <path>src/</path>
+  <query>UserController</query>
+</search_files>
+```
+
+### 工具选择很重要
+
+不同工具返回的细节不同，应选择最有效的工具：
+
+- **读取完整文件**：`read_file`
+- **快速关键词搜索**：`search_files`
+- **列出目录结构**：`list_files`
+
+### 使用结构化
+
+结构化的工作流更容易执行。建议包含：
+
+- **Purpose**
+- **Inputs**
+- **Steps**
+- **Constraints**
+- **Output format**
+
+### 工作流格式示例
+
+```markdown
+# Workflow Name
+
+## Purpose
+Describe what the workflow does.
+
+## Inputs
+- What information or variables are needed?
+
+## Steps
+1. Step-by-step instructions
+2. Keep steps small and actionable
+
+## Constraints
+- Rules, limits, or safety checks
+
+## Output format
+- What the assistant should return
+```
+
+遵循这些实践可以让你的工作流更可靠、可复用且易于维护。

@@ -1,0 +1,210 @@
+---
+title: "モデル選択ガイド"
+description: "最終更新: 2025年8月20日。"
+---
+
+新しいモデルが継続的に登場するため、このガイドは現在 Caret に最適なモデル選択に焦点を当てています。環境の変化に合わせて更新していきます。
+
+<Callout type="tip">
+**モデル選びが初めてですか?** モデル比較とコンテキスト設定をまとめた [モデル比較ガイド](/ja/model-config/model-comparison) と [コンテキストウィンドウガイド](/ja/model-config/context-windows) を先に確認してください。
+</Callout>
+
+## AIモデルとは?
+
+AIモデルは Caret の「頭脳」です。コード作成、バグ修正、リファクタリングを依頼したときに理解し、応答を生成する主体がモデルです。
+
+**重要ポイント:**
+- **モデルは自然言語とコードを理解するように学習されたAIシステム**
+- **モデルごとに強みが異なる** 推論に強いものもあれば、速度やコスト重視のものもあります
+- **Caret が使うモデルを自分で選べる** 作業タイプに合う専門家を選ぶイメージです
+- **モデルはAPIプロバイダー経由で利用** Anthropic、OpenAI、OpenRouter などがモデルをホスティング
+
+**なぜ重要?** 選んだモデルは Caret の性能、応答品質、速度、コストに直結します。高性能モデルは複雑なリファクタリングに強い一方で高価になりがちで、低コストモデルは日常作業に効率的です。
+
+## Caretでモデルを選ぶ
+
+以下の5ステップでモデルを設定できます。
+
+### ステップ1: Caret設定を開く
+
+まず Caret の設定パネルにアクセスします。
+
+**設定を開く2つの方法:**
+- **クイック**: Caret チャットUI右上の **歯車(⚙️)** をクリック
+- **コマンドパレット**: **Cmd/Ctrl + Shift + P** → "Caret: Open Settings" と入力
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Caret Settings Panel" />
+</Frame>
+
+設定パネルを開くと上部に「API Provider」項目が表示されます。
+
+<Note>
+設定パネルは最後の構成を記憶するため、一度設定すれば繰り返す必要はありません。
+</Note>
+
+### ステップ2: APIプロバイダーを選択
+
+ドロップダウンから希望のAIプロバイダーを選択します。
+
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Caret Settings Panel" />
+</Frame>
+
+**人気プロバイダーの目安:**
+
+| プロバイダー | おすすめ用途 | 備考 |
+|----------|----------|-------|
+| **Caret** | 最も簡単な開始 | APIキー不要、stealthモデル含む複数モデルにアクセス |
+| **OpenRouter** | コスパ重視 | 多数のモデルと競争力ある価格 |
+| **Anthropic** | 安定性 | Claudeモデル、ツール使用が安定 |
+| **OpenAI** | 最新技術 | GPTモデル |
+| **Google Gemini** | 大きなコンテキスト | Googleモデル |
+| **AWS Bedrock** | エンタープライズ | 高度な機能 |
+| **Ollama** | プライバシー | ローカル実行可能 |
+
+Cerebras、Vertex AI、Azure などさらに多くの選択肢は [プロバイダー設定ガイド](/ja/provider-config/anthropic) を参照してください。
+
+<Info>
+**初めての方におすすめ:** まず **Caret** プロバイダーから始めましょう。APIキー管理が不要で複数モデルにすぐアクセスでき、パートナープロバイダー経由で無料推論が提供されることもあります。
+</Info>
+
+### ステップ3: APIキーを追加 (またはログイン)
+
+選択したプロバイダーによって次の手順が変わります。
+
+#### **Caret プロバイダーを選んだ場合:**
+
+- **APIキーは不要** で、CaretアカウントへのログインだけでOK
+- 画面の案内に従って **Sign In** をクリック
+- [app.caret.team](https://app.caret.team) に移動して認証
+- 認証後にIDEへ戻る
+
+#### その他のプロバイダーを選んだ場合:
+
+選択したプロバイダーでAPIキーを発行します:
+
+1. **プロバイダーサイトでAPIキーを発行:**
+   - **Anthropic**: [console.anthropic.com](https://console.anthropic.com/)
+   - **OpenRouter**: [openrouter.ai/keys](https://openrouter.ai/keys)
+   - **OpenAI**: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+   - **Google**: [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+   - **その他**: [プロバイダー設定ガイド](/ja/provider-config/anthropic) 参照
+
+2. **新しいAPIキーを生成**
+
+3. **APIキーをコピー**
+
+4. Caret 設定の **"API Key"** 欄に貼り付け
+
+5. **自動保存** - キーはエディタのシークレットストレージに安全に保存されます
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Caret API Selection" />
+</Frame>
+
+<Warning>
+**多くのプロバイダーは支払いが必要です。** APIキー発行前に支払い情報を求められることが多く、通常はタスクあたり $0.01〜$0.10 程度の従量課金です。
+</Warning>
+
+### ステップ4: モデルを選択
+
+APIキーを入力またはログインすると **"Model"** ドロップダウンが有効になります。
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Caret Model Selection" />
+</Frame>
+
+**クイックモデル選択ガイド:**
+
+| 優先度 | おすすめモデル | 理由 |
+|---------------|-------------------|-----|
+| **最大の安定性** | Claude Sonnet 4.5 | ツール使用の安定性が最も高く、複雑な作業に強い |
+| **コスパ** | DeepSeek V3 または Qwen3 Coder | 予算に対して高性能 |
+| **最高速度** | Cerebras の Qwen3 Coder | 応答が最速 |
+| **ローカル実行** | Ollama モデル | 完全なプライバシー、ネット不要 |
+| **最新機能** | GPT-5 | OpenAI の最新機能 |
+
+迷ったら **Claude Sonnet 4.5** (安定性) か **DeepSeek V3** (コスパ) から始めるのがおすすめです。
+
+<Tip>
+会話履歴を失わず、いつでもモデルを切り替えられます。タスクに応じて複数モデルを試してください。
+</Tip>
+
+下の [モデル比較表](#current-top-models) で仕様と価格を詳しく確認できます。
+
+## 現在人気のモデル {#current-top-models}
+
+現在よく選ばれているモデルは次のとおりです:
+
+- **安定性:** Claude Sonnet 4.5  
+- **コスパ:** DeepSeek V3 または Qwen3 Coder  
+- **速度:** Cerebras の Qwen3 Coder  
+- **ローカル:** Ollama ホストモデル  
+- **最新機能:** GPT-5
+
+### ステップ5: Caret を始める
+
+**設定完了!** これで Caret でコーディングを始められます:
+
+1. **Caret チャットにリクエストを入力**
+   - 例: "Create a React component for a login form"
+   - 例: "Debug this TypeScript error"
+   - 例: "Refactor this function to be more efficient"
+
+2. **Enter** または送信アイコンをクリック
+
+## 正しいモデルを選ぶ基準
+
+モデル選択は複数要素のバランスです。以下のフレームワークを参考に最適なモデルを選びましょう。
+
+<Note>
+**プロのヒント**: Plan モードと Act モードで別々のモデルを設定してみてください。例えば計画は安価なモデル、実装は高性能モデルにすると効率的です。
+</Note>
+
+### 主な選択要素
+
+| 要素 | 考慮点 | おすすめ |
+|--------|------------------|----------------|
+| **タスクの複雑さ** | 単純修正 vs 複雑なリファクタリング | ルーチンは低コスト、複雑はプレミアム |
+| **予算** | 月の支出規模 | $10-$30: 低コスト, $30-$100: 中間, $100+: プレミアム |
+| **コンテキストウィンドウ** | プロジェクト規模/ファイル数 | 小: 32K-128K, 中: 128K-200K, 大: 400K+ |
+| **速度** | 応答時間要件 | 対話は高速モデル、バックグラウンドは推論型も可 |
+| **ツール信頼性** | 複雑な作業の実行 | Claude がツールに強い。ワークフローに合わせて検証 |
+| **プロバイダー** | アクセス性/価格 | OpenRouter: 選択肢が多い, Direct: 速く安定, Local: プライバシー |
+
+## モデル比較リソース
+
+価格・性能・指標は以下を参照:
+- [**モデル比較 & 価格**](/ja/model-config/model-comparison) - 価格表と性能ベンチマーク
+- [**コンテキストウィンドウガイド**](/ja/model-config/context-windows) - コンテキスト最適化
+
+## オープンソース vs クローズドソース
+
+### オープンソースのメリット
+- **複数プロバイダーによるホスティング競争**
+- 競争による **低価格**
+- **プロバイダー切り替え** - 片方が落ちても切り替え可能
+- **高速なイノベーション**
+
+### 利用可能なオープンソースモデル
+- **Qwen3 Coder** (Apache 2.0)
+- **Z AI GLM 4.5** (MIT)
+- **Kimi K2** (オープンソース)
+- **DeepSeek シリーズ** (様々なライセンス)
+
+## クイック決定マトリクス
+
+| 目的 | おすすめモデル |
+|----------------|----------|
+| とにかく安定 | Claude Sonnet 4.5 |
+| コスト削減 | DeepSeek V3 または Qwen3 派生 |
+| 大きなコンテキスト | Gemini 2.5 Pro または Claude Sonnet 4.5 |
+| オープンソース | Qwen3 Coder, Z AI GLM 4.5, Kimi K2 |
+| 最新技術 | GPT-5 |
+| 速度 | Cerebras の Qwen3 Coder (最速) |
+
+## みんなが使っているモデル
+
+コミュニティの利用傾向は [OpenRouter の Caret 利用統計](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F) を確認してください。

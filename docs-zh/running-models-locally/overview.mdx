@@ -1,0 +1,69 @@
+---
+title: "本地模型概览"
+---
+
+<Note>
+本文基于 Caret v3.38.1 合并版本整理。如有本地运行时/认证/路由差异，会以 `<Note>` 标注。
+</Note>
+
+## 在本地运行 Caret
+
+无需网络即可运行模型，无 API 成本，数据不出本地。
+
+## 快速开始
+
+1. **硬件检查** - 至少 32GB RAM
+2. **选择运行时** - [LM Studio](/zh/running-models-locally/lm-studio) 或 [Ollama](/zh/running-models-locally/ollama)
+3. **下载 Qwen3 Coder 30B**
+4. **配置设置** - Compact Prompt 与上下文长度
+5. **开始编码**
+
+## 硬件要求
+
+| RAM | 推荐模型 | 量化 | 性能 |
+| --- | --- | --- | --- |
+| 32GB | Qwen3 Coder 30B | 4-bit | 入门 |
+| 64GB | Qwen3 Coder 30B | 8-bit | 完整功能 |
+| 128GB+ | GLM-4.5-Air | 4-bit | 接近云端 |
+
+## 推荐模型
+
+### Qwen3 Coder 30B
+
+- **256K 上下文**
+- **工具调用稳定**
+- **仓库级理解**
+
+下载大小:
+- 4-bit: ~17GB
+- 8-bit: ~32GB
+- 16-bit: ~60GB
+
+## 运行时
+
+### LM Studio
+- GUI 友好
+- 适合桌面用户
+
+### Ollama
+- CLI 方式
+- 适合服务器/脚本
+
+## 关键配置
+
+**Caret:**
+- 启用 Compact Prompt
+- 设置模型与 Base URL
+
+**LM Studio:**
+- Context Length: `262144`
+- KV Cache Quantization: `OFF`
+- Flash Attention: `ON`
+
+**Ollama:**
+- `num_ctx 262144`
+
+## 性能预期
+
+- 首次加载 10-30s
+- 生成 5-20 tokens/s

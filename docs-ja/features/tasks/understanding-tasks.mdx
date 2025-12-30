@@ -1,0 +1,109 @@
+---
+title: "タスクを理解する"
+description: "Caret のタスク概念、動作、より良い結果を得るためのプロンプト作成を学びます。"
+---
+
+<Note>
+キャレット(Caret)基準の文書です。Caret v3.38.1 マージ版に準拠し、保存場所/チェックポイント/認証/ルーティング差異があれば `<Note>` で示します。
+</Note>
+
+<Note>
+入力履歴/アカウント: `caret-docs/features/f10-input-history-system.md` により、入力履歴/復元機能やアカウント/組織情報が管理される場合があります。
+</Note>
+
+## タスクとは？
+
+ほとんどのユーザーは **タスク(Task)** を通じて Caret とやり取りします。新機能の追加、バグ修正、リファクタ、コードベース探索など、すべてがタスク単位です。タスクは Caret への **プロンプト**(指示)から始まる一連の作業セッションで、会話、変更、コマンド実行、意思決定が記録されます。
+
+この仕組みにより作業は整理され、追跡可能で、再開も容易です。タスクは独立したコンテキストを保持するため、複数プロジェクトを並行しても混乱しません。
+
+### 主な特徴
+
+各タスクは次を備えます:
+
+- **ユニーク ID**: タスクごとに固有 ID と専用保存ディレクトリ
+- **完全な会話履歴**: メッセージ/ツール使用/結果を保存
+- **リソース追跡**: トークン使用量、API コスト、実行時間
+- **中断/再開**: VS Code セッションを跨いでも状態維持
+- **チェックポイント**: Git ベースのスナップショットで変更追跡
+- **ドキュメント化**: Markdown へエクスポート
+- **コスト管理**: 使用量と費用を可視化
+
+## プロンプトでタスクを作る
+
+タスクはプロンプトから始まります。結果の品質は指示の書き方に大きく左右されます。
+
+### プロンプトの構成要素
+
+- **目標**: 何を達成するか
+- **コンテキスト**: 背景情報や制約
+- **要件**: 必要な機能/動作
+- **好み**: 技術選択やコーディングスタイル
+- **例**: 実装の参考
+
+<Note>
+**プロンプトを体系的に学びたい方へ**
+
+[Caret Learn](https://clinelearn.com) の **Module 1: "Prompting"** で、構造化プロンプトやコンテキスト最適化などを学べます。
+</Note>
+
+## タスク実行モード
+
+Caret は以下の 2 つのモードで動作します:
+
+- **Plan モード**: 情報収集・戦略検討(変更なし)
+- **Act モード**: 実装を実行(ファイル変更、コマンド実行)
+
+→ **[Plan & Act モード](/ja/features/plan-and-act)**
+
+## タスクのリソース
+
+タスクは以下のリソースを消費します:
+
+- **トークン**: 入出力トークン量
+- **API コスト**: モデル料金に基づく費用
+- **時間**: 開始〜完了まで
+- **チェックポイント**: スナップショット数
+
+## 代表的なタスクパターン
+
+### コード生成
+```
+Create a TypeScript function that validates email addresses using regex. 
+Include unit tests using Jest and handle edge cases like international domains.
+```
+
+### バグ修正
+```
+@terminal The app crashes when clicking the submit button. 
+Fix the error and ensure proper error handling is in place.
+```
+
+### リファクタ
+```
+Refactor the authentication logic in @auth.ts to use async/await 
+instead of callbacks. Maintain all existing functionality.
+```
+
+### 機能実装
+```
+Add a dark mode toggle to the settings page. Use the existing theme 
+context and persist the preference to localStorage.
+```
+
+## タスク再開
+
+Caret の強力な特徴の 1 つは、中断したタスクを再開できることです。
+
+### 中断されるケース
+
+- 長時間の作業停止
+- エラー対応が必要
+- 別タスクへ切り替え
+
+### 再開方法
+
+1. 履歴からタスクを開く
+2. 会話履歴を読み込む
+3. チェックポイントと状態を確認
+4. 続きから実行

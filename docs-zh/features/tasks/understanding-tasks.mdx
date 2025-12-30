@@ -1,0 +1,94 @@
+---
+title: "理解任务"
+description: "了解 Caret 的任务机制以及如何编写更好的提示词。"
+---
+
+<Note>
+本文基于 Caret v3.38.1 合并版本整理。如有存储位置/检查点/认证/路由差异，会以 `<Note>` 标注。
+</Note>
+
+<Note>
+输入历史/账号: 依据 `caret-docs/features/f10-input-history-system.md`，可能会启用输入历史与恢复功能。
+</Note>
+
+## 什么是任务？
+
+在 Caret 中，几乎所有交互都发生在 **任务(Task)** 中。无论是新功能、修复、重构或探索代码库，都是一个任务。
+
+### 关键特性
+
+- **唯一 ID**
+- **完整对话记录**
+- **资源跟踪**(Token/成本/耗时)
+- **可中断/可恢复**
+- **检查点**
+- **可导出文档**
+
+## 使用提示词创建任务
+
+### 提示词要素
+
+- **目标**
+- **上下文**
+- **需求**
+- **偏好**
+- **示例**
+
+<Note>
+想系统学习提示词？可查看 [Caret Learn](https://clinelearn.com) 的 Prompting 模块。
+</Note>
+
+## 任务执行模式
+
+- **Plan 模式**: 信息收集与规划
+- **Act 模式**: 实际执行与修改
+
+→ **[Plan & Act 模式](/zh/features/plan-and-act)**
+
+## 任务资源
+
+- **Token**
+- **API 成本**
+- **耗时**
+- **检查点数量**
+
+## 常见任务模式
+
+### 代码生成
+```
+Create a TypeScript function that validates email addresses using regex. 
+Include unit tests using Jest and handle edge cases like international domains.
+```
+
+### Bug 修复
+```
+@terminal The app crashes when clicking the submit button. 
+Fix the error and ensure proper error handling is in place.
+```
+
+### 重构
+```
+Refactor the authentication logic in @auth.ts to use async/await 
+instead of callbacks. Maintain all existing functionality.
+```
+
+### 功能实现
+```
+Add a dark mode toggle to the settings page. Use the existing theme 
+context and persist the preference to localStorage.
+```
+
+## 任务恢复
+
+### 何时会中断
+
+- 长时间运行
+- 出现错误
+- 切换到其他任务
+
+### 如何恢复
+
+1. 打开历史任务
+2. 加载对话记录
+3. 对照检查点
+4. 继续执行

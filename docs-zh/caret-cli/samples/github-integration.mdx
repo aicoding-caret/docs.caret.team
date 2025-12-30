@@ -1,0 +1,297 @@
+---
+title: "GitHub Actions 集成"
+description: "在 GitHub Actions 中使用 Caret CLI，通过 @caret 自动回复 Issue"
+---
+
+# GitHub 集成示例
+
+使用 AI 自动分析 GitHub Issue。在任何 Issue 评论中提及 `@caret` 即可触发自动分析，读取代码并给出建议，所有流程在 GitHub Actions 中自动执行。
+
+<Note>
+**第一次使用 Caret CLI？** 本示例假设你已完成 [安装指南](/zh/caret-cli/installation)。建议先看更简单的 [GitHub RCA 示例](/zh/caret-cli/samples/github-issue-rca)。
+</Note>
+
+## 工作流
+
+在 Issue 评论中提及 `@caret`：
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
+</Frame>
+
+Caret 会以新评论形式给出分析结果：
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+</Frame>
+
+整个过程在 GitHub Actions 中自动执行。
+
+## 前置条件
+
+- **已掌握 Caret CLI** ([安装指南](/zh/caret-cli/installation))
+- **GitHub 仓库** (具备 Actions/Secrets 管理权限)
+- **了解 GitHub Actions**
+- **API Provider 账号** (OpenRouter/Anthropic 等)
+
+## 设置
+
+### 1. 复制工作流文件
+
+将示例工作流文件复制到 `.github/workflows/` 目录中，这里命名为 `caret-responder.yml`：
+
+```bash
+mkdir -p .github/workflows
+curl -o .github/workflows/caret-responder.yml https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-integration/caret-responder.yml
+```
+
+或直接复制完整内容：
+
+<Accordion title="查看完整 caret-responder.yml">
+```yaml
+name: Caret Issue Assistant
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  respond:
+    runs-on: ubuntu-latest
+    environment: caret-actions
+    steps:
+      - name: Check for @caret mention
+        id: detect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.comment?.body || "";
+            const isPR = !!context.payload.issue?.pull_request;
+            const hit = body.toLowerCase().includes("@caret");
+            core.setOutput("hit", (!isPR && hit) ? "true" : "false");
+            core.setOutput("issue_number", String(context.payload.issue?.number || ""));
+            core.setOutput("issue_url", context.payload.issue?.html_url || "");
+            core.setOutput("comment_body", body);
+
+      - name: Checkout repository
+        if: steps.detect.outputs.hit == 'true'
+        uses: actions/checkout@v4
+
+      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Caret CLI
+        if: steps.detect.outputs.hit == 'true'
+        run: |
+          # Install the Caret CLI
+          sudo npm install -g caret
+
+      - name: Create Caret Instance
+        if: steps.detect.outputs.hit == 'true'
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLINE_DIR: ${{ runner.temp }}/caret
+        run: |
+          # Create instance and capture output
+          INSTANCE_OUTPUT=$(caret instance new 2>&1)
+          
+          # Parse address from output (format: "  Address: 127.0.0.1:36733")
+          CLINE_ADDRESS=$(echo "$INSTANCE_OUTPUT" | grep "Address:" | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]+')
+          echo "CLINE_ADDRESS=$CLINE_ADDRESS" >> $GITHUB_ENV
+          
+          # Configure API key
+          caret config set open-router-api-key=$OPENROUTER_API_KEY --address $CLINE_ADDRESS -v
+
+      - name: Download analyze script
+        if: steps.detect.outputs.hit == 'true'
+        run: |
+          export GITORG="YOUR-GITHUB-ORG"
+          export GITREPO="YOUR-GITHUB-REPO"
+
+          curl -L https://raw.githubusercontent.com/${GITORG}/${GITREPO}/refs/heads/main/git-scripts/analyze-issue.sh -o analyze-issue.sh
+          chmod +x analyze-issue.sh
+
+      - name: Run analysis
+        if: steps.detect.outputs.hit == 'true'
+        id: analyze
+        env:
+          ISSUE_URL: ${{ steps.detect.outputs.issue_url }}
+          COMMENT: ${{ steps.detect.outputs.comment_body }}
+          CLINE_ADDRESS: ${{ env.CLINE_ADDRESS }}
+        run: |
+          set -euo pipefail
+          
+          RESULT=$(./analyze-issue.sh "${ISSUE_URL}" "Analyze this issue. The user asked: ${COMMENT}" "$CLINE_ADDRESS")
+          
+          {
+            echo 'result<<EOF'
+            printf "%s\n" "$RESULT"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Post response
+        if: steps.detect.outputs.hit == 'true'
+        uses: actions/github-script@v7
+        env:
+          ISSUE_NUMBER: ${{ steps.detect.outputs.issue_number }}
+          RESULT: ${{ steps.analyze.outputs.result }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number(process.env.ISSUE_NUMBER),
+              body: process.env.RESULT || "(no output)"
+            });
+```
+</Accordion>
+
+<Warning>
+**提交前必须修改工作流文件！**
+
+打开 `.github/workflows/caret-responder.yml`，在 "Download analyze script" 步骤中指定你的 GitHub 组织和仓库：
+
+```yaml
+export GITORG="YOUR-GITHUB-ORG"      # 修改此处
+export GITREPO="YOUR-GITHUB-REPO"    # 修改此处
+```
+
+**示例：** 如果仓库是 `github.com/acme/myproject`，则：
+```yaml
+export GITORG="acme"
+export GITREPO="myproject"
+```
+</Warning>
+
+该工作流会检测 `@caret` 提及，启动 Caret CLI 实例进行分析并回复。
+
+### 2. 配置 API Key
+
+将 API Key 添加为仓库 Secret：
+
+1. 打开 GitHub 仓库
+2. 进入 **Settings** → **Environment** 新建环境
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss01-environment.png" alt="Navigate to Actions secrets" width="600" />
+   </Frame>
+
+   环境名需与工作流一致，使用 "caret-actions"。
+
+3. 点击 **New repository secret**
+4. 添加 `OPENROUTER_API_KEY` (来自 [openrouter.com](https://openrouter.com))
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss02-api-key.png" alt="Add API key secret" width="600" />
+   </Frame>
+
+5. 确认 Secret 已配置
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss03-ready.png" alt="API key configured" width="600" />
+   </Frame>
+
+### 3. 添加分析脚本
+
+从 `github-issue-rca` 示例添加脚本。**请先在仓库根目录创建 `git-scripts` 目录。**
+
+**方案 A: 直接下载**
+
+```bash
+mkdir -p git-scripts
+curl -o git-scripts/analyze-issue.sh https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+chmod +x git-scripts/analyze-issue.sh
+```
+
+**方案 B: 手动复制**
+
+```bash
+mkdir -p git-scripts
+nano git-scripts/analyze-issue.sh
+```
+
+<Accordion title="查看完整 analyze-issue.sh">
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+After pasting the script content, make it executable:
+```bash
+chmod +x git-scripts/analyze-issue.sh
+```
+</Accordion>
+
+### 4. 提交与推送
+
+```bash
+git add .github/workflows/caret-responder.yml
+git add git-scripts/analyze-issue.sh
+git commit -m "Add Caret issue assistant workflow"
+git push
+```
+
+## 使用方法
+
+在 Issue 评论中提及 `@caret`：
+
+```
+@caret what's causing this error?
+
+@caret analyze the root cause
+
+@caret what are the security implications?
+```
+
+GitHub Actions 将：
+1. 检测 `@caret`
+2. 启动 Caret CLI 实例
+3. 下载分析脚本
+4. act + yolo 自动分析
+5. 回复分析结果
+
+**注意**：仅对 Issue 评论生效，不包含 PR 评论。
+
+## 工作原理
+
+`caret-responder.yml` 的步骤：
+
+1. 监听 Issue 评论(创建/编辑)
+2. 检测 `@caret`
+3. 安装 Caret CLI
+4. 创建 Caret 实例
+5. 配置认证
+6. 下载分析脚本
+7. 执行分析
+8. 回复结果
+
+## 相关示例
+
+- **[github-issue-rca](./github-issue-rca)**

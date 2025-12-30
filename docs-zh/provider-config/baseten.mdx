@@ -1,0 +1,67 @@
+---
+title: "Baseten"
+description: "如何在 Caret 中配置并使用 Baseten Model APIs。"
+---
+
+<Note>
+本文以 Caret 为基准，遵循 Caret v3.38.1 合并版本。如有模型限制/区域限制/认证差异，会以 `<Note>` 标注。
+</Note>
+
+<Note>
+Provider Setup 增强：参见 `caret-docs/features/f09-enhanced-provider-setup.md`。
+</Note>
+
+Baseten 提供面向生产环境的前沿模型 API，基于 Baseten Inference Stack，为 OpenAI、DeepSeek、Meta、Moonshot、阿里等模型提供优化推理。
+
+**官网:** [https://www.baseten.co/products/model-apis/](https://www.baseten.co/products/model-apis/)
+
+### 获取 API Key
+
+1. 在 [Baseten](https://www.baseten.co/) 注册/登录
+2. 进入 API Keys 页面
+3. 创建新 Key (命名如 "Caret")
+4. 复制并安全保存
+
+### 支持模型
+
+Caret 支持 Baseten Model APIs 的当前模型：
+最新价格: https://www.baseten.co/products/model-apis/
+注意: Kimi K2 0711、Llama 4 Maverick、Llama 4 Scout 已于 10/8 5pm PT 停用。
+https://www.baseten.co/resources/changelog/model-api-deprecation-notice-kimi-k2-0711-scout-maverick/
+
+- `zai-org/GLM-4.6` (Z AI) - 200k 上下文
+- `moonshotai/Kimi-K2-Instruct-0905` - 262K 上下文
+- `openai/gpt-oss-120b` - 128K 上下文
+- `Qwen/Qwen3-Coder-480B-A35B-Instruct` - 262K 上下文
+- `Qwen/Qwen3-235B-A22B-Instruct-2507` - 262K 上下文
+- `deepseek-ai/DeepSeek-R1` - 163K 上下文
+- `deepseek-ai/DeepSeek-R1-0528` - 163K 上下文
+- `deepseek-ai/DeepSeek-V3.1` - 163K 上下文
+- `deepseek-ai/DeepSeek-V3-0324` - 163K 上下文
+
+### 在 Caret 中配置
+
+1. 打开 Caret 设置(⚙️)
+2. 选择 Baseten 作为 API Provider
+3. 填入 API Key
+4. 选择模型
+
+### 面向生产的架构
+
+- **99.99% 可用性**
+- **多云自动扩展**
+- **SOC 2 / HIPAA 合规**
+
+### 特性
+
+- **OpenAI 兼容 API**
+- **函数调用与工具使用**
+- **长上下文支持**
+
+### 迁移提示
+
+- `api.openai.com` → `inference.baseten.co/v1`
+
+### 价格
+
+价格透明且具有竞争力，详见官网。

@@ -8,9 +8,13 @@ const sidebars: SidebarsConfig = {
 			items: [
 				"getting-started/what-is-caret",
 				"getting-started/installing-caret",
+				"getting-started/model-selection-guide",
 				"getting-started/selecting-your-model",
 				"getting-started/your-first-project",
 				"getting-started/understanding-context-management",
+				"getting-started/for-new-coders",
+				"getting-started/task-management",
+				"getting-started/installing-dev-essentials",
 			],
 		},
 		{
@@ -30,6 +34,11 @@ const sidebars: SidebarsConfig = {
 		},
 		{
 			type: "category",
+			label: "Model Configuration",
+			items: ["model-config/model-comparison", "model-config/context-windows"],
+		},
+		{
+			type: "category",
 			label: "Features",
 			items: [
 				"features/yolo-mode",
@@ -40,7 +49,10 @@ const sidebars: SidebarsConfig = {
 				"features/caret-rules",
 				"features/drag-and-drop",
 				"features/plan-and-act",
+				"features/input-history",
 				"features/slash-commands/workflows",
+				"features/slash-commands/workflows/quickstart",
+				"features/slash-commands/workflows/best-practices",
 				"features/focus-chain",
 				"features/auto-compact",
 				"features/editing-messages",
@@ -51,6 +63,7 @@ const sidebars: SidebarsConfig = {
 					items: [
 						"features/at-mentions/overview",
 						"features/at-mentions/file-mentions",
+						"features/at-mentions/folder-mentions",
 						"features/at-mentions/terminal-mentions",
 						"features/at-mentions/problem-mentions",
 						"features/at-mentions/git-mentions",
@@ -138,7 +151,13 @@ const sidebars: SidebarsConfig = {
 		{
 			type: "category",
 			label: "Enterprise Solutions",
-			items: ["enterprise-solutions/overview", "enterprise-solutions/security-concerns"],
+			items: [
+				"enterprise-solutions/overview",
+				"enterprise-solutions/cloud-provider-integration",
+				"enterprise-solutions/custom-instructions",
+				"enterprise-solutions/mcp-servers",
+				"enterprise-solutions/security-concerns",
+			],
 		},
 		{
 			type: "category",
@@ -173,6 +192,7 @@ const sidebars: SidebarsConfig = {
 				"provider-config/vscode-language-model-api",
 				"provider-config/xai-grok",
 				"provider-config/mistral-ai",
+				"provider-config/fireworks-ai",
 				"provider-config/deepseek",
 				"provider-config/groq",
 				"provider-config/cerebras",
@@ -191,7 +211,17 @@ const sidebars: SidebarsConfig = {
 		{
 			type: "category",
 			label: "Running Models Locally",
-			items: ["running-models-locally/overview", "running-models-locally/lm-studio", "running-models-locally/ollama"],
+			items: [
+				"running-models-locally/read-me-first",
+				"running-models-locally/overview",
+				"running-models-locally/lm-studio",
+				"running-models-locally/ollama",
+			],
+		},
+		{
+			type: "category",
+			label: "Troubleshooting",
+			items: ["troubleshooting/terminal-integration-guide"],
 		},
 		{
 			type: "category",

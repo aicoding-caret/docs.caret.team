@@ -1,0 +1,22 @@
+---
+title: "Custom Instructions"
+---
+
+## Building Custom Instructions for Your Team
+
+**By creating standardized project instructions, every team member can work within consistent guidelines. Start by documenting the technical foundation of your project, then identify the information that should be included. The exact scope will vary by team, but in general it is best to provide as much detail as possible. By creating comprehensive instructions that everyone follows, you establish shared understanding of how code is written, tested, and deployed across the project--resulting in more maintainable and consistent software.**
+
+---
+
+Below are some topics and examples to consider for your team's custom instructions.
+
+1.  **Testing frameworks and specific commands**
+    -   "All components must include Jest tests with at least 85% coverage. Run tests with `npm run test:coverage` before submitting a pull request."
+2.  **Explicit library preferences**
+    -   "Use React Query for data fetching and state management. Avoid Redux unless absolutely necessary for complex global state. For styling, use Tailwind CSS with the custom theme configuration in `src/styles/theme.js`."
+3.  **Documentation locations**
+    -   "All API documentation is in the internal Notion workspace under 'Engineering > API Reference'. Component usage examples are in our Storybook instance at `https://storybook.internal.company.com`."
+4.  **MCP servers to use and their purpose**
+    -   "For database tasks, use the Postgres MCP server with credentials stored in 'Development > Database'. For deployments, use the AWS MCP server which requires deployment roles in IAM. For setup, see `docs/mcp-setup.md`."
+5.  **Project-specific coding rules**
+    -   "All React components use PascalCase and helper functions use camelCase. Organize components by feature (not by type) under `src/components`. Always use TypeScript interfaces for prop definitions."

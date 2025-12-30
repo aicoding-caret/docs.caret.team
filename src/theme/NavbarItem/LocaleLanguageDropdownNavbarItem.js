@@ -1,7 +1,8 @@
 // CARET MODIFICATION: Locale-aware label for the language dropdown.
-import React, { useEffect, useState } from "react"
+
 import { useLocation } from "@docusaurus/router"
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
+import React, { useEffect, useState } from "react"
 
 const localePrefixes = ["en", "ko", "ja", "zh"]
 
@@ -62,5 +63,5 @@ export default function LocaleLanguageDropdownNavbarItem({ labels, ...props }) {
 		}
 	}, [])
 
-	return <DropdownNavbarItem {...props} label={label} items={languageItems} />
+	return <DropdownNavbarItem {...props} items={languageItems} label={label} />
 }

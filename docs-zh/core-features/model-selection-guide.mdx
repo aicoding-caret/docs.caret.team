@@ -1,0 +1,210 @@
+---
+title: "模型选择指南"
+description: "最后更新：2025年8月20日。"
+---
+
+新模型不断推出，本指南专注于当前最适合 Caret 的模型选择，并会随环境变化持续更新。
+
+<Callout type="tip">
+**第一次选模型？** 建议先阅读 [模型对比指南](/zh/model-config/model-comparison) 和 [上下文窗口指南](/zh/model-config/context-windows)，了解模型对比与上下文设置。
+</Callout>
+
+## 什么是 AI 模型？
+
+AI 模型可以理解为驱动 Caret 的“脑”。当你让 Caret 写代码、修 Bug 或做重构时，真正理解并生成回应的就是模型。
+
+**核心要点：**
+- **模型是经过训练、能理解自然语言与代码的 AI 系统**
+- **不同模型有不同优势** 有的擅长复杂推理，有的更偏速度或成本
+- **你可以自行选择 Caret 使用的模型** 就像挑选适合任务的专家
+- **模型通过 API 提供商访问** Anthropic、OpenAI、OpenRouter 等负责托管模型
+
+**为什么重要？** 你选择的模型会直接影响 Caret 的性能、质量、速度与成本。高端模型擅长复杂重构但可能更贵；预算型模型适合日常任务。
+
+## 在 Caret 中选择模型
+
+可通过以下 5 个步骤完成设置。
+
+### 第 1 步：打开 Caret 设置
+
+先进入 Caret 设置面板。
+
+**打开设置的两种方式：**
+- **快速方式**：点击 Caret 聊天 UI 右上角的 **齿轮(⚙️)**
+- **命令面板**：**Cmd/Ctrl + Shift + P** → 输入 "Caret: Open Settings"
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Caret Settings Panel" />
+</Frame>
+
+打开后，在顶部可以看到 “API Provider”。
+
+<Note>
+设置面板会记住上次的配置，设置一次即可复用。
+</Note>
+
+### 第 2 步：选择 API 提供商
+
+从下拉列表中选择你想要的提供商。
+
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Caret Settings Panel" />
+</Frame>
+
+**常用提供商速览：**
+
+| 提供商 | 推荐用途 | 备注 |
+|----------|----------|-------|
+| **Caret** | 最简单的开始 | 无需 API Key，可访问多模型(含 stealth 模型) |
+| **OpenRouter** | 性价比 | 模型选择多，价格有竞争力 |
+| **Anthropic** | 稳定性 | Claude 模型，工具使用稳定 |
+| **OpenAI** | 最新技术 | GPT 模型 |
+| **Google Gemini** | 大上下文 | Google 模型 |
+| **AWS Bedrock** | 企业级 | 高级功能 |
+| **Ollama** | 隐私 | 可本地运行 |
+
+更多选项（如 Cerebras、Vertex AI、Azure 等）请查看 [提供商设置指南](/zh/provider-config/anthropic)。
+
+<Info>
+**新手推荐：** 从 **Caret** 提供商开始。无需管理 API Key，可立即访问多个模型，并可能获得合作伙伴提供的免费推理。
+</Info>
+
+### 第 3 步：添加 API Key（或登录）
+
+根据选择的提供商执行对应步骤。
+
+#### **选择 Caret 提供商时：**
+
+- **无需 API Key**，只需登录 Caret 账号
+- 按提示点击 **Sign In**
+- 跳转到 [app.caret.team](https://app.caret.team) 完成认证
+- 认证后返回 IDE
+
+#### 选择其他提供商时：
+
+需要在提供商处生成 API Key：
+
+1. **在提供商网站生成 API Key：**
+   - **Anthropic**: [console.anthropic.com](https://console.anthropic.com/)
+   - **OpenRouter**: [openrouter.ai/keys](https://openrouter.ai/keys)
+   - **OpenAI**: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+   - **Google**: [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+   - **其他**: 参考 [提供商设置指南](/zh/provider-config/anthropic)
+
+2. **创建新 API Key**
+
+3. **复制 API Key**
+
+4. 粘贴到 Caret 设置中的 **"API Key"** 字段
+
+5. **自动保存** - API Key 会安全存入编辑器的密钥存储中
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Caret API Selection" />
+</Frame>
+
+<Warning>
+**多数提供商需要付费。** 通常会要求先绑定付款信息，费用一般按使用量计费，约 $0.01-$0.10/任务。
+</Warning>
+
+### 第 4 步：选择模型
+
+输入 API Key 或登录后，**"Model"** 下拉框会启用。
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Caret Model Selection" />
+</Frame>
+
+**快速选型指南：**
+
+| 优先级 | 推荐模型 | 原因 |
+|---------------|-------------------|-----|
+| **最高稳定性** | Claude Sonnet 4.5 | 工具使用最稳定，复杂任务表现好 |
+| **性价比** | DeepSeek V3 或 Qwen3 Coder | 预算友好且性能优秀 |
+| **最快速度** | Cerebras 的 Qwen3 Coder | 响应速度最快 |
+| **本地运行** | Ollama 模型 | 完全隐私、无需联网 |
+| **最新功能** | GPT-5 | OpenAI 最新能力 |
+
+如果不确定，建议从 **Claude Sonnet 4.5**（稳定性）或 **DeepSeek V3**（性价比）开始。
+
+<Tip>
+可以随时切换模型而不丢失对话记录。建议针对不同任务尝试不同模型。
+</Tip>
+
+可参考下方 [模型对比表](#current-top-models) 查看规格与价格。
+
+## 当前热门模型 {#current-top-models}
+
+目前最常被选择的模型：
+
+- **稳定性:** Claude Sonnet 4.5  
+- **性价比:** DeepSeek V3 或 Qwen3 Coder  
+- **速度:** Cerebras 的 Qwen3 Coder  
+- **本地:** Ollama 托管模型  
+- **最新功能:** GPT-5
+
+### 第 5 步：开始使用 Caret
+
+**设置完成!** 现在可以开始用 Caret 编码：
+
+1. **在 Caret 聊天中输入请求**
+   - 例："Create a React component for a login form"
+   - 例："Debug this TypeScript error"
+   - 例："Refactor this function to be more efficient"
+
+2. 点击 **Enter** 或发送按钮
+
+## 选择模型的判断标准
+
+模型选择是多个因素的平衡。可以参考以下框架。
+
+<Note>
+**专业建议**：为 Plan 模式与 Act 模式设置不同模型。例如，计划阶段使用便宜模型，实现阶段使用高性能模型。
+</Note>
+
+### 关键选择因素
+
+| 因素 | 考量点 | 建议 |
+|--------|------------------|----------------|
+| **任务复杂度** | 简单修改 vs 复杂重构 | 例行任务选预算型，复杂任务选高端型 |
+| **预算** | 月度开销规模 | $10-$30: 预算型，$30-$100: 中档，$100+: 高端 |
+| **上下文窗口** | 项目规模/文件数量 | 小型: 32K-128K，中型: 128K-200K，大型: 400K+ |
+| **速度** | 响应时间要求 | 对话类选快模型，后台任务可选推理型 |
+| **工具可靠性** | 复杂任务执行 | Claude 的工具可靠性高，需要根据流程测试 |
+| **提供商** | 可用性/价格 | OpenRouter: 选择多，Direct: 快速稳定，Local: 隐私 |
+
+## 模型对比资源
+
+查看对比、价格和性能指标：
+- [**模型对比 & 价格**](/zh/model-config/model-comparison) - 价格表与性能基准
+- [**上下文窗口指南**](/zh/model-config/context-windows) - 优化上下文使用
+
+## 开源 vs 闭源
+
+### 开源的优势
+- **多提供商托管竞争**
+- 竞争带来 **更低成本**
+- **可切换提供商** - 某家故障可切换
+- **更快的创新速度**
+
+### 可用开源模型
+- **Qwen3 Coder** (Apache 2.0)
+- **Z AI GLM 4.5** (MIT)
+- **Kimi K2** (开源)
+- **DeepSeek 系列** (多种许可)
+
+## 快速决策矩阵
+
+| 需求 | 推荐模型 |
+|----------------|----------|
+| 稳定可靠 | Claude Sonnet 4.5 |
+| 降低成本 | DeepSeek V3 或 Qwen3 变体 |
+| 大上下文窗口 | Gemini 2.5 Pro 或 Claude Sonnet 4.5 |
+| 开源 | Qwen3 Coder, Z AI GLM 4.5, Kimi K2 |
+| 最新技术 | GPT-5 |
+| 速度 | Cerebras 的 Qwen3 Coder (最快) |
+
+## 其他人常用的模型
+
+查看社区使用模式：[OpenRouter Caret 使用统计](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F)

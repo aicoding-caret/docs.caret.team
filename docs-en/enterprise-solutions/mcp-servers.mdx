@@ -1,0 +1,25 @@
+---
+title: "MCP Servers"
+---
+
+**Model Context Protocol (MCP) servers extend Cline's capabilities by providing standardized access to external data sources and executable tools. By implementing MCP servers, LLM tools can dynamically retrieve and integrate relevant information from local and remote data sources. This ensures models operate with the most current, context-appropriate data, improving accuracy and relevance.**
+
+---
+
+### Security Architecture Basics
+
+MCP servers follow a client-server architecture where the host (an LLM application such as Cline) initiates connections to MCP servers over a transport layer. This design keeps a clear separation between components and offers inherent security benefits. Enterprise deployments should focus on correct implementation of this architecture to ensure secure operations--especially around message exchange patterns and connection lifecycle management. For details, see [MCP Architecture](https://modelcontextprotocol.io/docs/concepts/architecture) and the latest [MCP Specification](https://spec.modelcontextprotocol.contextprotocol.io/specification/2024-11-05/).
+
+### Transport Layer Security
+
+Choosing the right transport mechanism is critical in enterprise environments. The stdio transport works well for local processes, while HTTP with Server-Sent Events (SSE) requires additional security measures. Use TLS for all remote connections whenever possible--this is especially important when MCP servers are deployed across different network segments inside enterprise infrastructure.
+
+### Message Validation and Access Control
+
+The MCP architecture defines standard error codes and message types (request, result, error, and notification), providing a structured framework for secure communication. Security teams should consider message validation, input sanitization, message size limits, and JSON-RPC compliance checks. Access control, path validation, and request rate limiting further protect resources and reduce the risk of abuse.
+
+### Monitoring and Compliance
+
+For enterprise compliance requirements, comprehensive logging of protocol events, message flows, and errors is essential. MCP supports diagnostic features such as health checks, connection monitoring, and resource usage tracking. Organizations should extend these features to meet compliance needs and maintain audit trails for all MCP server interactions and resource access patterns.
+
+By leveraging the MCP client-server design and implementing appropriate controls at each layer, enterprises can safely integrate MCP servers into their environment while maintaining security posture and meeting regulatory requirements.

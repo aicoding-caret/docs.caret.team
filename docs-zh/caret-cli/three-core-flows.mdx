@@ -1,0 +1,116 @@
+---
+title: "三大核心流程"
+description: "Caret CLI 的三种使用方式：交互模式、无头自动化、多实例并行"
+---
+
+需要先理解两个概念：
+
+**任务(Task)** - Caret 执行的单个工作(如“给 utils.js 添加测试”)。
+
+**实例(Instance)** - 独立的 Caret 工作空间。每个实例一次只跑一个任务。
+
+## 1. 交互模式：先计划再执行
+
+```bash
+caret
+```
+
+Caret 会在当前目录开启会话，进入 Plan 模式给出逐步计划。确认后执行：
+
+```bash
+/act
+```
+
+## 2. 无头单次：不经过聊天直接完成
+
+```bash
+caret instance new --default
+caret task new -y "Generate unit tests for all Go files"
+```
+
+`-y`(YOLO) 让 Caret 自动计划并执行，适合 CI/脚本。
+
+示例：
+
+```bash
+caret task new -y "Create a REST API for user authentication"
+caret task new -y "Add JSDoc comments to all functions in src/"
+caret task new -y "Convert all var declarations to const/let"
+```
+
+查看进度：
+
+```bash
+caret task view
+caret task view --follow
+```
+
+<Note>
+YOLO 模式建议在可回滚的分支中使用。
+</Note>
+
+## 3. 多实例：并行代理
+
+```bash
+caret instance new
+```
+
+```bash
+caret task new -y "Build React components"
+```
+
+设置默认实例：
+
+```bash
+caret instance new --default
+```
+
+```bash
+caret task new -y "Implement API endpoints"
+```
+
+列出实例：
+
+```bash
+caret instances list
+```
+
+停止实例：
+
+```bash
+caret instances kill -a
+```
+
+<Tip>
+记录 `caret instance new` 返回的地址，便于脚本化调用。
+</Tip>
+
+## 选择哪种流程？
+
+- **交互模式**：探索问题/学习 Caret/需要审核计划
+- **无头单次**：自动化、CI/CD
+- **多实例**：需要并行或隔离上下文
+
+<Tip>
+完整参数请参阅 [CLI 参考](/zh/caret-cli/cli-reference)。
+</Tip>
+
+## 下一步
+
+<Columns cols={2}>
+  <Card title="CLI 参考" icon="terminal" href="/zh/caret-cli/cli-reference">
+    查看配置、实例管理、任务命令等完整文档。
+  </Card>
+  
+  <Card title="Plan & Act" icon="brain" href="/zh/features/plan-and-act">
+    了解 Plan/Act 的使用方式和切换。
+  </Card>
+  
+  <Card title="YOLO 模式" icon="zap" href="/zh/features/yolo-mode">
+    了解自动化与手动审批的权衡。
+  </Card>
+  
+  <Card title="任务管理" icon="clipboard-check" href="/zh/getting-started/task-management">
+    学习任务保存、恢复与检查点。
+  </Card>
+</Columns>

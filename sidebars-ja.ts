@@ -9,6 +9,8 @@ const sidebars: SidebarsConfig = {
 				"getting-started/what-is-caret",
 				"getting-started/model-selection-guide",
 				"getting-started/installing-caret",
+				"getting-started/selecting-your-model",
+				"getting-started/your-first-project",
 				"getting-started/task-management",
 				"getting-started/understanding-context-management",
 				{
@@ -17,6 +19,11 @@ const sidebars: SidebarsConfig = {
 					items: ["getting-started/for-new-coders", "getting-started/installing-dev-essentials"],
 				},
 			],
+		},
+		{
+			type: "category",
+			label: "紹介",
+			items: ["introduction/welcome", "introduction/overview"],
 		},
 		{
 			type: "category",
@@ -40,6 +47,15 @@ const sidebars: SidebarsConfig = {
 		},
 		{
 			type: "category",
+			label: "モデル設定",
+			items: [
+				"core-features/model-selection-guide",
+				"model-config/model-comparison",
+				"model-config/context-windows",
+			],
+		},
+		{
+			type: "category",
 			label: "機能",
 			items: [
 				"features/auto-approve",
@@ -48,9 +64,12 @@ const sidebars: SidebarsConfig = {
 				"features/drag-and-drop",
 				"features/plan-and-act",
 				"features/slash-commands/workflows",
+				"features/slash-commands/workflows/quickstart",
+				"features/slash-commands/workflows/best-practices",
 				"features/focus-chain",
 				"features/auto-compact",
 				"features/editing-messages",
+				"features/hooks",
 				{ type: "doc", id: "features/yolo-mode", label: "YOLOモード" },
 				{ type: "doc", id: "features/input-history", label: "プロンプト履歴" },
 				{ type: "doc", id: "features/dictation", label: "音声入力" },
@@ -61,6 +80,7 @@ const sidebars: SidebarsConfig = {
 					items: [
 						"features/at-mentions/overview",
 						"features/at-mentions/file-mentions",
+						"features/at-mentions/folder-mentions",
 						"features/at-mentions/terminal-mentions",
 						"features/at-mentions/problem-mentions",
 						"features/at-mentions/git-mentions",
@@ -71,6 +91,7 @@ const sidebars: SidebarsConfig = {
 					type: "category",
 					label: "スラッシュコマンド",
 					items: [
+						"features/slash-commands/slash-commands",
 						"features/slash-commands/new-task",
 						"features/slash-commands/new-rule",
 						"features/slash-commands/smol",
@@ -89,6 +110,38 @@ const sidebars: SidebarsConfig = {
 						"features/commands-and-shortcuts/keyboard-shortcuts",
 					],
 				},
+				{
+					type: "category",
+					label: "カスタマイズ",
+					items: [
+						"features/customization/opening-caret-in-sidebar",
+						"features/customization/disable-terminal-pagers",
+					],
+				},
+				{
+					type: "category",
+					label: "タスク",
+					items: ["features/tasks/understanding-tasks", "features/tasks/task-management"],
+				},
+			],
+		},
+		{
+			type: "category",
+			label: "Caret CLI",
+			items: [
+				"caret-cli/overview",
+				"caret-cli/installation",
+				"caret-cli/three-core-flows",
+				"caret-cli/cli-reference",
+				{
+					type: "category",
+					label: "サンプル",
+					items: [
+						"caret-cli/samples/overview",
+						"caret-cli/samples/github-integration",
+						"caret-cli/samples/github-issue-rca",
+					],
+				},
 			],
 		},
 		{
@@ -104,6 +157,7 @@ const sidebars: SidebarsConfig = {
 			type: "category",
 			label: "エンタープライズソリューション",
 			items: [
+				"enterprise-solutions/overview",
 				"enterprise-solutions/cloud-provider-integration",
 				"enterprise-solutions/custom-instructions",
 				"enterprise-solutions/mcp-servers",
@@ -143,6 +197,8 @@ const sidebars: SidebarsConfig = {
 				"provider-config/vscode-language-model-api",
 				"provider-config/xai-grok",
 				"provider-config/mistral-ai",
+				"provider-config/baseten",
+				"provider-config/fireworks-ai",
 				"provider-config/deepseek",
 				"provider-config/groq",
 				"provider-config/cerebras",
@@ -161,7 +217,12 @@ const sidebars: SidebarsConfig = {
 		{
 			type: "category",
 			label: "ローカルモデル実行",
-			items: ["running-models-locally/read-me-first", "running-models-locally/lm-studio", "running-models-locally/ollama"],
+			items: [
+				"running-models-locally/read-me-first",
+				"running-models-locally/overview",
+				"running-models-locally/lm-studio",
+				"running-models-locally/ollama",
+			],
 		},
 		{
 			type: "category",

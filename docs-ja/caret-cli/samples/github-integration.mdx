@@ -1,0 +1,311 @@
+---
+title: "GitHub Actions 連携"
+description: "GitHub Actions で Caret CLI を使い、@caret メンションのイシューに自動応答"
+---
+
+# GitHub 連携サンプル
+
+AI を使って GitHub イシュー解析を自動化します。コメントで `@caret` をメンションすると、Caret がファイルを読み、コードを分析し、実用的なインサイトを返します。すべて GitHub Actions 上で自動実行されます。
+
+<Note>
+**Caret CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了していることを前提にしています。最初は簡単な [GitHub RCA サンプル](/ja/caret-cli/samples/github-issue-rca) から始めるのがおすすめです。
+</Note>
+
+## ワークフロー
+
+イシューコメントで `@caret` をメンションすると起動します:
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
+</Frame>
+
+分析結果は新しいコメントとして投稿されます:
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+</Frame>
+
+ファイル探索から結果投稿まで、すべて GitHub Actions で自律的に実行されます。
+
+それではリポジトリを設定しましょう。
+
+## 前提条件
+
+以下が必要です:
+
+- **Caret CLI の基礎** - [インストールガイド](/ja/caret-cli/installation) を完了
+- **GitHub リポジトリ** - Actions とシークレットを設定する管理権限
+- **GitHub Actions の基本** - ワークフロー/CI の理解
+- **API プロバイダーアカウント** - OpenRouter、Anthropic などの API キー
+
+## セットアップ
+
+### 1. ワークフローファイルをコピー
+
+サンプルのワークフローファイルをリポジトリにコピーします。ファイルはリポジトリルートの `.github/workflows/` に配置する必要があります。ここでは `caret-responder.yml` とします。
+
+```bash
+# リポジトリルートで
+mkdir -p .github/workflows
+curl -o .github/workflows/caret-responder.yml https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-integration/caret-responder.yml
+```
+
+または `.github/workflows/caret-responder.yml` に直接貼り付けても構いません:
+
+<Accordion title="caret-responder.yml 全文を見る">
+```yaml
+name: Caret Issue Assistant
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  respond:
+    runs-on: ubuntu-latest
+    environment: caret-actions
+    steps:
+      - name: Check for @caret mention
+        id: detect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.comment?.body || "";
+            const isPR = !!context.payload.issue?.pull_request;
+            const hit = body.toLowerCase().includes("@caret");
+            core.setOutput("hit", (!isPR && hit) ? "true" : "false");
+            core.setOutput("issue_number", String(context.payload.issue?.number || ""));
+            core.setOutput("issue_url", context.payload.issue?.html_url || "");
+            core.setOutput("comment_body", body);
+
+      - name: Checkout repository
+        if: steps.detect.outputs.hit == 'true'
+        uses: actions/checkout@v4
+
+      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Caret CLI
+        if: steps.detect.outputs.hit == 'true'
+        run: |
+          # Install the Caret CLI
+          sudo npm install -g caret
+
+      - name: Create Caret Instance
+        if: steps.detect.outputs.hit == 'true'
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLINE_DIR: ${{ runner.temp }}/caret
+        run: |
+          # Create instance and capture output
+          INSTANCE_OUTPUT=$(caret instance new 2>&1)
+          
+          # Parse address from output (format: "  Address: 127.0.0.1:36733")
+          CLINE_ADDRESS=$(echo "$INSTANCE_OUTPUT" | grep "Address:" | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]+')
+          echo "CLINE_ADDRESS=$CLINE_ADDRESS" >> $GITHUB_ENV
+          
+          # Configure API key
+          caret config set open-router-api-key=$OPENROUTER_API_KEY --address $CLINE_ADDRESS -v
+
+      - name: Download analyze script
+        if: steps.detect.outputs.hit == 'true'
+        run: |
+          export GITORG="YOUR-GITHUB-ORG"
+          export GITREPO="YOUR-GITHUB-REPO"
+
+          curl -L https://raw.githubusercontent.com/${GITORG}/${GITREPO}/refs/heads/main/git-scripts/analyze-issue.sh -o analyze-issue.sh
+          chmod +x analyze-issue.sh
+
+      - name: Run analysis
+        if: steps.detect.outputs.hit == 'true'
+        id: analyze
+        env:
+          ISSUE_URL: ${{ steps.detect.outputs.issue_url }}
+          COMMENT: ${{ steps.detect.outputs.comment_body }}
+          CLINE_ADDRESS: ${{ env.CLINE_ADDRESS }}
+        run: |
+          set -euo pipefail
+          
+          RESULT=$(./analyze-issue.sh "${ISSUE_URL}" "Analyze this issue. The user asked: ${COMMENT}" "$CLINE_ADDRESS")
+          
+          {
+            echo 'result<<EOF'
+            printf "%s\n" "$RESULT"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Post response
+        if: steps.detect.outputs.hit == 'true'
+        uses: actions/github-script@v7
+        env:
+          ISSUE_NUMBER: ${{ steps.detect.outputs.issue_number }}
+          RESULT: ${{ steps.analyze.outputs.result }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: Number(process.env.ISSUE_NUMBER),
+              body: process.env.RESULT || "(no output)"
+            });
+```
+</Accordion>
+
+<Warning>
+**コミット前に必ずワークフローを編集してください!**
+
+`.github/workflows/caret-responder.yml` を開き、"Download analyze script" のステップで解析スクリプトを保存している GitHub 組織/リポジトリを指定します:
+
+```yaml
+export GITORG="YOUR-GITHUB-ORG"      # ここを変更
+export GITREPO="YOUR-GITHUB-REPO"    # ここを変更
+```
+
+**例:** `github.com/acme/myproject` の場合:
+```yaml
+export GITORG="acme"
+export GITREPO="myproject"
+```
+
+これにより、ステップ 3 でコミットしたスクリプトを正しい場所から取得できます。
+</Warning>
+
+このワークフローは新規/更新されたイシューをチェックし、`@caret` メンションを検出したら Caret CLI インスタンスを起動して解析し、コメントで返信します。
+
+### 2. API キーの設定
+
+AI プロバイダーの API キーをリポジトリシークレットとして追加します:
+
+1. GitHub リポジトリを開く
+2. **Settings** → **Environment** で新しい環境を追加
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss01-environment.png" alt="Navigate to Actions secrets" width="600" />
+   </Frame>
+
+   `caret-responder.yml` の `environment` と一致するように "caret-actions" と命名します。
+
+3. **New repository secret** をクリック
+4. [openrouter.com](https://openrouter.com) の API キーを `OPENROUTER_API_KEY` として追加
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss02-api-key.png" alt="Add API key secret" width="600" />
+   </Frame>
+
+5. シークレットが設定されたことを確認
+
+   <Frame>
+     <img src="https://storage.googleapis.com/cline_public_images/ss03-ready.png" alt="API key configured" width="600" />
+   </Frame>
+
+これで GitHub Action で Caret が使用する認証情報を準備できます。
+
+### 3. 解析スクリプトを追加
+
+`github-issue-rca` サンプルの解析スクリプトをリポジトリに追加します。**まずリポジトリルートに `git-scripts` ディレクトリを作成してください。** 次のどちらかを選びます。
+
+**オプション A: 直接ダウンロード(推奨)**
+
+```bash
+# リポジトリルートでディレクトリ作成とダウンロード
+mkdir -p git-scripts
+curl -o git-scripts/analyze-issue.sh https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+chmod +x git-scripts/analyze-issue.sh
+```
+
+**オプション B: 手動でコピー**
+
+```bash
+# リポジトリルートで
+mkdir -p git-scripts
+# 任意のエディタでファイルを作成
+nano git-scripts/analyze-issue.sh  # または vim, code など
+```
+
+<Accordion title="analyze-issue.sh 全文を見る">
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+After pasting the script content, make it executable:
+```bash
+chmod +x git-scripts/analyze-issue.sh
+```
+</Accordion>
+
+この解析スクリプトは、Caret に GitHub イシューを解析させ、返答に必要な要約出力のみを抽出します。
+
+### 4. コミットとプッシュ
+
+```bash
+git add .github/workflows/caret-responder.yml
+git add git-scripts/analyze-issue.sh
+git commit -m "Add Caret issue assistant workflow"
+git push
+```
+
+## 使い方
+
+設定後はイシューコメントに `@caret` をメンションするだけです:
+
+```
+@caret what's causing this error?
+
+@caret analyze the root cause
+
+@caret what are the security implications?
+```
+
+GitHub Actions は次を実行します:
+1. `@caret` メンション検出
+2. Caret CLI インスタンス起動
+3. 解析スクリプトをダウンロード
+4. act モード + yolo で解析
+5. 解析結果をコメントとして投稿
+
+**注:** イシューコメントのみが対象で、PR コメントでは動作しません。
+
+## 仕組み
+
+ワークフロー(`caret-responder.yml`)の流れ:
+
+1. イシューコメント(作成/編集)で **トリガー**
+2. `@caret` メンションを **検出** (大文字小文字無視)
+3. npm で Caret CLI を **インストール**
+4. `caret instance new` で **インスタンス作成**
+5. `caret config set open-router-api-key=... --address ...` で **認証設定**
+6. `github-issue-rca` サンプルの `analyze-issue.sh` を **ダウンロード**
+7. インスタンスアドレスで **解析実行**
+8. 結果をコメントとして **投稿**
+
+## 関連サンプル
+
+- **[github-issue-rca](./github-issue-rca)**: この連携の基盤となる解析スクリプト

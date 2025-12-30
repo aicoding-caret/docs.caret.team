@@ -1,0 +1,68 @@
+---
+title: "右サイドバーで Caret を開く"
+description: "VS Code と Cursor で Caret を右サイドバーに表示する方法"
+---
+
+<Note>
+キャレット(Caret)基準の文書です。Caret v3.38.1 マージ版に準拠し、エディター対応や UI ラベルの差異があれば `<Note>` で示します。
+</Note>
+
+<Note>
+ブランディング/UI: `caret-docs/features/f03-branding-ui.md` に従い、Caret のブランディング(アイコン/ラベル/バナー)を優先します。
+</Note>
+
+初期状態では Caret は VS Code 左側のサイドバーに表示されます。より快適な作業のために右サイドバーへ移動することを推奨します。左にファイル、右に Caret を配置でき、コードベースを見ながら対話できます。
+
+## VS Code
+
+右サイドバーで開く手順:
+
+<Steps>
+  <Step title="拡張ビューの整列">
+    拡張ビューが左側に縦表示されていることを確認します。
+  </Step>
+  <Step title="右側ビューを開く">
+    右側パネルを開くボタン(通常 GitHub Copilot チャット用)をクリックします。必要に応じて `Option + CMD/Ctrl + B` も使えます。
+  </Step>
+  <Step title="Caret アイコンをドラッグ">
+    Caret アイコンを右側パネル上部のナビ領域にドラッグします。
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/vscode_right_view.gif"
+		alt="VS Code Right Sidebar Setup"
+	/>
+</Frame>
+
+## Cursor
+
+Cursor で右サイドバーに表示する手順:
+
+<Steps>
+  <Step title="アクティビティバーの向き">
+    Cursor はデフォルトで横向きアクティビティバーです([詳細](https://cursor.com/docs/configuration/migrations/vscode#activity-bar-orientation))。縦向きに変更するには:
+    
+    1. コマンドパレットを開く (`CMD/Ctrl + Shift + P`)
+    2. "Preferences: Open Settings (UI)" を検索
+    3. `workbench.activityBar.orientation` を検索
+    4. 値を `vertical` に設定
+    5. Cursor を再起動
+  </Step>
+  <Step title="AI パネルを開く">
+    Cursor のキューブアイコン(AI Pane)をクリックして右側パネルを開きます。
+  </Step>
+  <Step title="Caret をドラッグ">
+    Caret アイコンを AI Pane のサイドバーへドラッグします。
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/Cursor-sidebar.gif"
+		alt="Cursor Right Sidebar Setup"
+	/>
+</Frame>
+
+設定後は右側で Caret が読み込まれ、通常通り使用できます。

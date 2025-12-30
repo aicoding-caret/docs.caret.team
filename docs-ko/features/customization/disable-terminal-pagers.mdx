@@ -1,24 +1,24 @@
 ---
 title: "Caret 세션에서 터미널 페이저 비활성화"
-description: "Caret이 명령을 실행할 때 CLINE_ACTIVE 환경 변수를 감지해 less 같은 페이저를 비활성화합니다."
+description: "Caret가 명령을 실행할 때 less 같은 페이저를 비활성화해 비대화형 출력으로 만들기"
 ---
 
-Git 같은 CLI는 `less`와 같은 페이저를 사용해 스크롤 가능한 출력을 제공합니다. 하지만 Caret이 터미널에서 명령을 실행할 때는 이 인터랙션이 진행을 막을 수 있습니다. Caret이 실행한 터미널에서는 페이저를 꺼두면 출력이 바로 흘러가며 막힘 없이 진행됩니다.
+많은 CLI 도구(Git 등)는 `less` 같은 페이저를 사용해 스크롤 가능한 출력 방식을 제공합니다. Caret가 터미널 명령을 실행할 때 이 인터랙션이 방해가 될 수 있으며, 페이저가 첫 페이지에서 멈춰 작업이 진행되지 않기도 합니다. 이때 Caret가 실행한 터미널에서는 페이저가 비활성화되도록 셸 설정을 추가할 수 있습니다.
 
-## 동작 원리
+## 동작 방식
 
-Caret은 명령 실행용 터미널을 열 때 다음 환경 변수를 설정합니다:
+Caret는 명령을 실행하는 터미널에 환경 변수를 설정합니다:
 
-- `CLINE_ACTIVE` — Caret이 실행한 셸이면 값이 설정됨
+- `CLINE_ACTIVE` — Caret가 실행한 셸이면 값이 비어 있지 않습니다.
 
-셸 시작 파일에서 이 변수를 감지해 Caret 세션에만 페이저를 끄도록 설정할 수 있습니다. 이렇게 하면 일반 터미널은 기존 동작을 유지합니다.
+셸 시작 파일에서 이 변수를 감지해 Caret 세션에서만 환경 변수나 alias를 바꿀 수 있습니다. 그러면 평소 사용하던 터미널은 그대로 유지됩니다.
 
 ## 빠른 설정 (Zsh/Bash)
 
-아래 내용을 `~/.zshrc`, `~/.bashrc`, 또는 `~/.bash_profile`에 추가하세요:
+`~/.zshrc`, `~/.bashrc`, `~/.bash_profile` 중 사용 중인 파일에 아래를 추가하세요:
 
 ```bash
-# Caret이 실행한 터미널에서는 페이저 비활성화
+# Caret가 실행한 터미널에서 페이저 비활성화
 if [[ -n "$CLINE_ACTIVE" ]]; then
   export PAGER=cat
   export GIT_PAGER=cat
@@ -28,30 +28,30 @@ fi
 ```
 
 <Note>
-- `PAGER=cat`은 일반 페이저 지원 도구가 stdout으로 직접 출력되도록 합니다
-- `GIT_PAGER=cat`은 Git이 `less`를 호출하지 못하게 합니다
-- `SYSTEMD_PAGER=cat`은 systemd 도구의 페이징을 끕니다(해당 도구가 있을 때)
-- `LESS="-FRX"`는 여전히 `less`가 호출될 경우에도 스트리밍처럼 동작하게 합니다
+- `PAGER=cat`은 일반 페이저 지원 도구가 바로 stdout으로 출력되게 합니다.
+- `GIT_PAGER=cat`은 Git이 `less`를 호출하는 것을 막습니다.
+- `SYSTEMD_PAGER=cat`은 systemd 도구의 페이징을 비활성화합니다.
+- `LESS="-FRX"`는 `less`를 스트리밍 출력처럼 동작하게 합니다.
 </Note>
 
-`CLINE_ACTIVE`가 설정된 경우에만 적용되므로, 일반 터미널의 인터랙션은 그대로 유지됩니다.
+이 설정은 `CLINE_ACTIVE`가 있을 때만 적용되므로 일반 터미널은 기존 동작을 유지합니다.
 
-## 확인 방법
+## 확인
 
-- Caret에서 터미널 명령을 실행한 뒤:
-  - `echo "$CLINE_ACTIVE"`가 비어 있지 않은 값인지 확인
-  - `git log` 등 긴 출력이 멈추지 않고 흐르는지 확인
-- 적용이 안 된다면:
-  - 올바른 셸 시작 파일을 수정했는지 확인
-  - VS Code/Cursor를 재시작해 통합 터미널이 셸 설정을 다시 읽게 함
-  - 터미널 프로필이 `~/.zshrc` 또는 `~/.bashrc`를 실제로 로드하는지 확인
+- Caret에서 터미널 명령을 실행한 뒤 다음을 확인하세요:
+  - `echo "$CLINE_ACTIVE"`가 비어 있지 않음
+  - `git log` 같은 긴 출력이 멈추지 않고 스트리밍됨
+- 적용되지 않는다면:
+  - 올바른 시작 파일(`~/.zshrc` 또는 `~/.bashrc`)을 수정했는지 확인
+  - VS Code/Cursor를 재시작해 통합 터미널이 설정을 다시 로드하도록 함
+  - 터미널 프로필에서 해당 rc 파일을 소스로 읽는지 확인
 
-## 선택적 설정
+## 선택 사항
 
-- 환경 변수에 의존하지 않고 명령 옵션으로 처리할 수도 있습니다:
+- 환경 변수를 쓰고 싶지 않다면 명령 옵션을 사용할 수 있습니다:
 
 ```bash
-# 단발성 실행 (alias 없이)
+# 일회성 실행 (alias 없음)
 git --no-pager log -n 50 --decorate --oneline
 systemctl --no-pager status nginx
 journalctl --no-pager -u nginx -n 200
@@ -62,13 +62,18 @@ less -FRX README.md
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then
-  # less를 비대화형으로
+  # less를 비대화형으로 사용
   alias less='less -FRX'
-  # 자주 쓰는 도구는 옵션으로 페이저 비활성화
+  # 공통 도구에 페이저 비활성화 옵션 적용
   alias git='command git --no-pager'
   alias systemctl='command systemctl --no-pager'
   alias journalctl='command journalctl --no-pager'
 fi
 ```
 
-- 환경 변수 방식은 하위 프로세스에도 전파되며, alias는 현재 셸에만 적용됩니다. 워크플로에 맞는 방법을 선택하세요.
+- 환경 변수 대신 도구별 페이저 변수를 사용할 수도 있습니다:
+  - Git: `GIT_PAGER=cat`
+  - Systemd: `SYSTEMD_PAGER=cat`
+  - Man 페이지: `MANPAGER=cat` (보통은 필요 없음)
+
+- alias는 현재 쉘에만 적용되고, 환경 변수는 자식 프로세스에 전파됩니다. 워크플로우에 맞는 방식을 선택하세요.

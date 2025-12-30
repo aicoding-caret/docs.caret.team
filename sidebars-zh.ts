@@ -20,11 +20,18 @@ const sidebars: SidebarsConfig = {
 				"getting-started/what-is-caret",
 				"getting-started/installing-caret",
 				"getting-started/model-selection-guide",
+				"getting-started/selecting-your-model",
+				"getting-started/your-first-project",
 				"getting-started/understanding-context-management",
 				"getting-started/for-new-coders",
 				"getting-started/task-management",
 				"getting-started/installing-dev-essentials",
 			],
+		},
+		{
+			type: "category",
+			label: "介绍",
+			items: ["introduction/welcome", "introduction/overview"],
 		},
 		{
 			type: "category",
@@ -91,6 +98,7 @@ const sidebars: SidebarsConfig = {
 				"features/checkpoints",
 				"features/caret-rules",
 				"features/editing-messages",
+				"features/hooks",
 				{
 					type: "category",
 					label: "@ 提及",
@@ -115,6 +123,8 @@ const sidebars: SidebarsConfig = {
 						"features/slash-commands/report-bug",
 						"features/slash-commands/smol",
 						"features/slash-commands/workflows",
+						"features/slash-commands/workflows/quickstart",
+						"features/slash-commands/workflows/best-practices",
 					],
 				},
 				{
@@ -128,12 +138,53 @@ const sidebars: SidebarsConfig = {
 						"features/commands-and-shortcuts/terminal-integration",
 					],
 				},
+				{
+					type: "category",
+					label: "自定义",
+					items: [
+						"features/customization/opening-caret-in-sidebar",
+						"features/customization/disable-terminal-pagers",
+					],
+				},
+				{
+					type: "category",
+					label: "任务",
+					items: ["features/tasks/understanding-tasks", "features/tasks/task-management"],
+				},
+			],
+		},
+		{
+			type: "category",
+			label: "Caret CLI",
+			items: [
+				"caret-cli/overview",
+				"caret-cli/installation",
+				"caret-cli/three-core-flows",
+				"caret-cli/cli-reference",
+				{
+					type: "category",
+					label: "示例",
+					items: [
+						"caret-cli/samples/overview",
+						"caret-cli/samples/github-integration",
+						"caret-cli/samples/github-issue-rca",
+					],
+				},
 			],
 		},
 		{
 			type: "category",
 			label: "提升提示技巧",
 			items: ["prompting/prompt-engineering-guide", "prompting/caret-memory-bank"],
+		},
+		{
+			type: "category",
+			label: "模型配置",
+			items: [
+				"core-features/model-selection-guide",
+				"model-config/model-comparison",
+				"model-config/context-windows",
+			],
 		},
 		{
 			type: "category",
@@ -145,6 +196,7 @@ const sidebars: SidebarsConfig = {
 				"provider-config/ollama",
 				"provider-config/openai-compatible",
 				"provider-config/openrouter",
+				"provider-config/baseten",
 				"provider-config/deepseek",
 				"provider-config/groq",
 				"provider-config/cerebras",
@@ -187,12 +239,17 @@ const sidebars: SidebarsConfig = {
 		{
 			type: "category",
 			label: "本地运行模型",
-			items: ["running-models-locally/read-me-first", "running-models-locally/ollama", "running-models-locally/lm-studio"],
+			items: [
+				"running-models-locally/overview",
+				"running-models-locally/read-me-first",
+				"running-models-locally/ollama",
+				"running-models-locally/lm-studio",
+			],
 		},
 		{
 			type: "category",
 			label: "故障排除",
-			items: ["troubleshooting/terminal-integration-guide"],
+			items: ["troubleshooting/terminal-integration-guide", "troubleshooting/terminal-quick-fixes"],
 		},
 		{
 			type: "category",
@@ -207,6 +264,7 @@ const sidebars: SidebarsConfig = {
 			type: "category",
 			label: "企业级解决方案",
 			items: [
+				"enterprise-solutions/overview",
 				"enterprise-solutions/cloud-provider-integration",
 				"enterprise-solutions/custom-instructions",
 				"enterprise-solutions/mcp-servers",

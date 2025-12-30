@@ -1,0 +1,83 @@
+---
+title: "Caret 企业版"
+sidebarTitle: "概览"
+description: "面向大规模部署的安全、治理与可观测性"
+---
+
+<Note>
+本文基于 Caret v3.38.1 合并版本整理。若有企业部署/认证/路由/遥测差异，会以 `<Note>` 标注。
+</Note>
+
+Caret 企业版在开源架构之上提供集中治理。代码留在你的环境中，推理由你掌控，同时获得平台团队需要的安全与可观测能力。
+
+<Card title="了解企业版" icon="building" href="https://caret.bot/enterprise">
+  访问官网了解企业功能、定价和部署选项。
+</Card>
+
+## 你将获得
+
+### 安全优先
+
+代码不会离开你的环境，不上传、不索引、不训练。
+
+<CardGroup cols={2}>
+  <Card title="客户端执行" icon="computer">
+    所有处理在本地环境内完成
+  </Card>
+
+  <Card title="无数据外流" icon="shield-check">
+    代码与上下文不被传出
+  </Card>
+
+  <Card title="不做索引" icon="database">
+    仓库不会被索引或缓存
+  </Card>
+
+  <Card title="不用于训练" icon="ban">
+    代码与提示词不用于训练
+  </Card>
+</CardGroup>
+
+### 自带推理
+
+使用你现有的云合同和价格。Caret 直接连接推理提供商，避免加价与锁定。
+
+支持：
+- AWS Bedrock
+- Google Vertex AI
+- Azure OpenAI
+- Anthropic direct
+- OpenAI direct
+- Cerebras
+- 任何 OpenAI 兼容端点
+
+### 可扩展治理
+
+- **SSO**
+- **RBAC**
+- **模型/工具控制**
+- **远程配置**
+- **完整审计日志**
+
+### 完整可观测性
+
+- **OpenTelemetry 导出**
+- **实时分析**
+- **成本拆分**
+- **JSON 输出**
+
+## 部署
+
+支持云端、私有化和隔离网络部署。典型流程:
+
+1. 连接 Caret Core
+2. 配置 SSO/RBAC
+3. 分发给开发者
+4. 监控使用情况
+
+## 下一步
+
+- [安全架构](/zh/enterprise-solutions/security-concerns)
+- [云提供商配置](/zh/provider-config/aws-bedrock/api-key)
+- [MCP 服务器](/zh/mcp/mcp-overview)
+- [自定义指令](/zh/features/caret-rules)

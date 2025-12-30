@@ -1,0 +1,404 @@
+---
+title: "Hooks"
+sidebarTitle: "Hooks"
+description: "Caret ワークフローにカスタムロジックを注入し、操作検証やツール利用の監視、AI の判断を制御します。"
+---
+
+<Note>
+キャレット(Caret)基準の文書です。Caret v3.38.1 マージ版に準拠し、許可スコープや認証/ルーティング、ロギング/テレメトリ差異があれば `<Note>` で示します。
+</Note>
+
+<Note>
+Caret のアカウント/組織フックは `caret-docs/features/f04-caret-account.md` に基づき、アカウント情報がフックデータに含まれる場合があります。ログ/テレメトリは `caret-src/utils/` を参照します。
+</Note>
+
+Hooks は Caret ワークフローの特定タイミングでカスタムロジックを注入し、操作の検証、ツール使用の監視、AI の意思決定の制御を可能にします。
+
+Hooks はイベント発生時に自動で実行されます。詳細情報を受け取り、問題のある操作を事前にブロックしたり、今後の判断に役立つコンテキストを注入できます。
+
+例えば:
+
+- 問題のある操作を阻止(例: TypeScript で `.js` 作成をブロック)
+- 実行フローからプロジェクト知識を蓄積
+- パフォーマンス監視と早期検知
+- 監査/分析のためのトラッキング
+- 外部ツール/サービスの適切なタイミング連携
+
+<Warning>
+Hooks は現在 macOS / Linux のみ対応です。Windows は未対応です。
+</Warning>
+
+## 始め方
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
+</Frame>
+
+Caret で Hooks を有効にする手順:
+
+<Steps>
+<Step title="設定で Hooks を有効化">
+Caret 設定で **"Enable Hooks"** を有効にします。
+
+手順:
+1. Caret を開く
+2. 右上の "Settings" をクリック
+3. 左側の "Feature" セクションをクリック
+4. "Enable Hooks" をチェック
+</Step>
+
+<Step title="Hooks の配置場所を選ぶ">
+
+**個人/組織共通 Hooks:**
+- `~/Documents/Caret/Rules/Hooks/` に作成
+- すべてのワークスペースに適用
+
+**プロジェクト専用 Hooks:**
+- プロジェクトルートの `.agents/hooks/` に作成
+- 해당ワークスペースのみ適用
+- VCS にコミットして共有可能
+</Step>
+
+<Step title="最初の Hook を作成">
+Hook ファイルは拡張子なしの **正確なファイル名** が必要です(例: TaskStart)。
+
+```bash
+# Hook ファイル作成
+vim .agents/hooks/TaskStart
+```
+
+スクリプトを追加(シェバン必須):
+``` bash
+#!/usr/bin/env bash
+
+# Store piped input into a variable
+input=$(cat)
+
+# Dump the entire JSON payload
+echo "$input" | jq .
+
+# Get the type of a field
+echo "$input" | jq -r '.timestamp | type'
+```
+
+この例は `input=$(cat)` で JSON を受け取り、`jq` で構造を確認する基本を示します。
+
+**実行権限を付与**
+
+```bash
+chmod +x .agents/hooks/TaskStart
+```
+</Step>
+
+<Step title="Hook のテスト">
+Caret でタスクを開始し、Hook が実行されるか確認します。
+</Step>
+</Steps>
+
+<Tip>
+まずはログを出すだけの簡単な Hook から始めると、データ構造とタイミングが理解しやすくなります。
+</Tip>
+
+## 何ができる？
+
+<CardGroup cols={2}>
+  <Card title="インテリジェントコードレビュー" icon="code-branch">
+    保存前に lint や検証を実行して問題をブロック。品質メトリクスも追跡できます。
+  </Card>
+  
+  <Card title="セキュリティ強制" icon="shield-halved">
+    ポリシー違反を事前にブロックし、機密情報の露出を検出します。
+  </Card>
+  
+  <Card title="開発分析" icon="chart-line">
+    実行時間を計測し、AI の作業パターンを分析してレポート化。
+  </Card>
+  
+  <Card title="統合ハブ" icon="plug">
+    キーワードで外部サービスを呼び出し、Issue トラッカーを更新。
+  </Card>
+</CardGroup>
+
+Hooks は Caret のワークフローと外部エコシステムをつなぐ接着剤です。
+
+## Hook Types
+
+Caret はさまざまなフックタイプを提供し、AI ワークフローの異なる段階にアクセスできます。
+
+<Note>
+以下の Hook 名は **正確なファイル名** です。例: TaskStart を使う場合は `TaskStart` というファイル名(拡張子なし)で作成します。
+</Note>
+
+各 Hook は `clineVersion`, `hookName`, `timestamp`, `taskId`, `workspaceRoots`, `userId` などの共通フィールドを受け取ります。
+
+### Tool Execution
+
+#### PreToolUse
+
+ツール実行前に呼ばれます。無効な操作をブロックしたりパラメータを検証できます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preToolUse": {
+    "toolName": "string",
+    "parameters": {}
+  }
+}
+```
+
+#### PostToolUse
+
+ツール実行後に呼ばれます。結果やパフォーマンスの学習に使えます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PostToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "postToolUse": {
+    "toolName": "string",
+    "parameters": {},
+    "result": "string",
+    "success": boolean,
+    "executionTimeMs": number
+  }
+}
+```
+
+### User Interaction
+
+#### UserPromptSubmit
+
+ユーザーがメッセージを送信した時に実行されます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "UserPromptSubmit",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "userPromptSubmit": {
+    "prompt": "string",
+    "attachments": ["string"]
+  }
+}
+```
+
+### Task Lifecycle
+
+#### TaskStart
+
+タスク開始時に実行されます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskStart",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskStart": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "initialTask": "string"
+    }
+  }
+}
+```
+
+#### TaskResume
+
+タスク再開時に実行されます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskResume",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskResume": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    },
+    "previousState": {
+      "lastMessageTs": "string",
+      "messageCount": "string",
+      "conversationHistoryDeleted": "string"
+    }
+  }
+}
+```
+
+#### TaskCancel
+
+タスクキャンセル時に実行されます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskCancel",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskCancel": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "completionStatus": "string"
+    }
+  }
+}
+```
+
+{/*
+#### TaskComplete
+
+タスク完了時に実行されます。
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskComplete",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskComplete": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    }
+  }
+}
+```
+*/}
+
+### System Events
+
+{/*
+#### PreCompact
+
+**Input Fields:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreCompact",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preCompact": {
+    "contextSize": number,
+    "messagesToCompact": number,
+    "compactionStrategy": "string"
+  }
+}
+```
+*/}
+
+### JSON Communication
+
+Hooks は stdin で JSON を受け取り、stdout に JSON を返します。
+
+**Output structure:**
+```json
+{
+  "cancel": false,
+  "contextModification": "WORKSPACE_RULES: Use TypeScript",
+  "errorMessage": "Error details if blocking"
+}
+```
+
+stdout にログを出しても構いませんが、**最後は必ず JSON** である必要があります。Caret は最後の JSON オブジェクトのみを読み取ります。
+
+例:
+```bash
+#!/usr/bin/env bash
+echo "Processing hook..."  # OK
+echo "Tool: $tool_name"    # OK
+# JSON は最後に:
+echo '{"cancel": false}'
+```
+
+`cancel` は実行の可否を制御します。`true` でブロック、`false` で許可。
+
+`contextModification` は次回以降の AI 判断に影響します。`WORKSPACE_RULES:` などの接頭辞が有効です。
+
+### コンテキストのタイミング
+
+1. AI はすでに行動を決めている
+2. Hook で許可/ブロック
+3. コンテキストを追加
+4. 次の AI リクエストで反映
+
+即時効果が必要なら PreToolUse で `cancel: true` を返してブロックします。
+
+## トラブルシューティング
+
+### Hook が動かない
+- "Enable Hooks" が有効か確認
+- Hook ファイルが実行可能(`chmod +x hookname`)か確認
+- 文法エラーがないか確認
+- VS Code の Output(Caret) を確認
+
+### Hook がタイムアウトする
+- スクリプトの複雑度を下げる
+- ネットワークや重い処理を避ける
+- 背景プロセスに分離する
+
+### コンテキストが反映されない
+`contextModification` は **次の** AI リクエストに反映されます。即時反映が必要なら PreToolUse で `cancel: true` を返してブロックしてください。50KB の制限で切り捨てられる場合もあるため注意してください。
+
+### JSON 内のクォートを安全に扱う
+
+```bash
+#!/usr/bin/env bash
+
+# When $output contains unescaped quote characters (")...
+output='{"foo":"bar"}'
+
+# Use the --arg flag for automatic string escaping
+jq -n --arg ctx "$output" '{cancel: false, contextModification: $ctx}'
+
+# This will result in:
+# {
+#     "cancel": false,
+#     "contextModification": "{\"foo\":\"bar\"}"
+# }
+```
+
+`--arg` は特殊文字を自動エスケープし、JSON パースエラーを防ぎます。
+
+<Warning>
+Hooks は VS Code と同じ権限で実行されます。信頼できないソースの Hooks は有効化前に必ずレビューしてください。
+</Warning>
+
+## 関連機能
+
+- [Caret Rules](/ja/features/caret-rules)
+- [Checkpoints](/ja/features/checkpoints)
+- [Auto-Approve](/ja/features/auto-approve)

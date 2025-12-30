@@ -1,0 +1,307 @@
+---
+title: "GitHub Issue RCA 示例"
+description: "使用 Caret CLI 自动分析 GitHub Issue 并定位根因。"
+---
+
+# GitHub 根因分析
+
+使用 Caret CLI 自动分析 GitHub Issue 的示例。通过 Caret 自治 AI 获取、分析并定位根因，输出清晰可解析的结果，便于集成到工作流中。
+
+<Note>
+**第一次使用 Caret CLI？** 请先完成 [安装指南](/zh/caret-cli/installation) 并执行 `caret auth`。
+</Note>
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/cli-rca.gif" alt="CLI Root Cause Analysis Demo" width="600" />
+</Frame>
+
+## 前置条件
+
+- **已安装并认证 Caret CLI** ([安装指南](/zh/caret-cli/installation))
+- **至少一个模型提供商** (OpenRouter/Anthropic/OpenAI 等)
+- **基本 CLI 使用**
+
+还需要:
+
+- **GitHub CLI**(`gh`) 安装并认证
+- **jq** 用于 JSON 解析
+- **bash** 或兼容 shell
+
+### 安装说明
+
+#### macOS
+
+<Note>
+需要先安装 [Homebrew](https://brew.sh/):
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+</Note>
+
+```bash
+brew install gh
+brew install jq
+gh auth login
+```
+
+#### Linux
+
+```bash
+sudo apt install gh
+sudo apt install jq
+gh auth login
+```
+
+## 获取脚本
+
+**方案 1: curl 直接下载**
+```bash
+curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+```
+
+**方案 2: 复制完整脚本**
+
+<Accordion title="查看完整 analyze-issue.sh">
+
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+</Accordion>
+
+<Note>
+脚本准备好后，请赋予执行权限：
+```bash
+chmod +x analyze-issue.sh
+```
+</Note>
+
+## 快速使用示例
+
+### 基础用法
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123
+```
+
+### 自定义问题
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
+```
+
+### 指定实例
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123 \
+    "What is the root cause of this issue?" \
+    127.0.0.1:46529
+```
+
+<Warning>
+适用于:
+- 多实例并行
+- 远程实例
+- 特定配置测试
+</Warning>
+
+<Note>
+脚本会自动完成抓取、分析与展示，通常耗时 30-60 秒。
+</Note>
+
+## 工作原理
+
+### 参数校验
+
+```bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'Analyze security impact' 127.0.0.1:46529"
+    exit 1
+fi
+```
+
+### 参数解析
+
+```bash
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+```
+
+### 核心分析管道
+
+```bash
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+<Accordion title="管道拆解">
+
+**1. `caret -y "$PROMPT: $ISSUE_URL"`**
+
+**2. `--mode act`**
+
+**3. `$ADDRESS`**
+
+**4. `-F json`**
+
+**5. `sed -n '/^{/,$p'`**
+
+**6. `jq -r ...`**
+
+**7. `sed 's/\\n/\n/g'`**
+
+</Accordion>
+
+## 示例输出
+
+```bash
+$ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
+```
+
+**输出:**
+
+```markdown
+**Root Cause Analysis of Issue #2: "setState isn't cutting it"**
+
+After examining the GitHub issue and analyzing the Flutter counter codebase, 
+I've identified the root cause of why setState() is insufficient for this 
+project's needs:
+
+## Current Implementation Problems
+
+The current Flutter counter app uses setState() for state management, which 
+has several limitations:
+
+1. **Local State Only**: setState() only works within a single widget, making 
+   it difficult to share state across the app
+2. **Rebuild Overhead**: Every setState() call rebuilds the entire widget tree, 
+   causing performance issues with complex UIs
+3. **No State Persistence**: State is lost when the widget is disposed
+4. **Testing Challenges**: setState-based logic is tightly coupled to the UI, 
+   making unit testing difficult
+
+## Why This Matters
+
+As the app grows beyond a simple counter, these limitations become critical:
+- Multiple screens need to access the count
+- State needs to persist across navigation
+- Business logic should be testable independently
+- UI should only rebuild when necessary
+
+## Recommended Solutions
+
+The issue mentions "Provider or Bloc" - both are excellent alternatives:
+
+1. **Provider**: Simple, lightweight state management using InheritedWidget
+   - Easy migration path from setState
+   - Good for small to medium apps
+   - Official Flutter recommendation
+
+2. **Bloc**: More structured approach with clear separation between events, 
+   states, and business logic
+   - Better for complex apps
+   - Excellent testability
+   - Clear architectural patterns
+
+3. **Riverpod**: Modern alternative to Provider with better performance and 
+   developer experience
+   - Compile-time safety
+   - Better testing support
+   - More flexible than Provider
+
+4. **GetX**: Full-featured solution with state management, routing, and 
+   dependency injection
+   - Minimal boilerplate
+   - Fast and lightweight
+   - All-in-one solution
+
+## Next Steps
+
+The current codebase needs refactoring to implement proper state management 
+architecture to handle more complex state scenarios effectively. Provider 
+would be the easiest migration path while Bloc provides better long-term 
+scalability.
+```
+
+## 适用场景
+
+### Bug 调查
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/123 \
+    "What is the root cause of this bug?"
+```
+
+### 功能请求分析
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/456 \
+    "What are the implementation challenges?"
+```
+
+### 安全审计
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/789 \
+    "What are the security implications?"
+```
+
+### 文档生成
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/654 \
+    "Provide detailed technical documentation for this issue"
+```
+
+### 代码审查辅助
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/987 \
+    "Review the proposed solution approach"
+```
+
+## 总结
+
+该示例展示了如何:
+
+1. 使用 Caret 构建自治 CLI 工具
+2. 解析 Caret CLI JSON 输出
+3. 编写灵活的自动化脚本
+4. 集成 GitHub Issue 分析
+5. 正确处理命令行参数
+
+## 相关资源
+
+- [CLI 安装指南](/zh/caret-cli/installation)
+- [CLI 参考](/zh/caret-cli/cli-reference)
+- [三大核心流程](/zh/caret-cli/three-core-flows)

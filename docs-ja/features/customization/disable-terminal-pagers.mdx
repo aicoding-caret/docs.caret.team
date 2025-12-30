@@ -1,0 +1,77 @@
+---
+title: "Caret セッション中のターミナルページャーを無効化"
+description: "Caret がコマンドを実行する際に less などのページャーを無効化して非対話出力にする"
+---
+
+多くの CLI ツール(Git など)は `less` などのページャーを使用します。Caret がターミナルでコマンドを実行する際、このインタラクティブな挙動が止まりの原因になることがあります。Caret セッションだけページャーを無効化する設定が可能です。
+
+## 仕組み
+
+Caret はコマンド実行用ターミナルに環境変数を設定します:
+
+- `CLINE_ACTIVE` — Caret によって起動されたシェルで非空
+
+この変数をシェル設定で検出し、Caret セッションのみ設定を変更します。
+
+## クイック設定 (Zsh/Bash)
+
+`~/.zshrc`、`~/.bashrc`、`~/.bash_profile` に追加:
+
+```bash
+# Caret セッションでページャーを無効化
+if [[ -n "$CLINE_ACTIVE" ]]; then
+  export PAGER=cat
+  export GIT_PAGER=cat
+  export SYSTEMD_PAGER=cat
+  export LESS="-FRX"
+fi
+```
+
+<Note>
+- `PAGER=cat` で一般的なページャーを無効化
+- `GIT_PAGER=cat` で Git の `less` を防止
+- `SYSTEMD_PAGER=cat` で systemd ページャー無効化
+- `LESS="-FRX"` で `less` をストリーミング出力風に
+</Note>
+
+`CLINE_ACTIVE` がある場合のみ適用され、通常のターミナルには影響しません。
+
+## 確認
+
+- Caret でターミナルを実行後、次を確認:
+  - `echo "$CLINE_ACTIVE"` が非空
+  - `git log` などが止まらず出力
+- 反映されない場合:
+  - 正しい rc ファイルを編集したか確認
+  - VS Code/Cursor を再起動
+  - ターミナルプロファイルが rc を読み込むか確認
+
+## オプション
+
+- 環境変数を使わずに CLI オプションで無効化:
+
+```bash
+# 一回だけ
+ git --no-pager log -n 50 --decorate --oneline
+systemctl --no-pager status nginx
+journalctl --no-pager -u nginx -n 200
+less -FRX README.md
+```
+
+- Caret セッションのみ alias を設定する方法:
+
+```bash
+if [[ -n "$CLINE_ACTIVE" ]]; then
+  alias less='less -FRX'
+  alias git='command git --no-pager'
+  alias systemctl='command systemctl --no-pager'
+  alias journalctl='command journalctl --no-pager'
+fi
+```
+
+- ツール固有のページャー変数も利用可能:
+  - Git: `GIT_PAGER=cat`
+  - Systemd: `SYSTEMD_PAGER=cat`
+  - Man: `MANPAGER=cat`
+
+- alias は現在のシェルのみ、環境変数は子プロセスへ伝播します。ワークフローに合わせて選択してください。

@@ -1,0 +1,363 @@
+---
+title: "GitHub イシュー RCA サンプル"
+description: "Caret CLI で GitHub イシューを自動分析し根本原因を特定します。"
+---
+
+# GitHub 根本原因分析
+
+Caret CLI を使った GitHub イシューの自動分析サンプルです。Caret の自律 AI によりイシューを取得・分析し、根本原因を特定します。解析結果はワークフローに組み込みやすい形式で出力されます。
+
+<Note>
+**Caret CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了し、`caret auth` で認証済みであることを前提にしています。
+</Note>
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/cli-rca.gif" alt="CLI Root Cause Analysis Demo" width="600" />
+</Frame>
+
+## 前提条件
+
+このサンプルでは以下が完了していることを想定します:
+
+- **Caret CLI** のインストールと認証 ([インストールガイド](/ja/caret-cli/installation))
+- **少なくとも 1 つのモデルプロバイダー** 設定 (例: OpenRouter、Anthropic、OpenAI)
+- **Caret CLI の基本操作** の理解
+
+追加で必要:
+
+- **GitHub CLI**(`gh`) のインストールと認証
+- **jq** のインストール (JSON パース)
+- **bash** シェル (または互換シェル)
+
+### インストール手順
+
+#### macOS
+
+<Note>
+この手順は [Homebrew](https://brew.sh/) が必要です。未導入なら次のコマンドでインストールしてください:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+</Note>
+
+```bash
+# GitHub CLI
+brew install gh
+
+# jq
+brew install jq
+
+# GitHub 認証
+gh auth login
+```
+
+#### Linux
+
+```bash
+# GitHub CLI (Debian/Ubuntu)
+sudo apt install gh
+
+# 他のディストリは: https://cli.github.com/manual/installation
+
+# jq (Debian/Ubuntu)
+sudo apt install jq
+
+# GitHub 認証
+gh auth login
+```
+
+## スクリプト取得
+
+**オプション 1: curl で直接ダウンロード**
+```bash
+curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+```
+
+**オプション 2: スクリプト全文をコピー**
+
+<Accordion title="analyze-issue.sh 全文を見る">
+
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+</Accordion>
+
+<Note>
+**スクリプトを取得したら** 実行権限を付与してください:
+```bash
+chmod +x analyze-issue.sh
+```
+</Note>
+
+## クイック使用例
+
+### 基本使用
+
+スクリプトを保存したディレクトリで実行:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123
+```
+
+実行内容:
+- イシュー #123 を取得
+- 根本原因を分析
+- 推奨事項を含む詳細結果を出力
+
+### カスタムプロンプト
+
+特定の質問で分析:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
+```
+
+### 特定インスタンスの使用
+
+特定の Caret インスタンスを指定:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123 \
+    "What is the root cause of this issue?" \
+    127.0.0.1:46529
+```
+
+<Warning>
+次のケースで有効です:
+- 複数インスタンスを運用している
+- リモート Caret サーバーを使用している
+- 特定設定で検証したい
+</Warning>
+
+<Note>
+スクリプトがイシュー取得から解析までを自動で行います。複雑度により通常 30〜60 秒かかります。
+</Note>
+
+## 仕組み
+
+スクリプトの各要素を確認します。
+
+### 引数検証
+
+入力を検証し使用例を表示:
+
+```bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'Analyze security impact' 127.0.0.1:46529"
+    exit 1
+fi
+```
+
+**ポイント:**
+- 必須の GitHub イシュー URL を検証
+- 明確な使用例
+- 任意のカスタムプロンプト
+- 任意のインスタンスアドレス
+
+### 引数パース
+
+```bash
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+```
+
+**説明:**
+- `ISSUE_URL="$1"` - 1 番目の引数は URL
+- `PROMPT="${2:-...}"` - 2 番目は任意、デフォルトは RCA
+- `ADDRESS` - 3 番目は任意、指定時のみ使用
+
+### コア解析パイプライン
+
+```bash
+# Ask Caret for his analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+<Accordion title="パイプライン分解">
+
+**1. `caret -y "$PROMPT: $ISSUE_URL"`**
+   - `-y` は yolo モード
+   - イシュー URL を含むプロンプト
+
+**2. `--mode act`**
+   - act モードでツール使用
+
+**3. `$ADDRESS`**
+   - インスタンス指定
+
+**4. `-F json`**
+   - JSON 出力
+
+**5. `sed -n '/^{/,$p'`**
+   - JSON 部分のみ抽出
+
+**6. `jq -r 'select(.say == "completion_result") | .text'`**
+   - 完了結果のみ抽出
+
+**7. `sed 's/\\n/\n/g'`**
+   - 改行を復元
+
+</Accordion>
+
+## サンプル出力
+
+実例:
+
+```bash
+$ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
+```
+
+**出力:**
+
+```markdown
+**Root Cause Analysis of Issue #2: "setState isn't cutting it"**
+
+After examining the GitHub issue and analyzing the Flutter counter codebase, 
+I've identified the root cause of why setState() is insufficient for this 
+project's needs:
+
+## Current Implementation Problems
+
+The current Flutter counter app uses setState() for state management, which 
+has several limitations:
+
+1. **Local State Only**: setState() only works within a single widget, making 
+   it difficult to share state across the app
+2. **Rebuild Overhead**: Every setState() call rebuilds the entire widget tree, 
+   causing performance issues with complex UIs
+3. **No State Persistence**: State is lost when the widget is disposed
+4. **Testing Challenges**: setState-based logic is tightly coupled to the UI, 
+   making unit testing difficult
+
+## Why This Matters
+
+As the app grows beyond a simple counter, these limitations become critical:
+- Multiple screens need to access the count
+- State needs to persist across navigation
+- Business logic should be testable independently
+- UI should only rebuild when necessary
+
+## Recommended Solutions
+
+The issue mentions "Provider or Bloc" - both are excellent alternatives:
+
+1. **Provider**: Simple, lightweight state management using InheritedWidget
+   - Easy migration path from setState
+   - Good for small to medium apps
+   - Official Flutter recommendation
+
+2. **Bloc**: More structured approach with clear separation between events, 
+   states, and business logic
+   - Better for complex apps
+   - Excellent testability
+   - Clear architectural patterns
+
+3. **Riverpod**: Modern alternative to Provider with better performance and 
+   developer experience
+   - Compile-time safety
+   - Better testing support
+   - More flexible than Provider
+
+4. **GetX**: Full-featured solution with state management, routing, and 
+   dependency injection
+   - Minimal boilerplate
+   - Fast and lightweight
+   - All-in-one solution
+
+## Next Steps
+
+The current codebase needs refactoring to implement proper state management 
+architecture to handle more complex state scenarios effectively. Provider 
+would be the easiest migration path while Bloc provides better long-term 
+scalability.
+```
+
+## このパターンが有効な場面
+
+自動イシュー分析がワークフローを加速する場面に有効です。
+
+### バグ調査
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/123 \
+    "What is the root cause of this bug?"
+```
+
+### 機能リクエスト分析
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/456 \
+    "What are the implementation challenges?"
+```
+
+### セキュリティ監査
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/789 \
+    "What are the security implications?"
+```
+
+### ドキュメント生成
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/654 \
+    "Provide detailed technical documentation for this issue"
+```
+
+### コードレビュー補助
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/987 \
+    "Review the proposed solution approach"
+```
+
+## まとめ
+
+このサンプルは以下を示します:
+
+1. Caret を使った **自律 CLI ツール** の構築
+2. Caret CLI の **JSON 出力解析**
+3. **カスタムプロンプト**による柔軟な自動化
+4. GitHub イシュー分析への **統合**
+5. **コマンドライン引数**の扱い
+
+このパターンは PR レビュー、ドキュメント生成、品質分析など多様な自動化に応用できます。
+
+## 関連リソース
+
+- [CLI インストールガイド](/ja/caret-cli/installation)
+- [CLI リファレンス](/ja/caret-cli/cli-reference)
+- [3つの主要フロー](/ja/caret-cli/three-core-flows)

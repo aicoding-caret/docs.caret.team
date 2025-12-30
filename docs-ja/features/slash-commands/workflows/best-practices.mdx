@@ -1,0 +1,134 @@
+---
+title: "ワークフローのベストプラクティス"
+sidebarTitle: "ベストプラクティス"
+description: "効果的で安定したCaretワークフローを作るためのヒントと戦略"
+---
+
+良いワークフローを作るには、**明確な指示**、**モジュール化**、**ツール活用**のバランスが必要です。以下のポイントを参考にしてください。
+
+## Caretでワークフローを作る
+
+Caret はプロジェクトコンテキストを理解しているため、ワークフロー設計の良きパートナーになります。
+
+### ワークフローを作るワークフロー
+
+ワークフロー作成は思ったより簡単です。ワークフローを作るためのワークフローもあります。
+
+まず [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) をワークスペースに保存します (例: `.agents/context/workflows/`).
+
+その後 `/create-new-workflow.md` を実行すると、Caret が次の順でガイドします:
+
+1. 目的と短い名前を質問
+2. ゴールと期待成果を整理
+3. 主要ステップをリスト化
+4. 構造化されたワークフローファイルを生成
+
+<Tip>
+  **作業ログを自動化:** 完了したタスクは優秀なワークフロー候補です。作業後に「今やったことをワークフロー化して」と頼むと、Caret が会話を分析してワークフローを生成します。
+</Tip>
+
+プロジェクト専用は `.agents/context/workflows/`、グローバルは `~/Documents/Caret/Workflows/` に置きます。同名の場合はプロジェクト側が優先されます。
+
+## ワークフロー設計
+
+<Tip>
+  **小さく始める:** 単一タスクのワークフローから始め、慣れたら拡張しましょう。
+</Tip>
+
+### モジュール化
+
+巨大なワークフローより、再利用できる小さなワークフローの方が保守・デバッグが容易です。
+
+### 明確なコメント
+
+コードと同様に「なぜ」を説明するコメントが重要です。意図が明確になり、Caret とチーム双方の理解が深まります。
+
+### バージョン管理
+
+ワークフローは `.agents/context/workflows/` に置き、Git に含めて管理しましょう。共有や履歴管理が容易になります。
+
+## Caret向けプロンプト設計
+
+### ツールの使い方を具体的に
+
+「ファイルを探して」ではなく、どのツールでどこを探すかまで指定します。
+
+* **悪い例:** "ユーザーコントローラを探して"
+* **良い例:** "`search_files` で `src/controllers` から `UserController` を探して"
+
+## 高度なテクニック
+
+### よく使うツール
+
+ワークフロー内でよく使われるツールは次のとおりです:
+
+#### execute_command
+ターミナルコマンドを実行 (テスト、ビルド、git など)
+
+```xml
+<execute_command>
+  <command>npm run test</command>
+  <requires_approval>false</requires_approval>
+</execute_command>
+```
+
+#### read_file
+ファイルを読む (コード/設定の分析)
+
+```xml
+<read_file>
+  <path>src/config.json</path>
+</read_file>
+```
+
+#### search_files
+コードベース全体を検索
+
+```xml
+<search_files>
+  <path>src/</path>
+  <query>UserController</query>
+</search_files>
+```
+
+### ツール選択は重要
+
+ツールごとに返す詳細度が違います。目的に合うツールを選びましょう。
+
+- **ファイル全体を読む:** `read_file`
+- **キーワード検索:** `search_files`
+- **ディレクトリ一覧:** `list_files`
+
+### 構造化を意識
+
+構造化されたワークフローは Caret が追いやすくなります。例えば:
+
+- **Purpose**
+- **Inputs**
+- **Steps**
+- **Constraints**
+- **Output format**
+
+### ワークフローのフォーマット例
+
+```markdown
+# Workflow Name
+
+## Purpose
+Describe what the workflow does.
+
+## Inputs
+- What information or variables are needed?
+
+## Steps
+1. Step-by-step instructions
+2. Keep steps small and actionable
+
+## Constraints
+- Rules, limits, or safety checks
+
+## Output format
+- What the assistant should return
+```
+
+これらのプラクティスを守ることで、信頼性が高く再利用しやすいワークフローを作れます。

@@ -1,7 +1,7 @@
 // CARET MODIFICATION: Locale-aware service link for multi-doc layout.
 import { useLocation } from "@docusaurus/router"
-import { useEffect, useState } from "react"
 import clsx from "clsx"
+import { useEffect, useState } from "react"
 
 const localePrefixes = ["en", "ko", "ja", "zh"]
 

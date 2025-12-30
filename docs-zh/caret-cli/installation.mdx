@@ -1,0 +1,46 @@
+---
+title: "安装"
+description: "安装 Caret CLI 并使用账户完成认证"
+---
+
+## 前置条件
+
+Caret CLI 需要 Node.js 20 以上，推荐使用 Node.js 22。
+
+查看版本：
+
+```bash
+node --version
+```
+
+## 安装
+
+```bash
+npm install -g caret
+```
+
+安装完成后进行认证：
+
+```bash
+caret auth
+```
+
+该向导会引导你登录并配置首选模型提供商。
+
+## 快速开始
+
+```bash
+caret
+```
+
+在任意目录运行 `caret` 即可开始交互会话。输入任务、检查计划，准备执行时输入 `/act`。
+
+需要无交互快速执行时：
+
+```bash
+caret "Add unit tests to utils.js"
+```
+
+<Tip>
+第一次使用建议从交互模式开始，熟悉后再查看 [三大核心流程](/zh/caret-cli/three-core-flows)。
+</Tip>

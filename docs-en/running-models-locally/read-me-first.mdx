@@ -1,0 +1,109 @@
+---
+title: "Read This First"
+---
+
+## Running Local Models with Caret: What You Need to Know
+
+Cline is a powerful AI coding assistant that uses tool calls to help you write, analyze, and modify code. Running models locally can save API costs, but there are important trade-offs. Local models are far less reliable at using the essential tools that make Cline effective.
+
+## Why Local Models Are Different
+
+When you run a "local version" of a model, you're actually running a heavily simplified copy of the original. This process--called distillation--is like compressing a master chef's knowledge into a basic cookbook. You keep simple recipes but lose complex techniques and intuition.
+
+Local models are trained to mimic larger ones, but typically retain only about 1-26% of the original model's capacity. That massive reduction means:
+
+-   Reduced ability to understand complex context
+-   Weaker multi-step reasoning
+-   Limited tool use
+-   Simplified decision-making
+
+Think of it like running your development environment on a calculator instead of a computer. Basic tasks may work, but complex tasks become unreliable or impossible.
+
+
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(4).png"
+		alt="Local model comparison diagram"
+	/>
+
+
+### What Actually Happens
+
+When running local models with Cline:
+
+#### Performance Impact
+
+-   Responses are 5-10x slower than cloud services.
+-   System resources (CPU, GPU, RAM) are heavily used.
+-   Your computer may become less responsive for other tasks.
+
+#### Tool Reliability Issues
+
+-   Code analysis is less accurate.
+-   File operations may be unreliable.
+-   Browser automation is reduced.
+-   Terminal commands fail more often.
+-   Complex multi-step tasks often break.
+
+### Hardware Requirements
+
+At minimum, you'll need:
+
+-   A modern GPU with 8GB+ VRAM and AVX2 support (RTX 3070 or higher)
+-   32GB+ system RAM
+-   Fast SSD storage
+-   Good cooling
+
+Even with this hardware, you're still running a smaller, less capable version of the model.
+
+| Model Size | What You Get |
+| ---------- | ------------------------------ |
+| 7B model | Basic coding, limited tool use |
+| 14B model | Better coding, unstable tool use |
+| 32B model | Good coding, inconsistent tool use |
+| 70B model | Best local performance, expensive hardware required |
+
+In short, the cloud (API) versions are the full models. For example, the full DeepSeek-R1 model is 671B. Distilled local models are inherently "diluted" versions of the cloud models.
+
+### Practical Recommendations
+
+#### Consider This Approach
+
+1. Use cloud models for:
+    - Complex development work
+    - Tasks where tool reliability matters
+    - Multi-step tasks
+    - Critical code changes
+2. Use local models for:
+    - Simple code completion
+    - Basic documentation
+    - Cases where privacy is the top priority
+    - Learning and experimentation
+
+#### If You Must Go Local
+
+-   Start with smaller models
+-   Keep tasks simple and focused
+-   Save work frequently
+-   Be ready to switch to cloud models for complex tasks
+-   Monitor system resources
+
+### Common Issues
+
+-   **"Tool execution failed"**: Local models struggle with complex tool chains. Simplify your prompts.
+-   **"The target machine actively refused the connection"**: This usually means Ollama or LM Studio isn't running, or it's on a different port/address than configured in Cline. Double-check the Base URL in API provider settings.
+-   **"There's a problem with Cline..."**: Increase the model's context length to the maximum.
+-   **Slow or incomplete responses:** Local models are often slower than cloud models, especially on weaker hardware. Try smaller models and expect much longer processing times.
+-   **System stability:** Watch GPU/CPU usage and temperatures.
+-   **Context limits:** Local models often have smaller context windows than cloud models. Break work into smaller chunks.
+
+### Looking Ahead
+
+Local model capabilities are improving, but they still cannot fully replace cloud services--especially for Cline's tool-based features. Carefully evaluate your requirements and hardware before committing to a local-only setup.
+
+### Need Help?
+
+-   Join our [Discord](https://discord.gg/caret) community and [r/caret](https://www.reddit.com/r/CLine/).
+-   Check the latest compatibility guides.
+-   Share experiences with other developers.
+
+Remember: when in doubt, prioritize reliability over cost savings for critical development work.

@@ -1,7 +1,8 @@
 // CARET MODIFICATION: Custom footer aligned with caret.team content and locale routing.
-import React, { useEffect, useState } from "react"
+
 import Link from "@docusaurus/Link"
 import { useLocation } from "@docusaurus/router"
+import React, { useEffect, useState } from "react"
 
 type Locale = "en" | "ko" | "ja" | "zh"
 
@@ -283,8 +284,8 @@ const Footer = (): JSX.Element => {
 												<a
 													className="footer__link-item"
 													href={item.href}
-													target="_blank"
-													rel="noreferrer">
+													rel="noreferrer"
+													target="_blank">
 													{item.label}
 												</a>
 											) : (

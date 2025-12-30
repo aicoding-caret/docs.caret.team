@@ -1,0 +1,134 @@
+---
+title: "Workflow Best Practices"
+sidebarTitle: "Best Practices"
+description: "Tips and strategies for building effective and reliable Caret workflows"
+---
+
+Building good workflows requires the right balance of **clear instructions**, **modularity**, and **tool usage**. Use the tips below as a guide.
+
+## Building Workflows with Caret
+
+Caret understands your project context, making it a great partner for workflow design.
+
+### A Workflow to Create Workflows
+
+Workflow authoring is easier than it looks--and you can even use a workflow to create one.
+
+First, save the [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) file in your workspace (for example, `.agents/context/workflows/`).
+
+Then run `/create-new-workflow.md` and Caret will guide you through:
+
+1. Asking for the purpose and a short name
+2. Describing goals and expected outcomes
+3. Organizing key steps
+4. Generating a structured workflow file
+
+<Tip>
+  **Automate your work logs:** Finished tasks are great workflow candidates. After you complete a task, ask "Turn what I just did into a workflow," and Caret will analyze the conversation and generate a workflow file.
+</Tip>
+
+Store project-specific workflows in `.agents/context/workflows/` and global workflows in `~/Documents/Caret/Workflows/`. If there is a name conflict, project workflows take precedence.
+
+## Workflow Design
+
+<Tip>
+  **Start small:** Begin with a single-task workflow and expand once you're comfortable.
+</Tip>
+
+### Modularity
+
+Smaller, reusable workflows are easier to maintain and debug than a single large one.
+
+### Clear Comments
+
+As with code, explaining **why** matters. Good comments help both Caret and your team understand intent.
+
+### Version Control
+
+Keep workflows in `.agents/context/workflows/` and commit them to Git. This makes versioning and team sharing easier.
+
+## Prompt Design for Caret
+
+### Be Specific About Tool Usage
+
+Rather than saying "find the file," specify the tool and location.
+
+* **Bad:** "Find the user controller"
+* **Good:** "Use `search_files` to find `UserController` under `src/controllers`"
+
+## Advanced Techniques
+
+### Common Tools
+
+Here are some of the tools commonly used inside workflows:
+
+#### execute_command
+Run terminal commands (tests, builds, git, etc.)
+
+```xml
+<execute_command>
+  <command>npm run test</command>
+  <requires_approval>false</requires_approval>
+</execute_command>
+```
+
+#### read_file
+Read files (code/config analysis)
+
+```xml
+<read_file>
+  <path>src/config.json</path>
+</read_file>
+```
+
+#### search_files
+Search across the codebase
+
+```xml
+<search_files>
+  <path>src/</path>
+  <query>UserController</query>
+</search_files>
+```
+
+### Tool Choice Matters
+
+Different tools return different levels of detail. Choose the most efficient tool for the task.
+
+- **For whole file reads**: use `read_file`
+- **For quickly finding keywords**: use `search_files`
+- **For full directory listings**: use `list_files`
+
+### Use Structure
+
+Structured workflows are easier for Caret to follow. Use sections like:
+
+- **Purpose**
+- **Inputs**
+- **Steps**
+- **Constraints**
+- **Output format**
+
+### Example Workflow Format
+
+```markdown
+# Workflow Name
+
+## Purpose
+Describe what the workflow does.
+
+## Inputs
+- What information or variables are needed?
+
+## Steps
+1. Step-by-step instructions
+2. Keep steps small and actionable
+
+## Constraints
+- Rules, limits, or safety checks
+
+## Output format
+- What the assistant should return
+```
+
+Following these practices will help you build workflows that are reliable, reusable, and easy to maintain.

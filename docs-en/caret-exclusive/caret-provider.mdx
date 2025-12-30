@@ -4,7 +4,7 @@ title: Caret Provider
 
 # Caret Provider
 
-Caret Provider is an integrated authentication system that allows you to use an AI coding assistant immediately without an API key. It is currently under development and will be released soon.
+Caret Provider is an integrated authentication system that lets you use an AI coding assistant immediately without an API key. It is available now.
 
 ## What is it?
 
@@ -14,31 +14,58 @@ Caret Provider removes this initial entry barrier. With just a Caret account, yo
 
 ## Google Gemini Priority Support
 
-The first supported model for Caret Provider will be **Google Gemini**. Gemini offers powerful coding capabilities while being relatively affordable, making it suitable for beginners and individual developers.
+The first supported model for Caret Provider is **Google Gemini**. Gemini offers powerful coding capabilities while being relatively affordable, making it suitable for beginners and individual developers.
 
 ## Free Credits
 
-All users who use Caret Provider for the first time will receive **free credits**. This allows you to thoroughly test Caret's features without actual cost burden.
+All users who use Caret Provider for the first time receive **free credits**. This lets you test Caret's features without real cost burden.
+
+## Image Generation Tool (Caret Account)
+
+When you sign in with a Caret account, you can use the image generation tool. It is authenticated with the Caret token, and outputs are automatically saved in your workspace.
+
+### How it works
+
+1. Ask Caret to generate an image (e.g., "Create an illustration for a dashboard").
+2. Caret calls the image generation API and produces the result.
+3. Output files are saved under `.agents/generated-assets/` in your workspace.
+
+### Storage rules
+
+Each request creates two files using the request ID:
+
+- `.agents/generated-assets/<request_id>.<ext>`: the image file
+- `.agents/generated-assets/<request_id>.md`: metadata (prompt and image link)
+
+### Reference images
+
+Besides text prompts, you can attach images when requesting generation. You can specify **a particular image as a reference** to keep **consistent style, composition, or character identity** while iterating or editing images.  
+If you do not specify a reference image, the tool can automatically use the selected image scope or other default input behavior.
+
+### Practical tips
+
+- Decide as a team whether generated images and metadata should be committed to the repo.
+- Prompts are stored in the `.md` file, so avoid sensitive information.
+- You can instruct Caret to move generated assets into **specific project folders** for organized management.
+- This enables **document-driven prompt management and resource editing**, letting you manage worldbuilding or character guides alongside prompts to produce content or service assets.
 
 ## Future Plans
 
 After Gemini support, we plan to add other AI models sequentially so they can be used through Caret Provider.
 
-## Release Notification
+## Updates
 
-When the release of Caret Provider is imminent, we will announce through the following channels:
+We will share new features and changes through the following channels:
 
 - Notifications within Caret VS Code extension
-- [Discord Community](https://discord.gg/caret)
+- [Discord Community](https://discord.com/invite/K3mU3EEvWm)
 - Official website (https://caret.team)
-
-If you want early access before release, please contact support@caret.team.
 
 ## Relationship with Existing API Keys
 
 Even after Caret Provider is released, the existing direct API key input method will continue to be supported. You can have the following options:
 
-**Using Caret Provider**: Easy start, integrated management, free credit utilization
+**Using Caret Provider**: Easy start, integrated management, free credit utilization (Gemini first, with ChatGPT, Claude, and local providers like Naver/Upstage added sequentially)
 
 **Using Direct API Keys**: Leverage existing accounts, more model choices, direct cost management
 
@@ -46,4 +73,4 @@ It's also possible to use both methods together.
 
 ---
 
-**Caret Provider will be released soon.** It will be the easiest way to start immediately without an API key.
+**Caret Provider is now available.** It is the easiest way to start immediately without an API key.

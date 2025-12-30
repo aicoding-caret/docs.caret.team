@@ -1,7 +1,8 @@
 // CARET MODIFICATION: Locale-aware download dropdown items.
-import React, { useEffect, useState } from "react"
+
 import { useLocation } from "@docusaurus/router"
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
+import React, { useEffect, useState } from "react"
 
 const localePrefixes = ["en", "ko", "ja", "zh"]
 
@@ -71,5 +72,5 @@ export default function DownloadDropdownNavbarItem({ items, labels, ...props }) 
 		}
 	}, [])
 
-	return <DropdownNavbarItem {...props} label={label} items={resolvedItems} />
+	return <DropdownNavbarItem {...props} items={resolvedItems} label={label} />
 }

@@ -1,0 +1,97 @@
+---
+title: "Caret Enterprise"
+sidebarTitle: "概要"
+description: "数百万人が信頼するコーディングエージェントのためのエンタープライズ向けセキュリティ/ガバナンス/可観測性"
+---
+
+<Note>
+キャレット(Caret)基準の文書です。Caret v3.38.1 マージ版に準拠し、エンタープライズの配布/認証/ルーティング/テレメトリ差異がある場合は `<Note>` で明記します。
+</Note>
+
+Caret Enterprise はオープンソースのアーキテクチャに中央管理ガバナンスを提供します。コードは環境内に保持し、既存の推論契約を使い、プラットフォームチームが必要とするセキュリティと可観測性を確保できます。
+
+<Card title="Enterprise の詳細" icon="building" href="https://caret.bot/enterprise">
+  エンタープライズ機能・価格・導入オプションの詳細はこちら。
+</Card>
+
+## 提供内容
+
+本番導入に必要な 5 つの中核機能を提供します。
+
+### 設計段階からのセキュリティ
+
+コードは環境外へ出ません。Caret は完全にクライアント側で処理し、アップロード/インデックス/学習を行いません。
+
+<CardGroup cols={2}>
+  <Card title="クライアント側実行" icon="computer">
+    すべての処理は環境内で実行
+  </Card>
+
+  <Card title="データ流出なし" icon="shield-check">
+    コードとコンテキストが外部に送信されない
+  </Card>
+
+  <Card title="コードベースのインデックスなし" icon="database">
+    リポジトリをインデックス/キャッシュしない
+  </Card>
+
+  <Card title="モデル学習に不使用" icon="ban">
+    コードやプロンプトは学習に使われない
+  </Card>
+</CardGroup>
+
+### Bring Your Own Inference
+
+既存のクラウド契約と料金をそのまま利用できます。Caret は直接プロバイダーに接続し、マークアップやベンダーロックインを回避します。
+
+接続可能なプロバイダー:
+- AWS Bedrock
+- Google Vertex AI
+- Azure OpenAI
+- Anthropic direct
+- OpenAI direct
+- Cerebras
+- OpenAI 互換エンドポイント
+
+新モデルが出たら即時に切り替え可能。Claude Sonnet 4.5、GPT‑5、オープンソースモデルなどを用途別に使い分けられます。推論は組織が管理し、エージェントループは Caret が担います。
+
+### スケールするガバナンス
+
+大量の開発者が AI を使うと中央統制が必要です。個人 API キーの分散はセキュリティとコストのリスクになります。
+
+Enterprise ガバナンスで提供:
+- **SSO**: 個人キーではなく組織認証
+- **RBAC**: チーム/プロジェクト単位の権限
+- **モデル/ツール制御**: アクセス制限
+- **リモート設定**: ダッシュボードで一括管理
+- **監査ログ**: すべての AI 操作を記録
+
+一度設定すれば全社へ展開できます。
+
+### 完全な可観測性
+
+既存の可観測性スタックにログを出力し、使用量/コスト/性能を追跡できます。
+
+- **OpenTelemetry 送信**: Datadog/Grafana/Splunk 等と統合
+- **リアルタイム分析**
+- **コスト内訳**: モデル別に可視化
+- **JSON 出力**: カスタムダッシュボード構築
+
+## 導入
+
+Caret Enterprise はインフラに安全に接続し、クラウド/オンプレ/エアギャップ環境に対応します。
+
+導入手順:
+1. Caret Core をインフラに接続
+2. SSO/RBAC/ガバナンスポリシー設定
+3. 既存の配布手段で開発者に展開
+4. 可観測性ツールで利用状況を監視
+
+## 次のステップ
+
+- [セキュリティアーキテクチャ](/ja/enterprise-solutions/security-concerns)
+- [クラウドプロバイダー設定](/ja/provider-config/aws-bedrock/api-key)
+- [MCP サーバー](/ja/mcp/mcp-overview)
+- [カスタム指示](/ja/features/caret-rules)
+
+エンタープライズ導入の相談が必要な場合は、デモを依頼してください。

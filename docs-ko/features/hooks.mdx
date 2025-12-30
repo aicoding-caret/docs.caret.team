@@ -1,10 +1,427 @@
 ---
-title: "Hooks"
-sidebarTitle: "Hooks"
+title: "훅"
+sidebarTitle: "훅"
+description: "Caret 워크플로우에 커스텀 로직을 주입해 작업 검증, 도구 사용 모니터링, AI 결정 흐름을 제어합니다."
 ---
 
-Hooks 문서는 새 구조로 이동했습니다.
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(허용 훅 스코프, 인증/라우팅, 로깅/텔레메트리 차이)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
 
-- [Hooks 개요](/ko/features/hooks)
-- [Hook 레퍼런스](/ko/features/hooks/hook-reference)
-- [샘플](/ko/features/hooks/samples)
+<Note>
+Caret 계정/조직 훅: `caret-docs/features/f04-caret-account.md`에 따라 계정/조직 상태가 훅 데이터에 포함될 수 있습니다. 로깅/텔레메트리는 캐럿 유틸(`caret-src/utils/`) 경로를 사용합니다.
+</Note>
+
+훅(Hooks)은 Caret 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
+
+훅은 개발 과정에서 특정 이벤트가 발생할 때 자동으로 실행됩니다. 각 작업의 상세 정보를 받아 문제되는 행동을 사전에 차단하거나, 앞으로의 AI 결정을 돕는 컨텍스트를 추가할 수 있습니다.
+
+핵심은 조합에 있습니다. 예를 들면:
+
+- 문제가 될 수 있는 작업 차단(예: TypeScript 프로젝트에서 `.js` 생성 차단)
+- 실행 흐름을 학습해 프로젝트 지식을 축적
+- 성능 모니터링 및 이슈 조기 감지
+- 분석/컴플라이언스를 위한 전체 추적
+- 외부 도구/서비스를 적절한 타이밍에 연동
+
+<Warning>
+훅은 현재 macOS와 Linux에서만 지원됩니다. Windows는 지원되지 않습니다.
+</Warning>
+
+## 시작하기
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
+</Frame>
+
+Caret에서 훅을 활성화하는 방법은 간단합니다. 다음 단계를 따라주세요:
+
+<Steps>
+<Step title="설정에서 훅 활성화">
+Caret 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
+
+경로:
+1. Caret 열기
+2. 우측 상단 "Settings" 클릭
+3. 좌측 메뉴의 "Feature" 섹션 클릭
+4. "Enable Hooks" 항목을 찾아 체크
+</Step>
+
+<Step title="훅 위치 선택">
+훅을 저장할 위치를 결정합니다:
+
+**개인/조직 공통 훅:**
+- `~/Documents/Caret/Rules/Hooks/`에 훅 생성
+- 모든 워크스페이스에 자동 적용
+
+**프로젝트별 훅:**
+- 프로젝트 루트의 `.agents/hooks/`에 훅 생성
+- 해당 워크스페이스에만 적용
+- 버전 관리에 포함해 팀과 공유 가능
+</Step>
+
+<Step title="첫 훅 만들기">
+훅 파일은 확장자 없이 **정확한 파일명**으로 생성해야 합니다. 예: TaskStart 훅
+
+```bash
+# 훅 파일 생성
+vim .agents/hooks/TaskStart
+```
+
+스크립트 추가(반드시 shebang 포함):
+``` bash
+#!/usr/bin/env bash
+
+# Store piped input into a variable
+input=$(cat)
+
+# Dump the entire JSON payload
+echo "$input" | jq .
+
+# Get the type of a field
+echo "$input" | jq -r '.timestamp | type'
+```
+
+이 예시는 훅 입력/출력의 핵심을 보여줍니다: `input=$(cat)`으로 stdin의 JSON 페이로드를 읽고, `jq`로 데이터 구조와 필드 타입을 확인합니다. 더 복잡한 훅을 만들기 전에 어떤 데이터가 들어오는지 파악하는 데 유용합니다.
+
+**실행 권한 부여**
+
+```bash
+chmod +x .agents/hooks/TaskStart
+```
+</Step>
+
+<Step title="훅 테스트">
+Caret에서 작업을 시작하고 훅이 실행되는지 확인합니다.
+</Step>
+</Steps>
+
+<Tip>
+처음에는 단순히 정보를 기록하는 훅부터 시작하세요. 데이터 구조와 실행 타이밍을 이해한 뒤 점진적으로 복잡한 검증 로직을 추가하는 것이 좋습니다.
+</Tip>
+
+
+## 무엇을 만들 수 있나요?
+
+기본을 이해하면 훅으로 다양한 자동화를 구현할 수 있습니다:
+
+<CardGroup cols={2}>
+  <Card title="지능형 코드 리뷰" icon="code-branch">
+    파일 저장 전 린트/검증을 실행하고 문제가 있으면 차단합니다. 코드 품질 지표를 추적할 수도 있습니다.
+  </Card>
+  
+  <Card title="보안 정책 강제" icon="shield-halved">
+    보안 정책 위반 작업을 사전에 차단하고 민감 데이터 노출을 감지합니다. 전체 감사 로그를 남길 수도 있습니다.
+  </Card>
+  
+  <Card title="개발 분석" icon="chart-line">
+    작업별 소요 시간을 측정하고 AI 작업 패턴을 분석해 생산성 보고서를 생성합니다.
+  </Card>
+  
+  <Card title="통합 허브" icon="plug">
+    특정 키워드에 맞춰 이슈 트래커와 연동하거나 외부 API를 호출합니다.
+  </Card>
+</CardGroup>
+
+훅은 Caret 워크플로우와 외부 생태계를 연결하는 접착제 역할을 합니다.
+
+
+## 훅 타입
+
+Caret는 AI 워크플로우의 서로 다른 단계에서 사용할 수 있는 여러 훅 타입을 제공합니다. 훅 타입은 트리거 지점과 용도에 따라 분류됩니다.
+
+<Note>
+아래 훅 이름은 **정확한 파일명**입니다. 예를 들어 TaskStart 훅을 사용하려면 `TaskStart`라는 이름의 파일(확장자 없음)을 생성해야 합니다.
+</Note>
+
+각 훅은 기본 필드와 함께 고유 데이터를 받습니다: `clineVersion`, `hookName`, `timestamp`, `taskId`, `workspaceRoots`, `userId`.
+
+### 도구 실행
+
+이 훅들은 도구 실행 전후를 가로채어 정책을 적용하거나 변경 사항을 추적합니다.
+
+#### PreToolUse
+
+도구 실행 전에 호출됩니다. 잘못된 작업을 차단하거나 파라미터를 검증할 수 있습니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preToolUse": {
+    "toolName": "string",
+    "parameters": {}
+  }
+}
+```
+
+#### PostToolUse
+
+도구 실행 후에 호출됩니다. 결과를 기록하거나 성능 지표를 추적할 수 있습니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PostToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "postToolUse": {
+    "toolName": "string",
+    "parameters": {},
+    "result": "string",
+    "success": boolean,
+    "executionTimeMs": number
+  }
+}
+```
+
+### 사용자 상호작용
+
+사용자의 입력 흐름을 모니터링하고 컨텍스트를 주입합니다.
+
+#### UserPromptSubmit
+
+사용자가 메시지를 보낼 때 실행됩니다. 입력을 검증하고 프롬프트 기반 컨텍스트를 추가할 수 있습니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "UserPromptSubmit",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "userPromptSubmit": {
+    "prompt": "string",
+    "attachments": ["string"]
+  }
+}
+```
+
+### 작업 수명주기
+
+작업 시작부터 종료까지의 상태 변화를 다룹니다.
+
+#### TaskStart
+
+새 작업이 시작될 때 실행됩니다. 프로젝트 타입 감지, 초기 컨텍스트 주입에 활용합니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskStart",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskStart": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "initialTask": "string"
+    }
+  }
+}
+```
+
+#### TaskResume
+
+작업이 중단되었다가 재개될 때 실행됩니다. 상태 복원, 컨텍스트 갱신, 재개 로그 기록 등에 사용합니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskResume",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskResume": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    },
+    "previousState": {
+      "lastMessageTs": "string",
+      "messageCount": "string",
+      "conversationHistoryDeleted": "string"
+    }
+  }
+}
+```
+
+#### TaskCancel
+
+작업이 취소될 때 실행됩니다. 리소스 정리, 취소 로그 기록 등에 사용합니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskCancel",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskCancel": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "completionStatus": "string"
+    }
+  }
+}
+```
+
+{/*
+#### TaskComplete
+
+작업이 성공적으로 종료될 때 실행됩니다. 마무리 작업, 메트릭 기록, 후속 워크플로우 트리거에 사용합니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskComplete",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskComplete": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    }
+  }
+}
+```
+*/}
+
+### 시스템 이벤트
+
+Caret 내부 동작과 시스템 이벤트를 모니터링합니다.
+
+{/*
+#### PreCompact
+
+대화 컨텍스트가 토큰 한도에 맞춰 축소되기 전에 실행됩니다. 축약 빈도와 컨텍스트 사용 패턴을 기록할 수 있습니다.
+
+**입력 필드:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreCompact",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preCompact": {
+    "contextSize": number,
+    "messagesToCompact": number,
+    "compactionStrategy": "string"
+  }
+}
+```
+*/}
+
+### JSON 통신
+
+훅은 stdin으로 JSON을 받고 stdout으로 JSON을 반환합니다.
+
+**출력 구조:**
+```json
+{
+  "cancel": false,
+  "contextModification": "WORKSPACE_RULES: Use TypeScript",
+  "errorMessage": "Error details if blocking"
+}
+```
+
+훅 실행 중 stdout으로 로그/진단 정보를 출력할 수 있지만, **마지막 출력은 반드시 JSON**이어야 합니다. Caret는 stdout의 마지막 JSON 객체만 파싱합니다.
+
+예시:
+```bash
+#!/usr/bin/env bash
+echo "Processing hook..."  # 이 출력은 괜찮습니다
+echo "Tool: $tool_name"    # 이것도 괜찮습니다
+# JSON은 반드시 마지막에 출력해야 합니다:
+echo '{"cancel": false}'
+```
+
+`cancel`은 실행을 계속할지 결정합니다. `true`면 차단, `false`면 허용입니다.
+
+`contextModification`은 대화에 텍스트를 주입합니다. 이는 **현재가 아닌 이후 AI 요청**에 영향을 미칩니다. `WORKSPACE_RULES:`나 `PERFORMANCE:` 같은 접두어로 분류하면 이해에 도움이 됩니다.
+
+### 컨텍스트 타이밍 이해
+
+컨텍스트 주입은 **현재가 아닌 다음 결정**에 영향을 줍니다. 훅이 실행되면:
+
+1. AI는 이미 행동을 결정한 상태입니다
+2. 훅은 이를 차단하거나 허용할 수 있습니다
+3. 컨텍스트는 대화에 추가됩니다
+4. 다음 AI 요청이 그 컨텍스트를 봅니다
+
+즉, PreToolUse 훅은 문제 행동을 차단하는 데 적합하고, PostToolUse 훅은 완료된 작업에서 학습하는 데 적합합니다.
+
+
+## 문제 해결
+
+### 훅이 실행되지 않음
+- "Enable Hooks" 설정이 체크되어 있는지 확인
+- 훅 파일이 실행 가능(`chmod +x hookname`)한지 확인
+- 훅 파일에 문법 오류가 없는지 확인
+- VS Code 출력 패널(Caret 채널)의 에러 확인
+
+### 훅 타임아웃
+- 훅 스크립트의 복잡도를 줄이세요
+- 네트워크 호출/무거운 계산은 피하세요
+- 복잡한 로직은 백그라운드 프로세스로 분리하세요
+
+### 컨텍스트가 동작에 반영되지 않음
+컨텍스트 수정은 현재가 아닌 **다음 AI 결정**에 반영됩니다. AI의 현재 동작은 이전 "API Request..." 블록을 기준으로 결정되며, `contextModification`은 다음 "API Request..." 블록에 주입됩니다. 즉, 즉시 효과가 필요하다면 PreToolUse 훅에서 검증 후 `cancel: true`를 반환해 Caret의 진행을 차단해야 합니다.
+
+컨텍스트를 추가할 때는 AI가 이해하고 적용할 수 있도록 명확하고 실행 가능한 내용으로 작성하세요. 또한 컨텍스트가 50KB 제한으로 잘리는지 확인해야 합니다. 제한으로 잘리면 중요한 정보가 전달되지 않을 수 있습니다.
+
+### JSON 페이로드에 따옴표가 포함될 때 처리
+JSON 출력에 이스케이프되지 않은 따옴표(`"`)가 포함된 문자열을 넣어야 할 경우, jq의 `--arg` 플래그를 사용해 안전하게 이스케이프하세요:
+
+```bash
+#!/usr/bin/env bash
+
+# When $output contains unescaped quote characters (")...
+output='{"foo":"bar"}'
+
+# Use the --arg flag for automatic string escaping
+jq -n --arg ctx "$output" '{cancel: false, contextModification: $ctx}'
+
+# This will result in:
+# {
+#     "cancel": false,
+#     "contextModification": "{\"foo\":\"bar\"}"
+# }
+```
+
+`--arg` 플래그는 특수 문자를 자동으로 이스케이프하므로, 중첩 JSON이나 복잡한 문자열이 있을 때 파싱 오류를 방지합니다.
+
+<Warning>
+훅은 VS Code와 동일한 권한으로 실행됩니다. 워크스페이스의 모든 파일과 환경 변수에 접근할 수 있으므로, 신뢰할 수 없는 출처의 훅은 활성화 전에 반드시 검토하세요.
+</Warning>
+
+## 관련 기능
+
+훅은 다른 Caret 기능과 함께 사용할 때 더 강력합니다:
+
+- [Caret 규칙](/ko/features/caret-rules)으로 상위 가이드를 정의하고 훅으로 강제할 수 있습니다
+- [체크포인트](/ko/features/checkpoints)로 훅이 놓친 문제를 되돌릴 수 있습니다
+- [자동 승인](/ko/features/auto-approve)은 훅을 안전 장치로 활용할 때 특히 유용합니다

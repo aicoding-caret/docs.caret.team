@@ -1,0 +1,129 @@
+---
+title: "概要"
+description: "モダン開発のための AI コーディングエージェント Caret の紹介"
+---
+
+<Note>
+この文書は Caret v3.38.1 マージ版を基に整理しています。Caret 固有のポリシー/制限がある場合は `<Note>` で明記します。
+</Note>
+
+## 制約のないオープンソース AI コーディング
+
+Caret はフロンティア AI を透明に提供します。どのモデルでも選択でき、コストもコントロール可能です。
+
+<CardGroup cols={1}>
+  <Card title="完全な透明性" icon="eye">
+    Caret がファイルを読み、方針を検討し、変更を提案する様子をリアルタイムで確認できます。
+  </Card>
+
+  <Card title="推論の選択" icon="sliders">
+    Claude、Gemini、Qwen3 Coder など用途に応じて即座に切り替えられます。API キーも自分で管理できます。
+  </Card>
+
+  <Card title="ゼロトラスト設計" icon="lock">
+    コードはサーバーに送られません。Caret はクライアント側で動作し、オープンソースのため監査も可能です。
+  </Card>
+</CardGroup>
+
+## 実務向け設計
+
+<CardGroup cols={3}>
+  <Card title="ファイル読み書き" icon="file-code">
+    コードベース全体での操作
+  </Card>
+
+  <Card title="コマンド実行" icon="terminal">
+    端末コマンドの実行とデバッグ
+  </Card>
+
+  <Card title="複雑な計画" icon="brain">
+    実装前の計画と検討
+  </Card>
+
+  <Card title="外部連携" icon="plug">
+    MCP で外部システムに接続
+  </Card>
+
+  <Card title="大規模コード理解" icon="magnifying-glass">
+    大規模プロジェクトのコンテキスト管理
+  </Card>
+
+  <Card title="マルチステップ作業" icon="list-check">
+    複雑なワークフローを完遂
+  </Card>
+</CardGroup>
+
+## Plan & Act モード
+
+Caret はコードを書く前に全体像を理解し、計画を作成して承認後に実行します。
+
+<Tabs>
+  <TabItem title="Plan モード" value="plan-mode" icon="lightbulb">
+    複雑なタスクでは、コードベースを探索し、確認質問を行い、詳細な計画を作成します。
+
+    - 情報収集とコンテキスト構築
+    - 確認質問
+    - 詳細な実行計画
+    - 方針の議論
+  </TabItem>
+
+  <TabItem title="Act モード" value="act-mode" icon="play">
+    計画承認後、Caret がツールを使って実装を進めます。
+
+    - 承認済み手順の実行
+    - ファイル変更とコマンド実行
+    - ソリューション実装
+    - 完了報告
+  </TabItem>
+</Tabs>
+
+## 主要機能
+
+<AccordionGroup>
+  <Accordion title="計画と実行" icon="brain">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/ja/features/plan-and-act">Plan & Act</a></strong> • 計画と透明な実行
+      </div>
+      <div>
+        <strong><a href="/ja/features/focus-chain">Focus Chain</a></strong> • 自動タスク管理
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="ワークフロー最適化" icon="bolt">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/ja/features/auto-approve">Auto Approve</a></strong>
+      </div>
+      <div>
+        <strong><a href="/ja/features/auto-compact">Auto Compact</a></strong>
+      </div>
+      <div>
+        <strong><a href="/ja/features/dictation">Dictation</a></strong>
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="拡張と統合" icon="plug">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/ja/mcp/mcp-overview">MCP</a></strong>
+      </div>
+      <div>
+        <strong><a href="/ja/exploring-carets-tools/remote-browser-support">Remote Browser</a></strong>
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="カスタマイズ" icon="gear">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/ja/features/caret-rules">Caret Rules</a></strong>
+      </div>
+      <div>
+        <strong><a href="/ja/features/commands-and-shortcuts/overview">Commands & Shortcuts</a></strong>
+      </div>
+    </div>
+  </Accordion>
+</AccordionGroup>

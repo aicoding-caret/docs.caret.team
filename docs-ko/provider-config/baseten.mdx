@@ -1,80 +1,116 @@
 ---
 title: "Baseten"
-description: "Baseten Model API를 Caret에서 설정하는 방법을 안내합니다. 엔터프라이즈급 성능과 합리적인 가격으로 최신 오픈소스 모델을 사용할 수 있습니다."
+description: "Caret에서 Baseten Model APIs를 설정하고 사용하는 방법을 안내합니다."
 ---
 
-Baseten은 프로덕션을 위한 모델 API를 제공합니다. Baseten Inference Stack 기반으로 OpenAI, DeepSeek, Moonshot AI, Alibaba Cloud 등의 최신 오픈소스 모델을 최적화된 형태로 제공합니다.
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(허용/차단 모델, 지역 제한, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+Provider Setup 강화: `caret-docs/features/f09-enhanced-provider-setup.md`에 따라 캐럿은 프로바이더 설정 검증/UX가 강화될 수 있습니다. 계정/조직 정책 또는 캐럿 라우터 적용 시 허용/차단 모델이 달라질 수 있음을 안내하세요.
+</Note>
+
+Baseten은 실험용이 아닌 **프로덕션용** 프런티어 모델 API를 제공합니다. Baseten Inference Stack을 기반으로 OpenAI, DeepSeek, Meta, Moonshot AI, Alibaba Cloud 등의 오픈소스 모델에 최적화된 추론을 제공하며, 엔터프라이즈급 성능과 안정성을 확보합니다.
 
 **웹사이트:** [https://www.baseten.co/products/model-apis/](https://www.baseten.co/products/model-apis/)
 
 ### API 키 발급
 
-1. **가입/로그인:** [Baseten](https://www.baseten.co/) 접속
-2. **API Keys 메뉴 이동**
-3. **새 키 생성:** 예: "Caret"
-4. **키 복사:** 즉시 안전하게 보관
-
-### Caret에서 설정
-
-1. **Caret 설정 열기:** Caret 패널의 톱니바퀴(⚙️) 클릭
-2. **프로바이더 선택:** "Baseten" 선택
-3. **API 키 입력:** "Baseten API Key" 필드에 키 입력
-4. **모델 선택:** 원하는 모델 선택
-
-**중요: Kimi K2 Thinking 사용 시**
-`moonshotai/Kimi-K2-Thinking` 모델을 사용하려면 Caret 설정에서 **Native Tool Call (Experimental)**을 활성화해야 합니다. 이 설정은 모델의 네이티브 도구 호출을 허용하며, 해당 추론 모델에서 필수입니다.
+1. **가입/로그인:** [Baseten](https://www.baseten.co/)에서 계정을 생성하거나 로그인합니다.
+2. **API Keys로 이동:** 대시보드에서 API Keys 섹션으로 이동합니다.
+3. **키 생성:** 새 API 키를 생성하고 식별 가능한 이름(예: "Caret")을 지정합니다.
+4. **키 복사:** API 키를 즉시 복사하여 안전하게 보관합니다.
 
 ### 지원 모델
 
-Caret은 Baseten Model APIs의 최신 모델을 지원합니다. 최신 가격 정보는 Baseten 페이지를 확인하세요: https://www.baseten.co/products/model-apis/
+Caret는 Baseten Model APIs의 최신 모델을 지원합니다:
+가격 최신 정보: https://www.baseten.co/products/model-apis/
+참고: Kimi K2 0711, Llama 4 Maverick, Llama 4 Scout 모델 API는 10월 8일(PT) 오후 5시에 사용 중지되었습니다.
+https://www.baseten.co/resources/changelog/model-api-deprecation-notice-kimi-k2-0711-scout-maverick/
 
-- `moonshotai/Kimi-K2-Thinking` (Moonshot AI) - 단계별 추론 강화 (262K) - $0.60/$2.50 per 1M tokens
-- `zai-org/GLM-4.6` (Z AI) - 고급 에이전트/추론/코딩 (200K) - $0.60/$2.20 per 1M tokens
-- `moonshotai/Kimi-K2-Instruct-0905` (Moonshot AI) - 9월 업데이트 (262K) - $0.60/$2.50 per 1M tokens
-- `openai/gpt-oss-120b` (OpenAI) - 120B MoE (128K) - $0.10/$0.50 per 1M tokens
-- `Qwen/Qwen3-Coder-480B-A35B-Instruct` - 고급 코딩/추론 (262K) - $0.38/$1.53 per 1M tokens
-- `Qwen/Qwen3-235B-A22B-Instruct-2507` - 수학/추론 특화 (262K) - $0.22/$0.80 per 1M tokens
-- `deepseek-ai/DeepSeek-R1` - DeepSeek 1세대 추론 모델 (163K) - $2.55/$5.95 per 1M tokens
-- `deepseek-ai/DeepSeek-R1-0528` - 최신 리비전 (163K) - $2.55/$5.95 per 1M tokens
-- `deepseek-ai/DeepSeek-V3.1` - 하이브리드 추론 + 도구 호출 (163K) - $0.50/$1.50 per 1M tokens
-- `deepseek-ai/DeepSeek-V3-0324` - 빠른 범용 (163K) - $0.77/$0.77 per 1M tokens
-- `deepseek-ai/DeepSeek-V3.2` - 빠른 범용 (163K) - $0.77/$0.77 per 1M tokens
+- `zai-org/GLM-4.6` (Z AI) - 고급 에이전트/추론/코딩 기능을 갖춘 프런티어 오픈 모델 (200k 컨텍스트) 1M 토큰당 \$0.60/\$2.20
+- `moonshotai/Kimi-K2-Instruct-0905` (Moonshot AI) - 9월 업데이트로 향상된 성능 (262K 컨텍스트) 1M 토큰당 \$0.60/\$2.50
+- `openai/gpt-oss-120b` (OpenAI) - 강력한 추론 능력을 갖춘 120B MoE (128K 컨텍스트) 1M 토큰당 \$0.10/\$0.50
+- `Qwen/Qwen3-Coder-480B-A35B-Instruct` - 고급 코딩/추론 (262K 컨텍스트) 1M 토큰당 \$0.38/\$1.53
+- `Qwen/Qwen3-235B-A22B-Instruct-2507` - 수학/추론 특화 (262K 컨텍스트) 1M 토큰당 \$0.22/\$0.80
+- `deepseek-ai/DeepSeek-R1` - DeepSeek 1세대 추론 모델 (163K 컨텍스트) 1M 토큰당 \$2.55/\$5.95
+- `deepseek-ai/DeepSeek-R1-0528` - DeepSeek 추론 모델 최신 리비전 (163K 컨텍스트) 1M 토큰당 \$2.55/\$5.95
+- `deepseek-ai/DeepSeek-V3.1` - 고급 도구 호출을 포함한 하이브리드 추론 (163K 컨텍스트) 1M 토큰당 \$0.50/\$1.50
+- `deepseek-ai/DeepSeek-V3-0324` - 빠른 범용 모델 + 향상된 추론 (163K 컨텍스트) 1M 토큰당 \$0.77/\$0.77
 
-### 프로덕션 중심 아키텍처
+### Caret에서 설정
 
-Baseten Model APIs는 프로덕션 환경에 맞춰 설계되었습니다.
+1. **Caret 설정 열기:** Caret 패널의 설정 아이콘(⚙️) 클릭
+2. **프로바이더 선택:** "API Provider" 드롭다운에서 "Baseten" 선택
+3. **API 키 입력:** "Baseten API Key" 필드에 키 입력
+4. **모델 선택:** "Model" 드롭다운에서 원하는 모델 선택
+
+### 프로덕션 우선 아키텍처
+
+Baseten Model APIs는 프로덕션 환경에 최적화된 여러 장점을 제공합니다:
 
 #### 엔터프라이즈급 안정성
-- **99.99% 가용성** (active-active 이중화)
-- **멀티 클러스터 오토스케일링**
-- **SOC 2 Type II 인증**, **HIPAA 준수**
+- **99.99% 업타임**(four nines) 보장
+- **클라우드 독립 멀티 클러스터 오토스케일링**
+- **SOC 2 Type II** 인증 및 **HIPAA** 준수
 
 #### 최적화된 성능
-- Baseten Inference Stack에 최적화된 모델 제공
-- 최신 GPU 기반 멀티 클라우드 인프라
-- 프로덕션 워크로드에 맞춘 초고속 추론
+- **사전 최적화된 모델**과 Baseten Inference Stack
+- **최신 GPU** 기반 멀티 클라우드 인프라
+- **프로덕션 최적화 초고속 추론**
 
 #### 비용 효율
-- 폐쇄형 모델 대비 **5~10배 저렴**
-- 멀티 클라우드 최적화로 효율적인 리소스 사용
-- 투명한 가격 구조
+- **폐쇄형 대안 대비 5~10배 저렴**
+- **멀티 클라우드 인프라 최적화**
+- **숨겨진 비용 없는 투명한 가격**
 
 #### 개발자 경험
-- **OpenAI 호환 API** - URL만 바꿔 마이그레이션 가능
-- 높은 관측성/분석 기능
-- Model API부터 전용 배포까지 매끄러운 확장
+- **OpenAI 호환 API** - URL 한 줄 교체로 마이그레이션
+- **대체 가능한 드롭인** 구성과 관측성 제공
+- **전용 배포까지 매끄러운 확장**
 
-### 특수 기능
+### 특별 기능
 
 #### 함수 호출 & 도구 사용
-Baseten 모델은 구조화 출력, 함수 호출, 도구 사용을 지원합니다. 에이전트 워크플로나 코딩 작업에 적합합니다.
+Baseten 모델은 Baseten Inference Stack을 통해 구조화 출력, 함수 호출, 도구 사용을 지원합니다. 에이전트 기반 작업에 적합합니다.
 
-### 팁 & 노트
+#### 추론 능력
+DeepSeek 모델은 단계별 추론을 제공하면서도 프로덕션 성능을 유지합니다.
 
-- **실시간 모델 업데이트:** Caret은 Baseten의 최신 모델 목록을 자동으로 가져옵니다.
-- **MCM(Multi-Cloud Capacity Management):** 전 세계 낮은 지연/고가용성 제공
-- **지원:** 프로덕션 배포를 위한 전담 지원 가능
+#### 긴 컨텍스트 지원
+- **최대 100만 토큰** (Llama 4 Maverick/Scout)
+- **262K 토큰** (Qwen3)
+- **163K 토큰** (DeepSeek)
+- **대규모 코드베이스/대화**에 적합
+
+#### 양자화 최적화
+fp4/fp8/fp16 등 고급 양자화로 품질을 유지하면서 성능을 최적화합니다.
+
+### 다른 프로바이더에서 전환
+
+Baseten은 OpenAI 호환 API를 제공하므로 전환이 쉽습니다:
+
+**OpenAI에서 전환:**
+- `api.openai.com` → `inference.baseten.co/v1`
+- 요청/응답 포맷 그대로 사용
+- 비용 절감 효과
+
+**다른 프로바이더에서 전환:**
+- 표준 OpenAI SDK 포맷 사용
+- 기존 프롬프트 전략 유지
+- 더 최신 오픈소스 모델 사용
+
+### 팁과 참고 사항
+
+- **모델 선택:** 복잡한 추론은 추론 모델, 개발 작업은 코딩 모델, 범용 작업은 플래그십 모델을 권장합니다.
+- **비용 최적화:** Baseten은 오픈소스 모델 기준으로 매우 경쟁력 있는 가격을 제공합니다.
+- **컨텍스트 윈도우:** 최대 1M 토큰의 긴 컨텍스트를 활용해 코드/문서를 한 번에 포함하세요.
+- **엔터프라이즈 준비:** 보안, 컴플라이언스, 안정성이 필요한 프로덕션에 적합합니다.
+- **동적 모델 업데이트:** Caret가 Baseten 최신 모델 리스트를 자동 갱신합니다.
+- **멀티 클라우드 용량 관리(MCM):** 전 세계 고가용/저지연 보장.
+- **지원:** 확장 가능한 전용 리소스와 엔터프라이즈 지원 제공.
 
 ### 가격 정보
 
-Baseten은 경쟁력 있는 가격을 제공합니다. 최신 가격은 [Baseten Model APIs](https://www.baseten.co/products/model-apis/) 페이지를 확인하세요. 일반적으로 백만 토큰당 $0.10~$6.00 범위이며, 폐쇄형 모델보다 비용 효율적입니다.
+현재 가격은 투명하며 경쟁력이 높습니다. 최신 가격은 [Baseten Model APIs 페이지](https://www.baseten.co/products/model-apis/)를 참고하세요. 보통 1M 토큰당 \$0.10~\$6.00 범위로, 많은 폐쇄형 모델 대비 비용 효율이 높습니다.

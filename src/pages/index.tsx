@@ -106,9 +106,7 @@ export default function Home(): ReactNode {
 									{strings.heroTitle}
 								</Heading>
 								{strings.heroSubtitle ? <p className="hero__subtitle">{strings.heroSubtitle}</p> : null}
-								{strings.heroDescription ? (
-									<p className="hero__description">{strings.heroDescription}</p>
-								) : null}
+								{strings.heroDescription ? <p className="hero__description">{strings.heroDescription}</p> : null}
 								<div className="hero__actions">
 									<div className="lang-switch">
 										{[

@@ -1,34 +1,33 @@
 ---
-title: "Terminal Quick Fixes"
-sidebarTitle: "Terminal Quick Fixes"
-description: "Quick solutions for common terminal issues"
+title: "终端快速修复"
+sidebarTitle: "终端快速修复"
+description: "常见终端问题的快速解决方案"
 ---
 
-**Here is a list of common fixes, starting with the most applicable:**
+**从最常见的解决方案开始：**
 
--   **Switch to bash** (solves most instances)
+- **切换到 bash**
 
-    1. Within Caret, left-click the **Settings** button in the top right-hand corner of the chat window
-    2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
-    3. Navigate to **"Default Terminal Profile"** and select **"bash"** from the drop-down
+  1. 在 Caret 中点击右上角 **Settings**
+  2. 左侧选择 **"Terminal Settings"**
+  3. 在 **"Default Terminal Profile"** 选择 **"bash"**
 
--   **Increase timeout**
+- **增加超时**
 
-    1. Within Caret, left-click the **Settings** button in the top right-hand corner of the chat window
-    2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
-    3. Navigate to "Shell integration timeout (seconds)" and enter **"10"** into the text field
+  1. 点击 **Settings**
+  2. 进入 **"Terminal Settings"**
+  3. 将 "Shell integration timeout (seconds)" 设为 **10**
 
--   **Disable terminal reuse**
-    1. Within Caret, left-click the **Settings** button in the top right-hand corner of the chat window
-    2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
-    3. Look for **"Enable aggressive terminal reuse"**, and **uncheck** this option
+- **禁用终端复用**
+  1. 点击 **Settings**
+  2. 进入 **"Terminal Settings"**
+  3. 取消 **"Enable aggressive terminal reuse"**
 
-## Platform-Specific Fixes
+## 平台相关
 
 ### macOS + Oh-My-Zsh
 
 ```bash
-# Create minimal config for VSCode
 echo 'export TERM=xterm-256color' > ~/.zshrc-vscode
 echo 'export PAGER=cat' >> ~/.zshrc-vscode
 ```
@@ -36,16 +35,15 @@ echo 'export PAGER=cat' >> ~/.zshrc-vscode
 ### Windows PowerShell
 
 ```powershell
-# Run as Administrator
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ### WSL
 
--   Open folder from WSL: `code .`
--   Select **"WSL Bash"** in Caret settings, under **"Terminal Settings"**
--   Increase **"Shell integration timeout (seconds)"** to **15**
+- 使用 `code .` 打开 WSL 目录
+- 在 **"Terminal Settings"** 选择 **"WSL Bash"**
+- 将超时设为 **15**
 
-## Full Guide
+## 完整指南
 
-For detailed troubleshooting, see the [Complete Terminal Troubleshooting Guide](/zh/troubleshooting/terminal-integration-guide).
+查看 [终端集成指南](/zh/troubleshooting/terminal-integration-guide)。

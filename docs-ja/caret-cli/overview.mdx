@@ -1,0 +1,74 @@
+---
+title: "概要"
+description: "CLI の導入から最初のタスク実行、コードレビュー自動化までの案内"
+---
+
+<Warning>
+**プレビューリリース - macOS と Linux のみ**
+
+Caret CLI は現在プレビュー版で、macOS と Linux のみで利用できます。Windows 対応は近日提供予定です。
+</Warning>
+
+<Note>
+このマニュアルは Caret ベースでビルドされた Caret CLI を基準にしています。機能・オプションは Caret v3.38.1 マージ版に準拠し、ブランディング/UI の差分は最小限です。
+</Note>
+
+## Caret CLI とは？
+
+Caret CLI はターミナル上で AI コーディングエージェントを直接実行します。CI/CD で git diff をパイプして自動コードレビューを行ったり、複数インスタンスを並行実行して開発を分担したり、既存のシェルワークフローに統合できます。
+
+CLI はシステム内のインスタンスを追跡し、人が読みやすい出力／スクリプト向け JSON／プレーンテキスト／リッチ出力を提供します。
+
+<Tip>
+今すぐ始めるなら [インストールガイド](/ja/caret-cli/installation) を確認してください。
+</Tip>
+
+## 対応モデルプロバイダー
+
+Caret CLI は複数のモデルプロバイダーに対応しています。
+
+- **Anthropic**
+- **OpenAI**
+- **OpenAI Compatible**
+- **OpenRouter**
+- **X AI (Grok)**
+- **AWS Bedrock**
+- **Google Gemini**
+- **Ollama**
+- **Cerebras**
+
+セットアップ時に `caret auth` で認証と設定を行います。
+
+## できること
+
+**自動コードメンテナンス**
+- 日次実行で lint 問題を検出・修正
+- セキュリティ脆弱性のスキャンと自動パッチ
+- 依存更新とテスト実行
+
+**マルチインスタンス開発**
+- フロント/バックエンドを同時に別インスタンスで実行
+- ブランチごとにインスタンスを分離
+- 複数 PR の並行レビュー
+
+**カスタムワークフロー**
+- git hooks と連携したシェルスクリプト
+- 複雑なデータ構造を Caret にパイプ
+- jq/grep/awk など既存ツールと統合
+
+**CI/CD 統合**
+- GitHub Actions で PR 自動レビュー
+- GitLab パイプラインでスキーマ変更分析
+- Jenkins でテスト失敗の解析と修正提案
+
+## もっと見る
+
+<Columns cols={2}>
+  <Card title="インストール" icon="download" href="/ja/caret-cli/installation">
+    Caret CLI を導入してアカウント認証を行います。
+  </Card>
+  
+  <Card title="3つの主要フロー" icon="route" href="/ja/caret-cli/three-core-flows">
+    対話モード／ヘッドレス自動化／マルチインスタンス並列化を学びます。
+  </Card>
+</Columns>

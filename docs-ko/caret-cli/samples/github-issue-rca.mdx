@@ -1,40 +1,40 @@
 ---
 title: "GitHub 이슈 RCA 샘플"
-description: "Caret CLI로 GitHub 이슈 근본 원인을 분석하는 자동화 샘플"
+description: "Caret CLI로 GitHub 이슈를 자동 분석해 근본 원인을 찾습니다."
 ---
 
 # GitHub 근본 원인 분석
 
-Caret CLI를 사용해 GitHub 이슈를 자동으로 분석합니다. 이 스크립트는 Caret의 자율 AI 기능으로 이슈를 가져오고, 분석하고, 근본 원인을 식별하며, 파싱 가능한 결과를 출력해 개발 워크플로우에 쉽게 통합할 수 있습니다.
+Caret CLI를 사용한 GitHub 이슈 자동 분석 샘플입니다. Caret의 자율 AI 기능으로 이슈를 가져오고 분석해 근본 원인을 찾으며, 워크플로우에 쉽게 통합할 수 있는 깔끔한 출력 결과를 제공합니다.
 
 <Note>
-**Caret CLI가 처음인가요?** 이 샘플은 [설치 가이드](/ko/caret-cli/installation) 완료 및 `caret auth` 인증을 전제로 합니다. 아직 Caret CLI를 설치하지 않았다면 먼저 해당 가이드부터 진행하세요.
+**Caret CLI가 처음이신가요?** 이 샘플은 [설치 가이드](/ko/caret-cli/installation)를 완료하고 `caret auth`로 인증했다고 가정합니다. 아직 Caret CLI를 설정하지 않았다면 먼저 설치를 완료하세요.
 </Note>
 
 <Frame>
   <img src="https://storage.googleapis.com/cline_public_images/cli-rca.gif" alt="CLI Root Cause Analysis Demo" width="600" />
 </Frame>
 
-## 사전 준비
+## 준비 사항
 
-이 샘플은 아래 항목이 준비되어 있다고 가정합니다:
+이 샘플은 다음을 이미 완료했다고 가정합니다:
 
 - **Caret CLI** 설치 및 인증 완료 ([설치 가이드](/ko/caret-cli/installation))
-- **최소 1개의 AI 모델 프로바이더** 구성 완료 (예: OpenRouter, Anthropic, OpenAI)
+- **최소 1개의 AI 모델 프로바이더** 설정 (예: OpenRouter, Anthropic, OpenAI)
 - **Caret CLI 기본 사용법** 이해
 
-추가로 다음 도구가 필요합니다:
+추가로 다음이 필요합니다:
 
 - **GitHub CLI**(`gh`) 설치 및 인증
-- **jq** (JSON 파싱용)
-- **bash** 셸(또는 호환 셸)
+- **jq** 설치 (JSON 파싱용)
+- **bash** 쉘(또는 호환 쉘)
 
-### 설치 안내
+### 설치 방법
 
 #### macOS
 
 <Note>
-아래 명령은 [Homebrew](https://brew.sh/)가 설치되어 있어야 합니다. Homebrew가 없으면 먼저 다음으로 설치하세요:
+이 과정은 [Homebrew](https://brew.sh/)가 설치되어 있어야 합니다. 없으면 아래 명령으로 먼저 설치하세요:
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
@@ -57,7 +57,7 @@ gh auth login
 # GitHub CLI 설치 (Debian/Ubuntu)
 sudo apt install gh
 
-# 다른 배포판은: https://cli.github.com/manual/installation 참고
+# 다른 배포판은 여기 참고: https://cli.github.com/manual/installation
 
 # jq 설치 (Debian/Ubuntu)
 sudo apt install jq
@@ -68,14 +68,14 @@ gh auth login
 
 ## 스크립트 받기
 
-**옵션 1: curl로 바로 다운로드**
+**옵션 1: curl로 직접 다운로드**
 ```bash
 curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
 ```
 
-**옵션 2: 전체 스크립트 직접 복사**
+**옵션 2: 전체 스크립트 복사**
 
-<Accordion title="analyze-issue.sh 전체 스크립트 보기">
+<Accordion title="analyze-issue.sh 전체 보기">
 
 ```bash
 #!/bin/bash
@@ -106,7 +106,7 @@ caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
 </Accordion>
 
 <Note>
-**스크립트를 다운로드하거나 생성한 뒤** 실행 권한을 부여하세요:
+**스크립트를 다운로드하거나 만든 뒤**, 실행 권한을 부여하세요:
 ```bash
 chmod +x analyze-issue.sh
 ```
@@ -116,28 +116,28 @@ chmod +x analyze-issue.sh
 
 ### 기본 사용
 
-스크립트를 저장한 디렉터리에서 아래 명령을 실행하면, 기본 근본 원인 분석 프롬프트로 이슈를 분석합니다:
+스크립트를 저장한 디렉터리에서 아래 명령을 실행하면 기본 프롬프트로 이슈를 분석합니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123
 ```
 
-다음 작업이 자동으로 수행됩니다:
-- 리포지토리의 이슈 #123을 가져옴
-- 이슈의 근본 원인 분석
-- 개선 방안을 포함한 상세 분석 결과 출력
+이 과정에서 다음이 수행됩니다:
+- 저장소의 123번 이슈를 가져옴
+- 이슈의 근본 원인을 분석
+- 권장 사항을 포함한 상세 분석 제공
 
-### 커스텀 분석 프롬프트
+### 커스텀 프롬프트
 
-이슈에 대해 구체적인 질문을 던질 수 있습니다:
+이슈에 대해 특정 질문을 던질 수 있습니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
 ```
 
-### 특정 Caret 인스턴스 사용
+### 특정 인스턴스 사용
 
-특정 인스턴스 주소로 작업을 지정할 수 있습니다:
+특정 Caret 인스턴스 주소를 지정해 분석할 수 있습니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -146,23 +146,23 @@ chmod +x analyze-issue.sh
 ```
 
 <Warning>
-이 방식이 유용한 경우:
-- 여러 Caret 인스턴스를 동시에 실행 중인 경우
+다음 상황에서 유용합니다:
+- 여러 Caret 인스턴스를 실행 중인 경우
 - 원격 Caret 서버를 사용하는 경우
-- 특정 구성으로 테스트하는 경우
+- 특정 구성으로 테스트하려는 경우
 </Warning>
 
 <Note>
-이 스크립트는 이슈를 가져오고, Caret으로 분석하고, 결과를 출력하는 과정을 자동으로 처리합니다. 분석 시간은 이슈 복잡도에 따라 보통 30~60초가 소요됩니다.
+스크립트가 이슈를 가져오고 Caret로 분석한 뒤 결과를 표시하는 모든 작업을 자동으로 처리합니다. 이슈 복잡도에 따라 보통 30~60초가 소요됩니다.
 </Note>
 
-## 동작 방식
+## 동작 원리
 
-스크립트의 각 구성 요소를 살펴보며 동작 방식을 이해해 봅니다.
+스크립트의 각 부분을 살펴보며 동작 방식을 이해해 봅니다.
 
 ### 인자 검증
 
-입력을 검증하고 사용 방법을 안내합니다:
+입력값을 검증하고 사용법을 안내합니다:
 
 ```bash
 if [ -z "$1" ]; then
@@ -175,14 +175,14 @@ fi
 ```
 
 **핵심 포인트:**
-- 필수 GitHub 이슈 URL을 확인
+- GitHub 이슈 URL 필수 검증
 - 명확한 사용 예시 제공
 - 커스텀 프롬프트 지원
-- 인스턴스 주소 옵션 지원
+- Caret 인스턴스 주소 선택 지원
 
 ### 인자 파싱
 
-인자를 추출하고 기본값을 세팅합니다:
+인자를 추출해 설정합니다:
 
 ```bash
 # Gather the args
@@ -194,57 +194,53 @@ fi
 ```
 
 **설명:**
-- `ISSUE_URL="$1"` - 첫 번째 인자는 항상 이슈 URL
-- `PROMPT="${2:-...}"` - 두 번째 인자는 선택이며, 기본은 근본 원인 분석
-- `ADDRESS` - 세 번째 인자가 있으면 인스턴스 주소 플래그로 설정
+- `ISSUE_URL="$1"` - 첫 번째 인자는 이슈 URL
+- `PROMPT="${2:-...}"` - 두 번째 인자는 선택, 기본값은 원인 분석
+- `ADDRESS` - 세 번째 인자(선택)로 인스턴스 주소 지정
 
 ### 핵심 분석 파이프라인
 
-핵심은 아래 파이프라인에서 수행됩니다:
+실제 분석이 일어나는 부분입니다:
 
 ```bash
-# Ask Caret for its analysis, showing only the summary
+# Ask Caret for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
     sed 's/\\n/\n/g'
 ```
 
-<Accordion title="파이프라인 단계별 설명">
+<Accordion title="파이프라인 해설: 각 구성 요소 이해하기">
 
 **1. `caret -y "$PROMPT: $ISSUE_URL"`**
-   - `-y`는 YOLO 모드(사용자 상호작용 없음)
-   - 이슈 URL을 포함한 프롬프트를 구성
+   - `-y`는 yolo 모드(무인 실행)
+   - 이슈 URL을 포함한 프롬프트 구성
 
 **2. `--mode act`**
-   - act 모드로 능동적 조사 수행
-   - 파일 읽기/명령 실행 등 도구 사용 허용
+   - act 모드 활성화
+   - 파일 읽기/명령 실행 등 도구 사용 가능
 
 **3. `$ADDRESS`**
-   - 선택 인스턴스 주소 플래그
-   - 설정되면 `--address <ip:port>`로 확장
+   - 특정 인스턴스 주소 선택(있을 때만)
 
 **4. `-F json`**
-   - JSON 형식으로 출력해 파싱 가능
+   - JSON 포맷으로 출력
 
 **5. `sed -n '/^{/,$p'`**
-   - 출력에서 JSON 본문만 추출
-   - JSON 이전의 불필요한 라인을 제거
+   - 출력에서 JSON 부분만 추출
 
 **6. `jq -r 'select(.say == "completion_result") | .text'`**
    - 완료 결과 메시지만 필터링
    - 텍스트 필드 추출
-   - `-r`은 따옴표 없는 문자열 출력
 
 **7. `sed 's/\\n/\n/g'`**
    - 이스케이프된 줄바꿈을 실제 줄바꿈으로 변환
-   - 출력 가독성 향상
 
 </Accordion>
 
 ## 샘플 출력
 
-다음은 실제 Flutter 이슈를 분석한 예시입니다:
+실제 Flutter 이슈를 분석한 예시입니다:
 
 ```bash
 $ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
@@ -315,13 +311,13 @@ would be the easiest migration path while Bloc provides better long-term
 scalability.
 ```
 
-## 언제 이 패턴을 사용할까요?
+## 언제 이 패턴을 사용하나요?
 
-이 스크립트 패턴은 다양한 개발 시나리오에서 GitHub 이슈 분석을 자동화하여 워크플로우를 가속화합니다.
+자동 GitHub 이슈 분석이 워크플로우를 가속하는 다양한 상황에 적합합니다.
 
 ### 버그 조사
 
-수동 코드 탐색 없이 버그 보고를 빠르게 분석합니다:
+버그 리포트를 빠르게 분석하고 근본 원인을 찾습니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/project/repo/issues/123 \
@@ -330,7 +326,7 @@ scalability.
 
 ### 기능 요청 분석
 
-기능 요청의 맥락과 영향을 파악합니다:
+기능 요청의 맥락과 영향 범위를 이해합니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/project/repo/issues/456 \
@@ -339,7 +335,7 @@ scalability.
 
 ### 보안 점검
 
-보고된 이슈의 보안 영향을 평가합니다:
+보안 이슈의 영향을 평가합니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/project/repo/issues/789 \
@@ -348,16 +344,16 @@ scalability.
 
 ### 문서 생성
 
-이슈 내용을 기반으로 기술 문서를 생성합니다:
+이슈 기반의 기술 문서를 자동 생성합니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/project/repo/issues/654 \
     "Provide detailed technical documentation for this issue"
 ```
 
-### 코드 리뷰 보조
+### 코드 리뷰 지원
 
-제안된 변경 사항에 대한 제2의 의견을 얻습니다:
+제안된 변경에 대한 2차 의견을 얻습니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/project/repo/issues/987 \
@@ -366,18 +362,18 @@ scalability.
 
 ## 결론
 
-이 샘플은 Caret CLI로 자율 GitHub 이슈 분석 도구를 만드는 방법을 보여줍니다:
+이 샘플은 Caret CLI로 GitHub 이슈 분석 도구를 구축하는 방법을 보여줍니다:
 
-1. **Caret의 자율 기능을 활용한 CLI 도구 구축**
-2. **Caret CLI의 JSON 출력 파싱**
-3. **커스텀 프롬프트 기반 자동화 스크립트 구성**
-4. **GitHub 이슈 분석 자동화**
-5. **명령줄 인자 처리 패턴 정립**
+1. Caret의 기능을 활용한 **자율 CLI 도구** 구축
+2. Caret CLI **JSON 출력 파싱**
+3. 커스텀 프롬프트 기반 **유연한 자동화 스크립트** 작성
+4. GitHub 이슈 분석 **통합**
+5. **명령줄 인자 처리**의 모범 패턴
 
 이 패턴은 PR 리뷰, 문서 생성, 코드 품질 분석 등 다양한 자동화 시나리오로 확장할 수 있습니다.
 
-## 관련 리소스
+## 관련 자료
 
 - [CLI 설치 가이드](/ko/caret-cli/installation)
 - [CLI 레퍼런스](/ko/caret-cli/cli-reference)
-- [세 가지 핵심 흐름](/ko/caret-cli/three-core-flows)
+- [3가지 핵심 흐름](/ko/caret-cli/three-core-flows)
