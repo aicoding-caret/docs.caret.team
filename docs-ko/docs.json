@@ -177,23 +177,6 @@
 				]
 			},
 			{
-				"group": "Caret CLI",
-				"pages": [
-					"caret-cli/overview",
-					"caret-cli/installation",
-					"caret-cli/three-core-flows",
-					{
-						"group": "CLI Samples",
-						"pages": [
-							"caret-cli/samples/overview",
-							"caret-cli/samples/github-issue-rca",
-							"caret-cli/samples/github-integration"
-						]
-					},
-					"caret-cli/cli-reference"
-				]
-			},
-			{
 				"group": "Enterprise Solutions",
 				"pages": [
 					"enterprise-solutions/overview",

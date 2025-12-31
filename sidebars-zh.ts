@@ -153,6 +153,7 @@ const sidebars: SidebarsConfig = {
 				},
 			],
 		},
+		/* Caret CLI hidden for v0.4.4.
 		{
 			type: "category",
 			label: "Caret CLI",
@@ -172,6 +173,7 @@ const sidebars: SidebarsConfig = {
 				},
 			],
 		},
+		*/
 		{
 			type: "category",
 			label: "提升提示技巧",
