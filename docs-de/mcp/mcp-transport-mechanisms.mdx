@@ -1,0 +1,197 @@
+---
+title: "MCP-Transportmechanismen"
+description: "Erfahren Sie mehr über die zwei primären Transportmechanismen für die Kommunikation zwischen Caret und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle."
+---
+
+Model Context Protocol (MCP) unterstützt zwei primäre Transportmechanismen für die Kommunikation zwischen Caret und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle.
+
+## STDIO-Transport
+
+STDIO-Transport läuft lokal auf Ihrer Maschine und kommuniziert über Standard-Input/Output-Streams.
+
+### Wie STDIO-Transport funktioniert
+
+1. Der Client (Caret) startet einen MCP-Server als Child-Process
+2. Die Kommunikation erfolgt über Process-Streams: Der Client schreibt in den STDIN des Servers, der Server antwortet über STDOUT
+3. Jede Nachricht wird durch ein Newline-Zeichen getrennt
+4. Nachrichten sind als JSON-RPC 2.0 formatiert
+
+```plaintext
+Client                    Server
+  |                         |
+  |<---- JSON message ----->| (via STDIN)
+  |                         | (processes request)
+  |<---- JSON message ------| (via STDOUT)
+  |                         |
+```
+
+### STDIO-Charakteristika
+
+-   **Lokalität**: Läuft auf derselben Maschine wie Caret
+-   **Performance**: Sehr geringe Latenz und niedriger Overhead (kein Network Stack involviert)
+-   **Einfachheit**: Direkte Prozesskommunikation ohne Netzwerkkonfiguration
+-   **Beziehung**: Eins-zu-eins-Beziehung zwischen Client und Server
+-   **Sicherheit**: Von Natur aus sicherer, da keine Netzwerkexposition besteht
+
+### Wann man STDIO verwenden sollte
+
+STDIO-Transport ist ideal für:
+
+-   Lokale Integrationen und Tools, die auf derselben Maschine laufen
+-   Sicherheitskritische Operationen
+-   Anforderungen an niedrige Latenz
+-   Single-Client-Szenarien (eine Caret-Instanz pro Server)
+-   Command-Line-Tools oder IDE-Extensions
+
+### STDIO-Implementierungsbeispiel
+
+```typescript
+import { Server } from "@modelcontextprotocol/sdk/server/index.js"
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
+
+const server = new Server({ name: "local-server", version: "1.0.0" })
+// Register tools...
+
+// Use STDIO transport
+const transport = new StdioServerTransport(server)
+transport.listen()
+```
+
+## SSE-Transport
+
+Server-Sent Events (SSE) Transport läuft auf einem Remote-Server und kommuniziert über HTTP/HTTPS.
+
+### Wie SSE-Transport funktioniert
+
+1. Der Client (Caret) verbindet sich über einen HTTP-GET-Request mit dem SSE-Endpoint des Servers
+2. Dies baut eine persistente Verbindung auf, über die der Server Events an den Client pushen kann
+3. Für die Kommunikation vom Client zum Server sendet der Client HTTP-POST-Requests an einen separaten Endpoint
+4. Die Kommunikation erfolgt über zwei Kanäle:
+    - Event Stream (GET): Server-zu-Client-Updates
+    - Message Endpoint (POST): Client-zu-Server-Anfragen
+
+```plaintext
+Client                             Server
+  |                                  |
+  |---- HTTP GET /events ----------->| (establish SSE connection)
+  |<---- SSE event stream -----------| (persistent connection)
+  |                                  |
+  |---- HTTP POST /message --------->| (client request)
+  |<---- SSE event with response ----| (server response)
+  |                                  |
+```
+
+### SSE-Charakteristika
+
+-   **Remote-Zugriff**: Kann auf einer anderen Maschine als Ihre Caret-Instanz gehostet werden
+-   **Skalierbarkeit**: Kann mehrere Client-Verbindungen gleichzeitig verarbeiten
+-   **Protokoll**: Funktioniert über Standard-HTTP (keine speziellen Protokolle erforderlich)
+-   **Persistenz**: Hält eine persistente Verbindung für Server-zu-Client-Nachrichten aufrecht
+-   **Authentifizierung**: Kann Standard-HTTP-Authentifizierungsmechanismen nutzen
+
+### Wann man SSE verwenden sollte
+
+SSE-Transport ist besser geeignet für:
+
+-   Remote-Zugriff über Netzwerke hinweg
+-   Multi-Client-Szenarien
+-   Öffentliche Dienste
+-   Zentralisierte Tools, auf die viele Benutzer zugreifen müssen
+-   Integration mit Web-Services
+
+### SSE-Implementierungsbeispiel
+
+```typescript
+import { Server } from "@modelcontextprotocol/sdk/server/index.js"
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js"
+import express from "express"
+
+const app = express()
+const server = new Server({ name: "remote-server", version: "1.0.0" })
+// Register tools...
+
+// Use SSE transport
+const transport = new SSEServerTransport(server)
+app.use("/mcp", transport.requestHandler())
+app.listen(3000, () => {
+	console.log("MCP server listening on port 3000")
+})
+```
+
+## Lokal vs. Hosted: Deployment-Aspekte
+
+Die Wahl zwischen STDIO- und SSE-Transporten beeinflusst direkt, wie Sie Ihre MCP-Server bereitstellen und verwalten.
+
+### STDIO: Lokales Deployment-Modell
+
+STDIO-Server laufen lokal auf derselben Maschine wie Caret, was mehrere wichtige Auswirkungen hat:
+
+-   **Installation**: Das Server-Executable muss auf dem Rechner jedes Benutzers installiert sein
+-   **Distribution**: Sie müssen Installationspakete für verschiedene Betriebssysteme bereitstellen
+-   **Updates**: Jede Instanz muss separat aktualisiert werden
+-   **Ressourcen**: Nutzt CPU, Memory und Disk der lokalen Maschine
+-   **Zugriffskontrolle**: Basiert auf den Filesystem-Berechtigungen der lokalen Maschine
+-   **Integration**: Einfache Integration mit lokalen Systemressourcen (Files, Prozesse)
+-   **Ausführung**: Startet und stoppt mit Caret (Child-Process-Lifecycle)
+-   **Abhängigkeiten**: Alle Abhängigkeiten müssen auf dem Rechner des Benutzers installiert sein
+
+#### Praktisches Beispiel
+
+Ein lokales File-Search-Tool, das STDIO verwendet, würde:
+
+-   Auf dem Rechner des Benutzers laufen
+-   Direkten Zugriff auf das lokale Filesystem haben
+-   Bei Bedarf von Caret gestartet werden
+-   Keine Netzwerkkonfiguration erfordern
+-   Zusammen mit Caret oder über einen Package Manager installiert werden müssen
+
+### SSE: Hosted Deployment-Modell
+
+SSE-Server können auf Remote-Servern bereitgestellt und über das Netzwerk aufgerufen werden:
+
+-   **Installation**: Einmal auf einem Server installiert, Zugriff durch viele Benutzer
+-   **Distribution**: Ein einziges Deployment bedient mehrere Clients
+-   **Updates**: Zentralisierte Updates wirken sich sofort auf alle Benutzer aus
+-   **Ressourcen**: Nutzt Server-Ressourcen, nicht die Ressourcen der lokalen Maschine
+-   **Zugriffskontrolle**: Verwaltet über Authentifizierungs- und Autorisierungssysteme
+-   **Integration**: Komplexere Integration mit benutzerspezifischen Ressourcen
+-   **Ausführung**: Läuft als unabhängiger Dienst (oft kontinuierlich)
+-   **Abhängigkeiten**: Werden auf dem Server verwaltet, nicht auf den Benutzer-Maschinen
+
+#### Praktisches Beispiel
+
+Ein Database-Query-Tool, das SSE verwendet, würde:
+
+-   Auf einem zentralen Server laufen
+-   Sich mit Datenbanken über serverseitige Credentials verbinden
+-   Kontinuierlich für mehrere Benutzer verfügbar sein
+-   Eine korrekte Netzwerksicherheitskonfiguration erfordern
+-   Mittels Container- oder Cloud-Technologien bereitgestellt werden
+
+### Hybride Ansätze
+
+Einige Szenarien profitieren von einem hybriden Ansatz:
+
+1. **STDIO mit Netzwerkzugriff**: Ein lokaler STDIO-Server, der als Proxy für Remote-Services fungiert
+2. **SSE mit lokalen Befehlen**: Ein Remote-SSE-Server, der Operationen auf dem Client-Rechner über Callbacks auslösen kann
+3. **Gateway-Pattern**: STDIO-Server für lokale Operationen, die sich mit SSE-Servern für spezialisierte Funktionen verbinden
+
+## Wahl zwischen STDIO und SSE
+
+| Erwägung             | STDIO                    | SSE                                 |
+| -------------------- | ------------------------ | ----------------------------------- |
+| **Standort**         | Nur lokale Maschine      | Lokal oder remote                   |
+| **Clients**          | Einzelner Client         | Mehrere Clients                     |
+| **Performance**      | Niedrigere Latenz        | Höhere Latenz (Netzwerk-Overhead)   |
+| **Setup-Komplexität**| Einfacher                | Komplexer (erfordert HTTP-Server)   |
+| **Sicherheit**       | Von Natur aus sicher     | Erfordert explizite Sicherheitsmaßnahmen |
+| **Netzwerkzugriff**  | Nicht erforderlich       | Erforderlich                        |
+| **Skalierbarkeit**   | Auf lokale Maschine begrenzt | Über Netzwerk verteilbar            |
+| **Deployment**       | Installation pro Benutzer| Zentralisierte Installation         |
+| **Updates**          | Verteilte Updates        | Zentralisierte Updates              |
+| **Ressourcennutzung**| Nutzt Client-Ressourcen  | Nutzt Server-Ressourcen             |
+| **Abhängigkeiten**   | Client-seitige Abhängigkeiten | Server-seitige Abhängigkeiten       |
+
+## Konfiguration von Transporten in Caret
+
+Detaillierte Informationen zur Konfiguration von STDIO- und SSE-Transporten in Caret, einschließlich Beispielen, finden Sie unter [Configuring MCP Servers](/german/mcp/configuring-mcp-servers).

@@ -1,0 +1,109 @@
+[dotenv@17.2.3] injecting env (13) from .env -- tip: ⚙️  override existing env vars with { override: true }
+
+=== Fixing Russian Titles ===
+
+Files to process: 30
+
+  [1/30] enterprise-solutions/overview.mdx
+    Original: "Caret Enterprise"
+    → "Caret Enterprise"
+  [2/30] features/at-mentions/git-mentions.mdx
+    Original: "Git Mentions"
+    → "Упоминания Git"
+  [3/30] features/at-mentions/url-mentions.mdx
+    Original: "URL Mentions"
+    → "Упоминания URL"
+  [4/30] features/focus-chain.mdx
+    Original: "Focus Chain"
+    → "Focus Chain"
+  [5/30] features/slash-commands/workflows.mdx
+    Original: "Workflows"
+    → "Workflows"
+  [6/30] provider-config/anthropic.mdx
+    Original: "Anthropic"
+    → "Anthropic"
+  [7/30] provider-config/aws-bedrock/cli-profile.mdx
+    Original: "CLI Profile (SSO)"
+    → "Профиль CLI (SSO)"
+  [8/30] provider-config/baseten.mdx
+    Original: "Baseten"
+    → "Baseten"
+  [9/30] provider-config/cerebras.mdx
+    Original: "Cerebras"
+    → "Cerebras"
+  [10/30] provider-config/claude-code.mdx
+    Original: "Claude Code"
+    → "Claude Code"
+  Progress: 10/30 (33.3%)
+
+  [11/30] provider-config/deepseek.mdx
+    Original: "DeepSeek"
+    → "DeepSeek"
+  [12/30] provider-config/doubao.mdx
+    Original: "Doubao"
+    → "Doubao"
+  [13/30] provider-config/fireworks-ai.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [14/30] provider-config/fireworks.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [15/30] provider-config/gcp-vertex-ai.mdx
+    Original: "GCP Vertex AI"
+    → "GCP Vertex AI"
+  [16/30] provider-config/groq.mdx
+    Original: "Groq"
+    → "Groq"
+  [17/30] provider-config/mistral-ai.mdx
+    Original: "Mistral"
+    → "Mistral"
+  [18/30] provider-config/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  [19/30] provider-config/openai-compatible.mdx
+    Original: "OpenAI Compatible"
+    → "Совместимость с OpenAI"
+  [20/30] provider-config/openai.mdx
+    Original: "OpenAI"
+    → "OpenAI"
+  Progress: 20/30 (66.7%)
+
+  [21/30] provider-config/openrouter.mdx
+    Original: "OpenRouter"
+    → "OpenRouter"
+  [22/30] provider-config/requesty.mdx
+    Original: "Requesty"
+    → "Requesty"
+  [23/30] provider-config/sap-aicore.mdx
+    Original: "SAP AI Core"
+    → "SAP AI Core"
+  [24/30] provider-config/upstage.mdx
+    Original: "Upstage"
+    → "Upstage"
+  [25/30] provider-config/vercel-ai-gateway.mdx
+    Original: "Vercel AI Gateway"
+    → "Vercel AI Gateway"
+  [26/30] provider-config/vscode-language-model-api.mdx
+    Original: "VS Code Language Model API"
+    → "VS Code Language Model API"
+  [27/30] provider-config/xai-grok.mdx
+    Original: "xAI (Grok)"
+    → "xAI (Grok)"
+  [28/30] provider-config/zai.mdx
+    Original: "Z AI (Zhipu AI)"
+    → "Z AI (Zhipu AI)"
+  [29/30] running-models-locally/lm-studio.mdx
+    Original: "LM Studio"
+    → "LM Studio"
+  [30/30] running-models-locally/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  Progress: 30/30 (100.0%)
+
+
+=== Complete ===
+Successful: 30
+Failed: 0
+Total: 30
+
+Results saved to work-logs/fix-titles-ru-1768736687970.json

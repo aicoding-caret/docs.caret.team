@@ -1,0 +1,70 @@
+---
+title: "MCP Server von GitHub hinzufügen"
+---
+
+Dieser Guide bietet eine Schritt-für-Schritt-Anleitung, wie Sie Caret nutzen, um einen bestehenden MCP Server aus einem GitHub Repository zu erstellen.
+
+## **Einen MCP Server finden**
+
+Es gibt mehrere Orte im Internet, um MCP Server zu finden:
+
+-   **Caret kann automatisch MCP Server zu seiner Liste hinzufügen, die Sie anschließend bearbeiten können.** Caret kann Repositories direkt von GitHub klonen und die Server für Sie builden.
+-   **GitHub:** Zwei der am häufigsten genutzten Orte, um MCP Server auf GitHub zu finden, sind:
+    -   [Offizielles MCP Server Repository](https://github.com/modelcontextprotocol/servers)
+    -   [Awesome-MCP Server Repository](https://github.com/punkpeye/awesome-mcp-servers)
+-   **Online-Verzeichnisse:** Mehrere Websites listen MCP Server auf, darunter:
+
+    -   [mcpservers.org](https://mcpservers.org/)
+    -   [mcp.so](https://mcp.so/)
+    -   [glama.ai/mcp/servers](https://glama.ai/mcp/servers)
+    -   [mcp.composio.dev](https://mcp.composio.dev/)
+
+    Diese Verzeichnisse ermöglichen es Nutzern, die Server nach verschiedenen Kriterien wie Downloads, Datum, Stars und Anwendungsfall zu sortieren. Jeder Eintrag bietet Informationen wie Features, Tools und Konfigurationsanweisungen.
+
+-   **PulseMCP:** Diese Website enthält einen Blogpost darüber, wie AI MCP Server nutzen könnte, um Websites überflüssig zu machen. PulseMCP enthält auch einen FAQ-Bereich über MCP Server: [https://www.pulsemcp.com/](https://www.pulsemcp.com/)
+
+## **Build-Prozess mit Caret**
+
+1. **Prozess initiieren:** Geben Sie Caret die folgenden Informationen:
+    - **GitHub Repository URL:** Die URL des Server-Repositories.
+    - **README.md Inhalt:** Dies ist optional, hilft Caret jedoch dabei, den Zweck und die Konfiguration des Servers zu verstehen. Sie können die README.md Datei aus dem GitHub Repository kopieren.
+2. **Beispielhafte Interaktion mit Caret:**
+
+    ```
+    User: "Caret, I want to add the MCP server for Brave browser control. Here's the GitHub link: @https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search Can you add it?"
+
+    Caret: "OK. Cloning the repository to the MCP directory. It needs to be built because it has a 'package.json' file. Should I run 'npm run build'?"
+
+    User: "Yes, build it."
+
+    Caret: "Build complete. This server needs a browser path. Where's your Brave browser executable?"
+
+    User: "It's in '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'."
+
+    Caret: "OK. I've updated the server config with that path and added it to 'cline_mcp_settings.json'. Anything else?"
+
+    User: "No, that's all. Let's test it."
+
+    Caret: "Great! Starting the MCP Inspector to test the server connection. After that, we can try controlling the browser from Caret."
+    ```
+
+3. **Carets Aktionen:** Basierend auf Ihren Anweisungen wird Caret Folgendes ausführen:
+    - **Repository Cloning:** Caret klont das Repository auf Ihren lokalen Rechner, normalerweise in das in Ihrer Konfiguration angegebene Verzeichnis.
+    - **Tweaking:** Sie können Caret anleiten, die Konfiguration des Servers anzupassen. Zum Beispiel:
+        - **User:** "Dieser Server erfordert einen API Key. Kannst du herausfinden, wo dieser hinzugefügt werden muss?"
+        - Caret aktualisiert möglicherweise automatisch die `cline_mcp_settings.json` Datei oder andere relevante Dateien basierend auf Ihren Anweisungen.
+    - **Server builden:** Caret führt den entsprechenden Build-Befehl für den Server aus, üblicherweise `npm run build`.
+    - **Server zu den Einstellungen hinzufügen:** Caret fügt die Konfiguration des Servers zur Datei `cline_mcp_settings.json` hinzu.
+
+## **Testen und Fehlerbehebung**
+
+1. **Server testen:** Sobald Caret den Build-Prozess abgeschlossen hat, testen Sie den Server, um sicherzustellen, dass er wie erwartet funktioniert. Caret kann Sie unterstützen, falls Probleme auftreten.
+2. **MCP Inspector:** Sie können den MCP Inspector verwenden, um die Verbindung und Funktionalität des Servers zu testen.
+
+## **Best Practices**
+
+-   **Grundlagen verstehen:** Während Caret den Prozess vereinfacht, ist es vorteilhaft, ein grundlegendes Verständnis des Server-Codes, des MCP Protokolls ([erfahren Sie mehr](/german/mcp/mcp-overview)) und der Server-Konfiguration zu haben. Dies ermöglicht eine effektivere Fehlerbehebung und Anpassung.
+-   **Klare Anweisungen:** Geben Sie Caret während des gesamten Prozesses klare und spezifische Anweisungen.
+-   **Testen:** Testen Sie den Server nach der Installation und Konfiguration gründlich, um sicherzustellen, dass er korrekt funktioniert.
+-   **Versionskontrolle:** Verwenden Sie ein Versionskontrollsystem (wie Git), um Änderungen am Code des Servers zu verfolgen.
+-   **Auf dem Laufenden bleiben:** Halten Sie Ihre MCP Server aktuell, um von den neuesten Features und Security-Patches zu profitieren.

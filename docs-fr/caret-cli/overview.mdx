@@ -1,0 +1,76 @@
+```
+---
+title: "Aperçu"
+description: "Installez la CLI, exécutez votre première tâche et apprenez à automatiser les revues de code et à intégrer des agents d'IA dans votre flux de développement"
+---
+
+<Warning>
+**Version préliminaire - macOS et Linux uniquement**
+
+Caret CLI est actuellement en version préliminaire et n'est disponible que pour les utilisateurs de macOS et Linux. La prise en charge de Windows sera bientôt disponible.
+</Warning>
+
+<Note>
+이 매뉴얼은 Caret 기반으로 빌드된 캐럿 CLI를 기준으로 합니다. 기능·옵션은 Caret v3.38.1 머지본을 따르며, 캐럿 브랜딩/UI 차이는 최소화되어 있습니다.
+</Note>
+
+## Qu'est-ce que Caret CLI ?
+
+Caret CLI exécute des agents de codage IA directement dans votre terminal. Envoyez des git diffs pour des revues de code automatisées dans CI/CD, exécutez plusieurs instances simultanément pour un développement parallèle, ou intégrez Caret dans vos flux de travail shell existants.
+
+La CLI suit les instances à travers votre système et les affiche dans des formats conçus à la fois pour les humains et les scripts : JSON, texte brut ou sortie terminal riche.
+
+<Tip>
+Prêt à démarrer ? Consultez le [guide d'installation](/french/caret-cli/installation) pour installer Caret CLI et exécuter votre première tâche.
+</Tip>
+
+## Fournisseurs de modèles pris en charge
+
+Caret CLI prend en charge plusieurs fournisseurs de modèles d'IA, vous offrant ainsi une flexibilité dans le choix du meilleur modèle pour vos besoins :
+
+- **Anthropic**
+- **OpenAI**
+- **OpenAI Compatible**
+- **OpenRouter**
+- **X AI (Grok)**
+- **AWS Bedrock**
+- **Google Gemini**
+- **Ollama**
+- **Cerebras**
+
+Lors de l'installation, vous vous authentifierez et configurerez votre fournisseur préféré à l'aide de la commande `caret auth`.
+
+## Ce que vous pouvez construire avec ceci
+
+**Maintenance de code automatisée**
+- Planifiez des exécutions quotidiennes pour identifier et corriger les problèmes de linting dans votre codebase.
+- Créez des tâches qui recherchent les vulnérabilités de sécurité et les corrigent automatiquement.
+- Créez des scripts qui mettent à jour les dépendances obsolètes et exécutent des tests.
+
+**Développement multi-instance**
+- Exécutez des instances Caret distinctes pour le frontend et le backend simultanément.
+- Créez des instances pour différentes branches de fonctionnalités, chacune avec un état isolé.
+- Créez des processus d'examen parallèles pour plusieurs PRs.
+
+**Flux de travail personnalisés**
+- Créez des scripts shell qui combinent Caret avec des git hooks pour une analyse pre-commit.
+- Créez des commandes personnalisées qui acheminent des structures de données complexes via Caret pour le traitement.
+- Intégrez-vous à votre toolchain existant (jq, grep, awk) pour une automatisation sophistiquée.
+
+**Intégration CI/CD**
+- Ajoutez Caret à GitHub Actions pour une revue de code automatique sur chaque PR.
+- Créez des pipelines GitLab qui génèrent des scripts de migration à partir des modifications de schéma.
+- Créez des jobs Jenkins qui utilisent Caret pour analyser les échecs de tests et suggérer des corrections.
+
+## En savoir plus
+
+<Columns cols={2}>
+  <Card title="Installation" icon="download" href="/french/caret-cli/installation">
+    Installez Caret CLI et authentifiez-vous avec votre compte pour commencer.
+  </Card>
+  
+  <Card title="Trois flux principaux" icon="route" href="/french/caret-cli/three-core-flows">
+    Maîtrisez les trois façons d'utiliser Caret CLI : mode interactif, automatisation headless et parallélisation multi-instances.
+  </Card>
+</Columns>
+```

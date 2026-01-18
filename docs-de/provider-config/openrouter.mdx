@@ -1,0 +1,48 @@
+---
+title: "OpenRouter"
+description: "Erfahren Sie, wie Sie OpenRouter mit Caret verwenden, um über eine einzige API auf eine Vielzahl von Sprachmodellen zuzugreifen."
+---
+
+<Note>
+Dies ist ein Referenzdokument für Caret. Es basiert auf Caret v3.38.1. Caret-spezifische Richtlinien (erlaubte/blockierte Modelle, regionale Einschränkungen, Authentifizierung/Routing) werden im Text durch `<Note>` gekennzeichnet.
+</Note>
+
+<Note>
+Verbesserung des Provider-Setups: Gemäß `caret-docs/features/f09-enhanced-provider-setup.md` kann die Validierung des Provider-Setups/UX in Caret verbessert werden. Beachten Sie, dass sich erlaubte/blockierte Modelle je nach Konto-/Organisationsrichtlinien oder bei Verwendung des Caret Routers ändern können.
+</Note>
+
+OpenRouter ist eine KI-Plattform, die Zugriff auf eine Vielzahl von Sprachmodellen verschiedener Provider über eine einzige API bietet. Dies vereinfacht die Einrichtung und ermöglicht es Ihnen, unkompliziert mit verschiedenen Modellen zu experimentieren.
+
+**Website:** [https://openrouter.ai/](https://openrouter.ai/)
+
+### Erhalt eines API Keys
+
+1.  **Registrierung/Anmeldung:** Besuchen Sie die [OpenRouter Website](https://openrouter.ai/). Melden Sie sich mit Ihrem Google- oder GitHub-Konto an.
+2.  **API Key abrufen:** Gehen Sie zur [Keys-Seite](https://openrouter.ai/keys). Dort sollte ein API Key aufgeführt sein. Falls nicht, erstellen Sie einen neuen Key.
+3.  **Key kopieren:** Kopieren Sie den API Key.
+
+### Unterstützte Modelle
+
+OpenRouter unterstützt eine große und stetig wachsende Anzahl von Modellen. Caret ruft die Liste der verfügbaren Modelle automatisch ab. Die vollständige und aktuelle Liste finden Sie auf der [OpenRouter Models page](https://openrouter.ai/models).
+
+### Konfiguration in Caret
+
+1.  **Caret-Einstellungen öffnen:** Klicken Sie auf das Einstellungen-Icon (⚙️) im Caret-Panel.
+2.  **Provider auswählen:** Wählen Sie „OpenRouter“ aus dem Dropdown-Menü „API Provider“.
+3.  **API Key eingeben:** Fügen Sie Ihren OpenRouter API Key in das Feld „OpenRouter API Key“ ein.
+4.  **Modell auswählen:** Wählen Sie das gewünschte Modell aus dem Dropdown-Menü „Model“.
+5.  **(Optional) Eigene Base URL:** Wenn Sie eine benutzerdefinierte Base URL für die OpenRouter API verwenden müssen, aktivieren Sie „Use custom base URL“ und geben Sie die URL ein. Die meisten Nutzer können dieses Feld leer lassen.
+
+### Unterstützte Transforms
+
+OpenRouter bietet einen [optionalen „middle-out“ Message Transform](https://openrouter.ai/docs/features/message-transforms) an, um bei Prompts zu helfen, die die maximale Context Size eines Modells überschreiten. Sie können diesen aktivieren, indem Sie das Kontrollkästchen „Compress prompts and message chains to the context size“ markieren.
+
+### Tipps und Hinweise
+
+-   **Modellauswahl:** OpenRouter bietet eine breite Palette an Modellen. Experimentieren Sie, um das beste Modell für Ihre Anforderungen zu finden.
+-   **Preise:** OpenRouter berechnet Gebühren basierend auf der Preisgestaltung des zugrunde liegenden Modells. Weitere Details finden Sie auf der [OpenRouter Models page](https://openrouter.ai/models).
+-   **Prompt Caching:**
+    -   OpenRouter leitet Caching-Anfragen an die zugrunde liegenden Modelle weiter, die dies unterstützen. Prüfen Sie auf der [OpenRouter Models page](https://openrouter.ai/models), welche Modelle Caching anbieten.
+    -   Für die meisten Modelle sollte das Caching automatisch aktiviert werden, wenn es vom Modell selbst unterstützt wird (ähnlich wie bei Requesty).
+    -   **Ausnahme für Gemini-Modelle via OpenRouter:** Aufgrund potenzieller Antwortverzögerungen, die gelegentlich beim Caching-Mechanismus von Google über OpenRouter beobachtet wurden, ist speziell für Gemini-Modelle ein manueller Aktivierungsschritt erforderlich.
+    -   Wenn Sie ein **Gemini-Modell** über OpenRouter verwenden, **müssen Sie das Kontrollkästchen „Enable Prompt Caching“** in den Provider-Einstellungen **manuell aktivieren**, um das Caching für dieses Modell einzuschalten. Dieses Kontrollkästchen dient als temporärer Workaround. Für Nicht-Gemini-Modelle auf OpenRouter ist dieses Kontrollkästchen für das Caching nicht erforderlich.

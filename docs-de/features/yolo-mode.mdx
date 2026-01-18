@@ -1,0 +1,83 @@
+---
+title: "YOLO-Modus"
+sidebarTitle: "YOLO Modus"
+---
+
+Der YOLO Modus ist genau das, wonach er sich anhört - Caret genehmigt automatisch alles. Aktiviere das Kontrollkästchen in den Funktionseinstellungen und er führt Dateiänderungen, Terminalbefehle und sogar Übergänge vom Plan- in den Act-Modus aus, ohne zu fragen.
+
+Betrachte ihn als [Automatische Genehmigung](/german/features/auto-approve) auf Steroiden - anstelle von granularen Berechtigungen verleiht der YOLO Modus Caret vollständige Autonomie.
+
+<Note>
+**Warnung: Das ist gefährlich.** Der YOLO Modus deaktiviert alle Sicherheitsüberprüfungen. Caret führt alles aus, was er entscheidet, ohne um Erlaubnis zu fragen.
+</Note>
+
+## Was automatisch genehmigt wird
+
+Wenn der YOLO Modus aktiviert ist, genehmigt Caret automatisch:
+
+- **Alle Dateivorgänge** - Lesen, Schreiben und Ändern von Dateien überall auf deinem System
+- **Alle Terminalbefehle** - einschließlich potenziell destruktiver Operationen
+- **Browseraktionen** - Web Scraping, Formulareinsendungen, Navigation
+- **MCP Server Tools** - externe Integrationen und API Aufrufe
+- **Modusübergänge** - automatisches Umschalten vom Plan- in den Act-Modus
+
+Im Wesentlichen werden alle Schutzschranken entfernt. Caret agiert mit vollständiger Autonomie.
+
+## So aktivierst du den YOLO Modus
+
+Navigiere zu Caret Einstellungen → Funktionen und aktiviere das Kontrollkästchen "YOLO Modus". Das ist alles - keine Bestätigungsdialoge, keine zusätzlichen Warnungen. Einmal aktiviert, beginnt Caret sofort mit der automatischen Genehmigung aller Aktionen.
+
+Um ihn zu deaktivieren, deaktiviere einfach das Kontrollkästchen. Alle ausstehenden Aktionen erfordern weiterhin deine Genehmigung, sobald der YOLO Modus deaktiviert ist.
+
+## Wann du dies verwenden könntest
+
+Der YOLO Modus wurde hauptsächlich für unsere kommende skriptfähige CLI entwickelt, wo eine vollständig autonome Ausführung sinnvoll ist. In der GUI könntest du ihn in Betracht ziehen für:
+
+**Schnelles Prototyping**, wo du keine Reibungsverluste wünschst und dich nicht um potenzielle Fehler kümmerst. Perfekt für Wegwerfexperimente oder um neue Ideen schnell zu erkunden.
+
+**Vertrauenswürdige, repetitive Aufgaben**, bei denen du Carets Ansatz bereits validiert hast und den Genehmigungsaufwand eliminieren möchtest. Denk an routinemäßiges Refactoring oder etablierte Muster.
+
+**Demonstrationszwecke**, wo du Carets Fähigkeiten ohne ständige Unterbrechungen zeigen möchtest.
+
+## Was schief gehen könnte
+
+Da der YOLO Modus alle Sicherheitsüberprüfungen entfernt, könnte Caret:
+
+- Wichtige Dateien ohne Warnung löschen
+- Befehle ausführen, die Systemeinstellungen ändern
+- Netzwerkanfragen an externe Dienste stellen
+- Konfigurationsdateien überschreiben
+- Softwarepakete installieren oder deinstallieren
+- Änderungen an der Versionskontrolle committen und pushen
+
+Das Risikoniveau hängt vollständig davon ab, was du Caret aufträgst. Einfache Aufgaben bleiben relativ sicher, aber komplexe Anfragen können unvorhersehbare Folgen haben.
+
+## Bewährte Praktiken
+
+Wenn du dich entscheidest, den YOLO Modus zu verwenden:
+
+**Beginne mit isolierten Umgebungen.** Verwende ihn zuerst in Wegwerfprojekten oder Sandkastenumgebungen. Aktiviere ihn niemals auf Produktionscodebasen, bis du die Risiken verstehst.
+
+**Sei spezifisch mit Anfragen.** Vage Anweisungen in Kombination mit unbegrenzten Berechtigungen können zu unerwarteten Ergebnissen führen. Je klarer deine Anforderungen sind, desto vorhersehbarer sind Carets Aktionen.
+
+**Überwache die Ausgabe.** Auch wenn Caret nicht um Erlaubnis fragt, zeigt er dir trotzdem, was er tut. Beobachte die Terminalausgabe und die Dateiänderungen, während sie geschehen.
+
+**Halte die Versionskontrolle bereit.** Stelle sicher, dass du Änderungen einfach rückgängig machen kannst, wenn etwas schief geht. Git wird zu deinem Sicherheitsnetz, wenn der YOLO Modus dein Workflow ist.
+
+## Inspiration: Was möglich wird
+
+Mit aktiviertem YOLO Modus kannst du:
+
+**Ganze Anwendungen erstellen** aus einer einzigen Eingabeaufforderung. Beschreibe, was du möchtest, und überlasse Caret alles - Dateierstellung, Abhängigkeitsinstallation, Konfigurationseinrichtung, sogar Bereitstellungsskripte.
+
+**Komplexe Workflows automatisieren**, die normalerweise Dutzende von Genehmigungsklicks erfordern. Datenverarbeitungspipelines, Build-System-Setup oder mehrstufige Refactoring-Operationen werden nahtlos.
+
+**Schnelle Iterationszyklen**, wo du Ideen schnell testen kannst, ohne Genehmigungsaufwand. Perfekt, um verschiedene Ansätze zu erkunden oder mit neuen Technologien zu experimentieren.
+
+**Live-Demonstrationen**, wo du Carets volle Fähigkeiten zeigen kannst, ohne anzuhalten, um jede Aktion zu genehmigen. Ideal für Präsentationen oder Schulungsszenarien.
+
+Der Schlüssel ist das Verständnis, dass der YOLO Modus Caret von einem interaktiven Assistenten in einen autonomen Agenten verwandelt. Nutze diese Macht weise.
+
+---
+
+Fragen oder Feedback? Erreiche uns in unserem [Discord](https://https://discord.gg/WB6yaR89YN) oder [r/caret](https://reddit.com/r/caret).

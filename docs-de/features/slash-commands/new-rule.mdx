@@ -1,0 +1,43 @@
+---
+title: "Befehl „New Rule“"
+sidebarTitle: "/newrule"
+description: "Mit dem Slash-Befehl `/newrule` können Sie Caret Ihre bevorzugte Arbeitsweise beibringen. Er erstellt eine Markdown-Datei in Ihrem Verzeichnis `.agents/context`, die als dauerhafte Anweisung dafür dient, wie sich Caret bei der Unterstützung Ihrer Projekte verhalten soll."
+---
+
+`/newrule` ist ein Slash-Befehl, mit dem Sie Caret Ihre bevorzugte Arbeitsweise beibringen können. Er erstellt eine Markdown-Datei in Ihrem `.agents/context`-Verzeichnis, die als dauerhafte Anweisungen dafür dient, wie sich Caret verhalten soll, wenn es Ihnen bei Ihren Projekten hilft.
+
+Stellen Sie sich das wie das Aufstellen von Hausregeln vor, die Caret immer befolgen wird, sodass Sie Ihre Präferenzen nicht in jedem Gespräch wiederholen müssen.
+
+#### Verwenden des Slash-Befehls `/newrule`
+
+Wenn Sie möchten, dass Caret bestimmte Richtlinien konsistent befolgt:
+
+-   Geben Sie `/newrule` im Chat ein
+-   Caret hilft Ihnen beim Erstellen einer strukturierten Regeldatei, indem es Sie nach Ihren Präferenzen fragt bezüglich:
+    -   Kommunikationsstil (ausführlich vs. prägnant)
+    -   Entwicklungs-Workflows
+    -   Coding Standards
+    -   Projektkontext
+    -   Alle anderen spezifischen Richtlinien
+-   Sie überprüfen die Regeldatei, bevor sie erstellt wird
+-   Nach der Genehmigung erstellt Caret eine Markdown-Datei in Ihrem Verzeichnis `.agents/context`, die für zukünftige Konversationen automatisch geladen wird.
+
+#### Beispiel
+
+Ich habe `/newrule` verwendet, als ich es leid war, in jeder neuen Aufgabe die gleichen Anweisungen zu wiederholen. Ich hatte spezifische Präferenzen bezüglich der Strukturierung meiner React-Komponenten, der zu verwendenden Testing Library und sogar meines bevorzugten Stils für die Variablennamen.
+
+Anstatt diese Präferenzen jedes Mal einzutippen, habe ich einfach `/newrule` verwendet und mit Caret zusammengearbeitet, um eine detaillierte Regeldatei zu erstellen. Wir haben eine Markdown-Datei erstellt, die alles abdeckte, von der Code-Organisation bis hin zu meiner Präferenz für funktionale Komponenten gegenüber Class-Komponenten.
+
+Wann immer ich nun mit Caret über mein React-Projekt chatte, befolgt es automatisch diese Richtlinien, ohne dass ich es daran erinnern muss. Das Beste daran ist, dass ich verschiedene Regeldateien für verschiedene Projekte erstellen kann, sodass sich Caret an jede Codebasis anpasst, an der ich gerade arbeite.
+
+#### Inspiration
+
+So verwende ich `/newrule`, um meine Entwicklung reibungsloser zu gestalten:
+
+-   Ich habe für jedes größere Projekt eine Regeldatei mit spezifischen Architekturmustern und Library-Präferenzen erstellt, sodass Caret immer Code generiert, der zu unserer bestehenden Codebasis passt.
+
+-   Für die gemeinsamen Projekte meines Teams haben wir eine gemeinsame Regeldatei, die einen konsistenten Code-Stil und Dokumentationspraktiken gewährleistet, unabhängig davon, wer Caret verwendet.
+
+-   Bei der Arbeit mit Legacy-Code habe ich eine Regeldatei erstellt, die Caret an die Eigenheiten und Einschränkungen des alten Systems erinnert, sodass es niemals moderne Ansätze vorschlägt, die sich nicht gut integrieren lassen.
+
+-   Ich habe sogar eine persönliche Regeldatei für meine Nebenprojekte mit all meinen eigensinnigen Präferenzen - zwei Leerzeichen Einrückung, Arrow Functions überall und meine exakten Ordnerstruktur-Anforderungen.

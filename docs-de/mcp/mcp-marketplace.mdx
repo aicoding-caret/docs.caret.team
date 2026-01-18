@@ -1,0 +1,199 @@
+---
+title: "MCP leicht gemacht"
+description: "Erfahren Sie, wie Sie den MCP Marketplace nutzen, um MCP-Server zu entdecken, zu installieren und zu konfigurieren, die die Fähigkeiten von Caret mit zusätzlichen Tools und Ressourcen erweitern."
+---
+
+## Was ist ein MCP-Server?
+
+MCP-Server sind spezialisierte Erweiterungen, die die Fähigkeiten von Caret erweitern. Sie ermöglichen es Caret, zusätzliche Aufgaben wie das Abrufen von Webseiten, das Verarbeiten von Bildern, den Zugriff auf APIs und vieles mehr auszuführen.
+
+## MCP Marketplace Walkthrough
+
+Der MCP Marketplace bietet ein One-Click-Installationserlebnis für hunderte von MCP-Servern in verschiedenen Kategorien.
+
+### 1. Zugriff auf den Marketplace
+
+-   Klicken Sie in Caret auf die Schaltfläche „Extensions“ (Quadrat-Symbol) in der oberen Toolbar
+-   Der MCP Marketplace öffnet sich und zeigt verfügbare Server nach Kategorien an
+
+### 2. Einen Server durchsuchen und auswählen
+
+-   Durchsuchen Sie Server nach Kategorien (Search, File-systems, Browser-automation, Research-data, etc.)
+-   Klicken Sie auf einen Server, um Details zu seinen Fähigkeiten und Anforderungen anzuzeigen
+
+### 3. Installieren und konfigurieren
+
+-   Klicken Sie auf die Schaltfläche „Install“ für den von Ihnen gewählten Server
+-   Wenn der Server einen API-Key erfordert (was die meisten tun), führt Caret Sie durch den Prozess:
+    -   Wo Sie den API-Key erhalten
+    -   Wie Sie ihn sicher eingeben
+-   Der Server wird automatisch zu Ihren MCP-Einstellungen hinzugefügt
+
+### 4. Installation verifizieren
+
+-   Caret zeigt eine Bestätigung an, wenn die Installation abgeschlossen ist
+-   Überprüfen Sie den Server-Status in der Benutzeroberfläche der MCP-Einstellungen von Caret
+
+### 5. Ihren neuen Server verwenden
+
+-   Nach erfolgreicher Installation integriert Caret die Fähigkeiten des Servers automatisch
+-   Sie werden neue Tools und Ressourcen in Carets System-Prompt sehen
+-   Bitten Sie Caret einfach, die Fähigkeiten Ihres neuen Servers zu nutzen
+-   Beispiel: „Suche im Web mit Perplexity nach aktuellen React-Updates“
+
+**Unternehmensnutzer:** Wenn Sie Caret in einer Unternehmensumgebung verwenden, stellen Sie sicher, dass Sie gemäß den Sicherheitsrichtlinien Ihrer Organisation die Erlaubnis haben, MCP-Server von Drittanbietern zu installieren.
+
+## Was hinter den Kulissen passiert
+
+Wenn Sie einen MCP-Server installieren, geschehen mehrere Dinge automatisch:
+
+### 1. Installationsprozess
+
+-   Der Server-Code wird nach `/Users/<username>/Documents/Caret/MCP/` geklont/installiert
+-   Dependencies werden installiert
+-   Der Server wird gebaut (TypeScript/JavaScript-Kompilierung oder Python-Paketinstallation)
+
+### 2. Konfiguration
+
+-   Die MCP-Einstellungsdatei wird mit Ihrer Server-Konfiguration aktualisiert
+-   Diese Datei befindet sich unter: `/Users/<username>/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+-   Environment variables (wie API-Keys) werden sicher gespeichert
+-   Der Server-Pfad wird registriert
+
+### 3. Server-Launch
+
+-   Caret erkennt die Konfigurationsänderung
+-   Caret startet Ihren Server als separaten Prozess
+-   Die Kommunikation wird über stdio oder HTTP hergestellt
+
+### 4. Integration mit Caret
+
+-   Die Fähigkeiten Ihres Servers werden zum System-Prompt von Caret hinzugefügt
+-   Tools werden über `use_mcp_tool`-Befehle verfügbar
+-   Ressourcen werden über `access_mcp_resource`-Befehle verfügbar
+-   Caret kann diese Fähigkeiten nun nutzen, wenn der Benutzer sie anfordert
+
+## Fehlerbehebung
+
+### Systemanforderungen
+
+Stellen Sie sicher, dass Ihr System diese Anforderungen erfüllt:
+
+-   **Node.js 18.x oder neuer**
+    -   Prüfen mit: `node --version`
+    -   Installieren von: https://nodejs.org/
+    -   Erforderlich für JavaScript/TypeScript-Implementierungen
+-   **Python 3.10 oder neuer**
+    -   Prüfen mit: `python --version`
+    -   Installieren von: https://python.org/
+    -   Hinweis: Einige spezialisierte Implementierungen erfordern möglicherweise Python 3.11+
+-   **UV Package Manager**
+    -   Moderner Python Package Manager für Dependency-Isolierung
+    -   Installieren mit:
+        ```bash
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        ```
+        Oder: `pip install uv`
+    -   Verifizieren mit: `uv --version`
+
+Falls einer dieser Befehle fehlschlägt oder ältere Versionen anzeigt, bitte vor dem Fortfahren installieren/aktualisieren!
+
+### Häufige Installationsprobleme
+
+-   Stellen Sie sicher, dass Ihre Internetverbindung stabil ist
+-   Überprüfen Sie, ob Sie die notwendigen Berechtigungen zur Installation neuer Software haben
+-   Vergewissern Sie sich, dass der API-Key korrekt eingegeben wurde (falls erforderlich)
+-   Überprüfen Sie den Server-Status in der Benutzeroberfläche der MCP-Einstellungen auf Fehlermeldungen
+
+### So entfernen Sie einen MCP-Server
+
+Um einen fehlerhaften MCP-Server vollständig zu entfernen:
+
+1. Öffnen Sie die MCP-Einstellungsdatei: `/Users/<username>/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+2. Löschen Sie den gesamten Eintrag für Ihren Server aus dem `mcpServers`-Objekt
+3. Speichern Sie die Datei
+4. Starten Sie Caret neu
+
+### Ich erhalte immer noch eine Fehlermeldung
+
+Wenn Sie bei der Verwendung eines MCP-Servers eine Fehlermeldung erhalten, können Sie Folgendes versuchen:
+
+-   Überprüfen Sie die MCP-Einstellungsdatei auf Fehler
+-   Verwenden Sie ein Claude Sonnet Modell für die Installation
+-   Vergewissern Sie sich, dass die Pfade zu den Dateien Ihres Servers korrekt sind
+-   Stellen Sie sicher, dass alle erforderlichen Environment variables gesetzt sind
+-   Prüfen Sie, ob ein anderer Prozess denselben Port verwendet (für HTTP-basierte Server)
+-   Versuchen Sie, den Server zu entfernen und neu zu installieren (sowohl aus der Datei `cline_mcp_settings.json` als auch aus dem Verzeichnis `/Users/<username>/Documents/Caret/MCP/`)
+-   Verwenden Sie ein Terminal und führen Sie den Befehl mit seinen Argumenten direkt aus. So können Sie dieselben Fehler sehen, die Caret sieht
+
+## MCP-Server-Regeln
+
+Caret ist sich Ihrer aktiven MCP-Server und deren Verwendungszweck bereits bewusst. Wenn jedoch viele MCP-Server aktiviert sind, kann es nützlich sein zu definieren, wann welcher Server verwendet werden soll.
+
+Nutzen Sie eine `.agents/context`-Datei oder benutzerdefinierte Anweisungen, um eine intelligente MCP-Server-Aktivierung durch keyword-basierte Trigger zu unterstützen. Dies macht die Tool-Auswahl von Caret intuitiver und kontextsensitiver.
+
+### Wie MCP-Regeln funktionieren
+
+MCP-Regeln gruppieren Ihre verbundenen MCP-Server in funktionale Kategorien und definieren Trigger-Keywords, die sie automatisch aktivieren, wenn sie in Ihren Konversationen mit Caret erkannt werden.
+
+```json
+{
+	"mcpRules": {
+		"webInteraction": {
+			"servers": ["firecrawl-mcp-server", "fetch-mcp"],
+			"triggers": ["web", "scrape", "browse", "website"],
+			"description": "Tools for web browsing and scraping"
+		}
+	}
+}
+```
+
+### Konfigurationsstruktur
+
+1. **Kategorien**: Gruppieren Sie zusammengehörige Server (z. B. „webInteraction“, „mediaAndDesign“)
+2. **Server**: Listen Sie die Servernamen in jeder Kategorie auf
+3. **Trigger**: Keywords, die diese Server aktivieren
+4. **Beschreibung**: Eine für Menschen lesbare Erklärung der Kategorie
+
+### Vorteile von MCP-Regeln
+
+-   **Kontextbezogene Tool-Auswahl**: Caret wählt basierend auf dem Konversationskontext die passenden Tools aus
+-   **Weniger Reibung**: Es ist nicht notwendig, manuell anzugeben, welches Tool verwendet werden soll
+-   **Organisierte Fähigkeiten**: Gruppieren Sie zusammengehörige Tools und Server logisch
+-   **Priorisierung**: Behandeln Sie mehrdeutige Fälle mit einer expliziten Prioritätsreihenfolge
+
+### Beispielhafte Verwendung
+
+Wenn Sie schreiben „Kannst du diese Website scrapen?“, erkennt Caret „scrape“ und „website“ als Trigger und wählt automatisch die Web-bezogenen MCP-Server aus.
+
+Für Finanzaufgaben wie „Wie hoch ist der Aktienkurs von Apple?“, lösen Keywords wie „Aktie“ und „Kurs“ finanzbezogene Server aus.
+
+### Quick Start Template
+
+```json
+{
+	"mcpRules": {
+		"category1": {
+			"servers": ["server-name-1", "server-name-2"],
+			"triggers": ["keyword1", "keyword2", "phrase1", "phrase2"],
+			"description": "Description of what these tools do"
+		},
+		"category2": {
+			"servers": ["server-name-3"],
+			"triggers": ["keyword3", "keyword4", "phrase3"],
+			"description": "Description of what these tools do"
+		},
+		"category3": {
+			"servers": ["server-name-4", "server-name-5"],
+			"triggers": ["keyword5", "keyword6", "phrase4"],
+			"description": "Description of what these tools do"
+		}
+	},
+	"defaultBehavior": {
+		"priorityOrder": ["category1", "category2", "category3"],
+		"fallbackBehavior": "Ask user which tool would be most appropriate"
+	}
+}
+```
+
+Fügen Sie dies zu Ihrer `.agents/context`-Datei oder zu Ihren benutzerdefinierten Anweisungen hinzu, um die MCP-Server-Auswahl von Caret intuitiver und kontextsensitiver zu gestalten.

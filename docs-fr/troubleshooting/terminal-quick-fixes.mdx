@@ -1,0 +1,51 @@
+---
+title: "Correctifs rapides pour le Terminal"
+sidebarTitle: "Correctifs rapides pour le Terminal"
+description: "Solutions rapides pour les problèmes courants de terminal"
+---
+
+**Voici une liste de correctifs courants, en commençant par les plus applicables :**
+
+-   **Passer à bash** (résout la plupart des cas)
+
+    1. Dans Caret, faites un clic gauche sur le bouton **Settings** dans le coin supérieur droit de la fenêtre de chat
+    2. Une fois dans la fenêtre **Settings**, faites un clic gauche sur l'onglet **"Terminal Settings"** dans la colonne de gauche
+    3. Accédez à **"Default Terminal Profile"** et sélectionnez **"bash"** dans le menu déroulant
+
+-   **Augmenter le délai d'expiration (timeout)**
+
+    1. Dans Caret, faites un clic gauche sur le bouton **Settings** dans le coin supérieur droit de la fenêtre de chat
+    2. Une fois dans la fenêtre **Settings**, faites un clic gauche sur l'onglet **"Terminal Settings"** dans la colonne de gauche
+    3. Accédez à "Shell integration timeout (seconds)" et saisissez **"10"** dans le champ de texte
+
+-   **Désactiver la réutilisation du terminal**
+    1. Dans Caret, faites un clic gauche sur le bouton **Settings** dans le coin supérieur droit de la fenêtre de chat
+    2. Une fois dans la fenêtre **Settings**, faites un clic gauche sur l'onglet **"Terminal Settings"** dans la colonne de gauche
+    3. Cherchez l'option **"Enable aggressive terminal reuse"**, et **décochez** cette option
+
+## Correctifs spécifiques aux plateformes
+
+### macOS + Oh-My-Zsh
+
+```bash
+# Create minimal config for VSCode
+echo 'export TERM=xterm-256color' > ~/.zshrc-vscode
+echo 'export PAGER=cat' >> ~/.zshrc-vscode
+```
+
+### Windows PowerShell
+
+```powershell
+# Run as Administrator
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### WSL
+
+-   Ouvrir un dossier depuis WSL : `code .`
+-   Sélectionnez **"WSL Bash"** dans les paramètres de Caret, sous **"Terminal Settings"**
+-   Augmentez le **"Shell integration timeout (seconds)"** à **15**
+
+## Guide complet
+
+Pour un dépannage détaillé, consultez le [Guide complet de dépannage du terminal](/french/troubleshooting/terminal-integration-guide).

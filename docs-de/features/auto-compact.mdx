@@ -1,0 +1,76 @@
+---
+title: "Automatische Kontextzusammenfassung"
+sidebarTitle: "Auto-Kompakt"
+description: "Caret fasst Konversationen automatisch zusammen, um Platz freizugeben und das Arbeiten fortzusetzen, wenn die Konversation sich dem Kontextfensterlimit des Modells nähert."
+---
+
+Wenn Ihre Konversation sich dem Kontextfensterlimit des Modells nähert, fasst Caret diese automatisch zusammen, um Platz freizugeben und das Arbeiten fortzusetzen.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/condensing.png"
+		alt="Auto-compact feature condensing conversation context"
+	/>
+</Frame>
+
+## Wie es funktioniert
+
+Caret überwacht die Token-Nutzung während Ihrer Konversation. Wenn Sie sich dem Limit nähern, macht er Folgendes:
+
+1. Erstellt eine umfassende Zusammenfassung von allem, was passiert ist
+2. Bewahrt alle technischen Details, Code-Änderungen und Entscheidungen
+3. Ersetzt den Konversationsverlauf durch die Zusammenfassung
+4. Macht genau dort weiter, wo er aufgehört hat
+
+Sie sehen einen Tool-Aufruf zur Zusammenfassung, wenn dies geschieht, der die Gesamtkosten wie jeder andere API-Aufruf in der Chat-Ansicht anzeigt.
+
+## Warum das wichtig ist
+
+Bisher hat Caret ältere Nachrichten abgeschnitten, wenn er an Kontextgrenzen stieß. Dies bedeutete, dass wichtiger Kontext von früher in der Konversation verloren ging.
+
+Jetzt mit Zusammenfassung:
+- Alle technischen Entscheidungen und Codemuster werden beibehalten
+- Dateiänderungen und Projektkontext bleiben intakt
+- Caret erinnert sich an alles, was er getan hat
+- Sie können an viel größeren Projekten ohne Unterbrechung arbeiten
+
+<Tip>
+Die Kontextzusammenfassung harmoniert wunderbar mit [Focus Chain](/german/features/focus-chain). Wenn Focus Chain aktiviert ist, bleiben Aufgabenlisten über Zusammenfassungen hinweg bestehen. Dies bedeutet, dass Caret an langfristigen Aufgaben arbeiten kann, die sich über mehrere Kontextfenster erstrecken, während er mit der Aufgabenliste, die ihn durch jeden Reset führt, auf dem richtigen Weg bleibt.
+</Tip>
+
+## Technische Details
+
+Die Zusammenfassung erfolgt über Ihren konfigurierten API-Provider mit demselben Modell, das Sie bereits verwenden. Es nutzt Prompt-Caching, um die Kosten zu minimieren.
+
+1. Caret verwendet einen [Summarization Prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts), um eine Zusammenfassung der Konversation anzufordern.
+
+2. Sobald die Zusammenfassung generiert wurde, ersetzt Caret den Konversationsverlauf durch einen [Continuation Prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69), der Caret auffordert, weiterzuarbeiten, und die Zusammenfassung als Kontext bereitstellt.
+
+Verschiedene Modelle haben unterschiedliche Kontextfenster-Schwellenwerte, ab wann die automatische Zusammenfassung ausgelöst wird. Sie können sehen, wie Schwellenwerte in [context-window-utils.ts](https://github.com/caret/caret/blob/main/src/core/context/context-management/context-window-utils.ts) bestimmt werden.
+
+## Kostenbetrachtung
+
+Die Zusammenfassung nutzt Ihren bestehenden Prompt-Cache aus der Konversation, sodass sie ungefähr so viel kostet wie jeder andere Tool-Aufruf.
+
+Da die meisten Eingabe-Token bereits zwischengespeichert sind, zahlen Sie hauptsächlich für die Generierung der Zusammenfassung (Ausgabe-Token), was sie sehr kosteneffektiv macht.
+
+## Kontext mit Checkpoints wiederherstellen
+
+Sie können [Checkpoints](/german/features/checkpoints) verwenden, um Ihren Aufgabenstatus von vor einer Zusammenfassung wiederherzustellen. Das bedeutet, dass Sie nie wirklich den Kontext verlieren - Sie können immer zu früheren Versionen Ihrer Konversation zurückkehren.
+
+<Note>
+  Das Bearbeiten einer Nachricht vor einem Tool-Aufruf zur Zusammenfassung funktioniert ähnlich wie ein Checkpoint, sodass Sie die Konversation zu diesem Zeitpunkt wiederherstellen können.
+</Note>
+
+## Unterstützung für Modelle der nächsten Generation
+
+Auto-Kompakt verwendet eine fortschrittliche LLM-basierte Zusammenfassung, die unserer Erfahrung nach bei Modellen der nächsten Generation deutlich besser funktioniert. Wir unterstützen diese Funktion derzeit für die folgenden Modelle:
+
+- **Claude 4 series**
+- **Gemini 2.5 series**
+- **GPT-5**
+- **Grok 4**
+
+<Note>
+Bei Verwendung anderer Modelle greift Caret automatisch auf die standardmäßige regelbasierte Methode zum Abschneiden des Kontexts zurück, auch wenn Auto-Kompakt in den Einstellungen aktiviert ist.
+</Note>

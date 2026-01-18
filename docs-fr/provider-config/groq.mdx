@@ -1,0 +1,80 @@
+---
+title: "Groq"
+description: "Découvrez comment configurer et utiliser l'inférence ultra-rapide de Groq avec Caret. Accédez à des modèles d'OpenAI, Meta, DeepSeek et plus encore sur l'architecture LPU de Groq conçue à cet effet."
+---
+
+Groq propose une inférence AI ultra-rapide grâce à son architecture LPU™ (Language Processing Unit) personnalisée, conçue spécifiquement pour l'inférence plutôt qu'adaptée d'un matériel d'entraînement. Groq héberge des modèles open-source de divers fournisseurs, notamment OpenAI, Meta, DeepSeek, Moonshot AI, et d'autres.
+
+**Site web :** [https://groq.com/](https://groq.com/)
+
+### Obtenir une API Key
+
+1.  **S'inscrire / Se connecter :** Allez sur [Groq](https://groq.com/) et créez un compte ou connectez-vous.
+2.  **Accéder à la Console :** Allez sur la [Groq Console](https://console.groq.com/) pour accéder à votre tableau de bord.
+3.  **Créer une clé :** Naviguez vers la section API Keys et créez une nouvelle API key. Donnez à votre clé un nom descriptif (par exemple, "Caret").
+4.  **Copier la clé :** Copiez l'API key immédiatement. Vous ne pourrez plus la revoir. Conservez-la en toute sécurité.
+
+### Modèles supportés
+
+Caret supporte les modèles Groq suivants :
+
+-   `llama-3.3-70b-versatile` (Meta) - Performance équilibrée avec un contexte de 131K
+-   `llama-3.1-8b-instant` (Meta) - Inférence rapide avec un contexte de 131K  
+-   `openai/gpt-oss-120b` (OpenAI) - Modèle phare présenté avec un contexte de 131K
+-   `openai/gpt-oss-20b` (OpenAI) - Modèle compact présenté avec un contexte de 131K
+-   `moonshotai/kimi-k2-instruct` (Moonshot AI) - Modèle de 1 trilliard de paramètres avec prompt caching
+-   `deepseek-r1-distill-llama-70b` (DeepSeek/Meta) - Modèle optimisé pour le raisonnement (reasoning)
+-   `qwen/qwen3-32b` (Alibaba Cloud) - Amélioré pour les tâches de Q&A
+-   `meta-llama/llama-4-maverick-17b-128e-instruct` (Meta) - Dernière variante Llama 4
+-   `meta-llama/llama-4-scout-17b-16e-instruct` (Meta) - Dernière variante Llama 4
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez "Groq" dans le menu déroulant "API Provider".
+3.  **Saisir l'API Key :** Collez votre Groq API key dans le champ "Groq API Key".
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+### La révolution de la vitesse de Groq
+
+L'architecture LPU de Groq offre plusieurs avantages clés par rapport à l'inférence traditionnelle basée sur le GPU :
+
+#### Architecture LPU
+Contrairement aux GPU qui sont adaptés des charges de travail d'entraînement, le LPU de Groq est conçu spécifiquement pour l'inférence. Cela élimine les goulots d'étranglement architecturaux qui créent de la latence dans les systèmes traditionnels.
+
+#### Vitesse inégalée
+- **Latence inférieure à la milliseconde** qui reste constante malgré le trafic, les régions et les charges de travail.
+- **Static scheduling** avec des graphes d'exécution pré-calculés éliminant les délais de coordination au moment de l'exécution.
+- **Tensor parallelism** optimisé pour les réponses uniques à faible latence plutôt que pour le batching à haut débit.
+
+#### Qualité sans compromis
+- **TruePoint numerics** réduit la précision uniquement dans les zones qui n'affectent pas l'exactitude.
+- **100-bit intermediate accumulation** garantit un calcul sans perte.
+- **Strategic precision control** maintient la qualité tout en atteignant une accélération de 2 à 4 fois par rapport au BF16.
+
+#### Architecture mémoire
+- **SRAM comme stockage principal** (pas comme cache) avec des centaines de mégaoctets sur puce.
+- **Élimine la latence DRAM/HBM** qui pèse sur les accélérateurs traditionnels.
+- **Permet un véritable tensor parallelism** en divisant les couches sur plusieurs puces.
+
+En savoir plus sur la technologie de Groq dans leur [article de blog sur l'architecture LPU](https://groq.com/blog/inside-the-lpu-deconstructing-groq-speed).
+
+### Fonctionnalités spéciales
+
+#### Prompt Caching
+Le modèle Kimi K2 supporte le prompt caching, ce qui peut réduire considérablement les coûts et la latence pour les prompts répétés.
+
+#### Support Vision
+Certains modèles supportent les entrées d'images et les capacités de vision. Vérifiez les détails du modèle dans la Groq Console pour les capacités spécifiques.
+
+#### Modèles de raisonnement (Reasoning)
+Certains modèles comme les variantes DeepSeek offrent des capacités de raisonnement améliorées avec des processus de pensée étape par étape.
+
+### Conseils et remarques
+
+-   **Sélection du modèle :** Choisissez les modèles en fonction de votre cas d'utilisation spécifique et de vos exigences de performance.
+-   **Avantage de vitesse :** Groq excelle dans la latence de requête unique plutôt que dans le traitement par lots (batch processing) à haut débit.
+-   **Fournisseur de modèles OSS :** Groq héberge des modèles open-source de plusieurs fournisseurs (OpenAI, Meta, DeepSeek, etc.) sur son infrastructure rapide.
+-   **Fenêtres de contexte :** La plupart des modèles offrent de larges fenêtres de contexte (jusqu'à 131K tokens) pour inclure du code et du contexte substantiels.
+-   **Tarification :** Groq propose des tarifs compétitifs avec ses avantages de vitesse. Consultez la page [Groq Pricing](https://groq.com/pricing) pour les tarifs actuels.
+-   **Rate Limits :** Groq propose des limites de débit généreuses, mais consultez leur documentation pour les limites actuelles basées sur votre niveau d'utilisation.

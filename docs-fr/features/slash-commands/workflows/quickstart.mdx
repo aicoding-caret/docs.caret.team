@@ -1,0 +1,111 @@
+---
+title: "Démarrage rapide des workflows"
+sidebarTitle: "Démarrage rapide"
+description: "Un guide étape par étape pour créer votre premier workflow Caret"
+---
+
+Dans ce tutoriel, vous allez créer un workflow qui automatise les revues de Pull Requests GitHub. Il montre comment combiner les outils CLI, l'analyse de fichiers et l'interaction utilisateur.
+
+### Prérequis
+
+* Caret installé
+* [GitHub CLI (`gh`)](https://cli.github.com/) installé et authentifié
+* Un dépôt Git avec une PR à tester
+
+## Créer un Workflow de Revue de PR
+
+Ce workflow récupère les informations de la PR, analyse les changements et rédige les commentaires de revue.
+
+<Steps>
+  <Step title="Créer le fichier de workflow">
+    Créez un répertoire de workflow spécifique au projet.
+
+    1. Créez `.agents/context/workflows` à la racine du projet
+    2. Créez `pr-review.md` à l'intérieur de ce dossier
+  </Step>
+
+  <Step title="Écrire le contenu du workflow">
+    Ajoutez le contenu ci-dessous à `pr-review.md`.
+
+    ````markdown pr-review.md
+    # Relecteur de Pull Request
+
+    Ce workflow m'aide à revoir une pull request en analysant les modifications et en rédigeant une revue.
+
+    ## 1. Rassembler les informations de la PR
+    Tout d'abord, je dois comprendre de quoi parle cette PR. Je vais récupérer le titre, la description et la liste des fichiers modifiés.
+
+    ```bash
+    gh pr view PR_NUMBER --json title,body,files
+    ```
+
+    ## 2. Examiner les fichiers modifiés
+    Maintenant, je vais examiner le diff pour comprendre les modifications spécifiques du code.
+
+    ```bash
+    gh pr diff PR_NUMBER
+    ```
+
+    ## 3. Analyser les modifications
+    J'analyserai les modifications du code pour :
+    *   **Bugs:** Erreurs de logique ou cas limites.
+    *   **Performance:** Boucles ou opérations inefficaces.
+    *   **Sécurité:** Vulnérabilités ou pratiques dangereuses.
+
+    ## 4. Confirmer l'évaluation
+    Sur la base de mon analyse, je présenterai mes conclusions et vous demanderai comment vous souhaitez procéder.
+
+    ```xml
+    <ask_followup_question>
+      <question>J'ai examiné la PR #PR_NUMBER. Voici mon évaluation :
+
+    [Insérer l'analyse ici]
+
+    Voulez-vous que j'approuve cette PR, que je demande des modifications ou que je laisse simplement un commentaire ?</question>
+      <options>["Approve", "Request Changes", "Comment", "Do nothing"]</options>
+    </ask_followup_question>
+    ```
+
+    ## 5. Exécuter la revue
+    Enfin, j'exécuterai la commande de revue en fonction de votre décision.
+
+    ```bash
+    # Si approbation :
+    gh pr review PR_NUMBER --approve --body "Ça me semble bien ! [Résumé de l'analyse]"
+
+    # Si demande de modifications :
+    gh pr review PR_NUMBER --request-changes --body "Veuillez traiter les points suivants : [Liste des problèmes]"
+
+    # Si commentaire :
+    gh pr review PR_NUMBER --comment --body "[Commentaires]"
+    ```
+    ````
+
+    <Note>
+      Lors de l'exécution de ce workflow, remplacez `PR_NUMBER` par le numéro de PR réel (par exemple, `/pr-review.md 123`).
+    </Note>
+  </Step>
+
+  <Step title="Exécuter le workflow">
+    Vous êtes maintenant prêt à l'exécuter.
+
+    1. Ouvrez le panneau de chat Caret
+    2. Tapez `/pr-review.md` suivi du numéro de PR (par exemple, `/pr-review.md 42`)
+    3. Caret récupère les détails de la PR, analyse le code et affiche les résultats
+
+    <Tip>
+      Lorsque Caret exécute des commandes comme `gh pr view`, il peut s'interrompre pour afficher le résultat. Cliquez sur **Proceed While Running** pour laisser Caret continuer.
+    </Tip>
+  </Step>
+</Steps>
+
+### Autres cas d'utilisation courants
+
+Ce n'est qu'un point de départ. Vous pouvez créer des workflows pour de nombreuses tâches, telles que :
+
+* **Création de composants :** Générer du boilerplate pour de nouveaux fichiers (composants React, points de terminaison API)
+* **Exécution de tests :** Exécuter une suite de tests et résumer les résultats
+* **Automatisation du déploiement :** Utiliser des outils tels que `docker` et `kubectl`
+* **Refactorisations guidées :** Parcourir des refactorisations complexes
+
+Recherchez les tâches répétitives dans votre workflow et transformez-les en workflows Caret efficaces.

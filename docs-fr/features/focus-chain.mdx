@@ -1,0 +1,302 @@
+---
+title: "Focus Chain"
+---
+
+Focus Chain est une fonctionnalité d'amélioration de la gestion des tâches dans Caret qui offre une gestion automatique de la liste de tâches avec un suivi de la progression en temps réel tout au long de vos tâches. 
+
+<figure>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/2dos.gif"
+		alt="Gestion de la liste de tâches Focus Chain avec suivi de la progression en temps réel"
+	/>
+</figure>
+
+Cela permet à Caret de travailler sur des tâches à long terme, en gérant de manière transparente le contexte envoyé aux LLMs, et en maintenant Caret sur la bonne voie malgré les nombreuses réinitialisations de la context window.
+
+:::tip
+  Focus Chain fonctionne particulièrement bien avec la [Deep Planning slash command](/french/features/slash-commands/deep-planning) de Caret, offrant un suivi de progression fluide pour les tâches d'implémentation créées via le [planning process](/french/features/plan-and-act).
+:::
+
+## Fonctionnalités clés
+
+### Génération automatique de listes de tâches
+
+Caret analyse votre tâche et crée automatiquement une liste de tâches complète avec :
+- Des éléments clairs et exploitables au format checklist markdown
+- Une décomposition logique des tâches complexes en étapes gérables
+- Des mises à jour en temps réel à mesure que le travail progresse
+
+### Listes de tâches modifiables par l'utilisateur
+
+Les listes de tâches sont stockées sous forme de fichiers markdown modifiables :
+- Modification directe via votre éditeur markdown préféré
+- Détection automatique des modifications que vous apportez
+- Intégration transparente dans le workflow de Caret
+- Accès rapide via le bouton d'édition dans l'en-tête de la tâche
+
+### Suivi visuel de la progression
+
+L'en-tête de la tâche affiche des indicateurs de progression clairs :
+- **Compteurs d'étapes** indiquant la progression actuelle (ex: "3/8")
+- **Éléments terminés** clairement marqués par des coches
+- **Travail en cours** mis en évidence par des indicateurs
+- **Vue extensible** pour voir la liste de tâches complète
+
+### Système de rappel intelligent
+
+Des rappels configurables garantissent que les listes de tâches restent à jour :
+- Rappel par défaut tous les 6 messages (personnalisable de 1 à 100)
+- Invites automatiques lors du passage du Plan Mode au Act Mode
+- Mises à jour déclenchées par l'utilisateur lorsque les listes de tâches sont modifiées manuellement
+
+
+## Prise en main
+
+<Steps>
+  <Step title="Ouvrir les paramètres de Caret">
+      - Cliquez sur l'icône d'engrenage dans la barre latérale de Caret
+      - Naviguez vers la section "Features"
+  </Step>
+  <Step title="Activer Focus Chain">
+      - Cochez "Enable Focus Chain"
+      - Ajustez éventuellement le "Remind Caret Interval" (par défaut : 6 messages)
+  </Step>
+  <Step title="Démarrer une nouvelle tâche">
+      - Commencez une nouvelle tâche
+      - Caret commencera automatiquement à créer et à gérer des listes de tâches
+  </Step>
+</Steps>
+
+| Paramètre | Par défaut | Plage | Description |
+|-----------|------------|-------|-------------|
+| Enable Focus Chain | Désactivé | On/Off | Active le suivi amélioré de la progression des tâches |
+| Remind Caret Interval | 6 | 1-100 messages | Fréquence à laquelle Caret met à jour la liste de tâches |
+
+## Exemples d'utilisation
+
+#### 1. Lancement de tâche
+
+Lorsque vous démarrez une nouvelle tâche avec Focus Chain activé :
+
+``` markdown User Request
+User: "Create a user authentication system for my React app"
+
+Caret: [Analyzes request and creates todo list]
+```
+
+#### 2. Liste de tâches créée
+
+Caret crée un plan complet pour la tâche, stocké dans un fichier markdown :
+
+```markdown Todo List Created
+- [ ] Set up project structure
+- [ ] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
+```
+
+#### 3. Suivi de la progression
+
+À mesure que Caret travaille, l'en-tête de la tâche affiche la progression en temps réel :
+
+```markdown Todo List Header
+[3/8] Implement login functionality     ⌄
+```
+
+Cliquez pour agrandir et voir la liste complète :
+
+```markdown Full Todo List
+✓ Set up project structure
+✓ Install authentication dependencies
+✓ Create user registration component
+○ Implement login functionality  ← Currently working
+○ Add password validation
+○ Set up user database schema
+○ Write authentication tests
+○ Deploy to staging environment
+```
+
+#### 4. Modification par l'utilisateur
+
+Besoin d'ajuster la liste de tâches ? Aucun problème.
+
+<Steps>
+  <Step title="Ouvrir la liste de tâches">
+    Cliquez sur le bouton d'édition dans la vue étendue de la todo
+  </Step>
+  <Step title="Modifier le fichier markdown">
+    Un fichier markdown s'ouvre dans votre éditeur :
+
+    ```markdown Editing Todo List
+    # Focus Chain Todo List for Task abc123
+
+    <!-- Edit this markdown file to update your focus chain todo list -->
+    <!-- Use - [ ] for incomplete items and - [x] for completed items -->
+
+    - [x] Set up project structure
+    - [x] Install authentication dependencies (e.g., Firebase Auth)
+    - [x] Create user registration component
+    - [ ] Implement login functionality
+    - [ ] Add password reset feature
+    - [ ] Set up protected routes
+    - [ ] Implement logout functionality
+    - [ ] Add user profile page
+    - [ ] Write authentication tests
+    - [ ] Deploy to staging environment
+
+    <!-- Save this file to update the task's todo list -->
+    ```
+  </Step>
+  <Step title="Apporter vos modifications">
+    Ajoutez, supprimez ou réorganisez les éléments selon vos besoins
+  </Step>
+  <Step title="Enregistrer le fichier">
+    Caret détecte et utilise automatiquement vos mises à jour
+  </Step>
+</Steps>
+
+## Structure des fichiers
+
+### Stockage de la liste de tâches
+
+Les listes de tâches sont stockées sous forme de fichiers markdown dans votre répertoire de tâches :
+
+``` markdown
+<VSCode Global Storage>/
+  tasks/
+    <taskId>/
+      focus_chain_taskid_<taskId>.md
+      ... other task files
+```
+
+### Format Markdown
+
+Les fichiers de tâches utilisent la syntaxe standard des checklists markdown :
+
+```markdown Example Todo Syntax
+# Focus Chain Todo List for Task abc123
+
+<!-- Edit this markdown file to update your focus chain todo list -->
+<!-- Use the format: - [ ] for incomplete items and - [x] for completed items -->
+
+- [x] Set up project structure
+- [x] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
+
+<!-- Save this file and the todo list will be updated in the task -->
+```
+
+
+## Intégration avec le Plan/Act Mode
+
+Focus Chain fonctionne de manière transparente avec le [Plan/Act mode](/french/features/plan-and-act) de Caret :
+
+- **Plan Mode** : Listes de tâches optionnelles pour présenter des étapes concrètes
+- **Act Mode** : Création automatique de tâches lors du passage du Plan Mode
+
+:::tip
+  Pour les projets complexes, commencez en Plan Mode pour discuter et affiner votre approche avant de passer en Act Mode pour l'implémentation.
+:::
+
+## Bonnes pratiques
+
+:::info
+  :::details Accordion
+    1. **Commencer par des requêtes claires**
+      - Fournissez des descriptions de tâches initiales détaillées
+      - Incluez les exigences et contraintes spécifiques
+      - Mentionnez les technologies ou approches préférées
+
+    2. **Réviser les listes générées**
+      - Vérifiez que la décomposition de Caret correspond à vos attentes
+      - Vérifiez que toutes les étapes importantes sont incluses
+      - Assurez-vous que l'ordre est logique pour votre projet
+
+    3. **Modifier si nécessaire**
+      - Ajoutez les étapes manquantes que vous identifiez
+      - Supprimez les éléments inutiles
+      - Réorganisez les étapes pour un meilleur workflow
+      - Ajoutez des détails plus spécifiques aux éléments généraux
+  :::
+  :::details Accordion
+    1. **Utiliser d'abord le Plan Mode**
+      - Discutez de l'approche avant l'implémentation
+      - Affinez les exigences par la conversation
+      - Passez en Act Mode lorsque vous êtes prêt à commencer le travail
+
+    2. **Décomposer les grandes tâches**
+      - Divisez les projets complexes en tâches plus petites et gérables
+      - Créez des listes de tâches distinctes pour les différents composants
+      - Concentrez-vous sur un domaine majeur à la fois
+
+    3. **Révisions régulières**
+      - Vérifiez périodiquement la progression lors des tâches longues
+      - Mettez à jour les listes de tâches à mesure que les exigences évoluent
+      - Communiquez les changements à Caret via des modifications
+  :::
+  :::details Accordion
+    1. **Partager les fichiers de tâches**
+      - Les fichiers markdown de tâches peuvent être partagés avec les membres de l'équipe
+      - Incluez-les dans le contrôle de version pour la documentation du projet
+      - Utilisez-les comme base pour les discussions de planification de projet
+
+    2. **Format cohérent**
+      - Suivez le format standard des checklists markdown
+      - Gardez les descriptions des éléments claires et exploitables
+      - Utilisez une terminologie cohérente dans toutes les listes de tâches
+  :::
+:::
+
+
+## Dépannage
+
+Vous rencontrez des problèmes ? Essayez ces solutions rapides :
+
+:::info
+  :::details Accordion
+    - Vérifiez que Focus Chain est activé dans les paramètres
+    - Focus Chain peut ne pas fonctionner aussi bien avec des modèles plus petits et moins performants
+    - Assurez-vous que les permissions de fichiers sont correctes dans le répertoire des tâches
+  :::
+  :::details Accordion
+    - Vérifiez que votre éditeur supporte le markdown
+    - Vérifiez que VSCode a les permissions d'écriture pour le répertoire
+  :::
+  :::details Accordion
+    - Assurez-vous que les éléments de la liste utilisent la syntaxe correcte (`- [ ]` et `- [x]`)
+    - Vérifiez que le fichier markdown est correctement formaté
+  :::
+:::
+
+Toujours bloqué ? Utilisez la commande [/reportbug](/french/features/slash-commands/report-bug) dans Caret pour obtenir de l'aide.
+
+## Détails techniques (pour les curieux)
+
+:::info
+  :::details Accordion
+    - La surveillance des fichiers en temps réel détecte les modifications apportées aux fichiers markdown de tâches
+    - Synchronisation automatique entre les modifications de fichiers et les mises à jour de l'UI
+    - Gestion fluide de la création, de la modification et de la suppression de fichiers
+  :::
+  :::details Accordion
+    - Comptage dynamique des éléments terminés par rapport au total
+    - Prise en charge des syntaxes de complétion `- [x]` et `- [X]`
+    - Symboles Unicode (✓, ○) pour un affichage visuel amélioré
+  :::
+  :::details Accordion
+    - Listes de tâches stockées localement dans le workspace VSCode
+    - Aucun contenu de tâche transmis à des services externes
+    - Télémétrie d'utilisation (peut être désactivée dans les paramètres)
+  :::
+:::
+
+Focus Chain transforme Caret en votre gestionnaire de projet personnel, vous permettant de rester sur la bonne voie et de garder vos tâches organisées. Essayez-le pour votre prochain projet !

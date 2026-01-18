@@ -1,0 +1,87 @@
+```
+---
+title: "Git-Erwähnungen"
+sidebarTitle: "Git-Erwähnungen"
+description: "Verwende Git-Erwähnungen, um den Verlauf und die Änderungen deines Repositories direkt in deine Konversation mit Caret einzubringen."
+---
+
+Git-Erwähnungen ermöglichen es dir, den Verlauf und die Änderungen deines Repositories direkt in deine Konversation mit Caret einzubringen. Du kannst auf nicht festgeschriebene Änderungen mit `@git-changes` oder auf bestimmte Commits mit `@[commit-hash]` verweisen.
+
+Wenn du in einem Chat `@` eingibst, kannst du "Git Changes" aus dem Menü auswählen oder direkt `@git-changes` eingeben. Für bestimmte Commits gibst du `@` gefolgt vom Commit-Hash (mindestens 7 Zeichen) ein. Caret sieht sofort den Git-Status, die Diffs, die Commit-Nachrichten und andere relevante Informationen.
+
+Ich verwende Git-Erwähnungen ständig, wenn ich versuche, Code-Änderungen zu verstehen oder Probleme zu beheben, die durch kürzliche Commits verursacht wurden. Anstatt zu versuchen, Diffs oder Commit-Logs zu kopieren und einzufügen, frage ich einfach:
+
+```
+Ich glaube, dieser Commit hat unseren Authentifizierungsablauf kaputt gemacht: @a1b2c3d
+
+Kannst du erklären, was sich geändert hat und warum das Problem verursachen könnte?
+```
+
+Dies gibt Caret die vollständigen Commit-Informationen, einschließlich der Commit-Nachricht, des Autors, des Datums und des vollständigen Diff. Caret kann dann genau analysieren, was sich geändert hat und wie sich dies auf andere Teile der Codebasis auswirken könnte.
+
+Die `@git-changes`-Erwähnung ist perfekt, wenn du an Änderungen arbeitest und Feedback erhalten möchtest, bevor du sie festschreibst:
+
+```
+Hier sind meine aktuellen Änderungen: @git-changes
+
+Ich versuche, eine neue Funktion für Benutzerprofile zu implementieren. Ist mein Ansatz sinnvoll?
+Gibt es potenzielle Probleme oder Verbesserungsvorschläge?
+```
+
+Dies zeigt Caret alle deine nicht festgeschriebenen Änderungen, einschließlich neuer Dateien, geänderter Dateien und ihrer Diffs. Caret kann dann deine Änderungen überprüfen und Feedback zu deiner Implementierung geben.
+
+Git-Erwähnungen sind besonders leistungsstark, wenn sie mit Dateierwähnungen kombiniert werden. Wenn ich einen Fehler untersuche, verweise ich oft auf beides:
+
+```
+Ich glaube, dieser Commit hat einen Fehler eingeführt: @a1b2c3d
+
+Hier ist die aktuelle Implementierung: @/src/components/Auth.jsx
+
+Wie kann ich das Problem beheben und gleichzeitig die beabsichtigte Funktionalität beibehalten?
+```
+
+Wenn du das nächste Mal mit Code-Änderungen arbeitest oder Probleme untersuchst, verwende Git-Erwähnungen, anstatt Änderungen manuell zu beschreiben oder zu kopieren. Du erhältst genauere Hilfe, da Caret genau sehen kann, was sich geändert hat und in welchem Kontext.
+
+## Wie es unter der Haube funktioniert
+
+Wenn du Git-Erwähnungen in deiner Nachricht verwendest, passiert Folgendes im Hintergrund:
+
+### Für Git Changes (`@git-changes`)
+
+1. Wenn du deine Nachricht sendest, erkennt Caret das `@git-changes`-Muster in deinem Text
+2. Die Erweiterung führt Git-Befehle aus, um den aktuellen Arbeitszustand deines Repositories zu ermitteln
+3. Sie erfasst die Ausgabe von `git status` und `git diff`, um alle nicht festgeschriebenen Änderungen anzuzeigen
+4. Diese Informationen werden in einem strukturierten Format an deine Nachricht angehängt:
+
+    ```
+    <git_working_state>
+    On branch main
+    Changes not staged for commit:
+      modified: src/components/Button.jsx
+      modified: src/styles/main.css
+
+    [Complete diff output with all changes]
+    </git_working_state>
+    ```
+
+### Für bestimmte Commits (`@[commit-hash]`)
+
+1. Wenn du deine Nachricht sendest, erkennt Caret das `@`, gefolgt von einem Commit-Hash-Muster
+2. Die Erweiterung führt `git show` und verwandte Befehle aus, um Informationen über diesen Commit zu erhalten
+3. Sie ruft die Commit-Nachricht, den Autor, das Datum und den vollständigen Diff ab
+4. Diese Informationen werden in einem strukturierten Format an deine Nachricht angehängt:
+
+    ```
+    <git_commit hash="a1b2c3d">
+    commit a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t
+    Author: Developer Name <dev@example.com>
+    Date: Mon May 20 14:30:45 2025 -0700
+
+    Fix authentication bug in login form
+
+    [Complete diff output showing all changes in the commit]
+    </git_commit>
+    ```
+
+Dieser Prozess geschieht automatisch, wenn du Git-Erwähnungen verwendest, wodurch die KI vollständige Einblicke in deine Code-Änderungen erhält, ohne dass du Diffs oder Commit-Logs kopieren und einfügen musst.
+```

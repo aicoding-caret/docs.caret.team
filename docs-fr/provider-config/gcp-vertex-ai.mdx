@@ -1,0 +1,209 @@
+---
+title: "GCP Vertex AI"
+description: "Configurez GCP Vertex AI avec Caret pour accéder aux modèles d'IA générative de pointe comme Claude 3.5 Sonnet v2. Ce guide couvre la configuration de l'environnement GCP, l'authentification et l'intégration sécurisée pour les équipes d'entreprise."
+---
+
+### Overview
+
+**GCP Vertex AI :**\
+Un service entièrement géré qui donne accès à des modèles d'IA générative de pointe — tels que Claude 3.5 Sonnet v2 d'Anthropic — via Google Cloud.\
+[En savoir plus sur GCP Vertex AI](https://cloud.google.com/vertex-ai).
+
+Ce guide est conçu pour les organisations disposant d'environnements GCP établis (utilisant les IAM roles, les Service Accounts et les meilleures pratiques en matière de gestion des ressources) afin de garantir une utilisation sécurisée et conforme.
+
+---
+
+### Step 1: Préparer votre environnement GCP
+
+#### 1.1 Créer ou utiliser un projet GCP
+
+-   **Connectez-vous à la Console GCP :**\
+    [Google Cloud Console](https://console.cloud.google.com/)
+-   **Sélectionnez ou créez un projet :**\
+    Utilisez un projet existant ou créez-en un nouveau dédié à Vertex AI.
+
+#### 1.2 Configurer les permissions IAM et les Service Accounts
+
+-   **Attribuer les rôles requis :**
+
+    -   Accordez à votre utilisateur (ou Service Account) le rôle **Vertex AI User** (`roles/aiplatform.user`)
+    -   Pour les Service Accounts, attachez également le rôle **Vertex AI Service Agent** (`roles/aiplatform.serviceAgent`) pour activer certaines opérations
+    -   Envisagez d'autres rôles prédéfinis selon vos besoins :
+        -   Vertex AI Platform Express Admin
+        -   Vertex AI Platform Express User
+        -   Vertex AI Migration Service User
+
+-   **Accès aux ressources multi-projets :**
+    -   Pour les tables BigQuery dans différents projets, attribuez le rôle **BigQuery Data Viewer**
+    -   Pour les buckets Cloud Storage dans différents projets, attribuez le rôle **Storage Object Viewer**
+    -   Pour les sources de données externes, reportez-vous à la [documentation GCP Vertex AI Access Control](https://cloud.google.com/vertex-ai/docs/general/access-control)
+
+---
+
+### Step 2: Vérifier l'accès au modèle et à la Region
+
+#### 2.1 Choisir et confirmer une Region
+
+Vertex AI prend en charge plusieurs Regions. Sélectionnez une Region qui répond à vos besoins en matière de latence, de conformité et de capacité. Exemples :
+
+-   **us-east5 (Columbus, Ohio)**
+-   **us-central1 (Iowa)**
+-   **europe-west1 (Belgium)**
+-   **europe-west4 (Netherlands)**
+-   **asia-southeast1 (Singapore)**
+-   **global (Global)**
+
+L'endpoint Global peut offrir une plus grande disponibilité et réduire les erreurs d'épuisement des ressources (resource exhausted errors). Seuls les modèles Gemini sont supportés.
+
+#### 2.2 Activer le modèle Claude 3.5 Sonnet v2
+
+-   **Ouvrir Vertex AI Model Garden :**\
+    Dans la Console Cloud, naviguez vers **Vertex AI → Model Garden**
+-   **Activer Claude 3.5 Sonnet v2 :**\
+    Localisez la fiche du modèle pour Claude 3.5 Sonnet v2 et cliquez sur **Enable**
+
+---
+
+### Step 3: Configurer l'extension Caret pour VS Code
+
+#### 3.1 Installer et ouvrir Caret
+
+-   **Télécharger VS Code :**\
+    [Télécharger Visual Studio Code](https://code.visualstudio.com/)
+-   **Installer l'extension Caret :**
+    -   Ouvrez VS Code
+    -   Naviguez vers le Marketplace des extensions (Ctrl+Shift+X ou Cmd+Shift+X)
+    -   Recherchez **Caret** et installez l'extension
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-extension-arrow.png"
+		alt="Caret extension in VS Code"
+	/>
+</Frame>
+
+#### 3.2 Configurer les paramètres de Caret
+
+-   **Ouvrir les paramètres de Caret :**\
+    Cliquez sur l'icône des paramètres ⚙️ dans l'extension Caret
+-   **Définir l'API Provider :**\
+    Choisissez **GCP Vertex AI** dans le menu déroulant API Provider
+-   **Saisir votre Google Cloud Project ID :**\
+    Indiquez le Project ID que vous avez configuré précédemment
+-   **Sélectionner la Region :**\
+    Choisissez l'une des Regions prises en charge (par exemple, `us-east5`)
+-   **Sélectionner le modèle :**\
+    Dans la liste disponible, choisissez **Claude 3.5 Sonnet v2**
+-   **Enregistrer et tester :**\
+    Enregistrez vos paramètres et testez en envoyant une commande simple (par exemple, "Generate a Python function to check if a number is prime.")
+
+---
+
+### Step 4: Authentification et configuration des identifiants (Credentials)
+
+#### Option A: Utiliser votre compte Google (User Credentials)
+
+1. **Installer le Google Cloud CLI :**\
+   Suivez le [guide d'installation](https://cloud.google.com/sdk/docs/install)
+2. **Initialiser et s'authentifier :**
+
+    ```bash
+    gcloud init
+    gcloud auth application-default login
+    ```
+
+    - Cela configure les Application Default Credentials (ADC) en utilisant votre compte Google
+
+3. **Redémarrer VS Code :**\
+   Assurez-vous de redémarrer VS Code pour que l'extension Caret puisse récupérer les nouveaux identifiants
+
+#### Option B: Utiliser un Service Account (Clé JSON)
+
+1. **Créer un Service Account :**
+
+    - Dans la Console GCP, naviguez vers **IAM & Admin > Service Accounts**
+    - Créez un nouveau Service Account (par exemple, "vertex-ai-client")
+
+2. **Attribuer des rôles :**
+
+    - Attachez **Vertex AI User** (`roles/aiplatform.user`)
+    - Attachez **Vertex AI Service Agent** (`roles/aiplatform.serviceAgent`)
+    - En option, ajoutez d'autres rôles si nécessaire
+
+3. **Générer une clé JSON :**
+
+    - Dans la section Service Accounts, gérez les clés de votre Service Account et téléchargez la clé JSON
+
+4. **Définir la variable d'environnement :**
+
+    ```bash
+    export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
+    ```
+
+    - Cela indique aux bibliothèques clientes Google Cloud (et à Caret) d'utiliser cette clé
+
+5. **Redémarrer VS Code :**\
+   Lancez VS Code à partir d'un terminal où la variable `GOOGLE_APPLICATION_CREDENTIALS` est définie
+
+---
+
+### Step 5: Sécurité, surveillance et bonnes pratiques
+
+#### 5.1 Appliquer le principe du moindre privilège
+
+-   **Principe du moindre privilège (Least Privilege) :**\
+    N'accordez que les permissions minimales nécessaires. Les rôles personnalisés peuvent offrir un contrôle plus fin que les rôles prédéfinis larges
+-   **Meilleures pratiques :**\
+    Reportez-vous aux [GCP IAM Best Practices](https://cloud.google.com/iam/docs/best-practices)
+
+#### 5.2 Gérer l'accès aux ressources
+
+-   **Accès au niveau du projet vs niveau ressource :**\
+    L'accès peut être géré aux deux niveaux. Notez que les permissions au niveau des ressources (par exemple, pour BigQuery ou Cloud Storage) s'ajoutent aux politiques au niveau du projet, mais ne les remplacent pas
+
+#### 5.3 Surveiller l'utilisation et les quotas
+
+-   **Tableau de bord Model Observability :**
+
+    -   Dans la Console Vertex AI, naviguez vers le tableau de bord **Model Observability**
+    -   Surveillez les métriques telles que le débit de requêtes, la latence et les taux d'erreur (y compris les erreurs de quota 429)
+
+-   **Gestion des quotas :**
+    -   Si vous rencontrez des erreurs 429, vérifiez la page **IAM & Admin > Quotas**
+    -   Demandez une augmentation de quota si nécessaire\
+        [En savoir plus sur les Quotas GCP Vertex AI](https://cloud.google.com/vertex-ai/docs/quotas)
+
+#### 5.4 Agents de service et considérations multi-projets
+
+-   **Agents de service (Service Agents) :**\
+    Soyez conscient des différents agents de service :
+
+    -   Vertex AI Service Agent
+    -   Vertex AI RAG Data Service Agent
+    -   Vertex AI Custom Code Service Agent
+    -   Vertex AI Extension Service Agent
+
+-   **Accès multi-projets :**\
+    Pour les ressources situées dans d'autres projets (par exemple, BigQuery, Cloud Storage), assurez-vous que les rôles appropriés (BigQuery Data Viewer, Storage Object Viewer) sont attribués
+
+---
+
+### Conclusion
+
+En suivant ces étapes, votre équipe d'entreprise peut intégrer en toute sécurité GCP Vertex AI avec l'extension Caret pour VS Code afin d'exploiter la puissance de **Claude 3.5 Sonnet v2** :
+
+-   **Préparez votre environnement GCP :**\
+    Créez ou utilisez un projet, configurez IAM avec le moindre privilège, et assurez-vous que les rôles nécessaires (y compris le rôle Vertex AI Service Agent) sont attachés
+-   **Vérifiez l'accès régional et au modèle :**\
+    Confirmez que votre Region choisie prend en charge Claude 3.5 Sonnet v2 et que le modèle est activé
+-   **Configurez Caret dans VS Code :**\
+    Installez Caret, saisissez votre Project ID, sélectionnez la Region appropriée et choisissez le modèle
+-   **Configurez l'authentification :**\
+    Utilisez soit des identifiants utilisateur (via `gcloud auth application-default login`), soit un Service Account avec une clé JSON
+-   **Implémentez la sécurité et la surveillance :**\
+    Respectez les meilleures pratiques pour IAM, gérez soigneusement l'accès aux ressources et surveillez l'utilisation avec le tableau de bord Model Observability
+
+Pour plus de détails, veuillez consulter la [documentation GCP Vertex AI](https://cloud.google.com/vertex-ai/docs) et vos politiques de sécurité internes.\
+Bon codage !
+
+_Ce guide sera mis à jour au fur et à mesure de l'évolution de GCP Vertex AI et de Caret. Référez-vous toujours à la documentation la plus récente pour les pratiques actuelles._

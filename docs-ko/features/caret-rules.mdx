@@ -10,7 +10,7 @@ Caret 규칙을 사용하면 Caret에 시스템 수준 지침을 제공할 수 �
 </Note>
 
 <Note>
-캐럿 Agent Standardization: `caret-docs/features/f06-agent-standardization.md` 기준으로 `.agents/context` SoT + `AGENTS.md` 계층 + `/init` 스캐폴드로 표준화합니다. 레거시 규칙 경로는 읽지 않습니다.
+캐럿 Agent Standardization: Caret은 `.agents/context` 폴더를 기본 규칙 소스(SoT)로 사용하며, `AGENTS.md` 파일도 지원합니다. `/init` 명령으로 표준 구조를 쉽게 생성할 수 있습니다.
 </Note>
 
 ## 규칙 생성
@@ -92,7 +92,7 @@ your-project/
 └── ...
 ```
 
-Caret의 시스템 프롬프트는 사용자가 편집할 수 없습니다([여기에서 확인](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). 프롬프트 엔지니어링 모범 사례는 [이 리소스](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)를 참고하세요.
+Caret의 시스템 프롬프트는 사용자가 편집할 수 없지만, 규칙 파일을 통해 AI의 동작을 세밀하게 제어할 수 있습니다. 프롬프트 엔지니어링 모범 사례는 [Anthropic 가이드](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)를 참고하세요.
 
 ### AGENTS.md 표준 지원
 

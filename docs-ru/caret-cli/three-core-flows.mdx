@@ -1,0 +1,146 @@
+```yaml
+---
+title: "Три основных подхода"
+description: "Изучите три способа использования Caret CLI: интерактивный режим, автоматизация без участия пользователя и параллелизация с использованием нескольких экземпляров"
+---
+
+Два понятия, которые необходимо понимать:
+
+**Task** - Единая задача, которую Caret должен выполнить ("добавить тесты в utils.js"). Вы описываете, что хотите, Caret планирует, как это сделать, а затем выполняет план. Задачи выполняются на instances.
+
+**Instance** - Независимая рабочая область Caret. Каждый instance выполняет одну задачу за раз. Создайте несколько instances для параллельного выполнения нескольких tasks, работающих с разными частями вашего проекта.
+
+## 1. Интерактивный режим: Сначала планируйте, потом действуйте
+
+Начните здесь, чтобы увидеть, как работает Caret. Интерактивный режим открывает сеанс чата, где вы можете просматривать планы перед выполнением.
+
+```bash
+caret
+```
+
+Caret открывает интерактивный сеанс в вашем текущем каталоге. Введите свою задачу в виде сообщения. Caret переходит в режим Plan и предлагает пошаговую стратегию.
+
+Просмотрите или отредактируйте план в чате. Когда будете готовы, переключитесь на выполнение:
+
+```bash
+/act
+```
+
+Caret выполняет утвержденные шаги — чтение файлов, написание кода, выполнение команд. Вы сохраняете контроль на протяжении всего процесса.
+
+## 2. Headless single-shot: Выполнение задачи без чата
+
+Используйте это для автоматизации, где вам нужен однострочник, который просто делает работу.
+
+```bash
+caret instance new --default
+caret task new -y "Generate unit tests for all Go files"
+```
+
+С флагом `-y` (YOLO) Caret планирует и выполняет автономно без интерактивного чата. Идеально подходит для CI, cron jobs или скриптов.
+
+Примеры:
+
+```bash
+# Create a complete feature
+caret task new -y "Create a REST API for user authentication"
+
+# Generate documentation
+caret task new -y "Add JSDoc comments to all functions in src/"
+
+# Refactor code
+caret task new -y "Convert all var declarations to const/let"
+```
+
+Отслеживайте свою задачу с помощью:
+
+```bash
+# View task status
+caret task view
+
+# Follow task progress in real-time
+caret task view --follow
+```
+
+Нажмите Ctrl+C, чтобы выйти из просмотра.
+
+<Note>
+Запускайте YOLO mode с осторожностью в каталоге или в чистой ветке Git. Вы получаете скорость в обмен на надзор, поэтому будьте готовы к отмене, если это необходимо.
+</Note>
+
+## 3. Multi-instance: Запуск параллельных агентов
+
+Несколько instances позволяют распараллеливать работу над одним и тем же проектом без конфликтующих контекстов. Запускайте задачи frontend, backend и infrastructure одновременно.
+
+Создайте свой первый instance:
+
+```bash
+caret instance new
+```
+
+Это возвращает адрес instance, который вы будете использовать для назначения tasks. Прикрепите задачу к этому instance:
+
+```bash
+# Frontend work on first instance
+caret task new -y "Build React components"
+```
+
+Создайте второй instance и установите его по умолчанию в одной команде:
+
+```bash
+caret instance new --default
+```
+
+Теперь вы можете создавать tasks, не указывая адрес — они автоматически используют instance по умолчанию:
+
+```bash
+# Backend work on the new default instance
+caret task new -y "Implement API endpoints"
+```
+
+Перечислите все запущенные instances:
+
+```bash
+caret instances list
+```
+
+Остановите все instances по завершении:
+
+```bash
+caret instances kill -a
+```
+
+<Tip>
+Следите за адресами instances, возвращаемыми `caret instance new`. При написании скриптов для нескольких agents храните эти IDs и направляйте свои tasks на соответствующий instance.
+</Tip>
+
+## Выбор правильного подхода
+
+- **Интерактивный режим**: Лучше всего подходит для изучения новых проблем, изучения того, как работает Caret, или когда вы хотите просмотреть планы перед выполнением
+- **Headless single-shot**: Идеально подходит для автоматизации, CI/CD и tasks, где вы доверяете Caret выполнять их без присмотра
+- **Multi-instance**: Используйте, когда вам нужно распараллелить работу или поддерживать отдельные контексты для разных частей вашего проекта
+
+<Tip>
+Для получения подробной информации о командах и флагах, посетите страницу [CLI reference](/russian/caret-cli/cli-reference) для получения полной документации по всем доступным опциям.
+</Tip>
+
+## Следующие шаги
+
+<Columns cols={2}>
+  <Card title="CLI reference" icon="terminal" href="/russian/caret-cli/cli-reference">
+    Полная документация по командам, включая конфигурацию, управление instances и команды tasks.
+  </Card>
+  
+  <Card title="Plan and Act" icon="brain" href="/russian/features/plan-and-act">
+    Глубокое погружение в режимы Plan и Act, включая то, когда какой использовать и как переключаться между ними.
+  </Card>
+  
+  <Card title="YOLO mode" icon="zap" href="/russian/features/yolo-mode">
+    Узнайте, как работает YOLO mode и когда использовать полную автоматизацию по сравнению с ручным утверждением.
+  </Card>
+  
+  <Card title="Task management" icon="clipboard-check" href="/russian/getting-started/task-management">
+    Узнайте, как Caret отслеживает tasks и управляет ими, включая сохранение и восстановление состояния из checkpoints.
+  </Card>
+</Columns>
+```

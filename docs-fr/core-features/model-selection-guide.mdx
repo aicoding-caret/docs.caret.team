@@ -1,0 +1,209 @@
+---
+title: "Guide de Sélection des Modèles"
+description: "Dernière mise à jour : 20 août 2025."
+---
+
+De nouveaux modèles sont constamment publiés, ce guide se concentre donc sur ce qui fonctionne bien avec Caret en ce moment. Nous le maintiendrons à jour au fur et à mesure que le paysage évolue.
+
+<Callout type="tip">
+**Nouveau dans la sélection de modèles ?** Commencez avec [le Module 2 du Parcours d'Apprentissage de Caret](https://caret.bot/learn) pour un guide complet sur le choix et la configuration des modèles.
+</Callout>
+
+## Qu'est-ce qu'un Modèle d'IA ?
+
+Considérez un modèle d'IA comme le "cerveau" qui alimente Caret. Lorsque vous demandez à Caret d'écrire du code, de corriger des bugs ou de remanier votre projet, c'est le modèle qui comprend réellement votre demande et génère la réponse.
+
+**Points clés :**
+- **Les modèles sont des systèmes d'IA entraînés** qui comprennent le langage naturel et le code
+- **Différents modèles ont des forces différentes :** certains excellent dans le raisonnement complexe, d'autres privilégient la vitesse ou le coût
+- **Vous choisissez le modèle que Caret utilise :** comme choisir entre différents experts pour différentes tâches
+- **Les modèles sont accessibles via des fournisseurs d'API :** des entreprises comme Anthropic, OpenAI et OpenRouter hébergent ces modèles
+
+**Pourquoi c'est important :** Le modèle que vous choisissez a un impact direct sur les capacités, la qualité de la réponse, la vitesse et le coût de Caret. Un modèle premium peut gérer magnifiquement un remaniement complexe, mais coûter plus cher, tandis qu'un modèle économique fonctionne très bien pour les tâches de routine à une fraction du prix.
+
+## Comment Sélectionner un Modèle dans Caret
+
+Suivez ces 5 étapes simples pour que Caret fonctionne avec votre modèle d'IA préféré :
+
+### Étape 1 : Ouvrir les Paramètres de Caret
+
+Tout d'abord, vous devez accéder au panneau de configuration de Caret.
+
+**Deux façons d'ouvrir les paramètres :**
+- **Méthode rapide :** Cliquez sur l'**icône d'engrenage (⚙️)** dans le coin supérieur droit de l'interface de chat de Caret
+- **Palette de commandes :** Appuyez sur **Cmd/Ctrl + Shift + P** → tapez "Caret: Open Settings"
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Panneau des Paramètres de Caret" />
+</Frame>
+
+Le panneau des paramètres s'ouvrira, affichant les options de configuration avec "API Provider" en haut.
+
+<Note>
+Le panneau des paramètres mémorise votre dernière configuration, vous n'aurez donc à le configurer qu'une seule fois.
+</Note>
+
+### Étape 2 : Sélectionner un API Provider
+
+Choisissez votre fournisseur d'IA préféré dans le menu déroulant.
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Panneau des Paramètres de Caret" />
+</Frame>
+
+**Aperçu des fournisseurs populaires :**
+
+| Provider | Idéal pour | Notes |
+|----------|----------|-------|
+| **Caret** | Configuration la plus facile | Pas de clés API nécessaires, accès à plusieurs modèles, y compris les modèles furtifs |
+| **OpenRouter** | Chercheurs de valeur | Plusieurs modèles, prix compétitifs |
+| **Anthropic** | Fiabilité | Modèles Claude, utilisation d'outils la plus fiable |
+| **OpenAI** | Dernière technologie | Modèles GPT |
+| **Google Gemini** | Contexte étendu | Modèles d'IA de Google |
+| **AWS Bedrock** | Entreprise | Fonctionnalités avancées |
+| **Ollama** | Confidentialité | Exécuter les modèles localement |
+
+Consultez la [liste complète des fournisseurs](/french/provider-config/openrouter) pour plus d'options, notamment Cerebras, Vertex AI, Azure, et plus encore.
+
+<Info>
+**Recommandé pour les débutants :** Commencez avec **Caret** comme fournisseur - aucune gestion de clé API nécessaire, accès instantané à plusieurs modèles et inférence gratuite occasionnelle via des fournisseurs partenaires.
+</Info>
+
+### Étape 3 : Ajouter Votre Clé API (ou Se Connecter)
+
+L'étape suivante dépend du fournisseur que vous avez sélectionné.
+
+#### Si vous avez sélectionné **Caret** comme fournisseur :
+
+- **Aucune clé API nécessaire !** Connectez-vous simplement avec votre compte Caret
+- Cliquez sur le bouton **Sign In** lorsque vous y êtes invité
+- Vous serez redirigé vers [app.caret.bot](https://app.caret.bot) pour vous authentifier
+- Après vous être connecté, retournez à votre IDE
+
+#### Si vous avez sélectionné un autre fournisseur :
+
+Vous devrez obtenir une clé API auprès du fournisseur choisi :
+
+1. **Visitez le site web de votre fournisseur pour obtenir une clé API :**
+   - **Anthropic :** [console.anthropic.com](https://console.anthropic.com/)
+   - **OpenRouter :** [openrouter.ai/keys](https://openrouter.ai/keys)
+   - **OpenAI :** [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+   - **Google :** [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+   - **Autres :** Consultez le [Guide de Configuration du Fournisseur](/french/provider-config/openrouter)
+
+2. **Générez une nouvelle clé API** sur le site web du fournisseur
+
+3. **Copiez la clé API** dans votre presse-papiers
+
+4. **Collez votre clé** dans le champ **"API Key"** dans les paramètres de Caret
+
+5. **Enregistrez automatiquement** - Votre clé est stockée en toute sécurité dans le stockage des secrets de votre éditeur
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Sélection de l'API Caret" />
+</Frame>
+
+<Warning>
+**Paiement requis pour la plupart des fournisseurs :** La plupart des fournisseurs ont besoin d'informations de paiement avant de générer des clés. Vous ne payez que ce que vous utilisez (généralement 0,01 à 0,10 $ par tâche de codage).
+</Warning>
+
+### Étape 4 : Choisir Votre Modèle
+
+Une fois votre clé API ajoutée (ou que vous vous êtes connecté), le menu déroulant **"Model"** devient disponible.
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Sélection du Modèle Caret" />
+</Frame>
+
+**Guide rapide de sélection de modèle :**
+
+| Votre Priorité | Choisissez Ce Modèle | Pourquoi |
+|---------------|-------------------|-----|
+| **Fiabilité maximale** | Claude Sonnet 4.5 | Utilisation d'outils la plus fiable, excellente pour les tâches complexes |
+| **Meilleur rapport qualité/prix** | DeepSeek V3 ou Qwen3 Coder | Excellentes performances à des prix abordables |
+| **Vitesse la plus rapide** | Qwen3 Coder on Cerebras | Réponses ultra-rapides |
+| **Exécuter localement** | N'importe quel modèle Ollama | Confidentialité complète, pas d'Internet nécessaire |
+| **Dernières fonctionnalités** | GPT-5 | Les nouvelles capacités d'OpenAI |
+
+Vous n'êtes pas sûr de quoi choisir ? Commencez par **Claude Sonnet 4.5** pour la fiabilité ou **DeepSeek V3** pour le rapport qualité/prix.
+
+<Tip>
+Vous pouvez changer de modèle à tout moment sans perdre votre conversation. Essayez différents modèles pour trouver ce qui fonctionne le mieux pour vos tâches spécifiques.
+</Tip>
+
+Consultez les [tableaux de comparaison de modèles](#current-top-models) ci-dessous pour des spécifications et des prix détaillés.
+
+## Meilleurs Modèles Actuels {#current-top-models}
+
+Voici les choix les plus courants en ce moment :
+
+- **Fiabilité :** Claude Sonnet 4.5
+- **Meilleur rapport qualité/prix :** DeepSeek V3 ou Qwen3 Coder
+- **Le plus rapide :** Qwen3 Coder on Cerebras
+- **Local :** N'importe quel modèle hébergé par Ollama
+- **Dernières fonctionnalités :** GPT-5
+
+### Étape 5 : Commencer à Utiliser Caret
+
+**Félicitations ! Vous êtes prêt.** Voici comment commencer à coder avec Caret :
+
+1. **Tapez votre demande** dans la boîte de chat de Caret
+   - Exemple : "Créer un composant React pour un formulaire de connexion"
+   - Exemple : "Déboguer cette erreur TypeScript"
+   - Exemple : "Remanier cette fonction pour la rendre plus efficace"
+
+2. **Appuyez sur Entrée** ou cliquez sur l'icône d'envoi pour soumettre
+
+## Choisir le Bon Modèle
+
+La sélection du bon modèle implique d'équilibrer plusieurs facteurs. Utilisez ce cadre pour trouver votre correspondance idéale :
+
+<Note>
+**Conseils de pro :** Configurez des modèles distincts pour Plan Mode et Act Mode. Tirez le meilleur parti des forces de chaque modèle. Par exemple, utilisez un modèle économique pour les discussions de planification et un modèle premium pour la mise en œuvre.
+</Note>
+
+### Facteurs de Sélection Clés
+
+| Facteur | Ce qu'il faut considérer | Recommandation |
+|--------|------------------|----------------|
+| **Complexité de la tâche** | Corrections simples vs remaniement complexe | Modèles économiques pour les tâches de routine ; Modèles premium pour les travaux complexes |
+| **Budget** | Capacité de dépenses mensuelles | 10 à 30 $ : Économique, 30 à 100 $ : Milieu de gamme, 100 $ et plus : Premium |
+| **Context Window** | Taille du projet et nombre de fichiers | Petit : 32K-128K, Moyen : 128K-200K, Grand : 400K+ |
+| **Vitesse** | Exigences de temps de réponse | Interactif : Modèles rapides, Arrière-plan : Modèles de raisonnement OK |
+| **Fiabilité des outils** | Opérations complexes | Claude excelle dans l'utilisation des outils ; Testez les autres avec votre flux de travail |
+| **Provider** | Besoins d'accès et de tarification | OpenRouter : De nombreuses options, Direct : Plus rapide/fiable, Local : Confidentialité |
+
+## Ressources de Comparaison de Modèles
+
+Pour des comparaisons de modèles détaillées, les prix et les mesures de performance, consultez :
+- [**Comparaison des Modèles et Tarification**](/french/model-config/model-comparison) - Tableaux de prix complets et benchmarks de performance
+- [**Guide de Context Window**](/french/model-config/context-windows) - Comprendre et optimiser l'utilisation du contexte
+
+## Open Source vs Closed Source
+
+### Avantages de l'Open Source
+- **Plusieurs fournisseurs** sont en concurrence pour les héberger
+- **Prix moins chers** en raison de la concurrence
+- **Choix du fournisseur** - changez si l'un tombe en panne
+- Cycles d'**innovation plus rapides**
+
+### Modèles Open Source Disponibles
+- **Qwen3 Coder** (Apache 2.0)
+- **Z AI GLM 4.5** (MIT)
+- **Kimi K2** (Open source)
+- **Série DeepSeek** (Diverses licences)
+
+## Matrice de Décision Rapide
+
+| Si vous voulez... | Utilisez ceci |
+|----------------|----------|
+| Quelque chose qui fonctionne simplement | Claude Sonnet 4.5 |
+| Économiser de l'argent | DeepSeek V3 ou les variantes de Qwen3 |
+| D'énormes Context windows | Gemini 2.5 Pro ou Claude Sonnet 4.5 |
+| Open source | Qwen3 Coder, Z AI GLM 4.5, ou Kimi K2 |
+| Dernière technologie | GPT-5 |
+| Vitesse | Qwen3 Coder on Cerebras (le plus rapide disponible) |
+
+## Ce Que Les Autres Utilisent
+
+Consultez les [statistiques d'utilisation de Caret d'OpenRouter](https://openrouter.ai/apps?url=https%3A%2F%2Fcline.bot%2F) pour voir les modèles d'utilisation réels de la communauté.

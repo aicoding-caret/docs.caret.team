@@ -1,0 +1,81 @@
+```
+---
+title: "Désactiver les pagers de terminal pendant les sessions Caret"
+description: "Rendre la sortie CLI non interactive lorsque Caret exécute des commandes en détectant la variable d'environnement CLINE_ACTIVE et en désactivant les pagers comme less."
+---
+
+De nombreux outils CLI (comme Git) utilisent un pager tel que `less` pour une sortie interactive et défilable. Lorsque Caret exécute des commandes dans votre terminal, cette interactivité devient gênante : le pager peut se bloquer sur la première page et interrompre la progression. Vous pouvez configurer votre shell de sorte que lorsqu'un terminal est lancé par Caret, les pagers soient désactivés et que la sortie soit diffusée normalement.
+
+## Comment ça marche
+
+Caret définit une variable d'environnement pour les terminaux qu'il ouvre pour exécuter des commandes :
+
+- `CLINE_ACTIVE` : non vide lorsque le shell s'exécute sous Caret
+
+Vous pouvez détecter cette variable dans votre fichier de démarrage de shell et ajuster les variables d'environnement ou les alias uniquement pour les sessions exécutées par Caret. Cela permet de conserver vos terminaux interactifs normaux inchangés.
+
+## Configuration rapide (Zsh/Bash)
+
+Ajoutez ce qui suit à votre fichier `~/.zshrc`, `~/.bashrc` ou `~/.bash_profile` :
+
+```bash
+# Disable pagers when the terminal is launched by Caret
+if [[ -n "$CLINE_ACTIVE" ]]; then
+  export PAGER=cat
+  export GIT_PAGER=cat
+  export SYSTEMD_PAGER=cat
+  export LESS="-FRX"
+fi
+```
+
+<Note>
+- `PAGER=cat` garantit que les outils génériques compatibles avec les pagers impriment directement sur stdout
+- `GIT_PAGER=cat` empêche Git d'invoquer `less`
+- `SYSTEMD_PAGER=cat` désactive la pagination dans les outils systemd (si présents)
+- `LESS="-FRX"` fait en sorte que `less` se comporte davantage comme une sortie en streaming si un outil l'appelle toujours
+</Note>
+
+Cette configuration s'applique uniquement lorsque `CLINE_ACTIVE` est défini, de sorte que vos terminaux normaux conservent leur comportement interactif habituel.
+
+## Vérifier
+
+- Ouvrez une tâche dans Caret qui exécute des commandes de terminal et vérifiez :
+  - `echo "$CLINE_ACTIVE"` affiche une valeur non vide
+  - `git log` ou d'autres sorties longues doivent être diffusées sans pause
+- Si les modifications ne prennent pas effet :
+  - Assurez-vous d'avoir mis à jour le bon fichier de démarrage pour votre shell
+  - Redémarrez VS Code/Cursor pour que les terminaux intégrés rechargent la configuration de votre shell
+  - Confirmez que votre profil de terminal source votre fichier `~/.zshrc` ou `~/.bashrc`
+
+## Ajustements facultatifs
+
+- Préférez les options de ligne de commande lorsque vous ne voulez pas dépendre des variables d'environnement :
+
+```bash
+# One-off usage (no aliases)
+git --no-pager log -n 50 --decorate --oneline
+systemctl --no-pager status nginx
+journalctl --no-pager -u nginx -n 200
+less -FRX README.md
+```
+
+- Vous pouvez également remplacer la pagination via des alias de shell limités aux sessions Caret en utilisant des options plutôt que des variables d'environnement :
+
+```bash
+if [[ -n "$CLINE_ACTIVE" ]]; then
+  # Make 'less' non-interactive by default
+  alias less='less -FRX'
+  # Disable paging for common tools via CLI flags
+  alias git='command git --no-pager'
+  alias systemctl='command systemctl --no-pager'
+  alias journalctl='command journalctl --no-pager'
+fi
+```
+
+- Si vous préférez les variables d'environnement, de nombreuses CLI respectent également une variable de pager générique ou spécifique à l'outil :
+  - Git : `GIT_PAGER=cat`
+  - Systemd : `SYSTEMD_PAGER=cat`
+  - Pages de manuel : `MANPAGER=cat` (généralement pas nécessaire pour les commandes pilotées par Caret)
+
+- Les alias affectent le shell interactif actuel, tandis que les variables d'environnement se propagent aux processus enfants. Choisissez l'approche qui convient le mieux à votre flux de travail.
+```

@@ -1,0 +1,55 @@
+---
+title: "Installation"
+description: "Installieren Sie Caret CLI und authentifizieren Sie sich mit Ihrem Account"
+---
+
+## Voraussetzungen
+
+Caret CLI erfordert Node.js Version 20 oder höher. Für das beste Erlebnis empfehlen wir die Verwendung von Node.js 22.
+
+So überprüfen Sie Ihre Node.js-Version:
+
+```bash
+node --version
+```
+
+## Installation
+
+```bash
+npm install -g caret
+```
+
+Nach der Installation authentifizieren Sie sich mit Ihrem Caret-Account:
+
+```bash
+caret auth
+```
+
+Dies startet einen Authentifizierungs-Wizard, um Sie anzumelden und Ihren bevorzugten AI-Model-Provider zu konfigurieren.
+
+<Note>
+Caret CLI führt nach der Installation keine automatische Authentifizierung durch. Im Gegensatz zu typischen CLIs müssen Sie `caret auth` explizit ausführen.
+`caret config set ...` dient den Provider-Einstellungen und ersetzt nicht die Account-Anmeldung.
+</Note>
+
+## Schnellstart
+
+Starten Sie mit Caret in Sekundenschnelle:
+
+```bash
+caret
+```
+
+Das ist alles! Das Ausführen von `caret` in einem beliebigen Verzeichnis startet eine interaktive Session, in der Sie mit dem AI-Agent chatten können. Geben Sie Ihren Task ein, überprüfen Sie den Plan und geben Sie `/act` ein, sobald Sie bereit für die Ausführung sind.
+
+Für eine noch schnellere Ausführung ohne Interaktion:
+
+```bash
+caret "Add unit tests to utils.js"
+```
+
+Dies führt Caret mit einem einzigen Befehl aus – ideal für schnelle Tasks oder Automatisierung.
+
+<Tip>
+Neu bei Caret CLI? Starten Sie mit dem interaktiven Modus (`caret`), um zu sehen, wie es funktioniert. Sobald Sie sich sicher fühlen, erkunden Sie [die drei Core-Flows](/german/caret-cli/three-core-flows) für fortgeschrittene Nutzungsmuster.
+</Tip>

@@ -1,0 +1,71 @@
+---
+title: "文档工具"
+sidebarTitle: "文档工具"
+description: "使用图像分析和文档读取工具处理各种文件。"
+---
+
+<Note>
+这些工具是Caret专属功能。
+</Note>
+
+Caret提供强大的工具，允许AI直接分析图像和文档。借助这些工具，AI可以仅通过路径读取和分析文件，无需用户手动附加。
+
+## 图像分析工具 (analyze_image)
+
+`analyze_image`工具分析图像文件以描述其内容或回答特定问题。
+
+### 使用场景
+
+- **UI/UX审查**: 在截图中检查布局问题、对齐错误、视觉错误
+- **文本提取**: 从截图、错误对话框、日志中提取文本
+- **代码审查**: 分析代码截图并识别模式
+- **设计比较**: 将UI实现与设计稿进行比较
+- **错误分析**: 解读错误对话框和堆栈跟踪
+
+### 支持的格式
+
+- PNG, JPG, JPEG, WebP, GIF, AVIF, BMP, TIFF
+
+### 要求
+
+- **需要Caret账户登录**: 图像分析通过Caret API处理
+- **自动图像优化**: 大图像在发送前会自动优化
+
+---
+
+## 文档读取工具 (read_document)
+
+`read_document`工具读取各种文档格式并提取文本。
+
+### 与Cline的比较
+
+| 功能 | Cline | Caret |
+|------|-------|-------|
+| 读取PDF | 仅用户附加 | **AI通过路径直接读取** |
+| 读取DOCX/XLSX | 仅用户附加 | **AI通过路径直接读取** |
+| HWPX（韩语） | ❌ 不支持 | ✅ **支持** |
+| HWP 5.0（旧版韩语） | ❌ 不支持 | ✅ **支持** |
+| PPTX | ❌ 不支持 | ✅ **支持** |
+
+### 支持的格式
+
+| 格式 | 扩展名 | 描述 |
+|------|--------|------|
+| PDF | `.pdf` | Adobe PDF文档 |
+| Word | `.docx` | Microsoft Word 2007+ |
+| Excel | `.xlsx` | Microsoft Excel 2007+ |
+| PowerPoint | `.pptx` | Microsoft PowerPoint 2007+ |
+| 韩语（新） | `.hwpx` | Hancom Office Hangul 2014+ |
+| 韩语（旧） | `.hwp` | Hancom Office Hangul 5.0 |
+| Jupyter | `.ipynb` | Jupyter Notebook |
+
+### 安全性
+
+- **路径验证**: 路径规范化以防止路径遍历攻击
+- **文件大小限制**: 最大50MB
+- **格式验证**: 仅允许支持的扩展名
+
+## 相关功能
+
+- [Caret工具指南](/zh/exploring-carets-tools/caret-tools-guide)
+- [技能系统](/zh/features/skills)

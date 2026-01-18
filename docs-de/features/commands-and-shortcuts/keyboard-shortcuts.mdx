@@ -1,0 +1,105 @@
+```
+---
+title: "Tastenkombinationen"
+sidebarTitle: "Tastenkombinationen"
+description: "Beschleunigen Sie Ihren Workflow mit anpassbaren Tastenkombinationen für Caret."
+---
+
+Die Tastenkombinationen von Caret ermöglichen Ihnen den Zugriff auf die KI-Unterstützung, ohne die Hände von der Tastatur nehmen zu müssen. Beschleunigen Sie Ihren Workflow, indem Sie Hotkeys für gängige Caret-Aktionen verwenden.
+
+## Standard-Tastenkombinationen
+
+Caret verfügt über die folgenden integrierten Tastenkombinationen, um Ihren Workflow zu optimieren:
+
+| Aktion                  | Windows/Linux | macOS   | Bedingung                    | Beschreibung                               |
+| ----------------------- | ------------- | ------- | ---------------------------- | ----------------------------------------- |
+| Zu Caret hinzufügen            | `Ctrl+'`      | `Cmd+'` | Wenn Text ausgewählt ist        | Fügt den ausgewählten Code zum Caret-Chat hinzu          |
+| Chat-Eingabe fokussieren        | `Ctrl+'`      | `Cmd+'` | Wenn kein Text ausgewählt ist     | Fokussiert das Caret-Chat-Eingabefeld        |
+| Commit-Nachricht generieren | (nicht gesetzt)       | (nicht gesetzt) | Wenn Git der SCM-Provider ist | Verfügbar über die Quellcodeverwaltungsansicht |
+
+## Verfügbare Befehle für benutzerdefinierte Tastenkombinationen
+
+Während Caret nur wenige Standard-Tastenkombinationen hat, können Sie jedem dieser Befehle Ihre eigenen Tastenkombinationen zuweisen:
+
+| Command ID                                                                               | Beschreibung                                   |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`caret.addToChat`](/german/features/commands-and-shortcuts/code-commands)                      | Fügt den ausgewählten Code zum Caret-Chat hinzu              |
+| [`caret.addTerminalOutputToChat`](/german/features/commands-and-shortcuts/terminal-integration) | Fügt die Terminalausgabe zu Caret hinzu                 |
+| `caret.focusChatInput`                                                                   | Fokussiert das Caret-Chat-Eingabefeld            |
+| [`caret.generateGitCommitMessage`](/german/features/commands-and-shortcuts/git-integration)     | Generiert eine Commit-Nachricht für bereitgestellte Änderungen |
+| [`caret.explainCode`](/german/features/commands-and-shortcuts/code-commands)                    | Erklärt den ausgewählten Code                        |
+| [`caret.improveCode`](/german/features/commands-and-shortcuts/code-commands)                    | Schlägt Verbesserungen für den ausgewählten Code vor       |
+| [`caret.fixWithCline`](/german/features/commands-and-shortcuts/code-commands)                   | Korrigiert Code mit Fehlern                        |
+| `claude-dev.SidebarProvider.focus`                                                       | Öffnet und fokussiert die Caret-Seitenleiste           |
+
+## Anpassen von Tastenkombinationen
+
+Sie können die Tastenkombinationen von Caret an Ihre Präferenzen anpassen:
+
+1. Öffnen Sie den Editor für Tastenkombinationen in VS Code:
+
+    - Drücken Sie `Ctrl+K Ctrl+S` (Windows/Linux) oder `Cmd+K Cmd+S` (macOS)
+    - Oder gehen Sie zu Datei > Einstellungen > Tastenkombinationen
+
+2. Suchen Sie nach "Caret", um alle verfügbaren Befehle anzuzeigen
+
+3. Klicken Sie auf das Stiftsymbol neben einem beliebigen Befehl, um seine Tastenkombination zu ändern
+
+4. Drücken Sie die Tasten, die Sie diesem Befehl zuweisen möchten
+
+5. Drücken Sie die Eingabetaste, um die neue Tastenkombination zu speichern
+
+## Vorgeschlagene benutzerdefinierte Tastenkombinationen
+
+Hier sind einige vorgeschlagene Tastenkombinationen, die Sie möglicherweise nützlich finden:
+
+| Aktion                | Vorgeschlagene Tastenkombination             | Command ID                                | Beschreibung                   |
+| --------------------- | ------------------------------ | ----------------------------------------- | ----------------------------- |
+| Caret-Seitenleiste öffnen    | `Ctrl+Shift+C` / `Cmd+Shift+C` | `claude-dev.SidebarProvider.focus`        | Öffnet das Caret-Seitenleisten-Panel |
+| Neue Aufgabe              | `Alt+N`                        | `caret.plusButtonClicked`                 | Startet eine neue Caret-Aufgabe       |
+| Terminal zu Caret hinzufügen | `Alt+T`                        | `caret.addTerminalOutputToChat`           | Fügt die Terminalausgabe zu Caret hinzu |
+| Aktuelle Aufgabe löschen    | `Alt+C`                        | (Benötigt benutzerdefinierte Tastenbindung zur UI-Aktion) | Löscht die aktuelle Aufgabe       |
+
+## Tastatur-basierter Workflow
+
+Mit den richtigen Tastenkombinationen können Sie Caret verwenden, ohne jemals die Maus zu berühren:
+
+1. Wählen Sie Code mit der Tastatur aus (`Shift+Pfeiltaste`)
+2. Senden Sie an Caret mit `Ctrl+'` / `Cmd+'`
+3. Geben Sie Ihre Frage ein und drücken Sie die Eingabetaste
+4. Überprüfen Sie die Antwort und wenden Sie die Vorschläge an
+
+## Editor-Integrations-Tastenkombinationen
+
+Die Tastenkombinationen von Caret lassen sich nahtlos in die integrierten Tastenkombinationen von VS Code integrieren:
+
+-   Verwenden Sie die VS Code-Auswahltastenbefehle (`Ctrl+L` / `Cmd+L` zum Auswählen einer Zeile usw.), bevor Sie Code an Caret senden
+-   Kombinieren Sie sie mit den VS Code-Tastenkombinationen zum Teilen des Editors, um Code und Caret nebeneinander anzuzeigen
+-   Verwenden Sie die VS Code-Tastenkombination zum Fokussieren des Terminals (`` Ctrl+` `` / `` Cmd+` ``), bevor Sie die Terminalausgabe erfassen
+
+## Tipps für eine effektive Nutzung
+
+-   **Lernen Sie zuerst die Standardtastenkombination**: Die Tastenkombination `Ctrl+'` / `Cmd+'` ist vielseitig einsetzbar - sie fügt den ausgewählten Code zum Chat hinzu, wenn Text ausgewählt ist, oder fokussiert die Chat-Eingabe, wenn nichts ausgewählt ist
+-   **Schaffen Sie Muskelgedächtnis**: Verwenden Sie Tastenkombinationen konsequent, um Gewohnheiten zu entwickeln
+-   **Passen Sie sie an Ihren Workflow an**: Weisen Sie Befehlen, die Sie häufig verwenden, Tastenkombinationen zu
+-   **Berücksichtigen Sie die Ergonomie**: Wählen Sie Tastenkombinationen, die für Ihr Tastaturlayout angenehm sind
+
+Tastenkombinationen mögen wie eine kleine Optimierung erscheinen, aber sie können Ihren Workflow bei der regelmäßigen Verwendung von Caret erheblich beschleunigen. Indem Sie Ihre Hände auf der Tastatur lassen, erhalten Sie Ihren Coding-Flow aufrecht und erhalten gleichzeitig KI-Unterstützung genau dann, wenn Sie sie benötigen.
+
+## So finden Sie alle verfügbaren Befehle
+
+So sehen Sie alle Caret-Befehle, denen Tastenkombinationen zugewiesen werden können:
+
+1. Öffnen Sie die Befehlspalette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Geben Sie "Caret" ein, um die Liste zu filtern
+3. Durchsuchen Sie die verfügbaren Befehle
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/editor-integration.png"
+		alt="Editor Integration Overview"
+	/>
+</Frame>
+
+Dies hilft Ihnen, Funktionen zu entdecken, die Sie vielleicht noch nicht kannten, und denjenigen, die Sie am häufigsten verwenden, Tastenkombinationen zuzuweisen.
+```

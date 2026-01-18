@@ -1,0 +1,61 @@
+---
+title: "Mistral"
+description: "Узнайте, как настраивать и использовать модели Mistral AI, включая Codestral, в Caret. Руководство охватывает настройку API key и выбор моделей."
+---
+
+<Note>
+Это справочный документ для Caret. Он соответствует версии Caret v3.38.1. Если существуют специфические политики Caret (разрешенные/заблокированные модели, региональные ограничения, аутентификация/маршрутизация), они будут отмечены тегом `<Note>` в тексте.
+</Note>
+
+<Note>
+Улучшение Provider Setup: согласно `caret-docs/features/f09-enhanced-provider-setup.md`, в Caret может быть улучшена проверка настроек провайдера и UX. Обратите внимание, что доступные или заблокированные модели могут меняться в зависимости от политик аккаунта/организации или применения Caret router.
+</Note>
+
+Caret поддерживает доступ к моделям через Mistral AI API, включая как стандартные модели Mistral, так и специализированную для работы с кодом модель Codestral.
+
+**Веб-сайт:** [https://mistral.ai/](https://mistral.ai/)
+
+### Получение API Key
+
+1.  **Регистрация/Вход:** Перейдите на [Mistral Platform](https://console.mistral.ai/). Создайте аккаунт или войдите в систему. Вам может потребоваться пройти процесс верификации.
+2.  **Создайте API Key:**
+    -   [La Plateforme API Key](https://console.mistral.ai/api-keys/) и/или
+    -   [Codestral API Key](https://console.mistral.ai/codestral)
+
+### Поддерживаемые модели
+
+Caret поддерживает следующие модели Mistral:
+
+-   pixtral-large-2411
+-   ministral-3b-2410
+-   ministral-8b-2410
+-   mistral-small-latest
+-   mistral-medium-latest
+-   mistral-small-2501
+-   pixtral-12b-2409
+-   open-mistral-nemo-2407
+-   open-codestral-mamba
+-   codestral-2501
+-   devstral-small-2505
+
+**Примечание:** Доступность и характеристики моделей могут меняться.
+Актуальную информацию можно найти в [документации Mistral AI](https://docs.mistral.ai/api/) и [Mistral Model Overview](https://docs.mistral.ai/getting-started/models/models_overview/).
+
+### Настройка в Caret
+
+1.  **Откройте настройки Caret:** Нажмите на значок шестеренки (⚙️) на панели Caret.
+2.  **Выберите провайдера:** Выберите «Mistral» в раскрывающемся списке «API Provider».
+3.  **Введите API Key:** Вставьте ваш Mistral API key в поле «Mistral API Key», если вы используете стандартную модель `mistral`. Если вы планируете использовать `codestral-latest`, см. раздел «Использование Codestral» ниже.
+4.  **Выберите модель:** Выберите нужную модель в раскрывающемся списке «Model».
+
+### Использование Codestral
+
+[Codestral](https://docs.mistral.ai/capabilities/code_generation/) — это модель, специально разработанная для генерации кода и взаимодействия с ним.
+Для Codestral можно использовать различные эндпоинты (по умолчанию: codestral.mistral.ai).
+Если вы используете La Plateforme API Key для Codestral, измените **Codestral Base Url** на: `https://api.mistral.ai`
+
+Для использования Codestral в Caret:
+
+1.  **Выберите «Mistral» в качестве API Provider в настройках Caret.**
+2.  **Выберите модель Codestral** (например, `codestral-latest`) в раскрывающемся списке «Model».
+3.  **Введите ваш Codestral API Key** (с сайта `codestral.mistral.ai`) или ваш La Plateforme API Key (с сайта `api.mistral.ai`) в соответствующее поле API key в Caret.

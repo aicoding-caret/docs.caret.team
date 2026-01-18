@@ -1,0 +1,67 @@
+---
+title: "Modification des messages"
+sidebarTitle: "Modification des messages"
+---
+
+Caret vous permet de modifier les messages de chat dans une tâche après leur soumission. Cette fonctionnalité vous permet d'affiner vos requêtes sans démarrer une nouvelle tâche, vous aidant ainsi à obtenir de meilleurs résultats avec un minimum de perturbations de votre flux de travail.
+
+## Quand modifier les messages
+
+Vous pouvez modifier un message lorsque :
+
+-   Vous n'avez pas obtenu les résultats souhaités
+-   Vous avez pensé à une meilleure façon de formuler votre requête
+-   Vous devez ajouter plus d'informations ou de contexte
+-   Vous avez fait une faute de frappe ou une erreur dans votre message original
+
+## Comment modifier les messages
+
+1. Cliquez sur n'importe quel message de la conversation (sauf le message de tâche initial)
+2. Modifiez le texte selon vos besoins
+3. Utilisez les options de restauration pour soumettre à nouveau votre requête
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/message-editing.png"
+		alt="Message editing interface"
+	/>
+</Frame>
+
+## Options de restauration
+
+Lorsque vous modifiez un message, vous avez deux options de restauration :
+
+### Restaurer la conversation
+
+L'option "Restaurer la conversation" :
+
+-   Restaure uniquement l'état de la tâche
+-   Soumet à nouveau une requête d'API avec votre message modifié
+-   Préserve toutes les modifications de fichiers apportées jusqu'à ce point
+-   Est utile lorsque vous souhaitez conserver l'état actuel de votre espace de travail
+
+### Tout restaurer
+
+L'option "Tout restaurer" :
+
+-   Restaure à la fois l'état de la tâche et l'état de l'espace de travail
+-   Soumet à nouveau une requête d'API avec votre message modifié
+-   Rétablit votre espace de travail tel qu'il était à ce moment de la conversation
+-   Utilise les [checkpoints](/french/features/checkpoints) en coulisses pour restaurer votre espace de travail
+-   Est utile lorsque vous souhaitez essayer une approche complètement différente
+
+## Raccourcis clavier
+
+Lorsque vous modifiez un message, vous pouvez utiliser ces raccourcis clavier :
+
+-   **Échap**: Quitte le mode édition sans apporter de modifications
+-   **Entrée**: Restaure uniquement la tâche (équivalent à "Restaurer la conversation")
+-   **Cmd/Ctrl + Entrée**: Restaure la tâche et l'espace de travail (équivalent à "Tout restaurer")
+-   **Shift + Entrée**: Insère une nouvelle ligne / saut de ligne dans votre message
+
+## Bonnes pratiques
+
+-   Utilisez la modification des messages pour des ajustements mineurs de vos requêtes
+-   Pour des changements de direction majeurs, envisagez de démarrer une nouvelle tâche
+-   Lorsque vous utilisez "Tout restaurer", sachez que toutes les modifications de fichiers apportées après ce message seront annulées
+-   Modifiez les messages plus près du début d'une conversation pour éviter de perdre une progression importante

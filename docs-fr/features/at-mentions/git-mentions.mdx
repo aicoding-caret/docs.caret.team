@@ -1,0 +1,87 @@
+```
+---
+title: "Mentions Git"
+sidebarTitle: "Mentions Git"
+description: "Les mentions Git vous permettent d'intégrer l'historique et les modifications de votre dépôt directement dans votre conversation avec Caret."
+---
+
+Les mentions Git vous permettent d'intégrer l'historique et les modifications de votre repository directement dans votre conversation avec Caret. Vous pouvez référencer les modifications non validées avec `@git-changes` ou des commits spécifiques avec `@[commit-hash]`.
+
+Lorsque vous tapez `@` dans le chat, vous pouvez sélectionner "Git Changes" dans le menu ou taper `@git-changes` directement. Pour les commits spécifiques, tapez `@` suivi du hash du commit (au moins 7 caractères). Caret verra immédiatement l'état git, les diffs, les messages de commit et d'autres informations pertinentes.
+
+J'utilise constamment les mentions git lorsque j'essaie de comprendre les modifications du code ou de résoudre les problèmes introduits par des commits récents. Au lieu d'essayer de copier et coller des diffs ou des journaux de commit, je demande simplement :
+
+```
+Je pense que ce commit a cassé notre flux d'authentification : @a1b2c3d
+
+Pouvez-vous expliquer ce qui a changé et pourquoi cela pourrait causer le problème ?
+```
+
+Cela donne à Caret les informations complètes du commit, y compris le message de commit, l'auteur, la date et le diff complet. Caret peut alors analyser exactement ce qui a changé et comment cela pourrait affecter d'autres parties du codebase.
+
+La mention `@git-changes` est parfaite lorsque vous travaillez sur des modifications et que vous souhaitez obtenir des commentaires avant de valider :
+
+```
+Voici mes modifications actuelles : @git-changes
+
+J'essaie d'implémenter une nouvelle fonctionnalité pour les profils utilisateurs. Mon approche est-elle logique ?
+Y a-t-il des problèmes potentiels ou des améliorations que vous suggéreriez ?
+```
+
+Cela montre à Caret toutes vos modifications non validées, y compris les nouveaux fichiers, les fichiers modifiés et leurs diffs. Caret peut alors examiner vos modifications et vous fournir des commentaires sur votre implémentation.
+
+Les mentions Git sont particulièrement puissantes lorsqu'elles sont combinées avec les mentions de fichiers. Lorsque j'enquête sur un bug, je référence souvent les deux :
+
+```
+Je pense que ce commit a introduit un bug : @a1b2c3d
+
+Voici l'implémentation actuelle : @/src/components/Auth.jsx
+
+Comment puis-je corriger le problème tout en préservant la fonctionnalité prévue ?
+```
+
+La prochaine fois que vous travaillerez avec des modifications de code ou que vous enquêterez sur des problèmes, essayez d'utiliser les mentions git au lieu de décrire ou de copier manuellement les modifications. Vous obtiendrez une aide plus précise car Caret peut voir exactement ce qui a changé et dans quel contexte.
+
+## Comment ça marche en coulisses
+
+Lorsque vous utilisez des mentions git dans votre message, voici ce qui se passe en arrière-plan :
+
+### Pour les modifications Git (`@git-changes`)
+
+1. Lorsque vous envoyez votre message, Caret détecte le motif `@git-changes` dans votre texte
+2. L'extension exécute des commandes git pour obtenir l'état de travail actuel de votre repository
+3. Il capture la sortie de `git status` et `git diff` pour voir toutes les modifications non validées
+4. Ces informations sont ajoutées à votre message dans un format structuré :
+
+    ```
+    <git_working_state>
+    On branch main
+    Changes not staged for commit:
+      modified: src/components/Button.jsx
+      modified: src/styles/main.css
+
+    [Complete diff output with all changes]
+    </git_working_state>
+    ```
+
+### Pour les commits spécifiques (`@[commit-hash]`)
+
+1. Lorsque vous envoyez votre message, Caret détecte le `@` suivi d'un motif de hachage de commit
+2. L'extension exécute `git show` et les commandes associées pour obtenir des informations sur ce commit
+3. Il récupère le message de commit, l'auteur, la date et le diff complet
+4. Ces informations sont ajoutées à votre message dans un format structuré :
+
+    ```
+    <git_commit hash="a1b2c3d">
+    commit a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t
+    Author: Developer Name <dev@example.com>
+    Date: Mon May 20 14:30:45 2025 -0700
+
+    Fix authentication bug in login form
+
+    [Complete diff output showing all changes in the commit]
+    </git_commit>
+    ```
+
+Ce processus se déroule automatiquement chaque fois que vous utilisez des mentions git, ce qui donne à l'IA une visibilité complète sur vos modifications de code sans que vous ayez à copier et coller des diffs ou des journaux de commit.
+```

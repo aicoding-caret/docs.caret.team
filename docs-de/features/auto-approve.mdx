@@ -1,0 +1,53 @@
+Das Auto Approve Menü ermöglicht es Ihnen, detaillierte Berechtigungen dafür festzulegen, was Caret auf automatisierte Weise tun darf.
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/auto-approve.png" alt="Auto Approve" />
+</Frame>
+
+## Wie es funktioniert
+
+Standardmäßig fragt Caret vor dem Aufruf eines Tools um Erlaubnis, einschließlich des Lesens oder Schreibens von Dateien.
+
+Wenn Sie Caret erlauben möchten, etwas ohne Nachfrage zu tun, können Sie die Auto Approve Berechtigung für dieses Tool festlegen.
+
+## Berechtigungsoptionen
+
+-   **Projektdateien lesen**
+
+    -   Ermöglicht es Caret, Dateien innerhalb Ihres aktuellen Workspace ohne Nachfrage zu lesen
+    -   **Alle Dateien lesen**
+        -   Erweitert die Leseberechtigung auf Dateien außerhalb Ihres Workspace (Systemdateien, Konfigurationsdateien usw.)
+
+-   **Projektdateien bearbeiten**
+
+    -   Ermöglicht es Caret, Dateien innerhalb Ihres aktuellen Workspace ohne Bestätigung zu ändern
+    -   **Alle Dateien bearbeiten**
+        -   Erweitert die Bearbeitungsberechtigung auf Dateien außerhalb Ihres Workspace
+
+-   **Sichere Befehle ausführen**
+
+    -   Ermöglicht die Ausführung von Terminal-Befehlen, die das Modell als nicht-destruktiv eingestuft hat
+    -   **Alle Befehle ausführen**
+        -   Erlaubt die Ausführung jedes Terminal-Befehls ohne Nachfrage
+
+-   **Den Browser verwenden**
+
+    -   Ermöglicht es Caret, das Browser-Tool zum Abrufen von Webinhalten zu verwenden
+
+-   **MCP Server verwenden**
+
+    -   Ermöglicht die Verbindung zu und die Nutzung von MCP Servern für erweiterte Funktionalität
+
+-   **Maximale Anfragen**
+    -   Legt die Anzahl der aufeinanderfolgenden automatisierten Aktionen fest, die Caret ausführen kann, bevor Ihre Eingabe erforderlich ist
+
+## Best Practices
+
+Empfohlene Standardeinstellungen für die meisten Workflows:
+
+-   Lesezugriff auf Projektdateien automatisch genehmigen
+-   Festlegen eines angemessenen Limits für maximale Anfragen (10-20)
+
+Dies gibt Caret Raum zur Exploration ohne ständige Rückfragen, während für Bearbeitungen oder destruktive Aktionen weiterhin eine Genehmigung erforderlich bleibt.
+
+Passen Sie die Berechtigungen der jeweiligen Situation an: strenger für die Produktion, lockerer für das Prototyping. Verwenden Sie die schnellen „Stern“-Aktionen, um automatisch genehmigte Elemente nach Bedarf ein- oder auszuschalten.

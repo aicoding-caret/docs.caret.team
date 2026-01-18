@@ -1,0 +1,67 @@
+---
+title: "Nachrichten bearbeiten"
+sidebarTitle: "Nachrichten Bearbeiten"
+---
+
+Caret ermöglicht es Ihnen, Chatnachrichten in einer Aufgabe zu bearbeiten, nachdem sie gesendet wurden. Mit dieser Funktion können Sie Ihre Anfragen verfeinern, ohne eine neue Aufgabe zu starten, was Ihnen hilft, bessere Ergebnisse mit minimaler Unterbrechung Ihres Workflows zu erzielen.
+
+## Wann Nachrichten Bearbeiten?
+
+Sie können eine Nachricht bearbeiten, wenn:
+
+-   Sie nicht die gewünschten Ergebnisse erzielt haben
+-   Ihnen eine bessere Formulierung Ihrer Anfrage eingefallen ist
+-   Sie weitere Informationen oder Kontext hinzufügen müssen
+-   Sie einen Tippfehler oder Fehler in Ihrer ursprünglichen Nachricht gemacht haben
+
+## Wie man Nachrichten Bearbeitet
+
+1. Klicken Sie auf eine beliebige Nachricht im Gespräch (außer der ersten Aufgaben Nachricht)
+2. Bearbeiten Sie den Text nach Bedarf
+3. Verwenden Sie die Wiederherstellungsoptionen, um Ihre Anfrage erneut zu senden
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/message-editing.png"
+		alt="Message editing interface"
+	/>
+</Frame>
+
+## Wiederherstellungsoptionen
+
+Wenn Sie eine Nachricht bearbeiten, haben Sie zwei Optionen zum Wiederherstellen:
+
+### Chat Wiederherstellen
+
+Die Option "Chat Wiederherstellen":
+
+-   Stellt nur den Aufgabenstatus wieder her
+-   Sendet eine API Anfrage mit Ihrer bearbeiteten Nachricht erneut
+-   Behält alle bis zu diesem Zeitpunkt vorgenommenen Dateiänderungen bei
+-   Ist nützlich, wenn Sie den aktuellen Status Ihres Workspace beibehalten möchten
+
+### Alles Wiederherstellen
+
+Die Option "Alles Wiederherstellen":
+
+-   Stellt sowohl den Aufgaben- als auch den Workspace-Status wieder her
+-   Sendet eine API Anfrage mit Ihrer bearbeiteten Nachricht erneut
+-   Setzt Ihren Workspace auf den Stand zurück, den er zu diesem Zeitpunkt im Gespräch hatte
+-   Verwendet im Hintergrund [Checkpoints](/german/features/checkpoints), um Ihren Workspace wiederherzustellen
+-   Ist nützlich, wenn Sie einen völlig anderen Ansatz ausprobieren möchten
+
+## Tastenkombinationen
+
+Beim Bearbeiten einer Nachricht können Sie diese Tastenkombinationen verwenden:
+
+-   **Escape**: Beenden Sie den Bearbeitungsmodus, ohne Änderungen vorzunehmen
+-   **Enter**: Stellen Sie nur die Aufgabe wieder her (entspricht "Chat Wiederherstellen")
+-   **Cmd/Ctrl + Enter**: Stellen Sie die Aufgabe und den Workspace wieder her (entspricht "Alles Wiederherstellen")
+-   **Shift + Enter**: Fügen Sie eine neue Zeile / einen Zeilenumbruch in Ihre Nachricht ein
+
+## Bewährte Methoden
+
+-   Verwenden Sie die Nachrichtenbearbeitung für kleinere Anpassungen Ihrer Anfragen
+-   Für größere Richtungsänderungen sollten Sie eine neue Aufgabe in Betracht ziehen
+-   Wenn Sie "Alles Wiederherstellen" verwenden, beachten Sie, dass alle nach dieser Nachricht vorgenommenen Dateiänderungen rückgängig gemacht werden
+-   Bearbeiten Sie Nachrichten näher am Anfang eines Gesprächs, um nicht signifikanten Fortschritt zu verlieren

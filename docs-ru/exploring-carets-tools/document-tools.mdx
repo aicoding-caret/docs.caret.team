@@ -1,0 +1,141 @@
+---
+title: "Инструменты для работы с документами"
+sidebarTitle: "Инструменты для работы с документами"
+description: "Обрабатывайте различные файлы с помощью инструментов анализа изображений и чтения документов."
+---
+
+<Note>
+Эти инструменты являются эксклюзивными функциями Caret.
+</Note>
+
+Caret предоставляет мощные инструменты, которые позволяют AI напрямую анализировать изображения и документы. Благодаря этим инструментам AI может читать и анализировать файлы просто по их пути, без необходимости пользователям прикреплять их вручную.
+
+## Инструмент анализа изображений (analyze_image)
+
+Инструмент `analyze_image` анализирует файлы изображений, чтобы описать их содержимое или ответить на конкретные вопросы.
+
+### Варианты использования
+
+- **UI/UX Review**: Проверка на наличие проблем с макетом, ошибок выравнивания, визуальных багов на скриншотах.
+- **Извлечение текста**: Извлечение текста из скриншотов, диалоговых окон с ошибками, логов.
+- **Code Review**: Анализ скриншотов кода и выявление паттернов.
+- **Сравнение дизайна**: Сравнение реализации UI с макетами дизайна.
+- **Анализ ошибок**: Интерпретация диалоговых окон с ошибками и stack traces.
+
+### Поддерживаемые форматы
+
+- PNG, JPG, JPEG, WebP, GIF, AVIF, BMP, TIFF
+
+### Использование
+
+```
+User: Extract the error message from this screenshot (./screenshots/error.png)
+AI: [Uses analyze_image tool] → Analyzes image → Provides extracted error message
+```
+
+### Требования
+
+- **Требуется вход в аккаунт Caret**: Анализ изображений обрабатывается через Caret API.
+- **Автоматическая оптимизация изображений**: Большие изображения автоматически оптимизируются перед отправкой.
+
+### Настройки
+
+В Settings → Features можно выбрать **Image Analysis Model**:
+- Gemini 3.0 Flash Preview (default)
+- Gemini 2.5 Flash
+
+---
+
+## Инструмент чтения документов (read_document)
+
+Инструмент `read_document` читает различные форматы документов и извлекает текст.
+
+### Сравнение с Cline
+
+| Feature | Cline | Caret |
+|---------|-------|-------|
+| Read PDF | User attachment only | **AI reads directly by path** |
+| Read DOCX/XLSX | User attachment only | **AI reads directly by path** |
+| HWPX (Korean Hangul) | ❌ Not supported | ✅ **Supported** |
+| HWP 5.0 (Legacy Hangul) | ❌ Not supported | ✅ **Supported** |
+| PPTX | ❌ Not supported | ✅ **Supported** |
+
+### Поддерживаемые форматы
+
+| Format | Extension | Description |
+|--------|-----------|-------------|
+| PDF | `.pdf` | Документы Adobe PDF |
+| Word | `.docx` | Microsoft Word 2007+ |
+| Excel | `.xlsx` | Microsoft Excel 2007+ |
+| PowerPoint | `.pptx` | Microsoft PowerPoint 2007+ |
+| Hangul (New) | `.hwpx` | Hancom Office Hangul 2014+ |
+| Hangul (Legacy) | `.hwp` | Hancom Office Hangul 5.0 |
+| Jupyter | `.ipynb` | Jupyter Notebook |
+
+### Неподдерживаемые форматы
+
+Следующие устаревшие форматы не поддерживаются из-за технических ограничений:
+
+| Format | Extension | Alternative |
+|--------|-----------|-------------|
+| PowerPoint 97-2003 | `.ppt` | Convert to `.pptx` |
+| Word 97-2003 | `.doc` | Convert to `.docx` |
+| Excel 97-2003 | `.xls` | Convert to `.xlsx` |
+
+<Tip>
+Конвертируйте устаревшие форматы с помощью LibreOffice, Google Docs или Microsoft Office.
+</Tip>
+
+### Использование
+
+```
+User: Analyze docs/spec.pdf in this project
+AI: [Uses read_document tool] → Extracts PDF content → Provides analysis
+```
+
+### Безопасность
+
+- **Path Validation**: Нормализация пути для предотвращения Path Traversal attacks.
+- **File Size Limit**: Максимум 50MB.
+- **Format Validation**: Разрешены только поддерживаемые расширения.
+
+### Ограничения
+
+- **No Images/Charts**: Изображения и диаграммы внутри документов не извлекаются.
+- **Layout Loss**: Таблицы, многоколоночные макеты преобразуются в простой текст.
+
+---
+
+## Советы по использованию
+
+### Использование анализа изображений
+
+```
+# Check for UI bugs
+"Check if there are layout issues in the ./screenshots/ui-bug.png screenshot"
+
+# Analyze error messages
+"Analyze the cause of the error from this screenshot (./error.png)"
+
+# Design review
+"Compare if the ./mockup.png design matches the current implementation"
+```
+
+### Использование анализа документов
+
+```
+# Analyze specifications
+"Read docs/api-spec.pdf and list the required API endpoints"
+
+# Data analysis
+"Summarize the contents of data/report.xlsx"
+
+# Korean document processing
+"Extract the key clauses from contracts/contract.hwp"
+```
+
+## Связанные функции
+
+- [Caret Tools Guide](/russian/exploring-carets-tools/caret-tools-guide)
+- [Skills System](/russian/features/skills)
+```

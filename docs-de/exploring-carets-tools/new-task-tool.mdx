@@ -1,0 +1,389 @@
+```yaml
+---
+title: "Neues Task-Tool"
+description: "Erfahren Sie mehr über das Tool 'new_task' in Caret, mit dem komplexe Aufgaben in kleinere, überschaubare Abschnitte unterteilt werden können, und wie es in Kombination mit '.agents/context' zur Automatisierung von Arbeitsabläufen eingesetzt werden kann."
+---
+
+### Das Tool `new_task` und Strategien für das Kontextmanagement
+
+#### Überblick
+
+Caret enthält ein leistungsstarkes internes Tool, `new_task`, das dazu dient, die Kontinuität des Workflows und die Aufrechterhaltung des Kontexts zu verwalten, insbesondere bei komplexen oder langwierigen Aufgaben. Dieses Tool, kombiniert mit Carets Bewusstsein für die eigene Nutzung des Kontextfensters und der Flexibilität von `.agents/context`, ermöglicht ausgefeilte Strategien zum Aufteilen von Aufgaben und zur Gewährleistung nahtloser Übergänge zwischen Aufgabensitzungen.
+
+Das Verständnis der Kernfunktionen und ihrer Interaktion mit benutzerdefinierten Regeln ist der Schlüssel zur effektiven Nutzung dieser Funktion.
+
+#### Kernfunktionen
+
+Zwei grundlegende Funktionen ermöglichen ein fortschrittliches Kontextmanagement:
+
+1. **Das Tool `new_task`:**
+    - **Funktion:** Ermöglicht es Caret, nach Genehmigung durch den Benutzer die aktuelle Aufgabensitzung zu beenden und sofort eine neue zu starten.
+    - **Kontext-Vorabladen:** Entscheidend ist, dass Caret diese neue Aufgabensitzung mit spezifischem Kontext **vorladen** kann, der innerhalb des `<context>`-Blocks des Tools bereitgestellt wird. Dieser Kontext kann alles sein, was Caret oder eine `.agents/context`-Datei definieren – Zusammenfassungen, Code-Snippets, nächste Schritte, Projektstatus usw.
+2. **Bewusstsein für das Kontextfenster:**
+    - **Verfolgung:** Caret verfolgt intern den Prozentsatz des verfügbaren Kontextfensters, der während einer Aufgabe aktuell verwendet wird.
+    - **Sichtbarkeit:** Diese Informationen sind in den `environment_details` sichtbar, die Caret in seinem Prompt zur Verfügung gestellt werden.
+
+#### Verwenden des Slash-Befehls `/newtask`
+
+Als schnelle Alternative zu Caret, das das Tool `newtask` vorschlägt oder komplexe Regeln definiert, können Sie den Prozess direkt mit einem Slash-Befehl initiieren.
+
+-   **Wie:** Geben Sie einfach `/newtask` in das Chat-Eingabefeld ein.
+-   **Aktion:** Caret schlägt die Erstellung einer neuen Aufgabe vor und schlägt in der Regel Kontext basierend auf der aktuellen Sitzung vor (ähnlich dem Standardverhalten bei Verwendung des Tools). Sie erhalten weiterhin den `ask_followup_question`-Prompt, um den Kontext zu bestätigen und möglicherweise zu ändern, bevor die neue Aufgabe erstellt wird.
+-   **Vorteil:** Bietet eine schnelle, vom Benutzer initiierte Möglichkeit, die `new_task`-Funktionalität für verzweigende Erkundungen oder die Verwaltung langer Sitzungen zu nutzen, ohne darauf zu warten, dass Caret sie vorschlägt.
+
+<Note>
+	Weitere Informationen zur Verwendung des Slash-Befehls `/newtask` finden Sie in der
+	Dokumentation [New Task Command](/german/features/slash-commands/new-task).
+</Note>
+
+#### Standardverhalten (ohne `.agents/context`)
+
+Standardmäßig, ohne dass eine spezifische `.agents/context`-Datei das Verhalten vorgibt:
+
+-   **Tool-Verfügbarkeit:** Das Tool `new_task` ist vorhanden und Caret _kann_ es verwenden.
+-   **Kontextbewusstsein:** Caret _ist_ sich des prozentualen Anteils der Kontextnutzung bewusst.
+-   **Kein automatischer Auslöser:** Caret **wird** eine Aufgabenübergabe **nicht** automatisch initiieren, _allein_ aufgrund der Tatsache, dass die Kontextnutzung einen bestimmten Prozentsatz (z. B. 50 %) erreicht hat. Die Entscheidung, die Verwendung von `new_task` vorzuschlagen, basiert auf der Argumentation des KI-Modells anhand des gesamten Aufgabenfortschritts und der Prompt-Anweisungen.
+-   **Grundlegendes Kontext-Vorabladen:** Wenn `new_task` ohne spezifische Regeln verwendet wird, die die Struktur des `<context>`-Blocks definieren, versucht Caret, relevante Informationen basierend auf seinem aktuellen Verständnis vorzuladen (z. B. eine grundlegende Zusammenfassung des Fortschritts und der nächsten Schritte), dies ist jedoch möglicherweise weniger umfassend als ein regelbasierter Ansatz.
+
+#### Die Leistungsfähigkeit von `.agents/context`: Ermöglichen von benutzerdefinierten Arbeitsabläufen
+
+Während die Kernfunktionen standardmäßig vorhanden sind, entfalten sich die wahre Leistungsfähigkeit, Automatisierung und Anpassung, wenn Sie `new_task` und Kontextbewusstsein mit benutzerdefinierten Workflows kombinieren, die in `.agents/context` definiert sind. Dies ermöglicht es Ihnen, genau zu steuern, _wann_ und _wie_ Caret den Kontext und die Aufgabenkontinuität verwaltet.
+
+Hauptvorteile der Verwendung von `.agents/context` mit `new_task`:
+
+-   **Automatisiertes Kontextmanagement:** Definieren Sie Regeln, um Übergaben automatisch bei bestimmten Kontextprozentsätzen (z. B. >50 %, >70 %) oder Token-Anzahlen auszulösen, um eine optimale Leistung zu gewährleisten und Kontextverluste zu vermeiden.
+-   **Modellspezifische Optimierung:** Passen Sie Übergabeauslöser basierend auf bekannten Schwellenwerten für verschiedene LLMs an (z. B. früher auslösen für Modelle, von denen bekannt ist, dass sie sich ab einer bestimmten Token-Anzahl verschlechtern).
+-   **Intelligente Haltepunkte:** Weisen Sie Caret über Regeln an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
+-   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Caret nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt und den Kontext für die _nächste_ Teilaufgabe vorlädt.
+-   **Benutzerdefinierte Kontextverpackung:** Legen Sie die genaue Struktur und den Inhalt des `<context>`-Blocks in `.agents/context` für hochdetaillierte und konsistente Übergaben fest (siehe Beispiel unten).
+-   **Verbesserte Speicherpersistenz:** Verwenden Sie `new_task`-Kontextblöcke als primäre, integrierte Möglichkeit, Informationen sitzungsübergreifend zu speichern, und ersetzen oder ergänzen Sie möglicherweise dateibasierte Speichersysteme.
+-   **Workflow-Automatisierung:** Definieren Sie Regeln für bestimmte Szenarien, z. B. das automatische Vorladen bestimmter Einrichtungsanweisungen oder Projekt-Boilerplate beim Starten von Aufgaben eines bestimmten Typs.
+
+#### Beispiel für einen regelgesteuerten Workflow: Aufgabenübergabeprozess
+
+Ein gängiger Workflow, **gesteuert durch spezifische `.agents/context` wie im folgenden Beispiel**, umfasst diese Schritte:
+
+1. **Auslösererkennung (regelbasiert):** Caret überwacht Übergabepunkte, die in den Regeln definiert sind (z. B. Kontextnutzung > 50 %, Aufgabenabschluss).
+2. **Benutzerbestätigung:** Caret verwendet `ask_followup_question`, um die Erstellung einer neuen Aufgabe vorzuschlagen und zeigt oft den beabsichtigten, durch die Regeln definierten Kontext an.
+
+    ```xml
+    <ask_followup_question>
+    <question>Ich habe [spezifische Leistung] abgeschlossen und die Kontextnutzung ist hoch (XX%). Möchten Sie, dass ich eine neue Aufgabe erstelle, um mit [verbleibende Arbeit] fortzufahren und den folgenden Kontext vorzuladen?</question>
+    <options>["Ja, neue Aufgabe erstellen", "Kontext zuerst ändern", "Nein, diese Sitzung fortsetzen"]</options>
+    </ask_followup_question>
+    ```
+
+3. **Benutzerkontrolle:** Sie können die Erstellung der neuen Aufgabe genehmigen, ablehnen oder Caret bitten, den Kontext zu ändern, bevor die neue Aufgabe erstellt wird.
+4. **Kontextverpackung (Tool `new_task`):** Wenn die Erstellung genehmigt wurde, verwendet Caret `new_task` und verpackt den Kontext gemäß der durch `.agents/context` vorgeschriebenen Struktur.
+5. **Erstellung neuer Aufgaben:** Die aktuelle Aufgabe wird beendet und sofort eine neue Sitzung gestartet, die mit dem angegebenen Kontext vorab geladen wird.
+
+#### Der Übergabe-Kontextblock (regeldefinierte Struktur)
+
+Die Effektivität regelgesteuerter Übergaben hängt stark davon ab, wie `.agents/context` den `<context>`-Block definiert. Eine umfassende Struktur umfasst oft:
+
+-   **`## Abgeschlossene Arbeiten`**: Detaillierte Liste der Leistungen, geänderte/erstellte Dateien, wichtige Entscheidungen.
+-   **`## Aktueller Stand`**: Projektstatus, laufende Prozesse, wichtige Dateistatus.
+-   **`## Nächste Schritte`**: Klare, priorisierte Liste der verbleibenden Aufgaben, Implementierungsdetails, bekannte Herausforderungen.
+-   **`## Referenzinformationen`**: Links, Code-Snippets, Muster, Benutzereinstellungen.
+-   **Umsetzbarer Start:** Eine klare Anweisung für die unmittelbar nächste Aktion.
+
+#### Mögliche Anwendungsfälle und Workflows
+
+Die Flexibilität von `new_task` in Kombination mit `.agents/context` eröffnet viele Möglichkeiten:
+
+-   **Proaktives Kontextfenstermanagement:** Automatisches Auslösen von Übergaben bei bestimmten Prozentsätzen (z. B. 50 %, 70 %) oder Token-Anzahlen, um eine optimale Leistung aufrechtzuerhalten.
+-   **Intelligente Haltepunkte:** Weisen Sie Caret an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
+-   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Caret nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt.
+-   **Automatisierte Sitzungszusammenfassungen:** Konfigurieren Sie den `<context>`-Block so, dass er immer eine Zusammenfassung der wichtigsten Diskussionspunkte der vorherigen Sitzung enthält.
+-   **Vorabladen von Boilerplate/Setup:** Starten Sie neue Aufgaben im Zusammenhang mit bestimmten Projekten, die mit Standard-Setup-Anweisungen oder Dateivorlagen vorab geladen werden.
+-   **Unterstützung für das Kontexsystem:** Verwenden Sie `new_task`-Kontextblöcke als primäre Übergabemethode über Sitzungen hinweg, die an `AGENTS.md`/`.agents/context` und `work-logs/` ausgerichtet sind.
+
+Es wird empfohlen, mit `.agents/context` zu experimentieren, um Workflows zu entdecken, die Ihren Bedürfnissen am besten entsprechen!
+
+#### Beispiel `.agents/context`: Strategieleitfaden für die Aufgabenübergabe
+
+Unten finden Sie ein Beispiel für eine `.agents/context`-Datei, die sich speziell auf die Verwendung von `new_task` für das Kontextfenstermanagement konzentriert. **Denken Sie daran, dass dies nur eine spezifische Strategie ist; das Kern-Tool `new_task` kann mit anderen benutzerdefinierten Regeln anders verwendet werden.**
+
+````markdown
+# Sie MÜSSEN das Tool `new_task` verwenden: Strategieleitfaden für die Aufgabenübergabe
+
+**KRITISCHE ANWEISUNGEN - SIE MÜSSEN DIESE RICHTLINIEN BEFOLGEN**
+
+Dieser Leitfaden enthält **OBLIGATORISCHE** Anweisungen für die effektive Aufteilung komplexer Aufgaben und die Implementierung eines reibungslosen Übergabeprozesses zwischen Aufgaben. Sie **MÜSSEN** diese Richtlinien befolgen, um Kontinuität, Kontextaufrechterhaltung und effizienten Aufgabenabschluss zu gewährleisten.
+
+## ÜBERWACHUNG DES KONTEXTFENSTERS - OBLIGATORISCHE MASSNAHME ERFORDERLICH
+
+Sie **MÜSSEN** die im Umgebungsdetails angezeigte Kontextfensternutzung überwachen. Wenn die Nutzung 50 % des verfügbaren Kontextfensters übersteigt, **MÜSSEN** Sie eine Aufgabenübergabe mit dem Tool `new_task` einleiten.
+
+Beispiel für eine Kontextfensternutzung von über 50 % bei einem 200K-Kontextfenster:
+
+\`\`\`text
+
+# Kontextfenster-Nutzung
+
+105.000 / 200.000 Token (53%)
+Modell: anthropic/claude-sonnet-4 (200K Kontextfenster)
+\`\`\`
+
+**WICHTIG**: Wenn Sie eine Kontextfensternutzung von 50 % oder mehr feststellen, MÜSSEN Sie:
+
+1. Schließen Sie Ihren aktuellen logischen Schritt ab
+2. Verwenden Sie das Tool `ask_followup_question`, um die Erstellung einer neuen Aufgabe anzubieten
+3. Wenn sie genehmigt wurde, verwenden Sie das Tool `new_task` mit umfassenden Übergabeanweisungen
+
+## Aufgabenaufteilung im Plan-Modus - ERFORDERLICHER PROZESS
+
+Der Plan-Modus wurde speziell für die Analyse komplexer Aufgaben und die Aufteilung in überschaubare Teilaufgaben entwickelt. Wenn Sie sich im Plan-Modus befinden, **MÜSSEN** Sie:
+
+### 1. Initiale Aufgabenanalyse - ERFORDERLICH
+
+-   **MÜSSEN** zunächst den vollen Umfang der Anfrage des Benutzers gründlich verstehen
+-   **MÜSSEN** alle Hauptkomponenten und Abhängigkeiten der Aufgabe identifizieren
+-   **MÜSSEN** potenzielle Herausforderungen, Edge-Fälle und Voraussetzungen berücksichtigen
+
+### 2. Strategische Aufgabenzerlegung - ERFORDERLICH
+
+-   **MÜSSEN** die Gesamtaufgabe in logische, separate Teilaufgaben unterteilen
+-   **MÜSSEN** Teilaufgaben basierend auf Abhängigkeiten priorisieren (was muss zuerst abgeschlossen werden)
+-   **MÜSSEN** Teilaufgaben anstreben, die innerhalb einer einzigen Sitzung abgeschlossen werden können (15-30 Minuten Arbeit)
+-   **MÜSSEN** natürliche Haltepunkte berücksichtigen, an denen ein Kontextwechsel sinnvoll ist
+
+### 3. Erstellen einer Aufgaben-Roadmap - ERFORDERLICH
+
+-   **MÜSSEN** dem Benutzer eine klare, nummerierte Liste von Teilaufgaben präsentieren
+-   **MÜSSEN** Abhängigkeiten zwischen Teilaufgaben erläutern
+-   **MÜSSEN** nach Möglichkeit Zeitschätzungen für jede Teilaufgabe angeben
+-   **MÜSSEN** Mermaid-Diagramme verwenden, um den Aufgabenfluss und die Abhängigkeiten zu visualisieren, wenn dies hilfreich ist
+
+\`\`\`mermaid
+graph TD
+A[Hauptaufgabe] --> B[Teilaufgabe 1: Einrichtung]
+A --> C[Teilaufgabe 2: Kernimplementierung]
+A --> D[Teilaufgabe 3: Testen]
+A --> E[Teilaufgabe 4: Dokumentation]
+B --> C
+C --> D
+\`\`\`
+
+### 4. Einholen der Benutzergenehmigung - ERFORDERLICH
+
+-   **MÜSSEN** Benutzerfeedback zur vorgeschlagenen Aufgabenaufteilung einholen
+-   **MÜSSEN** den Plan basierend auf Benutzerprioritäten oder zusätzlichen Anforderungen anpassen
+-   **MÜSSEN** bestätigen, mit welcher Teilaufgabe begonnen werden soll
+-   **MÜSSEN** den Benutzer auffordern, in den Act-Modus zu wechseln, wenn er bereit ist, zu implementieren
+
+## Aufgabenimplementierung und Übergabeprozess - OBLIGATORISCHE VERFAHREN
+
+Bei der Implementierung von Aufgaben im Act-Modus **MÜSSEN** Sie diese Richtlinien für eine effektive Aufgabenübergabe befolgen:
+
+### 1. Fokussierte Implementierung - ERFORDERLICH
+
+-   **MÜSSEN** sich darauf konzentrieren, die aktuelle Teilaufgabe vollständig abzuschließen
+-   **MÜSSEN** den Fortschritt klar durch Kommentare und Commit-Nachrichten dokumentieren
+-   **MÜSSEN** an logischen Abschlusspunkten Checkpoints erstellen
+
+### 2. Erkennen von Abschlusspunkten - KRITISCH
+
+Sie **MÜSSEN** natürliche Übergabepunkte identifizieren, wenn:
+
+-   Die aktuelle Teilaufgabe vollständig abgeschlossen ist
+-   Sie einen logischen Haltepunkt in einer größeren Teilaufgabe erreicht haben
+-   Die Implementierung länger dauert als erwartet und später fortgesetzt werden kann
+-   Der Aufgabenbereich über den ursprünglichen Plan hinaus erweitert wurde
+-   **KRITISCH**: Die Kontextfensternutzung 50 % übersteigt (z. B. 100.000+ Token für ein 200K-Kontextfenster)
+
+### 3. Einleiten des Übergabeprozesses - OBLIGATORISCHE MASSNAHME
+
+Wenn Sie einen Abschlusspunkt erreicht haben, **MÜSSEN** Sie:
+
+1. Fassen Sie zusammen, was bisher erreicht wurde
+2. Geben Sie klar an, was noch zu tun ist
+3. **OBLIGATORISCH**: Verwenden Sie das Tool `ask_followup_question`, um die Erstellung einer neuen Aufgabe anzubieten:
+
+\`\`\`xml
+<ask_followup_question>
+<question>Ich habe [spezifische Leistung] abgeschlossen. Möchten Sie, dass ich eine neue Aufgabe erstelle, um mit [verbleibende Arbeit] fortzufahren?</question>
+<options>["Ja, erstelle eine neue Aufgabe", "Nein, in dieser Sitzung fortfahren", "Lass mich darüber nachdenken"]</options>
+</ask_followup_question>
+\`\`\`
+
+### 4. Erstellen einer neuen Aufgabe mit Kontext - ERFORDERLICHE MASSNAHME
+
+Wenn der Benutzer zustimmt, eine neue Aufgabe zu erstellen, **MÜSSEN** Sie das Tool `new_task` mit umfassenden Übergabeanweisungen verwenden:
+
+\`\`\`xml
+<new_task>
+<context>
+
+# Aufgabenfortsetzung: [Kurzer Aufgabentitel]
+
+## Abgeschlossene Arbeiten
+
+-   [Detaillierte Liste der abgeschlossenen Elemente]
+-   [Fügen Sie bestimmte geänderte/erstellte Dateien hinzu]
+-   [Notieren Sie alle wichtigen getroffenen Entscheidungen]
+
+## Aktueller Stand
+
+-   [Beschreibung des aktuellen Standes des Projekts]
+-   [Alle laufenden Prozesse oder Umgebungseinrichtungen]
+-   [Schlüsseldateien und ihr aktueller Stand]
+
+## Nächste Schritte
+
+-   [Detaillierte Liste der verbleibenden Aufgaben]
+-   [Spezifische Implementierungsdetails, die anzugehen sind]
+-   [Alle bekannten Herausforderungen, die zu beachten sind]
+
+## Referenzinformationen
+
+-   [Links zu relevanter Dokumentation]
+-   [Wichtige Code-Snippets oder Muster, die zu befolgen sind]
+-   [Alle Benutzereinstellungen, die während der aktuellen Sitzung notiert wurden]
+
+Bitte setzen Sie die Implementierung mit [spezifische nächste Aktion] fort.
+</context>
+</new_task>
+\`\`\`
+
+### 5. Detaillierte Kontextübertragung - OBLIGATORISCHE KOMPONENTEN
+
+Beim Erstellen einer neuen Aufgabe **MÜSSEN** Sie immer Folgendes einbeziehen:
+
+#### Projektkontext - ERFORDERLICH
+
+-   **MÜSSEN** das übergeordnete Ziel und den Zweck des Projekts einbeziehen
+-   **MÜSSEN** wichtige architektonische Entscheidungen und Muster einbeziehen
+-   **MÜSSEN** den Technologie-Stack und die Abhängigkeiten einbeziehen
+
+#### Implementierungsdetails - ERFORDERLICH
+
+-   **MÜSSEN** in der aktuellen Sitzung erstellte oder geänderte Dateien auflisten
+-   **MÜSSEN** spezifische implementierte Funktionen, Klassen oder Komponenten beschreiben
+-   **MÜSSEN** Designmuster erläutern, die befolgt werden
+-   **MÜSSEN** den Testansatz umreißen
+
+#### Fortschrittsverfolgung - ERFORDERLICH
+
+-   **MÜSSEN** eine Checkliste der abgeschlossenen Elemente bereitstellen
+-   **MÜSSEN** eine Checkliste der verbleibenden Elemente bereitstellen
+-   **MÜSSEN** alle aufgetretenen Blocker oder Herausforderungen notieren
+
+#### Benutzereinstellungen - ERFORDERLICH
+
+-   **MÜSSEN** vom Benutzer erwähnte Coding-Style-Präferenzen notieren
+-   **MÜSSEN** spezifische vom Benutzer angeforderte Ansätze dokumentieren
+-   **MÜSSEN** vom Benutzer identifizierte Prioritätsbereiche hervorheben
+
+## Best Practices für effektive Übergaben - OBLIGATORISCHE RICHTLINIEN
+
+### 1. Kontinuität aufrechterhalten - ERFORDERLICH
+
+-   **MÜSSEN** eine konsistente Terminologie zwischen Aufgaben verwenden
+-   **MÜSSEN** sich auf frühere Entscheidungen und deren Begründung beziehen
+-   **MÜSSEN** denselben architektonischen Ansatz beibehalten, es sei denn, die Richtung wird explizit geändert
+
+### 2. Kontext beibehalten - ERFORDERLICH
+
+-   **MÜSSEN** relevante Code-Snippets in die Übergabe einbeziehen
+-   **MÜSSEN** wichtige Diskussionen aus der vorherigen Sitzung zusammenfassen
+-   **MÜSSEN** sich gegebenenfalls auf bestimmte Dateien und Zeilennummern beziehen
+
+### 3. Klare nächste Aktionen festlegen - ERFORDERLICH
+
+-   **MÜSSEN** die Übergabe mit einem klaren, umsetzbaren nächsten Schritt beginnen
+-   **MÜSSEN** die verbleibenden Aufgaben priorisieren
+-   **MÜSSEN** alle Entscheidungen hervorheben, die getroffen werden müssen
+
+### 4. Annahmen dokumentieren - ERFORDERLICH
+
+-   **MÜSSEN** alle während der Implementierung getroffenen Annahmen klar angeben
+-   **MÜSSEN** Bereiche notieren, in denen Benutzereingaben erforderlich sein könnten
+-   **MÜSSEN** potenzielle alternative Ansätze identifizieren
+
+### 5. Für die Wiederaufnahme optimieren - ERFORDERLICH
+
+-   **MÜSSEN** die Übergabe so strukturieren, dass die nächste Sitzung sofort mit der Arbeit beginnen kann
+-   **MÜSSEN** Setup-Anweisungen einbeziehen, wenn eine Umgebungskonfiguration erforderlich ist
+-   **MÜSSEN** oben eine kurze Zusammenfassung zur schnellen Wiederherstellung des Kontexts bereitstellen
+
+## Beispiel für eine Aufgabenübergabe
+
+### Beispiel #1 für eine effektive Aufgabenübergabe:
+
+\`\`\`xml
+<new_task>
+<context>
+
+# Aufgabenfortsetzung: Implementieren eines Benutzerauthentifizierungssystems
+
+## Abgeschlossene Arbeiten
+
+-   Grundlegende Express.js-Serverstruktur erstellt
+-   MongoDB-Verbindung und Benutzerschema implementiert
+-   Benutzerregistrierungs-Endpunkt mit Passwort-Hashing abgeschlossen
+-   Eingabevalidierung mit Joi hinzugefügt
+-   Erste Testsuite für den Registrierungs-Endpunkt erstellt
+
+## Aktueller Stand
+
+-   Server läuft erfolgreich auf Port 3000
+-   MongoDB-Verbindung hergestellt
+-   Registrierungs-Endpunkt (/api/users/register) ist voll funktionsfähig
+-   Testsuite besteht für alle Registrierungsszenarien
+
+## Nächste Schritte
+
+1. Anmelde-Endpunkt implementieren (/api/users/login)
+    - Verwenden Sie bcrypt, um Passwörter zu vergleichen
+    - Generieren Sie ein JWT-Token bei erfolgreicher Anmeldung
+    - Fügen Sie eine ordnungsgemäße Fehlerbehandlung für ungültige Anmeldeinformationen hinzu
+2. Erstellen Sie eine Authentifizierungs-Middleware
+    - Überprüfen Sie JWT-Token
+    - Extrahieren Sie Benutzerinformationen
+    - Behandeln Sie abgelaufene Token
+3. Fügen Sie geschützte Routen hinzu, die eine Authentifizierung erfordern
+4. Implementieren Sie die Funktion zum Zurücksetzen des Passworts
+
+## Referenzinformationen
+
+-   Das JWT-Geheimnis sollte in einer .env-Datei gespeichert werden
+-   Befolgen Sie das vorhandene Muster für die Fehlerbehandlung in routes/users.js
+-   Das Benutzerschema ist in models/User.js definiert
+-   Testmuster sind in tests/auth.test.js festgelegt
+
+Bitte fahren Sie mit der Implementierung des Anmelde-Endpunkts fort und folgen Sie dabei den gleichen Mustern, die im Registrierungs-Endpunkt festgelegt wurden.
+</context>
+</new_task>
+\`\`\`
+
+### Beispiel #2 für eine ineffektive Aufgabenübergabe:
+
+_(Hinweis: Das in den Originalregeln gegebene Beispiel, das "YOLO MODE Implementation" zeigt, scheint weniger wie ein direkter Übergabe-Kontextblock zu sein, sondern eher wie ein allgemeines Status-Update mit zukünftigen Überlegungen. Eine echte ineffektive Übergabe könnte Details in "Aktueller Stand" oder "Nächste Schritte" fehlen.)._
+
+## Wann Aufgabenübergaben verwendet werden sollen - OBLIGATORISCHE AUSLÖSER
+
+Sie **MÜSSEN** Aufgabenübergaben in diesen Szenarien einleiten:
+
+1. **KRITISCH**: Wenn die Kontextfensternutzung 50 % übersteigt (z. B. 100.000+ Token für ein 200K-Kontextfenster)
+2. **Lang andauernde Projekte**, die eine einzelne Sitzung überschreiten
+3. **Komplexe Implementierungen** mit mehreren unterschiedlichen Phasen
+4. **Wenn sich die Beschränkungen des Kontextfensters** nähern
+5. **Beim Wechsel von Schwerpunkten** innerhalb eines größeren Projekts
+6. **Wenn unterschiedliche Fachkenntnisse** für verschiedene Teile der Aufgabe von Vorteil sein könnten
+
+**ABSCHLIESSENDE ERINNERUNG - KRITISCHE ANWEISUNG**
+
+Sie **MÜSSEN** die Kontextfensternutzung im Abschnitt mit den Umgebungsdetails überwachen. Wenn sie 50 % überschreitet (z. B. "105.000 / 200.000 Token (53 %)"), **MÜSSEN** Sie proaktiv den Aufgabenübergabeprozess mit dem Tool `ask_followup_question` und anschließend mit dem Tool `new_task` einleiten. Sie MÜSSEN das Tool `new_task` verwenden.
+
+Indem Sie diese Richtlinien strikt befolgen, stellen Sie reibungslose Übergänge zwischen Aufgaben sicher, erhalten die Projektdynamik aufrecht und bieten Benutzern, die an komplexen Projekten über mehrere Sitzungen arbeiten, die bestmögliche Erfahrung.
+
+```markdown
+## Benutzerinteraktion und Workflow-Überlegungen
+
+-   **Linearer Fluss:** Derzeit erstellt die Verwendung von `new_task` eine lineare Sequenz. Die alte Aufgabe wird beendet und die neue beginnt. Die alte Aufgabenhistorie bleibt für das Backtracking zugänglich.
+-   **Benutzergenehmigung:** Sie haben immer die Kontrolle, genehmigen die Übergabe und haben die Möglichkeit, den Kontext zu ändern, den Caret weiterführen soll.
+-   **Flexibilität:** Das Kern-Tool `new_task` ist ein flexibler Baustein. Experimentieren Sie mit `.agents/context`, um Workflows zu erstellen, die Ihren Bedürfnissen am besten entsprechen, sei es für ein striktes Kontextmanagement, die Zerlegung von Aufgaben oder andere kreative Zwecke.
+```
+````
+```

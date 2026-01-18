@@ -1,0 +1,113 @@
+---
+title: "Remote Browser Unterstützung"
+description: "Die Remote Browser Unterstützung ermöglicht es Caret, eine entfernte Chrome Instanz zu nutzen und dabei Authentifizierungs-Token und Session-Cookies zu verwenden, die für bestimmte Webentwicklungs-Testfälle relevant sind."
+---
+
+Die Remote Browser Funktion in Caret ermöglicht es dem KI-Assistenten, direkt mit Webinhalten über eine kontrollierte Browser-Instanz zu interagieren. Dies ermöglicht mehrere leistungsstarke Fähigkeiten:
+
+-   Anzeigen und Interagieren mit Webseiten
+-   Testen lokal laufender Webanwendungen
+-   Überwachen von Konsolenprotokollen und Fehlern
+-   Durchführen von Browseraktionen wie Klicken, Tippen und Scrollen
+
+## Remote Browser in Caret
+
+### Was ist Remote Browser?
+
+Remote Browser ermöglicht es Caret, Webseiten direkt anzuzeigen und mit ihnen zu interagieren. Diese Funktion ermöglicht Caret Folgendes:
+
+-   Webseiten besuchen und deren Inhalt anzeigen
+-   Ihre lokal laufenden Webanwendungen testen
+-   Formulare ausfüllen und auf Elemente klicken
+-   Screenshots von dem machen, was es sieht
+-   Durch Seiten scrollen, um mehr Inhalte zu sehen
+
+### Wie man Remote Browser benutzt
+
+#### Grundlegende Befehle
+
+Sie können Caret bitten, den Browser mit einfachen Anweisungen zu benutzen:
+
+-   **Eine Webseite öffnen**: "Benutze den Browser, um die Webseite unter [https://example.com](https://example.com/) zu prüfen"
+-   **Auf Elemente klicken**: "Klicke auf den Login-Button"
+-   **Text tippen**: "Tippe 'Hello world' in das Suchfeld"
+-   **Die Seite scrollen**: "Scrolle nach unten, um mehr Inhalt zu sehen"
+-   **Den Browser schließen**: "Schließe den Browser jetzt"
+
+#### Beispiel-Workflows
+
+**Testen einer Webanwendung:**
+
+```javascript
+Can you start my React app with "npm start" and then check if it's working properly at http://localhost:3000?
+```
+
+**Analysieren einer Webseite:**
+
+```javascript
+Can you visit https://example.com and tell me what you think about its design and layout?
+```
+
+**Ausfüllen eines Formulars:**
+
+```javascript
+Please go to https://example.com/contact, fill out the contact form with some test data, and submit it.
+```
+
+### Wichtige Dinge, die man wissen sollte
+
+#### Jeweils ein Browser
+
+Caret kann nur einen Browser gleichzeitig verwenden. Wenn Sie eine andere Webseite besuchen möchten, können Sie entweder:
+
+-   Caret bitten, innerhalb derselben Browser-Sitzung zu einer neuen URL zu navigieren
+-   Caret bitten, den aktuellen Browser zu schließen und einen neuen zu öffnen
+
+#### Browser muss geschlossen sein, bevor andere Tools verwendet werden können
+
+Wenn Sie möchten, dass Caret Dateien bearbeitet oder Befehle ausführt, nachdem Sie den Browser verwendet haben, müssen Sie ihn zuerst bitten, den Browser zu schließen:
+
+```javascript
+Close the browser and then update the CSS file to fix the alignment issue we saw.
+```
+
+#### Was Caret sieht
+
+Der Browser hat eine feste Viewport-Größe (standardmäßig 900x600 Pixel), ähnlich wie bei einem kleinen Laptop-Bildschirm. Caret teilt nach jeder Aktion Screenshots, so dass Sie genau sehen können, was es sieht.
+
+#### Konsolenprotokolle
+
+Caret erfasst Browser-Konsolenprotokolle, die für das Debuggen von Webanwendungen hilfreich sein können. Diese Protokolle sind in jedem Screenshot enthalten.
+
+### Häufige Anwendungsfälle
+
+-   **Webentwicklung**: Testen Sie Ihre Webseiten und Webanwendungen
+-   **UI/UX-Überprüfung**: Holen Sie sich Feedback zum Webdesign und zur Benutzerfreundlichkeit
+-   **Inhaltsrecherche**: Lassen Sie Caret Webseiten durchsuchen, um Informationen zu sammeln
+-   **Formulartest**: Überprüfen Sie, ob Formulare korrekt funktionieren
+-   **Responsive Design Tests**: Überprüfen Sie, wie Webseiten bei unterschiedlichen Bildschirmgrößen aussehen
+
+### Fehlerbehebung
+
+-   **Wenn eine Webseite nicht geladen wird**: Versuchen Sie, eine direkte URL mit dem Präfix http:// oder https:// anzugeben
+-   **Wenn das Klicken nicht funktioniert**: Versuchen Sie, die Position des Elements genauer zu beschreiben
+-   **Wenn der Browser hängt**: Bitten Sie Caret, den Browser zu schließen und es erneut zu versuchen
+
+### Verwenden von Remote Browser mit VS Code in WSL
+
+Wenn Sie VS Code in WSL ausführen, müssen Sie Windows so konfigurieren, dass WSL eine Verbindung zu Chrome herstellen kann. Folgen Sie diesen Schritten:
+
+#### Öffnen Sie PowerShell als Administrator und führen Sie Folgendes aus:
+
+```powershell
+# Allow WSL to connect to Chrome's debugging port
+New-NetFirewallRule -DisplayName "WSL Chrome Debug" -Direction Inbound -LocalPort 9222 -Protocol TCP -Action Allow
+```
+
+#### Konfigurieren Sie Caret in VS Code:
+
+1. Öffnen Sie die VS Code-Einstellungen
+2. Suchen Sie nach "Caret: Chrome Executable Path"
+3. Setzen Sie den Wert auf den Pfad Ihrer Chrome-Executable (z.B. `C:\Program Files\Google\Chrome\Application\chrome.exe`)
+
+Caret sollte nun in der Lage sein, die Remote Browser-Funktion aus WSL heraus zu verwenden.

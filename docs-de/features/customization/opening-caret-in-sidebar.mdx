@@ -1,0 +1,68 @@
+---
+title: "Caret in der rechten Seitenleiste öffnen"
+description: "Erfahre, wie du Caret in der rechten Seitenleiste in VS Code und Cursor öffnest"
+---
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/차이(지원 에디터/스토어, UI 레이블)가 있으면 본문에 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+브랜딩/UI: `caret-docs/features/f03-branding-ui.md`에 따라 캐럿 브랜딩(아이콘/라벨/배너) 우선 사용. 에디터/스토어 지원 여부도 캐럿 기준으로 안내하세요.
+</Note>
+
+Standardmäßig wird Caret bei der ersten Installation in der linken Seitenleiste von VS Code neben dem Datei-Explorer und anderen Erweiterungen angezeigt. Für ein besseres Programmiererlebnis empfehlen wir jedoch, Caret in die rechte Seitenleiste zu verschieben. Auf diese Weise bleiben Ihre Projektdateien in der linken Seitenleiste sichtbar, während Sie rechts mit Caret chatten, sodass Sie die volle Sichtbarkeit Ihrer Codebasis haben, während Caret an Ihrem Projekt arbeitet.
+
+## VS Code
+
+So öffnen Sie Caret in der rechten Seitenleiste:
+
+<Steps>
+  <Step title="Erweiterungsansicht ausrichten">
+    Stellen Sie sicher, dass Ihre Erweiterungsansicht vertikal linksbündig ausgerichtet ist
+  </Step>
+  <Step title="Rechte Seitenansicht öffnen">
+    Klicken Sie auf die Schaltfläche, die das rechte Seitenfenster in VS Code öffnet (wird normalerweise verwendet, um den GitHub Copilot Chat zu öffnen). Verwenden Sie optional die Tastenkombination `Option + CMD/Ctrl + B`.
+  </Step>
+  <Step title="Caret-Symbol ziehen">
+    Ziehen Sie das Caret-Symbol in den Navigationsbereich oben in dieser rechten Ansicht
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/vscode_right_view.gif"
+		alt="VS Code Right Sidebar Setup"
+	/>
+</Frame>
+
+## Cursor
+
+So öffnen Sie Caret in der rechten Seitenleiste:
+
+<Steps>
+  <Step title="Erweiterungen ausrichten">
+    Cursor verwendet standardmäßig eine horizontale Aktivitätsleiste, um den Platz für die KI-Chat-Oberfläche zu optimieren ([siehe hier für Details](https://cursor.com/docs/configuration/migrations/vscode#activity-bar-orientation)). Um auf vertikal umzuschalten:
+    
+    1. Öffnen Sie die Befehlspalette (`CMD/Ctrl + Shift + P`)
+    2. Suchen Sie nach "Preferences: Open Settings (UI)"
+    3. Suchen Sie nach `workbench.activityBar.orientation`
+    4. Setzen Sie den Wert auf `vertical`
+    5. Starten Sie Cursor neu, damit die Änderungen wirksam werden
+  </Step>
+  <Step title="KI-Bereich öffnen">
+    Klicken Sie auf die Cursor-Würfel-Symbolschaltfläche (KI-Bereich), die den Agenten von Cursor öffnet (rechte Seitenansicht)
+  </Step>
+  <Step title="Caret in die Seitenleiste des KI-Bereichs ziehen">
+    Ziehen Sie das Caret-Symbol direkt in die Seitenleiste des KI-Bereichs.
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/Cursor-sidebar.gif"
+		alt="Cursor Right Sidebar Setup"
+	/>
+</Frame>
+
+Nach der Einrichtung wird Caret auf der rechten Seite geladen und Sie können es wie gewohnt verwenden.

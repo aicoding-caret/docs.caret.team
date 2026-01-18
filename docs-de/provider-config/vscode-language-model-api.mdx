@@ -1,0 +1,51 @@
+---
+title: "VS Code Language Model API"
+description: "Erfahren Sie, wie Sie Caret mit der experimentellen VS Code Language Model API verwenden, um Zugriff auf Modelle von GitHub Copilot und anderen kompatiblen Extensions zu erhalten."
+---
+
+Caret bietet _experimentelle_ Unterstützung für die [VS Code Language Model API](https://code.visualstudio.com/api/extension-guides/language-model). Diese API ermöglicht es Extensions, den Zugriff auf Language Models direkt innerhalb der VS Code Umgebung zu gewähren. Folglich können Sie möglicherweise Modelle nutzen von:
+
+-   **GitHub Copilot:** Vorausgesetzt, Sie haben ein aktives Copilot Abonnement und die Extension installiert.
+-   **Andere VS Code Extensions:** Jede Extension, welche die Language Model API implementiert.
+
+**Wichtiger Hinweis:** Diese Integration befindet sich derzeit in einer experimentellen Phase und funktioniert möglicherweise nicht wie erwartet. Die Funktionalität hängt davon ab, ob andere Extensions die VS Code Language Model API korrekt implementieren.
+
+### Voraussetzungen
+
+-   **VS Code:** Die Language Model API ist über VS Code zugänglich (sie wird derzeit nicht von Cursor unterstützt).
+-   **Eine Language Model Provider Extension:** Eine Extension, die ein Language Model bereitstellt, ist erforderlich. Beispiele sind:
+    -   **GitHub Copilot:** Mit einem Copilot Abonnement können die GitHub Copilot und GitHub Copilot Chat Extensions als Model Provider fungieren.
+    -   **Alternative Extensions:** Suchen Sie im VS Code Marketplace nach Extensions, die „Language Model API“ oder „lm“ erwähnen. Andere experimentelle Optionen könnten verfügbar sein.
+
+### Konfigurationsschritte
+
+1. **Sicherstellen, dass der Copilot Account aktiv und die Extensions installiert sind:** Benutzer, die entweder in der Copilot oder Copilot Chat Extension angemeldet sind, sollten über Caret Zugriff erhalten können.
+2. **Caret Settings aufrufen:** Klicken Sie auf das Zahnrad-Symbol (⚙️) im Caret Panel.
+3. **Provider wählen:** Wählen Sie „VS Code LM API“ aus dem „API Provider“ Dropdown-Menü.
+4. **Modell auswählen:** Wenn die Copilot Extension(s) installiert sind und der Benutzer in seinem Copilot Account angemeldet ist, füllt sich das „Language Model“ Dropdown nach kurzer Zeit mit den verfügbaren Modellen. Die Namenskonvention ist `vendor/family`. Wenn Copilot aktiv ist, könnten Ihnen beispielsweise Optionen begegnen wie:
+    - `copilot - gpt-3.5-turbo`
+    - `copilot - gpt-4o-mini`
+    - `copilot - gpt-4`
+    - `copilot - gpt-4-turbo`
+    - `copilot - gpt-4o`
+    - `copilot - claude-3.5-sonnet` **HINWEIS:** Dieses Modell funktioniert nicht.
+    - `copilot - gemini-2.0-flash`
+    - `copilot - gpt-4.1`
+
+Für die besten Ergebnisse mit dem VS Code LM API Provider empfehlen wir die Verwendung der OpenAI Modelle (GPT 3, 4, 4.1, 4o etc.).
+
+### Aktuelle Einschränkungen
+
+-   **Experimenteller API-Status:** Die VS Code Language Model API befindet sich noch in der aktiven Entwicklung. Rechnen Sie mit potenziellen Änderungen und Instabilität.
+-   **Abhängigkeit von Extensions:** Diese Funktion hängt vollständig davon ab, dass andere Extensions Modelle zur Verfügung stellen. Caret hat keinen direkten Einfluss auf die Liste der verfügbaren Modelle.
+-   **Eingeschränkte Funktionalität:** Die VS Code Language Model API umfasst möglicherweise nicht alle Funktionen, die über andere API Provider verfügbar sind (z. B. Image-Input-Fähigkeiten, Streaming-Antworten, detaillierte Usage Metrics).
+-   **Kein direktes Kostenmanagement:** Benutzer unterliegen den Preisstrukturen und Nutzungsbedingungen der Extension, die das Modell bereitstellt. Caret kann die damit verbundenen Kosten nicht direkt überwachen oder regulieren.
+-   **GitHub Copilot Rate Throttling:** Beachten Sie bei der Verwendung der VS Code LM API mit GitHub Copilot, dass GitHub Rate Limits für die Copilot Nutzung erzwingen kann. Diese Einschränkungen werden von GitHub verwaltet, nicht von Caret.
+
+### Tipps zur Fehlerbehebung
+
+-   **Modelle erscheinen nicht:**
+    -   Bestätigen Sie, dass VS Code installiert ist.
+    -   Stellen Sie sicher, dass eine Language Model Provider Extension (z. B. GitHub Copilot, GitHub Copilot Chat) installiert und aktiviert ist.
+    -   Wenn Sie Copilot verwenden, stellen Sie sicher, dass Sie zuvor eine Copilot Chat Nachricht mit dem gewünschten Modell gesendet haben.
+-   **Unerwartetes Verhalten:** Sollten Sie auf unvorhergesehenes Verhalten stoßen, handelt es sich wahrscheinlich um ein Problem, das auf die zugrunde liegende Language Model API oder die Provider Extension zurückzuführen ist. Erwägen Sie, das Problem den Entwicklern der Provider Extension zu melden.

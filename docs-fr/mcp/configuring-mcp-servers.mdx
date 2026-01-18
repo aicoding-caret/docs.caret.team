@@ -1,0 +1,169 @@
+```
+---
+title: "Configuration des serveurs MCP"
+description: "Configurer et gérer les serveurs MCP dans Caret."
+---
+
+## Mode d'inclusion globale des serveurs MCP
+
+L'utilisation des serveurs MCP augmentera votre consommation de tokens. Caret offre la possibilité de restreindre ou de désactiver la fonctionnalité des serveurs MCP selon vos besoins.
+
+1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Caret.
+2. Sélectionnez l'onglet "Configure", puis cliquez sur le lien "Advanced MCP Settings" au bas de ce panneau.
+3. Caret ouvrira une nouvelle fenêtre de paramètres. Recherchez `Caret>Mcp:Mode` et faites votre sélection dans le menu déroulant.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-edit%20(1).png"
+		alt="MCP settings edit"
+	/>
+</Frame>
+
+## Gestion des serveurs MCP individuels
+
+Chaque serveur MCP possède son propre panneau de configuration où vous pouvez modifier les paramètres, gérer les outils et contrôler son fonctionnement. Pour accéder à ces paramètres :
+
+1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Caret.
+2. Localisez le serveur MCP que vous souhaitez gérer dans la liste et ouvrez-le en cliquant sur son nom.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-individual.png"
+		alt="MCP settings individual"
+	/>
+</Frame>
+
+### Supprimer un serveur
+
+1. Cliquez sur l'icône Corbeille à côté du serveur MCP que vous souhaitez supprimer, ou sur le bouton rouge Delete Server au bas de la boîte de configuration du serveur MCP.
+
+**NOTE:** Il n'y a pas de boîte de dialogue de confirmation de suppression.
+
+### Redémarrer un serveur
+
+1. Cliquez sur le bouton Restart à côté du serveur MCP que vous souhaitez redémarrer, ou sur le bouton gris Restart Server au bas de la boîte de configuration du serveur MCP.
+
+### Activer ou désactiver un serveur
+
+1. Cliquez sur le bouton bascule à côté du serveur MCP pour activer/désactiver les serveurs individuellement.
+
+### Délai d'attente réseau (Network Timeout)
+
+Pour définir le temps maximal d'attente d'une réponse après un appel d'outil au serveur MCP :
+
+1. Cliquez sur le menu déroulant `Network Timeout` au bas de la boîte de configuration du serveur MCP individuel et modifiez la durée. La valeur par défaut est de 1 minute, mais elle peut être définie entre 30 secondes et 1 heure.
+
+## Modification des fichiers de paramètres MCP
+
+Les paramètres de tous les serveurs MCP installés se trouvent dans le fichier `cline_mcp_settings.json` :
+
+1. Cliquez sur l'icône MCP Servers dans la barre de navigation supérieure du panneau Caret.
+2. Sélectionnez l'onglet "Configure".
+3. Cliquez sur le bouton "Configure MCP Servers" au bas du panneau.
+
+Le fichier utilise un format JSON avec un objet `mcpServers` contenant des configurations de serveur nommées :
+
+```json
+{
+	"mcpServers": {
+		"server1": {
+			"command": "python",
+			"args": ["/path/to/server.py"],
+			"env": {
+				"API_KEY": "your_api_key"
+			},
+			"alwaysAllow": ["tool1", "tool2"],
+			"disabled": false
+		}
+	}
+}
+```
+
+_Exemple de configuration de serveur MCP dans Caret (transport STDIO)_
+
+---
+
+## Comprendre les types de transport
+
+MCP prend en charge deux types de transport pour la communication avec le serveur :
+
+### Transport STDIO
+
+Utilisé pour les serveurs locaux exécutés sur votre machine :
+
+-   Communique via les flux d'entrée/sortie standard
+-   Latence plus faible (pas de surcharge réseau)
+-   Meilleure sécurité (pas d'exposition au réseau)
+-   Configuration plus simple (aucun serveur HTTP n'est nécessaire)
+-   S'exécute en tant que processus enfant sur votre machine
+
+Pour des informations plus approfondies sur le fonctionnement du transport STDIO, consultez [MCP Transport Mechanisms](/french/mcp/mcp-transport-mechanisms).
+
+Exemple de configuration STDIO :
+
+```json
+{
+	"mcpServers": {
+		"local-server": {
+			"command": "node",
+			"args": ["/path/to/server.js"],
+			"env": {
+				"API_KEY": "your_api_key"
+			},
+			"alwaysAllow": ["tool1", "tool2"],
+			"disabled": false
+		}
+	}
+}
+```
+
+### Transport SSE
+
+Utilisé pour les serveurs distants accessibles via HTTP/HTTPS :
+
+-   Communique via le protocole Server-Sent Events
+-   Peut être hébergé sur une autre machine
+-   Prend en charge plusieurs connexions client
+-   Nécessite un accès réseau
+-   Permet un déploiement et une gestion centralisés
+
+Pour des informations plus approfondies sur le fonctionnement du transport SSE, consultez [MCP Transport Mechanisms](/french/mcp/mcp-transport-mechanisms).
+
+Exemple de configuration SSE :
+
+```json
+{
+	"mcpServers": {
+		"remote-server": {
+			"url": "https://your-server-url.com/mcp",
+			"headers": {
+				"Authorization": "Bearer your-token"
+			},
+			"alwaysAllow": ["tool3"],
+			"disabled": false
+		}
+	}
+}
+```
+
+---
+
+## Utilisation des outils MCP dans votre workflow
+
+Après avoir configuré un serveur MCP, Caret détectera automatiquement les outils et ressources disponibles. Pour les utiliser :
+
+1. Tapez votre requête dans la fenêtre de conversation de Caret
+2. Caret identifiera quand un outil MCP peut vous aider dans votre tâche
+3. Approuvez l'utilisation de l'outil lorsque vous y êtes invité (ou utilisez l'approbation automatique)
+
+Exemple : "Analyze the performance of my API" pourrait utiliser un outil MCP qui teste les endpoints d'API.
+
+## Dépannage des serveurs MCP
+
+Problèmes courants et solutions :
+
+-   **Server Not Responding :** Vérifiez si le processus du serveur est en cours d'exécution et vérifiez la connectivité réseau
+-   **Permission Errors :** Assurez-vous que les clés d'API et les informations d'identification appropriées sont configurées dans votre fichier `mcp_settings.json`
+-   **Tool Not Available :** Confirmez que le serveur implémente correctement l'outil et qu'il n'est pas désactivé dans les paramètres
+-   **Slow Performance :** Essayez d'ajuster la valeur du délai d'attente réseau pour le serveur MCP spécifique
+```

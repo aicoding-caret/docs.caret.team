@@ -1,0 +1,259 @@
+---
+sidebar_position: 8
+title: ^ Standardisierung von AI-Organisationswissen & Regeln
+description: Erfahren Sie mehr über das Kernsystem von Caret, das sicherstellt, dass die AI die Regeln und Standards Ihres Teams präzise befolgt.
+---
+
+# ^ Standardisierung von AI-Organisationswissen & Regeln
+
+Caret ist so konzipiert, dass die AI **die Coding-Regeln und Standards Ihres Teams präzise versteht und befolgt**. Durch dieses System fungiert die AI als echtes Teammitglied, das den Projektkontext versteht, und nicht nur als einfaches Tool zur Code-Generierung.
+
+## Warum ist Wissenssynchronisation wichtig?
+
+| Situation | Generische AI-Tools | Caret |
+|---|---|---|
+| **Einhaltung von Teamregeln** | Kennt die Regeln nicht | ✅ Erkennt Regeldateien automatisch |
+| **Projektkontext** | Benötigt jedes Mal eine Erklärung | ✅ Persistentes Gedächtnis |
+| **Code-Konsistenz** | Unterschiedliche Stile je nach Tool | ✅ Behält Team-Standards bei |
+| **Rollenoptimierung** | Keine | ✅ Getrennte AI-/Mensch-Dokumente |
+
+## Kernkonzept 1: Duale Verzeichnisarchitektur
+
+Caret berücksichtigt, dass **Dokumente für die AI und für Menschen unterschiedliche Zwecke erfüllen**. Um dies zu adressieren, werden zwei Verzeichnisse verwendet:
+
+```
+your-project/
+├── .agents/                    # For AI (English, token-optimized)
+│   ├── context/               # System rules
+│   │   ├── agents-rules.json  # Main rules file (SoT)
+│   │   └── ai-work-index.yaml # Work index
+│   ├── workflows/             # Task workflows
+│   │   └── atoms/             # Reusable building blocks
+│   ├── skills/                # AI skills
+│   └── hooks/                 # Event hooks
+│
+├── .users/                     # For humans (native language, detailed)
+│   ├── context/               # Project context (Markdown)
+│   ├── workflows/             # Workflow guides
+│   └── skills/                # Skill guides
+│
+└── AGENTS.md                   # AI entry point
+```
+
+### Warum trennen?
+
+| Kategorie | `.agents/` (Für AI) | `.users/` (Für Menschen) |
+|------|-------------------|-------------------|
+| **Sprache** | English (token-effizient) | Muttersprache |
+| **Format** | JSON/YAML (strukturiert) | Markdown (lesbar) |
+| **Zweck** | Deterministisches Verhalten sicherstellen | Detaillierte Erklärungen bereitstellen |
+| **Zielgruppe** | AI Agents | Entwickler/Teammitglieder |
+
+**Token-Optimierung**: Dateien in `.agents/` werden in English verfasst, um dieselbe Bedeutung mit weniger Token zu vermitteln. Dies nutzt das Context Window effizienter und reduziert die Kosten.
+
+## Kernkonzept 2: Atomares Wissenssystem
+
+Caret nutzt einen **Atomic Knowledge** Ansatz. Anstatt eines einzelnen massiven Dokuments wird das Wissen in minimale Einheiten (Atome) zerlegt und bei Bedarf kombiniert.
+
+### Wie es funktioniert
+
+1. **Aufgabenanalyse**: Die AI liest die `ai-work-index.yaml`, um den Aufgabentyp zu identifizieren.
+2. **Laden des Workflows**: Es wird nur die relevante Workflow-Datei gelesen.
+3. **Zusammensetzung der Wissensatome**: Lädt nur die vom Workflow referenzierten Atome.
+4. **Aufgabenausführung**: Führt die Aufgabe mit dem kombinierten Wissen aus.
+
+### Beispiel
+
+```
+.agents/workflows/
+├── code-review.md             # Code review workflow
+├── feature-implementation.md  # Feature implementation workflow
+└── atoms/                     # Reusable building blocks
+    ├── tdd-cycle.md           # TDD cycle
+    ├── naming-conventions.md  # Naming conventions
+    └── document-changes.md    # Documenting changes
+```
+
+**Vorteil**: Anstatt immer alle Regeln zu laden, lädt die AI selektiv nur die für die aktuelle Aufgabe benötigten Regeln, was **Token spart**.
+
+## Kernkonzept 3: Speicherort der Regeln & Priorität
+
+Caret nutzt den Ordner **`.agents/context/`** als Single Source of Truth für Regeln. Dies stellt sicher, dass die AI im gesamten Projekt konsistente Standards einhält.
+
+### Speicherorte der Regeln
+
+| Typ | Ort | Zweck |
+|------|------|------|
+| **Workspace-Regeln** | `.agents/context/` | Projektspezifische Regeln |
+| **Verzeichnis-Scope** | `AGENTS.md` | Gilt nur für bestimmte Ordner |
+| **Globale Regeln** | `Documents/Caret/Rules` | Gilt für alle Projekte |
+| **Workflows** | `.agents/workflows/` | On-Demand-Laden |
+
+### Warum ist Standardisierung wichtig?
+
+| Problem | Lösung |
+|------|------|
+| Regeln an verschiedenen Orten verstreut | An einem Ort verwalten |
+| Regelkonflikte treten auf | Klare Prioritätsreihenfolge |
+| AI übersieht Regeln | Garantiertes automatisches Laden |
+
+## Kernkonzept 4: Organisationsübergreifende Wissenssynchronisation
+
+Mithilfe von Submodules können Sie **Regeln und Wissen über mehrere Projekte** innerhalb Ihrer gesamten Organisation hinweg teilen.
+
+### Organisations-Repository-Muster
+
+```
+org-context/                      # Organization shared repository (Git)
+├── .agents/                      # AI context
+│   ├── context/                  # Organization rules/policies
+│   │   ├── conventions.md        # Development conventions
+│   │   ├── tech-stack.md         # Tech stack
+│   │   └── security-policy.md    # Security policy
+│   └── workflows/                # Workflow definitions
+│       ├── code-review.md
+│       └── release-process.md
+│
+├── .users/                       # User documentation (mirrored)
+│   ├── context/
+│   │   ├── dev-standards.md      # Detailed guide
+│   │   └── tech-stack.md
+│   └── workflows/
+│       └── code-review-guide.md
+│
+└── AGENTS.md                     # Organization AI entry point
+```
+
+### Als Submodule verbinden
+
+```bash
+# Add organization context as submodule
+git submodule add git@github.com:your-org/org-context.git
+```
+
+```
+your-project/
+├── .agents/                # Project rules
+├── .users/                 # Project user documentation
+├── org-context/            # ← Submodule (organization rules)
+│   ├── .agents/
+│   └── .users/
+└── AGENTS.md
+```
+
+### 4-Ebenen-Regelzusammenführung
+
+```
+Ebene 1: Global (Benutzerweit)
+    ~/.agents/                    # Persönliche AI-Regeln
+
+Ebene 2: Organisation
+    org-context/.agents/          # Organisationsweiter AI-Kontext
+
+Ebene 3: Projekt
+    {project}/.agents/            # Projektspezifische AI-Regeln
+
+Ebene 4: Lokal (Pro Verzeichnis)
+    {project}/packages/{pkg}/
+    └── AGENTS.md                 # Verzeichnisweites Überschreiben
+
+Zusammenführungspriorität: Lokal > Projekt > Organisation > Global
+```
+
+### Anwendungsbeispiele
+
+```bash
+# Alle Aufgaben in einem Projekt möglich:
+
+# Coding-Aufgabe
+"Refactor this function"
+→ Referenziert .agents/context/ Regeln für die Aufgabe
+
+# Frage zu Unternehmensrichtlinien
+"What's the remote work policy?"
+→ Liest org-context/.users/policies/remote-work.md und antwortet
+
+# Workflow-Leitfaden
+"How do I do code review?"
+→ Referenziert org-context/.users/workflows/code-review-guide.md
+```
+
+## Schnellstart: `/init`-Befehl
+
+Wenn Ihr Projekt nicht über die Standardstruktur verfügt, können Sie diese mit dem `/init`-Befehl automatisch generieren lassen.
+
+```bash
+# In Caret chat
+/init
+```
+
+Dieser Befehl:
+- Erstellt die Ordnerstruktur für `.agents/` und `.users/`
+- Stellt Standard-Regel-Templates bereit
+- **Überschreibt niemals vorhandene Dateien** (sicher)
+
+## Bestehende Projekte migrieren
+
+Wenn Sie Regeldateien an anderen Orten haben, verschieben Sie diese nach `.agents/context/`.
+
+```
+your-project/
+├── .agents/
+│   ├── context/          # Rule files
+│   │   └── coding.md     # e.g., Coding standards
+│   └── workflows/        # Workflows (optional)
+└── AGENTS.md             # Root instructions (optional)
+```
+
+## Wichtigste Vorteile
+
+### 1. Echte Partnerschaft
+AI und Entwickler kommunizieren auf Basis derselben Dokumente, was Missverständnisse eliminiert.
+
+### 2. Token-Effizienz
+- Token sparen mit auf English verfassten `.agents/`-Dateien
+- On-Demand Loading lädt nur notwendige Regeln
+
+### 3. Organisationsweite Konsistenz
+Alle Projekte teilen sich dieselben Organisationsregeln über Submodules.
+
+### 4. Transparenz
+Entwickler können durch den `.agents/`-Ordner klar sehen, wie die AI arbeitet.
+
+### 5. Team-Konsistenz
+- Alle Teammitglieder nutzen dieselben Regeln
+- AI-Zuverlässigkeit – übersieht niemals Regeln
+- Versionskontrolle – Änderungen an Regeln nachverfolgen
+- Flexibler Scope – Wahl zwischen Projekt/Ordner/Global
+
+## Vollständiger Vergleich mit Cline
+
+| Punkt | Cline | Caret |
+|------|-------|-------|
+| **Wissensaustausch** | Einzelne Datei (Plain Text) | Atomic Knowledge System |
+| **Effizienz** | Lädt immer alle Regeln | On-Demand Loading |
+| **Rollentrennung** | Keine | AI-/Mensch-Trennung |
+| **Bootstrap** | Manuelles Setup | `/init` Auto-Scaffold |
+| **Teilen in der Organisation** | Keine | Unterstützung des Submodule-Musters |
+| **Regelpriorität** | Unklar | Klare 4-Ebenen-Zusammenführung |
+
+## Erste Schritte
+
+### Methode 1: Automatische Initialisierung (Empfohlen)
+```bash
+# In Caret chat
+/init
+```
+
+### Methode 2: Manuelles Setup
+1. Erstellen Sie den Ordner `.agents/context/` im Projekt-Root
+2. Schreiben Sie Regeln in Markdown-Dateien
+3. Starten Sie den Chat mit Caret
+
+Für detaillierte Richtlinien zum Schreiben von Regeln siehe die Dokumentation zum [Caret Rules Feature](/german/features/caret-rules).
+
+## Verwandte Dokumentation
+
+- [Caret Rules Feature](/german/features/caret-rules) - Leitfaden zum Schreiben von Regeln
+- [Document Reading Tools](/german/caret-exclusive/document-tools) - AI liest Dokumente direkt
+- [Image Tools](/german/caret-exclusive/image-tools) - AI Bildgenerierung/Analyse

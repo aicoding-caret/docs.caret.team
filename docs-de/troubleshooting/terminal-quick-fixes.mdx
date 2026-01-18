@@ -1,0 +1,51 @@
+---
+title: "Terminal-Schnellkorrekturen"
+sidebarTitle: "Terminal Quick Fixes"
+description: "Schnelle Lösungen für gängige Terminal-Probleme"
+---
+
+**Hier ist eine Liste gängiger Lösungen, beginnend mit den am häufigsten anwendbaren:**
+
+-   **Zu bash wechseln** (löst die meisten Probleme)
+
+    1. Klicken Sie in Caret mit der linken Maustaste auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
+    2. Klicken Sie im **Settings**-Fenster in der linken Spalte auf den Tab **"Terminal Settings"**
+    3. Navigieren Sie zu **"Default Terminal Profile"** und wählen Sie **"bash"** aus dem Dropdown-Menü aus
+
+-   **Timeout erhöhen**
+
+    1. Klicken Sie in Caret mit der linken Maustaste auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
+    2. Klicken Sie im **Settings**-Fenster in der linken Spalte auf den Tab **"Terminal Settings"**
+    3. Navigieren Sie zu "Shell integration timeout (seconds)" und geben Sie **"10"** in das Textfeld ein
+
+-   **Terminal-Wiederverwendung deaktivieren**
+    1. Klicken Sie in Caret mit der linken Maustaste auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
+    2. Klicken Sie im **Settings**-Fenster in der linken Spalte auf den Tab **"Terminal Settings"**
+    3. Suchen Sie nach **"Enable aggressive terminal reuse"** und **deaktivieren** Sie diese Option
+
+## Plattformspezifische Lösungen
+
+### macOS + Oh-My-Zsh
+
+```bash
+# Create minimal config for VSCode
+echo 'export TERM=xterm-256color' > ~/.zshrc-vscode
+echo 'export PAGER=cat' >> ~/.zshrc-vscode
+```
+
+### Windows PowerShell
+
+```powershell
+# Run as Administrator
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### WSL
+
+-   Ordner aus WSL öffnen: `code .`
+-   Wählen Sie **"WSL Bash"** in den Caret-Einstellungen unter **"Terminal Settings"** aus
+-   Erhöhen Sie **"Shell integration timeout (seconds)"** auf **15**
+
+## Vollständiger Leitfaden
+
+Für eine detaillierte Fehlerbehebung lesen Sie den [Vollständigen Leitfaden zur Terminal-Fehlerbehebung](/german/troubleshooting/terminal-integration-guide).

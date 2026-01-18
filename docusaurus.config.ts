@@ -5,7 +5,7 @@ import { themes as prismThemes } from "prism-react-renderer"
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const siteUrl = "https://docs.caret.team"
-const localePrefixes = ["en", "ko", "ja", "zh"] as const
+const localePrefixes = ["en", "ko", "ja", "zh", "fr", "de", "ru"] as const
 type LocalePrefix = (typeof localePrefixes)[number]
 const defaultLocale: LocalePrefix = "en"
 const hreflangByLocale: Record<LocalePrefix, string> = {
@@ -13,6 +13,9 @@ const hreflangByLocale: Record<LocalePrefix, string> = {
 	ko: "ko-KR",
 	ja: "ja-JP",
 	zh: "zh-CN",
+	fr: "fr-FR",
+	de: "de-DE",
+	ru: "ru-RU",
 }
 
 const buildAlternateLinks = (pathname: string) => {
@@ -109,6 +112,36 @@ const config: Config = {
 				editUrl: "https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ja/",
 			},
 		],
+		[
+			"@docusaurus/plugin-content-docs",
+			{
+				id: "docs-fr",
+				path: "./docs-fr",
+				routeBasePath: "fr",
+				sidebarPath: "./sidebars-fr.ts",
+				editUrl: "https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-fr/",
+			},
+		],
+		[
+			"@docusaurus/plugin-content-docs",
+			{
+				id: "docs-de",
+				path: "./docs-de",
+				routeBasePath: "de",
+				sidebarPath: "./sidebars-de.ts",
+				editUrl: "https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-de/",
+			},
+		],
+		[
+			"@docusaurus/plugin-content-docs",
+			{
+				id: "docs-ru",
+				path: "./docs-ru",
+				routeBasePath: "ru",
+				sidebarPath: "./sidebars-ru.ts",
+				editUrl: "https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ru/",
+			},
+		],
 	],
 	presets: [
 		[
@@ -195,7 +228,7 @@ const config: Config = {
 					position: "right",
 				},
 				{
-					href: "https://discord.gg/caret",
+					href: "https://https://discord.gg/WB6yaR89YN",
 					label: "Discord",
 					position: "right",
 				},

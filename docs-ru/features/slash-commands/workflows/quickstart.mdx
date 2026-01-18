@@ -1,0 +1,111 @@
+---
+title: "Быстрый старт по Workflows"
+sidebarTitle: "Быстрый старт"
+description: "Пошаговое руководство по созданию вашего первого Caret workflow"
+---
+
+В этом руководстве вы создадите workflow, который автоматизирует ревью Pull Request в GitHub. Он покажет, как объединить инструменты CLI, анализ файлов и взаимодействие с пользователем.
+
+### Необходимые условия
+
+* Установлен Caret
+* Установлен и аутентифицирован [GitHub CLI (`gh`)](https://cli.github.com/)
+* Git репозиторий с PR для тестирования
+
+## Создание PR Review Workflow
+
+Этот workflow получает информацию о PR, анализирует изменения и подготавливает черновики комментариев к ревью.
+
+<Steps>
+  <Step title="Создайте файл workflow">
+    Создайте специфичный для проекта каталог для workflow.
+
+    1. Создайте `.agents/context/workflows` в корневом каталоге проекта
+    2. Создайте `pr-review.md` внутри этой папки
+  </Step>
+
+  <Step title="Напишите содержимое workflow">
+    Добавьте контент ниже в `pr-review.md`.
+
+    ````markdown pr-review.md
+    # Pull Request Reviewer
+
+    Этот workflow помогает мне проверять pull request, анализируя изменения и составляя черновик ревью.
+
+    ## 1. Gather PR Information
+    First, I need to understand what this PR is about. I'll fetch the title, description, and list of changed files.
+
+    ```bash
+    gh pr view PR_NUMBER --json title,body,files
+    ```
+
+    ## 2. Examine Modified Files
+    Now I will examine the diff to understand the specific code changes.
+
+    ```bash
+    gh pr diff PR_NUMBER
+    ```
+
+    ## 3. Analyze Changes
+    I will analyze the code changes for:
+    *   **Bugs:** Logic errors or edge cases.
+    *   **Performance:** Inefficient loops or operations.
+    *   **Security:** Vulnerabilities or unsafe practices.
+
+    ## 4. Confirm Assessment
+    Based on my analysis, I will present my findings and ask how you want to proceed.
+
+    ```xml
+    <ask_followup_question>
+      <question>I've reviewed PR #PR_NUMBER. Here is my assessment:
+
+    [Insert Analysis Here]
+
+    Do you want me to approve this PR, request changes, or just leave a comment?</question>
+      <options>["Approve", "Request Changes", "Comment", "Do nothing"]</options>
+    </ask_followup_question>
+    ```
+
+    ## 5. Execute Review
+    Finally, I will execute the review command based on your decision.
+
+    ```bash
+    # If approving:
+    gh pr review PR_NUMBER --approve --body "Looks good to me! [Summary of analysis]"
+
+    # If requesting changes:
+    gh pr review PR_NUMBER --request-changes --body "Please address the following: [Issues list]"
+
+    # If commenting:
+    gh pr review PR_NUMBER --comment --body "[Comments]"
+    ```
+    ````
+
+    <Note>
+      При запуске этого workflow замените `PR_NUMBER` на фактический номер PR (например, `/pr-review.md 123`).
+    </Note>
+  </Step>
+
+  <Step title="Запустите workflow">
+    Теперь вы готовы его запустить.
+
+    1. Откройте панель чата Caret
+    2. Введите `/pr-review.md`, а затем номер PR (например, `/pr-review.md 42`)
+    3. Caret получит детали PR, проанализирует код и покажет результаты
+
+    <Tip>
+      Когда Caret выполняет команды, такие как `gh pr view`, он может приостановиться, чтобы показать вывод. Нажмите **Proceed While Running**, чтобы Caret продолжил.
+    </Tip>
+  </Step>
+</Steps>
+
+### Другие распространенные варианты использования
+
+Это только отправная точка. Вы можете создавать workflows для многих задач, таких как:
+
+* **Создание компонентов:** Создание шаблонов для новых файлов (React components, API endpoints)
+* **Запуск тестов:** Запуск набора тестов и обобщение результатов
+* **Автоматизация развертывания:** Использование инструментов, таких как `docker` и `kubectl`
+* **Управляемые рефакторинги:** Пошаговое выполнение сложных рефакторингов
+
+Ищите повторяющиеся задачи в вашем workflow и превращайте их в эффективные Caret workflows.

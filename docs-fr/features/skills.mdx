@@ -1,0 +1,238 @@
+```
+---
+title: "Système de compétences"
+sidebarTitle: "Compétences"
+description: "Étendez les capacités de Caret avec des modules de connaissances réutilisables."
+---
+
+<Note>
+Les compétences sont une fonctionnalité expérimentale. Activez-la dans Paramètres → Fonctionnalités → "Activer les compétences".
+</Note>
+
+Les compétences sont des ensembles d'instructions réutilisables pour des tâches spécifiques. Chaque compétence regroupe des conseils détaillés, des flux de travail et des ressources supplémentaires, qui ne sont chargés que lorsqu'ils sont pertinents pour votre demande.
+
+Contrairement aux règles (qui sont toujours actives), les compétences sont chargées **à la demande**. Vous pouvez installer des dizaines de compétences sans affecter le contexte ou les performances, car Caret ne voit que le nom et la description de la compétence tant qu'elle n'est pas réellement nécessaire.
+
+## Pourquoi les compétences ?
+
+Pensez à la façon dont vous intégreriez un nouveau membre à l'équipe : vous ne lui jetteriez pas tous les documents à la fois. Vous lui donneriez un bref aperçu, puis vous l'orienteriez vers des guides détaillés lorsqu'il travaille sur des tâches spécifiques.
+
+Les compétences fonctionnent de la même manière :
+- **Au démarrage** : Caret ne voit qu'une brève description de chaque compétence
+- **Lors du déclenchement** : Les instructions complètes de cette compétence sont chargées
+- **Au besoin** : Les fichiers supplémentaires fournis avec les compétences ne sont lus que lorsqu'ils sont référencés
+
+Ce chargement progressif signifie que vous pouvez regrouper des connaissances approfondies du domaine sans gaspiller de jetons de contexte sur des informations qui ne sont pas pertinentes pour la tâche actuelle.
+
+## Création d'une compétence
+
+Chaque compétence est un répertoire contenant un fichier `SKILL.md` :
+
+```
+my-skill/
+├── SKILL.md          # Requis : instructions principales
+├── docs/             # Facultatif : documentation supplémentaire
+│   └── advanced.md
+└── scripts/          # Facultatif : scripts utilitaires
+    └── helper.sh
+```
+
+Le fichier `SKILL.md` comporte deux parties : le YAML frontmatter et les instructions.
+
+```yaml
+---
+name: my-skill
+description: Brève description de ce que fait cette compétence et quand l'utiliser.
+---
+
+# My Skill
+
+Instructions détaillées que Caret doit suivre lorsque cette compétence est activée.
+
+## Steps
+
+1. First, do this
+2. Then do that
+3. For advanced usage, see [advanced.md](docs/advanced.md)
+```
+
+**Champs obligatoires :**
+- `name` : Doit correspondre exactement au nom du répertoire
+- `description` : Indique à Caret quand utiliser cette compétence (1024 caractères maximum)
+
+La description est essentielle, car c'est ainsi que Caret décide s'il faut activer une compétence. Soyez précis sur ce que fait la compétence et quand elle doit être utilisée.
+
+## Où vivent les compétences
+
+Les compétences peuvent être stockées à deux emplacements :
+
+Les **compétences globales** s'appliquent à tous vos projets :
+- **macOS/Linux :** `~/Documents/.agents/skills/`
+- **Windows :** `C:\Users\USERNAME\Documents\.agents\skills\`
+
+Les **compétences de projet** s'appliquent uniquement à l'espace de travail actuel :
+- `.agents/skills/` (recommandé)
+
+Lorsqu'une compétence globale et une compétence de projet ont le même nom, les **compétences globales sont prioritaires**. Cela vous permet de personnaliser les compétences pour votre flux de travail personnel tout en utilisant les paramètres par défaut du projet.
+
+<Note>
+**Standardisation Caret** : Caret utilise une architecture à double répertoire.
+- `.agents/` - Pour l'IA (optimisé pour les jetons)
+- `.users/` - Pour les humains (explications détaillées)
+
+Utilisez la commande `/init` pour initialiser la structure standard. Voir [Système de règles avancées](/french/caret-exclusive/knowledge-parity-system) et [Parité des connaissances IA-Développeur](/french/caret-exclusive/knowledge-parity-system) pour plus de détails.
+</Note>
+
+## Gestion des compétences
+
+Cliquez sur l'icône de balance située sous la saisie de chat pour ouvrir le panneau des règles et des flux de travail. Lorsque les compétences sont activées, vous verrez un onglet Compétences où vous pouvez :
+
+- Afficher toutes les compétences disponibles (globales et de l'espace de travail)
+- Activer ou désactiver des compétences individuelles
+- Créer de nouvelles compétences à partir d'un modèle
+- Supprimer les compétences dont vous n'avez plus besoin
+
+Les compétences sont activées par défaut lorsqu'elles sont découvertes. Désactivez-les si vous voulez qu'elles soient disponibles mais pas actives pour le projet actuel.
+
+## Comment Caret utilise les compétences
+
+Lorsque vous envoyez un message, Caret voit une liste des compétences disponibles avec leurs descriptions. Si votre demande correspond à la description d'une compétence, Caret l'active à l'aide de l'outil `use_skill`, qui charge les instructions complètes.
+
+Par exemple, si vous avez une compétence pour le déploiement sur AWS :
+
+```yaml
+---
+name: aws-deploy
+description: Deploy applications to AWS using CDK. Use when deploying, updating infrastructure, or managing AWS resources.
+---
+```
+
+Demander "deploy this to AWS" inciterait Caret à activer la compétence, à charger ses instructions détaillées et à les suivre pour mener à bien votre demande.
+
+## Exemple : Compétence en analyse de données
+
+Voici une compétence pratique pour les tâches d'analyse de données. Créez un répertoire appelé `data-analysis/` avec ce fichier `SKILL.md` :
+
+```yaml
+---
+name: data-analysis
+description: Analyze data files and generate insights. Use when working with CSV, Excel, or JSON data files that need exploration, cleaning, or visualization.
+---
+```
+
+Ensuite, ajoutez les instructions dans le corps du fichier :
+
+````markdown
+# Data Analysis
+
+When analyzing data files, follow this workflow:
+
+## 1. Understand the Data
+
+- Read a sample of the file to understand its structure
+- Identify column types and data quality issues
+- Note any missing values or anomalies
+
+## 2. Ask Clarifying Questions
+
+Before diving in, ask the user:
+- What specific insights are they looking for?
+- Are there any known data quality issues?
+- What format do they want for the output?
+
+## 3. Perform Analysis
+
+Use pandas for data manipulation:
+
+```python
+import pandas as pd
+
+# Load and explore
+df = pd.read_csv("data.csv")
+print(df.head())
+print(df.describe())
+print(df.info())
+```
+
+For visualization, prefer matplotlib or seaborn depending on complexity.
+
+## 4. Present Findings
+
+- Start with a summary of key insights
+- Support findings with specific numbers
+- Include visualizations where they add clarity
+- End with recommendations or next steps
+````
+
+## Regroupement de fichiers de prise en charge
+
+Les compétences peuvent inclure des fichiers supplémentaires auxquels Caret n'accède qu'en cas de besoin :
+
+```
+complex-skill/
+├── SKILL.md
+├── docs/
+│   ├── setup.md
+│   └── troubleshooting.md
+├── templates/
+│   └── config.yaml
+└── scripts/
+    └── validate.py
+```
+
+Référencez-les dans vos instructions :
+
+````markdown
+For initial setup, follow [setup.md](docs/setup.md).
+
+Use the config template at `templates/config.yaml` as a starting point.
+
+Run the validation script to check your configuration:
+```bash
+python scripts/validate.py
+```
+````
+
+Caret lit ces fichiers à l'aide de `read_file` lorsque les instructions les référencent. Les scripts peuvent être exécutés directement, avec uniquement la sortie entrant dans le contexte (pas le code de script lui-même).
+
+## Idées de compétences
+
+Les compétences brillent lorsque vous avez des tâches qui :
+- Nécessitent des flux de travail détaillés en plusieurs étapes
+- Nécessitent des connaissances spécifiques au domaine ou des bonnes pratiques
+- Nécessiteraient autrement de répéter les mêmes instructions dans les conversations
+
+Quelques possibilités :
+
+- **Gestion des versions** : Augmentation de version, génération de changelog, marquage git et publication
+- **Revue de code** : La liste de contrôle de revue et les normes de qualité spécifiques à votre équipe
+- **Migrations de bases de données** : Évolution sécurisée des schémas avec des procédures de restauration
+- **Intégration d'API** : Connexion à des services tiers spécifiques avec une gestion des erreurs appropriée
+- **Documentation** : Votre structure, votre guide de style et vos outils préférés
+- **Flux de travail de débogage** : Approches systématiques pour diagnostiquer des types de problèmes spécifiques
+- **Infrastructure** : Modèles Terraform/CDK pour votre configuration cloud
+
+Les meilleures compétences encodent les connaissances institutionnelles qui, autrement, ne vivraient que dans la tête des développeurs expérimentés.
+
+## Compétences vs Règles vs Flux de travail
+
+| Fonctionnalité | Objectif | Quand est-ce actif |
+|---------|---------|-------------|
+| **Règles** | Définir le comportement de Caret | Toujours (ou contextuellement) |
+| **Flux de travail** | Automatisation étape par étape des tâches | Invoqué avec `/workflow.md` |
+| **Compétences** | Expertise du domaine chargée à la demande | Déclenché par des demandes correspondantes |
+
+Les **règles** définissent les contraintes et les préférences (comme "toujours utiliser TypeScript" ou "suivre ce guide de style").
+
+Les **flux de travail** sont des séquences explicites que vous invoquez pour des tâches spécifiques (comme `/release.md` pour un processus de publication).
+
+Les **compétences** sont une expertise que Caret active automatiquement lorsqu'elle est pertinente (comme les connaissances en analyse de données lorsque vous travaillez avec des fichiers CSV).
+
+Utilisez des règles pour les contraintes permanentes, des flux de travail pour l'automatisation explicite et des compétences pour les connaissances du domaine qui doivent être disponibles mais pas toujours actives.
+
+## Fonctionnalités connexes
+
+- [Système de règles avancées](/french/caret-exclusive/knowledge-parity-system) pour la gestion des règles de projet
+- [Hooks](/french/features/hooks) pour injecter une logique personnalisée à des moments clés
+- [Flux de travail](/french/features/slash-commands/workflows) pour l'automatisation explicite des tâches
+```

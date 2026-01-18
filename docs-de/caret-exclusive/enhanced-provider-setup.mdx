@@ -1,0 +1,163 @@
+---
+title: Erweiterte Provider-Konfiguration
+description: Konfigurieren Sie AI-Provider ganz einfach mit der automatischen Modellsuche von Caret
+---
+
+# Erweiterte Provider-Konfiguration
+
+## 🚀 Wettbewerbsvorteil der Caret-Provider
+
+**Caret unterstützt mehr Provider als Cline und bietet spezialisiertere Provider-Funktionen.**
+
+### Warum sind die Provider von Caret leistungsfähiger?
+
+1. **Automatische Modellsuche**: Zeigt durch die LiteLLM API-Integration automatisch Modelle von über 100 Providern an
+2. **Echtzeit-Updates**: Neue Modelle sind sofort verfügbar, ohne dass Caret-Updates erforderlich sind
+3. **Partnerschaften mit koreanischen Unternehmen**: Zusätzliche Unterstützung für koreanische AI-Provider wie Works AI
+4. **Einfache Konfiguration**: Keine manuelle Eingabe erforderlich – einfach aus dem Dropdown auswählen und fertig
+
+## 📋 Übersicht
+
+Caret hat den Prozess der Provider-Konfiguration durch die **LiteLLM API-Integration** vollständig automatisiert. Sie müssen nicht mehr manuell nach unterstützten Modellen suchen oder diese von Hand eingeben.
+
+## 🎯 Kernfunktionen
+
+### Automatische Modellsuche
+
+Wenn Sie einen Provider auswählen, werden **alle von diesem Provider unterstützten AI-Modelle automatisch angezeigt**.
+
+**So funktioniert es**:
+1. Wählen Sie einen AI-Provider in den Caret-Einstellungen aus (z. B. OpenAI, Anthropic)
+2. Die LiteLLM API ruft automatisch die Liste der unterstützten Modelle ab
+3. Wählen Sie Ihr gewünschtes Modell aus dem Dropdown-Menü aus
+
+### Echtzeit-Updates
+
+Wenn neue AI-Modelle veröffentlicht werden, werden sie **automatisch zur Modellliste hinzugefügt, ohne dass Caret aktualisiert werden muss**.
+
+- Erhalten Sie die neuesten Modellinformationen in Echtzeit über die LiteLLM API
+- Haben Sie immer Zugriff auf das aktuellste Modell-Lineup
+
+### Umfassender Provider-Support
+
+Unterstützt **über 100 AI-Provider**:
+
+- **Wichtige globale Provider**:
+  - OpenAI (GPT-4, GPT-3.5-Turbo, etc.)
+  - Anthropic (Claude-Serie)
+  - Google (Gemini)
+  - Cohere
+  - AI21 Labs
+  - Hugging Face
+
+- **Zusätzliche unterstützte Provider**:
+  - Mistral AI
+  - Fireworks AI
+  - Groq
+  - Cerebras
+  - Deepseek
+  - Und viele weitere
+
+## 🔄 Unterschiede zu Cline
+
+| Punkt | Cline | Caret |
+|------|-------|-------|
+| Methode der Modelleingabe | Manuelle Eingabe | Automatische Suche |
+| Modelllisten-Check | Dokumentation heranziehen | Automatische Anzeige im Dropdown |
+| Support für neue Modelle | Update erforderlich | Automatisch reflektiert |
+| Unterstützte Provider | Begrenzt | 100+ |
+
+## 💡 Nutzungsszenarien
+
+### Szenario 1: Provider erkunden
+
+Wenn Sie mehrere AI-Provider vergleichen möchten:
+
+1. Wählen Sie nacheinander die Provider aus, um die automatisch angezeigten Modelle zu sehen
+2. Vergleichen Sie Modellnamen, Performance und Preise
+3. Wählen Sie das am besten geeignete Modell für Ihre Arbeit aus
+
+### Szenario 2: Neueste Modelle nutzen
+
+Wenn ein neues AI-Modell veröffentlicht wird:
+
+1. Starten Sie Caret neu
+2. Öffnen Sie die Provider-Einstellungen
+3. Neue Modelle erscheinen automatisch in der Liste
+
+### Szenario 3: Koreanische AI-Modelle nutzen
+
+Wenn Sie AI-Modelle von koreanischen Unternehmen nutzen möchten:
+
+1. Wählen Sie einen koreanischen Provider aus (z. B. Works AI – geplant)
+2. Unterstützte Modelle werden automatisch angezeigt
+3. Wählen Sie Modelle, die auf die koreanische Sprache spezialisiert sind
+
+## 🌏 Partnerschaften mit koreanischen AI-Providern
+
+Caret fügt kontinuierlich Provider in Partnerschaft mit koreanischen AI-Unternehmen hinzu.
+
+### Geplante Erweiterungen
+
+- **Works AI (Bizspark)**: Basierend auf der OpenAI Compatible API
+- **Viele weitere**: Laufende Partnerschaften mit koreanischen AI-Unternehmen
+
+### Vorteile der Partnerschaft
+
+Auch Provider koreanischer Unternehmen profitieren von der automatischen Modellsuche:
+- Unterstützte Modelle werden automatisch angezeigt
+- Neue Modelle sind sofort nach der Veröffentlichung verfügbar
+- Vereinfachter Konfigurationsprozess für Benutzer
+
+## 🔧 Technische Implementierung
+
+### LiteLLM API-Integration
+
+Caret nutzt die [LiteLLM](https://docs.litellm.ai/) API:
+
+```
+GET https://api.litellm.ai/v1/models
+→ Returns list of all supported AI models
+```
+
+### Backend-Architektur
+
+- Modellsuche über gRPC-Services
+- Effiziente API-Aufrufe und Caching
+- Fehlerbehandlung und Fallback-Mechanismen
+
+## 📚 Zugehörige Dokumentation
+
+- [LiteLLM & Caret Konfigurationshandbuch](/german/provider-config/litellm-and-caret-using-codestral)
+- [Übersicht über exklusive Caret-Funktionen](/german/caret-exclusive/overview)
+- [Provider-Konfigurationshandbuch](/german/provider-config/anthropic)
+
+## 💼 Möglichkeiten für Provider-Partnerschaften
+
+### Möchten Sie einen neuen Provider hinzufügen?
+
+Sie können Ihren AI-Provider durch eine **Geschäftspartnerschaft mit dem Caret-Team** offiziell in Caret integrieren.
+
+### Vorteile der Partnerschaft
+
+1. **Automatische Modellsuche**: Alle Ihre Modelle werden durch die LiteLLM API-Integration automatisch angezeigt
+2. **Marketing-Effekt**: Präsentieren Sie Ihren AI-Service den Caret-Benutzern
+3. **Technischer Support**: Das Caret-Team bietet engagierten Support für den Integrationsprozess
+4. **Kontinuierliche Updates**: Neue Modelle werden bei Veröffentlichung automatisch in Caret übernommen
+
+### Partnerschaftsprozess
+
+1. **Anfrage**: Senden Sie einen Partnerschaftsvorschlag an support@caretive.ai
+2. **Prüfung**: Das Caret-Team prüft die technische Machbarkeit
+3. **Integration**: API-Integration und Tests
+4. **Launch**: Registrierung als offizieller Caret-Provider
+
+### Kontakt
+
+Unternehmen, die an einer Partnerschaft zur Integration von AI-Providern interessiert sind, wenden sich bitte an:
+
+📧 **support@caretive.ai**
+
+---
+
+**Die erweiterte Provider-Konfiguration gibt es exklusiv bei Caret.** Beginnen Sie schnell mit dem Coding mit Ihrem gewünschten AI-Modell, ohne komplexe Konfigurationsprozesse.

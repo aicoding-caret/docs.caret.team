@@ -1,0 +1,140 @@
+---
+title: "Tasks verstehen"
+description: "Erfahre, was Aufgaben in Caret sind, wie sie funktionieren und wie du effektive Prompts für bessere Ergebnisse erstellst."
+---
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/제한(예: 작업 저장 위치, 체크포인트 정책, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+입력 히스토리/계정: `caret-docs/features/f10-input-history-system.md`에 따라 캐럿 입력 히스토리/복원 기능이 동작할 수 있으며, 계정/조직 정보가 함께 관리될 수 있습니다.
+</Note>
+
+## Was sind Aufgaben?
+
+Die meisten Benutzer interagieren mit Caret über **Aufgaben** - die grundlegende Arbeitseinheit, die jede Coding-Session antreibt. Egal, ob du eine neue Funktion entwickelst, einen Bug behebst, Code refaktorierst oder eine Codebasis erkundest, jede Interaktion mit Caret findet im Kontext einer Aufgabe statt. Eine Aufgabe repräsentiert eine vollständige Konversation und Arbeitssitzung zwischen dir und dem KI-Agenten, die durch **Prompts** erstellt wird - die Anweisungen, die du gibst, um Caret mitzuteilen, was du erreichen möchtest. Aufgaben dienen als in sich geschlossene Arbeitssitzungen, die deine gesamte Konversation mit Caret erfassen, einschließlich aller Codeänderungen, Befehlsausführungen und Entscheidungen, die im Laufe des Prozesses getroffen wurden.
+
+Dieser Ansatz stellt sicher, dass deine Arbeit organisiert, nachvollziehbar und wiederaufnehmbar ist. Jede Aufgabe behält ihren eigenen isolierten Kontext bei, sodass du gleichzeitig an mehreren Projekten arbeiten kannst, ohne dass es zu Verwirrung kommt. Das Schöne am Aufgaben-System von Caret liegt in seiner Flexibilität und Persistenz, das eine kollaborative Coding-Session ermöglicht, in der du die Richtung durch Prompts vorgibst und Caret deine Vision präzise umsetzt.
+
+### Hauptmerkmale
+
+Jede Aufgabe in Caret:
+
+- **Hat eine eindeutige Kennung**: Jede Aufgabe erhält eine eigene ID und ein dediziertes Speicherverzeichnis
+- **Enthält die vollständige Konversation**: Alle Nachrichten, Tool-Nutzungen und Ergebnisse werden gespeichert
+- **Verfolgt die verwendeten Ressourcen**: Token-Verbrauch, API-Kosten und Ausführungszeit werden überwacht
+- **Kann unterbrochen und fortgesetzt werden**: Aufgaben behalten ihren Zustand über VS Code-Sitzungen hinweg bei
+- **Erstellt Checkpoints**: Dateiänderungen werden durch Git-basierte Snapshots verfolgt
+- **Ermöglicht die Dokumentation**: Aufgaben können als Markdown für die Teamdokumentation exportiert werden
+- **Bietet Kostenmanagement**: Die Ressourcenverfolgung hilft bei der Überwachung der API-Nutzung und -Kosten
+
+Diese Funktionen machen Caret nicht nur zu einem Coding-Tool, sondern zu einem umfassenden Entwicklungs-Agenten, der den gesamten Lebenszyklus deiner Arbeit versteht.
+
+## Aufgaben mit Prompts erstellen
+
+Aufgaben beginnen mit Prompts - deinen Anweisungen an Caret. Die Qualität deiner Ergebnisse hängt stark davon ab, wie du beschreibst, was du möchtest.
+
+### Prompt-Komponenten
+
+Ein gut strukturierter Prompt enthält typischerweise:
+
+- **Ziel**: Was du erreichen möchtest
+- **Kontext**: Hintergrundinformationen und Einschränkungen
+- **Anforderungen**: Spezifische Funktionen oder Funktionalitäten, die benötigt werden
+- **Präferenzen**: Technologiewahl, Coding-Stil usw.
+- **Beispiele**: Referenzen zur Orientierung bei der Implementierung
+
+<Note>
+**Möchtest du die Kunst des Prompting meistern?**
+
+Tauche ein in **Modul 1: "Prompting"** in [Caret Learn](https://clinelearn.com), um ein Experte in der Erstellung effektiver Prompts zu werden. Das Modul behandelt:
+- Strukturierte Prompting-Techniken
+- Strategien zur Kontextoptimierung
+- Häufige Prompting-Muster
+- Fortgeschrittenes Prompt Engineering
+- Beispiele und Übungen aus der Praxis
+
+Gute Prompting-Fähigkeiten führen zu einer schnelleren Aufgabenerledigung, genaueren Ergebnissen, weniger benötigten Iterationen und einer besseren Codequalität.
+</Note>
+
+## Aufgabenausführungsmodi
+
+Caret arbeitet in zwei verschiedenen Modi, die helfen, deinen Workflow zu strukturieren:
+
+- **Plan Mode**: Zum Sammeln von Informationen, Diskutieren von Ansätzen und Erstellen von Strategien ohne Änderungen vorzunehmen
+- **Act Mode**: Für die tatsächliche Implementierung, bei der Caret Dateiänderungen ausführt, Befehle ausführt und Tools verwendet
+
+→ **[Erfahre mehr über Plan- und Act-Modi](/german/features/plan-and-act)**, um zu verstehen, wann und wie du die einzelnen Modi effektiv einsetzt.
+
+## Aufgabenressourcen
+
+Jede Aufgabe verbraucht Ressourcen, die verfolgt werden:
+
+- **Tokens**: Die Menge des verarbeiteten Textes (Eingabe und Ausgabe)
+- **API Costs**: Monetäre Kosten basierend auf dem Modell und der Token-Nutzung
+- **Time**: Dauer vom Start bis zum Abschluss
+- **Checkpoints**: Anzahl der erstellten Snapshots des Dateizustands
+
+## Häufige Aufgabenmuster
+
+### Code Generation
+```
+Create a TypeScript function that validates email addresses using regex. 
+Include unit tests using Jest and handle edge cases like international domains.
+```
+
+### Bug Fixing
+```
+@terminal The app crashes when clicking the submit button. 
+Fix the error and ensure proper error handling is in place.
+```
+
+### Refactoring
+```
+Refactor the authentication logic in @auth.ts to use async/await 
+instead of callbacks. Maintain all existing functionality.
+```
+
+### Feature Implementation
+```
+Add a dark mode toggle to the settings page. Use the existing theme 
+context and persist the preference to localStorage.
+```
+
+## Aufgabenfortsetzung
+
+Eine der leistungsstarken Funktionen von Caret ist die Möglichkeit, unterbrochene Aufgaben fortzusetzen:
+
+### Wenn Aufgaben unterbrochen werden
+
+- Du stoppst eine lang laufende Aufgabe
+- Es tritt ein Fehler auf, der ein Eingreifen erfordert
+- Du musst zu einer anderen Aufgabe wechseln
+
+### Fortsetzen einer Aufgabe
+
+1. Öffne die Aufgabe aus dem Verlauf
+2. Caret lädt die vollständige Konversation
+3. Dateizustände werden mit Checkpoints abgeglichen
+4. Die Aufgabe wird unter Berücksichtigung der Unterbrechung fortgesetzt
+5. Du kannst bei Bedarf zusätzlichen Kontext bereitstellen
+
+## Aufgabenkontext verstehen
+
+Aufgaben behalten den Kontext während ihres gesamten Lebenszyklus bei:
+
+- **Conversation History**: Alle vorherigen Nachrichten und Antworten
+- **File Changes**: Verfolgte Änderungen und ihre Reihenfolge
+- **Tool Results**: Ausgabe von Befehlen und Operationen
+- **Checkpoint States**: Snapshots von Dateizuständen an wichtigen Punkten
+
+Dieser Kontext ermöglicht es Caret:
+- Zu verstehen, was getan wurde
+- Die Konsistenz im Ansatz zu wahren
+- Die Arbeit intelligent fortzusetzen
+- Aus früheren Versuchen zu lernen
+
+→ **[Erfahre mehr über Context Management](/german/getting-started/understanding-context-management)**, um zu verstehen, wie Caret den Kontext über Aufgaben hinweg verwaltet und optimiert.
+
+Das Verständnis der Funktionsweise von Aufgaben ist grundlegend für die effektive Nutzung von Caret. Mit gut formulierten Prompts und einem Verständnis des Aufgabenlebenszyklus kannst du das volle Potenzial von Caret nutzen, um deinen Entwicklungs-Workflow zu beschleunigen.

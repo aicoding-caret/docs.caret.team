@@ -1,0 +1,67 @@
+```
+---
+title: "URL-Erwähnungen"
+sidebarTitle: "URL-Erwähnungen"
+---
+
+Mit URL-Erwähnungen kannst du Webinhalte direkt in deine Konversation mit Caret einbringen. Gib einfach `@` gefolgt von einer beliebigen URL ein, und Caret kann den Inhalt dieser Webseite sehen, ohne dass du etwas kopieren und einfügen musst.
+
+Wenn du in einem Chat `@` gefolgt von einer URL (wie `@https://example.com`) eingibst, ruft Caret den Inhalt dieser Webseite ab und fügt ihn in den Kontext ein. Dies funktioniert für Dokumentationsseiten, GitHub Issues, Stack Overflow-Fragen oder andere Webinhalte, auf die du verweisen möchtest.
+
+Ich verwende URL-Erwähnungen ständig, wenn ich mit externen APIs oder Bibliotheken arbeite. Anstatt zu versuchen, die Funktionsweise einer API zu erklären oder Dokumentationsausschnitte zu kopieren, verweise ich einfach direkt auf die Dokumentation:
+
+```
+Ich versuche, die Authentifizierung mit dieser API zu implementieren: @https://api.example.com/docs
+
+Kannst du mir helfen, den Code zu schreiben, um ein Access Token basierend auf dieser Dokumentation zu erhalten?
+```
+
+Dadurch erhält Caret die vollständige Dokumentationsseite, sodass alle Authentifizierungsanforderungen, Endpunkte, Parameter und Beispiele angezeigt werden können. Caret kann dann genauere und umfassendere Hilfe auf der Grundlage der offiziellen Dokumentation leisten.
+
+URL-Erwähnungen sind besonders nützlich, um auf GitHub Issues oder Diskussionen zu verweisen:
+
+```
+Ich versuche, dieses Problem in unserem Projekt zu beheben: @https://github.com/our-org/our-repo/issues/123
+
+Hier ist meine aktuelle Implementierung: @/src/components/Feature.jsx
+
+Welche Änderungen muss ich vornehmen, um das Problem zu beheben?
+```
+
+Dadurch wird Caret das vollständige GitHub Issue angezeigt, einschließlich der Beschreibung, Kommentare und aller Code-Snippets oder Screenshots. Caret kann dir dann helfen, eine Lösung zu implementieren, die das gemeldete Problem direkt behebt.
+
+Wenn du das nächste Mal mit externer Dokumentation oder Online-Ressourcen arbeitest, versuche URL-Erwähnungen zu verwenden, anstatt Inhalte zu kopieren und einzufügen. Du erhältst genauere Hilfe, da Caret den vollständigen Kontext der Webseite sehen kann, einschließlich Formatierung, Code-Beispiele und umgebende Informationen.
+
+## Wie es unter der Haube funktioniert
+
+Wenn du eine URL-Erwähnung in deiner Nachricht verwendest, passiert Folgendes im Hintergrund:
+
+1. Wenn du deine Nachricht sendest, erkennt Caret das Muster `@http://...` oder `@https://...` in deinem Text
+2. Die Extension startet einen Headless Browser (Puppeteer) im Hintergrund
+3. Er navigiert zur URL und wartet, bis die Seite vollständig geladen ist
+4. Der Browser erfasst den Seiteninhalt, einschließlich Text, Formatierung und Code-Beispiele
+5. Der Inhalt wird in ein Markdown-Format konvertiert, das die Struktur beibehält
+6. Dieser Inhalt wird deiner Nachricht in einem strukturierten Format hinzugefügt:
+
+    ```
+    <url_content url="https://example.com/docs">
+    # Example API Documentation
+
+    ## Authentication
+
+    To authenticate with the API, you need to...
+
+    const token = await api.authenticate({
+      username: 'user',
+      password: 'pass'
+    });
+
+    [Complete webpage content in Markdown format]
+    </url_content>
+    ```
+
+7. Der Browser wird dann geschlossen, um Ressourcen freizugeben
+8. Diese erweiterte Nachricht mit dem eingebetteten Webseiteninhalt wird an die KI gesendet
+
+Dieser Prozess geschieht automatisch, wenn du eine URL-Erwähnung verwendest, wodurch die KI Zugriff auf den vollständigen Inhalt der Webseite erhält, ohne dass du etwas kopieren und einfügen musst.
+```

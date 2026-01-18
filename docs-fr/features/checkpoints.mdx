@@ -1,0 +1,79 @@
+---
+title: "Points de contrôle"
+sidebarTitle: "Points de contrôle"
+---
+
+Les points de contrôle sauvegardent automatiquement des instantanés de votre espace de travail après chaque étape d'une tâche. Cette fonctionnalité vous permet de suivre les modifications, de revenir en arrière si nécessaire et d'expérimenter votre code en toute confiance.
+
+## Comment fonctionnent les points de contrôle
+
+Caret crée un point de contrôle après chaque utilisation d'un outil (modifications de fichiers, commandes, etc.). Ces points de contrôle :
+
+-   Fonctionnent en parallèle de votre flux de travail Git sans interférence
+-   Maintiennent le contexte entre les restaurations
+-   Utilisent un référentiel Git shadow pour suivre les modifications
+
+Par exemple, si vous travaillez sur une fonctionnalité et que Caret apporte plusieurs modifications de fichiers, chaque modification crée un point de contrôle. Cela signifie que vous pouvez examiner chaque modification et, si nécessaire, revenir à n'importe quel point sans affecter votre référentiel Git principal.
+
+## Affichage des modifications et restauration
+
+Après chaque utilisation d'un outil, vous pouvez :
+
+1. Cliquer sur le bouton "Compare" pour afficher les fichiers modifiés
+2. Cliquer sur le bouton "Restore" pour ouvrir les options de restauration
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(13).png"
+		alt="Checkpoint comparison and restore options"
+	/>
+</Frame>
+
+## Options de restauration
+
+Pour restaurer un point antérieur :
+
+1. Cliquez sur le bouton "Restore" à côté de n'importe quelle étape
+2. Choisissez parmi trois options :
+    - **Restore Task and Workspace** : Réinitialise à la fois la codebase et la tâche à ce point
+    - **Restore Task Only** : Conserve les modifications de la codebase mais restaure le contexte de la tâche
+    - **Restore Workspace Only** : Réinitialise la codebase tout en préservant le contexte de la tâche
+
+Exemple : Si Caret effectue des modifications que vous n'aimez pas lors du styling d'un composant, vous pouvez utiliser "Restore Workspace Only" pour annuler les modifications du code tout en conservant le contexte de la conversation, ce qui vous permet d'essayer une approche différente.
+
+<Frame caption="Reverting both codebase and task to before any changes were made to start fresh">
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/checkpointsDemo.gif" alt="Checkpoint restore demo" />
+</Frame>
+
+## Cas d'utilisation
+
+Les points de contrôle vous permettent d'être plus expérimental avec Caret. Alors que le codage humain est souvent méthodique et itératif, l'IA peut effectuer des modifications importantes rapidement. Les points de contrôle vous aident à suivre ces modifications et à revenir en arrière si nécessaire.
+
+### Utilisation du mode Auto-Approve
+
+-   Fournit un filet de sécurité pour les itérations rapides
+-   Facilite l'annulation des résultats inattendus
+
+### Test de différentes approches
+
+-   Essayez plusieurs solutions en toute confiance
+-   Comparez différentes implémentations
+-   Revenez rapidement aux états de fonctionnement
+-   Idéal pour explorer différents design patterns ou approches architecturales
+
+## Bonnes pratiques
+
+1. Utilisez les points de contrôle comme filets de sécurité lors de l'expérimentation
+2. Tirez parti du mode auto-approve plus en toute confiance, sachant que vous pouvez toujours revenir en arrière
+3. Restaurez de manière sélective en fonction des besoins :
+    - Utilisez "Restore Task and Workspace" pour un nouveau départ
+    - Utilisez "Restore Task Only" pour essayer différentes prompts, mais conservez les modifications de fichiers
+    - Utilisez "Restore Workspace Only" pour tenter différentes implémentations tout en préservant le contexte de la conversation
+
+## Relation avec la modification des messages
+
+La [fonctionnalité de modification des messages](/french/features/editing-messages) utilise les points de contrôle sous le capot lorsque vous sélectionnez l'option "Restore All". Cela vous permet non seulement de modifier et de soumettre à nouveau votre message, mais également de restaurer votre espace de travail à l'état dans lequel il se trouvait à ce moment-là de la conversation.
+
+## Suppression des points de contrôle
+
+Vous pouvez supprimer tous les points de contrôle en utilisant le bouton **"Delete All History"** dans le menu de l'historique des tâches. Notez que cela supprimera également toutes les tâches. Les points de contrôle sont stockés dans globalStorage de VS Code.

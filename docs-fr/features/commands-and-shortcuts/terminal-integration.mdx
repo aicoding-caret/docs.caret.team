@@ -1,0 +1,99 @@
+```
+---
+title: "Intégration du terminal"
+sidebarTitle: "Intégration du terminal"
+description: "Intégrez la sortie de votre terminal directement dans vos conversations avec Caret."
+---
+
+L'intégration du terminal de Caret vous permet d'intégrer la sortie de votre terminal directement dans vos conversations avec Caret. Au lieu de copier-coller des messages d'erreur ou des résultats de commandes, vous pouvez les envoyer à Caret d'un simple clic droit dans le terminal.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/terminal-integration.png"
+		alt="Terminal Integration"
+	/>
+</Frame>
+
+## Intégration par clic droit dans le terminal
+
+Lorsque vous travaillez dans le terminal VS Code et que vous voyez une sortie dont vous voulez discuter avec Caret :
+
+1. Faites un clic droit dans le terminal
+2. Sélectionnez « Ajouter à Caret » dans le menu contextuel
+3. La sortie du terminal est immédiatement envoyée au panneau de discussion Caret
+
+C'est parfait pour :
+
+-   Déboguer les erreurs de build
+-   Comprendre les échecs de tests
+-   Analyser la sortie des commandes
+-   Obtenir de l'aide sur les messages d'erreur
+
+L'intégration du terminal par clic droit est particulièrement utile lorsque vous travaillez déjà dans le terminal et que vous rencontrez un problème.
+
+Au lieu de changer de contexte pour aller dans le panneau de discussion Caret et de taper une description du problème, vous pouvez envoyer la sortie du terminal directement à Caret en quelques clics.
+
+Vous pouvez également utiliser la mention [`@terminal`](/french/features/at-mentions/terminal-mentions) pour envoyer la sortie complète du terminal à Caret.
+
+<Tip>
+	Pour plus d'informations sur l'utilisation des mentions `@terminal` dans vos messages de discussion, consultez la documentation [Mentions du terminal](/french/features/at-mentions/terminal-mentions).
+</Tip>
+
+## Comment fonctionne l'intégration du terminal
+
+Lorsque vous utilisez l'intégration du terminal par clic droit, Caret :
+
+1. Capture la sortie du terminal en conservant toute la mise en forme
+2. Inclut le contexte complet, y compris l'historique des commandes et les résultats
+3. La formate de manière appropriée pour que l'IA la comprenne
+4. Permet à l'IA de voir exactement ce que vous voyez
+
+Cela donne à Caret le contexte complet dont il a besoin pour fournir une aide précise sur les problèmes liés au terminal.
+
+## Dans les coulisses
+
+L'intégration du terminal utilise une technique astucieuse pour capturer la sortie du terminal :
+
+1. Lorsque vous déclenchez l'intégration, Caret :
+
+    - Enregistre temporairement le contenu actuel de votre presse-papiers
+    - Sélectionne tout le contenu du terminal (ou utilise votre sélection existante)
+    - Le copie dans le presse-papiers
+    - Lit le presse-papiers pour obtenir le contenu du terminal
+    - Restaure le contenu original de votre presse-papiers
+
+2. Le contenu du terminal est ensuite :
+    - Formaté avec une coloration syntaxique appropriée
+    - Ajouté à votre message ou envoyé comme nouveau message
+    - Enrichi d'un contexte supplémentaire si nécessaire
+
+Cette approche garantit que toute la sortie du terminal, y compris les couleurs et la mise en forme, est capturée avec précision sans affecter votre presse-papiers.
+
+## Conseils pour une utilisation efficace
+
+-   **Utilisez l'intégration du terminal pour les messages d'erreur** : lorsque vous rencontrez une erreur dans le terminal, l'envoyer à Caret permet souvent de la résoudre plus rapidement que d'essayer de la décrire.
+
+-   **Sélectionnez une sortie spécifique si nécessaire** : par défaut, l'intégration capture tout le contenu du terminal, mais vous pouvez également sélectionner des lignes spécifiques avant de faire un clic droit pour vous concentrer uniquement sur la sortie pertinente.
+
+-   **Combinez les sorties du terminal avec les mentions de fichiers** : après avoir envoyé la sortie du terminal à Caret, vous pouvez améliorer votre question en mentionnant les fichiers pertinents à l'aide de la fonctionnalité des @ mentions.
+
+-   **Contextualisez les sorties de build et de test avec le terminal** : l'intégration du terminal est particulièrement utile pour comprendre les erreurs de build complexes ou les échecs de tests qui s'étendent sur plusieurs lignes.
+
+La prochaine fois que vous serez confronté à un message d'erreur cryptique dans votre terminal, essayez d'utiliser l'intégration du terminal de Caret au lieu de copier-coller. Vous obtiendrez une aide plus précise, car Caret peut voir le contexte complet du terminal avec une mise en forme appropriée.
+
+## Dépannage des problèmes de terminal
+
+Si vous rencontrez des problèmes avec l'intégration du terminal, tels que « Intégration du shell indisponible » ou si les commandes n'affichent pas de sortie, veuillez consulter notre [Guide complet de dépannage de l'intégration du terminal](/french/troubleshooting/terminal-integration-guide).
+
+Le guide de dépannage couvre :
+
+-   Les problèmes courants d'intégration du terminal et les solutions rapides
+-   Les solutions spécifiques à la plateforme pour Windows, macOS et Linux
+-   Les configurations spécifiques au shell pour zsh, bash, PowerShell, et plus encore
+-   Les techniques de débogage avancées
+-   L'optimisation des paramètres du terminal
+
+<Tip>
+	**Solution rapide** : La plupart des problèmes de terminal peuvent être résolus en passant à bash dans les paramètres de Caret et en augmentant le délai d'intégration du shell à 10 secondes.
+</Tip>
+```

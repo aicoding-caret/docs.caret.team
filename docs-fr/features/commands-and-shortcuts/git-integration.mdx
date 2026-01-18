@@ -1,0 +1,74 @@
+```
+---
+title: "Générer un message de commit"
+sidebarTitle: "Générer un message de commit"
+description: "L'intégration Git de Caret apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur."
+---
+
+L'intégration Git de Caret apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur.
+
+## Générer un message de commit
+
+L'une des intégrations Git les plus utiles est la possibilité de générer automatiquement des messages de commit significatifs :
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/generate-commit-message-with-caret.png"
+		alt="Generate Commit Message with Caret"
+	/>
+</Frame>
+
+1. Effectuez vos modifications et préparez-les dans Git
+2. Cliquez sur l'icône de robot dans la vue Source Control ou exécutez la commande "Generate Commit Message with Caret"
+3. Caret analyse vos modifications et génère un message de commit descriptif
+4. Le message est automatiquement inséré dans la zone de saisie du message de commit
+
+Les messages de commit générés :
+
+-   Commencent par un résumé concis (50 à 72 caractères)
+-   Utilisent le mode impératif (par exemple, "Add feature" et non "Added feature")
+-   Décrivent ce qui a été modifié et pourquoi
+-   Suivent les meilleures pratiques Git
+
+Cette fonctionnalité permet de gagner du temps et garantit que votre historique des commits est cohérent et informatif.
+
+<Tip>
+	Pour plus d'informations sur l'utilisation des mentions `@git-changes` et `@[commit-hash]` dans vos messages de chat, consultez la documentation [Git
+	Mentions](/french/features/at-mentions/git-mentions).
+</Tip>
+
+## Comment ça marche
+
+Lorsque vous utilisez la fonction de génération de messages de commit de Caret, voici ce qui se passe en arrière-plan :
+
+1. Caret récupère le Git diff actuel à l'aide de `getWorkingState()`
+2. Il formate ce diff en une invite spécialisée pour l'IA
+3. L'IA analyse les modifications et génère un message de commit approprié
+4. Le message est extrait et inséré dans la zone de saisie du message de commit Git
+
+Ce processus utilise votre configuration actuelle de Caret API, de sorte que la qualité des messages générés corresponde au modèle d'IA que vous avez choisi.
+
+## Conseils pour une utilisation efficace
+
+-   **Générez des messages de commit pour les modifications complexes** : l'IA excelle dans la synthèse de plusieurs modifications connexes en un message cohérent.
+
+-   **Vérifiez et modifiez les messages générés** : bien que l'IA génère des messages de haute qualité, il est toujours bon de les vérifier et de les ajuster si nécessaire.
+
+-   **Préparez les modifications connexes ensemble** : pour de meilleurs résultats, préparez les modifications connexes ensemble afin que l'IA puisse générer un message cohérent.
+
+-   **Utilisez-le pour un historique des commits cohérent** : l'utilisation de la fonction de génération de messages de commit permet de maintenir un style cohérent dans l'ensemble de votre historique des commits.
+
+## Comment ça marche en interne
+
+La génération de messages de commit exploite l'extension Git API de VSCode pour accéder aux informations du dépôt :
+
+1. Lorsque vous déclenchez la commande :
+    - Caret obtient le diff actuel
+    - Il l'envoie à l'IA avec des instructions spécifiques pour le formatage du message de commit
+    - Il analyse la réponse de l'IA
+    - Il accède à l'extension Git API pour définir le message de commit
+
+Cette intégration avec Git facilite la génération de messages de commit de haute qualité sans perturber votre flux de travail.
+
+La prochaine fois que vous aurez du mal à écrire un bon message de commit, essayez d'utiliser la génération de messages de commit de Caret. Vous gagnerez du temps et améliorerez votre flux de travail de contrôle de version grâce à l'assistance de l'IA là où vous en avez besoin.
+```

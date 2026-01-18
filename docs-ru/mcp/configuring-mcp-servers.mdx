@@ -1,0 +1,168 @@
+```yaml
+---
+title: "Настройка MCP Servers"
+description: "Как настроить и управлять вашими MCP servers в Caret."
+---
+
+## Глобальный режим включения MCP Server
+
+Использование MCP servers увеличит расход ваших токенов. Caret предлагает возможность ограничить или отключить функциональность MCP server по вашему желанию.
+
+1. Нажмите на иконку "MCP Servers" в верхней навигационной панели расширения Caret.
+2. Выберите вкладку "Configure", а затем нажмите на ссылку "Advanced MCP Settings" в нижней части этой панели.
+3. Caret откроет новое окно настроек. Найдите `Caret>Mcp:Mode` и сделайте свой выбор из выпадающего меню.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-edit%20(1).png"
+		alt="MCP settings edit"
+	/>
+</Frame>
+
+## Управление отдельными MCP Servers
+
+Каждый MCP server имеет свою собственную панель конфигурации, где вы можете изменять настройки, управлять инструментами и контролировать его работу. Чтобы получить доступ к этим настройкам:
+
+1. Нажмите на иконку "MCP Servers" в верхней навигационной панели расширения Caret.
+2. Найдите MCP server, которым вы хотите управлять, в списке и откройте его, нажав на его имя.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/MCP-settings-individual.png"
+		alt="MCP settings individual"
+	/>
+</Frame>
+
+### Удаление Server
+
+1. Нажмите на иконку корзины рядом с MCP server, который вы хотите удалить, или на красную кнопку Delete Server внизу окна конфигурации MCP server.
+
+**ПРИМЕЧАНИЕ:** Нет диалогового окна подтверждения удаления
+
+### Перезапуск Server
+
+1. Нажмите на кнопку Restart рядом с MCP server, который вы хотите перезапустить, или на серую кнопку Restart Server внизу окна конфигурации MCP server.
+
+### Включение или выключение Server
+
+1. Нажмите на переключатель рядом с MCP server, чтобы включить/выключить servers по отдельности.
+
+### Network Timeout
+
+Чтобы установить максимальное время ожидания ответа после вызова инструмента к MCP server:
+
+1. Нажмите на выпадающее меню `Network Timeout` внизу окна конфигурации отдельного MCP server и измените время. По умолчанию 1 минута, но его можно установить в диапазоне от 30 секунд до 1 часа.
+
+## Редактирование файлов настроек MCP
+
+Настройки для всех установленных MCP servers находятся в файле `cline_mcp_settings.json`:
+
+1. Нажмите на иконку MCP Servers в верхней навигационной панели панели Caret.
+2. Выберите вкладку "Configure".
+3. Нажмите на кнопку "Configure MCP Servers" внизу панели.
+
+Файл использует формат JSON с объектом `mcpServers`, содержащим именованные конфигурации servers:
+
+```json
+{
+	"mcpServers": {
+		"server1": {
+			"command": "python",
+			"args": ["/path/to/server.py"],
+			"env": {
+				"API_KEY": "your_api_key"
+			},
+			"alwaysAllow": ["tool1", "tool2"],
+			"disabled": false
+		}
+	}
+}
+```
+
+_Пример конфигурации MCP Server в Caret (STDIO Transport)_
+
+---
+
+## Понимание типов Transport
+
+MCP поддерживает два типа transport для связи с server:
+
+### STDIO Transport
+
+Используется для локальных servers, работающих на вашей машине:
+
+-   Связь через стандартные потоки ввода/вывода
+-   Более низкая задержка (нет сетевых издержек)
+-   Лучшая безопасность (нет сетевого воздействия)
+-   Более простая настройка (не требуется HTTP server)
+-   Запускается как дочерний процесс на вашей машине
+
+Для получения более подробной информации о том, как работает STDIO transport, см. [MCP Transport Mechanisms](/russian/mcp/mcp-transport-mechanisms).
+
+Пример конфигурации STDIO:
+
+```json
+{
+	"mcpServers": {
+		"local-server": {
+			"command": "node",
+			"args": ["/path/to/server.js"],
+			"env": {
+				"API_KEY": "your_api_key"
+			},
+			"alwaysAllow": ["tool1", "tool2"],
+			"disabled": false
+		}
+	}
+}
+```
+
+### SSE Transport
+
+Используется для удаленных servers, доступ к которым осуществляется через HTTP/HTTPS:
+
+-   Связь через протокол Server-Sent Events
+-   Может быть размещен на другой машине
+-   Поддерживает несколько клиентских соединений
+-   Требуется сетевой доступ
+-   Позволяет централизованное развертывание и управление
+
+Для получения более подробной информации о том, как работает SSE transport, см. [MCP Transport Mechanisms](/russian/mcp/mcp-transport-mechanisms).
+
+Пример конфигурации SSE:
+
+```json
+{
+	"mcpServers": {
+		"remote-server": {
+			"url": "https://your-server-url.com/mcp",
+			"headers": {
+				"Authorization": "Bearer your-token"
+			},
+			"alwaysAllow": ["tool3"],
+			"disabled": false
+		}
+	}
+}
+```
+
+---
+
+## Использование инструментов MCP в вашем workflow
+
+После настройки MCP server, Caret автоматически определит доступные инструменты и ресурсы. Чтобы использовать их:
+
+1. Введите свой запрос в окне разговора Caret
+2. Caret определит, когда инструмент MCP может помочь с вашей задачей
+3. Подтвердите использование инструмента при появлении запроса (или используйте автоматическое подтверждение)
+
+Пример: "Analyze the performance of my API" может использовать инструмент MCP, который тестирует API endpoints.
+
+## Устранение неполадок MCP Servers
+
+Распространенные проблемы и решения:
+
+-   **Server Not Responding:** Проверьте, запущен ли процесс server и проверьте сетевое подключение
+-   **Permission Errors:** Убедитесь, что в вашем файле `mcp_settings.json` настроены правильные API keys и credentials.
+-   **Tool Not Available:** Убедитесь, что server правильно реализует инструмент и он не отключен в настройках.
+-   **Slow Performance:** Попробуйте настроить значение network timeout для конкретного MCP server.

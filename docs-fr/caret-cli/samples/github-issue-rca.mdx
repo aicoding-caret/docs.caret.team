@@ -1,0 +1,383 @@
+```
+---
+title: "Exemple de"analyse RCA de GitHub Issue"
+description: "Analyse automatisée des GitHub issues à l'aide de Caret CLI pour identifier les causes profondes."
+---
+
+# Analyse de Cause Racine GitHub
+
+Analyse automatisée des GitHub issues à l'aide de Caret CLI. Ce script utilise les capacités d'IA autonome de Caret pour récupérer, analyser et identifier les causes profondes des GitHub issues, produisant des résultats propres et analysables qui peuvent être facilement intégrés à vos flux de travail de développement.
+
+<Note>
+**Nouveau sur Caret CLI ?** Cet exemple suppose que vous avez déjà suivi le [Guide d'installation](https://docs.caret.bot/french/caret-cli/installation) et que vous vous êtes authentifié avec `caret auth`. Si vous n'avez pas encore configuré Caret CLI, veuillez commencer par là.
+</Note>
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/cli-rca.gif" alt="CLI Root Cause Analysis Demo" width="600" />
+</Frame>
+
+## Prérequis
+
+Cet exemple suppose que vous avez déjà :
+
+- **Caret CLI** installé et authentifié ([Guide d'installation](https://docs.caret.bot/french/caret-cli/installation))
+- **Au moins un fournisseur de modèle d'IA** configuré (par exemple, OpenRouter, Anthropic, OpenAI)
+- **Une connaissance de base** des commandes Caret CLI
+
+De plus, vous aurez besoin de :
+
+- **GitHub CLI** (`gh`) installé et authentifié
+- **jq** installé pour l'analyse JSON
+- **bash** shell (ou shell compatible)
+
+### Instructions d'installation
+
+#### macOS
+
+<Note>
+Ces instructions nécessitent l'installation de [Homebrew](https://brew.sh/). Si vous n'avez pas Homebrew, installez-le d'abord en exécutant :
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+</Note>
+
+```bash
+# Install GitHub CLI
+brew install gh
+
+# Install jq
+brew install jq
+
+# Authenticate with GitHub
+gh auth login
+```
+
+#### Linux
+
+```bash
+# Install GitHub CLI (Debian/Ubuntu)
+sudo apt install gh
+
+# Or for other Linux distributions, see: https://cli.github.com/manual/installation
+
+# Install jq (Debian/Ubuntu)
+sudo apt install jq
+
+# Authenticate with GitHub
+gh auth login
+```
+
+## Obtenir le Script
+
+**Option 1 : Télécharger directement avec curl**
+```bash
+curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+```
+
+**Option 2 : Copier le script complet**
+
+<Accordion title="Cliquez pour afficher le script complet analyze-issue.sh">
+
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+</Accordion>
+
+<Note>
+**Après avoir téléchargé ou créé le script**, rendez-le exécutable en exécutant :
+```bash
+chmod +x analyze-issue.sh
+```
+</Note>
+
+## Exemples d'utilisation rapide
+
+### Utilisation de base
+
+Exécutez cette commande dans votre terminal à partir du répertoire où vous avez enregistré le script pour analyser un issue avec l'invite de cause racine par défaut :
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123
+```
+
+Cela permettra de :
+- Récupérer l'issue #123 du référentiel
+- Analyser l'issue pour identifier les causes profondes
+- Fournir une analyse détaillée avec des recommandations
+
+### Invite d'analyse personnalisée
+
+Posez des questions spécifiques sur l'issue :
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
+```
+
+### Utilisation d'une instance Caret spécifique
+
+Ciblez une instance Caret particulière par adresse :
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123 \
+    "What is the root cause of this issue?" \
+    127.0.0.1:46529
+```
+
+<Warning>
+Ceci est utile lorsque :
+- Vous exécutez plusieurs instances de Caret
+- Vous utilisez un serveur Caret distant
+- Vous effectuez des tests avec des configurations spécifiques
+</Warning>
+
+<Note>
+Le script gérera automatiquement tout : la récupération de l'issue, son analyse avec Caret et l'affichage des résultats. L'analyse prend généralement 30 à 60 secondes en fonction de la complexité de l'issue.
+</Note>
+
+## Comment ça marche
+
+Analysons chaque composant du script pour comprendre comment il fonctionne.
+
+### Validation des arguments
+
+Le script valide l'entrée et fournit des instructions d'utilisation :
+
+```bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'Analyze security impact' 127.0.0.1:46529"
+    exit 1
+fi
+```
+
+**Points clés :**
+- Valide l'URL GitHub issue requise
+- Affiche des exemples d'utilisation clairs
+- Prend en charge une invite personnalisée facultative
+- Prend en charge l'adresse d'instance Caret facultative
+
+### Analyse des arguments
+
+Le script extrait et configure les arguments :
+
+```bash
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+```
+
+**Explication :**
+- `ISSUE_URL="$1"` - Le premier argument est toujours l'URL de l'issue
+- `PROMPT="${2:-...}"` - Le deuxième argument est facultatif, la valeur par défaut est l'analyse de la cause racine
+- `ADDRESS` - Le troisième argument est facultatif, défini uniquement s'il est fourni
+
+### Le pipeline d'analyse de base
+
+C'est là que la magie opère :
+
+```bash
+# Ask Caret for his analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+<Accordion title="Décomposition du pipeline : Comprendre chaque composant">
+
+**1. `caret -y "$PROMPT: $ISSUE_URL"`**
+   - `-y` active le mode yolo (pas d'interaction utilisateur)
+   - Construit l'invite avec l'URL de l'issue
+
+**2. `--mode act`**
+   - Active le mode act pour une investigation active
+   - Permet à Caret d'utiliser des outils (lire des fichiers, exécuter des commandes, etc.)
+
+**3. `$ADDRESS`**
+   - Indicateur d'adresse facultatif pour une instance spécifique
+   - S'étend à `--address <ip:port>` s'il est défini
+
+**4. `-F json`**
+   - Sortie au format JSON pour l'analyse
+
+**5. `sed -n '/^{/,$p'`**
+   - Extrait JSON de la sortie
+   - Ignore toutes les lignes de préfixe non JSON
+
+**6. `jq -r 'select(.say == "completion_result") | .text'`**
+   - Filtre les messages de résultat de complétion
+   - Extrait le champ text
+   - `-r` affiche des chaînes brutes (pas de guillemets JSON)
+
+**7. `sed 's/\\n/\n/g'`**
+   - Convertit les nouvelles lignes échappées en nouvelles lignes réelles
+   - Rend la sortie lisible
+
+</Accordion>
+
+## Exemple de sortie
+
+Voici un exemple d'analyse d'un vrai problème Flutter :
+
+```bash
+$ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
+```
+
+**Sortie :**
+
+```markdown
+**Analyse de la cause racine de l'issue #2 : "setState isn't cutting it"**
+
+Après avoir examiné l'issue GitHub et analysé la base de code du compteur Flutter, 
+j'ai identifié la cause racine de la raison pour laquelle setState() est insuffisant pour les besoins de ce projet :
+
+## Problèmes d'implémentation actuels
+
+L'application de compteur Flutter actuelle utilise setState() pour la gestion de l'état, ce qui 
+a plusieurs limitations :
+
+1. **État local uniquement** : setState() ne fonctionne que dans un seul widget, ce qui rend 
+   il est difficile de partager l'état dans l'application
+2. **Surcharge de reconstruction** : Chaque appel setState() reconstruit l'intégralité de l'arborescence des widgets, 
+   ce qui entraîne des problèmes de performances avec les interfaces utilisateur complexes
+3. **Aucune persistance d'état** : L'état est perdu lorsque le widget est supprimé
+4. **Défis de test** : La logique basée sur setState est étroitement couplée à l'interface utilisateur, 
+   ce qui rend les tests unitaires difficiles
+
+## Pourquoi c'est important
+
+Au fur et à mesure que l'application dépasse un simple compteur, ces limitations deviennent critiques :
+- Plusieurs écrans doivent accéder au nombre
+- L'état doit persister lors de la navigation
+- La logique métier doit être testable indépendamment
+- L'interface utilisateur ne doit être reconstruite que lorsque cela est nécessaire
+
+## Solutions recommandées
+
+L'issue mentionne "Provider ou Bloc" - ce sont toutes deux d'excellentes alternatives :
+
+1. **Provider** : Gestion d'état simple et légère utilisant InheritedWidget
+   - Chemin de migration facile depuis setState
+   - Bon pour les applications de petite à moyenne taille
+   - Recommandation officielle de Flutter
+
+2. **Bloc** : Approche plus structurée avec une séparation claire entre les événements, 
+   états et logique métier
+   - Mieux pour les applications complexes
+   - Excellente testabilité
+   - Modèles architecturaux clairs
+
+3. **Riverpod** : Alternative moderne à Provider avec de meilleures performances et 
+   expérience de développement
+   - Sécurité au moment de la compilation
+   - Meilleur support de test
+   - Plus flexible que Provider
+
+4. **GetX** : Solution complète avec gestion d'état, routage et 
+   injection de dépendances
+   - Boilerplate minimal
+   - Rapide et léger
+   - Solution tout-en-un
+
+## Prochaines étapes
+
+La base de code actuelle doit être refactorisée pour implémenter une gestion d'état appropriée 
+architecture pour gérer plus efficacement les scénarios d'état complexes. Provider 
+serait le chemin de migration le plus simple tandis que Bloc offre une meilleure évolutivité à long terme.
+```
+
+## Quand utiliser ce modèle
+
+Ce modèle de script est idéal pour divers scénarios de développement où l'analyse automatisée des issues GitHub peut accélérer votre flux de travail.
+
+### Enquête sur les bugs
+
+Analysez rapidement les rapports de bugs et identifiez les causes profondes sans exploration manuelle du code :
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/123 \
+    "What is the root cause of this bug?"
+```
+
+### Analyse des demandes de fonctionnalités
+
+Comprendre le contexte et les implications des demandes de fonctionnalités :
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/456 \
+    "What are the implementation challenges?"
+```
+
+### Audits de sécurité
+
+Évaluez les implications de sécurité des issues signalées :
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/789 \
+    "What are the security implications?"
+```
+
+### Génération de documentation
+
+Générez une documentation technique détaillée à partir des issues :
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/654 \
+    "Provide detailed technical documentation for this issue"
+```
+
+### Assistance à la revue de code
+
+Obtenez un deuxième avis sur les modifications proposées :
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/987 \
+    "Review the proposed solution approach"
+```
+
+## Conclusion
+
+Cet exemple montre comment créer un outil autonome d'analyse des GitHub issues à l'aide de Caret CLI :
+
+1. **Création d'outils CLI autonomes** à l'aide des capacités de Caret
+2. **Analyse de la sortie JSON structurée** de Caret CLI
+3. **Création de scripts d'automatisation flexibles** avec une invite personnalisée
+4. **Intégration avec GitHub** pour l'analyse des issues
+5. **Gestion efficace des arguments de ligne de commande**
+
+Ce modèle peut être adapté à de nombreux autres scénarios d'automatisation, des revues de pull requests à la génération de documentation en passant par l'analyse de la qualité du code.
+
+## Ressources Connexes
+
+- [Guide d'installation de CLI](https://docs.caret.bot/french/caret-cli/installation)
+- [Documentation de référence de CLI](https://docs.caret.bot/french/caret-cli/cli-reference)
+- [Trois flux principaux](https://docs.caret.bot/french/caret-cli/three-core-flows)
+```

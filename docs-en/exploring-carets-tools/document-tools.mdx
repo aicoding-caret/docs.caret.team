@@ -1,0 +1,140 @@
+---
+title: "Document Tools"
+sidebarTitle: "Document Tools"
+description: "Process various files with image analysis and document reading tools."
+---
+
+<Note>
+These tools are Caret-exclusive features.
+</Note>
+
+Caret provides powerful tools that allow AI to directly analyze images and documents. Thanks to these tools, AI can read and analyze files just by their path, without users having to manually attach them.
+
+## Image Analysis Tool (analyze_image)
+
+The `analyze_image` tool analyzes image files to describe their content or answer specific questions.
+
+### Use Cases
+
+- **UI/UX Review**: Check for layout issues, alignment errors, visual bugs in screenshots
+- **Text Extraction**: Extract text from screenshots, error dialogs, logs
+- **Code Review**: Analyze code screenshots and identify patterns
+- **Design Comparison**: Compare UI implementations with design mockups
+- **Error Analysis**: Interpret error dialogs and stack traces
+
+### Supported Formats
+
+- PNG, JPG, JPEG, WebP, GIF, AVIF, BMP, TIFF
+
+### Usage
+
+```
+User: Extract the error message from this screenshot (./screenshots/error.png)
+AI: [Uses analyze_image tool] → Analyzes image → Provides extracted error message
+```
+
+### Requirements
+
+- **Caret Account Login Required**: Image analysis is processed through the Caret API
+- **Automatic Image Optimization**: Large images are automatically optimized before sending
+
+### Settings
+
+In Settings → Features, you can select the **Image Analysis Model**:
+- Gemini 3.0 Flash Preview (default)
+- Gemini 2.5 Flash
+
+---
+
+## Document Reading Tool (read_document)
+
+The `read_document` tool reads various document formats and extracts text.
+
+### Comparison with Cline
+
+| Feature | Cline | Caret |
+|---------|-------|-------|
+| Read PDF | User attachment only | **AI reads directly by path** |
+| Read DOCX/XLSX | User attachment only | **AI reads directly by path** |
+| HWPX (Korean Hangul) | ❌ Not supported | ✅ **Supported** |
+| HWP 5.0 (Legacy Hangul) | ❌ Not supported | ✅ **Supported** |
+| PPTX | ❌ Not supported | ✅ **Supported** |
+
+### Supported Formats
+
+| Format | Extension | Description |
+|--------|-----------|-------------|
+| PDF | `.pdf` | Adobe PDF documents |
+| Word | `.docx` | Microsoft Word 2007+ |
+| Excel | `.xlsx` | Microsoft Excel 2007+ |
+| PowerPoint | `.pptx` | Microsoft PowerPoint 2007+ |
+| Hangul (New) | `.hwpx` | Hancom Office Hangul 2014+ |
+| Hangul (Legacy) | `.hwp` | Hancom Office Hangul 5.0 |
+| Jupyter | `.ipynb` | Jupyter Notebook |
+
+### Unsupported Formats
+
+The following legacy formats are not supported due to technical limitations:
+
+| Format | Extension | Alternative |
+|--------|-----------|-------------|
+| PowerPoint 97-2003 | `.ppt` | Convert to `.pptx` |
+| Word 97-2003 | `.doc` | Convert to `.docx` |
+| Excel 97-2003 | `.xls` | Convert to `.xlsx` |
+
+<Tip>
+Convert legacy formats using LibreOffice, Google Docs, or Microsoft Office.
+</Tip>
+
+### Usage
+
+```
+User: Analyze docs/spec.pdf in this project
+AI: [Uses read_document tool] → Extracts PDF content → Provides analysis
+```
+
+### Security
+
+- **Path Validation**: Path normalization to prevent Path Traversal attacks
+- **File Size Limit**: Maximum 50MB
+- **Format Validation**: Only supported extensions allowed
+
+### Limitations
+
+- **No Images/Charts**: Images and charts within documents are not extracted
+- **Layout Loss**: Tables, multi-column layouts are converted to simple text
+
+---
+
+## Usage Tips
+
+### Image Analysis Usage
+
+```
+# Check for UI bugs
+"Check if there are layout issues in the ./screenshots/ui-bug.png screenshot"
+
+# Analyze error messages
+"Analyze the cause of the error from this screenshot (./error.png)"
+
+# Design review
+"Compare if the ./mockup.png design matches the current implementation"
+```
+
+### Document Analysis Usage
+
+```
+# Analyze specifications
+"Read docs/api-spec.pdf and list the required API endpoints"
+
+# Data analysis
+"Summarize the contents of data/report.xlsx"
+
+# Korean document processing
+"Extract the key clauses from contracts/contract.hwp"
+```
+
+## Related Features
+
+- [Caret Tools Guide](/en/exploring-carets-tools/caret-tools-guide)
+- [Skills System](/en/features/skills)

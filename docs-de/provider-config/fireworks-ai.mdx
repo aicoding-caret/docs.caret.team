@@ -1,0 +1,51 @@
+---
+title: "Fireworks AI"
+description: "Erfahren Sie, wie Sie Fireworks AI-Modelle mit Caret konfigurieren und verwenden. Greifen Sie auf leistungsstarke Open-Source-Sprachmodelle mit schnellen, kostengünstigen APIs zu."
+---
+
+Caret unterstützt den Zugriff auf Modelle über die Fireworks AI-Plattform, die einen schnellen und kostengünstigen Zugang zu einer breiten Palette modernster Open-Source-Sprachmodelle bietet. Fireworks AI wurde für Geschwindigkeit und Zuverlässigkeit entwickelt und bietet Serverless-Bereitstellungsoptionen mit OpenAI-kompatiblen APIs und Context Windows von bis zu 256.000 Token.
+
+**Website:** [https://fireworks.ai/](https://fireworks.ai/)
+
+### Einen API Key erhalten
+
+1. **Registrieren/Anmelden:** Gehen Sie zu [Fireworks AI](https://fireworks.ai/) und erstellen Sie ein Konto oder melden Sie sich an.
+2. **Zu den API Keys navigieren:** Gehen Sie nach dem Login zur [API Keys Seite](https://app.fireworks.ai/settings/users/api-keys) in den Kontoeinstellungen.
+3. **Einen Key erstellen:** Klicken Sie auf „Create API key“ und geben Sie Ihrem Key einen beschreibenden Namen (z. B. „Caret“).
+4. **Den Key kopieren:** **Wichtig:** Kopieren Sie den API Key _sofort_. Sie werden ihn nicht erneut anzeigen können. Bewahren Sie ihn sicher auf.
+
+### Unterstützte Modelle
+
+Caret unterstützt die folgenden Fireworks AI-Modelle:
+
+-   `accounts/fireworks/models/kimi-k2-instruct` (Default)
+-   `accounts/fireworks/models/qwen3-235b-a22b-instruct-2507`
+-   `accounts/fireworks/models/qwen3-coder-480b-a35b-instruct`
+-   `accounts/fireworks/models/deepseek-r1-0528`
+-   `accounts/fireworks/models/deepseek-v3`
+
+**Modelldetails:**
+
+| Modell | Context Window | Ideal für | Preise (pro 1 Mio. Token) |
+|-------|----------------|----------|-------------------------|
+| Kimi K2 | 128K | Allgemeine Aufgaben, agentische Fähigkeiten | \$0.60 Input, \$2.50 Output |
+| Qwen3 235B | 256K | Kostengünstige allgemeine Nutzung | \$0.22 Input, \$0.88 Output |
+| Qwen3 Coder | 256K | Code-Generierung und Debugging | \$0.45 Input, \$1.80 Output |
+| DeepSeek R1 | 160K | Komplexes Reasoning, Function Calling | \$3.00 Input, \$8.00 Output |
+| DeepSeek V3 | 128K | Starke allgemeine Performance | \$0.90 Input, \$0.90 Output |
+
+### Konfiguration in Caret
+
+1. **Caret-Einstellungen öffnen:** Klicken Sie auf das Einstellungs-Icon (⚙️) im Caret-Panel.
+2. **Provider auswählen:** Wählen Sie „Fireworks AI“ aus dem „API Provider“-Dropdown-Menü.
+3. **API Key eingeben:** Fügen Sie Ihren Fireworks AI API Key in das Feld „Fireworks AI API Key“ ein.
+4. **Modell auswählen:** Wählen Sie Ihr gewünschtes Modell aus dem „Model“-Dropdown-Menü. Das Standardmodell ist Kimi K2.
+
+### Tipps und Hinweise
+
+-   **Kosteneffizient:** Fireworks AI bietet deutlich niedrigere Preise als proprietäre Modelle bei gleichzeitig wettbewerbsfähiger Performance.
+-   **Große Context Windows:** Die meisten Modelle unterstützen 128K-256K Token, was sich ideal für die Verarbeitung großer Dokumente und längere Konversationen eignet.
+-   **OpenAI-Kompatibilität:** Der Provider verwendet ein OpenAI-kompatibles API-Format mit Streaming-Unterstützung und Usage-Tracking.
+-   **Rate Limits:** Fireworks AI hat nutzungsabhängige Rate Limits. Überwachen Sie Ihre Nutzung im Dashboard und ziehen Sie bei Bedarf ein Upgrade Ihres Plans in Betracht.
+-   **API Keys:** Werden zur Sicherheit lokal auf Ihrem Rechner gespeichert.
+-   **Preise:** Aktuelle Preise finden Sie auf der [Fireworks AI Pricing-Seite](https://fireworks.ai/pricing). Die angegebenen Preise verstehen sich pro Million Token.

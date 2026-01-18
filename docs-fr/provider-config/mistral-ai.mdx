@@ -1,0 +1,61 @@
+---
+title: "Mistral"
+description: "Apprenez à configurer et à utiliser les modèles Mistral AI, y compris Codestral, avec Caret. Couvre la configuration de la clé API et la sélection du modèle."
+---
+
+<Note>
+Ceci est la documentation de référence pour Caret. Elle suit la version fusionnée de Caret v3.38.1. Si des politiques spécifiques à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
+</Note>
+
+<Note>
+Amélioration de la configuration du Provider : selon `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du Provider et l'UX de Caret peuvent être renforcées. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du Caret Router.
+</Note>
+
+Caret permet d'accéder aux modèles via l'API Mistral AI, incluant à la fois les modèles Mistral standards et le modèle spécialisé pour le code, Codestral.
+
+**Site Web :** [https://mistral.ai/](https://mistral.ai/)
+
+### Obtenir une clé API
+
+1.  **S'inscrire/Se connecter :** Rendez-vous sur la [Plateforme Mistral](https://console.mistral.ai/). Créez un compte ou connectez-vous. Vous devrez peut-être passer par un processus de vérification.
+2.  **Créer une clé API :**
+    -   [Clé API La Plateforme](https://console.mistral.ai/api-keys/) et/ou
+    -   [Clé API Codestral](https://console.mistral.ai/codestral)
+
+### Modèles pris en charge
+
+Caret prend en charge les modèles Mistral suivants :
+
+-   pixtral-large-2411
+-   ministral-3b-2410
+-   ministral-8b-2410
+-   mistral-small-latest
+-   mistral-medium-latest
+-   mistral-small-2501
+-   pixtral-12b-2409
+-   open-mistral-nemo-2407
+-   open-codestral-mamba
+-   codestral-2501
+-   devstral-small-2505
+
+**Note :** La disponibilité et les spécifications des modèles peuvent changer.
+Reportez-vous à la [documentation Mistral AI](https://docs.mistral.ai/api/) et à l'aperçu des modèles Mistral ([Mistral Model Overview](https://docs.mistral.ai/getting-started/models/models_overview/)) pour les informations les plus récentes.
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le Provider :** Choisissez "Mistral" dans le menu déroulant "API Provider".
+3.  **Saisir la clé API :** Collez votre clé API Mistral dans le champ "Mistral API Key" si vous utilisez un modèle `mistral` standard. Si vous prévoyez d'utiliser `codestral-latest`, consultez la section "Utiliser Codestral" ci-dessous.
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+### Utiliser Codestral
+
+[Codestral](https://docs.mistral.ai/capabilities/code_generation/) est un modèle spécifiquement conçu pour la génération de code et l'interaction.
+Pour Codestral, vous pouvez utiliser différents endpoints (par défaut : codestral.mistral.ai).
+Si vous utilisez la clé API de La Plateforme pour Codestral, changez l'URL de base (**Codestral Base Url**) en : `https://api.mistral.ai`
+
+Pour utiliser Codestral avec Caret :
+
+1.  **Sélectionnez "Mistral" comme API Provider dans les paramètres Caret.**
+2.  **Sélectionnez un modèle Codestral** (par ex., `codestral-latest`) dans le menu déroulant "Model".
+3.  **Saisissez votre clé API Codestral** (provenant de `codestral.mistral.ai`) ou votre clé API La Plateforme (provenant de `api.mistral.ai`) dans le champ de clé API approprié dans Caret.

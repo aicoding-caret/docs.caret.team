@@ -1,0 +1,109 @@
+---
+title: "À lire en premier"
+---
+
+## Exécuter des modèles locaux avec Caret : ce que vous devez savoir
+
+Cline est un assistant de codage IA puissant qui utilise des tool calls pour vous aider à écrire, analyser et modifier du code. Exécuter des modèles localement peut réduire les coûts d'API, mais il y a des compromis importants à considérer. Les modèles locaux sont beaucoup moins fiables pour utiliser les outils essentiels qui rendent Cline efficace.
+
+## Pourquoi les modèles locaux sont différents
+
+Lorsque vous exécutez une « version locale » d'un modèle, vous lancez en réalité une copie fortement simplifiée de l'original. Ce processus — appelé distillation — est comme compresser les connaissances d'un chef cuisinier dans un livre de cuisine de base. Vous conservez les recettes simples, mais vous perdez les techniques complexes et l'intuition.
+
+Les modèles locaux sont entraînés pour imiter les plus grands, mais ne conservent généralement que 1 à 26 % de la capacité du modèle original. Cette réduction massive implique :
+
+-   Une capacité réduite à comprendre les contextes complexes
+-   Un raisonnement multi-étapes plus faible
+-   Un tool use limité
+-   Une prise de décision simplifiée
+
+Imaginez cela comme l'exécution de votre environnement de développement sur une calculatrice plutôt que sur un ordinateur. Les tâches de base peuvent fonctionner, mais les tâches complexes deviennent peu fiables ou impossibles.
+
+
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(4).png"
+		alt="Schéma de comparaison des modèles locaux"
+	/>
+
+
+### Ce qui se passe réellement
+
+Lors de l'exécution de modèles locaux avec Cline :
+
+#### Impact sur les performances
+
+-   Les réponses sont 5 à 10 fois plus lentes que les services cloud.
+-   Les ressources système (CPU, GPU, RAM) sont fortement sollicitées.
+-   Votre ordinateur peut devenir moins réactif pour d'autres tâches.
+
+#### Problèmes de fiabilité des outils
+
+-   L'analyse de code est moins précise.
+-   Les opérations sur les fichiers peuvent être instables.
+-   L'automatisation du navigateur est réduite.
+-   Les commandes Terminal échouent plus souvent.
+-   Les tâches complexes en plusieurs étapes échouent souvent.
+
+### Configuration matérielle requise
+
+Au minimum, vous aurez besoin de :
+
+-   Un GPU moderne avec plus de 8 Go de VRAM et support AVX2 (RTX 3070 ou supérieur)
+-   Plus de 32 Go de RAM système
+-   Un stockage SSD rapide
+-   Un bon système de refroidissement
+
+Même avec ce matériel, vous exécutez toujours une version plus petite et moins capable du modèle.
+
+| Taille du modèle | Ce que vous obtenez |
+| ---------- | ------------------------------ |
+| Modèle 7B | Codage de base, tool use limité |
+| Modèle 14B | Meilleur codage, tool use instable |
+| Modèle 32B | Bon codage, tool use incohérent |
+| Modèle 70B | Meilleures performances locales, matériel coûteux requis |
+
+En résumé, les versions cloud (API) sont les modèles complets. Par exemple, le modèle complet DeepSeek-R1 est de 671B. Les modèles locaux distillés sont intrinsèquement des versions « diluées » des modèles cloud.
+
+### Recommandations pratiques
+
+#### Approche recommandée
+
+1. Utilisez les modèles cloud pour :
+    - Le travail de développement complexe
+    - Les tâches où la fiabilité des outils est cruciale
+    - Les tâches multi-étapes
+    - Les modifications de code critiques
+2. Utilisez les modèles locaux pour :
+    - L'auto-complétion de code simple
+    - La documentation de base
+    - Les cas où la confidentialité est la priorité absolue
+    - L'apprentissage et l'expérimentation
+
+#### Si vous devez utiliser le mode local
+
+-   Commencez avec des modèles plus petits
+-   Gardez des tâches simples et ciblées
+-   Sauvegardez votre travail fréquemment
+-   Soyez prêt à passer aux modèles cloud pour les tâches complexes
+-   Surveillez les ressources système
+
+### Problèmes courants
+
+-   **"Tool execution failed"** : Les modèles locaux ont du mal avec les chaînes d'outils complexes. Simplifiez vos prompts.
+-   **"The target machine actively refused the connection"** : Cela signifie généralement qu'Ollama ou LM Studio n'est pas lancé, ou qu'il utilise un port/adresse différent de celui configuré dans Cline. Vérifiez l'URL de base (Base URL) dans les paramètres du fournisseur d'API.
+-   **"There's a problem with Cline..."** : Augmentez la longueur du contexte (context length) du modèle au maximum.
+-   **Réponses lentes ou incomplètes :** Les modèles locaux sont souvent plus lents que les modèles cloud, surtout sur du matériel plus faible. Essayez des modèles plus petits et attendez-vous à des temps de traitement beaucoup plus longs.
+-   **Stabilité du système :** Surveillez l'utilisation et les températures du GPU/CPU.
+-   **Limites de contexte :** Les modèles locaux ont souvent des fenêtres de contexte plus petites que les modèles cloud. Divisez le travail en plus petits morceaux.
+
+### Perspectives d'avenir
+
+Les capacités des modèles locaux s'améliorent, mais ils ne peuvent toujours pas remplacer complètement les services cloud, en particulier pour les fonctionnalités basées sur les outils de Cline. Évaluez soigneusement vos besoins et votre matériel avant de vous engager dans une configuration exclusivement locale.
+
+### Besoin d'aide ?
+
+-   Rejoignez notre communauté [Discord](https://https://discord.gg/WB6yaR89YN) et [r/caret](https://www.reddit.com/r/CLine/).
+-   Consultez les derniers guides de compatibilité.
+-   Partagez vos expériences avec d'autres développeurs.
+
+Rappel : en cas de doute, donnez la priorité à la fiabilité plutôt qu'aux économies de coûts pour les travaux de développement critiques.

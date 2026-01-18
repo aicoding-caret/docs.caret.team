@@ -1,0 +1,90 @@
+---
+title: "Claude Code"
+description: "Используйте вашу подписку Claude Max или Pro в Caret вместо оплаты за каждый токен. Узнайте, как установить и настроить провайдер Claude Code."
+---
+
+<Note>
+Это документация для Caret. Она основана на версии Caret v3.38.1. Если существуют специфические политики Caret (разрешенные/заблокированные модели, региональные ограничения, аутентификация/маршрутизация), они будут отмечены в тексте как `<Note>`.
+</Note>
+
+**Website:** [https://docs.anthropic.com/russian/docs/claude-code/setup](https://docs.anthropic.com/russian/docs/claude-code/setup)
+
+Провайдер Claude Code позволяет использовать вашу текущую подписку Claude в Caret. Если у вас есть Claude Max или Pro, вы сможете использовать Claude в Caret без дополнительных затрат на API.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-use-opus.gif"
+		alt="Использование провайдера Claude Code в Caret с моделью Opus"
+	/>
+</Frame>
+
+## Setup
+
+Сначала вам нужно установить и авторизовать Claude Code в вашей системе:
+
+1. **Установите Claude Code**: Следуйте [официальному руководству по установке](https://docs.anthropic.com/russian/docs/claude-code/setup) от Anthropic, чтобы установить и авторизовать Claude CLI.
+
+2. **Настройте в Caret**:
+    - Откройте настройки Caret (иконка ⚙️)
+    - Выберите **Claude Code** в выпадающем списке **API Provider**
+    - Укажите путь к исполняемому файлу Claude CLI (обычно это просто `claude`, если он добавлен в ваш PATH)
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-setup.gif"
+		alt="Настройка провайдера Claude Code в Caret"
+	/>
+</Frame>
+
+<br />
+
+### Как найти путь к Claude Code
+
+-   **macOS / Linux / WSL / Git Bash**: `which claude`
+-   **Windows Command Prompt**: `where claude`
+
+## Supported Models
+
+Провайдер Claude Code поддерживает следующие модели:
+
+-   `claude-sonnet-4-20250514` (Рекомендуется)
+-   `claude-opus-4-1-20250805`
+-   `claude-opus-4-20250514`
+-   `claude-3-7-sonnet-20250219`
+-   `claude-3-5-sonnet-20241022`
+-   `claude-3-5-haiku-20241022`
+
+## How it works
+
+Когда вы используете Claude Code с Caret, за кулисами происходит следующее:
+
+Caret оборачивает Claude Code CLI для обработки ваших запросов. Каждый раз, когда вы отправляете сообщение, Caret запускает новый процесс `claude`, передает вашу беседу и транслирует ответ обратно. Интеллектуальные возможности (reasoning) исходят от Claude Code, но все действия по редактированию файлов, терминальные команды и другие инструменты обрабатываются Caret.
+
+Основное отличие, которое вы заметите: ответы не транслируются посимвольно, как у других провайдеров. Вместо этого Claude Code обрабатывает весь запрос целиком перед отправкой полного ответа.
+
+## Limitations
+
+При использовании Claude Code следует учитывать несколько моментов:
+
+-   Изображения в ваших сообщениях преобразуются в текстовые плейсхолдеры, так как Claude Code не поддерживает загрузку изображений через CLI
+-   Prompt caching недоступно с этим провайдером
+-   Ответы не транслируются в реальном времени, как у других провайдеров
+
+## Troubleshooting
+
+Если вы столкнулись с проблемами:
+
+**Проблемы с аутентификацией**: Убедитесь, что вы вошли в Claude Code под своей учетной записью с подпиской. Выполните команду `claude auth status` для проверки.
+
+**Проблемы с путем**: Перепроверьте правильность пути к Claude CLI в настройках Caret. Попробуйте запустить `claude --version` в терминале, чтобы убедиться в работоспособности.
+
+**Проблема не решена?** Мы активно работаем над улучшением этой интеграции. Сообщайте о проблемах на нашем [GitHub](https://github.com/caret/caret/issues) или обращайтесь за помощью в наш [Discord](https://https://discord.gg/WB6yaR89YN).
+
+## Usage with subscriptions
+
+Если у вас есть подписка Claude Max, использование в Caret будет отображаться как $0.00 в интерфейсе биллинга, так как вы не несете дополнительных расходов на API. Ваша активность по-прежнему учитывается в рамках лимитов подписки, но вы не увидите списаний за каждый токен.
+
+Для получения более подробной информации об использовании Claude Code с вашей подпиской ознакомьтесь с документацией Anthropic:
+
+-   [Claude Code Setup Guide](https://docs.anthropic.com/russian/docs/claude-code/setup)
+-   [Using Claude Code with Pro/Max Plans](https://support.anthropic.com/russian/articles/11145838-using-claude-code-with-your-pro-or-max-plan)

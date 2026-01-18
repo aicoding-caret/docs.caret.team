@@ -1,0 +1,164 @@
+---
+title: "Plan et Act"
+sidebarTitle: "Planifier et Agir"
+description: "Les modes Planifier et Agir représentent l'approche de Caret au développement structuré de l'IA, en mettant l'accent sur une planification réfléchie avant la mise en œuvre. Ce système à double mode aide les développeurs à créer un code plus maintenable et précis tout en réduisant le temps d'itération."
+---
+
+Les modes Plan & Act représentent l'approche de Caret au développement structuré de l'IA, en mettant l'accent sur une planification réfléchie avant l'implémentation. Ce système à double mode aide les développeurs à créer un code plus maintenable et précis tout en réduisant le temps d'itération.
+
+<Frame>
+	<iframe
+		style={{ width: "100%", aspectRatio: "16/9" }}
+		src="https://www.youtube.com/embed/b7o6URFPp64"
+		title="YouTube video player"
+		frameBorder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		allowFullScreen></iframe>
+</Frame>
+
+#### Mode Planifier : Réfléchissez d'abord
+
+Le mode Planifier est l'endroit où vous et Caret déterminez ce que vous essayez de construire et comment vous allez le construire. Dans ce mode, Caret :
+
+-   Peut lire l'ensemble de votre codebase pour comprendre le contexte
+-   Ne fera aucune modification à vos fichiers
+-   Se concentre sur la compréhension des exigences et la création d'une stratégie
+-   Aide à identifier les problèmes potentiels avant d'écrire une seule ligne de code
+
+<Tip>
+Essayez [Dictée](/french/features/dictation) en mode Planifier - au lieu de saisir des exigences complexes, vous pouvez parler naturellement et partager l'ensemble de votre processus de pensée. C'est parfait pour des discussions de planification rapides et interactives.
+</Tip>
+
+#### Mode Agir : Construisez-le
+
+Une fois que vous avez un plan, vous passez en mode Agir. Maintenant, Caret :
+
+-   A toutes les capacités de construction à sa disposition
+-   Peut apporter des modifications à votre codebase
+-   Se souvient toujours de tout ce qui s'est passé lors de votre session de planification
+-   Exécute la stratégie que vous avez élaborée ensemble
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(5).png" alt="Act mode capabilities" />
+</Frame>
+
+### Guide du flux de travail
+
+Lorsque je travaille sur une nouvelle fonctionnalité ou que je corrige un bug complexe, voici ce qui fonctionne pour moi :
+
+1. Je commence en mode Planifier et je dis à Caret ce que je veux construire
+2. Caret m'aide à explorer la codebase, en examinant les fichiers pertinents
+3. Ensemble, nous trouvons la meilleure approche, en tenant compte des cas limites et des problèmes potentiels
+4. Lorsque je suis confiant dans notre plan, je passe en mode Agir
+5. Caret met en œuvre la solution en fonction de notre planification
+
+#### 1. Commencez par le mode Planifier
+
+Commencez chaque tâche de développement importante en mode Planifier :
+
+Dans ce mode :
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(5)%20(1).png" alt="Plan mode workflow" />
+</Frame>
+
+-   Partagez vos exigences
+-   Laissez Caret analyser les fichiers pertinents
+-   Engagez le dialogue pour clarifier les objectifs
+-   Développez une stratégie de mise en œuvre
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2)%20(1)%20(1)%20(1).png"
+		alt="Planning phase"
+	/>
+</Frame>
+
+#### 2. Passez en mode Agir
+
+Une fois que vous avez un plan clair, passez en mode Agir :
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/switching-to-act.gif" alt="Switching to Act mode" />
+</Frame>
+
+Le mode Agir permet à Caret de :
+
+-   Exécuter le plan convenu
+-   Apporter des modifications à votre codebase
+-   Maintenir le contexte de la phase de planification
+
+#### 3. Itérer si nécessaire
+
+Les projets complexes nécessitent souvent plusieurs cycles planifier-agir :
+
+-   Retournez en mode Planifier lorsque vous rencontrez une complexité inattendue
+-   Utilisez le mode Agir pour mettre en œuvre des solutions
+-   Maintenez la dynamique de développement tout en assurant la qualité
+
+### Meilleures pratiques
+
+#### Phase de planification
+
+1. Soyez exhaustif avec les exigences
+2. Partagez le contexte pertinent dès le départ
+3. Indiquez à Caret les fichiers pertinents s'il ne les a pas lus
+4. Validez l'approche avant la mise en œuvre
+
+#### Phase de mise en œuvre
+
+1. Suivez le plan établi
+2. Surveillez les progrès par rapport aux objectifs
+3. Suivez les changements et leur impact
+4. Documentez les décisions importantes
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(3)%20(1).png"
+		alt="Implementation best practices"
+	/>
+</Frame>
+
+### Conseils aux utilisateurs avancés
+
+#### Améliorer la planification
+
+-   Utilisez le mode Planifier pour explorer les cas limites avant la mise en œuvre
+-   Revenez en mode Planifier lorsque vous rencontrez une complexité inattendue
+-   Tirez parti de la [lecture de fichiers](/french/features/at-mentions/file-mentions) pour valider les hypothèses tôt
+-   Demandez à Caret d'écrire des fichiers markdown du plan pour référence future
+
+### Modèles courants
+
+#### Quand utiliser chaque mode
+
+J'ai constaté que le mode Planifier fonctionne mieux lorsque :
+
+-   Je commence quelque chose de nouveau où l'approche n'est pas évidente
+-   Je débogue un problème délicat où je ne suis pas sûr de ce qui ne va pas
+-   Je prends des décisions architecturales qui affecteront plusieurs parties de la codebase
+-   J'essaie de comprendre un flux de travail ou une fonctionnalité complexe
+
+Et le mode Agir est parfait pour :
+
+-   Mettre en œuvre une solution que nous avons déjà planifiée
+-   Apporter des modifications de routine où l'approche est claire
+-   Suivre les modèles établis dans la codebase
+-   Exécuter des tests et effectuer des ajustements mineurs
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(6).png" alt="Mode usage patterns" />
+</Frame>
+
+### Contribuer
+
+Partagez vos expériences et vos améliorations :
+
+-   Rejoignez notre [communauté Discord](https://https://discord.gg/WB6yaR89YN)
+-   Participez aux discussions
+-   Soumettez des demandes de fonctionnalités
+-   Signalez les problèmes
+
+---
+
+Rappelez-vous : Le temps investi dans la planification est rentable en termes de qualité de mise en œuvre et d'efficacité de la maintenance.

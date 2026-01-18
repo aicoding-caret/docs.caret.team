@@ -1,0 +1,230 @@
+---
+title: "Aperçu des Modèles Locaux"
+---
+
+<Note>
+Ceci est un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Si des politiques spécifiques à Caret (runtime local supporté, authentification/routage, limitations des modèles) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
+</Note>
+
+## Exécuter des modèles localement avec Caret
+
+Exécutez Caret entièrement hors ligne avec des modèles réellement performants sur votre propre matériel. Pas de coûts d'API, pas de données quittant votre machine, pas de dépendance à Internet.
+
+Les modèles locaux ont atteint un tournant où ils sont désormais exploitables pour un travail de développement réel. Ce guide couvre tout ce que vous devez savoir pour exécuter Caret avec des modèles locaux.
+
+## Démarrage rapide
+
+1. **Vérifiez votre matériel** - 32GB+ RAM minimum
+2. **Choisissez votre runtime** - [LM Studio](/french/running-models-locally/lm-studio) ou [Ollama](/french/running-models-locally/ollama)
+3. **Téléchargez Qwen3 Coder 30B** - Le modèle recommandé
+4. **Configurez les paramètres** - Activez les compact prompts, définissez le contexte max
+5. **Commencez à coder** - Complètement hors ligne
+
+## Configuration matérielle requise
+
+Votre RAM détermine quels modèles vous pouvez exécuter efficacement :
+
+| RAM | Modèle recommandé | Quantification | Niveau de performance |
+| --- | --- | --- | --- |
+| 32GB | Qwen3 Coder 30B | 4-bit | Codage local d'entrée de gamme |
+| 64GB | Qwen3 Coder 30B | 8-bit | Fonctionnalités Caret complètes |
+| 128GB+ | GLM-4.5-Air | 4-bit | Performance compétitive face au cloud |
+
+## Modèles recommandés
+
+### Recommandation principale : Qwen3 Coder 30B
+
+Après des tests approfondis, **Qwen3 Coder 30B** est le modèle le plus fiable sous la barre des 70B paramètres pour Caret :
+
+- **Fenêtre de contexte native de 256K** - Gère des dépôts entiers
+- **Capacités de tool-use robustes** - Exécution fiable des commandes
+- **Compréhension à l'échelle du dépôt** - Maintient le contexte à travers les fichiers
+- **Fiabilité éprouvée** - Résultats cohérents avec le format d'outils de Caret
+
+Tailles de téléchargement :
+- 4-bit : ~17GB (recommandé pour 32GB RAM)
+- 8-bit : ~32GB (recommandé pour 64GB RAM)
+- 16-bit : ~60GB (nécessite 128GB+ RAM)
+
+### Pourquoi pas de modèles plus petits ?
+
+La plupart des modèles de moins de 30B paramètres (7B-20B) échouent avec Caret car ils :
+- Produisent des sorties tool-use erronées
+- Refusent d'exécuter des commandes
+- Ne parviennent pas à maintenir le contexte de la conversation
+- Éprouvent des difficultés avec les tâches de codage complexes
+
+## Options de runtime
+
+### LM Studio
+- **Avantages** : GUI conviviale, gestion facile des modèles, serveur intégré
+- **Inconvénients** : Surcharge mémoire de l'interface, limité à un seul modèle à la fois
+- **Idéal pour** : Utilisateurs desktop qui recherchent la simplicité
+- [Guide d'installation →](/french/running-models-locally/lm-studio)
+
+### Ollama
+- **Avantages** : Basé sur la ligne de commande, surcharge mémoire réduite, scriptable
+- **Inconvénients** : Nécessite d'être à l'aise avec le terminal, gestion manuelle des modèles
+- **Idéal pour** : Utilisateurs avancés et déploiements sur serveur
+- [Guide d'installation →](/french/running-models-locally/ollama)
+
+## Configuration critique
+
+### Paramètres requis
+
+**Dans Caret :**
+- ✅ Activez "Use Compact Prompt" - Réduit la taille du prompt de 90%
+- ✅ Définissez le modèle approprié dans les paramètres
+- ✅ Configurez la Base URL pour correspondre à votre serveur
+
+**Dans LM Studio :**
+- Context Length : `262144` (maximum)
+- KV Cache Quantization : `OFF` (critique pour un bon fonctionnement)
+- Flash Attention : `ON` (si disponible sur votre matériel)
+
+**Dans Ollama :**
+- Définissez la fenêtre de contexte : `num_ctx 262144`
+- Activez flash attention si supporté
+
+### Comprendre la quantification
+
+La quantification réduit la précision du modèle pour l'adapter au matériel grand public :
+
+| Type | Réduction de taille | Qualité | Cas d'utilisation |
+| --- | --- | --- | --- |
+| 4-bit | ~75% | Bonne | La plupart des tâches de codage, RAM limitée |
+| 8-bit | ~50% | Meilleure | Travail professionnel, plus de nuance |
+| 16-bit | Aucune | Excellente | Qualité maximale, nécessite beaucoup de RAM |
+
+### Formats de modèles
+
+**GGUF (Universel)**
+- Fonctionne sur toutes les plateformes (Windows, Linux, Mac)
+- Options de quantification étendues
+- Compatibilité d'outils plus large
+- Recommandé pour la plupart des utilisateurs
+
+**MLX (Mac uniquement)**
+- Optimisé pour Apple Silicon (M1/M2/M3)
+- Exploite l'accélération Metal et AMX
+- Inférence plus rapide sur Mac
+- Nécessite macOS 13+
+
+## Attentes en matière de performance
+
+### Ce qui est normal
+
+- **Temps de chargement initial** : 10-30 secondes pour le préchauffage du modèle
+- **Génération de tokens** : 5-20 tokens/seconde sur du matériel grand public
+- **Traitement du contexte** : Plus lent avec de grandes bases de code
+- **Utilisation de la mémoire** : Proche de la taille de votre quantification
+
+### Conseils de performance
+
+1. **Utilisez les compact prompts** - Essentiel pour l'inférence locale
+2. **Limitez le contexte quand c'est possible** - Commencez avec des fenêtres plus petites
+3. **Choisissez la bonne quantification** - Équilibre entre qualité et vitesse
+4. **Fermez les autres applications** - Libérez de la RAM pour le modèle
+5. **Utilisez un stockage SSD** - Chargement plus rapide du modèle
+
+## Comparaison des cas d'utilisation
+
+### Quand utiliser des modèles locaux
+
+✅ **Parfait pour :**
+- Environnements de développement hors ligne
+- Projets sensibles à la confidentialité
+- Apprendre sans coûts d'API
+- Expérimentation illimitée
+- Environnements isolés (air-gapped)
+- Développement soucieux des coûts
+
+### Quand utiliser des modèles cloud
+
+☁️ **Mieux pour :**
+- Bases de code très volumineuses (>256K tokens)
+- Sessions de refactorisation de plusieurs heures
+- Équipes ayant besoin de performances constantes
+- Dernières capacités de modèles
+- Projets avec des délais critiques
+
+## Dépannage
+
+### Problèmes courants et solutions
+
+**"Shell integration unavailable"**
+- Passez à bash dans Caret Settings → Terminal → Default Terminal Profile
+- Résout 90% des problèmes d'intégration du terminal
+
+**"No connection could be made"**
+- Vérifiez que le serveur fonctionne (LM Studio ou Ollama)
+- Vérifiez que la Base URL correspond à l'adresse du serveur
+- Assurez-vous qu'aucun pare-feu ne bloque la connexion
+- Ports par défaut : LM Studio (1234), Ollama (11434)
+
+**Réponses lentes ou incomplètes**
+- Normal pour les modèles locaux (5-20 tokens/sec typiquement)
+- Essayez une quantification plus petite (4-bit au lieu de 8-bit)
+- Activez les compact prompts si ce n'est pas déjà fait
+- Réduisez la taille de la fenêtre de contexte
+
+**Confusion du modèle ou erreurs**
+- Vérifiez que KV Cache Quantization est sur OFF (LM Studio)
+- Assurez-vous que les compact prompts sont activés
+- Vérifiez que la longueur du contexte est réglée au maximum
+- Confirmez une RAM suffisante pour la quantification
+
+### Optimisation des performances
+
+**Pour une inférence plus rapide :**
+1. Utilisez la quantification 4-bit
+2. Activez Flash Attention
+3. Réduisez la fenêtre de contexte si elle n'est pas nécessaire
+4. Fermez les applications inutiles
+5. Utilisez un SSD NVMe pour le stockage des modèles
+
+**Pour une meilleure qualité :**
+1. Utilisez une quantification 8-bit ou supérieure
+2. Maximisez la fenêtre de contexte
+3. Assurez une ventilation adéquate
+4. Allouez le maximum de RAM au modèle
+
+## Configuration avancée
+
+### Configuration Multi-GPU
+Si vous avez plusieurs GPU, vous pouvez répartir les couches du modèle :
+- LM Studio : Détection automatique du GPU
+- Ollama : Définissez le paramètre `num_gpu`
+
+### Modèles personnalisés
+Bien que Qwen3 Coder 30B soit recommandé, vous pouvez expérimenter avec :
+- DeepSeek Coder V2
+- Codestral 22B
+- StarCoder2 15B
+
+Note : Ceux-ci peuvent nécessiter une configuration et des tests supplémentaires.
+
+## Communauté et Support
+
+- **Discord** : [Rejoignez notre communauté](https://https://discord.gg/WB6yaR89YN) pour une aide en temps réel
+- **Reddit** : [r/caret](https://www.reddit.com/r/CLine/) pour les discussions
+- **GitHub** : [Signaler des problèmes](https://github.com/caret/caret/issues)
+
+## Prochaines étapes
+
+Prêt à commencer ? Choisissez votre voie :
+
+<CardGroup cols={2}>
+  <Card title="Configuration LM Studio" icon="desktop" href="/french/running-models-locally/lm-studio">
+    Approche GUI conviviale avec guide de configuration détaillé
+  </Card>
+  <Card title="Configuration Ollama" icon="terminal" href="/french/running-models-locally/ollama">
+    Installation en ligne de commande pour les utilisateurs avancés et l'automatisation
+  </Card>
+</CardGroup>
+
+## Résumé
+
+Les modèles locaux avec Caret sont désormais véritablement exploitables. Bien qu'ils n'égalent pas les API cloud de premier plan en termes de vitesse, ils offrent une confidentialité totale, un coût nul et une capacité hors ligne. Avec une configuration appropriée et le bon matériel, Qwen3 Coder 30B peut gérer efficacement la plupart des tâches de codage.
+
+La clé réside dans une installation correcte : RAM adéquate, configuration exacte et attentes réalistes. Suivez ce guide et vous disposerez d'un assistant de codage performant fonctionnant entièrement sur votre matériel.

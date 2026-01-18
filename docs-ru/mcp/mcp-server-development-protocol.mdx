@@ -1,0 +1,706 @@
+---
+title: "Протокол разработки MCP Server"
+description: "Этот протокол разработан для оптимизации процесса разработки MCP server-ов с помощью Caret."
+---
+
+> **Создавайте и делитесь своими MCP server-ами со всем миром.** Как только вы создадите отличный MCP server, отправьте его в [Caret MCP Marketplace](https://github.com/caret/mcp-marketplace), чтобы сделать его доступным и устанавливаемым одним щелчком мыши для тысяч разработчиков.
+
+## Что такое MCP Server-ы?
+
+Model Context Protocol (MCP) server-ы расширяют возможности AI-ассистентов, таких как Caret, предоставляя им возможность:
+
+-   Доступ к внешним API и сервисам
+-   Получение данных в реальном времени
+-   Управление приложениями и локальными системами
+-   Выполнение действий, выходящих за рамки возможностей текстовых запросов
+
+Без MCP AI-ассистенты мощные, но изолированные. С MCP они получают возможность взаимодействовать практически с любой цифровой системой.
+
+## Протокол разработки
+
+Основой эффективной разработки MCP server-ов является следование структурированному протоколу. Этот протокол реализован через файл `.agents/context`, который находится в **корне** вашего рабочего каталога MCP (/Users/your-name/Documents/Caret/MCP).
+
+### Использование файлов `.agents/context`
+
+Файл `.agents/context` — это специальная конфигурация, которую Caret автоматически считывает при работе в каталоге, где он размещен. Эти файлы:
+
+-   Конфигурируют поведение Caret и обеспечивают соблюдение лучших практик
+-   Переключают Caret в специализированный режим разработки MCP
+-   Предоставляют пошаговый протокол для построения server-ов
+-   Реализуют меры безопасности, такие как предотвращение преждевременного завершения
+-   Направляют вас через этапы планирования, реализации и тестирования
+
+Вот полный протокол разработки MCP Server, который следует поместить в ваш файл `.agents/context`:
+
+````markdown
+# MCP Server Development Protocol
+
+CRITICAL: DO NOT USE attempt_completion BEFORE TESTING
+
+## Step 1: Planning (PLAN MODE)
+
+-   What problem does this tool solve?
+-   What API/service will it use?
+-   What are the authentication requirements?
+    □ Standard API key
+    □ OAuth (requires separate setup script)
+    □ Other credentials
+
+## Step 2: Implementation (ACT MODE)
+
+1. Bootstrap
+
+    - For web services, JavaScript integration, or Node.js environments:
+        ```bash
+        npx @modelcontextprotocol/create-server my-server
+        cd my-server
+        npm install
+        ```
+    - For data science, ML workflows, or Python environments:
+        ```bash
+        pip install mcp
+        # Or with uv (recommended)
+        uv add "mcp[cli]"
+        ```
+
+2. Core Implementation
+
+    - Use MCP SDK
+    - Implement comprehensive logging
+        - TypeScript (for web/JS projects):
+            ```typescript
+            console.error("[Setup] Initializing server...")
+            console.error("[API] Request to endpoint:", endpoint)
+            console.error("[Error] Failed with:", error)
+            ```
+        - Python (for data science/ML projects):
+            ```python
+            import logging
+            logging.error('[Setup] Initializing server...')
+            logging.error(f'[API] Request to endpoint: {endpoint}')
+            logging.error(f'[Error] Failed with: {str(error)}')
+            ```
+    - Add type definitions
+    - Handle errors with context
+    - Implement rate limiting if needed
+
+3. Configuration
+
+    - Get credentials from user if needed
+    - Add to MCP settings:
+
+        - For TypeScript projects:
+            ```json
+            {
+            	"mcpServers": {
+            		"my-server": {
+            			"command": "node",
+            			"args": ["path/to/build/index.js"],
+            			"env": {
+            				"API_KEY": "key"
+            			},
+            			"disabled": false,
+            			"autoApprove": []
+            		}
+            	}
+            }
+            ```
+        - For Python projects:
+
+            ```bash
+            # Directly with command line
+            mcp install server.py -v API_KEY=key
+
+            # Or in settings.json
+            {
+              "mcpServers": {
+                "my-server": {
+                  "command": "python",
+                  "args": ["server.py"],
+                  "env": {
+                    "API_KEY": "key"
+                  },
+                  "disabled": false,
+                  "autoApprove": []
+                }
+              }
+            }
+            ```
+
+## Step 3: Testing (BLOCKER ⛔️)
+
+<thinking>
+BEFORE using attempt_completion, I MUST verify:
+□ Have I tested EVERY tool?
+□ Have I confirmed success from the user for each test?
+□ Have I documented the test results?
+
+If ANY answer is "no", I MUST NOT use attempt_completion.
+</thinking>
+
+1. Test Each Tool (REQUIRED)
+   □ Test each tool with valid inputs
+   □ Verify output format is correct
+   DO NOT PROCEED UNTIL ALL TOOLS TESTED
+
+## Step 4: Completion
+
+❗ STOP AND VERIFY:
+□ Every tool has been tested with valid inputs
+□ Output format is correct for each tool
+
+Only after ALL tools have been tested can attempt_completion be used.
+
+## Key Requirements
+
+-   ✓ Must use MCP SDK
+-   ✓ Must have comprehensive logging
+-   ✓ Must test each tool individually
+-   ✓ Must handle errors gracefully
+-   NEVER skip testing before completion
+````
+
+Когда этот файл `.agents/context` присутствует в вашем рабочем каталоге, Caret будет:
+
+1. Запускаться в **PLAN MODE**, чтобы спроектировать ваш server до реализации
+2. Обеспечивать соблюдение правильных шаблонов реализации в **ACT MODE**
+3. Требовать тестирование всех инструментов перед разрешением завершения
+4. Направлять вас на протяжении всего жизненного цикла разработки
+
+## С чего начать
+
+Создание MCP server-а требует всего нескольких простых шагов для начала:
+
+### 1. Создайте файл `.agents/context` (ВАЖНО)
+
+Сначала добавьте файл `.agents/context` в корень вашего рабочего каталога MCP, используя протокол, описанный выше. Этот файл настраивает Caret на использование протокола разработки MCP при работе в этой папке.
+
+### 2. Начните чат с четким описанием
+
+Начните свой чат Caret с четкого описания того, что вы хотите построить. Будьте конкретны в отношении:
+
+-   Назначения вашего MCP server-а
+-   С каким API или сервисом вы хотите интегрироваться
+-   Любых конкретных инструментов или функций, которые вам нужны
+
+Например:
+
+```plaintext
+I want to build an MCP server for the AlphaAdvantage financial API.
+It should allow me to get real-time stock data, perform technical
+analysis, and retrieve company financial information.
+```
+
+### 3. Работайте в соответствии с протоколом
+
+Caret автоматически запустится в PLAN MODE, направляя вас в процессе планирования:
+
+-   Обсуждение масштаба проблемы
+-   Рассмотрение документации API
+-   Планирование методов аутентификации
+-   Проектирование интерфейсов инструментов
+
+Когда будете готовы, переключитесь в ACT MODE, используя переключатель в нижней части чата, чтобы начать реализацию.
+
+### 4. Предоставьте документацию API на ранней стадии
+
+Один из самых эффективных способов помочь Caret создать ваш MCP server — поделиться официальной документацией API в самом начале:
+
+```plaintext
+Here's the API documentation for the service:
+[Paste API documentation here]
+```
+
+Предоставление подробной информации об API (endpoints, аутентификация, структуры данных) значительно улучшает способность Caret реализовать эффективный MCP server.
+
+## Понимание двух режимов
+
+### PLAN MODE
+
+На этом этапе совместной работы вы работаете с Caret над проектированием вашего MCP server-а:
+
+-   Определение масштаба проблемы
+-   Выбор подходящих API
+-   Планирование методов аутентификации
+-   Проектирование интерфейсов инструментов
+-   Определение форматов данных
+
+### ACT MODE
+
+После завершения планирования Caret помогает реализовать server:
+
+-   Настройка структуры проекта
+-   Написание кода реализации
+-   Настройка параметров
+-   Тщательное тестирование каждого компонента
+-   Завершение документации
+
+## Пример: Server анализа акций AlphaAdvantage
+
+Давайте рассмотрим процесс разработки нашего MCP server-а AlphaAdvantage, который предоставляет возможности анализа данных акций и создания отчетов.
+
+### Этап планирования
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/planning-phase.gif"
+		alt="Planning phase demonstration"
+	/>
+</Frame>
+
+Во время этапа планирования мы:
+
+1. **Определили проблему**: Пользователям нужен доступ к финансовым данным, анализу акций и информации о рынке непосредственно через их AI-ассистента
+2. **Выбрали API**: AlphaAdvantage API для данных финансового рынка
+    - Стандартная аутентификация по API key
+    - Ограничения скорости 5 запросов в минуту (бесплатный тариф)
+    - Различные endpoints для разных типов финансовых данных
+3. **Спроектировали необходимые инструменты**:
+    - Общая информация о акциях (текущая цена, информация о компании)
+    - Технический анализ с индикаторами (RSI, MACD и т. д.)
+    - Фундаментальный анализ (финансовые отчеты, коэффициенты)
+    - Данные отчета о прибылях
+    - Анализ новостей и настроений
+4. **Спланировали форматирование данных**:
+    - Чистый, хорошо отформатированный вывод в формате markdown
+    - Таблицы для структурированных данных
+    - Визуальные индикаторы (↑/↓) для трендов
+    - Правильное форматирование финансовых чисел
+
+### Реализация
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/building-mcp-plugin.gif"
+		alt="Building MCP plugin demonstration"
+	/>
+</Frame>
+
+Мы начали с bootstrapping проекта:
+
+```bash
+npx @modelcontextprotocol/create-server alphaadvantage-mcp
+cd alphaadvantage-mcp
+npm install axios node-cache
+```
+
+Затем мы структурировали наш проект с помощью:
+
+```plaintext
+src/
+  ├── api/
+  │   └── alphaAdvantageClient.ts  # API client with rate limiting & caching
+  ├── formatters/
+  │   └── markdownFormatter.ts     # Output formatters for clean markdown
+  └── index.ts                     # Main MCP server implementation
+```
+
+#### Реализация API Client
+
+Реализация API client включала:
+
+-   **Ограничение скорости**: Обеспечение ограничения в 5 запросов в минуту
+-   **Кэширование**: Сокращение вызовов API с помощью стратегического кэширования
+-   **Обработка ошибок**: Надежное обнаружение ошибок и создание отчетов
+-   **Типизированные интерфейсы**: Четкие TypeScript типы для всех данных
+
+Ключевые детали реализации:
+
+```typescript
+/**
+ * Manage rate limiting based on free tier (5 calls per minute)
+ */
+private async enforceRateLimit() {
+  if (this.requestsThisMinute >= 5) {
+    console.error("[Rate Limit] Rate limit reached. Waiting for next minute...");
+    return new Promise<void>((resolve) => {
+      const remainingMs = 60 * 1000 - (Date.now() % (60 * 1000));
+      setTimeout(resolve, remainingMs + 100); // Add 100ms buffer
+    });
+  }
+
+  this.requestsThisMinute++;
+  return Promise.resolve();
+}
+```
+
+#### Форматирование Markdown
+
+Мы реализовали formatters для красивого отображения финансовых данных:
+
+```typescript
+/**
+ * Format company overview into markdown
+ */
+export function formatStockOverview(overviewData: any, quoteData: any): string {
+	// Extract data
+	const overview = overviewData
+	const quote = quoteData["Global Quote"]
+
+	// Calculate price change
+	const currentPrice = parseFloat(quote["05. price"] || "0")
+	const priceChange = parseFloat(quote["09. change"] || "0")
+	const changePercent = parseFloat(quote["10. change percent"]?.replace("%", "") || "0")
+
+	// Format markdown
+	let markdown = `# ${overview.Symbol} (${overview.Name}) - ${formatCurrency(currentPrice)} ${addTrendIndicator(priceChange)}${changePercent > 0 ? "+" : ""}${changePercent.toFixed(2)}%\n\n`
+
+	// Add more details...
+
+	return markdown
+}
+```
+
+#### Реализация инструментов
+
+Мы определили пять инструментов с четкими интерфейсами:
+
+```typescript
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+	console.error("[Setup] Listing available tools")
+
+	return {
+		tools: [
+			{
+				name: "get_stock_overview",
+				description: "Get basic company info and current quote for a stock symbol",
+				inputSchema: {
+					type: "object",
+					properties: {
+						symbol: {
+							type: "string",
+							description: "Stock symbol (e.g., 'AAPL')",
+						},
+						market: {
+							type: "string",
+							description: "Optional market (e.g., 'US')",
+							default: "US",
+						},
+					},
+					required: ["symbol"],
+				},
+			},
+			// Additional tools defined here...
+		],
+	}
+})
+```
+
+Каждый обработчик инструмента включал:
+
+-   Проверку входных данных
+-   Вызовы API client с обработкой ошибок
+-   Форматирование ответов в формате markdown
+-   Комплексное ведение журнала
+
+### Этап тестирования
+
+Этот критический этап включал систематическое тестирование каждого инструмента:
+
+1. Сначала мы настроили MCP server в настройках:
+
+```json
+{
+	"mcpServers": {
+		"alphaadvantage-mcp": {
+			"command": "node",
+			"args": ["/path/to/alphaadvantage-mcp/build/index.js"],
+			"env": {
+				"ALPHAVANTAGE_API_KEY": "YOUR_API_KEY"
+			},
+			"disabled": false,
+			"autoApprove": []
+		}
+	}
+}
+```
+
+2. Затем мы протестировали каждый инструмент индивидуально:
+
+-   **get_stock_overview**: Получение информации об обзоре акций AAPL
+
+    ```markdown
+    # AAPL (Apple Inc) - $241.84 ↑+1.91%
+
+    **Sector:** TECHNOLOGY
+    **Industry:** ELECTRONIC COMPUTERS
+    **Market Cap:** 3.63T
+    **P/E Ratio:** 38.26
+    ...
+    ```
+
+-   **get_technical_analysis**: Получение данных о ценовом действии и RSI
+
+    ```markdown
+    # Technical Analysis: AAPL
+
+    ## Daily Price Action
+
+    Current Price: $241.84 (↑$4.54, +1.91%)
+
+    ### Recent Daily Prices
+
+    | Date       | Open    | High    | Low     | Close   | Volume |
+    | ---------- | ------- | ------- | ------- | ------- | ------ |
+    | 2025-02-28 | $236.95 | $242.09 | $230.20 | $241.84 | 56.83M |
+
+    ...
+    ```
+
+-   **get_earnings_report**: Получение истории доходов MSFT и отформатированного отчета
+
+    ```markdown
+    # Earnings Report: MSFT (Microsoft Corporation)
+
+    **Sector:** TECHNOLOGY
+    **Industry:** SERVICES-PREPACKAGED SOFTWARE
+    **Current EPS:** $12.43
+
+    ## Recent Quarterly Earnings
+
+    | Quarter    | Date       | EPS Estimate | EPS Actual | Surprise % |
+    | ---------- | ---------- | ------------ | ---------- | ---------- |
+    | 2024-12-31 | 2025-01-29 | $3.11        | $3.23      | ↑4.01%     |
+
+    ...
+    ```
+
+### Проблемы и решения
+
+В процессе разработки мы столкнулись с несколькими проблемами:
+
+1. **Ограничение скорости API**:
+    - **Проблема**: Бесплатный тариф ограничен 5 вызовами в минуту
+    - **Решение**: Реализовали очереди, обеспечили соблюдение ограничений скорости и добавили комплексное кэширование
+2. **Форматирование данных**:
+    - **Проблема**: Необработанные данные API не удобны для пользователя
+    - **Решение**: Создали утилиты форматирования для последовательного отображения финансовых данных
+3. **Проблемы с тайм-аутом**:
+    - **Проблема**: Сложные инструменты, выполняющие несколько вызовов API, могут превысить время ожидания
+    - **Решение**: Предложили разбить сложные инструменты на более мелкие части, оптимизировать кэширование
+
+### Извлеченные уроки
+
+Наша реализация AlphaAdvantage преподала нам несколько ключевых уроков:
+
+1. **Планируйте ограничения API**: Понимайте и проектируйте с учетом ограничений скорости API с самого начала
+2. **Кэшируйте стратегически**: Определите ценные возможности кэширования для повышения производительности
+3. **Форматируйте для удобочитаемости**: Инвестируйте в хорошее форматирование данных для улучшения пользовательского опыта
+4. **Тестируйте каждый путь**: Тестируйте все инструменты индивидуально перед завершением
+5. **Обрабатывайте сложность API**: Для API, требующих нескольких вызовов, разрабатывайте инструменты с более простыми областями действия
+
+## Основные лучшие практики реализации
+
+### Комплексное ведение журнала
+
+Эффективное ведение журнала необходимо для отладки MCP server-ов:
+
+```typescript
+// Start-up logging
+console.error("[Setup] Initializing AlphaAdvantage MCP server...")
+
+// API request logging
+console.error(`[API] Getting stock overview for ${symbol}`)
+
+// Error handling with context
+console.error(`[Error] Tool execution failed: ${error.message}`)
+
+// Cache operations
+console.error(`[Cache] Using cached data for: ${cacheKey}`)
+```
+
+### Строгая типизация
+
+Определения типов предотвращают ошибки и повышают удобство обслуживания:
+
+```typescript
+export interface AlphaAdvantageConfig {
+	apiKey: string
+	cacheTTL?: Partial<typeof DEFAULT_CACHE_TTL>
+	baseURL?: string
+}
+
+/**
+ * Validate that a stock symbol is provided and looks valid
+ */
+function validateSymbol(symbol: unknown): asserts symbol is string {
+	if (typeof symbol !== "string" || symbol.trim() === "") {
+		throw new McpError(ErrorCode.InvalidParams, "A valid stock symbol is required")
+	}
+
+	// Basic symbol validation (letters, numbers, dots)
+	const symbolRegex = /^[A-Za-z0-9.]+$/
+	if (!symbolRegex.test(symbol)) {
+		throw new McpError(ErrorCode.InvalidParams, `Invalid stock symbol: ${symbol}`)
+	}
+}
+```
+
+### Интеллектуальное кэширование
+
+Сократите количество вызовов API и повысьте производительность:
+
+```typescript
+// Default cache TTL in seconds
+const DEFAULT_CACHE_TTL = {
+	STOCK_OVERVIEW: 60 * 60, // 1 hour
+	TECHNICAL_ANALYSIS: 60 * 30, // 30 minutes
+	FUNDAMENTAL_ANALYSIS: 60 * 60 * 24, // 24 hours
+	EARNINGS_REPORT: 60 * 60 * 24, // 24 hours
+	NEWS: 60 * 15, // 15 minutes
+}
+
+// Check cache first
+const cachedData = this.cache.get<T>(cacheKey)
+if (cachedData) {
+	console.error(`[Cache] Using cached data for: ${cacheKey}`)
+	return cachedData
+}
+
+// Cache successful responses
+this.cache.set(cacheKey, response.data, cacheTTL)
+```
+
+### Грациозная обработка ошибок
+
+Реализуйте надежную обработку ошибок, которая поддерживает хороший пользовательский опыт:
+
+```typescript
+try {
+	switch (request.params.name) {
+		case "get_stock_overview": {
+			// Implementation...
+		}
+
+		// Other cases...
+
+		default:
+			throw new McpError(ErrorCode.MethodNotFound, `Unknown tool: ${request.params.name}`)
+	}
+} catch (error) {
+	console.error(`[Error] Tool execution failed: ${error instanceof Error ? error.message : String(error)}`)
+
+	if (error instanceof McpError) {
+		throw error
+	}
+
+	return {
+		content: [
+			{
+				type: "text",
+				text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+			},
+		],
+		isError: true,
+	}
+}
+```
+
+## MCP Resources
+
+Resources позволяют вашим MCP server-ам предоставлять данные Caret без выполнения кода. Они идеально подходят для предоставления контекста, такого как файлы, ответы API или записи базы данных, на которые Caret может ссылаться во время разговоров.
+
+### Добавление Resources на ваш MCP Server
+
+1. **Определите resources,** которые ваш server будет предоставлять:
+
+```typescript
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+	return {
+		resources: [
+			{
+				uri: "file:///project/readme.md",
+				name: "Project README",
+				mimeType: "text/markdown",
+			},
+		],
+	}
+})
+```
+
+2. **Реализуйте обработчики чтения,** чтобы доставить содержимое:
+
+```typescript
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+	if (request.params.uri === "file:///project/readme.md") {
+		const content = await fs.promises.readFile("/path/to/readme.md", "utf-8")
+		return {
+			contents: [
+				{
+					uri: request.params.uri,
+					mimeType: "text/markdown",
+					text: content,
+				},
+			],
+		}
+	}
+
+	throw new Error("Resource not found")
+})
+```
+
+Resources делают ваши MCP server-ы более осведомленными о контексте, позволяя Caret получать доступ к определенной информации без необходимости копировать/вставлять. Для получения дополнительной информации обратитесь к [официальной документации](https://modelcontextprotocol.io/docs/concepts/resources).
+
+## Распространенные проблемы и решения
+
+### Сложности аутентификации API
+
+**Проблема**: API часто имеют разные методы аутентификации.
+
+**Решение**:
+
+-   Для API keys используйте переменные среды в конфигурации MCP
+-   Для OAuth создайте отдельный скрипт для получения токенов обновления
+-   Безопасно храните конфиденциальные токены
+
+```typescript
+// Authenticate using API key from environment
+const API_KEY = process.env.ALPHAVANTAGE_API_KEY
+if (!API_KEY) {
+	console.error("[Error] Missing ALPHAVANTAGE_API_KEY environment variable")
+	process.exit(1)
+}
+
+// Initialize API client
+const apiClient = new AlphaAdvantageClient({
+	apiKey: API_KEY,
+})
+```
+
+### Отсутствующие или ограниченные функции API
+
+**Проблема**: API могут не предоставлять все необходимые вам функции.
+
+**Решение**:
+
+-   Реализуйте резервные варианты, используя доступные endpoints
+-   Создайте смоделированную функциональность там, где это необходимо
+-   Преобразуйте данные API в соответствии со своими потребностями
+
+### Ограничение скорости API
+
+**Проблема**: Большинство API имеют ограничения скорости, которые могут вызвать сбои.
+
+**Решение**:
+
+-   Реализуйте правильное ограничение скорости
+-   Добавьте интеллектуальное кэширование
+-   Обеспечьте плавное ухудшение производительности
+-   Добавьте прозрачные ошибки об ограничениях скорости
+
+```typescript
+if (this.requestsThisMinute >= 5) {
+	console.error("[Rate Limit] Rate limit reached. Waiting for next minute...")
+	return new Promise<void>((resolve) => {
+		const remainingMs = 60 * 1000 - (Date.now() % (60 * 1000))
+		setTimeout(resolve, remainingMs + 100) // Add 100ms buffer
+	})
+}
+```
+
+## Дополнительные ресурсы
+
+-   [Документация по протоколу MCP](https://github.com/modelcontextprotocol/mcp)
+-   [Документация по MCP SDK](https://github.com/modelcontextprotocol/sdk-js)
+-   [Примеры MCP Server](https://github.com/modelcontextprotocol/servers)
+```

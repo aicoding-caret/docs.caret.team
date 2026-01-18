@@ -1,0 +1,160 @@
+---
+title: "Diktat"
+description: "Kommunizieren Sie mit Caret mithilfe Ihrer Stimme für eine schnellere, natürlichere KI-Zusammenarbeit"
+---
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(지원 OS/마이크 권한, 인증/라우팅, 음성 처리 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+음성 기능 이식: `merging/v3.38.1/attempt-2-master.md`에 기록된 대로 일부 VoiceRecorder/PulsingBorder 스타일은 미이식 정책이 있습니다. 캐럿에서 지원하지 않는 스타일/동작을 문서에 명시하세요.
+</Note>
+
+Diktat verändert Ihre Arbeitsweise mit KI grundlegend. Anstatt komplexe Gedanken auszuschreiben, sprechen Sie auf natürliche Weise und teilen Ihre vollständige Absicht mit. Es geht nicht nur um Geschwindigkeit - obwohl Sprache schneller ist - sondern um die Ermöglichung einer fließenden Zusammenarbeit, die das Tippen nicht leisten kann.
+
+## Warum Sprache alles verändert
+
+Wenn Sie tippen, bearbeiten Sie sich selbst. Sie vereinfachen komplexe Ideen, überspringen Kontexte und verlieren Nuancen. Wenn Sie sprechen, teilen Sie alles mit, was Ihnen im Kopf herumgeht - das gesamte Problem, die Einschränkungen, die Edge Cases, über die Sie sich Sorgen machen.
+
+Verwenden Sie Diktat ständig im [Plan mode](/german/features/plan-and-act) für schnelle, wechselseitige Diskussionen. Anstatt sorgfältige, strukturierte Prompts einzutippen, denken Sie über ein Problem nach. Caret stellt klärende Fragen, antworten Sie sofort und iterieren Sie, bis Sie einen soliden Plan haben.
+
+Die Reibung des Tippens hat die echte Zusammenarbeit behindert. Sprache beseitigt diese Reibung.
+
+## Erste Schritte
+
+**Diktat aktivieren:**
+1. Gehen Sie zu Einstellungen → Features → Diktat
+2. Aktivieren Sie "Diktat aktivieren"
+3. Melden Sie sich bei Ihrem Caret-Konto an, wenn Sie dazu aufgefordert werden
+4. Installieren Sie FFmpeg, falls Sie dies noch nicht getan haben (Caret wird Sie dabei unterstützen)
+
+Sobald es aktiviert ist, sehen Sie eine Mikrofon-Schaltfläche im Chat-Eingabebereich.
+
+**Verwendung von Diktat:**
+- Klicken Sie auf die Mikrofon-Schaltfläche, um die Aufnahme zu starten
+- Sprechen Sie natürlich
+- Klicken Sie erneut, um die Aufnahme zu beenden
+- Warten Sie, bis die Transkription im Chat erscheint
+
+<Tip>
+Diktat funktioniert mit jedem KI-Modell, das Sie konfiguriert haben. Die Transkription erfolgt über den Dienst von Caret, aber Ihre Konversation wird mit dem von Ihnen verwendeten Modell fortgesetzt.
+</Tip>
+
+## Systemanforderungen
+
+<Note>
+Diktat ist derzeit nicht unter Windows verfügbar. Die Unterstützung für Windows ist für eine zukünftige Version geplant.
+</Note>
+
+Diktat verwendet FFmpeg, um Ihre Stimme auf allen Plattformen zu erfassen:
+
+- **macOS**: FFmpeg (via Homebrew: `brew install ffmpeg`)
+- **Linux**: FFmpeg (via apt: `sudo apt-get install ffmpeg`)
+
+Wenn Sie FFmpeg nicht installiert haben, erkennt Caret dies automatisch und fordert Sie auf, es mit einem einzigen Klick zu installieren.
+
+## Wo Diktat glänzt
+
+### Plan Mode Konversationen
+
+Diktat ist perfekt für [Plan mode](/german/features/plan-and-act) Diskussionen. Anstatt sorgfältig Prompts zu erstellen, können Sie:
+
+- Diktieren Sie Ihren gesamten Problemkontext auf einmal
+- Antworten Sie sofort auf Carets Fragen
+- Iterieren Sie Ideen ohne Tippreibung
+- Denken Sie laut, während Caret zuhört
+
+Starten Sie eine Planungssitzung, indem Sie 2-3 Minuten lang sprechen und den vollständigen Kontext dessen erläutern, was Sie erstellen möchten, die Einschränkungen, mit denen Sie arbeiten, und die spezifischen Herausforderungen, vor denen Sie stehen.
+
+### Komplexe Problemerklärung
+
+Einige Probleme sind schwer auszutippen. Wenn Sie es zu tun haben mit:
+- Mehrstufige Workflows mit Edge Cases
+- Integrationsherausforderungen über mehrere Systeme hinweg
+- Leistungsprobleme mit spezifischen Reproduktionsschritten
+- UI/UX-Probleme, die einen detaillierten Kontext erfordern
+
+Sprechen ermöglicht es Ihnen, die gesamte Situation auf natürliche Weise zu erklären, einschließlich all der "ach, und auch..." Details, die wichtig sind.
+
+### Code Review und Debugging
+
+Beim Überprüfen von Code oder Erklären von Fehlern können Sie durch Sprache Ihren Denkprozess nachvollziehen:
+- "Diese Funktion sieht gut aus, aber ich mache mir Sorgen, was passiert, wenn..."
+- "Das Problem könnte in diesem Abschnitt liegen, oder möglicherweise in diesem anderen Bereich..."
+- "Ich habe X und Y ausprobiert, aber keines von beiden hat funktioniert, weil..."
+
+Sie können Ihre vollständige Debugging-Reise teilen, anstatt nur die letzte Frage.
+
+## Technische Anforderungen
+
+**Systemanforderungen:**
+- FFmpeg auf Ihrem System installiert
+- Aktive Internetverbindung
+- Caret-Konto mit Transkriptionsguthaben
+
+**Audioqualität:**
+- Nimmt im WebM-Format mit Opus-Codec auf
+- Mono-Audio mit 16 kHz Abtastrate
+- Optimiert für Spracherkennung
+
+**Privatsphäre:**
+- Audio wird lokal auf Ihrem Rechner aufgenommen
+- Nur Audiodateien werden zur Transkription gesendet
+- Keine Audioaufnahmen werden nach der Transkription gespeichert
+- Temporäre Dateien werden automatisch bereinigt
+
+## Kosten und Guthaben
+
+Sprachaufzeichnung kostet $0.006 pro Minute über Ihr Caret-Konto. Für die meisten Benutzer sind das nur wenige Cent pro Sitzung.
+
+Eine typische 5-minütige Planungsunterhaltung kostet etwa 3 Cent. Selbst starke Sprachbenutzer geben selten mehr als ein paar Dollar pro Monat aus.
+
+<Note>
+Die Preise sind experimentell und können sich ändern, wenn wir den Service verfeinern.
+</Note>
+
+## Bewährte Verfahren
+
+**Sprechen Sie natürlich**
+Versuchen Sie nicht, wie beim Tippen zu sprechen. Verwenden Sie Ihren normalen Konversationston und machen Sie sich keine Sorgen über perfekte Grammatik.
+
+**Geben Sie zuerst Kontext**
+Beginnen Sie mit dem Gesamtbild und gehen Sie dann auf die Details ein. "Ich entwickle eine React App, die Echtzeitdaten verarbeiten muss, und ich habe Leistungsprobleme mit der WebSocket-Verbindung..."
+
+**Verwenden Sie Sprache zur Erkundung**
+Diktat ist perfekt für explorative Gespräche, bei denen Sie nicht genau wissen, was Sie benötigen. Beginnen Sie, über das Problem zu sprechen, und lassen Sie das Gespräch sich entwickeln.
+
+**Mit Text kombinieren**
+Sie müssen nicht für alles Sprache verwenden. Verwenden Sie Sprache für komplexe Erklärungen und Kontext und wechseln Sie dann zu Text für schnelle Follow-ups oder Code Snippets.
+
+## Fehlerbehebung
+
+**Mikrofon funktioniert nicht**
+- Überprüfen Sie Ihre IDE-Berechtigungen für den Mikrofonzugriff
+- Stellen Sie sicher, dass FFmpeg ordnungsgemäß installiert ist
+- Versuchen Sie, VS Code/Ihren Editor zu aktualisieren
+
+**Schlechte Transkriptionsqualität**
+- Sprechen Sie deutlich und in normaler Lautstärke
+- Reduzieren Sie Hintergrundgeräusche, wenn möglich
+- Überprüfen Sie Ihre Mikrofoneinstellungen
+
+**Verbindungsprobleme**
+- Überprüfen Sie die Internetverbindung
+- Überprüfen Sie, ob die Firewall Carets Server blockiert
+- Versuchen Sie, sich ab- und wieder bei Ihrem Caret-Konto anzumelden
+
+**Authentifizierungsprobleme**
+- Melden Sie sich ab und wieder bei Ihrem Caret-Konto an, wenn Sie Authentifizierungsfehler sehen
+- Überprüfen Sie, ob Ihr Konto über ausreichend Transkriptionsguthaben verfügt
+- Stellen Sie sicher, dass Ihre Internetverbindung stabil ist
+
+**Audioaufzeichnungsprobleme**
+- Stellen Sie sicher, dass FFmpeg ordnungsgemäß installiert und zugänglich ist
+- Überprüfen Sie, ob Ihr Browser/Ihre IDE über Mikrofonberechtigungen verfügt
+- Versuchen Sie, Ihren Editor neu zu starten, wenn die Audioaufnahme fehlschlägt
+
+## Die Zukunft der KI-Zusammenarbeit
+
+Wenn Sie Ihre Gedanken so schnell aussprechen können, wie Sie sie denken, hören Sie auf, sich selbst zu zensieren. Sie teilen den vollständigen Kontext, die Edge Cases, die "Was wäre wenn"-Szenarien, die wichtig sind. Dies führt zu besseren Lösungen und weniger wechselseitigen Klärungen.

@@ -1,0 +1,111 @@
+---
+title: "Ollama"
+description: "Un guide rapide pour configurer Ollama pour l'exécution locale de modèles d'IA avec Caret."
+---
+
+<Note>
+Il s'agit d'un document basé sur Caret. Il suit la version Caret v3.38.1, et si des politiques spécifiques à Caret (runtime local pris en charge, authentification/routage, limites de modèle) s'appliquent, elles sont indiquées par `<Note>` dans le corps du texte.
+</Note>
+
+### Prérequis
+
+-   Un ordinateur sous Windows, macOS ou Linux
+-   Caret installé dans VS Code
+
+### Étapes de configuration
+
+#### 1. Installer Ollama
+
+-   Visitez [ollama.com](https://ollama.com)
+-   Téléchargez et installez-le pour votre système d'exploitation
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2)%20(1)%20(1).png"
+		alt="Ollama download page"
+	/>
+</Frame>
+
+#### 2. Choisir et télécharger un modèle
+
+-   Parcourez les modèles sur [ollama.com/search](https://ollama.com/search)
+-   Sélectionnez un modèle et copiez la commande :
+
+    ```bash
+    ollama run [model-name]
+    ```
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/ollama-model-grab%20(2).gif"
+		alt="Selecting a model in Ollama"
+	/>
+</Frame>
+
+-   Ouvrez votre Terminal et exécutez la commande :
+
+    -   Exemple :
+
+        ```bash
+        ollama run llama2
+        ```
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/starting-ollama-terminal%20(2).gif"
+		alt="Running Ollama in terminal"
+	/>
+</Frame>
+
+Votre modèle est maintenant prêt à être utilisé avec Caret.
+
+#### 3. Configurer Caret
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/ollama-setup.gif"
+		alt="Complete Ollama setup process"
+	/>
+</Frame>
+
+Ouvrez VS Code et configurez Caret :
+
+1. Cliquez sur l'icône des paramètres de Caret
+2. Sélectionnez "Ollama" comme fournisseur d'API
+3. Base URL : `http://localhost:11434/` (par défaut, généralement pas besoin de changer)
+4. Sélectionnez votre modèle dans la liste déroulante
+
+### Modèles recommandés
+
+Pour une expérience optimale avec Caret, utilisez **Qwen3 Coder 30B**. Ce modèle offre de solides capacités de codage et une utilisation fiable des outils pour le développement local.
+
+Pour le télécharger :
+```bash
+ollama run qwen3-coder-30b
+```
+
+D'autres modèles performants incluent :
+- `mistral-small` - Bon équilibre entre performance et rapidité
+- `devstral-small` - Optimisé pour les tâches de codage
+
+### Remarques importantes
+
+-   Démarrez Ollama avant de l'utiliser avec Caret
+-   Laissez Ollama s'exécuter en arrière-plan
+-   Le premier téléchargement du modèle peut prendre plusieurs minutes
+
+### Activer les Compact Prompts
+
+Pour de meilleures performances avec les modèles locaux, activez les compact prompts dans les paramètres de Caret. Cela réduit la taille du prompt de 90 % tout en conservant les fonctionnalités de base.
+
+Accédez à Caret Settings → Features → Use Compact Prompt et activez l'option.
+
+### Dépannage
+
+Si Caret ne parvient pas à se connecter à Ollama :
+
+1. Vérifiez qu'Ollama est en cours d'exécution
+2. Vérifiez que l'URL de base est correcte
+3. Assurez-vous que le modèle est téléchargé
+
+Besoin de plus d'informations ? Lisez la [documentation d'Ollama](https://github.com/ollama/ollama/blob/main/docs/api.md).

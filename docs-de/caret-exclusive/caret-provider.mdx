@@ -1,0 +1,76 @@
+---
+title: Caret Provider
+---
+
+# Caret Provider
+
+Caret Provider ist ein integriertes Authentifizierungssystem, mit dem Sie sofort einen AI-Coding-Assistant ohne API-Key nutzen können. Es ist ab sofort verfügbar.
+
+## Was ist es?
+
+Die erste Hürde, auf die viele Entwickler stoßen, wenn sie Caret zum ersten Mal verwenden, ist die Einrichtung des API-Keys. Der Prozess, API-Keys von AI-Providern wie OpenAI oder Anthropic zu erhalten, Zahlungsinformationen zu hinterlegen und die Nutzung zu verwalten, kann mühsam sein.
+
+Caret Provider beseitigt diese erste Einstiegsbarriere. Mit nur einem Caret-Account können Sie den AI-Assistant sofort ohne separate API-Key-Konfiguration nutzen.
+
+## Google Gemini Priority Support
+
+Das erste unterstützte Modell für Caret Provider ist **Google Gemini**. Gemini bietet leistungsstarke Coding-Funktionen und ist gleichzeitig relativ preiswert, was es ideal für Einsteiger und Individualentwickler macht.
+
+## Free Credits
+
+Alle Nutzer, die Caret Provider zum ersten Mal verwenden, erhalten **kostenlose Credits**. Damit können Sie die Funktionen von Caret ohne tatsächliche Kostenbelastung testen.
+
+## Image Generation Tool (Caret Account)
+
+Wenn Sie sich mit einem Caret-Account anmelden, können Sie das Image Generation Tool nutzen. Die Authentifizierung erfolgt über das Caret-Token, und die Ergebnisse werden automatisch in Ihrem Workspace gespeichert.
+
+### Wie es funktioniert
+
+1. Fragen Sie Caret, ein Bild zu generieren (z. B. „Erstelle eine Illustration für ein Dashboard“).
+2. Caret ruft die Image Generation API auf und erstellt das Ergebnis.
+3. Output-Dateien werden unter `.agents/generated-assets/` in Ihrem Workspace gespeichert.
+
+### Storage-Regeln
+
+Jeder Request erstellt zwei Dateien unter Verwendung der Request-ID:
+
+- `.agents/generated-assets/<request_id>.<ext>`: die Bilddatei
+- `.agents/generated-assets/<request_id>.md`: Metadaten (Prompt und Link zum Bild)
+
+### Referenzbilder
+
+Neben Text-Prompts können Sie beim Anfordern der Generierung auch Bilder anhängen. Sie können **ein bestimmtes Bild als Referenz** angeben, um einen **konsistenten Stil, eine Komposition oder eine Charakter-Identität** beizubehalten, während Sie Bilder iterieren oder bearbeiten.  
+Wenn Sie kein Referenzbild angeben, kann das Tool automatisch den ausgewählten Image-Scope oder andere Standard-Eingabeverhalten verwenden.
+
+### Praktische Tipps
+
+- Entscheiden Sie als Team, ob generierte Bilder und Metadaten in das Repo committet werden sollen.
+- Prompts werden in der `.md`-Datei gespeichert; vermeiden Sie daher sensible Informationen.
+- Sie können Caret anweisen, generierte Assets in **spezifische Projektordner** zu verschieben, um eine organisierte Verwaltung zu ermöglichen.
+- Dies ermöglicht ein **dokumentengesteuertes Prompt-Management und Ressourcen-Editing**, sodass Sie Worldbuilding oder Charakter-Guides zusammen mit Prompts verwalten können, um Content oder Service-Assets zu erstellen.
+
+## Zukunftspläne
+
+Nach dem Support für Gemini planen wir, nacheinander weitere AI-Modelle hinzuzufügen, sodass diese über Caret Provider genutzt werden können.
+
+## Updates
+
+Wir werden neue Funktionen und Änderungen über die folgenden Kanäle teilen:
+
+- Benachrichtigungen innerhalb der Caret VS Code Extension
+- [Discord Community](https://discord.com/invite/K3mU3EEvWm)
+- Offizielle Website (https://caret.team)
+
+## Verhältnis zu bestehenden API-Keys
+
+Auch nach der Veröffentlichung von Caret Provider wird die bestehende Methode zur direkten Eingabe von API-Keys weiterhin unterstützt. Sie haben die folgenden Optionen:
+
+**Nutzung von Caret Provider**: Einfacher Start, integrierte Verwaltung, Nutzung kostenloser Credits (zuerst Gemini, wobei ChatGPT, Claude und lokale Provider wie Naver/Upstage nacheinander hinzugefügt werden)
+
+**Nutzung direkter API-Keys**: Nutzung bestehender Accounts, mehr Modellauswahl, direktes Kostenmanagement
+
+Es ist auch möglich, beide Methoden zusammen zu verwenden.
+
+---
+
+**Caret Provider ist ab sofort verfügbar.** Er ist der einfachste Weg, um sofort ohne API-Key zu starten.

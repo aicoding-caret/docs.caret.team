@@ -1,0 +1,97 @@
+---
+title: "Model-Vergleich & Preise"
+description: "Vergleichen Sie AI-Modelle nach Performance, Funktionen und Preisen"
+---
+
+<Note>
+Dies ist ein Dokument basierend auf Caret. Es folgt dem Caret v3.38.1 Merge-Stand. Falls es spezifische Caret-Richtlinien gibt (unterstützte/blockierte Modelle, Regions-/Account-Beschränkungen, Authentifizierung/Routing), werden diese im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+## Modellvergleichstabelle
+
+### Premium-Modelle
+
+| Modell | Anbieter | Context Window | Input-Preis* | Output-Preis* | Ideal für |
+|-------|----------|---------------|--------------|---------------|----------|
+| **Claude Sonnet 4.5** | Anthropic | 1M tokens | $3-6 | $15-22.50 | Zuverlässige Tool-Nutzung, komplexe Codebasen |
+| **GPT-5** | OpenAI | 400K tokens | $1.25 | $10 | Neueste OpenAI-Technologie, drei Modi |
+| **Gemini 2.5 Pro** | Google | 1M+ tokens | TBD | TBD | Große Codebasen, Dokumentenanalyse |
+| **Qwen3 Coder** | Multiple | 256K tokens | $0.20 | $0.80 | Coding-Aufgaben, Open-Source-Flexibilität |
+
+*Pro Million Tokens
+
+### Budget-Modelle
+
+| Modell | Anbieter | Context Window | Input-Preis* | Output-Preis* | Hinweise |
+|-------|----------|---------------|--------------|---------------|-------|
+| **DeepSeek V3** | DeepSeek | 128K tokens | $0.14 | $0.28 | Hervorragendes Preis-Leistungs-Verhältnis für tägliches Coding |
+| **DeepSeek R1** | DeepSeek | 128K tokens | $0.55 | $2.19 | Champion für preiswertes Reasoning |
+| **Qwen3 32B** | Multiple | 128K tokens | Variiert | Variiert | Open Source, mehrere Anbieter |
+| **Z AI GLM 4.5** | Z AI | 128K tokens | TBD | TBD | MIT-lizenziert, hybrides Reasoning |
+
+*Pro Million Tokens
+
+## Performance-Vergleich
+
+### Abwägung zwischen Geschwindigkeit und Qualität
+
+| Priorität | Empfohlenes Modell | Warum |
+|----------|------------------|-----|
+| **Geschwindigkeit** | Qwen3 Coder auf Cerebras | Schnellste verfügbare Inferenz |
+| **Qualität** | Claude Sonnet 4.5 | Am zuverlässigsten für komplexe Aufgaben |
+| **Ausgewogenheit** | DeepSeek V3 | Gute Qualität bei niedrigen Kosten |
+
+### Tool-Zuverlässigkeit
+
+Modelle nach Zuverlässigkeit der Tool-Nutzung:
+1. **Claude Sonnet 4.5** – Zuverlässigste Tool-Ausführung
+2. **GPT-5** – Exzellent, aber gelegentliche Formatierungsprobleme
+3. **Gemini 2.5 Pro** – Gut für Standard-Tools
+4. **DeepSeek V3** – Zuverlässig für Basis-Tools
+5. **Qwen3-Varianten** – Erfordert eventuell Wiederholungen bei komplexen Tools
+
+## Kostenrechner
+
+### Typische Kosten pro Aufgabe
+
+| Aufgabentyp | Token-Verbrauch (Durchschnitt) | Claude Sonnet | DeepSeek V3 | Differenz |
+|-----------|------------------|---------------|-------------|------------|
+| **Einfacher Bug-Fix** | 5K tokens | $0.05 | $0.001 | 50x günstiger |
+| **Feature-Implementierung** | 50K tokens | $0.50 | $0.01 | 50x günstiger |
+| **Großes Refactoring** | 200K tokens | $2.00 | $0.04 | 50x günstiger |
+
+### Monatliche Budget-Schätzungen
+
+| Budget | Claude-Nutzung | DeepSeek-Nutzung | Gemischte Strategie |
+|--------|-------------|----------------|----------------|
+| **$10/Monat** | ~20 Features | ~1000 Features | Planen: DeepSeek, Handeln: Claude |
+| **$50/Monat** | ~100 Features | ~5000 Features | Kritisch: Claude, Rest: DeepSeek |
+| **$100/Monat** | ~200 Features | ~10000 Features | Komplex: Claude, Einfach: DeepSeek |
+
+## Anbieter-Vergleich
+
+### Anbieter-Funktionen
+
+| Anbieter | Verfügbare Modelle | Abrechnung | API-Stabilität | Support |
+|----------|-----------------|---------|---------------|---------|
+| **Caret** | Mehrere | Credit-basiert | Hoch | In-App |
+| **Anthropic** | Nur Claude | Nutzungsbasiert | Hoch | E-Mail |
+| **OpenRouter** | 100+ Modelle | Nutzungsbasiert | Hoch | Discord |
+| **OpenAI** | Nur GPT | Nutzungsbasiert | Hoch | Forum |
+| **Lokal (Ollama)** | Open Source | Kostenlos | N/A | Community |
+
+### Leitfaden zur Anbieterwahl
+
+Wählen Sie Ihren Anbieter basierend auf:
+- **Einfachheit**: Caret (keine API-Key-Verwaltung)
+- **Vielfalt**: OpenRouter (Zugriff auf alle Modelle)
+- **Direkter Zugriff**: Einzelne Anbieter (Anthropic, OpenAI)
+- **Datenschutz**: Ollama oder LM Studio (lokale Modelle)
+
+## Community-Nutzungsstatistiken
+
+Echtzeit-Nutzungsdaten der Caret-Community:
+- Sehen Sie aktuelle Trends unter [OpenRouters Caret-Statistiken](https://openrouter.ai/apps?url=https%3A%2F%2Fcline.bot%2F)
+- Beliebtestes Modell: Claude Sonnet 4.5 (40%)
+- Aufstrebender Stern: DeepSeek V3 (25%)
+- Budget-Favorit: Qwen3-Varianten (20%)

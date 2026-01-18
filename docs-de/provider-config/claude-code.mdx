@@ -1,0 +1,90 @@
+---
+title: "Claude Code"
+description: "Nutzen Sie Ihr Claude Max oder Pro Abonnement mit Caret, anstatt pro Token zu bezahlen. Erfahren Sie, wie Sie den Claude Code Provider einrichten und konfigurieren."
+---
+
+<Note>
+Dies ist ein auf Caret basierendes Dokument. Es entspricht dem Caret v3.38.1 Merge-Stand. Falls Caret-spezifische Richtlinien vorliegen (erlaubte/blockierte Modelle, regionale Beschränkungen, Authentifizierung/Routing), werden diese im Text mit einer `<Note>` gekennzeichnet.
+</Note>
+
+**Website:** [https://docs.anthropic.com/german/docs/claude-code/setup](https://docs.anthropic.com/german/docs/claude-code/setup)
+
+Der Claude Code Provider ermöglicht es Ihnen, Ihr bestehendes Claude Abonnement mit Caret zu nutzen. Wenn Sie Claude Max oder Pro besitzen, bedeutet das, dass Sie Claude in Caret verwenden können, ohne zusätzliche API-Kosten zu verursachen.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-use-opus.gif"
+		alt="Verwendung des Claude Code Providers in Caret mit dem Opus-Modell"
+	/>
+</Frame>
+
+## Einrichtung
+
+Zuerst müssen Sie Claude Code auf Ihrem System installieren und authentifizieren:
+
+1. **Claude Code installieren**: Folgen Sie der [offiziellen Einrichtungsanleitung](https://docs.anthropic.com/german/docs/claude-code/setup) von Anthropic, um das Claude CLI zu installieren und zu authentifizieren.
+
+2. **In Caret konfigurieren**:
+    - Öffnen Sie die Caret-Einstellungen (⚙️ Icon)
+    - Wählen Sie **Claude Code** aus dem **API Provider** Dropdown-Menü aus
+    - Legen Sie den Pfad zu Ihrer Claude CLI Executable fest (normalerweise einfach `claude`, wenn es sich in Ihrem PATH befindet)
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-setup.gif"
+		alt="Einrichtung des Claude Code Providers in Caret"
+	/>
+</Frame>
+
+<br />
+
+### Ihren Claude Code Pfad finden
+
+-   **macOS / Linux / WSL / Git Bash**: `which claude`
+-   **Windows Command Prompt**: `where claude`
+
+## Unterstützte Modelle
+
+Der Claude Code Provider unterstützt diese Modelle:
+
+-   `claude-sonnet-4-20250514` (Empfohlen)
+-   `claude-opus-4-1-20250805`
+-   `claude-opus-4-20250514`
+-   `claude-3-7-sonnet-20250219`
+-   `claude-3-5-sonnet-20241022`
+-   `claude-3-5-haiku-20241022`
+
+## Funktionsweise
+
+Wenn Sie Claude Code mit Caret verwenden, passiert im Hintergrund Folgendes:
+
+Caret kapselt das Claude Code CLI, um Ihre Anfragen zu bearbeiten. Jedes Mal, wenn Sie eine Nachricht senden, startet Caret einen neuen `claude` Prozess, sendet Ihre Konversation und überträgt die Antwort zurück. Das AI-Reasoning stammt von Claude Code, aber alle tatsächlichen Dateibearbeitungen, Terminal-Befehle und anderen Tools werden von Caret verwaltet.
+
+Der Hauptunterschied, den Sie bemerken werden, ist, dass die Antworten nicht Zeichen für Zeichen gestreamt werden wie bei anderen Providern. Stattdessen verarbeitet Claude Code Ihre gesamte Anfrage, bevor die vollständige Antwort zurückgesendet wird.
+
+## Einschränkungen
+
+Bei Claude Code sind einige Dinge zu beachten:
+
+-   Bilder in Ihren Nachrichten werden in Textplatzhalter umgewandelt, da Claude Code keine Bilduploads über das CLI unterstützt
+-   Prompt Caching ist bei diesem Provider nicht verfügbar
+-   Antworten werden nicht in Echtzeit gestreamt wie bei anderen Providern
+
+## Fehlerbehebung
+
+Falls Probleme auftreten:
+
+**Authentifizierungsprobleme**: Stellen Sie sicher, dass Sie mit Ihrem Abonnement-Konto bei Claude Code angemeldet sind. Führen Sie `claude auth status` aus, um dies zu überprüfen.
+
+**Pfadprobleme**: Überprüfen Sie noch einmal, ob der Claude CLI Pfad in den Caret-Einstellungen korrekt ist. Versuchen Sie, `claude --version` in Ihrem Terminal auszuführen, um die Funktionsfähigkeit zu verifizieren.
+
+**Haben Sie immer noch Probleme?** Wir arbeiten aktiv an der Verbesserung dieser Integration. Melden Sie Probleme auf unserem [GitHub](https://github.com/caret/caret/issues) oder bitten Sie in unserem [Discord](https://https://discord.gg/WB6yaR89YN) um Hilfe.
+
+## Nutzung mit Abonnements
+
+Wenn Sie ein Claude Max Abonnement haben, wird Ihre Nutzung in Caret in der Abrechnungsoberfläche als 0,00 $ angezeigt, da Sie keine zusätzlichen API-Kosten zahlen. Ihre Nutzung wird weiterhin auf Ihre Abonnement-Limits angerechnet, aber Sie sehen keine Kosten pro Token.
+
+Weitere Details zur Nutzung von Claude Code mit Ihrem Abonnement finden Sie in der Dokumentation von Anthropic:
+
+-   [Claude Code Einrichtungsanleitung](https://docs.anthropic.com/german/docs/claude-code/setup)
+-   [Claude Code mit Pro/Max Plänen nutzen](https://support.anthropic.com/german/articles/11145838-using-claude-code-with-your-pro-or-max-plan)

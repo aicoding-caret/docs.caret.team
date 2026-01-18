@@ -1,0 +1,98 @@
+---
+title: "Vercel AI Gateway"
+description: "Nutzen Sie das Vercel AI Gateway in Caret, um über 100 Modelle über einen einzigen Endpoint mit Routing, Retries und Spend-Observability zu erreichen."
+---
+
+Vercel AI Gateway bietet Ihnen eine einzige API, um auf Modelle von vielen Providern zuzugreifen. Sie wechseln einfach per model id, ohne SDKs austauschen oder mehrere Keys verwalten zu müssen. Caret lässt sich direkt integrieren, sodass Sie ein Gateway-Modell im Dropdown-Menü auswählen, es wie jeden anderen Provider nutzen und die Token- sowie Cache-Nutzung im Stream sehen können.
+
+Nützliche Links:
+- Team-Dashboard: https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai
+- Modell-Katalog: https://vercel.com/ai-gateway/models
+- Dokumentation: https://vercel.com/docs/ai-gateway
+
+## Ihre Vorteile
+
+- Ein Endpoint für über 100 Modelle mit einem einzigen Key
+- Automatische Retries und Fallbacks, die Sie im Dashboard konfigurieren
+- Spend-Monitoring mit Requests nach Modell, Token-Anzahl, Cache-Nutzung, Latenz-Perzentilen und Kosten
+- OpenAI-kompatible Oberfläche, damit bestehende Clients funktionieren
+
+## Einen API Key erstellen
+
+1. Melden Sie sich unter https://vercel.com an
+2. Dashboard → AI Gateway → API Keys → Create key
+3. Kopieren Sie den Key
+
+Weitere Informationen zu Authentifizierung und OIDC-Optionen finden Sie unter https://vercel.com/docs/ai-gateway/authentication
+
+## Konfiguration in Caret
+
+1. Öffnen Sie die Caret-Einstellungen
+2. Wählen Sie **Vercel AI Gateway** als API Provider aus
+3. Fügen Sie Ihren Gateway API Key ein
+4. Wählen Sie ein Modell aus der Liste. Caret ruft den Katalog automatisch ab. Sie können auch eine genaue ID einfügen.
+
+Hinweise:
+- Model-IDs folgen oft dem Schema `provider/model`. Kopieren Sie die exakte ID aus dem Katalog.
+  Beispiele:
+  - `openai/gpt-5`
+  - `anthropic/claude-sonnet-4`
+  - `google/gemini-2.5-pro`
+  - `groq/llama-3.1-70b`
+  - `deepseek/deepseek-v3`
+
+## Observability, die Sie nutzen können
+
+<Frame>
+  <img src="https://assets.vercel.com/image/upload/v1753121283/gateway-overhead-dark_zhqwwj.svg" alt="Vercel AI Gateway Observability mit Requests nach Modell, Tokens, Cache, Latenz und Kosten." />
+</Frame>
+
+Was Sie im Blick behalten sollten:
+- Requests nach Modell – Bestätigung von Routing und Adoption
+- Tokens – Input vs. Output, inklusive Reasoning, falls verfügbar
+- Cache – Cached Input und Cache Creation Tokens
+- Latenz – p75 Dauer und p75 Time to first Token
+- Kosten – pro Projekt und pro Modell
+
+Nutzen Sie dies für:
+- Vergleich von Output-Tokens pro Request vor und nach einem Modellwechsel
+- Validierung der Cache-Strategie durch Tracking von Cache-Reads und Write-Creation
+- Erkennen von TTFT-Regressionen während Experimenten
+- Abgleich von Budgets mit der tatsächlichen Nutzung
+
+## Unterstützte Modelle
+
+Das Gateway unterstützt eine große und sich ständig ändernde Auswahl an Modellen. Caret ruft die Liste über die Gateway API ab und speichert sie lokal zwischen. Den aktuellen Katalog finden Sie unter https://vercel.com/ai-gateway/models
+
+## Tipps
+
+<Tip>
+Nutzen Sie separate Gateway-Keys pro Umgebung (dev, staging, prod). Dies hält die Dashboards sauber und die Budgets isoliert.
+</Tip>
+
+<Note>
+Die Preisgestaltung erfolgt per Pass-Through zum Provider-Listenpreis. Bei Bring-your-own-Key gibt es einen Aufschlag von 0 %. Sie zahlen weiterhin die Provider- und Bearbeitungsgebühren.
+</Note>
+
+<Info>
+Vercel fügt keine Rate Limits hinzu. Upstream-Provider können dies jedoch tun. Neue Accounts erhalten alle 30 Tage ein Guthaben von 5 $, bis zur ersten Zahlung.
+</Info>
+
+## Fehlerbehebung
+
+- 401 – Senden Sie den Gateway-Key an den Gateway-Endpoint, nicht an eine Upstream-URL
+- 404 Modell – Kopieren Sie die exakte ID aus dem Vercel-Katalog
+- Langsames erstes Token – Prüfen Sie p75 TTFT im Dashboard und versuchen Sie ein Modell, das für Streaming optimiert ist
+- Kostenspitzen – Schlüsseln Sie die Kosten im Dashboard nach Modell auf und begrenzen oder routen Sie den Traffic
+
+## Inspiration
+
+- Multi-Modell-Evaluierungen – tauschen Sie in Caret nur die Model-ID aus und vergleichen Sie Latenz und Output-Tokens
+- Progressive Rollout – leiten Sie einen kleinen Prozentsatz im Dashboard an ein neues Modell weiter und skalieren Sie anhand der Metriken
+- Budget-Erzwingung – legen Sie Limits pro Projekt ohne Code-Änderungen fest
+
+## Querverweise
+
+- OpenAI-kompatibles Setup: /provider-config/openai-compatible
+- Leitfaden zur Modellauswahl: /getting-started/model-selection-guide
+- Context Management verstehen: /getting-started/understanding-context-management

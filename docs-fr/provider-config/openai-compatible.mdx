@@ -1,0 +1,71 @@
+---
+title: "Compatible avec OpenAI"
+description: "Découvrez comment configurer Caret avec différents fournisseurs de modèles d'IA proposant des API compatibles OpenAI."
+---
+
+Caret prend en charge une large gamme de fournisseurs de modèles d'IA qui proposent des API compatibles avec le standard API OpenAI. Cela vous permet d'utiliser des modèles provenant de fournisseurs _autres qu'OpenAI_, tout en utilisant une interface API familière. Cela inclut des fournisseurs tels que :
+
+-   **Les modèles locaux** fonctionnant via des outils comme Ollama et LM Studio (qui sont traités dans leurs sections respectives).
+-   **Les fournisseurs Cloud** comme Perplexity, Together AI, Anyscale et bien d'autres.
+-   **Tout autre fournisseur** proposant un endpoint API compatible OpenAI.
+
+Ce document se concentre sur la configuration de fournisseurs _autres que_ l'API OpenAI officielle (qui possède sa propre [page de configuration dédiée](/french/provider-config/openai)).
+
+### Configuration générale
+
+La clé pour utiliser un fournisseur compatible OpenAI avec Caret est de configurer ces paramètres principaux :
+
+1.  **Base URL :** Il s'agit de l'endpoint API spécifique au fournisseur. Ce ne sera _pas_ `https://api.openai.com/v1` (cette URL est réservée à l'API OpenAI officielle).
+2.  **API Key :** Il s'agit de la clé secrète que vous obtenez auprès du fournisseur de votre choix.
+3.  **Model ID :** Il s'agit du nom spécifique ou de l'identifiant du modèle que vous souhaitez utiliser.
+
+Vous trouverez ces paramètres dans le panneau de configuration de Caret (cliquez sur l'icône ⚙️) :
+
+-   **API Provider :** Sélectionnez « OpenAI Compatible ».
+-   **Base URL :** Saisissez la Base URL fournie par le fournisseur choisi. **C'est une étape cruciale.**
+-   **API Key :** Saisissez votre API Key fournie par le fournisseur.
+-   **Model :** Choisissez ou saisissez le Model ID.
+-   **Model Configuration :** Cette section vous permet de personnaliser les paramètres avancés du modèle, tels que :
+    -   Max Output Tokens
+    -   Taille de la Context Window
+    -   Capacités d'Image Support
+    -   Computer Use (par ex. pour les modèles avec tool/function calling)
+    -   Input Price (par token/million de tokens)
+    -   Output Price (par token/million de tokens)
+
+### Modèles pris en charge (pour l'endpoint natif OpenAI)
+
+Bien que le type de fournisseur « OpenAI Compatible » permette de se connecter à divers endpoints, si vous vous connectez directement à l'API OpenAI officielle (ou à un endpoint qui la reflète exactement), Caret reconnaît les Model IDs suivants basés sur la définition `openAiNativeModels` dans son code source :
+
+-   `o3-mini`
+-   `o3-mini-high`
+-   `o3-mini-low`
+-   `o1`
+-   `o1-preview`
+-   `o1-mini`
+-   `gpt-4o`
+-   `gpt-4o-mini`
+
+**Note :** Si vous utilisez un autre fournisseur compatible OpenAI (tel que Together AI, Anyscale, etc.), les Model IDs disponibles seront différents. Référez-vous toujours à la documentation de votre fournisseur spécifique pour connaître les noms des modèles pris en charge et les détails de configuration uniques.
+
+### v0 (Vercel SDK) dans Caret :
+
+-   Pour les développeurs travaillant avec v0, leur [documentation AI SDK](https://vercel.com/docs/v0/caret) fournit des informations et des exemples précieux pour l'intégration de divers modèles, dont beaucoup sont compatibles OpenAI. Cela peut être une ressource utile pour comprendre comment structurer les appels et gérer les configurations lors de l'utilisation de Caret avec des services déployés sur ou intégrés à Vercel.
+
+-   v0 peut être utilisé dans Caret avec le fournisseur OpenAI Compatible.
+
+-   ### Démarrage rapide
+
+-   1. Une fois le fournisseur OpenAI Compatible sélectionné, réglez la Base URL sur https://api.v0.dev/v1.
+-   2. Collez votre API Key v0.
+-   3. Définissez le Model ID : v0-1.0-md
+-   4. Cliquez sur Verify pour confirmer la connexion.
+
+### Dépannage
+
+-   **« Invalid API Key » :** Vérifiez que vous avez saisi correctement l'API Key et qu'elle correspond au bon fournisseur.
+-   **« Model Not Found » :** Assurez-vous d'utiliser un Model ID valide pour le fournisseur choisi et qu'il est disponible sur la Base URL spécifiée.
+-   **Erreurs de connexion :** Vérifiez que la Base URL est correcte, que l'API de votre fournisseur est accessible depuis votre machine, et qu'il n'y a pas de problèmes de pare-feu ou de réseau.
+-   **Résultats inattendus :** Si vous obtenez des résultats inattendus, essayez un autre modèle ou vérifiez à nouveau tous les paramètres de configuration.
+
+En utilisant un fournisseur compatible OpenAI, vous pouvez tirer parti de la flexibilité de Caret avec un plus large éventail de modèles d'IA. N'oubliez pas de toujours consulter la documentation de votre fournisseur pour obtenir les informations les plus précises et les plus à jour.

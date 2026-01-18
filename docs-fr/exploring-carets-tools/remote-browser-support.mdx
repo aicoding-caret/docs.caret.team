@@ -1,0 +1,113 @@
+---
+title: "Support du navigateur distant"
+description: "La prise en charge du navigateur distant permet à Caret d'utiliser une instance Chrome distante, en tirant parti des jetons d'authentification et des cookies de session pertinents pour certains cas de test de développement Web."
+---
+
+La fonctionnalité Navigateur distant dans Caret permet à l'assistant IA d'interagir avec le contenu Web directement via une instance de navigateur contrôlée. Cela permet plusieurs capacités puissantes :
+
+-   Affichage et interaction avec des sites Web
+-   Test d'applications Web exécutées localement
+-   Surveillance des journaux et des erreurs de la console
+-   Exécution d'actions de navigateur telles que cliquer, taper et faire défiler
+
+## Navigateur distant dans Caret
+
+### Qu'est-ce que le Navigateur distant ?
+
+Navigateur distant permet à Caret de visualiser et d'interagir directement avec des sites Web. Cette fonctionnalité permet à Caret de :
+
+-   Visiter des sites Web et afficher leur contenu
+-   Tester vos applications Web exécutées localement
+-   Remplir des formulaires et cliquer sur des éléments
+-   Capturer des captures d'écran de ce qu'il voit
+-   Faire défiler les pages pour voir plus de contenu
+
+### Comment utiliser le Navigateur distant
+
+#### Commandes de base
+
+Vous pouvez demander à Caret d'utiliser le navigateur avec des instructions simples :
+
+-   **Ouvrir un site Web** : "Utilise le navigateur pour vérifier le site Web à l'adresse [https://example.com](https://example.com/)"
+-   **Cliquer sur des éléments** : "Clique sur le bouton de connexion"
+-   **Taper du texte** : "Tape 'Hello world' dans la zone de recherche"
+-   **Faire défiler la page** : "Fais défiler vers le bas pour voir plus de contenu"
+-   **Fermer le navigateur** : "Ferme le navigateur maintenant"
+
+#### Exemples de flux de travail
+
+**Tester une application Web :**
+
+```javascript
+Can you start my React app with "npm start" and then check if it's working properly at http://localhost:3000?
+```
+
+**Analyser un site Web :**
+
+```javascript
+Can you visit https://example.com and tell me what you think about its design and layout?
+```
+
+**Remplir un formulaire :**
+
+```javascript
+Please go to https://example.com/contact, fill out the contact form with some test data, and submit it.
+```
+
+### Éléments importants à savoir
+
+#### Un seul navigateur à la fois
+
+Caret ne peut utiliser qu'un seul navigateur à la fois. Si vous souhaitez visiter un autre site Web, vous pouvez :
+
+-   Demander à Caret de naviguer vers une nouvelle URL dans la même session de navigateur
+-   Demander à Caret de fermer le navigateur actuel et d'en ouvrir un nouveau
+
+#### Le navigateur doit être fermé avant d'utiliser d'autres outils
+
+Si vous voulez que Caret modifie des fichiers ou exécute des commandes après avoir utilisé le navigateur, vous devez d'abord lui demander de fermer le navigateur :
+
+```javascript
+Close the browser and then update the CSS file to fix the alignment issue we saw.
+```
+
+#### Ce que Caret voit
+
+Le navigateur a une taille de viewport fixe (900x600 pixels par défaut), similaire à un petit écran d'ordinateur portable. Caret partagera des captures d'écran après chaque action afin que vous puissiez voir exactement ce qu'il voit.
+
+#### Journaux de la console
+
+Caret capture les journaux de la console du navigateur, ce qui peut être utile pour déboguer des applications Web. Ces journaux sont inclus avec chaque capture d'écran.
+
+### Cas d'utilisation courants
+
+-   **Développement Web** : testez vos sites Web et applications Web
+-   **Révision UI/UX** : obtenez des commentaires sur la conception et la convivialité du site Web
+-   **Recherche de contenu** : demandez à Caret de parcourir des sites Web pour recueillir des informations
+-   **Test de formulaire** : vérifiez que les formulaires fonctionnent correctement
+-   **Test de conception réactive** : vérifiez l'apparence des sites Web à différentes tailles d'écran
+
+### Dépannage
+
+-   **Si un site Web ne se charge pas** : essayez de fournir une URL directe avec le préfixe http:// ou https://
+-   **Si le clic ne fonctionne pas** : essayez de décrire plus précisément l'emplacement de l'élément
+-   **Si le navigateur semble bloqué** : demandez à Caret de fermer le navigateur et réessayez
+
+### Utilisation du Navigateur distant avec VS Code dans WSL
+
+Lorsque vous exécutez VS Code dans WSL, vous devez configurer Windows pour autoriser WSL à se connecter à Chrome. Suivez ces étapes :
+
+#### Ouvrez PowerShell en tant qu'administrateur et exécutez :
+
+```powershell
+# Allow WSL to connect to Chrome's debugging port
+New-NetFirewallRule -DisplayName "WSL Chrome Debug" -Direction Inbound -LocalPort 9222 -Protocol TCP -Action Allow
+```
+
+#### Configurer Caret dans VS Code :
+
+1. Ouvrez les paramètres de VS Code
+2. Recherchez "Caret: Chrome Executable Path"
+3. Définissez la valeur sur le chemin d'accès de votre exécutable Chrome (par exemple, `C:\Program Files\Google\Chrome\Application\chrome.exe`)
+
+Caret devrait maintenant être en mesure d'utiliser la fonctionnalité Navigateur distant à partir de WSL.

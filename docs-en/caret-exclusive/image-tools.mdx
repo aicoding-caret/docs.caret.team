@@ -1,0 +1,116 @@
+---
+sidebar_position: 11
+title: ^ Image Tools
+description: A Caret-exclusive feature that enables AI to generate and analyze images
+---
+
+# ^ Image Tools
+
+Caret's AI can **generate** and **analyze** images.
+
+## Difference from Cline
+
+| Feature | Cline | Caret |
+|------|-------|-------|
+| Image Generation | Not supported | **Supported via generate_image tool** |
+| Image Analysis (non-vision models) | Not supported | **Supported via analyze_image tool** |
+| Ratio/Size Settings | Not supported | **Configurable in UI** |
+| Reference Image Based Generation | Not supported | **Image-to-Image supported** |
+
+## Image Generation
+
+### Usage Example
+
+```
+User: Create a cute cat image
+AI: [Uses generate_image tool] → Generates image → Saves to assets/
+```
+
+### Configuration Options
+
+| Option | Values | Description |
+|------|-----|------|
+| **Ratio** | `16:9`, `9:16`, `4:3`, `3:4`, `1:1` | Image aspect ratio |
+| **Size** | `1K`, `2K`, `3K`, `4K` | Image resolution |
+
+Settings location: Settings > Image Generation
+
+### Save Location
+
+Generated images are saved to the project's `assets/` folder:
+
+```
+assets/
+├── img_abc123.png        # Generated image
+└── img_abc123.md         # Metadata (prompt, settings, etc.)
+```
+
+## Image Analysis
+
+### Vision Models vs Text Models
+
+| Model Type | Image Analysis Method |
+|----------|----------------|
+| **Vision Models** (GPT-4o, Claude 3.5, etc.) | Direct analysis via `read_file` |
+| **Text Models** (o1, GLM-4, etc.) | Uses `analyze_image` tool |
+
+### Usage Example
+
+```
+# Non-vision model (GLM-4.7, etc.)
+User: [Attaches image] What's in this image?
+AI: [Uses analyze_image tool] → Analyzes with Gemini Flash → Returns results
+```
+
+### Analysis Model Selection
+
+When using text models, you can select the model for image analysis:
+
+- `gemini-2.5-flash` (default)
+- `gemini-3.0-flash-preview`
+
+Settings location: Settings > Model Info > Image Analysis Model
+
+## Authentication Requirements
+
+| Tool | Requirements |
+|------|----------|
+| `generate_image` | Caret login required |
+| `analyze_image` | Caret login required (text models only) |
+
+## Configuration
+
+### Auto-approve Settings
+
+| Setting | Default | Description |
+|------|--------|------|
+| `generateImages` | `true` | Enable image generation tool |
+| `analyzeImages` | `true` | Enable image analysis tool |
+
+Settings location: Settings > Auto-approve
+
+## Security
+
+### Image Analysis Approval
+
+| File Location | Behavior |
+|-----------|------|
+| Inside workspace | ✅ Auto-approved |
+| Outside workspace | ⚠️ User approval required |
+
+### Image Formats
+
+Supported image extensions:
+- `.png`, `.jpg`, `.jpeg`, `.webp`
+- `.gif`, `.avif`, `.bmp`, `.tiff`
+
+## Known Limitations
+
+1. **Authentication Required**: Image tools require Caret login
+2. **Single Execution**: Image tools can only run one at a time
+3. **Size Limit**: Maximum image dimension is 7500px
+
+## Related Documentation
+
+- [Document Reading Tools](/en/caret-exclusive/document-tools) - AI directly reads documents
+- [AI Organization Knowledge & Rules Standardization](/en/caret-exclusive/knowledge-parity-system) - Project rules management

@@ -1,0 +1,24 @@
+```
+---
+title: "Instructions Personnalisées"
+---
+
+## Création d'Instructions Personnalisées pour Votre Équipe
+
+**En créant des instructions de projet standardisées, chaque membre de l'équipe peut travailler dans le cadre de directives cohérentes. Commencez par documenter les bases techniques de votre projet, puis identifiez les informations à inclure. L'étendue exacte variera selon l'équipe, mais en général, il est préférable de fournir autant de détails que possible. En créant des instructions complètes que tout le monde suit, vous établissez une compréhension commune de la façon dont le code est écrit, testé et déployé dans l'ensemble du projet, ce qui se traduit par un logiciel plus facile à maintenir et plus cohérent.**
+
+---
+
+Voici quelques sujets et exemples à prendre en compte pour les instructions personnalisées de votre équipe.
+
+1.  **Frameworks de test et commandes spécifiques**
+    -   "Tous les composants doivent inclure des tests Jest avec une couverture d'au moins 85%. Exécutez les tests avec `npm run test:coverage` avant de soumettre une pull request."
+2.  **Préférences explicites de bibliothèque**
+    -   "Utilisez React Query pour la récupération de données et la gestion de l'état. Évitez Redux sauf si cela est absolument nécessaire pour un état global complexe. Pour le style, utilisez Tailwind CSS avec la configuration de thème personnalisée dans `src/styles/theme.js`."
+3.  **Emplacements de la documentation**
+    -   "Toute la documentation de l'API se trouve dans l'espace de travail Notion interne sous 'Engineering > API Reference'. Des exemples d'utilisation des composants se trouvent dans notre instance Storybook à l'adresse `https://storybook.internal.company.com`."
+4.  **Serveurs MCP à utiliser et leur objectif**
+    -   "Pour les tâches de base de données, utilisez le serveur Postgres MCP avec les informations d'identification stockées dans 'Development > Database'. Pour les déploiements, utilisez le serveur AWS MCP qui nécessite des rôles de déploiement dans IAM. Pour la configuration, consultez `docs/mcp-setup.md`."
+5.  **Règles de codage spécifiques au projet**
+    -   "Tous les composants React utilisent PascalCase et les fonctions d'assistance utilisent camelCase. Organisez les composants par fonctionnalité (et non par type) sous `src/components`. Utilisez toujours des interfaces TypeScript pour les définitions de props."
+```

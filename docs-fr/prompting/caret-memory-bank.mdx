@@ -1,0 +1,75 @@
+---
+title: "Système de Contexte Caret (Remplacement du Memory Bank)"
+---
+
+# Système de Contexte Caret (Remplacement du Memory Bank)
+
+Caret **remplace totalement** l'approche Memory Bank de Cline.  
+À la place, Caret gère le contexte du projet via **`AGENTS.md` + `.agents/context` + `caret-docs` + `work-logs`**.
+
+## Démarrage rapide
+
+1. **Exécutez `/init` pour le scaffolding**  
+   Cela génère la structure de base `AGENTS.md` et `.agents/context`.
+2. **Lisez la documentation obligatoire avant de travailler**  
+   Vérifiez `AGENTS.md` → `.agents/context/caret-rules.json`.
+3. **Chargez les workflows à la demande**  
+   Récupérez uniquement les workflows spécifiques dont vous avez besoin depuis `.agents/context/workflows/`.
+4. **Maintenez les docs et les logs à jour**  
+   Enregistrez les modifications dans `caret-docs/` et `work-logs/`.
+
+## Composants principaux
+
+| Composant | Rôle | Notes |
+| --- | --- | --- |
+| `AGENTS.md` | Entrée/méta-règles | ordre de chargement, langue, interdictions |
+| `.agents/context` | Source de vérité (SoT) des règles AI | workflows + atoms |
+| `.agents/context/workflows` | Workflows à la demande | charger uniquement si nécessaire |
+| `caret-docs/` | Documentation développeur | parité 1:1 avec les règles AI |
+| `work-logs/` | Progrès & décisions | sous-module, `.work-logs/` prévu |
+
+## Pourquoi Caret a remplacé Memory Bank (Avantages de Caret)
+
+- **Standard international AAIF** : les chemins de règles et le chargement sont standardisés.  
+- **Chargement de règles à la demande** : seuls les documents nécessaires sont lus.  
+- **Parité de connaissances AI/Développeur** : les deux voient exactement les mêmes documents.  
+- **Logs de progression séparés** : les statuts/décisions résident dans `work-logs/`.
+
+## Correspondance avec l'ancien Memory Bank
+
+| Memory Bank | Remplaçant Caret |
+| --- | --- |
+| `projectbrief.md` | `caret-docs/development/index.md` + spécifications générales |
+| `productContext.md` | `caret-docs/features.en/**` |
+| `systemPatterns.md` | `.agents/context/workflows/atoms/**` + documentation d'architecture |
+| `techContext.md` | `caret-docs/development/**` |
+| `activeContext.md`/`progress.md` | `work-logs/**` (logs principaux/secondaires) |
+
+> **Important** : N'utilisez pas de dossier `memory-bank/`. Migrez les fichiers existants vers les chemins ci-dessus.
+
+## Flux de travail
+
+### Mode Plan
+1. Lisez `AGENTS.md` → `.agents/context/caret-rules.json`.
+2. Chargez uniquement les workflows dont vous avez besoin.
+3. Consultez `caret-docs/` pour les spécifications et les conseils.
+4. Partagez un document de plan avant l'exécution.
+
+### Mode Act
+1. Chargez uniquement les règles/workflows requis.
+2. Implémentez les changements.
+3. Enregistrez les mises à jour dans `caret-docs/` et `work-logs/`.
+
+## Règles de mise à jour
+
+- **Changements de règles/processus** → mettez à jour `.agents/context` + `caret-docs/` ensemble
+- **Changements de fonctionnalités/besoins** → mettez à jour `caret-docs/features.en/**`
+- **Progrès/décisions** → enregistrez dans `work-logs/**`
+- **Sécurité** → ne stockez jamais de secrets/tokens dans les documents
+
+## Documents associés
+
+- [Standardisation des Agents (AAIF SoT)](/french/caret-exclusive/knowledge-parity-system)
+- [Parité de connaissances AI-Développeur](/french/caret-exclusive/knowledge-parity-system)
+- [Règles Caret](/french/features/caret-rules)
+- [Comprendre la gestion du contexte](/french/getting-started/understanding-context-management)

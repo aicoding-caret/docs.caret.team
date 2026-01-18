@@ -1,0 +1,272 @@
+---
+title: Interface utilisateur multilingue complète
+---
+
+# Interface utilisateur multilingue complète
+
+Codez confortablement dans votre langue maternelle. Caret offre un véritable support multilingue avec une UI et une documentation entièrement traduites.
+
+## Langues prises en charge
+
+Caret prend parfaitement en charge 4 langues :
+
+### 🇰🇷 Coréen
+- **UI** : Tous les paramètres, menus et messages en coréen
+- **Documentation** : docs.caret.team/ko
+- **Réponses de l'IA** : Réponses automatiques en coréen
+
+### 🇺🇸 Anglais
+- **UI** : Langue par défaut
+- **Documentation** : docs.caret.team/en
+- **Réponses de l'IA** : Réponses automatiques en anglais
+
+### 🇯🇵 Japonais
+- **UI** : Traduction complète en japonais
+- **Documentation** : docs.caret.team/ja
+- **Réponses de l'IA** : Réponses automatiques en japonais
+
+### 🇨🇳 Chinois
+- **UI** : Support du chinois simplifié
+- **Documentation** : docs.caret.team/zh
+- **Réponses de l'IA** : Réponses automatiques en chinois
+
+## Différences par rapport à Cline
+
+| Élément | Cline | Caret |
+|------|-------|-------|
+| UI multilingue | ❌ English uniquement | ✅ 4 langues |
+| Documentation multilingue | ❌ English uniquement | ✅ 4 langues |
+| Messages d'erreur | ❌ English uniquement | ✅ Traduits |
+| Écran de paramètres | ❌ English uniquement | ✅ Entièrement traduit |
+| Langue de réponse de l'IA | 🔄 Sur demande | ✅ Détectée automatiquement |
+
+## Comment configurer la langue
+
+### 1. Détection automatique (recommandé)
+
+Caret détecte automatiquement les paramètres de langue de VS Code :
+
+```json
+// VS Code settings.json
+{
+  "locale": "ko"  // Korean automatiquement appliqué
+}
+```
+
+### 2. Configuration manuelle
+
+Sélectionnez directement dans les paramètres de Caret :
+
+1. Ouvrez les paramètres (⚙️)
+2. Onglet **General** → section **Language**
+3. Sélectionnez la langue souhaitée
+4. Redémarrez VS Code
+
+### 3. Palette de commandes
+
+```
+Cmd+Shift+P (Mac) / Ctrl+Shift+P (Windows/Linux)
+> Caret: Change Language
+```
+
+## Éléments de l'UI traduits
+
+### Écran de paramètres
+
+**Tous les éléments de paramétrage sont traduits** :
+
+- ✅ Noms des onglets (General, API, Features, Terminal)
+- ✅ Libellés des paramètres (Prompt mode, Brand, API key)
+- ✅ Texte d'aide
+- ✅ Boutons ("Save", "Cancel", "Reset")
+- ✅ Options des menus déroulants
+
+**Exemple (coréen)** :
+```
+일반 설정
+├─ AI 모드: Agent 모드
+├─ 브랜드: Caret
+└─ 자동 승인: 프로젝트 파일 읽기
+```
+
+### Interface de Chat
+
+- ✅ Espace réservé de saisie : "How can Caret help you?" (Comment Caret peut-il vous aider ?)
+- ✅ Messages d'état : "Working...", "Complete"
+- ✅ Messages d'erreur : "API key not configured"
+- ✅ Notifications système
+
+### Barre latérale et menus
+
+- ✅ Titres de la barre latérale
+- ✅ Menus contextuels
+- ✅ Info-bulles
+- ✅ Barre d'état
+
+## Site de documentation multilingue
+
+### Domaines dédiés par langue
+
+Sites de documentation indépendants pour chaque langue :
+
+- **Coréen** : https://docs.caret.team/ko
+- **Anglais** : https://docs.caret.team/en
+- **Japonais** : https://docs.caret.team/ja
+- **Chinois** : https://docs.caret.team/zh
+
+### Redirection automatique
+
+Lors d'un clic sur les liens de documentation depuis l'UI de Caret :
+
+```typescript
+// Automatiquement connecté en fonction du paramètre de langue actuel
+Language: Korean  → docs.caret.team/ko/getting-started
+Language: English → docs.caret.team/en/getting-started
+Language: Japanese → docs.caret.team/ja/getting-started
+Language: Chinese → docs.caret.team/zh/getting-started
+```
+
+## Langue de réponse de l'IA
+
+### Correspondance automatique de la langue
+
+L'IA répond automatiquement dans la langue configurée pour votre UI :
+
+**Quand le coréen est configuré** :
+```
+User: "React 컴포넌트 만들어줘"
+AI: "React 컴포넌트를 생성하겠습니다..."
+```
+
+**Quand l'anglais est configuré** :
+```
+User: "Create a React component"
+AI: "I'll create a React component..."
+```
+
+### Spécification manuelle de la langue
+
+Utilisez une langue différente pour des requêtes spécifiques :
+
+```
+"Explain this code in English"
+→ Répond en anglais malgré une UI en coréen
+
+"이 코드를 한국어로 설명해줘"
+→ Répond en coréen malgré une UI en anglais
+```
+
+## Formats régionaux
+
+### Date et heure
+
+Ajustés automatiquement selon la langue :
+
+- **Coréen** : 2025년 10월 14일 오후 3시 30분
+- **Anglais** : October 14, 2025, 3:30 PM
+- **Japonais** : 2025年10月14日 15時30分
+- **Chinois** : 2025年10月14日 下午3:30
+
+### Format des nombres
+
+- **Coréen** : 1,234,567
+- **Anglais** : 1,234,567
+- **Japonais** : 1,234,567
+- **Chinois** : 1,234,567
+
+## Projets en langues mixtes
+
+Fonctionne parfaitement même au sein d'équipes multilingues :
+
+### Scénario : Équipe de collaboration Corée-États-Unis
+
+**Développeur A (Corée)** :
+- Langue de l'UI : Coréen
+- Réponses de l'IA : Coréen
+- Documentation : docs.caret.team/ko
+
+**Développeur B (États-Unis)** :
+- Langue de l'UI : Anglais
+- Réponses de l'IA : Anglais
+- Documentation : docs.caret.team/en
+
+**Code partagé** : Fonctionne de manière identique ✅
+
+### Langue des commentaires de code
+
+Demandez à l'IA d'écrire des commentaires dans une langue spécifique :
+
+```
+"Add comments in Korean"
+→ Ajoute des commentaires en coréen
+
+"Add comments in English"
+→ Ajoute des commentaires en anglais
+```
+
+## Qualité de la traduction
+
+### Révision par des traducteurs professionnels
+
+Tout le texte de l'UI a été révisé par des traducteurs professionnels :
+
+- ✅ Précision des termes techniques
+- ✅ Phrases naturelles
+- ✅ Pertinence culturelle
+- ✅ Ton cohérent
+
+### Contributions de la communauté
+
+Les suggestions d'amélioration de la traduction sont toujours les bienvenues :
+
+1. Créez un ticket GitHub
+2. Signalez les traductions incorrectes
+3. Suggérez de meilleures expressions
+
+## Scénarios de changement de langue
+
+### À des fins d'apprentissage
+
+Si vous apprenez une langue étrangère :
+
+```
+1. Langue de l'UI : Langue en cours d'apprentissage (ex: Japonais)
+2. Réponses de l'IA : Langue maternelle (ex: Coréen) - à spécifier dans le prompt
+3. Commentaires de code : Langue en cours d'apprentissage
+
+→ Apprenez naturellement la langue tout en codant
+```
+
+### Présentations mondiales
+
+Pour des démos devant des investisseurs ou des clients :
+
+```
+Préparation : Développer en coréen
+Démo : Passer à l'UI en anglais
+Après : Revenir au coréen
+```
+
+## Foire aux questions
+
+**Q : Qu'advient-il de l'historique de chat existant lorsque je change de langue ?**
+R : Il est préservé tel quel. Les nouveaux messages s'afficheront dans la langue sélectionnée.
+
+**Q : Les modèles d'IA prennent-ils en charge toutes les langues ?**
+R : Oui, les modèles majeurs comme Claude, GPT et Gemini supportent tous très bien le multilingue.
+
+**Q : Il y a une traduction étrange.**
+R : Veuillez soumettre un ticket GitHub. Nous le corrigerons rapidement.
+
+**Q : D'autres langues sont-elles prévues ?**
+R : Nous envisageons d'ajouter l'espagnol, l'allemand, etc., en fonction des demandes de la communauté.
+
+## Étapes suivantes
+
+- [Choisissez votre méthode de travail avec les modes doubles](/french/caret-exclusive/dual-prompt-modes)
+- [Définissez un style de codage multilingue avec des règles avancées](/french/caret-exclusive/knowledge-parity-system)
+- [Commencez gratuitement avec Caret Provider](/french/caret-exclusive/caret-provider)
+
+---
+
+**L'interface utilisateur multilingue complète est une exclusivité de Caret.** Cline ne prend en charge que l'anglais.

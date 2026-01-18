@@ -75,18 +75,24 @@ const sidebars: SidebarsConfig = {
 				{
 					type: "doc",
 					id: "caret-exclusive/knowledge-parity-system",
-					label: "^ AI-开发者知识同步",
+					label: "^ AI组织知识与规则标准化",
+				},
+				{
+					type: "doc",
+					id: "caret-exclusive/document-tools",
+					label: "^ 文档读取工具",
+				},
+				{
+					type: "doc",
+					id: "caret-exclusive/image-tools",
+					label: "^ 图像工具",
 				},
 				{
 					type: "doc",
 					id: "caret-exclusive/multilingual-ui",
 					label: "^ 完整的多语言UI",
 				},
-				{
-					type: "doc",
-					id: "caret-exclusive/advanced-rules",
-					label: "^ 高级规则系统",
-				},
+				"features/skills",
 				"features/yolo-mode",
 				"features/dictation",
 				"features/multiroot-workspace",
@@ -210,6 +216,7 @@ const sidebars: SidebarsConfig = {
 				"provider-config/doubao",
 				"provider-config/fireworks",
 				"provider-config/zai",
+				"provider-config/upstage",
 				"provider-config/requesty",
 				"provider-config/sap-aicore",
 				"provider-config/vscode-language-model-api",
@@ -258,6 +265,7 @@ const sidebars: SidebarsConfig = {
 			label: "探索Caret工具",
 			items: [
 				"exploring-carets-tools/caret-tools-guide",
+				"exploring-carets-tools/document-tools",
 				"exploring-carets-tools/new-task-tool",
 				"exploring-carets-tools/remote-browser-support",
 			],

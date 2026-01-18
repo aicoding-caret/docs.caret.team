@@ -4,14 +4,6 @@ sidebarTitle: "훅"
 description: "Caret 워크플로우에 커스텀 로직을 주입해 작업 검증, 도구 사용 모니터링, AI 결정 흐름을 제어합니다."
 ---
 
-<Note>
-캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(허용 훅 스코프, 인증/라우팅, 로깅/텔레메트리 차이)이 있을 경우 본문에서 `<Note>`로 표시합니다.
-</Note>
-
-<Note>
-Caret 계정/조직 훅: `caret-docs/features/f04-caret-account.md`에 따라 계정/조직 상태가 훅 데이터에 포함될 수 있습니다. 로깅/텔레메트리는 캐럿 유틸(`caret-src/utils/`) 경로를 사용합니다.
-</Note>
-
 훅(Hooks)은 Caret 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
 
 훅은 개발 과정에서 특정 이벤트가 발생할 때 자동으로 실행됩니다. 각 작업의 상세 정보를 받아 문제되는 행동을 사전에 차단하거나, 앞으로의 AI 결정을 돕는 컨텍스트를 추가할 수 있습니다.
@@ -50,13 +42,13 @@ Caret 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
 <Step title="훅 위치 선택">
 훅을 저장할 위치를 결정합니다:
 
-**개인/조직 공통 훅:**
-- `~/Documents/Caret/Rules/Hooks/`에 훅 생성
-- 모든 워크스페이스에 자동 적용
+**전역 훅** (모든 프로젝트에 적용):
+- **macOS/Linux:** `~/Documents/.agents/hooks/`
+- **Windows:** `C:\Users\USERNAME\Documents\.agents\hooks\`
+- 레거시 경로: `~/Documents/Caret/Hooks/` (폴백 지원)
 
-**프로젝트별 훅:**
-- 프로젝트 루트의 `.agents/hooks/`에 훅 생성
-- 해당 워크스페이스에만 적용
+**프로젝트 훅** (현재 워크스페이스에만 적용):
+- `.agents/hooks/` (권장)
 - 버전 관리에 포함해 팀과 공유 가능
 </Step>
 

@@ -75,18 +75,24 @@ const sidebars: SidebarsConfig = {
 				{
 					type: "doc",
 					id: "caret-exclusive/knowledge-parity-system",
-					label: "^ AI-개발자 지식 동기화",
+					label: "^ AI 조직 지식 및 규칙 표준화",
+				},
+				{
+					type: "doc",
+					id: "caret-exclusive/document-tools",
+					label: "^ 문서 읽기 도구",
+				},
+				{
+					type: "doc",
+					id: "caret-exclusive/image-tools",
+					label: "^ 이미지 도구",
 				},
 				{
 					type: "doc",
 					id: "caret-exclusive/multilingual-ui",
 					label: "^ 완전한 다국어 UI",
 				},
-				{
-					type: "doc",
-					id: "caret-exclusive/advanced-rules",
-					label: "^ 고급 규칙 시스템",
-				},
+				"features/skills",
 				"features/yolo-mode",
 				"features/dictation",
 				"features/multiroot-workspace",
@@ -210,6 +216,7 @@ const sidebars: SidebarsConfig = {
 				"provider-config/doubao",
 				"provider-config/fireworks",
 				"provider-config/zai",
+				"provider-config/upstage",
 				"provider-config/requesty",
 				"provider-config/sap-aicore",
 				"provider-config/vscode-language-model-api",
@@ -258,6 +265,7 @@ const sidebars: SidebarsConfig = {
 			label: "Caret 도구 탐색",
 			items: [
 				"exploring-carets-tools/caret-tools-guide",
+				"exploring-carets-tools/document-tools",
 				"exploring-carets-tools/new-task-tool",
 				"exploring-carets-tools/remote-browser-support",
 			],

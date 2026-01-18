@@ -1,0 +1,51 @@
+---
+title: "Быстрые решения проблем с терминалом"
+sidebarTitle: "Быстрые решения для терминала"
+description: "Быстрые способы решения распространенных проблем с терминалом"
+---
+
+**Вот список распространенных решений, начиная с наиболее эффективных:**
+
+-   **Переключитесь на bash** (решает большинство проблем)
+
+    1. Внутри Caret нажмите левой кнопкой мыши на кнопку **Settings** в правом верхнем углу окна чата
+    2. В окне **Settings** выберите вкладку **"Terminal Settings"** в колонке слева
+    3. Найдите пункт **"Default Terminal Profile"** и выберите **"bash"** в выпадающем списке
+
+-   **Увеличьте таймаут**
+
+    1. Внутри Caret нажмите левой кнопкой мыши на кнопку **Settings** в правом верхнем углу окна чата
+    2. В окне **Settings** выберите вкладку **"Terminal Settings"** в колонке слева
+    3. Найдите пункт "Shell integration timeout (seconds)" и введите **"10"** в текстовое поле
+
+-   **Отключите повторное использование терминала**
+    1. Внутри Caret нажмите левой кнопкой мыши на кнопку **Settings** в правом верхнем углу окна чата
+    2. В окне **Settings** выберите вкладку **"Terminal Settings"** в колонке слева
+    3. Найдите опцию **"Enable aggressive terminal reuse"** и **снимите галочку**
+
+## Решения для конкретных платформ
+
+### macOS + Oh-My-Zsh
+
+```bash
+# Create minimal config for VSCode
+echo 'export TERM=xterm-256color' > ~/.zshrc-vscode
+echo 'export PAGER=cat' >> ~/.zshrc-vscode
+```
+
+### Windows PowerShell
+
+```powershell
+# Run as Administrator
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### WSL
+
+-   Откройте папку из WSL: `code .`
+-   Выберите **"WSL Bash"** в настройках Caret в разделе **"Terminal Settings"**
+-   Увеличьте **"Shell integration timeout (seconds)"** до **15**
+
+## Полное руководство
+
+Для подробного поиска и устранения неисправностей см. [Полное руководство по устранению проблем с терминалом](/russian/troubleshooting/terminal-integration-guide).

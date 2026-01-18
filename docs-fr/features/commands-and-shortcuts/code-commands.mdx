@@ -1,0 +1,132 @@
+```
+---
+title: "Commandes de code"
+sidebarTitle: "Commandes de Code"
+description: "Les commandes de code de Caret apportent l'assistance de l'IA directement dans votre éditeur, vous permettant d'interagir avec votre code sans quitter votre flux de travail."
+---
+
+Les commandes de code de Caret apportent l'assistance de l'IA directement dans votre éditeur, vous permettant d'interagir avec votre code sans quitter votre flux de travail. D'un simple clic droit, vous pouvez ajouter du code à Caret, et grâce au menu de l'ampoule, vous pouvez corriger les erreurs, obtenir des explications ou améliorer votre code.
+
+## Commandes de Code Disponibles
+
+Lorsque vous interagissez avec du code dans votre éditeur, vous pouvez accéder aux commandes de Caret de deux manières :
+
+### Menu Contextuel du Clic Droit
+
+Lorsque vous cliquez avec le bouton droit sur le code sélectionné, vous verrez :
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/code-commands.png" alt="Right Click Menu" />
+</Frame>
+
+#### Ajouter à Caret
+
+La commande « Ajouter à Caret » envoie le code que vous avez sélectionné au panneau de discussion Caret. C'est parfait pour :
+
+-   Poser des questions sur des extraits de code spécifiques
+-   Demander des améliorations ou des optimisations
+-   Obtenir des explications sur une logique complexe
+
+Lorsque vous utilisez cette commande, Caret inclut automatiquement :
+
+-   Le chemin d'accès au fichier (en tant que mention de fichier)
+-   Le code sélectionné avec une mise en forme appropriée
+-   Le langage de programmation pour une coloration syntaxique précise
+
+### Menu Ampoule (Actions de Code)
+
+Lorsque vous voyez une icône d'ampoule dans votre éditeur, cliquez dessus pour accéder à ces commandes de Caret :
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/lightbulb-actions.png" alt="Lightbulb Menu" />
+</Frame>
+
+#### Corriger avec Caret
+
+La commande « Corriger avec Caret » apparaît dans le menu de l'ampoule lorsque votre code contient des erreurs ou des avertissements. Cette commande :
+
+1. Capture le code sélectionné
+2. Identifie les erreurs ou les avertissements à partir des diagnostics de VS Code
+3. Envoie les deux à Caret avec une demande de correction des problèmes
+4. Fournit une solution qui résout les problèmes spécifiques
+
+Ceci est incroyablement utile pour résoudre rapidement les erreurs de syntaxe, les avertissements de linter ou les problèmes de type sans avoir à décrire manuellement le problème.
+
+#### Expliquer avec Caret
+
+La commande « Expliquer avec Caret » vous aide à comprendre un code complexe. Lorsque vous sélectionnez du code et que vous utilisez cette commande dans le menu de l'ampoule, Caret :
+
+1. Analyse le code sélectionné
+2. Fournit une explication claire de ce que fait le code
+3. Décompose la logique complexe en parties compréhensibles
+4. Met en évidence les modèles ou les techniques importants utilisés
+
+#### Améliorer avec Caret
+
+La commande « Améliorer avec Caret » vous aide à améliorer votre code. Lorsque vous sélectionnez du code et que vous utilisez cette commande dans le menu de l'ampoule, Caret :
+
+1. Analyse le code sélectionné pour détecter les améliorations potentielles
+2. Suggère des optimisations, des refactorisations ou de meilleures pratiques
+3. Explique le raisonnement qui sous-tend les modifications suggérées
+4. Fournit un code amélioré qui maintient la fonctionnalité d'origine
+
+## Comment Utiliser les Commandes de Code
+
+L'utilisation des commandes de code de Caret est simple :
+
+### Pour les Commandes du Clic Droit :
+
+1. Sélectionnez le code avec lequel vous voulez travailler
+2. Faites un clic droit pour ouvrir le menu contextuel
+3. Choisissez « Ajouter à Caret »
+4. Consultez le résultat dans le panneau de discussion Caret
+
+### Pour les Commandes du Menu Ampoule :
+
+1. Sélectionnez le code avec lequel vous voulez travailler
+2. Recherchez l'icône d'ampoule qui apparaît dans la marge de l'éditeur
+3. Cliquez sur l'ampoule pour voir les actions disponibles
+4. Choisissez la commande Caret appropriée (Corriger, Expliquer ou Améliorer)
+5. Consultez le résultat dans le panneau de discussion Caret
+
+Après avoir utilisé une commande, vous pouvez :
+
+-   Poser des questions de suivi
+-   Demander des modifications à la solution
+-   Appliquer les modifications à votre code
+
+## Comment Ça Marche
+
+Lorsque vous utilisez une commande de code, voici ce qui se passe en coulisses :
+
+1. **Sélection du code** : l'extension capture le code sélectionné et son contexte
+2. **Collecte des métadonnées** : Caret collecte des métadonnées importantes :
+
+    - Chemin d'accès et nom du fichier
+    - Langage de programmation
+    - Tous les diagnostics associés (erreurs/avertissements)
+    - Contexte du code environnant lorsque cela est pertinent
+
+3. **Traitement des commandes** :
+
+    - Pour « Ajouter à Caret », le code est formaté et envoyé au panneau de discussion
+    - Pour « Corriger avec Caret », le code et les diagnostics sont analysés et une correction est générée
+    - Pour « Expliquer avec Caret », le code est analysé pour fournir une explication claire
+    - Pour « Améliorer avec Caret », le code est analysé pour détecter les optimisations et améliorations potentielles
+
+4. **Intégration avec la discussion** : les résultats apparaissent dans le panneau de discussion de Caret, où vous pouvez :
+    - Voir la réponse de l'IA
+    - Poser des questions de suivi
+    - Appliquer les modifications suggérées
+
+Cette intégration transparente entre votre éditeur et les capacités d'IA de Caret facilite l'obtention d'une assistance sans perturber votre flux de codage.
+
+## Conseils pour une Utilisation Efficace
+
+-   **Sélectionnez des unités logiques complètes** : dans la mesure du possible, sélectionnez des fonctions, des classes ou des modules entiers pour donner à Caret un contexte complet
+-   **Incluez les importations** : pour une aide spécifique à la langue, incluez les importations pertinentes afin que Caret comprenne les dépendances
+-   **Combinez avec les mentions @** : pour les problèmes complexes, utilisez les commandes de code avec des mentions de fichiers ou de problèmes pour plus de contexte
+-   **Utilisez des raccourcis clavier** : accélérez votre flux de travail en [attribuant des raccourcis clavier](/french/features/commands-and-shortcuts/keyboard-shortcuts) aux commandes de code courantes
+
+La prochaine fois que vous rencontrez des difficultés avec un morceau de code, essayez d'utiliser les commandes de code de Caret au lieu de passer à une interface de discussion distincte. Vous serez surpris de voir à quel point votre flux de travail devient plus efficace lorsque l'assistance de l'IA est intégrée directement dans votre éditeur.
+```

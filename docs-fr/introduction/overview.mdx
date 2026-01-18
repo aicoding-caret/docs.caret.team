@@ -1,0 +1,150 @@
+---
+title: "Aperçu"
+description: "Une introduction à Caret, votre agent de codage alimenté par l'IA pour le développement moderne."
+---
+
+<Note>
+Ce document est basé sur la fusion Caret v3.38.1 et adapté pour Caret. Lorsqu'il existe des politiques/limites exclusives à Caret (support des modèles, authentification/routage), elles sont marquées avec une `<Note>` distincte dans la section appropriée.
+</Note>
+
+## Codage IA Open Source, sans compromis
+
+Caret vous donne un accès direct et transparent à l'IA de pointe sans limites, sans surprises et sans verrouillage d'écosystème de modèles. Voyez chaque décision. Choisissez n'importe quel modèle. Contrôlez vos coûts.
+
+<CardGroup cols={1}>
+  <Card title="Transparence complète" icon="eye">
+    Regardez en temps réel comment Caret lit les fichiers, considère les approches et propose des modifications. Chaque décision est visible, chaque édition examinable avant d'être effectuée.
+  </Card>
+
+  <Card title="Choisissez votre inférence" icon="sliders">
+    Utilisez Claude pour le raisonnement complexe, Gemini pour les contextes massifs ou Qwen3 Coder pour l'efficacité. Basculez instantanément à mesure que de nouveaux modèles sont lancés. Apportez vos clés API, votre choix.
+  </Card>
+
+  <Card title="Confiance zéro par conception" icon="lock">
+    Votre code ne touche jamais nos serveurs. Caret s'exécute entièrement côté client avec vos clés API. Open source signifie que votre équipe de sécurité peut examiner chaque ligne.
+  </Card>
+</CardGroup>
+
+## Conçu pour l'ingénierie réelle
+
+<CardGroup cols={3}>
+  <Card title="Lire et écrire des fichiers" icon="file-code">
+    Travaillez sur toute votre base de code avec des opérations de fichiers intelligentes
+  </Card>
+
+  <Card title="Exécuter les commandes" icon="terminal">
+    Exécutez les commandes de terminal et déboguez les erreurs en temps réel
+  </Card>
+
+  <Card title="Planifier des fonctionnalités complexes" icon="brain">
+    Explorez et planifiez avant d'écrire une seule ligne de code
+  </Card>
+
+  <Card title="Connecter les systèmes externes" icon="plug">
+    Intégrez les bases de données, les API et la documentation via les serveurs MCP
+  </Card>
+
+  <Card title="Comprendre les grandes bases de code" icon="magnifying-glass">
+    Gestion intelligente du contexte pour les projets massifs
+  </Card>
+
+  <Card title="Tâches multi-étapes" icon="list-check">
+    Exécutez les flux de travail complexes du début à la fin
+  </Card>
+</CardGroup>
+
+## Mode Plan et Acte
+
+Caret explore votre base de code et travaille avec vous pour créer des plans complets avant d'écrire du code, en veillant à ce qu'il comprenne le contexte complet de votre projet.
+
+<Tabs>
+  <TabItem title="Mode Plan" value="plan-mode" icon="lightbulb">
+    Pour les tâches complexes, Caret explore votre base de code, pose des questions de clarification et crée des plans de mise en œuvre détaillés avant d'apporter des modifications.
+
+    - Collecte d'informations et création de contexte
+    - Poser des questions de clarification
+    - Création de plans d'exécution détaillés
+    - Discuter des approches avec vous
+  </TabItem>
+
+  <TabItem title="Mode Agir" value="act-mode" icon="play">
+    Une fois que vous avez approuvé le plan, Caret met en œuvre la solution avec transparence et contrôle complets.
+
+    - Exécution des actions planifiées
+    - Utilisation d'outils pour modifier les fichiers et exécuter les commandes
+    - Mise en œuvre de la solution
+    - Fournir des résultats et des commentaires d'achèvement
+  </TabItem>
+</Tabs>
+
+
+## Fonctionnalités clés
+
+<AccordionGroup>
+  <Accordion title="Planification et exécution intelligentes" icon="brain">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/fr/features/plan-and-act">Mode Plan et Acte</a></strong> • Planifiez les fonctionnalités complexes avant d'écrire le code, puis exécutez avec transparence complète
+      </div>
+      <div>
+        <strong><a href="/fr/features/focus-chain">Focus Chain</a></strong> • Gestion automatique de la liste de tâches avec suivi de la progression en temps réel
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="Optimisation du flux de travail" icon="bolt">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/fr/features/auto-approve">Approbation automatique</a></strong> • Rationalisez votre flux de travail en approuvant automatiquement les opérations approuvées
+      </div>
+      <div>
+        <strong><a href="/fr/features/auto-compact">Compacte automatique</a></strong> • Résumé automatique de la conversation pour préserver le contexte tout en libérant l'espace
+      </div>
+      <div>
+        <strong><a href="/fr/features/dictation">Dictée</a></strong> • Parlez naturellement à Caret pour une planification rapide et des exigences complexes
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="Extensions et intégrations" icon="plug">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/fr/mcp/mcp-overview">Intégration MCP</a></strong> • Connectez aux bases de données, API et documentation via le protocole de contexte du modèle
+      </div>
+      <div>
+        <strong><a href="/fr/exploring-carets-tools/remote-browser-support">Navigateur distant</a></strong> • Testez et interagissez avec les applications Web par l'automatisation du navigateur
+      </div>
+    </div>
+  </Accordion>
+
+  <Accordion title="Personnalisation et contrôle" icon="gear">
+    <div style={{ display: 'grid', gap: '1rem', marginTop: '0.5rem' }}>
+      <div>
+        <strong><a href="/fr/features/caret-rules">.agents/context</a></strong> • Définissez les instructions spécifiques au projet, y compris les normes de codage et les modèles
+      </div>
+      <div>
+        <strong><a href="/fr/features/checkpoints">Points de contrôle</a></strong> • Enregistrez et restaurez les états du projet avec des points de contrôle basés sur Git
+      </div>
+    </div>
+  </Accordion>
+</AccordionGroup>
+
+## Pourquoi les développeurs choisissent Caret
+
+<CardGroup cols={2}>
+  <Card title="100% Open Source" icon="github">
+    Chaque ligne de code sur GitHub. **50k+ stars** des développeurs qui l'ont utilisé, amélioré et en qui ils font confiance pour leur travail.
+  </Card>
+
+  <Card title="Pas de jeux d'inférence" icon="ban">
+    Nous ne profitons pas de l'utilisation de l'IA. Tandis que d'autres limitent le contexte ou l'acheminent vers des modèles moins chers, nous vous donnons un accès sans restriction aux capacités complètes de tout modèle.
+  </Card>
+
+  <Card title="À l'épreuve du temps par conception" icon="rocket">
+    Nouveau modèle publié? Utilisez-le immédiatement. Caret fonctionne avec plusieurs fournisseurs d'IA.
+  </Card>
+
+  <Card title="Véritable visibilité" icon="eye">
+    Voyez chaque fichier lu, chaque décision considérée, chaque jeton utilisé. Pas de boîte noire, pas de surprise.
+  </Card>
+</CardGroup>

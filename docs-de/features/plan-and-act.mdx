@@ -1,0 +1,164 @@
+---
+title: "Plan & Act"
+sidebarTitle: "Planen & Handeln"
+description: "Planen & Handeln Modi repräsentieren Carets Ansatz für strukturierte KI-Entwicklung, wobei der Schwerpunkt auf einer sorgfältigen Planung vor der Implementierung liegt."
+---
+
+Planen & Handeln Modi repräsentieren Carets Ansatz für strukturierte KI-Entwicklung, wobei der Schwerpunkt auf einer sorgfältigen Planung vor der Implementierung liegt. Dieses Dual-Mode-System hilft Entwicklern, besser wartbaren, präziseren Code zu erstellen und gleichzeitig die Iterationszeit zu verkürzen.
+
+<Frame>
+	<iframe
+		style={{ width: "100%", aspectRatio: "16/9" }}
+		src="https://www.youtube.com/embed/b7o6URFPp64"
+		title="YouTube video player"
+		frameBorder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		allowFullScreen></iframe>
+</Frame>
+
+#### Plan Mode: Erst Denken
+
+Der Plan Mode ist der Modus, in dem du und Caret herausfinden, was du erstellen möchtest und wie du es erstellen wirst. In diesem Modus kann Caret:
+
+-   Deinen gesamten Codebestand lesen, um den Kontext zu verstehen
+-   Keine Änderungen an deinen Dateien vornehmen
+-   Sich darauf konzentrieren, Anforderungen zu verstehen und eine Strategie zu entwickeln
+-   Helfen, potenzielle Probleme zu erkennen, bevor du eine einzige Zeile Code schreibst
+
+<Tip>
+Probiere [Dictation](/german/features/dictation) im Plan Mode aus - anstatt komplexe Anforderungen einzutippen, kannst du natürlich sprechen und deinen gesamten Denkprozess mitteilen. Es ist perfekt für schnelle Planungsgespräche.
+</Tip>
+
+#### Act Mode: Umsetzen
+
+Sobald du einen Plan hast, wechselst du in den Act Mode. Jetzt hat Caret:
+
+-   Alle Baukapazitäten zur Verfügung
+-   Kann Änderungen an deinem Codebestand vornehmen
+-   Erinnert sich immer noch an alles aus deiner Planungssitzung
+-   Führt die Strategie aus, die ihr gemeinsam erarbeitet habt
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(5).png" alt="Act mode capabilities" />
+</Frame>
+
+### Workflow-Anleitung
+
+Wenn ich an einem neuen Feature arbeite oder einen komplexen Fehler behebe, funktioniert folgendes für mich:
+
+1. Ich beginne im Plan Mode und sage Caret, was ich bauen möchte
+2. Caret hilft mir, den Codebestand zu erkunden und relevante Dateien anzusehen
+3. Gemeinsam finden wir den besten Ansatz, wobei wir Randfälle und potenzielle Probleme berücksichtigen
+4. Wenn ich von unserem Plan überzeugt bin, wechsle ich in den Act Mode
+5. Caret implementiert die Lösung basierend auf unserer Planung
+
+#### 1. Mit Plan Mode beginnen
+
+Beginne jede größere Entwicklungsaufgabe im Plan Mode:
+
+In diesem Modus:
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(5)%20(1).png" alt="Plan mode workflow" />
+</Frame>
+
+-   Teile deine Anforderungen
+-   Lasse Caret relevante Dateien analysieren
+-   Führe einen Dialog, um Ziele zu klären
+-   Entwickle eine Implementierungsstrategie
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2)%20(1)%20(1)%20(1).png"
+		alt="Planning phase"
+	/>
+</Frame>
+
+#### 2. In den Act Mode wechseln
+
+Sobald du einen klaren Plan hast, wechsle in den Act Mode:
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/switching-to-act.gif" alt="Switching to Act mode" />
+</Frame>
+
+Der Act Mode ermöglicht Caret:
+
+-   Die Ausführung des vereinbarten Plans
+-   Änderungen an deinem Codebestand vorzunehmen
+-   Den Kontext aus der Planungsphase beizubehalten
+
+#### 3. Bei Bedarf iterieren
+
+Komplexe Projekte erfordern oft mehrere Plan-Act-Zyklen:
+
+-   Kehre zum Plan Mode zurück, wenn unerwartete Komplexität auftritt
+-   Verwende den Act Mode für die Implementierung von Lösungen
+-   Behalte die Entwicklungsdynamik bei und stelle gleichzeitig die Qualität sicher
+
+### Bewährte Verfahren
+
+#### Planungsphase
+
+1. Sei umfassend mit den Anforderungen
+2. Teile relevante Kontextinformationen im Voraus mit
+3. Weise Caret auf relevante Dateien hin, falls er sie noch nicht gelesen hat
+4. Validiere den Ansatz vor der Implementierung
+
+#### Implementierungsphase
+
+1. Befolge den erstellten Plan
+2. Überwache den Fortschritt anhand der Ziele
+3. Verfolge Änderungen und ihre Auswirkungen
+4. Dokumentiere wichtige Entscheidungen
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(3)%20(1).png"
+		alt="Implementation best practices"
+	/>
+</Frame>
+
+### Power User Tipps
+
+#### Planung verbessern
+
+-   Verwende den Plan Mode, um Randfälle vor der Implementierung zu untersuchen
+-   Wechsle zurück zum Plan Mode, wenn unerwartete Komplexität auftritt
+-   Nutze [file reading](/german/features/at-mentions/file-mentions), um Annahmen frühzeitig zu validieren
+-   Lasse Caret Markdown-Dateien des Plans zur späteren Bezugnahme schreiben
+
+### Häufige Muster
+
+#### Wann welcher Modus verwendet werden soll
+
+Ich habe festgestellt, dass der Plan Mode am besten funktioniert, wenn:
+
+-   Etwas Neues gestartet wird, bei dem der Ansatz nicht offensichtlich ist
+-   Ein schwieriger Fehler behoben wird, bei dem ich mir nicht sicher bin, was falsch ist
+-   Architektur Entscheidungen getroffen werden, die mehrere Teile des Codebestands betreffen
+-   Versucht wird, einen komplexen Workflow oder eine komplexe Funktion zu verstehen
+
+Und der Act Mode ist perfekt für:
+
+-   Die Implementierung einer Lösung, die wir bereits geplant haben
+-   Routinemäßige Änderungen, bei denen der Ansatz klar ist
+-   Das Befolgen etablierter Muster im Codebestand
+-   Das Ausführen von Tests und das Vornehmen kleinerer Anpassungen
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(6).png" alt="Mode usage patterns" />
+</Frame>
+
+### Mitwirken
+
+Teile deine Erfahrungen und Verbesserungen:
+
+-   Trete unserer [Discord community](https://https://discord.gg/WB6yaR89YN) bei
+-   Beteilige dich an Diskussionen
+-   Reiche Feature-Anfragen ein
+-   Melde Probleme
+
+---
+
+Denke daran: Die in die Planung investierte Zeit zahlt sich in der Implementierungsqualität und Wartungseffizienz aus.

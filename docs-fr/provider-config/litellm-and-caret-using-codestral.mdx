@@ -1,0 +1,65 @@
+---
+title: "LiteLLM & Caret (avec Codestral)"
+description: "Apprenez à configurer et à exécuter LiteLLM avec Caret en utilisant le modèle Codestral. Ce guide couvre l'installation de Docker, la configuration et l'intégration avec Caret."
+---
+
+### Utiliser LiteLLM avec Caret
+
+Ce guide explique comment lancer une démo pour LiteLLM en commençant par le modèle Codestral pour une utilisation avec Caret.
+
+#### Prérequis
+
+-   [Docker CLI ou Docker Desktop](https://www.docker.com/get-started/) installé pour exécuter l'image LiteLLM localement
+-   Pour cette configuration d'exemple : une API Key Codestral (différente des API Keys Mistral)
+
+#### Installation
+
+1. **Créez un fichier `.env` et remplissez les champs appropriés**
+
+    ```bash
+    # Tip: Use the following command to generate a random alphanumeric key:
+    # openssl rand -base64 32 | tr -dc 'A-Za-z0-9' | head -c 32
+    LITELLM_MASTER_KEY=YOUR_LITELLM_MASTER_KEY
+    CODESTRAL_API_KEY=YOUR_CODESTRAL_API_KEY
+    ```
+
+    _Note : Bien que cela soit limité au localhost, il est recommandé de définir une valeur sécurisée pour LITELLM_MASTER_KEY._
+
+2. **Configuration**
+
+    Nous allons devoir créer un fichier `config.yaml` pour contenir notre configuration LiteLLM. Dans ce cas, nous n'aurons qu'un seul modèle, 'codestral-latest', étiqueté 'codestral'.
+
+    ```yaml
+    model_list:
+        - model_name: codestral
+          litellm_params:
+              model: codestral/codestral-latest
+              api_key: os.environ/CODESTRAL_API_KEY
+    ```
+
+#### Lancement de la démo
+
+1. **Démarrer le conteneur Docker LiteLLM**
+
+    ```bash
+    docker run \
+        --env-file .env \
+        -v $(pwd)/config.yaml:/app/config.yaml \
+        -p 127.0.0.1:4000:4000 \
+        ghcr.io/berriai/litellm:main-latest \
+        --config /app/config.yaml --detailed_debug
+    ```
+
+2. **Configurer Caret**
+
+    Une fois que le serveur LiteLLM est opérationnel, vous pouvez le configurer dans Caret :
+
+    - Base URL doit être `http://0.0.0.0:4000/v1`
+    - API Key doit être celle que vous avez définie dans le fichier `.env` pour LITELLM_MASTER_KEY
+    - Model ID est `codestral` ou le nom que vous lui avez donné dans `config.yaml`
+
+#### Obtenir de l'aide
+
+-   [Documentation LiteLLM](https://docs.litellm.ai/)
+-   [Console Mistral AI](https://console.mistral.ai/)
+-   [Communauté Discord Caret](https://https://discord.gg/WB6yaR89YN)

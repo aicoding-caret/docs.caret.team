@@ -1,0 +1,37 @@
+---
+title: "DeepSeek"
+description: "Apprenez à configurer et à utiliser les modèles DeepSeek tels que deepseek-chat et deepseek-reasoner avec Caret."
+---
+
+<Note>
+Il s'agit d'un document de référence pour Caret. Il suit la version Caret v3.38.1. Si des politiques spécifiques à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles sont indiquées par une balise `<Note>` dans le corps du texte.
+</Note>
+
+Caret prend en charge l'accès aux modèles via l'API DeepSeek, incluant `deepseek-chat` et `deepseek-reasoner`.
+
+**Site web :** [https://platform.deepseek.com/](https://platform.deepseek.com/)
+
+### Obtenir une API Key
+
+1.  **S'inscrire / Se connecter :** Rendez-vous sur la [DeepSeek Platform](https://platform.deepseek.com/). Créez un compte ou connectez-vous.
+2.  **Accéder aux API Keys :** Trouvez vos clés API dans la section [API keys](https://platform.deepseek.com/api_keys) de la plateforme.
+3.  **Créer une clé :** Cliquez sur « Create new API key ». Donnez à votre clé un nom descriptif (par exemple, « Caret »).
+4.  **Copier la clé :** **Important :** Copiez l'API Key *immédiatement*. Vous ne pourrez plus la voir par la suite. Conservez-la en lieu sûr.
+
+### Modèles pris en charge
+
+Caret prend en charge les modèles DeepSeek suivants :
+
+-   `deepseek-v3-0324` (Recommandé pour les tâches de codage)
+-   `deepseek-r1` (Recommandé pour les tâches de raisonnement)
+
+### Configuration dans Caret
+
+1.  **Ouvrir les Settings de Caret :** Cliquez sur l'icône ⚙️ dans le panneau Caret.
+2.  **Sélectionner le Provider :** Choisissez « DeepSeek » dans le menu déroulant « API Provider ».
+3.  **Saisir l'API Key :** Collez votre clé API DeepSeek dans le champ « DeepSeek API Key ».
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant « Model ».
+
+### Conseils et remarques
+
+-   **Tarification :** Consultez la page [DeepSeek Pricing](https://api-docs.deepseek.com/quick_start/pricing/) pour plus de détails sur le coût des modèles.

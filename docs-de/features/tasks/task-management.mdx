@@ -1,0 +1,109 @@
+---
+title: "Aufgabenverwaltung"
+description: "Erfahren Sie, wie Sie Ihren Aufgabenverlauf in Caret organisieren, durchsuchen und verwalten."
+---
+
+<Note>
+Dies ist eine Dokumentation für Caret. Sie basiert auf dem Merge-Branch von Caret v3.38.1 und kennzeichnet Caret-spezifische Richtlinien (Speicherort, Authentifizierung/Routing, Datenspeicherung/-löschung) im Text mit `<Note>`.
+</Note>
+
+Caret bietet Tools zur Verwaltung Ihres Aufgabenverlaufs, die Ihnen helfen, Ihren Workspace effizient zu organisieren, zu durchsuchen und zu pflegen. Wenn Sie im Laufe der Zeit immer mehr Aufgaben ansammeln, werden diese Funktionen für die Produktivität unerlässlich.
+
+## Zugriff auf den Aufgabenverlauf
+
+Erfahren Sie, wie Sie Ihren Aufgabenverlauf in Caret öffnen und dorthin navigieren können. Egal, ob Sie lieber auf Schaltflächen klicken, Tastenkombinationen verwenden oder die Command Palette nutzen, es gibt mehrere bequeme Methoden, um auf Ihre vergangene Arbeit zuzugreifen.
+
+Sie können auf Ihren Aufgabenverlauf zugreifen, indem Sie:
+
+1. **Auf die Schaltfläche "History" klicken** in der Caret-Sidebar
+2. **Die Command Palette verwenden**: Suchen Sie nach "Caret: Show Task History"
+3. **Eine Tastenkombination verwenden** (falls in Ihren VS Code-Einstellungen konfiguriert)
+
+## Aufgabenverlauf-Schnittstelle
+
+Erkunden Sie die Hauptschnittstelle, in der alle Ihre Aufgaben angezeigt und verwaltet werden. Dieser Abschnitt behandelt das Layout, die Suchfunktionen, die Sortieroptionen und die Filtertools, die Ihnen helfen, effizient durch Ihre angesammelten Aufgaben zu navigieren. Die Aufgabenverlauf-Ansicht bietet eine umfassende Schnittstelle zur Verwaltung aller Ihrer vergangenen und aktuellen Aufgaben.
+
+### Suchen und Filtern
+
+Die Verlaufsansicht enthält Such- und Filterfunktionen:
+
+#### Suchleiste
+- **Fuzzy-Suche** über alle Aufgabeninhalte hinweg
+- Durchsucht Prompts, Antworten und Code
+- Filtert die Ergebnisse sofort während der Eingabe
+- Hebt übereinstimmenden Text in den Ergebnissen hervor
+
+#### Sortieroptionen
+Sortieren Sie Ihre Aufgaben nach:
+- **Neueste** (Standard) - Die neuesten Aufgaben zuerst
+- **Älteste** - Die frühesten Aufgaben zuerst
+- **Teuerste** - Aufgaben mit den höchsten API-Kosten
+- **Meiste Tokens** - Höchste Token-Nutzung
+- **Relevanteste** - Beste Übereinstimmungen bei der Suche
+
+#### Favoriten-Filter
+- Umschalten, um nur mit Stern markierte Aufgaben anzuzeigen
+- Greifen Sie schnell auf Ihre wichtigsten Arbeiten zu
+- Kombinieren Sie dies mit der Suche nach einer präzisen Filterung
+
+## Aufgabenaktionen
+
+Entdecken Sie die verschiedenen Aktionen, die Sie für einzelne Aufgaben in Ihrem Verlauf durchführen können. Vom erneuten Öffnen und Fortsetzen von Aufgaben bis zum Exportieren und Verwalten erklärt dieser Abschnitt alle verfügbaren Operationen für die Aufgabenmanipulation.
+
+Jede Aufgabe im Verlauf bietet verschiedene Aktionen:
+
+### Primäre Aktionen
+
+- **Open**: Klicken Sie auf eine Aufgabe, um sie im Caret-Chat erneut zu öffnen
+- **Resume**: Setzen Sie eine unterbrochene Aufgabe dort fort, wo sie aufgehört hat
+- **Export**: Speichern Sie die Konversation als Markdown zur Dokumentation
+
+### Verwaltungsaktionen
+
+- **Favorite** ⭐: Klicken Sie auf das Sternsymbol, um wichtige Aufgaben zu markieren
+- **Delete** 🗑️: Entfernen Sie einzelne Aufgaben (Favoriten sind geschützt)
+- **Duplicate**: Erstellen Sie eine neue Aufgabe auf der Grundlage einer bestehenden Aufgabe
+
+## ⭐ Aufgaben-Favoriten
+
+Meistern Sie das Favoritensystem, um Ihre wertvollsten Aufgaben zu markieren und zu schützen. Mit dieser Funktion können Sie wichtige Arbeiten mit einem Stern versehen, wodurch ein versehentliches Löschen verhindert und gleichzeitig ein schneller Zugriff auf Referenzimplementierungen und erfolgreiche Muster ermöglicht wird.
+
+Das Favoritensystem hilft Ihnen, wichtige Aufgaben zu bewahren und schnell auf sie zuzugreifen.
+
+### Verwendung von Favoriten
+
+**Markieren von Favoriten**
+- Klicken Sie auf das Sternsymbol neben einer beliebigen Aufgabe
+- Der Stern füllt sich, wenn er als Favorit markiert ist
+- Klicken Sie erneut, um die Markierung als Favorit aufzuheben
+
+**Schutzfunktionen**
+- Als Favoriten markierte Aufgaben sind vor versehentlichem Löschen geschützt
+- Massenlöschvorgänge überspringen standardmäßig Favoriten
+- Der Schutz kann mit einer expliziten Bestätigung außer Kraft gesetzt werden
+
+**Anwendungsfälle für Favoriten**
+- Referenzimplementierungen, die Sie behalten möchten
+- Erfolgreiche Muster zur Problemlösung
+- Aufgaben mit wiederverwendbaren Code-Snippets
+- Wichtige Projektmeilensteine
+- Lernbeispiele für Teammitglieder
+
+## Aufgabenmetriken
+
+Gewinnen Sie Einblicke in Ihre Caret-Nutzung durch Aufgabenmetriken. Dieser Abschnitt erläutert, wie Sie die Token-Nutzung, die API-Kosten und andere Metriken verfolgen können, um Ihren Workflow zu optimieren und Ressourcen effektiv zu verwalten.
+
+Das Verständnis Ihrer Aufgabenmetriken hilft bei der Optimierung der Nutzung:
+
+### Verfügbare Metriken
+
+- **Token Usage**: Gesamtanzahl der verbrauchten Eingabe-/Ausgabe-Tokens
+- **API Cost**: Geschätzte Kosten basierend auf der Modellpreisgestaltung
+- **Checkpoint Count**: Anzahl der erstellten Datei-Snapshots
+
+### Verwendung von Metriken
+
+- **Budget Tracking**: Überwachen Sie die API-Kosten über alle Aufgaben hinweg
+- **Efficiency Analysis**: Identifizieren Sie teure Operationen
+- **Model Comparison**: Vergleichen Sie die Kosten zwischen Modellen
+- **Optimization**: Finden Sie Aufgaben, die effizienter sein könnten

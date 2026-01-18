@@ -1,0 +1,65 @@
+---
+title: "LiteLLM & Caret (mit Codestral)"
+description: "Erfahren Sie, wie Sie LiteLLM mit Caret unter Verwendung des Codestral-Modells einrichten und ausführen. Dieser Leitfaden deckt das Docker-Setup, die Konfiguration und die Integration in Caret ab."
+---
+
+### Verwendung von LiteLLM mit Caret
+
+Dieser Leitfaden zeigt, wie Sie eine Demo für LiteLLM ausführen, beginnend mit dem Codestral-Modell zur Verwendung mit Caret.
+
+#### Voraussetzungen
+
+-   [Docker CLI oder Docker Desktop](https://www.docker.com/get-started/) installiert, um das LiteLLM-Image lokal auszuführen
+-   Für diese Beispiel-Konfiguration: Ein Codestral API Key (unterscheidet sich von den Mistral API Keys)
+
+#### Einrichtung
+
+1. **Erstellen Sie eine `.env`-Datei und füllen Sie die entsprechenden Felder aus**
+
+    ```bash
+    # Tip: Use the following command to generate a random alphanumeric key:
+    # openssl rand -base64 32 | tr -dc 'A-Za-z0-9' | head -c 32
+    LITELLM_MASTER_KEY=YOUR_LITELLM_MASTER_KEY
+    CODESTRAL_API_KEY=YOUR_CODESTRAL_API_KEY
+    ```
+
+    _Hinweis: Obwohl dies auf localhost beschränkt ist, empfiehlt es sich, den LITELLM_MASTER_KEY auf einen sicheren Wert zu setzen_
+
+2. **Konfiguration**
+
+    Wir müssen eine `config.yaml`-Datei erstellen, die unsere LiteLLM-Konfiguration enthält. In diesem Fall verwenden wir nur ein Modell, 'codestral-latest', und bezeichnen es als 'codestral'
+
+    ```yaml
+    model_list:
+        - model_name: codestral
+          litellm_params:
+              model: codestral/codestral-latest
+              api_key: os.environ/CODESTRAL_API_KEY
+    ```
+
+#### Ausführen der Demo
+
+1. **Starten des LiteLLM Docker-Containers**
+
+    ```bash
+    docker run \
+        --env-file .env \
+        -v $(pwd)/config.yaml:/app/config.yaml \
+        -p 127.0.0.1:4000:4000 \
+        ghcr.io/berriai/litellm:main-latest \
+        --config /app/config.yaml --detailed_debug
+    ```
+
+2. **Caret einrichten**
+
+    Sobald der LiteLLM-Server läuft, können Sie ihn in Caret einrichten:
+
+    - Base URL sollte `http://0.0.0.0:4000/v1` sein
+    - API Key sollte derjenige sein, den Sie in der `.env`-Datei für LITELLM_MASTER_KEY festgelegt haben
+    - Model ID ist `codestral` oder wie auch immer Sie es in der `config.yaml` benannt haben
+
+#### Hilfe erhalten
+
+-   [LiteLLM-Dokumentation](https://docs.litellm.ai/)
+-   [Mistral AI Console](https://console.mistral.ai/)
+-   [Caret Discord-Community](https://https://discord.gg/WB6yaR89YN)

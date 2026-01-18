@@ -1,0 +1,85 @@
+---
+title: "xAI (Grok)"
+description: "Découvrez comment configurer et utiliser les modèles Grok d'xAI avec Caret, incluant la configuration de la clé API, les modèles supportés et les capacités de raisonnement."
+---
+
+xAI est l'entreprise derrière Grok, un modèle de langage étendu reconnu pour ses capacités conversationnelles et sa large context window. Les modèles Grok sont conçus pour fournir des réponses utiles, informatives et contextuellement pertinentes.
+
+**Site Web :** [https://x.ai/](https://x.ai/)
+
+### Obtenir une API Key
+
+1.  **S'inscrire/Se connecter :** Allez sur la [xAI Console](https://console.x.ai/). Créez un compte ou connectez-vous.
+2.  **Accéder aux API Keys :** Allez dans la section des API keys de votre dashboard.
+3.  **Créer une clé :** Cliquez pour créer une nouvelle API key. Donnez à votre clé un nom descriptif (par ex., "Caret").
+4.  **Copier la clé :** **Important :** Copiez l'API key _immédiatement_. Vous ne pourrez plus la revoir. Conservez-la en lieu sûr.
+
+### Modèles supportés
+
+Caret supporte les modèles xAI Grok suivants :
+
+#### Modèles Grok-3
+
+-   `grok-3-beta` (Par défaut) - Modèle Grok-3 beta d'xAI avec une context window de 131K
+-   `grok-3-fast-beta` - Modèle Grok-3 fast beta d'xAI avec une context window de 131K
+-   `grok-3-mini-beta` - Modèle Grok-3 mini beta d'xAI avec une context window de 131K
+-   `grok-3-mini-fast-beta` - Modèle Grok-3 mini fast beta d'xAI avec une context window de 131K
+
+#### Modèles Grok-2
+
+-   `grok-2-latest` - Modèle Grok-2 d'xAI - dernière version avec une context window de 131K
+-   `grok-2` - Modèle Grok-2 d'xAI avec une context window de 131K
+-   `grok-2-1212` - Modèle Grok-2 d'xAI (version 1212) avec une context window de 131K
+
+#### Modèles Grok Vision
+
+-   `grok-2-vision-latest` - Modèle Grok-2 Vision d'xAI - dernière version avec support d'images et une context window de 32K
+-   `grok-2-vision` - Modèle Grok-2 Vision d'xAI avec support d'images et une context window de 32K
+-   `grok-2-vision-1212` - Modèle Grok-2 Vision d'xAI (version 1212) avec support d'images et une context window de 32K
+-   `grok-vision-beta` - Modèle Grok Vision Beta d'xAI avec support d'images et une context window de 8K
+
+#### Modèles Legacy
+
+-   `grok-beta` - Modèle Grok Beta d'xAI (legacy) avec une context window de 131K
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez "xAI" dans le menu déroulant "API Provider".
+3.  **Saisir l'API Key :** Collez votre xAI API key dans le champ "xAI API Key".
+4.  **Sélectionner le modèle :** Choisissez le modèle Grok souhaité dans le menu déroulant "Model".
+
+### Capacités de raisonnement
+
+Les modèles Grok 3 Mini disposent de capacités de raisonnement spécialisées, leur permettant de « réfléchir avant de répondre » - ce qui est particulièrement utile pour les tâches complexes de résolution de problèmes.
+
+#### Modèles avec raisonnement activé
+
+Le raisonnement est uniquement supporté par :
+
+-   `grok-3-mini-beta`
+-   `grok-3-mini-fast-beta`
+
+Les modèles Grok 3 `grok-3-beta` et `grok-3-fast-beta` ne supportent pas le raisonnement.
+
+#### Contrôler l'effort de raisonnement
+
+Lors de l'utilisation de modèles avec raisonnement activé, vous pouvez contrôler l'intensité de la réflexion du modèle avec le paramètre `reasoning_effort` :
+
+-   `low` : Temps de réflexion minimal, utilisant moins de tokens pour des réponses rapides
+-   `high` : Temps de réflexion maximal, exploitant davantage de tokens pour les problèmes complexes
+
+Choisissez `low` pour les requêtes simples qui doivent s'exécuter rapidement, et `high` pour les problèmes plus difficiles où la latence de réponse est moins importante.
+
+#### Fonctionnalités clés
+
+-   **Résolution de problèmes étape par étape** : Le modèle analyse les problèmes méthodiquement avant de fournir une réponse
+-   **Force en mathématiques et analyse quantitative** : Excelle dans les défis numériques et les énigmes logiques
+-   **Accès à la trace de raisonnement** : Le processus de réflexion du modèle est disponible via le champ `reasoning_content` dans l'objet response completion
+
+### Conseils et remarques
+
+-   **Context Window :** La plupart des modèles Grok disposent de larges context windows (jusqu'à 131K tokens), vous permettant d'inclure des quantités substantielles de code et de contexte dans vos prompts.
+-   **Capacités Vision :** Sélectionnez les modèles compatibles vision (`grok-2-vision-latest`, `grok-2-vision`, etc.) lorsque vous avez besoin de traiter ou d'analyser des images.
+-   **Tarification :** Les prix varient selon le modèle, avec des coûts d'input allant de 0,3 $ à 5,0 $ par million de tokens et des coûts d'output de 0,5 $ à 25,0 $ par million de tokens. Reportez-vous à la documentation d'xAI pour les informations de tarification les plus récentes.
+-   **Compromis de performance :** Les variantes "fast" offrent généralement des temps de réponse plus rapides mais peuvent avoir des coûts plus élevés, tandis que les variantes "mini" sont plus économiques mais peuvent avoir des capacités réduites.

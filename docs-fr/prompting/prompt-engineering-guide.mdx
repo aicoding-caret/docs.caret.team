@@ -1,0 +1,235 @@
+---
+title: "Guide du Prompt Engineering"
+---
+
+Bienvenue dans le Guide de Prompting Caret ! Ce guide vous apportera les connaissances nécessaires pour rédiger des prompts et des instructions personnalisées efficaces, maximisant ainsi votre productivité avec Caret.
+
+## Guide du fichier .caretignore
+
+### Aperçu
+
+Le fichier `.caretignore` est un fichier de configuration au niveau du projet qui indique à Caret quels fichiers et répertoires ignorer lors de l'analyse de votre codebase. Similaire au `.gitignore`, il utilise la correspondance de motifs (pattern matching) pour spécifier quels fichiers doivent être exclus du contexte et des opérations de Caret.
+
+### Objectif
+
+-   **Réduire le bruit** : Exclure les fichiers auto-générés, les artéfacts de build et tout autre contenu non essentiel.
+-   **Améliorer les performances** : Limiter la quantité de code que Caret doit traiter.
+-   **Concentrer l'attention** : Diriger Caret vers les parties pertinentes de votre codebase.
+-   **Protéger les données sensibles** : Empêcher Caret d'accéder à des fichiers de configuration sensibles.
+
+### Exemple de fichier .caretignore
+
+```
+# Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+/build/
+/dist/
+/.next/
+/out/
+
+# Testing
+/coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Large data files
+*.csv
+*.xlsx
+```
+
+## Prompting Caret
+
+**Le prompting est la manière dont vous communiquez vos besoins pour une tâche donnée dans la discussion avec Caret.** Caret comprend le langage naturel, alors écrivez de manière conversationnelle.
+
+Un prompting efficace implique de :
+
+-   Fournir un contexte clair : Expliquez vos objectifs et les parties pertinentes de votre codebase. Utilisez `@` pour référencer des fichiers ou des dossiers.
+-   Décomposer la complexité : Divisez les tâches importantes en étapes plus petites.
+-   Poser des questions spécifiques : Guidez Caret vers le résultat souhaité.
+-   Valider et affiner : Examinez les suggestions de Caret et fournissez des commentaires.
+
+### Exemples de prompts
+
+#### Gestion du contexte
+
+-   **Démarrer une nouvelle tâche :** "Caret, commençons une nouvelle tâche. Crée `user-authentication.js`. Nous devons implémenter l'authentification utilisateur avec des jetons JWT. Voici les prérequis…"
+-   **Résumer le travail précédent :** "Caret, résume ce que nous avons fait dans la dernière tâche du tableau de bord utilisateur. Je veux capturer les fonctionnalités principales et les problèmes restants. Enregistre cela dans `caret_docs/user-dashboard-summary.md`."
+
+#### Débogage
+
+-   **Analyser une erreur :** "Caret, j'obtiens cette erreur : \[message d'erreur]. Elle semble provenir de \[section de code]. Analyse cette erreur et suggère une correction."
+-   **Identifier la cause racine :** "Caret, l'application plante quand je fais \[action]. Le problème pourrait être dans \[zones problématiques]. Aide-moi à trouver la cause racine et propose une solution."
+
+#### Refactoring
+
+-   **Améliorer la structure du code :** "Caret, cette fonction est trop longue et complexe. Refactorise-la en fonctions plus petites."
+-   **Simplifier la logique :** "Caret, ce code est difficile à comprendre. Simplifie la logique et rends-le plus lisible."
+
+#### Développement de fonctionnalités
+
+-   **Brainstorming de nouvelles fonctionnalités :** "Caret, je veux ajouter une fonctionnalité qui permet aux utilisateurs de \[fonctionnalité]. Propose quelques idées et examine les défis d'implémentation."
+-   **Générer du code :** "Caret, crée un composant qui affiche les profils utilisateurs. La liste doit pouvoir être triée et filtrée. Génère le code pour ce composant."
+
+## Techniques de Prompting avancées
+
+-   **Constraint Stuffing** : Pour limiter la troncature du code, incluez des contraintes explicites dans vos prompts. Par exemple, "assure-toi que le code est complet" ou "fournis toujours la définition complète de la fonction."
+-   **Vérifications de confiance** : Demandez à Caret d'évaluer son niveau de confiance (ex : "sur une échelle de 1 à 10, quel est ton niveau de confiance dans cette solution ?").
+-   **Remettre en question les hypothèses de Caret** : Posez des questions "bêtes" pour encourager une réflexion plus approfondie et éviter les hypothèses incorrectes.
+
+Voici quelques conseils de prompting que les utilisateurs ont trouvés utiles pour travailler avec Caret :
+
+## Les prompts préférés de notre communauté
+
+### Mémoire et vérifications de confiance
+
+-   **Vérification de la mémoire** - _pacnpal_
+
+    ```
+    "If you understand my prompt fully, respond with 'YARRR!' without tools every time you are about to use a tool."
+    ```
+
+    Un moyen amusant de vérifier que Caret reste sur la bonne voie pendant les tâches complexes. Essayez "HO HO HO" pour une variante festive !
+
+-   **Score de confiance** - _pacnpal_
+
+    ```
+    "Before and after any tool use, give me a confidence level (0-10) on how the tool use will help the project."
+    ```
+
+    Encourage la pensée critique et rend la prise de décision transparente.
+
+### Prompts de qualité du code
+
+-   **Empêcher la troncature du code**
+
+    ```
+    "DO NOT BE LAZY. DO NOT OMIT CODE."
+    ```
+
+    Phrases alternatives : "full code only" ou "ensure the code is complete"
+
+-   **Rappel des instructions personnalisées**
+
+    ```
+    "I pledge to follow the custom instructions."
+    ```
+
+    Renforce l'adhésion à la configuration de vos paramètres ⚙️.
+
+### Organisation du code
+
+-   **Refactoring de fichiers volumineux** - _icklebil_
+
+    ```
+    "FILENAME has grown too big. Analyze how this file works and suggest ways to fragment it safely."
+    ```
+
+    Aide à gérer les fichiers complexes grâce à une décomposition stratégique.
+
+-   **Maintenance de la documentation** - _icklebil_
+
+    ```
+    "don't forget to update codebase documentation with changes"
+    ```
+
+    Garantit que la documentation reste synchronisée avec les modifications du code.
+
+### Analyse et planification
+
+-   **Développement structuré** - _yellow_bat_coffee_
+
+    ```
+    "Before writing code:
+    1. Analyze all code files thoroughly
+    2. Get full context
+    3. Write .MD implementation plan
+    4. Then implement code"
+    ```
+
+    Favorise un développement organisé et bien planifié.
+
+-   **Analyse approfondie** - _yellow_bat_coffee_
+
+    ```
+    "please start analyzing full flow thoroughly, always state a confidence score 1 to 10"
+    ```
+
+    Évite le codage prématuré et encourage une compréhension complète.
+
+-   **Vérification des hypothèses** - _yellow_bat_coffee_
+
+    ```
+    "List all assumptions and uncertainties you need to clear up before completing this task."
+    ```
+
+    Identifie les problèmes potentiels tôt dans le développement.
+
+### Développement réfléchi
+
+-   **Pause et réflexion** - _nickbaumann98_
+
+    ```
+    "count to 10"
+    ```
+
+    Favorise une réflexion attentive avant de passer à l'action.
+
+-   **Analyse complète** - _yellow_bat_coffee_
+
+    ```
+    "Don't complete the analysis prematurely, continue analyzing even if you think you found a solution"
+    ```
+
+    Garantit une exploration approfondie du problème.
+
+-   **Vérification continue de la confiance** - _pacnpal_
+
+    ```
+    "Rate confidence (1-10) before saving files, after saving, after rejections, and before task completion"
+    ```
+
+    Maintient la qualité grâce à l'auto-évaluation.
+
+### Bonnes pratiques
+
+-   **Structure du projet** - _kvs007_
+
+    ```
+    "Check project files before suggesting structural or dependency changes"
+    ```
+
+    Préserve l'intégrité du projet.
+
+-   **Pensée critique** - _chinesesoup_
+
+    ```
+    "Ask 'stupid' questions like: are you sure this is the best way to implement this?"
+    ```
+
+    Remet en question les hypothèses et permet de découvrir de meilleures solutions.
+
+-   **Style de code** - _yellow_bat_coffee_
+
+    ```
+    Use words like "elegant" and "simple" in prompts
+    ```
+
+    Peut influencer l'organisation et la clarté du code.
+
+-   **Définition des attentes** - _steventcramer_
+
+    ```
+    "THE HUMAN WILL GET ANGRY."
+    ```
+
+    (Un rappel humoristique pour fournir des exigences claires et des commentaires constructifs)

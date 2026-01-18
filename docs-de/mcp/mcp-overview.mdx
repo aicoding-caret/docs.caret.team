@@ -1,0 +1,107 @@
+---
+title: "MCP Überblick"
+description: "Erfahren Sie mehr über Model Context Protocol (MCP) Server, ihre Funktionen und wie Caret beim Erstellen und Verwenden helfen kann. MCP standardisiert, wie Anwendungen LLMs Kontext bereitstellen, und fungiert wie ein USB-C-Anschluss für AI-Anwendungen."
+---
+
+## Quick-Links
+
+-   [MCP Server von GitHub erstellen](/german/mcp/adding-mcp-servers-from-github)
+-   [Eigene MCP Server von Grund auf neu erstellen](/german/mcp/mcp-server-development-protocol)
+
+## Überblick
+
+Model Context Protocol ist ein offenes Protokoll, das standardisiert, wie Anwendungen LLMs Kontext bereitstellen. Denken Sie bei MCP an eine Art USB-C-Anschluss für AI-Anwendungen; es bietet eine standardisierte Möglichkeit, AI-Modelle mit verschiedenen Datenquellen und Tools zu verbinden. MCP Server fungieren als Vermittler zwischen Large Language Models (LLMs), wie Claude, und externen Tools oder Datenquellen. Sie sind kleine Programme, die Funktionen für LLMs bereitstellen und es ihnen ermöglichen, über das MCP mit der Außenwelt zu interagieren. Ein MCP Server ist im Grunde wie ein API, das ein LLM nutzen kann.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/mcp-diagram.png"
+		alt="MCP diagram showing how MCP servers connect LLMs to external tools and data sources"
+	/>
+</Frame>
+
+## Kernkonzepte
+
+MCP Server definieren eine Reihe von „**tools,**“ bei denen es sich um Funktionen handelt, die das LLM ausführen kann. Diese Tools bieten eine breite Palette an Möglichkeiten.
+
+**So funktioniert MCP:**
+
+-   **MCP Hosts** erkennen die Fähigkeiten verbundener Server und laden deren Tools, Prompts und Ressourcen.
+-   **Ressourcen** bieten konsistenten Zugriff auf schreibgeschützte Daten, ähnlich wie Dateipfade oder Datenbankabfragen.
+-   **Security** wird gewährleistet, da Server Anmeldeinformationen und sensible Daten isolieren. Interaktionen erfordern die ausdrückliche Zustimmung des Benutzers.
+
+## Anwendungsfälle
+
+Das Potenzial von MCP Servern ist gewaltig. Sie können für eine Vielzahl von Zwecken eingesetzt werden.
+
+**Hier sind einige konkrete Beispiele, wie MCP Server genutzt werden können:**
+
+-   **Web Services und API-Integration:**
+    -   GitHub-Repositories auf neue Issues überwachen
+    -   Updates auf Twitter basierend auf bestimmten Triggern posten
+    -   Echtzeit-Wetterdaten für standortbasierte Dienste abrufen
+-   **Browser-Automatisierung:**
+    -   Tests von Webanwendungen automatisieren
+    -   E-Commerce-Seiten für Preisvergleiche scrapen
+    -   Screenshots für das Website-Monitoring erstellen
+-   **Datenbankabfragen:**
+    -   Wöchentliche Verkaufsberichte erstellen
+    -   Kundenverhaltensmuster analysieren
+    -   Echtzeit-Dashboards für Business-Metriken erstellen
+-   **Projekt- und Aufgabenmanagement:**
+    -   Automatische Erstellung von Jira-Tickets basierend auf Code-Commits
+    -   Wöchentliche Fortschrittsberichte erstellen
+    -   Aufgabenabhängigkeiten basierend auf Projektanforderungen erstellen
+-   **Codebase-Dokumentation:**
+    -   API-Dokumentation aus Code-Kommentaren generieren
+    -   Architekturdiagramme aus der Codestruktur erstellen
+    -   Aktuelle README-Dateien pflegen
+
+## Erste Schritte
+
+Caret enthält keine vorinstallierten MCP Server. Sie müssen diese separat finden und installieren.
+
+**Wählen Sie den richtigen Ansatz für Ihre Bedürfnisse:**
+
+-   **Community-Repositories:** Suchen Sie auf GitHub nach von der Community gepflegten Listen von MCP Servern. Siehe [Adding MCP Servers from Github](/german/mcp/adding-mcp-servers-from-github)
+-   **Caret Marketplace:** Installieren Sie einen aus Carets [MCP Marketplace](/german/mcp/mcp-marketplace)
+-   **Fragen Sie Caret:** Sie können Caret bitten, Ihnen beim Finden oder Erstellen von MCP Servern zu helfen
+-   **Erstellen Sie eigene:** Erstellen Sie benutzerdefinierte MCP Server mit dem [MCP SDK](https://github.com/modelcontextprotocol/)
+-   **Bestehende Server anpassen:** Ändern Sie vorhandene Server, um sie an Ihre spezifischen Anforderungen anzupassen
+
+## Integration mit Caret
+
+Caret vereinfacht das Erstellen und die Nutzung von MCP Servern durch seine AI-Fähigkeiten.
+
+### MCP Server erstellen
+
+-   **Verständnis natürlicher Sprache:** Weisen Sie Caret in natürlicher Sprache an, einen MCP Server zu erstellen, indem Sie dessen Funktionen beschreiben. Caret wird Ihre Anweisungen interpretieren und den erforderlichen Code generieren.
+-   **Server klonen und bauen:** Caret kann bestehende MCP Server-Repositories von GitHub klonen und diese automatisch bauen.
+-   **Konfigurations- und Abhängigkeitsmanagement:** Caret kümmert sich um Konfigurationsdateien, Umgebungsvariablen und Abhängigkeiten.
+-   **Fehlerbehebung und Debugging:** Caret hilft dabei, Fehler während der Entwicklung zu identifizieren und zu beheben.
+
+### MCP Server verwenden
+
+-   **Tool-Ausführung:** Caret integriert sich nahtlos in MCP Server und ermöglicht es Ihnen, deren definierte Tools auszuführen.
+-   **Kontextbezogene Interaktionen:** Caret kann intelligent vorschlagen, relevante Tools basierend auf dem Gesprächskontext zu verwenden.
+-   **Dynamische Integrationen:** Kombinieren Sie mehrere MCP Server-Funktionen für komplexe Aufgaben. Zum Beispiel könnte Caret einen GitHub-Server verwenden, um Daten abzurufen, und einen Notion-Server, um einen formatierten Bericht zu erstellen.
+
+## Sicherheitsüberlegungen
+
+Bei der Arbeit mit MCP Servern ist es wichtig, Sicherheits-Best-Practices zu befolgen:
+
+-   **Authentifizierung:** Verwenden Sie immer sichere Authentifizierungsmethoden für den API-Zugriff
+-   **Umgebungsvariablen:** Speichern Sie sensible Informationen in Umgebungsvariablen
+-   **Zugriffskontrolle:** Beschränken Sie den Serverzugriff nur auf autorisierte Benutzer
+-   **Datenvalidierung:** Validieren Sie alle Eingaben, um Injection-Angriffe zu verhindern
+-   **Logging:** Implementieren Sie sichere Logging-Praktiken, ohne sensible Daten offenzulegen
+
+## Ressourcen
+
+Es stehen verschiedene Ressourcen zur Verfügung, um MCP Server zu finden und mehr darüber zu erfahren.
+
+**Hier sind einige Links zu Ressourcen für die Suche und das Erlernen von MCP Servern:**
+
+-   **GitHub-Repositories:** [https://github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) und [https://github.com/punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+-   **Online-Verzeichnisse:** [https://mcpservers.org/](https://mcpservers.org/), [https://mcp.so/](https://mcp.so/), und [https://glama.ai/mcp/servers](https://glama.ai/mcp/servers)
+-   **PulseMCP:** [https://www.pulsemcp.com/](https://www.pulsemcp.com/)
+-   **YouTube Tutorial (AI-Driven Coder):** Ein Video-Leitfaden zum Erstellen und Verwenden von MCP Servern: [https://www.youtube.com/watch?v=b5pqTNiuuJg](https://www.youtube.com/watch?v=b5pqTNiuuJg)

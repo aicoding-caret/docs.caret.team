@@ -1,0 +1,136 @@
+```
+---
+title: "Meilleures pratiques de workflow"
+sidebarTitle: "Meilleures pratiques"
+description: "Conseils et stratégies pour créer des flux de travail Caret efficaces et fiables"
+---
+
+La création de bons flux de travail nécessite le juste équilibre entre des **instructions claires**, la **modularité** et l'**utilisation des outils**. Utilisez les conseils ci-dessous comme guide.
+
+## Création de flux de travail avec Caret
+
+Caret comprend le contexte de votre projet, ce qui en fait un excellent partenaire pour la conception de flux de travail.
+
+### Un flux de travail pour créer des flux de travail
+
+La création de flux de travail est plus facile qu'il n'y paraît - et vous pouvez même utiliser un flux de travail pour en créer un.
+
+Tout d'abord, enregistrez le fichier [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) dans votre espace de travail (par exemple, `.agents/context/workflows/`).
+
+Ensuite, exécutez `/create-new-workflow.md` et Caret vous guidera à travers :
+
+1. Demande de l'objectif et d'un nom court
+2. Description des objectifs et des résultats attendus
+3. Organisation des étapes clés
+4. Génération d'un fichier de flux de travail structuré
+
+<Tip>
+  **Automatisez vos journaux de travail :** Les tâches terminées sont d'excellents candidats pour les flux de travail. Une fois que vous avez terminé une tâche, demandez "Transforme ce que je viens de faire en un flux de travail", et Caret analysera la conversation et générera un fichier de flux de travail.
+</Tip>
+
+Stockez les flux de travail spécifiques au projet dans `.agents/context/workflows/` et les flux de travail globaux dans `~/Documents/Caret/Workflows/`. En cas de conflit de noms, les flux de travail de projet sont prioritaires.
+
+## Conception de flux de travail
+
+<Tip>
+  **Commencez petit :** Commencez par un flux de travail à tâche unique et développez-vous une fois que vous êtes à l'aise.
+</Tip>
+
+### Modularité
+
+Les flux de travail plus petits et réutilisables sont plus faciles à maintenir et à déboguer qu'un seul grand flux de travail.
+
+### Commentaires clairs
+
+Comme pour le code, il est important d'expliquer **pourquoi**. De bons commentaires aident Caret et votre équipe à comprendre l'intention.
+
+### Contrôle de version
+
+Conservez les flux de travail dans `.agents/context/workflows/` et commitez-les dans Git. Cela facilite le contrôle de version et le partage en équipe.
+
+## Conception d'invites pour Caret
+
+### Soyez précis sur l'utilisation des outils
+
+Au lieu de dire "trouver le fichier", spécifiez l'outil et l'emplacement.
+
+* **Mauvais :** "Trouver le contrôleur utilisateur"
+* **Bon :** "Utiliser `search_files` pour trouver `UserController` sous `src/controllers`"
+
+## Techniques avancées
+
+### Outils courants
+
+Voici quelques-uns des outils couramment utilisés dans les flux de travail :
+
+#### execute_command
+Exécuter des commandes de terminal (tests, builds, git, etc.)
+
+```xml
+<execute_command>
+  <command>npm run test</command>
+  <requires_approval>false</requires_approval>
+</execute_command>
+```
+
+#### read_file
+Lire des fichiers (analyse de code/config)
+
+```xml
+<read_file>
+  <path>src/config.json</path>
+</read_file>
+```
+
+#### search_files
+Rechercher dans le code base
+
+```xml
+<search_files>
+  <path>src/</path>
+  <query>UserController</query>
+</search_files>
+```
+
+### Le choix de l'outil est important
+
+Différents outils renvoient différents niveaux de détail. Choisissez l'outil le plus efficace pour la tâche.
+
+- **Pour les lectures de fichiers entiers** : utilisez `read_file`
+- **Pour trouver rapidement des mots-clés** : utilisez `search_files`
+- **Pour les listes complètes de répertoires** : utilisez `list_files`
+
+### Utiliser la structure
+
+Les flux de travail structurés sont plus faciles à suivre pour Caret. Utilisez des sections telles que :
+
+- **But**
+- **Entrées**
+- **Étapes**
+- **Contraintes**
+- **Format de sortie**
+
+### Exemple de format de flux de travail
+
+```markdown
+# Nom du flux de travail
+
+## But
+Décrivez ce que fait le flux de travail.
+
+## Entrées
+- Quelles informations ou variables sont nécessaires ?
+
+## Étapes
+1. Instructions étape par étape
+2. Gardez les étapes petites et réalisables
+
+## Contraintes
+- Règles, limites ou contrôles de sécurité
+
+## Format de sortie
+- Ce que l'assistant doit renvoyer
+```
+
+En suivant ces pratiques, vous créerez des flux de travail fiables, réutilisables et faciles à maintenir.
+```

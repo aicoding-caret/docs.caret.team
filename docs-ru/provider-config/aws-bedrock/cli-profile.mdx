@@ -1,0 +1,43 @@
+---
+title: "Профиль CLI (SSO)"
+sidebarTitle: "CLI Profile (SSO)"
+description: "Настройте AWS Bedrock для использования профилей AWS CLI для аутентификации в Caret. Оптимально для SSO/федеративных ролей и безопасного корпоративного доступа."
+---
+
+### Обзор
+
+Caret предлагает возможность использования учетных данных AWS или профилей AWS для доступа к сервисам AWS Bedrock. Использование ролей SSO/Federated рекомендуется вместо Legacy IAM конфигурации; данное руководство описывает, как настроить ваше окружение так, чтобы Caret использовал роли SSO для аутентификации.
+
+---
+
+### Шаги настройки
+
+1. Установите [последнюю версию](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) AWS CLI
+
+    - Следуйте документации AWS, чтобы установить версию AWS CLI для вашей операционной системы.
+
+2. [Настройте аутентификацию IAM](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) с помощью AWS CLI
+
+    - Если у вас еще нет доступа к AWS через IAM Identity Center, следуйте [Руководству пользователя IAM](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) для настройки пользователей и ролей IAM. Убедитесь, что у вас есть роль `PowerUserAccess`.
+    - Если у вас есть доступ к AWS через работодателя, откройте портал доступа AWS и найдите соответствующий аккаунт. Убедитесь, что у вас есть права `PowerUserAccess`.
+    - Откройте ссылку `Access keys` и запишите `SSO start URL` и `SSO region`, которые понадобятся на следующем шаге.
+
+3. Продолжите настройку профиля с помощью [мастера CLI aws configure sso](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html#cli-configure-sso-configure)
+
+    - После настройки используйте следующую команду для аутентификации AWS CLI: `aws sso login --profile <AWS-profile-name>`
+    - Запомните имя профиля, которое вы привязываете к своему аккаунту AWS; оно понадобится для настройки Caret на следующих этапах.
+
+4. Если вы еще этого не сделали, установите VS Code и расширение Caret. Обратитесь к странице [Начало работы](/russian/getting-started/installing-caret) за инструкциями.
+
+5. Откройте расширение Caret, затем нажмите кнопку настроек ⚙️, чтобы выбрать API Provider.
+    - В выпадающем списке API Provider выберите AWS Bedrock.
+    - Выберите переключатель AWS Profile, затем введите AWS Profile Name из шага 3.
+    - Выберите ваш AWS Region в выпадающем меню.
+    - Для некоторых моделей необходимо установить флажок cross-region inference.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-aws-setup-markup%20(1).png"
+		alt="Настройка AWS Bedrock в настройках Caret, показывающая установку аутентификации через профиль"
+	/>
+</Frame>

@@ -1,0 +1,236 @@
+---
+title: "Skills-System"
+sidebarTitle: "Skills"
+description: "Erweitern Sie die Funktionen von Caret mit wiederverwendbaren Wissensmodulen."
+---
+
+<Note>
+Skills ist eine experimentelle Funktion. Aktivieren Sie diese in den Settings → Features → "Enable Skills".
+</Note>
+
+Skills sind wiederverwendbare Anweisungssätze für spezifische Aufgaben. Jeder Skill bündelt detaillierte Anleitungen, Workflows und zusätzliche Ressourcen, die nur geladen werden, wenn sie für Ihre Anfrage relevant sind.
+
+Im Gegensatz zu Rules (die immer aktiv sind), laden Skills **on-demand**. Sie können Dutzende von Skills installieren, ohne den Kontext oder die Performance zu beeinträchtigen, da Caret nur den Namen und die Beschreibung des Skills sieht, bis dieser tatsächlich benötigt wird.
+
+## Warum Skills?
+
+Stellen Sie sich vor, wie Sie ein neues Teammitglied einarbeiten würden: Sie würden ihm nicht alle Dokumente auf einmal geben. Sie geben ihm einen kurzen Überblick und weisen ihn dann auf detaillierte Handbücher hin, wenn er an spezifischen Aufgaben arbeitet.
+
+Skills funktionieren genauso:
+- **Beim Start**: Caret sieht nur eine kurze Beschreibung jedes Skills
+- **Bei Auslösung**: Die vollständigen Anweisungen für diesen Skill werden geladen
+- **Nach Bedarf**: Zusätzliche Dateien, die mit Skills gebündelt sind, werden erst gelesen, wenn auf sie verwiesen wird
+
+Dieses progressive Laden bedeutet, dass Sie umfangreiches Fachwissen paketieren können, ohne Kontext-Token für Informationen zu verbrauchen, die für die aktuelle Aufgabe nicht relevant sind.
+
+## Einen Skill erstellen
+
+Jeder Skill ist ein Verzeichnis, das eine `SKILL.md`-Datei enthält:
+
+```
+my-skill/
+├── SKILL.md          # Erforderlich: Hauptanweisungen
+├── docs/             # Optional: Zusätzliche Dokumentation
+│   └── advanced.md
+└── scripts/          # Optional: Utility-Scripts
+    └── helper.sh
+```
+
+Die `SKILL.md`-Datei besteht aus zwei Teilen: YAML Frontmatter und Anweisungen.
+
+```yaml
+---
+name: my-skill
+description: Brief description of what this skill does and when to use it.
+---
+
+# My Skill
+
+Detailed instructions for Caret to follow when this skill is activated.
+
+## Steps
+
+1. First, do this
+2. Then do that
+3. For advanced usage, see [advanced.md](docs/advanced.md)
+```
+
+**Erforderliche Felder:**
+- `name`: Muss exakt mit dem Verzeichnisnamen übereinstimmen
+- `description`: Teilt Caret mit, wann dieser Skill verwendet werden soll (max. 1024 Zeichen)
+
+Die Beschreibung ist entscheidend, da Caret anhand dieser entscheidet, ob ein Skill aktiviert werden soll. Seien Sie präzise darüber, was der Skill macht und wann er eingesetzt werden sollte.
+
+## Wo Skills gespeichert werden
+
+Skills können an zwei Orten gespeichert werden:
+
+**Globale Skills** gelten für alle Ihre Projekte:
+- **macOS/Linux:** `~/Documents/.agents/skills/`
+- **Windows:** `C:\Users\USERNAME\Documents\.agents\skills\`
+
+**Projekt-Skills** gelten nur für den aktuellen Workspace:
+- `.agents/skills/` (empfohlen)
+
+Wenn ein globaler Skill und ein Projekt-Skill denselben Namen haben, haben **globale Skills Vorrang**. Dies ermöglicht es Ihnen, Skills für Ihren persönlichen Workflow anzupassen, während Sie weiterhin die Projektstandards nutzen.
+
+<Note>
+**Caret-Standardisierung**: Caret nutzt eine duale Verzeichnisarchitektur.
+- `.agents/` - Für die AI (Token-optimiert)
+- `.users/` - Für Menschen (detaillierte Erklärungen)
+
+Verwenden Sie den `/init`-Befehl, um die Standardstruktur zu initialisieren. Siehe [Advanced Rules System](/german/caret-exclusive/knowledge-parity-system) und [AI-Developer Knowledge Parity](/german/caret-exclusive/knowledge-parity-system) für Details.
+</Note>
+
+## Skills verwalten
+
+Klicken Sie auf das Waage-Icon unter dem Chat-Eingabefeld, um das Rules- und Workflows-Panel zu öffnen. Wenn Skills aktiviert sind, sehen Sie einen Skills-Tab, in dem Sie:
+
+- Alle verfügbaren Skills anzeigen können (global und Workspace)
+- Einzelne Skills ein- oder ausschalten können
+- Neue Skills aus einem Template erstellen können
+- Skills löschen können, die Sie nicht mehr benötigen
+
+Skills sind standardmäßig aktiviert, wenn sie erkannt werden. Schalten Sie sie aus, wenn sie verfügbar, aber für das aktuelle Projekt nicht aktiv sein sollen.
+
+## Wie Caret Skills verwendet
+
+Wenn Sie eine Nachricht senden, sieht Caret eine Liste der verfügbaren Skills mit deren Beschreibungen. Wenn Ihre Anfrage zur Beschreibung eines Skills passt, aktiviert Caret diesen über das `use_skill`-Tool, welches die vollständigen Anweisungen lädt.
+
+Wenn Sie beispielsweise einen Skill für das Deployment auf AWS haben:
+
+```yaml
+---
+name: aws-deploy
+description: Deploy applications to AWS using CDK. Use when deploying, updating infrastructure, or managing AWS resources.
+---
+```
+
+Die Frage "deploy this to AWS" würde Caret dazu veranlassen, den Skill zu aktivieren, seine detaillierten Anweisungen zu laden und diese zu befolgen, um Ihre Anfrage abzuschließen.
+
+## Beispiel: Datenanalyse-Skill
+
+Hier ist ein praktischer Skill für Datenanalyse-Aufgaben. Erstellen Sie ein Verzeichnis namens `data-analysis/` mit dieser `SKILL.md`:
+
+```yaml
+---
+name: data-analysis
+description: Analyze data files and generate insights. Use when working with CSV, Excel, or JSON data files that need exploration, cleaning, or visualization.
+---
+```
+
+Fügen Sie dann die Anweisungen im Body der Datei hinzu:
+
+````markdown
+# Datenanalyse
+
+Folgen Sie bei der Analyse von Datendateien diesem Workflow:
+
+## 1. Die Daten verstehen
+
+- Lesen Sie einen Ausschnitt der Datei, um die Struktur zu verstehen
+- Identifizieren Sie Spaltentypen und Probleme mit der Datenqualität
+- Notieren Sie fehlende Werte oder Anomalien
+
+## 2. Klärungsfragen stellen
+
+Bevor Sie beginnen, fragen Sie den Benutzer:
+- Welche spezifischen Erkenntnisse werden gesucht?
+- Gibt es bekannte Probleme mit der Datenqualität?
+- Welches Format wird für die Ausgabe gewünscht?
+
+## 3. Analyse durchführen
+
+Verwenden Sie pandas für die Datenmanipulation:
+
+```python
+import pandas as pd
+
+# Laden und explorieren
+df = pd.read_csv("data.csv")
+print(df.head())
+print(df.describe())
+print(df.info())
+```
+
+Für Visualisierungen bevorzugen Sie matplotlib oder seaborn, je nach Komplexität.
+
+## 4. Ergebnisse präsentieren
+
+- Beginnen Sie mit einer Zusammenfassung der wichtigsten Erkenntnisse
+- Belegen Sie Ergebnisse mit spezifischen Zahlen
+- Fügen Sie Visualisierungen ein, wo sie zur Klarheit beitragen
+- Enden Sie mit Empfehlungen oder nächsten Schritten
+````
+
+## Bundling von unterstützenden Dateien
+
+Skills können zusätzliche Dateien enthalten, auf die Caret nur bei Bedarf zugreift:
+
+```
+complex-skill/
+├── SKILL.md
+├── docs/
+│   ├── setup.md
+│   └── troubleshooting.md
+├── templates/
+│   └── config.yaml
+└── scripts/
+    └── validate.py
+```
+
+Verweisen Sie in Ihren Anweisungen auf diese:
+
+````markdown
+Für das initiale Setup folgen Sie der [setup.md](docs/setup.md).
+
+Verwenden Sie das Config-Template unter `templates/config.yaml` als Ausgangspunkt.
+
+Führen Sie das Validierungs-Script aus, um Ihre Konfiguration zu prüfen:
+```bash
+python scripts/validate.py
+```
+````
+
+Caret liest diese Dateien mit `read_file`, wenn die Anweisungen darauf verweisen. Scripts können direkt ausgeführt werden, wobei nur der Output in den Kontext gelangt (nicht der Code des Scripts selbst).
+
+## Ideen für Skills
+
+Skills glänzen bei Aufgaben, die:
+- Detaillierte, mehrstufige Workflows erfordern
+- Fachspezifisches Wissen oder Best Practices benötigen
+- Andernfalls die Wiederholung derselben Anweisungen in verschiedenen Konversationen erfordern würden
+
+Einige Möglichkeiten:
+
+- **Release-Management**: Version Bumping, Generierung von Changelogs, Git-Tagging und Publishing
+- **Code-Review**: Die spezifische Review-Checkliste und Qualitätsstandards Ihres Teams
+- **Datenbank-Migrationen**: Sichere Weiterentwicklung von Schemata mit Rollback-Verfahren
+- **API-Integration**: Anbindung an spezifische Drittanbieter-Dienste mit korrektem Error-Handling
+- **Dokumentation**: Ihre bevorzugte Struktur, Ihr Styleguide und Ihre Tooling-Vorgaben
+- **Debugging-Workflows**: Systematische Ansätze zur Diagnose spezifischer Problemtypen
+- **Infrastruktur**: Terraform/CDK-Patterns für Ihr Cloud-Setup
+
+Die besten Skills kodieren institutionelles Wissen, das sonst nur in den Köpfen erfahrener Entwickler existieren würde.
+
+## Skills vs Rules vs Workflows
+
+| Feature | Zweck | Wann aktiv |
+|---------|---------|-------------|
+| **Rules** | Definiert, wie Caret sich verhalten soll | Immer (oder kontextabhängig) |
+| **Workflows** | Schritt-für-Schritt-Aufgabenautomatisierung | Aufgerufen mit `/workflow.md` |
+| **Skills** | Fachwissen, das on-demand geladen wird | Ausgelöst durch passende Anfragen |
+
+**Rules** legen Einschränkungen und Präferenzen fest (wie "immer TypeScript verwenden" oder "diesem Styleguide folgen").
+
+**Workflows** sind explizite Sequenzen, die Sie für spezifische Aufgaben aufrufen (wie `/release.md` für einen Release-Prozess).
+
+**Skills** sind Fachwissen, das Caret automatisch aktiviert, wenn es relevant ist (wie Datenanalyse-Kenntnisse, wenn Sie mit CSV-Dateien arbeiten).
+
+Verwenden Sie Rules für dauerhafte Einschränkungen, Workflows für explizite Automatisierung und Skills für Fachwissen, das verfügbar, aber nicht immer aktiv sein sollte.
+
+## Verwandte Funktionen
+
+- [Advanced Rules System](/german/caret-exclusive/knowledge-parity-system) für die Verwaltung von Projektregeln
+- [Hooks](/german/features/hooks) zum Einschleusen von benutzerdefinierter Logik in Schlüsselmomenten
+- [Workflows](/german/features/slash-commands/workflows) für explizite Aufgabenautomatisierung

@@ -1,0 +1,66 @@
+---
+title: "Sicherheitsbedenken"
+description: "Erfahren Sie mehr über die Sicherheitsarchitektur von Caret und wie es die Sicherheitsstandards von Unternehmen erfüllt."
+---
+
+<Note>
+Dies ist ein Dokument basierend auf Caret. Es folgt dem Caret v3.38.1 Merge-Branch, und alle Caret-spezifischen Richtlinien (Authentifizierung/Routing, Telemetrie-/Protokollrichtlinien, Modellbeschränkungen) werden im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+## Enterprise Security mit Caret
+
+Caret adressiert Enterprise-Sicherheitsbedenken durch seine einzigartige Client-Side-Architektur, die Daten-Privatsphäre, sichere Cloud-Integration und transparente Operationen priorisiert. Im Folgenden finden Sie einen umfassenden Überblick darüber, wie Caret robuste Sicherheitsmaßnahmen für Enterprise-Umgebungen aufrechterhält.
+
+### Client-Side-Architektur
+
+Caret operiert ausschließlich als Client-Side VSCode Extension ohne Server-Side-Komponenten. Diese fundamentale Designentscheidung stellt sicher, dass Ihr Code und Ihre Daten jederzeit in Ihrer sicheren Umgebung verbleiben. Im Gegensatz zu traditionellen KI-Assistenten, die Daten zur Verarbeitung an externe Server senden, verbindet sich Caret direkt mit den KI-Endpunkten Ihres gewählten Cloud-Anbieters, wodurch alle sensiblen Informationen innerhalb Ihrer Infrastrukturgrenzen verbleiben.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-arch.png"
+		alt="Carets Beziehung zu lokalen und Remote-Assets"
+	/>
+</Frame>
+
+### Data Privacy Commitment
+
+Caret implementiert eine strikte Zero-Data-Retention-Policy, was bedeutet, dass Ihr geistiges Eigentum Ihre sichere Umgebung niemals verlässt. Die Extension sammelt, speichert oder überträgt Ihren Code nicht an zentrale Server. Dieser Ansatz reduziert signifikant potenzielle Angriffsvektoren, die andernfalls durch die Datenübertragung an Drittsysteme entstehen könnten. Die Telemetrie-Erfassung ist optional und erfordert eine ausdrückliche Zustimmung.
+
+### Cloud Provider Integration
+
+Enterprise Teams können über ihre bestehenden Cloud Deployments auf modernste KI-Modelle zugreifen. Caret unterstützt die nahtlose Integration mit:
+
+-   AWS Bedrock
+-   Google Cloud Vertex AI
+-   Microsoft Azure
+
+Diese Integrationen nutzen die bestehenden Sicherheitsanmeldeinformationen Ihres Unternehmens, einschließlich der nativen IAM Role Assumption für AWS. Dies stellt sicher, dass die gesamte KI-Verarbeitung innerhalb Ihrer Corporate-Cloud-Umgebung stattfindet und die Einhaltung Ihrer etablierten Sicherheitsprotokolle gewährleistet ist.
+
+### Open-Source Transparency
+
+Carets Codebasis ist vollständig Open-Source, was eine umfassende Sicherheitsprüfung durch Ihre internen Teams ermöglicht. Diese Transparenz ermöglicht es Sicherheitsexperten, genau zu überprüfen, wie die Extension funktioniert, und zu bestätigen, dass sie die Sicherheitsanforderungen Ihres Unternehmens erfüllt. Unternehmen können den Code überprüfen, um sicherzustellen, dass er mit ihren Sicherheitsrichtlinien übereinstimmt, bevor sie ihn bereitstellen.
+
+### Controlled Modifications
+
+Die Extension implementiert Schutzmaßnahmen gegen unbefugte Änderungen an Ihrer Codebasis. Caret erfordert eine ausdrückliche Benutzergenehmigung für alle Dateimodifikationen und Terminalbefehle, wodurch versehentliche oder unerwünschte Änderungen verhindert werden. Dieser auf Genehmigung basierende Workflow erhält die Integrität Ihrer Projekte und bietet gleichzeitig KI-Unterstützung.
+
+### Enterprise Deployment Support
+
+Für Organisationen mit strengen Sicherheitsüberprüfungsprozessen bietet Caret eine umfassende Dokumentation, einschließlich detaillierter Bereitstellungsdiagramme, Sequenzdiagramme, die alle Datenflüsse veranschaulichen, und vollständige Dokumentation zur Sicherheitslage. Diese Materialien erleichtern gründliche Sicherheitsüberprüfungen und helfen, die Einhaltung der Enterprise-Datenverarbeitungsstandards und -vorschriften nachzuweisen.
+
+### Access Control
+
+Enterprise-Editionen von Caret (geplant für Q2 2025) werden zentralisierte Administrationsfunktionen enthalten, die es Unternehmen ermöglichen:
+
+-   Benutzerzugriff mit anpassbaren Berechtigungsstufen zu verwalten
+-   Konten mit Unternehmensanmeldeinformationen bereitzustellen
+-   Den Zugriff bei Bedarf sofort zu widerrufen
+-   Zu steuern, welche KI-Anbieter und LLM-Endpunkte verwendet werden können
+-   Standardisierte Einstellungen im gesamten Unternehmen bereitzustellen
+-   Die unbefugte Nutzung persönlicher API keys zu verhindern
+
+### Compliance and Governance
+
+Die Architektur von Caret unterstützt die Einhaltung von Datensouveränitätsanforderungen und Enterprise-Datenverarbeitungsvorschriften. Die geplante Enterprise Complete Edition wird die Governance mit detaillierter Audit-Protokollierung, Compliance-Berichterstattung und automatisierten Richtliniendurchsetzungsmechanismen weiter verbessern.
+
+Durch die Kombination von Client-Side-Verarbeitung, direkter Cloud-Provider-Integration und transparenten Operationen bietet Caret Enterprise Teams eine sichere Möglichkeit, KI-Unterstützung zu nutzen und gleichzeitig die strikte Kontrolle über ihren sensiblen Code und ihre Daten zu behalten.

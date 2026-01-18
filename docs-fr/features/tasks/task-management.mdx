@@ -1,0 +1,109 @@
+---
+title: "Gestion des tâches"
+description: "Découvrez comment organiser, rechercher et gérer votre historique de tâches dans Caret."
+---
+
+<Note>
+Ceci est la documentation standard pour Caret. Elle suit la version fusionnée v3.38.1 de Caret, et les politiques spécifiques à Caret (emplacement de stockage, authentification/routage, conservation/suppression des données) seront indiquées dans le corps du texte par `<Note>`.
+</Note>
+
+Caret fournit des outils pour gérer votre historique de tâches, vous aidant à organiser, rechercher et maintenir votre espace de travail efficacement. Au fur et à mesure que vous accumulez des tâches au fil du temps, ces fonctionnalités deviennent essentielles à votre productivité.
+
+## Accéder à l'historique des tâches
+
+Découvrez les différentes manières d'ouvrir et de naviguer dans votre historique de tâches dans Caret. Que vous préfériez cliquer sur des boutons, utiliser des raccourcis clavier ou la Command Palette, il existe de nombreuses méthodes pratiques pour accéder à votre travail passé.
+
+Vous pouvez accéder à votre historique de tâches par :
+
+1. **Cliquer sur le bouton "History"** dans la barre latérale de Caret
+2. **Utiliser la Command Palette**: Recherchez "Caret: Show Task History"
+3. **Raccourci clavier** (si configuré dans vos paramètres VS Code)
+
+## Interface de l'historique des tâches
+
+Explorez l'interface principale où toutes vos tâches sont affichées et gérées. Cette section couvre la mise en page, les capacités de recherche, les options de tri et les outils de filtrage qui vous aident à naviguer efficacement dans vos tâches accumulées. La vue de l'historique des tâches fournit une interface complète pour gérer toutes vos tâches passées et actuelles.
+
+### Rechercher et filtrer
+
+La vue de l'historique comprend des fonctionnalités de recherche et de filtrage :
+
+#### Barre de recherche
+- **Recherche floue** dans tout le contenu des tâches
+- Recherche dans les invites, les réponses et le code
+- Filtre instantanément les résultats au fur et à mesure que vous tapez
+- Met en évidence le texte correspondant dans les résultats
+
+#### Options de tri
+Triez vos tâches par :
+- **Newest** (par défaut) - Les tâches les plus récentes en premier
+- **Oldest** - Les tâches les plus anciennes en premier
+- **Most Expensive** - Tâches avec le coût d' API le plus élevé
+- **Most Tokens** - Utilisation de tokens la plus élevée
+- **Most Relevant** - Meilleures correspondances lors de la recherche
+
+#### Filtre des favoris
+- Basculez pour afficher uniquement les tâches étoilées
+- Accédez rapidement à votre travail le plus important
+- Combinez avec la recherche pour un filtrage précis
+
+## Actions sur les tâches
+
+Découvrez les différentes actions que vous pouvez effectuer sur des tâches individuelles dans votre historique. De la réouverture et de la reprise des tâches à l'exportation et à la gestion de celles-ci, cette section explique toutes les opérations disponibles pour la manipulation des tâches.
+
+Chaque tâche dans l'historique offre plusieurs actions :
+
+### Actions principales
+
+- **Open**: Cliquez sur une tâche pour la rouvrir dans le chat Caret
+- **Resume**: Reprenez une tâche interrompue là où elle s'était arrêtée
+- **Export**: Enregistrez la conversation au format Markdown pour la documentation
+
+### Actions de gestion
+
+- **Favorite** ⭐ : Cliquez sur l'icône étoile pour marquer les tâches importantes
+- **Delete** 🗑️ : Supprimez les tâches individuelles (les favoris sont protégés)
+- **Duplicate**: Créez une nouvelle tâche basée sur une tâche existante
+
+## ⭐ Tâches favorites
+
+Maîtrisez le système de favoris pour marquer et protéger vos tâches les plus précieuses. Cette fonctionnalité vous permet d'étoiler un travail important, empêchant ainsi la suppression accidentelle tout en fournissant un accès rapide aux implémentations de référence et aux modèles réussis.
+
+Le système de favoris vous aide à préserver et à accéder rapidement aux tâches importantes.
+
+### Utilisation des favoris
+
+**Marquer les favoris**
+- Cliquez sur l'icône étoile à côté de n'importe quelle tâche
+- L'étoile se remplit lorsqu'elle est mise en favori
+- Cliquez à nouveau pour supprimer des favoris
+
+**Fonctionnalités de protection**
+- Les tâches favorites sont protégées contre la suppression accidentelle
+- Les opérations de suppression en masse ignorent les favoris par défaut
+- Peut remplacer la protection avec une confirmation explicite
+
+**Cas d'utilisation des favoris**
+- Implémentations de référence que vous souhaitez conserver
+- Modèles de résolution de problèmes réussis
+- Tâches avec des extraits de code réutilisables
+- Jalons importants du projet
+- Exemples d'apprentissage pour les membres de l'équipe
+
+## Métriques des tâches
+
+Obtenez des informations sur votre utilisation de Caret grâce aux métriques des tâches. Cette section explique comment suivre l'utilisation des tokens, les coûts d' API et d'autres métriques pour vous aider à optimiser votre flux de travail et à gérer efficacement les ressources.
+
+Comprendre vos métriques de tâches permet d'optimiser l'utilisation :
+
+### Métriques disponibles
+
+- **Token Usage**: Nombre total de tokens d'entrée/sortie consommés
+- **API Cost**: Coût estimé basé sur la tarification du modèle
+- **Checkpoint Count**: Nombre d'instantanés de fichiers créés
+
+### Utilisation des métriques
+
+- **Budget Tracking**: Surveillez les coûts d' API entre les tâches
+- **Efficiency Analysis**: Identifiez les opérations coûteuses
+- **Model Comparison**: Comparez les coûts entre les modèles
+- **Optimization**: Trouvez les tâches qui pourraient être plus efficaces

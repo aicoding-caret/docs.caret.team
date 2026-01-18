@@ -1,0 +1,68 @@
+---
+title: "Ouvrir Caret dans la barre latérale droite"
+description: "Apprenez comment ouvrir Caret dans la barre latérale droite dans VS Code et Cursor"
+---
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/차이(지원 에디터/스토어, UI 레이블)가 있으면 본문에 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+브랜딩/UI: `caret-docs/features/f03-branding-ui.md`에 따라 캐럿 브랜딩(아이콘/라벨/배너) 우선 사용. 에디터/스토어 지원 여부도 캐럿 기준으로 안내하세요.
+</Note>
+
+Par défaut, lorsque vous installez Caret pour la première fois, il apparaît dans la barre latérale gauche de VS Code, à côté de votre explorateur de fichiers et d'autres extensions. Cependant, pour une meilleure expérience de codage, nous vous recommandons de déplacer Caret vers la barre latérale droite. Cela vous permet de garder vos fichiers de projet visibles dans la barre latérale gauche tout en discutant avec Caret à droite, vous offrant ainsi une visibilité complète de votre codebase pendant que Caret travaille sur votre projet.
+
+## VS Code
+
+Pour ouvrir Caret dans la barre latérale droite :
+
+<Steps>
+  <Step title="Aligner la vue de l'extension">
+    Assurez-vous que la vue de votre extension est alignée verticalement à gauche
+  </Step>
+  <Step title="Ouvrir la vue latérale droite">
+    Cliquez sur le bouton qui ouvre le panneau latéral droit dans VS Code (généralement utilisé pour ouvrir la conversation GitHub Copilot). Vous pouvez également utiliser le raccourci `Option + CMD/Ctrl + B`.
+  </Step>
+  <Step title="Faire glisser l'icône Caret">
+    Faites glisser l'icône Caret vers le panneau de navigation en haut de cette vue de droite
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/vscode_right_view.gif"
+		alt="VS Code Right Sidebar Setup"
+	/>
+</Frame>
+
+## Cursor
+
+Pour ouvrir Caret dans la barre latérale droite :
+
+<Steps>
+  <Step title="Aligner les extensions">
+    Cursor utilise par défaut une barre d'activité horizontale pour optimiser l'espace pour l'interface de conversation AI ([voir ici pour plus de détails](https://cursor.com/french/docs/configuration/migrations/vscode#activity-bar-orientation)). Pour passer à la verticale :
+    
+    1. Ouvrez la Palette de commandes (`CMD/Ctrl + Shift + P`)
+    2. Recherchez "Preferences: Open Settings (UI)"
+    3. Recherchez `workbench.activityBar.orientation`
+    4. Définissez la valeur sur `vertical`
+    5. Redémarrez Cursor pour que les modifications prennent effet
+  </Step>
+  <Step title="Ouvrir le panneau AI">
+    Cliquez sur le bouton d'icône de cube Cursor (panneau AI) qui ouvre l'agent de Cursor (panneau de vue latérale droite)
+  </Step>
+  <Step title="Faire glisser Caret vers la barre latérale du panneau AI">
+    Faites glisser l'icône Caret directement dans la barre latérale du panneau AI.
+  </Step>
+</Steps>
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/Cursor-sidebar.gif"
+		alt="Cursor Right Sidebar Setup"
+	/>
+</Frame>
+
+Une fois configuré, Caret se chargera sur le côté droit et vous pourrez l'utiliser normalement.

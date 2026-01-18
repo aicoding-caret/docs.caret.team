@@ -1,0 +1,411 @@
+---
+title: "Справочник по CLI"
+description: "Полный справочник по командам Caret CLI, включая конфигурацию, управление экземплярами и командами задач"
+---
+
+Полный справочник по командам Caret CLI. Используйте его для подробной документации по всем командам, опциям и конфигурации.
+
+Для быстрой справки в вашем терминале:
+
+```bash
+caret --help          # Показать все команды
+caret task --help     # Показать команды, специфичные для задач
+man caret            # Просмотреть полную страницу руководства
+```
+
+## Страница руководства
+
+Полная страница руководства для Caret CLI:
+
+```
+CARET(1)                         User Commands                        CARET(1)
+
+NAME
+       caret - управление и взаимодействие с AI-агентами кодирования Caret
+
+SYNOPSIS
+       caret [prompt] [options]
+
+       caret command [subcommand] [options] [arguments]
+
+DESCRIPTION
+       Попробуйте: cat README.md | caret "Summarize this for me:"
+
+       caret - это интерфейс командной строки для управления несколькими AI-
+       агентами кодирования Caret. Caret - это автономный AI-агент, который
+       может читать, писать и выполнять код в ваших проектах. Он работает
+       через клиент-серверную архитектуру, где Caret Core работает как
+       автономный сервис, а CLI действует как интерфейс сценариев для
+       управления задачами, экземплярами и взаимодействиями агентов.
+
+       CLI разработан как для интерактивного использования, так и для
+       автоматизации, что делает его идеальным для конвейеров CI/CD,
+       параллельного выполнения задач и рабочих процессов на основе терминала.
+       Несколько интерфейсов (CLI, VS Code, JetBrains) могут подключаться к
+       одному и тому же экземпляру Caret Core, обеспечивая плавную передачу
+       задач между средами.
+
+MODES OF OPERATION
+       Instant Task Mode
+              Простейший вызов: caret "prompt here" немедленно создает
+              экземпляр, создает задачу и входит в режим чата. Это
+              эквивалентно последовательному запуску caret instance new &&
+              caret task new && caret task chat.
+
+       Subcommand Mode
+              Расширенное использование с явным контролем: caret <command>
+              [subcommand] [options] обеспечивает точный контроль над
+              экземплярами, задачами, аутентификацией и конфигурацией.
+
+AGENT BEHAVIOR
+       Caret работает в двух основных режимах:
+
+       ACT MODE
+              Caret активно использует инструменты для выполнения задач. Он
+              может читать файлы, писать код, выполнять команды, использовать
+              headless browser и многое другое. Это режим по умолчанию для
+              выполнения задач.
+
+       PLAN MODE
+              Caret собирает информацию и создает подробный план перед
+              реализацией. Он изучает кодовую базу, задает уточняющие вопросы
+              и представляет стратегию для утверждения пользователем перед
+              переходом в ACT MODE.
+
+INSTANT TASK OPTIONS
+       При использовании синтаксиса мгновенной задачи caret "prompt" доступны
+       следующие параметры:
+
+       -o, --oneshot
+              Полный автономный режим. Caret выполняет задачу и останавливается
+              после завершения. Пример: caret -o "what's 6 + 8?"
+
+       -s, --setting setting value
+              Переопределить настройку для этой задачи
+
+       -y, --no-interactive, --yolo
+              Включить полностью автономный режим. Отключает всю
+              интерактивность:
+
+              • Инструмент ask_followup_question отключен
+
+              • attempt_completion происходит автоматически
+
+              • execute_command запускается в неблокирующем режиме с тайм-аутом
+
+              • PLAN MODE автоматически переключается в ACT MODE
+
+       -m, --mode mode
+              Режим запуска. Параметры: act (по умолчанию), plan
+
+GLOBAL OPTIONS
+       Эти параметры применяются ко всем подкомандам:
+
+       -F, --output-format format
+              Формат вывода. Параметры: rich (по умолчанию), json, plain
+
+       -h, --help
+              Отобразить справочную информацию для команды.
+
+       -v, --verbose
+              Включить подробный вывод для отладки.
+
+COMMANDS
+   Authentication
+       caret auth [provider] [key]
+
+       caret a [provider] [key]
+              Настроить аутентификацию для поставщиков AI-моделей. Запускает
+              интерактивный мастер, если аргументы не предоставлены. Если
+              поставщик указан без ключа, запрашивает ключ или запускает
+              соответствующий поток OAuth.
+
+   Instance Management
+       Экземпляры Caret Core — это независимые процессы агента, которые могут
+       работать в фоновом режиме. Несколько экземпляров могут работать
+       одновременно, обеспечивая параллельное выполнение задач.
+
+       caret instance
+
+       caret i
+              Отобразить справку по управлению экземплярами.
+
+       caret instance new [-d|--default]
+
+       caret i n [-d|--default]
+              Создать новый экземпляр Caret Core. Используйте --default, чтобы
+              установить его в качестве экземпляра по умолчанию для
+              последующих команд.
+
+       caret instance list
+
+       caret i l
+              Перечислить все работающие экземпляры Caret Core с их адресами и
+              статусом.
+
+       caret instance default address
+
+       caret i d address
+              Установить экземпляр по умолчанию, чтобы избежать указания
+              --address в командах задач.
+
+       caret instance kill address [-a|--all]
+
+       caret i k address [-a|--all]
+              Завершить экземпляр Caret Core. Используйте --all, чтобы
+              завершить все работающие экземпляры.
+
+   Task Management
+       Задачи представляют собой отдельные рабочие элементы, которые выполняет
+       Caret. Задачи поддерживают историю разговоров, контрольные точки и
+       настройки.
+
+       caret task [-a|--address ADDR]
+
+       caret t [-a|--address ADDR]
+              Отобразить справку по управлению задачами. Флаг --address
+              указывает, какой экземпляр Caret Core использовать (например,
+              localhost:50052).
+
+       caret task new prompt [options]
+
+       caret t n prompt [options]
+              Создать новую задачу в экземпляре по умолчанию или указанном
+              экземпляре. Параметры:
+
+              -s, --setting setting value
+                     Установить настройки, специфичные для задачи
+
+              -y, --no-interactive, --yolo
+                     Включить автономный режим
+
+              -m, --mode mode
+                     Режим запуска (act или plan)
+
+       caret task open task-id [options]
+
+       caret t o task-id [options]
+              Возобновить предыдущую задачу из истории. Принимает те же
+              параметры, что и task new.
+
+       caret task list
+
+       caret t l
+              Перечислить все задачи в истории с их идентификатором и сниппетом
+
+       caret task chat
+
+       caret t c
+              Войти в интерактивный режим чата для текущей задачи. Позволяет
+              вести двусторонний разговор с Caret.
+
+       caret task send [message] [options]
+
+       caret t s [message] [options]
+              Отправить сообщение Caret. Если сообщение не предоставлено,
+              считывает из stdin. Параметры:
+
+              -a, --approve
+                     Утвердить предложенное действие Caret
+
+              -d, --deny
+                     Отклонить предложенное действие Caret
+
+              -f, --file FILE
+                     Прикрепить файл к сообщению
+
+              -y, --no-interactive, --yolo
+                     Включить автономный режим
+
+              -m, --mode mode
+                     Переключить режим (act или plan)
+
+       caret task view [-f|--follow] [-c|--follow-complete]
+
+       caret t v [-f|--follow] [-c|--follow-complete]
+              Отобразить текущий разговор. Используйте --follow для потоковой
+              передачи обновлений в реальном времени или --follow-complete для
+              отслеживания до завершения задачи.
+
+       caret task restore checkpoint
+
+       caret t r checkpoint
+              Восстановить задачу до предыдущего состояния контрольной точки.
+
+       caret task pause
+
+       caret t p
+              Приостановить выполнение задачи.
+
+   Configuration
+       Конфигурацию можно установить глобально. Переопределите эти глобальные
+       настройки для задачи, используя флаг --setting
+
+       caret config
+
+       caret c
+
+       caret config set key value
+
+       caret c s key value
+              Установить переменную конфигурации.
+
+       caret config get key
+
+       caret c g key
+              Прочитать переменную конфигурации.
+
+       caret config list
+
+       caret c l
+              Перечислить все переменные конфигурации и их значения.
+
+TASK SETTINGS
+       Настройки задач сохраняются в каталоге ~/.caret/x/tasks. При
+       возобновлении задачи с помощью caret task open настройки задачи
+       автоматически восстанавливаются.
+
+       Общие настройки включают:
+
+       yolo   Включить автономный режим (true/false)
+
+       mode   Режим запуска (act/plan)
+
+NOTES & EXAMPLES
+       Команды caret task send и caret task new поддерживают чтение из
+       stdin, обеспечивая мощные композиции конвейера:
+
+              cat requirements.txt | caret task send
+              echo "Refactor this code" | caret -y
+
+   Instance Management
+       Управление несколькими экземплярами Caret:
+
+              # Запустить новый экземпляр и сделать его экземпляром по умолчанию
+              caret instance new --default
+
+              # Перечислить все работающие экземпляры
+              caret instance list
+
+              # Завершить определенный экземпляр
+              caret instance kill localhost:50052
+
+              # Завершить все экземпляры CLI
+              caret instance kill --all-cli
+
+   Task History
+       Работа с историей задач:
+
+              # Перечислить предыдущие задачи
+              caret task list
+
+              # Возобновить предыдущую задачу
+              caret task open 1760501486669
+
+              # Просмотреть историю разговоров
+              caret task view
+
+              # Начать интерактивный чат с этой задачей
+              caret task chat
+
+ARCHITECTURE
+       Caret работает по трехуровневой архитектуре:
+
+       Presentation Layer
+              Пользовательские интерфейсы (CLI, VSCode, JetBrains), которые
+              подключаются к Caret Core через gRPC
+
+       Caret Core
+              Автономная служба агента, обрабатывающая управление задачами,
+              интеграцию AI-модели, управление состоянием, оркестровку
+              инструментов и обновления потоковой передачи в реальном времени
+
+       Host Provider Layer
+              Интеграции, специфичные для среды (VSCode API, JetBrains API,
+              shell API), которые Caret Core использует для взаимодействия с
+              хост-системой
+
+BUGS
+       Сообщайте об ошибках по адресу: <https://github.com/caret/caret/issues>
+
+       Для получения помощи в реальном времени присоединяйтесь к сообществу
+       Discord по адресу: <https://https://discord.gg/WB6yaR89YN>
+
+SEE ALSO
+       Полная документация: <https://docs.caret.bot>
+
+AUTHORS
+       Caret разработан Caret Bot Inc. и сообществом open source.
+
+COPYRIGHT
+       Copyright © 2025 Caret Bot Inc. Лицензировано в соответствии с
+       лицензией Apache License 2.0.
+```
+
+### Shell Completion
+
+Сгенерируйте скрипты автозавершения для различных оболочек:
+
+#### Bash
+
+```bash
+# Generate bash completion
+caret completion bash > /etc/bash_completion.d/caret
+
+# Or for user-level installation
+caret completion bash > ~/.local/share/bash-completion/completions/caret
+```
+
+#### Zsh
+
+```bash
+# Generate zsh completion
+caret completion zsh > "${fpath[1]}/_cline"
+
+# Or add to your .zshrc
+echo 'source <(caret completion zsh)' >> ~/.zshrc
+```
+
+#### Fish
+
+```bash
+# Generate fish completion
+caret completion fish > ~/.config/fish/completions/caret.fish
+```
+
+#### PowerShell
+
+```powershell
+# Generate PowerShell completion
+caret completion powershell > caret.ps1
+
+# Add to your PowerShell profile
+Add-Content $PROFILE "caret completion powershell | Out-String | Invoke-Expression"
+```
+
+### Version Command
+
+```bash
+# Show version information
+caret version
+```
+
+### Environment Variables
+
+#### CLINE_DIR
+
+Переопределите расположение каталога Caret по умолчанию:
+
+```bash
+# Override default Caret directory
+export CLINE_DIR=/custom/path
+
+# Default: ~/.caret
+```
+
+Этот каталог используется для:
+- Базы данных реестра экземпляров
+- Файлов конфигурации
+- Истории задач
+- Контрольных точек
+```

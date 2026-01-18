@@ -1,0 +1,259 @@
+---
+sidebar_position: 8
+title: ^ Standardisation des règles et des connaissances de l'organisation pour l'IA
+description: Découvrez le système central de Caret qui garantit que l'IA suit précisément les règles et les standards de votre équipe.
+---
+
+# ^ Standardisation des règles et des connaissances de l'organisation pour l'IA
+
+Caret est conçu pour que l'IA **comprenne et suive précisément les règles et les standards de codage de votre équipe**. Grâce à ce système, l'IA fonctionne comme un véritable membre de l'équipe qui comprend le contexte du projet, et pas seulement comme un simple outil de génération de code.
+
+## Pourquoi la synchronisation des connaissances est-elle importante ?
+
+| Situation | Outils d'IA génériques | Caret |
+|---|---|---|
+| **Respect des règles d'équipe** | Ne connaît pas les règles | ✅ Reconnaît automatiquement les fichiers de règles |
+| **Contexte du projet** | Nécessite des explications à chaque fois | ✅ Mémoire persistante |
+| **Cohérence du code** | Styles différents selon l'outil | ✅ Maintient les standards de l'équipe |
+| **Optimisation des rôles** | Aucune | ✅ Documents séparés pour l'IA et les humains |
+
+## Concept clé 1 : Architecture à double répertoire
+
+Caret reconnaît que les **documents destinés à l'IA et aux humains répondent à des besoins différents**. Pour résoudre cela, il utilise deux répertoires :
+
+```
+your-project/
+├── .agents/                    # For AI (English, token-optimized)
+│   ├── context/               # System rules
+│   │   ├── agents-rules.json  # Main rules file (SoT)
+│   │   └── ai-work-index.yaml # Work index
+│   ├── workflows/             # Task workflows
+│   │   └── atoms/             # Reusable building blocks
+│   ├── skills/                # AI skills
+│   └── hooks/                 # Event hooks
+│
+├── .users/                     # For humans (native language, detailed)
+│   ├── context/               # Project context (Markdown)
+│   ├── workflows/             # Workflow guides
+│   └── skills/                # Skill guides
+│
+└── AGENTS.md                   # AI entry point
+```
+
+### Pourquoi séparer ?
+
+| Catégorie | `.agents/` (Pour l'IA) | `.users/` (Pour les humains) |
+|------|-------------------|-------------------|
+| **Langue** | English (efficace en tokens) | Langue maternelle |
+| **Format** | JSON/YAML (structuré) | Markdown (lisible) |
+| **Objectif** | Garantir un comportement déterministe | Fournir des explications détaillées |
+| **Cible** | Agents IA | Développeurs/Membres de l'équipe |
+
+**Optimisation des tokens** : Les fichiers dans `.agents/` sont rédigés en English pour transmettre le même sens avec moins de tokens. Cela permet d'utiliser efficacement la fenêtre de contexte (context window) et de réduire les coûts.
+
+## Concept clé 2 : Système de connaissances atomiques
+
+Caret utilise une approche de **Connaissances Atomiques**. Au lieu d'un seul document massif, les connaissances sont divisées en unités minimales (Atomes) et combinées selon les besoins.
+
+### Comment ça marche
+
+1. **Analyse de la tâche** : L'IA lit `ai-work-index.yaml` pour identifier le type de tâche.
+2. **Chargement du workflow** : Elle lit uniquement le fichier de workflow pertinent.
+3. **Composition d'atomes de connaissance** : Elle charge uniquement les atomes référencés par le workflow.
+4. **Exécution de la tâche** : Elle effectue la tâche avec les connaissances combinées.
+
+### Exemple
+
+```
+.agents/workflows/
+├── code-review.md             # Code review workflow
+├── feature-implementation.md  # Feature implementation workflow
+└── atoms/                     # Reusable building blocks
+    ├── tdd-cycle.md           # TDD cycle
+    ├── naming-conventions.md  # Naming conventions
+    └── document-changes.md    # Documenting changes
+```
+
+**Avantage** : Au lieu de toujours charger toutes les règles, l'IA charge sélectivement uniquement les règles nécessaires à la tâche en cours, ce qui **économise des tokens**.
+
+## Concept clé 3 : Emplacement et priorité des règles
+
+Caret utilise le dossier **`.agents/context/`** comme source unique de vérité pour les règles. Cela garantit que l'IA suit des standards cohérents dans tout le projet.
+
+### Emplacements des règles
+
+| Type | Emplacement | Objectif |
+|------|------|------|
+| **Règles de l'espace de travail** | `.agents/context/` | Règles spécifiques au projet |
+| **Portée du répertoire** | `AGENTS.md` | S'applique uniquement à des dossiers spécifiques |
+| **Règles globales** | `Documents/Caret/Rules` | S'applique à tous les projets |
+| **Workflows** | `.agents/workflows/` | Chargement à la demande |
+
+### Pourquoi la standardisation est-elle importante ?
+
+| Problème | Solution |
+|------|------|
+| Règles éparpillées à plusieurs endroits | Gérer en un seul endroit |
+| Conflits de règles | Ordre de priorité clair |
+| L'IA ignore des règles | Chargement automatique garanti |
+
+## Concept clé 4 : Synchronisation des connaissances à l'échelle de l'organisation
+
+En utilisant des submodules, vous pouvez **partager des règles et des connaissances entre plusieurs projets** au sein de votre organisation.
+
+### Modèle de dépôt d'organisation (Organization Repository Pattern)
+
+```
+org-context/                      # Organization shared repository (Git)
+├── .agents/                      # AI context
+│   ├── context/                  # Organization rules/policies
+│   │   ├── conventions.md        # Development conventions
+│   │   ├── tech-stack.md         # Tech stack
+│   │   └── security-policy.md    # Security policy
+│   └── workflows/                # Workflow definitions
+│       ├── code-review.md
+│       └── release-process.md
+│
+├── .users/                       # User documentation (mirrored)
+│   ├── context/
+│   │   ├── dev-standards.md      # Detailed guide
+│   │   └── tech-stack.md
+│   └── workflows/
+│       └── code-review-guide.md
+│
+└── AGENTS.md                     # Organization AI entry point
+```
+
+### Connexion en tant que submodule
+
+```bash
+# Add organization context as submodule
+git submodule add git@github.com:your-org/org-context.git
+```
+
+```
+your-project/
+├── .agents/                # Project rules
+├── .users/                 # Project user documentation
+├── org-context/            # ← Submodule (organization rules)
+│   ├── .agents/
+│   └── .users/
+└── AGENTS.md
+```
+
+### Fusion des règles en 4 couches
+
+```
+Couche 1 : Globale (au niveau de l'utilisateur)
+    ~/.agents/                    # Personal AI rules
+
+Couche 2 : Organisation
+    org-context/.agents/          # Organization AI context
+
+Couche 3 : Projet
+    {project}/.agents/            # Project AI rules
+
+Couche 4 : Locale (par répertoire)
+    {project}/packages/{pkg}/
+    └── AGENTS.md                 # Per-directory override
+
+Priorité de fusion : Locale > Projet > Organisation > Globale
+```
+
+### Cas d'utilisation
+
+```bash
+# Toutes les tâches possibles dans un seul projet :
+
+# Tâche de codage
+"Refactor this function"
+→ Référence les règles de .agents/context/ pour la tâche
+
+# Question sur la politique de l'entreprise
+"Quelle est la politique de télétravail ?"
+→ Lit org-context/.users/policies/remote-work.md et répond
+
+# Guide de workflow
+"Comment faire une revue de code ?"
+→ Référence org-context/.users/workflows/code-review-guide.md
+```
+
+## Démarrage rapide : commande `/init`
+
+Si votre projet n'a pas la structure standard, vous pouvez la générer automatiquement avec la commande `/init`.
+
+```bash
+# Dans le chat Caret
+/init
+```
+
+Cette commande :
+- Crée la structure de dossiers `.agents/` et `.users/`
+- Fournit des modèles de règles par défaut
+- **N'écrase jamais les fichiers existants** (sécurisé)
+
+## Migration de projets existants
+
+Si vous avez des fichiers de règles à d'autres emplacements, déplacez-les vers `.agents/context/`.
+
+```
+your-project/
+├── .agents/
+│   ├── context/          # Rule files
+│   │   └── coding.md     # e.g., Coding standards
+│   └── workflows/        # Workflows (optional)
+└── AGENTS.md             # Root instructions (optional)
+```
+
+## Avantages clés
+
+### 1. Véritable partenariat
+L'IA et les développeurs communiquent sur la base des mêmes documents, éliminant les malentendus.
+
+### 2. Efficacité des tokens
+- Économisez des tokens avec les fichiers `.agents/` rédigés en English
+- Le "On-Demand Loading" ne charge que les règles nécessaires
+
+### 3. Cohérence à l'échelle de l'organisation
+Tous les projets partagent les mêmes règles d'organisation via les submodules.
+
+### 4. Transparence
+Les développeurs peuvent voir clairement comment l'IA fonctionne via le dossier `.agents/`.
+
+### 5. Cohérence de l'équipe
+- Tous les membres de l'équipe utilisent les mêmes règles
+- Fiabilité de l'IA - n'ignore jamais les règles
+- Contrôle de version - suivez l'historique des modifications des règles
+- Portée flexible - choisissez le niveau projet, dossier ou global
+
+## Comparaison complète avec Cline
+
+| Élément | Cline | Caret |
+|------|-------|-------|
+| **Partage de connaissances** | Fichier unique (texte brut) | Système de connaissances atomiques |
+| **Efficacité** | Charge toujours toutes les règles | Chargement à la demande (On-Demand Loading) |
+| **Séparation des rôles** | Aucune | Séparation IA/Humain |
+| **Initialisation** | Configuration manuelle | Auto-génération via `/init` |
+| **Partage d'organisation** | Aucun | Support du modèle submodule |
+| **Priorité des règles** | Floue | Fusion claire en 4 couches |
+
+## Bien démarrer
+
+### Méthode 1 : Initialisation automatique (recommandé)
+```bash
+# Dans le chat Caret
+/init
+```
+
+### Méthode 2 : Configuration manuelle
+1. Créez le dossier `.agents/context/` à la racine du projet
+2. Rédigez les règles dans des fichiers Markdown
+3. Commencez à discuter avec Caret
+
+Pour des directives détaillées sur la rédaction des règles, consultez la documentation sur la [Fonctionnalité des règles Caret](/french/features/caret-rules).
+
+## Documentation associée
+
+- [Fonctionnalité des règles Caret](/french/features/caret-rules) - Guide de rédaction des règles
+- [Outils de lecture de documents](/french/caret-exclusive/document-tools) - L'IA lit directement les documents
+- [Outils d'image](/french/caret-exclusive/image-tools) - Génération et analyse d'images par l'IA

@@ -1,0 +1,46 @@
+---
+title: "Telemetrie"
+---
+
+<Note>
+Dies ist ein auf Caret basierendes Dokument. Es folgt dem Caret v3.38.1 Merge-Stand. Falls Caret-spezifische Richtlinien (erfasste Daten/Opt-in & Opt-out, Authentifizierungs-/Routing-Logs, Speicherort) existieren, werden diese im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+<Note>
+Caret Telemetrie-Unterschiede (Zusammenfassung):
+- **Account-/Organisationsbasiert**: Der Umfang der Datenerfassung/Toggles kann je nach Account-/Organisationseinstellungen in `webview-ui/src/caret/components/` variieren.
+- **Logging/Helper**: Leichtgewichtige Logging-Utilities befinden sich in `caret-src/utils/` und `webview-ui/src/caret/utils/` und verwenden Caret-spezifische Logging-Pfade.
+- **Rule/Prompt-Standardisierung**: Aufgrund der Caret Agent Standardization können sich Prompt-/Rule-bezogene Events von Cline unterscheiden.
+- **Richtliniendokument**: Informationen zu erfassten Daten/Speicherorten finden Sie im Telemetrie-Abschnitt von `docs/merging/caret-policy-reference.md`.
+</Note>
+
+### Überblick
+
+Um Caret für alle zu verbessern, erfassen wir Nutzungsdaten, die uns helfen zu verstehen, wie Entwickler unseren Open-Source AI Coding Agent verwenden. Dieser Feedback-Loop ist entscheidend für die Verbesserung der Funktionen und der User Experience von Caret.
+
+Wir nutzen PostHog, eine Open-Source Analytics-Plattform, zur Datenerfassung und Analyse. Unsere Telemetrie-Implementierung ist vollständig transparent – Sie können den [Source Code](https://github.com/caret/caret/blob/main/src/services/posthog/telemetry/TelemetryService.ts) einsehen, um genau zu sehen, was wir tracken.
+
+### Tracking-Richtlinie
+
+Datenschutz ist unsere Priorität. Standardmäßig werden alle erfassten Daten anonymisiert. Wenn Sie sich mit einem Caret-Account anmelden, werden Ihre Telemetriedaten mit Ihrem Account verknüpft, um uns bei der Verbesserung des Produkts zu unterstützen und besseren Support bei Problemen zu bieten. Ihr Code, Ihre Prompts und Gesprächsinhalte bleiben stets privat und werden niemals erfasst.
+
+### Was wir tracken
+
+Wir erfassen grundlegende Nutzungsdaten, einschließlich:
+
+**Task-Interaktionen:** Start und Ende von Tasks, Gesprächsverlauf (ohne Inhalte)\
+**Modus- und Tool-Nutzung:** Wechsel zwischen Plan/Act-Modi, welche Tools verwendet werden\
+**Token-Nutzung:** Grundlegende Metriken zur Gesprächslänge zur Kostenschätzung (nicht der tatsächliche Inhalt der Tokens)\
+**System-Kontext:** OS-Typ und Details zur VS Code-Umgebung\
+**UI-Aktivität:** Navigationsmuster und Feature-Nutzung
+
+Für vollständige Transparenz können Sie unsere [Telemetrie-Implementierung](https://github.com/caret/caret/blob/main/src/services/posthog/telemetry/TelemetryService.ts) einsehen, um die genauen Events zu sehen, die wir tracken.
+
+### Opt-Out
+
+Telemetrie in Caret ist absolut optional:
+
+-   Wenn Sie unsere VS Code Extension aktualisieren oder installieren, sehen Sie eine Nachricht bezüglich unserer Telemetrie
+-   Sie können Ihre Einstellungen jederzeit in den Settings ändern
+
+Caret respektiert zudem die globalen Telemetrie-Einstellungen von VS Code. Wenn Sie Telemetrie auf VS Code-Ebene deaktiviert haben, wird die Telemetrie von Caret ebenfalls automatisch deaktiviert.

@@ -1,0 +1,388 @@
+```
+---
+title: "Nouvel Outil de Tâche"
+description: "Comprendre et utiliser l'outil `new_task` de Caret pour gérer la continuité du flux de travail et la préservation du contexte."
+---
+
+### L'outil `new_task` et les stratégies de gestion du contexte
+
+#### Aperçu
+
+Caret inclut un puissant outil interne, `new_task`, conçu pour aider à gérer la continuité du flux de travail et la préservation du contexte, en particulier lors de tâches complexes ou de longue durée. Cet outil, combiné à la conscience qu'a Caret de sa propre utilisation de la fenêtre de contexte et à la flexibilité de `.agents/context`, permet des stratégies sophistiquées pour décomposer le travail et assurer des transitions fluides entre les sessions de tâches.
+
+Comprendre les capacités de base et comment elles interagissent avec les règles personnalisées est essentiel pour tirer parti de cette fonctionnalité efficacement.
+
+#### Capacités de base
+
+Deux capacités fondamentales permettent une gestion avancée du contexte :
+
+1. **L'outil `new_task` :**
+    - **Fonction :** Permet à Caret, avec l'approbation de l'utilisateur, de mettre fin à la session de tâche en cours et d'en démarrer immédiatement une nouvelle.
+    - **Préchargement du contexte :** Il est essentiel que Caret puisse **précharger** cette nouvelle session de tâche avec un contexte spécifique fourni dans le bloc `<context>` de l'outil. Ce contexte peut être tout ce que Caret ou un fichier `.agents/context` définit – résumés, extraits de code, prochaines étapes, état du projet, etc.
+2. **Conscience de la fenêtre de contexte :**
+    - **Suivi :** Caret suit en interne le pourcentage de sa fenêtre de contexte disponible actuellement utilisée pendant une tâche.
+    - **Visibilité :** Cette information est visible dans les `environment_details` fournis à Caret dans son prompt.
+
+#### Utilisation de la commande Slash `/newtask`
+
+Comme alternative rapide à la suggestion de l'outil `newtask` par Caret ou à la définition de règles complexes, vous pouvez lancer directement le processus à l'aide d'une commande Slash.
+
+-   **Comment :** Tapez simplement `/newtask` dans le champ de saisie du chat.
+-   **Action :** Caret proposera de créer une nouvelle tâche, en suggérant généralement un contexte basé sur la session en cours (similaire à son comportement par défaut lors de l'utilisation de l'outil). Vous obtiendrez toujours le prompt `ask_followup_question` pour confirmer et potentiellement modifier le contexte avant la création de la nouvelle tâche.
+-   **Avantage :** Fournit un moyen rapide, initié par l'utilisateur, de tirer parti de la fonctionnalité `new_task` pour explorer des ramifications ou gérer de longues sessions sans attendre que Caret le suggère.
+
+<Note>
+	Pour plus de détails sur l'utilisation de la commande slash `/newtask`, consultez la documentation [Commande New Task](/french/features/slash-commands/new-task).
+</Note>
+
+#### Comportement par défaut (sans `.agents/context`)
+
+Par défaut, sans `.agents/context` spécifique dictant son comportement :
+
+-   **Disponibilité de l'outil :** L'outil `new_task` existe et Caret _peut_ choisir de l'utiliser.
+-   **Conscience du contexte :** Caret _est_ conscient de son pourcentage d'utilisation du contexte.
+-   **Pas de déclencheur automatique :** Caret **n'initiera pas** automatiquement un transfert de tâche _uniquement_ en fonction du fait que l'utilisation du contexte atteigne un pourcentage spécifique (comme 50 %). La décision de suggérer l'utilisation de `new_task` provient du raisonnement du modèle d'IA basé sur la progression globale de la tâche et les instructions du prompt.
+-   **Préchargement de contexte de base :** Si `new_task` est utilisé sans règles spécifiques définissant la structure du bloc `<context>`, Caret tentera de précharger les informations pertinentes en fonction de sa compréhension actuelle (par exemple, un résumé de base des progrès et des prochaines étapes), mais cela peut être moins complet qu'une approche axée sur les règles.
+
+#### La puissance de `.agents/context` : Activation de flux de travail personnalisés
+
+Bien que les capacités de base existent par défaut, la véritable puissance, l'automatisation et la personnalisation émergent lorsque vous combinez `new_task` et la conscience du contexte avec des flux de travail personnalisés définis dans `.agents/context`. Cela vous permet de contrôler précisément _quand_ et _comment_ Caret gère le contexte et la continuité des tâches.
+
+Principaux avantages de l'utilisation de `.agents/context` avec `new_task` :
+
+-   **Gestion automatisée du contexte :** Définissez des règles pour déclencher automatiquement des transferts à des pourcentages de contexte spécifiques (par exemple, > 50 %, > 70 %) ou des nombres de tokens, garantissant ainsi des performances optimales et empêchant la perte de contexte.
+-   **Optimisation spécifique au modèle :** Adaptez les déclencheurs de transfert en fonction des seuils connus pour différents LLM (par exemple, déclenchez plus tôt pour les modèles connus pour se dégrader au-delà d'un certain nombre de tokens).
+-   **Points d'arrêt intelligents :** Demandez à Caret via des règles de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
+-   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Caret crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche, en préchargeant le contexte pour la _prochaine_ sous-tâche.
+-   **Emballage de contexte personnalisé :** Exigez la structure et le contenu exacts du bloc `<context>` dans `.agents/context` pour des transferts très détaillés et cohérents (voir l'exemple ci-dessous).
+-   **Persistance de la mémoire améliorée :** Utilisez les blocs de contexte `new_task` comme moyen principal et intégré de conserver les informations entre les sessions, en remplaçant ou en complétant potentiellement les systèmes de mémoire basés sur des fichiers.
+-   **Automatisation du flux de travail :** Définissez des règles pour des scénarios spécifiques, comme le préchargement systématique de certaines instructions de configuration ou du boilerplate de projet lors du démarrage de tâches d'un type particulier.
+
+#### Exemple de flux de travail axé sur les règles : Processus de transfert de tâche
+
+Un flux de travail courant, **piloté par un fichier `.agents/context` spécifique comme dans l'exemple ci-dessous**, implique les étapes suivantes :
+
+1. **Identification du déclencheur (basée sur des règles) :** Caret surveille les points de transfert définis dans les règles (par exemple, utilisation du contexte > 50 %, achèvement de la tâche).
+2. **Confirmation de l'utilisateur :** Caret utilise `ask_followup_question` pour proposer la création d'une nouvelle tâche, en montrant souvent le contexte prévu défini par les règles.
+
+    ```xml
+    <ask_followup_question>
+    <question>J'ai terminé [accomplissement spécifique] et l'utilisation du contexte est élevée (XX %). Souhaitez-vous que je crée une nouvelle tâche pour continuer avec [travail restant], en préchargeant le contexte suivant ?</question>
+    <options>["Oui, créer une nouvelle tâche", "Modifier le contexte d'abord", "Non, continuer cette session"]</options>
+    </ask_followup_question>
+    ```
+
+3. **Contrôle de l'utilisateur :** Vous pouvez approuver, refuser ou demander à Caret de modifier le contexte avant la création de la nouvelle tâche.
+4. **Emballage du contexte (outil `new_task`) :** Si approuvé, Caret utilise `new_task`, en emballant le contexte selon la structure exigée par le `.agents/context`.
+5. **Création d'une nouvelle tâche :** La tâche en cours se termine et une nouvelle session commence immédiatement, préchargée avec le contexte spécifié.
+
+#### Le bloc de contexte de transfert (structure définie par des règles)
+
+L'efficacité des transferts axés sur les règles dépend fortement de la façon dont `.agents/context` définit le bloc `<context>`. Une structure complète comprend souvent :
+
+-   **`## Travail terminé`** : Liste détaillée des réalisations, des fichiers modifiés/créés, des décisions clés.
+-   **`## État actuel`** : État du projet, processus en cours d'exécution, états des fichiers clés.
+-   **`## Prochaines étapes`** : Liste claire et hiérarchisée des tâches restantes, des détails de mise en œuvre, des défis connus.
+-   **`## Informations de référence`** : Liens, extraits de code, modèles, préférences de l'utilisateur.
+-   **Démarrage exploitable :** Une instruction claire pour la prochaine action immédiate.
+
+#### Cas d'utilisation et flux de travail potentiels
+
+La flexibilité de `new_task` combinée à `.agents/context` ouvre de nombreuses possibilités :
+
+-   **Gestion proactive de la fenêtre de contexte :** Déclenchez automatiquement des transferts à des pourcentages spécifiques (par exemple, 50 %, 70 %) ou des nombres de tokens pour maintenir des performances optimales.
+-   **Points d'arrêt intelligents :** Demandez à Caret de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
+-   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Caret crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche.
+-   **Résumés de session automatisés :** Configurez le bloc `<context>` pour qu'il inclue toujours un résumé des principaux points de discussion de la session précédente.
+-   **Préchargement de boilerplate/configuration :** Démarrez de nouvelles tâches liées à des projets spécifiques préchargés avec des instructions de configuration standard ou des modèles de fichiers.
+-   **Prise en charge du système de contexte :** Utilisez les blocs de contexte `new_task` comme méthode de transfert principale entre les sessions, alignée sur `AGENTS.md`/`.agents/context` et `work-logs/`.
+
+Il est encouragé d'expérimenter avec `.agents/context` pour découvrir les flux de travail qui conviennent le mieux à vos besoins !
+
+#### Exemple de `.agents/context` : Guide de stratégie de transfert de tâche
+
+Vous trouverez ci-dessous un exemple de fichier `.agents/context` axé spécifiquement sur l'utilisation de `new_task` pour la gestion de la fenêtre de contexte. **N'oubliez pas qu'il ne s'agit que d'une stratégie spécifique ; l'outil `new_task` de base peut être utilisé différemment avec d'autres règles personnalisées.**
+
+````markdown
+# Vous DEVEZ utiliser l'outil `new_task` : Guide de stratégie de transfert de tâche
+
+**INSTRUCTIONS CRITIQUES - VOUS DEVEZ SUIVRE CES DIRECTIVES**
+
+Ce guide fournit des instructions **OBLIGATOIRES** pour décomposer efficacement les tâches complexes et mettre en œuvre un processus de transfert fluide entre les tâches. Vous **DEVEZ** suivre ces directives pour assurer la continuité, la préservation du contexte et l'achèvement efficace des tâches.
+
+## SURVEILLANCE DE LA FENÊTRE DE CONTEXTE - ACTION OBLIGATOIRE REQUISE
+
+Vous **DEVEZ** surveiller l'utilisation de la fenêtre de contexte affichée dans les détails de l'environnement. Lorsque l'utilisation dépasse 50 % de la fenêtre de contexte disponible, vous **DEVEZ** lancer un transfert de tâche à l'aide de l'outil `new_task`.
+
+Exemple d'utilisation de la fenêtre de contexte supérieure à 50 % avec une fenêtre de contexte de 200 K :
+
+\`\`\`text
+
+# Utilisation de la fenêtre de contexte
+
+105 000 / 200 000 tokens (53 %)
+Modèle : anthropic/claude-sonnet-4 (fenêtre de contexte de 200 K)
+\`\`\`
+
+**IMPORTANT** : Lorsque vous voyez l'utilisation de la fenêtre de contexte à ou au-dessus de 50 %, vous DEVEZ :
+
+1. Terminer votre étape logique actuelle
+2. Utiliser l'outil `ask_followup_question` pour proposer la création d'une nouvelle tâche
+3. Si approuvé, utiliser l'outil `new_task` avec des instructions de transfert complètes
+
+## Décomposition des tâches en mode Plan - PROCESSUS REQUIS
+
+Le mode Plan est spécialement conçu pour analyser les tâches complexes et les décomposer en sous-tâches gérables. En mode Plan, vous **DEVEZ** :
+
+### 1. Analyse initiale de la tâche - REQUISE
+
+-   **DEVEZ** commencer par bien comprendre la portée complète de la demande de l'utilisateur
+-   **DEVEZ** identifier tous les composants et dépendances principaux de la tâche
+-   **DEVEZ** tenir compte des défis potentiels, des cas extrêmes et des prérequis
+
+### 2. Décomposition stratégique des tâches - REQUISE
+
+-   **DEVEZ** décomposer la tâche globale en sous-tâches logiques et discrètes
+-   **DEVEZ** hiérarchiser les sous-tâches en fonction des dépendances (ce qui doit être terminé en premier)
+-   **DEVEZ** viser des sous-tâches qui peuvent être terminées en une seule session (15 à 30 minutes de travail)
+-   **DEVEZ** tenir compte des points d'arrêt naturels où le changement de contexte est logique
+
+### 3. Création d'une feuille de route des tâches - REQUISE
+
+-   **DEVEZ** présenter une liste claire et numérotée des sous-tâches à l'utilisateur
+-   **DEVEZ** expliquer les dépendances entre les sous-tâches
+-   **DEVEZ** fournir des estimations de temps pour chaque sous-tâche lorsque cela est possible
+-   **DEVEZ** utiliser des diagrammes Mermaid pour visualiser le flux des tâches et les dépendances lorsque cela est utile
+
+\`\`\`mermaid
+graph TD
+A[Tâche principale] --> B[Sous-tâche 1 : Configuration]
+A --> C[Sous-tâche 2 : Implémentation de base]
+A --> D[Sous-tâche 3 : Tests]
+A --> E[Sous-tâche 4 : Documentation]
+B --> C
+C --> D
+\`\`\`
+
+### 4. Obtention de l'approbation de l'utilisateur - REQUISE
+
+-   **DEVEZ** demander à l'utilisateur de faire part de ses commentaires sur la décomposition des tâches proposée
+-   **DEVEZ** ajuster le plan en fonction des priorités de l'utilisateur ou des exigences supplémentaires
+-   **DEVEZ** confirmer par quelle sous-tâche commencer
+-   **DEVEZ** demander à l'utilisateur de basculer en mode Act une fois prêt à mettre en œuvre
+
+## Mise en œuvre des tâches et processus de transfert - PROCÉDURES OBLIGATOIRES
+
+Lors de la mise en œuvre des tâches en mode Act, vous **DEVEZ** suivre ces directives pour un transfert de tâche efficace :
+
+### 1. Mise en œuvre ciblée - REQUISE
+
+-   **DEVEZ** vous concentrer sur la réalisation complète de la sous-tâche actuelle
+-   **DEVEZ** documenter clairement les progrès réalisés au moyen de commentaires et de messages de commit
+-   **DEVEZ** créer des points de contrôle aux points d'achèvement logiques
+
+### 2. Reconnaissance des points d'achèvement - CRITIQUE
+
+Vous **DEVEZ** identifier les points de transfert naturels lorsque :
+
+-   La sous-tâche actuelle est entièrement terminée
+-   Vous avez atteint un point d'arrêt logique dans une sous-tâche plus importante
+-   La mise en œuvre prend plus de temps que prévu et peut être poursuivie ultérieurement
+-   La portée de la tâche s'est étendue au-delà du plan initial
+-   **CRITIQUE** : L'utilisation de la fenêtre de contexte dépasse 50 % (par exemple, plus de 100 000 tokens pour une fenêtre de contexte de 200 K)
+
+### 3. Lancement du processus de transfert - ACTION OBLIGATOIRE
+
+Lorsque vous avez atteint un point d'achèvement, vous **DEVEZ** :
+
+1. Résumer ce qui a été accompli jusqu'à présent
+2. Indiquer clairement ce qui reste à faire
+3. **OBLIGATOIRE** : Utiliser l'outil `ask_followup_question` pour proposer la création d'une nouvelle tâche :
+
+\`\`\`xml
+<ask_followup_question>
+<question>J'ai terminé [accomplissement spécifique]. Souhaitez-vous que je crée une nouvelle tâche pour continuer avec [travail restant] ?</question>
+<options>["Oui, créer une nouvelle tâche", "Non, continuer dans cette session", "Laissez-moi y réfléchir"]</options>
+</ask_followup_question>
+\`\`\`
+
+### 4. Création d'une nouvelle tâche avec contexte - ACTION REQUISE
+
+Si l'utilisateur accepte de créer une nouvelle tâche, vous **DEVEZ** utiliser l'outil `new_task` avec des instructions de transfert complètes :
+
+\`\`\`xml
+<new_task>
+<context>
+
+# Poursuite de la tâche : [Titre bref de la tâche]
+
+## Travail terminé
+
+-   [Liste détaillée des éléments terminés]
+-   [Inclure les fichiers spécifiques modifiés/créés]
+-   [Noter toute décision importante prise]
+
+## État actuel
+
+-   [Description de l'état actuel du projet]
+-   [Tout processus en cours d'exécution ou configuration de l'environnement]
+-   [Fichiers clés et leur état actuel]
+
+## Prochaines étapes
+
+-   [Liste détaillée des tâches restantes]
+-   [Détails spécifiques de la mise en œuvre à aborder]
+-   [Tout défi connu à connaître]
+
+## Informations de référence
+
+-   [Liens vers la documentation pertinente]
+-   [Extraits de code ou modèles importants à suivre]
+-   [Toute préférence de l'utilisateur notée pendant la session en cours]
+
+Veuillez poursuivre la mise en œuvre par [prochaine action spécifique].
+</context>
+</new_task>
+\`\`\`
+
+### 5. Transfert de contexte détaillé - COMPOSANTS OBLIGATOIRES
+
+Lors de la création d'une nouvelle tâche, vous **DEVEZ** toujours inclure :
+
+#### Contexte du projet - REQUIS
+
+-   **DEVEZ** inclure l'objectif et la finalité globale du projet
+-   **DEVEZ** inclure les décisions architecturales et les modèles clés
+-   **DEVEZ** inclure la pile technologique et les dépendances
+
+#### Détails de la mise en œuvre - REQUIS
+
+-   **DEVEZ** répertorier les fichiers créés ou modifiés dans la session en cours
+-   **DEVEZ** décrire les fonctions, les classes ou les composants spécifiques mis en œuvre
+-   **DEVEZ** expliquer les modèles de conception suivis
+-   **DEVEZ** décrire l'approche de test
+
+#### Suivi des progrès - REQUIS
+
+-   **DEVEZ** fournir une liste de contrôle des éléments terminés
+-   **DEVEZ** fournir une liste de contrôle des éléments restants
+-   **DEVEZ** noter tout bloqueur ou défi rencontré
+
+#### Préférences de l'utilisateur - REQUISES
+
+-   **DEVEZ** noter les préférences de style de codage mentionnées par l'utilisateur
+-   **DEVEZ** documenter les approches spécifiques demandées par l'utilisateur
+-   **DEVEZ** mettre en évidence les domaines prioritaires identifiés par l'utilisateur
+
+## Pratiques exemplaires pour des transferts efficaces - DIRECTIVES OBLIGATOIRES
+
+### 1. Maintenir la continuité - REQUIS
+
+-   **DEVEZ** utiliser une terminologie cohérente entre les tâches
+-   **DEVEZ** faire référence aux décisions précédentes et à leur justification
+-   **DEVEZ** maintenir la même approche architecturale, sauf changement de direction explicite
+
+### 2. Préserver le contexte - REQUIS
+
+-   **DEVEZ** inclure des extraits de code pertinents dans le transfert
+-   **DEVEZ** résumer les discussions clés de la session précédente
+-   **DEVEZ** faire référence à des fichiers et à des numéros de ligne spécifiques le cas échéant
+
+### 3. Définir des actions claires suivantes - REQUIS
+
+-   **DEVEZ** commencer le transfert par une prochaine étape claire et exploitable
+-   **DEVEZ** hiérarchiser les tâches restantes
+-   **DEVEZ** mettre en évidence toutes les décisions qui doivent être prises
+
+### 4. Documenter les hypothèses - REQUIS
+
+-   **DEVEZ** indiquer clairement toutes les hypothèses formulées pendant la mise en œuvre
+-   **DEVEZ** noter les domaines où la contribution de l'utilisateur peut être nécessaire
+-   **DEVEZ** identifier les approches alternatives potentielles
+
+### 5. Optimiser pour la reprise - REQUIS
+
+-   **DEVEZ** structurer le transfert de sorte que la session suivante puisse commencer à fonctionner immédiatement
+-   **DEVEZ** inclure des instructions de configuration si la configuration de l'environnement est nécessaire
+-   **DEVEZ** fournir un résumé rapide en haut pour une restauration rapide du contexte
+
+## Exemple de transfert de tâche
+
+### Exemple n° 1 d'un transfert de tâche efficace :
+
+\`\`\`xml
+<new_task>
+<context>
+
+# Poursuite de la tâche : Implémenter le système d'authentification de l'utilisateur
+
+## Travail terminé
+
+-   Création de la structure de base du serveur Express.js
+-   Mise en œuvre de la connexion MongoDB et du schéma d'utilisateur
+-   Achèvement du point de terminaison d'enregistrement de l'utilisateur avec le hachage de mot de passe
+-   Ajout de la validation de saisie à l'aide de Joi
+-   Création d'une suite de tests initiale pour le point de terminaison d'enregistrement
+
+## État actuel
+
+-   Le serveur s'exécute correctement sur le port 3000
+-   La connexion MongoDB est établie
+-   Le point de terminaison d'enregistrement (/api/users/register) est entièrement fonctionnel
+-   La suite de tests réussit pour tous les scénarios d'enregistrement
+
+## Prochaines étapes
+
+1. Implémenter le point de terminaison de connexion (/api/users/login)
+    - Utiliser bcrypt pour comparer les mots de passe
+    - Générer un token JWT lors d'une connexion réussie
+    - Ajouter une gestion appropriée des erreurs pour les informations d'identification non valides
+2. Créer un middleware d'authentification
+    - Vérifier les tokens JWT
+    - Extraire les informations de l'utilisateur
+    - Gérer les tokens expirés
+3. Ajouter des routes protégées qui nécessitent une authentification
+4. Mettre en œuvre la fonctionnalité de réinitialisation du mot de passe
+
+## Informations de référence
+
+-   Le secret JWT doit être stocké dans le fichier .env
+-   Suivre le modèle de gestion des erreurs existant dans routes/users.js
+-   Le schéma d'utilisateur est défini dans models/User.js
+-   Les modèles de test sont établis dans tests/auth.test.js
+
+Veuillez continuer en implémentant le point de terminaison de connexion en suivant les mêmes modèles établis dans le point de terminaison d'enregistrement.
+</context>
+</new_task>
+\`\`\`
+
+### Exemple n° 2 d'un transfert de tâche inefficace :
+
+_(Remarque : L'exemple fourni dans les règles d'origine montrant la « Mise en œuvre du MODE YOLO » ressemble moins à un bloc de contexte de transfert direct et davantage à une mise à jour d'état générale avec des considérations futures. Un véritable transfert inefficace peut manquer de détails dans « État actuel » ou « Prochaines étapes »)._
+
+## Quand utiliser les transferts de tâches - DÉCLENCHEURS OBLIGATOIRES
+
+Vous **DEVEZ** lancer des transferts de tâches dans les scénarios suivants :
+
+1. **CRITIQUE** : Lorsque l'utilisation de la fenêtre de contexte dépasse 50 % (par exemple, plus de 100 000 tokens pour une fenêtre de contexte de 200 K)
+2. **Projets de longue durée** qui dépassent une seule session
+3. **Mises en œuvre complexes** avec plusieurs phases distinctes
+4. **Lorsque les limitations de la fenêtre de contexte** approchent
+5. **Lors du changement de domaines d'attention** dans un projet plus vaste
+6. **Lorsque différentes expertises** peuvent être bénéfiques pour différentes parties de la tâche
+
+**DERNIER RAPPEL - INSTRUCTION CRITIQUE**
+
+Vous **DEVEZ** surveiller l'utilisation de la fenêtre de contexte dans la section des détails de l'environnement. Lorsqu'elle dépasse 50 % (par exemple, « 105 000 / 200 000 tokens (53 %) »), vous **DEVEZ** lancer de manière proactive le processus de transfert de tâche à l'aide de l'outil `ask_followup_question` suivi de l'outil `new_task`. Vous DEVEZ utiliser l'outil `new_task`.
+
+En suivant strictement ces directives, vous assurerez des transitions fluides entre les tâches, maintiendrez la dynamique du projet et offrirez la meilleure expérience possible aux utilisateurs travaillant sur des projets complexes et multisessions.
+
+```markdown
+## Interaction de l'utilisateur et considérations relatives au flux de travail
+
+-   **Flux linéaire :** Actuellement, l'utilisation de `new_task` crée une séquence linéaire. L'ancienne tâche se termine et la nouvelle commence. L'historique de l'ancienne tâche reste accessible pour revenir en arrière.
+-   **Approbation de l'utilisateur :** Vous avez toujours le contrôle, en approuvant le transfert et en ayant la possibilité de modifier le contexte que Caret propose de faire avancer.
+-   **Flexibilité :** L'outil `new_task` de base est un bloc de construction flexible. Expérimentez avec `.agents/context` pour créer des flux de travail qui conviennent le mieux à vos besoins, que ce soit pour une gestion stricte du contexte, une décomposition des tâches ou d'autres utilisations créatives.
+```
+````
+```

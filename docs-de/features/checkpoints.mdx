@@ -1,0 +1,79 @@
+---
+title: "Checkpoints"
+sidebarTitle: "Checkpoints"
+---
+
+Checkpoints speichern automatisch Snapshots Ihres Workspace nach jedem Schritt innerhalb eines Tasks. Diese Funktion ermöglicht es Ihnen, Änderungen zu verfolgen, bei Bedarf ein Rollback durchzuführen und sicher mit Ihrem Code zu experimentieren.
+
+## Wie Checkpoints funktionieren
+
+Caret erstellt nach jeder Nutzung eines Tools (Dateibearbeitungen, Befehle usw.) einen Checkpoint. Diese Checkpoints:
+
+-   Funktionieren parallel zu Ihrem Git-Workflow ohne Interferenzen
+-   Behalten den Kontext zwischen Wiederherstellungen bei
+-   Nutzen ein Shadow-Git-Repository, um Änderungen zu verfolgen
+
+Wenn Sie beispielsweise an einem Feature arbeiten und Caret mehrere Dateiänderungen vornimmt, erzeugt jede Änderung einen Checkpoint. Das bedeutet, dass Sie jede Modifikation überprüfen und bei Bedarf zu jedem beliebigen Punkt zurückkehren können, ohne Ihr Haupt-Git-Repository zu beeinflussen.
+
+## Änderungen anzeigen & Wiederherstellen
+
+Nach jeder Tool-Nutzung können Sie:
+
+1. Auf den „Compare“-Button klicken, um geänderte Dateien zu sehen
+2. Auf den „Restore“-Button klicken, um die Wiederherstellungsoptionen zu öffnen
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(13).png"
+		alt="Checkpoint-Vergleich und Wiederherstellungsoptionen"
+	/>
+</Frame>
+
+## Wiederherstellungsoptionen
+
+Um zu einem vorherigen Punkt zurückzukehren:
+
+1. Klicken Sie auf den „Restore“-Button neben einem beliebigen Schritt
+2. Wählen Sie aus drei Optionen:
+    - **Restore Task and Workspace**: Setzt sowohl die Codebasis als auch den Task auf diesen Punkt zurück
+    - **Restore Task Only**: Behält die Änderungen an der Codebasis bei, setzt aber den Task-Kontext zurück
+    - **Restore Workspace Only**: Setzt die Codebasis zurück, während der Task-Kontext erhalten bleibt
+
+Beispiel: Wenn Caret beim Styling einer Komponente Änderungen vornimmt, die Ihnen nicht gefallen, können Sie „Restore Workspace Only“ verwenden, um die Code-Änderungen rückgängig zu machen, während der Konversationskontext erhalten bleibt, sodass Sie einen anderen Ansatz ausprobieren können.
+
+<Frame caption="Zurücksetzen von Codebasis und Task auf den Zustand vor allen Änderungen, um von vorne zu beginnen">
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/checkpointsDemo.gif" alt="Checkpoint-Wiederherstellungs-Demo" />
+</Frame>
+
+## Anwendungsfälle
+
+Checkpoints ermöglichen es Ihnen, experimenteller mit Caret zu arbeiten. Während menschliches Coding oft methodisch und iterativ ist, kann KI schnell umfangreiche Änderungen vornehmen. Checkpoints helfen Ihnen, diese Änderungen zu verfolgen und bei Bedarf rückgängig zu machen.
+
+### Nutzung des Auto-Approve-Modus
+
+-   Bietet ein Sicherheitsnetz für schnelle Iterationen
+-   Erleichtert das Rückgängigmachen unerwarteter Ergebnisse
+
+### Testen verschiedener Ansätze
+
+-   Mehrere Lösungen mit Zuversicht ausprobieren
+-   Verschiedene Implementierungen vergleichen
+-   Schnell zu funktionierenden Zuständen zurückkehren
+-   Ideal für die Erkundung verschiedener Design-Patterns oder Architekturansätze
+
+## Best Practices
+
+1. Nutzen Sie Checkpoints als Sicherheitsnetz beim Experimentieren
+2. Nutzen Sie den Auto-Approve-Modus selbstbewusster, da Sie wissen, dass Sie jederzeit ein Rollback durchführen können
+3. Stellen Sie selektiv je nach Bedarf wieder her:
+    - Verwenden Sie „Restore Task and Workspace“ für einen Neuanfang
+    - Verwenden Sie „Restore Task Only“, um verschiedene Prompts auszuprobieren, aber die Dateiänderungen beizubehalten
+    - Verwenden Sie „Restore Workspace Only“, um andere Implementierungen zu versuchen, während der Konversationskontext erhalten bleibt
+
+## Zusammenhang mit der Nachrichtenbearbeitung
+
+Die [Funktion zum Bearbeiten von Nachrichten](/german/features/editing-messages) nutzt im Hintergrund Checkpoints, wenn Sie die Option „Restore All“ wählen. Dies ermöglicht es Ihnen, nicht nur Ihre Nachricht zu bearbeiten und erneut zu senden, sondern auch Ihren Workspace in den Zustand zurückzusetzen, in dem er sich zu diesem Zeitpunkt der Konversation befand.
+
+## Checkpoints löschen
+
+Sie können alle Checkpoints löschen, indem Sie die Schaltfläche **„Delete All History“** im Task-Verlauf-Menü verwenden. Beachten Sie, dass dadurch auch alle Tasks gelöscht werden. Checkpoints werden im globalStorage von VS Code gespeichert.

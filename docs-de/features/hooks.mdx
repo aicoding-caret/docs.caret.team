@@ -1,0 +1,419 @@
+---
+title: "Hooks"
+sidebarTitle: "Hooks"
+description: "Integrieren Sie benutzerdefinierte Logik in den Workflow von Caret, um Operationen zu validieren, die Tool-Nutzung zu überwachen und KI-Entscheidungen zu beeinflussen"
+---
+
+Hooks ermöglichen es Ihnen, an entscheidenden Stellen benutzerdefinierte Logik in den Workflow von Caret zu integrieren. Betrachten Sie sie als automatisierte Kontrollpunkte, an denen Sie Operationen vor ihrer Ausführung validieren, die Tool-Nutzung in Echtzeit überwachen und die Entscheidungsfindung von Caret steuern können.
+
+Hooks werden automatisch ausgeführt, wenn während der Entwicklung bestimmte Ereignisse eintreten. Sie erhalten detaillierte Informationen zu jeder Operation, können problematische Aktionen blockieren, bevor sie zu Fehlern führen, und Kontext einfügen, der zukünftige KI-Entscheidungen leitet.
+
+Die wahre Stärke liegt in der Kombination dieser Funktionen. Sie können:
+
+- Operationen stoppen, bevor sie Probleme verursachen (z. B. das Erstellen von `.js`-Dateien in einem TypeScript-Projekt)
+- Aus den Geschehnissen lernen und im Laufe der Zeit Projektwissen aufbauen
+- Die Performance überwachen und Probleme erkennen, sobald sie auftreten
+- Alles für Analysen oder Compliance-Zwecke nachverfolgen
+- Externe Tools oder Services im richtigen Moment auslösen
+
+<Warning>
+Hooks werden derzeit nur auf macOS und Linux unterstützt. Windows-Support ist nicht verfügbar.
+</Warning>
+
+## Erste Schritte
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
+</Frame>
+
+Das Aktivieren von Hooks in Caret ist unkompliziert. Hier ist die Vorgehensweise:
+
+<Steps>
+<Step title="Hooks in den Einstellungen aktivieren">
+Öffnen Sie die Caret-Einstellungen und aktivieren Sie das Kontrollkästchen **"Enable Hooks"**.
+
+Sie finden diese Einstellung wie folgt:
+1. Öffnen Sie Caret
+2. Klicken Sie auf die Schaltfläche "Settings" in der oberen rechten Ecke
+3. Klicken Sie auf den Bereich "Feature" im Navigationsmenü auf der linken Seite.
+4. Scrollen Sie nach unten, bis Sie das Kontrollkästchen "Enable Hooks" sehen, und aktivieren Sie es. 
+</Step>
+
+<Step title="Wählen Sie den Speicherort für Ihre Hooks">
+Entscheiden Sie, wo Sie Ihre Hooks platzieren möchten:
+
+**Für persönliche oder organisationsweite Hooks:**
+- Erstellen Sie Hooks in `~/Documents/.agents/hooks/`
+- Diese werden automatisch auf alle Workspaces angewendet
+
+**Für projektspezifische Hooks:**
+- Erstellen Sie Hooks in `.agents/hooks/` im Stammverzeichnis Ihres Projekts
+- Diese gelten nur für den spezifischen Workspace
+- Checken Sie diese in die Versionsverwaltung ein, damit Ihr Team sie ebenfalls nutzen kann
+</Step>
+
+<Step title="Erstellen Sie Ihren ersten Hook">
+Hook-Dateien müssen exakte Namen ohne Dateiendungen haben. Um beispielsweise einen TaskStart-Hook zu erstellen:
+
+```bash
+# Create the hook file
+vim .agents/hooks/TaskStart
+```
+
+Fügen Sie Ihr Skript hinzu (muss mit einer Shebang beginnen)
+``` bash
+#!/usr/bin/env bash
+
+# Store piped input into a variable
+input=$(cat)
+
+# Dump the entire JSON payload
+echo "$input" | jq .
+
+# Get the type of a field
+echo "$input" | jq -r '.timestamp | type'
+```
+
+Dieses Beispielskript demonstriert die wichtigsten Mechanismen von Hook-Input/Output: Das Lesen des JSON-Payloads von stdin mit `input=$(cat)` und die Verwendung von `jq`, um die Datenstruktur und die Feldtypen zu untersuchen, die Ihr Hook erhält. Dies hilft Ihnen zu verstehen, welche Daten verfügbar sind, bevor Sie komplexere Hook-Logik aufbauen.
+
+**Machen Sie es ausführbar**
+
+```bash
+chmod +x .agents/hooks/TaskStart
+```
+</Step>
+
+<Step title="Testen Sie Ihren Hook">
+Starten Sie einen Task in Caret und überprüfen Sie, ob Ihr Hook ausgeführt wird.
+</Step>
+</Steps>
+
+<Tip>
+Beginnen Sie mit einem einfachen Hook, der lediglich Informationen protokolliert, bevor Sie eine komplexe Validierungslogik erstellen. Dies hilft Ihnen, die Datenstruktur und das Timing zu verstehen.
+</Tip>
+
+
+## Was Sie bauen können
+
+Sobald Sie die Grundlagen verstanden haben, eröffnen Hooks kreative Möglichkeiten:
+
+<CardGroup cols={2}>
+  <Card title="Intelligente Code-Review" icon="code-branch">
+    Führen Sie Linter oder benutzerdefinierte Validatoren aus, bevor Dateien gespeichert werden. Blockieren Sie Commits, die die Prüfungen nicht bestehen. Verfolgen Sie Code-Qualitätsmetriken über die Zeit.
+  </Card>
+  
+  <Card title="Durchsetzung von Sicherheit" icon="shield-halved">
+    Verhindern Sie Operationen, die gegen Sicherheitsrichtlinien verstoßen. Erkennen Sie, wenn sensible Daten exponiert werden könnten. Überwachen Sie alle Dateizugriffe auf Compliance.
+  </Card>
+  
+  <Card title="Entwicklungs-Analysen" icon="chart-line">
+    Messen Sie, wie lange verschiedene Operationen dauern. Identifizieren Sie Muster in der Arbeitsweise der KI. Erstellen Sie Produktivitätsberichte aus Hook-Daten.
+  </Card>
+  
+  <Card title="Integrations-Hub" icon="plug">
+    Stellen Sie Verbindungen zu Issue-Trackern her, wenn bestimmte Keywords auftauchen. Aktualisieren Sie Projektmanagement-Tools. Synchronisieren Sie im richtigen Moment mit externen APIs.
+  </Card>
+</CardGroup>
+
+Der Schlüssel liegt in der Kombination von Hooks mit externen Tools. Ein Hook kann das Bindeglied zwischen dem Workflow von Caret und dem Rest Ihres Entwicklungs-Ökosystems sein.
+
+
+## Hook-Typen
+
+Caret bietet mehrere Hook-Typen, mit denen Sie auf verschiedene Phasen des KI-Workflows zugreifen können. Sie sind in Kategorien unterteilt, basierend auf ihren Trigger-Punkten und Anwendungsfällen.
+
+<Note>
+Die unten aufgeführten Hook-Namen sind die exakten Dateinamen, die Sie erstellen müssen. Um beispielsweise den TaskStart-Hook zu verwenden, erstellen Sie eine Datei namens `TaskStart` (ohne Dateiendung) in Ihrem Hooks-Verzeichnis.
+</Note>
+
+Jeder Hook erhält zusätzlich zu seinen spezifischen Daten Basisfelder: `clineVersion`, `hookName`, `timestamp`, `taskId`, `workspaceRoots`, `userId`.
+
+### Tool-Ausführung
+
+Diese Hooks fangen Tool-Operationen ab und validieren diese, bevor und nachdem sie ausgeführt werden. Verwenden Sie sie, um Richtlinien durchzusetzen, Änderungen zu verfolgen und aus Operationen zu lernen.
+
+#### PreToolUse
+
+Wird vor der Ausführung eines Tools ausgeführt. Verwenden Sie ihn, um ungültige Operationen zu blockieren, Parameter zu validieren und Projektrichtlinien durchzusetzen, bevor Änderungen vorgenommen werden.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preToolUse": {
+    "toolName": "string",
+    "parameters": {}
+  }
+}
+```
+
+#### PostToolUse
+
+Wird nach Abschluss eines Tools ausgeführt. Nutzen Sie ihn, um aus den Ergebnissen zu lernen, Performance-Metriken zu verfolgen und Projektwissen basierend auf den durchgeführten Operationen aufzubauen.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PostToolUse",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "postToolUse": {
+    "toolName": "string",
+    "parameters": {},
+    "result": "string",
+    "success": boolean,
+    "executionTimeMs": number
+  }
+}
+```
+
+### Benutzerinteraktion
+
+Diese Hooks überwachen und verbessern die Kommunikation des Benutzers mit Caret. Verwenden Sie sie, um Eingaben zu validieren, Kontext einzufügen und Interaktionsmuster zu verfolgen.
+
+#### UserPromptSubmit
+
+Wird ausgeführt, wenn ein Benutzer eine Nachricht an Caret sendet. Verwenden Sie ihn, um Eingaben zu validieren, Kontext basierend auf dem Prompt einzufügen und Interaktionsmuster zu verfolgen.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "UserPromptSubmit",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "userPromptSubmit": {
+    "prompt": "string",
+    "attachments": ["string"]
+  }
+}
+```
+
+### Task-Lebenszyklus
+
+Diese Hooks überwachen und reagieren auf Änderungen des Task-Status vom Start bis zum Ende. Verwenden Sie sie, um Fortschritte zu verfolgen, den Status wiederherzustellen und Workflows auszulösen.
+
+#### TaskStart
+
+Wird ausgeführt, wenn ein neuer Task beginnt. Verwenden Sie ihn, um den Projekttyp zu erkennen, das Tracking zu initialisieren und den initialen Kontext einzufügen, der die Herangehensweise von Caret an die Arbeit prägt.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskStart",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskStart": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "initialTask": "string"
+    }
+  }
+}
+```
+
+#### TaskResume
+
+Wird ausgeführt, wenn ein Task nach einer Unterbrechung fortgesetzt wird. Nutzen Sie ihn, um den Status wiederherzustellen, den Kontext zu aktualisieren und die Fortsetzung für Analysen oder Benachrichtigungen an externe Systeme zu protokollieren.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskResume",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskResume": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    },
+    "previousState": {
+      "lastMessageTs": "string",
+      "messageCount": "string",
+      "conversationHistoryDeleted": "string"
+    }
+  }
+}
+```
+
+#### TaskCancel
+
+Wird ausgeführt, wenn ein Task abgebrochen wird. Verwenden Sie ihn zum Bereinigen von Ressourcen, zum Protokollieren von Abbruchdetails und zum Benachrichtigen externer Systeme über unterbrochene Arbeit.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskCancel",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskCancel": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string",
+      "completionStatus": "string"
+    }
+  }
+}
+```
+
+{/*
+#### TaskComplete
+
+Wird ausgeführt, wenn ein Task erfolgreich abgeschlossen wurde. Verwenden Sie ihn für die abschließende Bereinigung, das Tracking von Metriken, das Erstellen von Berichten und das Auslösen von Post-Task-Workflows.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "TaskComplete",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "taskComplete": {
+    "taskMetadata": {
+      "taskId": "string",
+      "ulid": "string"
+    }
+  }
+}
+```
+*/}
+
+### Systemereignisse
+
+Diese Hooks überwachen interne Caret-Operationen und Ereignisse auf Systemebene. Verwenden Sie sie, um die Kontextnutzung zu verfolgen, das Systemverhalten zu protokollieren und Performance-Muster zu analysieren.
+
+{/*
+#### PreCompact
+
+Wird ausgeführt, bevor der Konversationskontext gekürzt wird, um Token-Limits einzuhalten. Verwenden Sie ihn, um die Häufigkeit der Kompaktierung zu überwachen, Ereignisse zu protokollieren und Nutzungsmuster des Kontexts zu verfolgen.
+
+**Input-Felder:**
+```json
+{
+  "clineVersion": "string",
+  "hookName": "PreCompact",
+  "timestamp": "string",
+  "taskId": "string",
+  "workspaceRoots": ["string"],
+  "userId": "string",
+  "preCompact": {
+    "contextSize": number,
+    "messagesToCompact": number,
+    "compactionStrategy": "string"
+  }
+}
+```
+*/}
+
+### JSON-Kommunikation
+
+Hooks empfangen JSON über stdin und geben JSON über stdout zurück.
+
+**Output-Struktur:**
+```json
+{
+  "cancel": false,
+  "contextModification": "WORKSPACE_RULES: Use TypeScript",
+  "errorMessage": "Error details if blocking"
+}
+```
+
+Ihr Hook-Skript kann während der Ausführung Logging- oder Diagnoseinformationen auf stdout ausgeben, solange die JSON-Antwort das letzte ist, was geschrieben wird. Caret parst nur das finale JSON-Objekt von stdout.
+
+Zum Beispiel:
+```bash
+#!/usr/bin/env bash
+echo "Processing hook..."  # Dies ist in Ordnung
+echo "Tool: $tool_name"    # Dies ist ebenfalls in Ordnung
+# Das JSON muss an letzter Stelle stehen:
+echo '{"cancel": false}'
+```
+
+Das Feld `cancel` steuert, ob die Ausführung fortgesetzt wird. Setzen Sie es auf `true`, um eine Aktion zu blockieren, und auf `false`, um sie zuzulassen.
+
+Das Feld `contextModification` fügt Text in die Konversation ein. Dies beeinflusst zukünftige KI-Entscheidungen, nicht die aktuelle. Verwenden Sie Präfixe wie `WORKSPACE_RULES:` oder `PERFORMANCE:`, um den Kontext zu kategorisieren.
+
+### Verständnis des Kontext-Timings
+
+Das Einfügen von Kontext beeinflusst zukünftige Entscheidungen, nicht aktuelle. Wenn ein Hook ausgeführt wird:
+
+1. Die KI hat bereits entschieden, was zu tun ist
+2. Der Hook kann dies blockieren oder zulassen
+3. Jeglicher Kontext wird der Konversation hinzugefügt
+4. Die nächste KI-Anfrage sieht diesen Kontext
+
+Das bedeutet, dass PreToolUse-Hooks zum Blockieren fehlerhafter Aktionen dienen, während PostToolUse-Hooks zum Lernen aus abgeschlossenen Aktionen gedacht sind.
+
+
+## Fehlerbehebung
+
+### Hook wird nicht ausgeführt
+- Stellen Sie sicher, dass die Einstellung "Enable Hooks" aktiviert ist
+- Überprüfen Sie, ob die Hook-Datei ausführbar ist (`chmod +x hookname`)
+- Überprüfen Sie die Hook-Datei auf Syntaxfehler
+- Suchen Sie nach Fehlern im Output-Panel von VS Code (Caret-Kanal)
+
+### Zeitüberschreitung des Hooks
+- Reduzieren Sie die Komplexität des Hook-Skripts
+- Vermeiden Sie aufwendige Operationen (Netzwerkaufrufe, rechenintensive Berechnungen)
+- Erwägen Sie, komplexe Logik in einen Hintergrundprozess auszulagern
+
+### Kontext beeinflusst das Verhalten nicht
+Denken Sie daran, dass Kontextänderungen zukünftige KI-Entscheidungen beeinflussen, nicht die aktuelle Operation. Das aktuelle Verhalten der KI basiert auf dem vorangegangenen "API Request..."-Block, und Ihre `contextModification` wird in den nächsten "API Request..."-Block eingefügt. Das bedeutet, wenn Sie eine sofortige Wirkung benötigen, sollten Sie PreToolUse-Hooks zur Validierung verwenden und `cancel: true` in der JSON-Antwort Ihres Hooks zurückgeben, um Caret an der Fortsetzung zu hindern.
+
+Stellen Sie beim Hinzufügen von Kontext sicher, dass Ihre Änderungen klar und handlungsorientiert sind, damit die KI sie verstehen und effektiv anwenden kann. Überprüfen Sie auch, ob Ihr Kontext nicht aufgrund des 50KB-Limits gekürzt wird, da dies verhindern könnte, dass wichtige Informationen die KI erreichen.
+
+### Umgang mit Zeichenfolgen mit Anführungszeichen in JSON-Payloads
+Wenn Ihr Hook Zeichenfolgen mit nicht maskierten Anführungszeichen (`"`) in der JSON-Ausgabe enthalten muss, verwenden Sie das Flag `--arg` von jq für eine korrekte Maskierung:
+
+```bash
+#!/usr/bin/env bash
+
+# When $output contains unescaped quote characters (")...
+output='{"foo":"bar"}'
+
+# Use the --arg flag for automatic string escaping
+jq -n --arg ctx "$output" '{cancel: false, contextModification: $ctx}'
+
+# This will result in:
+# {
+#     "cancel": false,
+#     "contextModification": "{\"foo\":\"bar\"}"
+# }
+```
+
+Das Flag `--arg` maskiert Sonderzeichen automatisch und verhindert so JSON-Parsing-Fehler, wenn Ihre Kontextänderung komplexe Zeichenfolgen oder verschachtelte JSON-Strukturen enthält.
+
+<Warning>
+Hooks werden mit denselben Berechtigungen wie VS Code ausgeführt. Sie können auf alle Workspace-Dateien und Umgebungsvariablen zugreifen. Überprüfen Sie Hooks aus nicht vertrauenswürdigen Quellen, bevor Sie diese aktivieren.
+</Warning>
+
+## Verwandte Funktionen
+
+Hooks ergänzen andere Caret-Funktionen:
+
+- [Caret Rules](/german/features/caret-rules) definieren übergeordnete Richtlinien, die durch Hooks durchgesetzt werden können
+- [Checkpoints](/german/features/checkpoints) ermöglichen es Ihnen, Änderungen rückgängig zu machen, falls ein Hook ein Problem nicht erkannt hat
+- [Auto-Approve](/german/features/auto-approve) funktioniert gut mit Hooks als Sicherheitsnetz für automatisierte Operationen

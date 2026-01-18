@@ -1,0 +1,140 @@
+---
+title: "Dokumenten-Tools"
+sidebarTitle: "Dokumenten-Tools"
+description: "Verarbeite verschiedene Dateien mit Bildanalyse- und Dokumentenlese-Tools."
+---
+
+<Note>
+Diese Tools sind Caret-exklusive Funktionen.
+</Note>
+
+Caret bietet leistungsstarke Tools, mit denen KI Bilder und Dokumente direkt analysieren kann. Dank dieser Tools kann KI Dateien nur anhand ihres Pfads lesen und analysieren, ohne dass Benutzer sie manuell anhängen müssen.
+
+## Bildanalyse-Tool (analyze_image)
+
+Das `analyze_image`-Tool analysiert Bilddateien, um deren Inhalt zu beschreiben oder spezifische Fragen zu beantworten.
+
+### Anwendungsfälle
+
+- **UI/UX Review**: Überprüfe Screenshots auf Layoutprobleme, Ausrichtungsfehler, visuelle Fehler
+- **Textextraktion**: Extrahiere Text aus Screenshots, Fehlerdialogen, Protokollen
+- **Code Review**: Analysiere Code-Screenshots und identifiziere Muster
+- **Designvergleich**: Vergleiche UI-Implementierungen mit Design-Mockups
+- **Fehleranalyse**: Interpretiere Fehlerdialoge und Stacktraces
+
+### Unterstützte Formate
+
+- PNG, JPG, JPEG, WebP, GIF, AVIF, BMP, TIFF
+
+### Verwendung
+
+```
+User: Extrahiere die Fehlermeldung aus diesem Screenshot (./screenshots/error.png)
+AI: [Verwendet das analyze_image Tool] → Analysiert das Bild → Stellt die extrahierte Fehlermeldung bereit
+```
+
+### Voraussetzungen
+
+- **Caret Account Login erforderlich**: Die Bildanalyse wird über die Caret API verarbeitet
+- **Automatische Bildoptimierung**: Große Bilder werden vor dem Senden automatisch optimiert
+
+### Einstellungen
+
+In Einstellungen → Funktionen kannst du das **Bildanalysemodell** auswählen:
+- Gemini 3.0 Flash Preview (Standard)
+- Gemini 2.5 Flash
+
+---
+
+## Dokumentenlese-Tool (read_document)
+
+Das `read_document`-Tool liest verschiedene Dokumentformate und extrahiert Text.
+
+### Vergleich mit Cline
+
+| Feature | Cline | Caret |
+|---------|-------|-------|
+| PDF lesen | Nur Benutzeranhang | **KI liest direkt über den Pfad** |
+| DOCX/XLSX lesen | Nur Benutzeranhang | **KI liest direkt über den Pfad** |
+| HWPX (Koreanisch Hangul) | ❌ Nicht unterstützt | ✅ **Unterstützt** |
+| HWP 5.0 (Legacy Hangul) | ❌ Nicht unterstützt | ✅ **Unterstützt** |
+| PPTX | ❌ Nicht unterstützt | ✅ **Unterstützt** |
+
+### Unterstützte Formate
+
+| Format | Extension | Beschreibung |
+|--------|-----------|-------------|
+| PDF | `.pdf` | Adobe PDF-Dokumente |
+| Word | `.docx` | Microsoft Word 2007+ |
+| Excel | `.xlsx` | Microsoft Excel 2007+ |
+| PowerPoint | `.pptx` | Microsoft PowerPoint 2007+ |
+| Hangul (Neu) | `.hwpx` | Hancom Office Hangul 2014+ |
+| Hangul (Legacy) | `.hwp` | Hancom Office Hangul 5.0 |
+| Jupyter | `.ipynb` | Jupyter Notebook |
+
+### Nicht unterstützte Formate
+
+Die folgenden Legacy-Formate werden aus technischen Gründen nicht unterstützt:
+
+| Format | Extension | Alternative |
+|--------|-----------|-------------|
+| PowerPoint 97-2003 | `.ppt` | Konvertiere zu `.pptx` |
+| Word 97-2003 | `.doc` | Konvertiere zu `.docx` |
+| Excel 97-2003 | `.xls` | Konvertiere zu `.xlsx` |
+
+<Tip>
+Konvertiere Legacy-Formate mit LibreOffice, Google Docs oder Microsoft Office.
+</Tip>
+
+### Verwendung
+
+```
+User: Analysiere docs/spec.pdf in diesem Projekt
+AI: [Verwendet das read_document Tool] → Extrahiert PDF-Inhalt → Stellt Analyse bereit
+```
+
+### Sicherheit
+
+- **Pfadvalidierung**: Pfadnormalisierung zur Verhinderung von Path Traversal-Angriffen
+- **Dateigrößenbeschränkung**: Maximal 50MB
+- **Formatvalidierung**: Nur unterstützte Erweiterungen erlaubt
+
+### Einschränkungen
+
+- **Keine Bilder/Diagramme**: Bilder und Diagramme innerhalb von Dokumenten werden nicht extrahiert
+- **Layoutverlust**: Tabellen, mehrspaltige Layouts werden in einfachen Text konvertiert
+
+---
+
+## Anwendungstipps
+
+### Bildanalyse-Verwendung
+
+```
+# Auf UI-Fehler prüfen
+"Prüfe, ob es Layoutprobleme im ./screenshots/ui-bug.png Screenshot gibt"
+
+# Fehlermeldungen analysieren
+"Analysiere die Ursache des Fehlers aus diesem Screenshot (./error.png)"
+
+# Designüberprüfung
+"Vergleiche, ob das ./mockup.png Design mit der aktuellen Implementierung übereinstimmt"
+```
+
+### Dokumentenanalyse-Verwendung
+
+```
+# Spezifikationen analysieren
+"Lies docs/api-spec.pdf und liste die erforderlichen API-Endpunkte auf"
+
+# Datenanalyse
+"Fasse den Inhalt von data/report.xlsx zusammen"
+
+# Koreanische Dokumentenverarbeitung
+"Extrahiere die wichtigsten Klauseln aus contracts/contract.hwp"
+```
+
+## Verwandte Funktionen
+
+- [Caret Tools Guide](/german/exploring-carets-tools/caret-tools-guide)
+- [Skills System](/german/features/skills)

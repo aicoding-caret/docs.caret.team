@@ -1,0 +1,100 @@
+```
+---
+title: "Terminalintegration"
+sidebarTitle: "Terminalintegration"
+---
+
+Die Terminalintegration von Caret ermöglicht es Ihnen, Ihre Terminalausgabe direkt in Ihre Konversationen mit Caret zu bringen. Anstatt Fehlermeldungen oder Befehlsergebnisse zu kopieren und einzufügen, können Sie diese mit einem einfachen Rechtsklick im Terminal an Caret senden.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/terminal-integration.png"
+		alt="Terminal Integration"
+	/>
+</Frame>
+
+## Rechtsklick-Terminalintegration
+
+Wenn Sie im VS Code-Terminal arbeiten und eine Ausgabe sehen, die Sie mit Caret besprechen möchten:
+
+1. Klicken Sie mit der rechten Maustaste in das Terminal
+2. Wählen Sie im Kontextmenü "Zu Caret hinzufügen"
+3. Die Terminalausgabe wird sofort an das Caret-Chatfenster gesendet
+
+Dies ist perfekt für:
+
+-   Debugging von Build-Fehlern
+-   Verständnis von Testfehlern
+-   Analyse der Befehlsausgabe
+-   Hilfe bei Fehlermeldungen
+
+Die Rechtsklick-Terminalintegration ist besonders nützlich, wenn Sie bereits im Terminal arbeiten und ein Problem auftritt.
+
+Anstatt den Kontext zum Caret-Chatfenster zu wechseln und eine Beschreibung des Problems einzugeben, können Sie die Terminalausgabe mit nur wenigen Klicks direkt an Caret senden.
+
+Alternativ können Sie die [`@terminal`](/german/features/at-mentions/terminal-mentions)-Erwähnung verwenden, um die vollständige Terminalausgabe an Caret zu senden.
+
+<Tip>
+	Informationen zur Verwendung von `@terminal`-Erwähnungen in Ihren Chatnachrichten finden Sie in der
+	[Terminal Mentions](/german/features/at-mentions/terminal-mentions)-Dokumentation.
+</Tip>
+
+## So funktioniert die Terminalintegration
+
+Wenn Sie die Rechtsklick-Terminalintegration verwenden, geht Caret wie folgt vor:
+
+1. Erfasst die Terminalausgabe mit allen Formatierungen
+2. Bezieht den vollständigen Kontext ein, einschließlich Befehlshistorie und -ergebnisse
+3. Formatiert sie entsprechend, damit die KI sie verstehen kann
+4. Ermöglicht der KI, genau das zu sehen, was Sie sehen
+
+Dies gibt Caret den vollständigen Kontext, den es benötigt, um genaue Hilfe bei terminalbezogenen Problemen zu leisten.
+
+## Hinter den Kulissen
+
+Die Terminalintegration verwendet eine clevere Technik, um die Terminalausgabe zu erfassen:
+
+1. Wenn Sie die Integration auslösen, Caret:
+
+    - Speichert vorübergehend Ihre aktuellen Inhalte der Zwischenablage
+    - Wählt alle Terminalinhalte aus (oder verwendet Ihre bestehende Auswahl)
+    - Kopiert sie in die Zwischenablage
+    - Liest die Zwischenablage, um die Terminalinhalte zu erhalten
+    - Stellt Ihre ursprünglichen Inhalte der Zwischenablage wieder her
+
+2. Der Terminalinhalt wird dann:
+    - Mit korrekter Syntaxhervorhebung formatiert
+    - Ihrer Nachricht hinzugefügt oder als neue Nachricht gesendet
+    - Bei Bedarf mit zusätzlichem Kontext angereichert
+
+Dieser Ansatz stellt sicher, dass alle Terminalausgaben, einschließlich Farben und Formatierungen, genau erfasst werden, ohne Ihre Zwischenablage zu beeinträchtigen.
+
+## Tipps für eine effektive Nutzung
+
+-   **Verwenden Sie die Terminalintegration für Fehlermeldungen**: Wenn Sie im Terminal auf einen Fehler stoßen, führt das Senden an Caret oft zu einer schnelleren Lösung, als zu versuchen, den Fehler zu beschreiben.
+
+-   **Wählen Sie bei Bedarf bestimmte Ausgaben aus**: Standardmäßig erfasst die Integration alle Terminalinhalte, aber Sie können auch bestimmte Zeilen auswählen, bevor Sie mit der rechten Maustaste klicken, um sich nur auf die relevanten Ausgaben zu konzentrieren.
+
+-   **Kombinieren Sie Terminalausgaben mit Datei-Erwähnungen**: Nachdem Sie Terminalausgaben an Caret gesendet haben, können Sie Ihre Frage verbessern, indem Sie relevante Dateien mit der @-Erwähnungsfunktion erwähnen.
+
+-   **Kontextualisieren Sie Build- und Testausgaben mit dem Terminal**: Die Terminalintegration ist besonders nützlich, um komplexe Build-Fehler oder Testfehler zu verstehen, die sich über mehrere Zeilen erstrecken.
+
+Wenn Sie das nächste Mal auf eine kryptische Fehlermeldung in Ihrem Terminal starren, versuchen Sie, die Terminalintegration von Caret zu verwenden, anstatt zu kopieren und einzufügen. Sie erhalten genauere Hilfe, da Caret den vollständigen Terminalkontext mit korrekter Formatierung sehen kann.
+
+## Fehlerbehebung bei Terminalproblemen
+
+Wenn Sie Probleme mit der Terminalintegration haben, z. B. "Shell-Integration nicht verfügbar" oder Befehle, die keine Ausgabe anzeigen, lesen Sie bitte unseren umfassenden [Terminal Integration Troubleshooting Guide](/german/troubleshooting/terminal-integration-guide).
+
+Der Leitfaden zur Fehlerbehebung behandelt:
+
+-   Häufige Probleme bei der Terminalintegration und schnelle Lösungen
+-   Plattformspezifische Lösungen für Windows, macOS und Linux
+-   Shell-spezifische Konfigurationen für zsh, bash, PowerShell und mehr
+-   Erweiterte Debugging-Techniken
+-   Optimierung der Terminaleinstellungen
+
+<Tip>
+	**Schnelle Lösung**: Die meisten Terminalprobleme können behoben werden, indem Sie in den Caret-Einstellungen auf bash umsteigen und das Shell
+	Integration Timeout auf 10 Sekunden erhöhen.
+</Tip>
+```

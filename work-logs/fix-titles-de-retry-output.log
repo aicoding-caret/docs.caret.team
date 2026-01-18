@@ -1,0 +1,292 @@
+[dotenv@17.2.3] injecting env (13) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+
+=== Fixing German Titles ===
+
+Files to process: 87
+
+  [1/87] caret-cli/cli-reference.mdx
+    Original: "CLI-Referenz"
+    → "CLI-Referenz"
+  [2/87] caret-cli/installation.mdx
+    Original: "Installation"
+    → "Installation"
+  [3/87] caret-cli/samples/github-integration.mdx
+    Original: "GitHub Actions-Integration"
+    → "GitHub Actions-Integration"
+  [4/87] caret-cli/samples/github-issue-rca.mdx
+    Original: "GitHub-Issue-RCA-Beispiel"
+    → "GitHub-Issue-RCA-Beispiel"
+  [5/87] caret-exclusive/dual-prompt-modes.mdx
+    Original: "Dual-Modus-System"
+    → "Dual-Modus-System"
+  [6/87] core-features/model-selection-guide.mdx
+    Original: "Anleitung zur Model-Auswahl"
+    → "Anleitung zur Model-Auswahl"
+  [7/87] enterprise-solutions/cloud-provider-integration.mdx
+    Original: "Cloud-Provider-Integration"
+    → "Cloud-Provider-Integration"
+  [8/87] enterprise-solutions/custom-instructions.mdx
+    Original: "Benutzerdefinierte Anweisungen"
+    → "Benutzerdefinierte Anweisungen"
+  [9/87] enterprise-solutions/mcp-servers.mdx
+    Original: "MCP-Server"
+    → "MCP-Server"
+  [10/87] enterprise-solutions/overview.mdx
+    Original: "Caret Enterprise"
+    → "Caret Enterprise"
+  Progress: 10/87 (11.5%)
+
+  [11/87] enterprise-solutions/security-concerns.mdx
+    Original: "Sicherheitsbedenken"
+    → "Sicherheitsbedenken"
+  [12/87] exploring-carets-tools/caret-tools-guide.mdx
+    Original: "Caret Tools Referenzhandbuch"
+    → "Caret Tools Referenzhandbuch"
+  [13/87] exploring-carets-tools/document-tools.mdx
+    Original: "Dokumenten-Tools"
+    → "Dokumenten-Tools"
+  [14/87] exploring-carets-tools/new-task-tool.mdx
+    Original: "Neues Task-Tool"
+    → "Neues Task-Tool"
+  [15/87] features/auto-compact.mdx
+    Original: "Automatische Kontextzusammenfassung"
+    → "Automatische Kontextzusammenfassung"
+  [16/87] features/checkpoints.mdx
+    Original: "Checkpoints"
+    → "Checkpoints"
+  [17/87] features/commands-and-shortcuts/code-commands.mdx
+    Original: "Code-Befehle"
+    → "Code-Befehle"
+  [18/87] features/commands-and-shortcuts/git-integration.mdx
+    Original: "Commit-Nachricht generieren"
+    → "Commit-Nachricht generieren"
+  [19/87] features/commands-and-shortcuts/keyboard-shortcuts.mdx
+    Original: "Tastenkombinationen"
+    → "Tastenkombinationen"
+  [20/87] features/commands-and-shortcuts/terminal-integration.mdx
+    Original: "Terminalintegration"
+    → "Terminalintegration"
+  Progress: 20/87 (23.0%)
+
+  [21/87] features/dictation.mdx
+    Original: "Diktat"
+    → "Diktat"
+  [22/87] features/drag-and-drop.mdx
+    Original: "Drag & Drop"
+    → "Drag & Drop"
+  [23/87] features/editing-messages.mdx
+    Original: "Nachrichten bearbeiten"
+    → "Nachrichten bearbeiten"
+  [24/87] features/focus-chain.mdx
+    Original: "Focus Chain"
+    → "Focus Chain"
+  [25/87] features/hooks.mdx
+    Original: "Hooks"
+    → "Hooks"
+  [26/87] features/input-history.mdx
+    Original: "Prompt-Verlauf"
+    → "Prompt-Verlauf"
+  [27/87] features/plan-and-act.mdx
+    Original: "Plan & Act"
+    → "Plan & Act"
+  [28/87] features/skills.mdx
+    Original: "Skills-System"
+    → "Skills-System"
+  [29/87] features/slash-commands/deep-planning.mdx
+    Original: "Deep Planning Befehl"
+    → "Deep Planning-Befehl"
+  [30/87] features/slash-commands/new-rule.mdx
+    Original: "Befehl „Neue Regel“"
+    → "Befehl „New Rule“"
+  Progress: 30/87 (34.5%)
+
+  [31/87] features/slash-commands/new-task.mdx
+    Original: "Neuer Task-Befehl"
+    → "Neuer Task-Befehl"
+  [32/87] features/slash-commands/report-bug.mdx
+    Original: "Report Bug-Befehl"
+    → "Report Bug-Befehl"
+  [33/87] features/slash-commands/smol.mdx
+    Original: "Smol-Befehl"
+    → "Smol-Befehl"
+  [34/87] features/slash-commands/workflows/quickstart.mdx
+    Original: "Workflows – Schnellstart"
+    → "Workflows – Schnellstart"
+  [35/87] features/slash-commands/workflows.mdx
+    Original: "Workflows"
+    → "Workflows"
+  [36/87] features/tasks/task-management.mdx
+    Original: "Aufgabenverwaltung"
+    → "Aufgabenverwaltung"
+  [37/87] features/tasks/understanding-tasks.mdx
+    Original: "Tasks verstehen"
+    → "Tasks verstehen"
+  [38/87] features/yolo-mode.mdx
+    Original: "YOLO-Modus"
+    → "YOLO-Modus"
+  [39/87] getting-started/installing-caret.mdx
+    Original: "Caret installieren"
+    → "Caret installieren"
+  [40/87] getting-started/installing-dev-essentials.mdx
+    Original: "Installation essentieller Entwicklungstools"
+    → "Installation essenzieller Entwicklungstools"
+  Progress: 40/87 (46.0%)
+
+  [41/87] getting-started/model-selection-guide.mdx
+    Original: "Leitfaden zur Model-Auswahl"
+    → "Leitfaden zur Model-Auswahl"
+  [42/87] getting-started/selecting-your-model.mdx
+    Original: "Model-Auswahl"
+    → "Model-Auswahl"
+  [43/87] getting-started/task-management.mdx
+    Original: "Aufgabenverwaltung in Caret"
+    → "Aufgabenverwaltung in Caret"
+  [44/87] getting-started/understanding-context-management.mdx
+    Original: "Kontextverwaltung"
+    → "Kontextverwaltung"
+  [45/87] getting-started/what-is-caret.mdx
+    Original: "Was ist Caret?"
+    → "Was ist Caret?"
+  [46/87] getting-started/your-first-project.mdx
+    Original: "Erstellen Sie Ihr erstes Projekt"
+    → "Erstellen Sie Ihr erstes Projekt"
+  [47/87] introduction/welcome.mdx
+    Original: "Willkommen bei Caret"
+    → "Willkommen bei Caret"
+  [48/87] mcp/configuring-mcp-servers.mdx
+    Original: "Konfiguration von MCP-Servern"
+    → "Konfiguration von MCP-Servern"
+  [49/87] mcp/connecting-to-a-remote-server.mdx
+    Original: "Verbindung zu einem Remote-Server herstellen"
+    → "Verbindung zu einem Remote-Server herstellen"
+  [50/87] mcp/mcp-marketplace.mdx
+    Original: "MCP leicht gemacht"
+    → "MCP leicht gemacht"
+  Progress: 50/87 (57.5%)
+
+  [51/87] mcp/mcp-server-development-protocol.mdx
+    Original: "MCP-Server-Entwicklungsprotokoll"
+    → "MCP-Server-Entwicklungsprotokoll"
+  [52/87] mcp/mcp-transport-mechanisms.mdx
+    Original: "MCP-Transportmechanismen"
+    → "MCP-Transportmechanismen"
+  [53/87] model-config/context-windows.mdx
+    Original: "Leitfaden zum Context Window"
+    → "Leitfaden zum Context Window"
+  [54/87] model-config/model-comparison.mdx
+    Original: "Modellvergleich & Preise"
+    → "Model-Vergleich & Preise"
+  [55/87] more-info/telemetry.mdx
+    Original: "Telemetrie"
+    → "Telemetrie"
+  [56/87] prompting/caret-memory-bank.mdx
+    Original: "Caret Context System (Memory Bank Ersatz)"
+    → "Caret-Kontextsystem (Memory-Bank-Ersatz)"
+  [57/87] provider-config/anthropic.mdx
+    Original: "Anthropic"
+    → "Anthropic"
+  [58/87] provider-config/aws-bedrock/api-key.mdx
+    Original: "API-Key (Einfache Einrichtung)"
+    → "API-Key (Einfache Einrichtung)"
+  [59/87] provider-config/aws-bedrock/cli-profile.mdx
+    Original: "CLI-Profil (SSO)"
+    → "CLI-Profil (SSO)"
+  [60/87] provider-config/aws-bedrock/iam-credentials.mdx
+    Original: "IAM-Anmeldedaten"
+    → "IAM-Anmeldedaten"
+  Progress: 60/87 (69.0%)
+
+  [61/87] provider-config/baseten.mdx
+    Original: "Baseten"
+    → "Baseten"
+  [62/87] provider-config/cerebras.mdx
+    Original: "Cerebras"
+    → "Cerebras"
+  [63/87] provider-config/claude-code.mdx
+    Original: "Claude Code"
+    → "Claude Code"
+  [64/87] provider-config/deepseek.mdx
+    Original: "DeepSeek"
+    → "DeepSeek"
+  [65/87] provider-config/doubao.mdx
+    Original: "Doubao"
+    → "Doubao"
+  [66/87] provider-config/fireworks-ai.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [67/87] provider-config/fireworks.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [68/87] provider-config/gcp-vertex-ai.mdx
+    Original: "GCP Vertex AI"
+    → "GCP Vertex AI"
+  [69/87] provider-config/groq.mdx
+    Original: "Groq"
+    → "Groq"
+  [70/87] provider-config/litellm-and-caret-using-codestral.mdx
+    Original: "LiteLLM & Caret (mit Codestral)"
+    → "LiteLLM & Caret (mit Codestral)"
+  Progress: 70/87 (80.5%)
+
+  [71/87] provider-config/mistral-ai.mdx
+    Original: "Mistral"
+    → "Mistral"
+  [72/87] provider-config/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  [73/87] provider-config/openai-compatible.mdx
+    Original: "OpenAI-kompatibel"
+    → "OpenAI-kompatibel"
+  [74/87] provider-config/openai.mdx
+    Original: "OpenAI"
+    → "OpenAI"
+  [75/87] provider-config/openrouter.mdx
+    Original: "OpenRouter"
+    → "OpenRouter"
+  [76/87] provider-config/requesty.mdx
+    Original: "Requesty"
+    → "Requesty"
+  [77/87] provider-config/sap-aicore.mdx
+    Original: "SAP AI Core"
+    → "SAP AI Core"
+  [78/87] provider-config/upstage.mdx
+    Original: "Upstage"
+    → "Upstage"
+  [79/87] provider-config/vercel-ai-gateway.mdx
+    Original: "Vercel AI Gateway"
+    → "Vercel AI Gateway"
+  [80/87] provider-config/vscode-language-model-api.mdx
+    Original: "VS Code Language Model API"
+    → "VS Code Language Model API"
+  Progress: 80/87 (92.0%)
+
+  [81/87] provider-config/xai-grok.mdx
+    Original: "xAI (Grok)"
+    → "xAI (Grok)"
+  [82/87] provider-config/zai.mdx
+    Original: "Z AI (Zhipu AI)"
+    → "Z AI (Zhipu AI)"
+  [83/87] running-models-locally/lm-studio.mdx
+    Original: "LM Studio"
+    → "LM Studio"
+  [84/87] running-models-locally/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  [85/87] running-models-locally/read-me-first.mdx
+    Original: "Zuerst lesen"
+    → "Zuerst lesen"
+  [86/87] troubleshooting/terminal-integration-guide.mdx
+    Original: "Leitfaden zur Fehlerbehebung der Terminal-Integration"
+    → "Leitfaden zur Fehlerbehebung der Terminal-Integration"
+  [87/87] troubleshooting/terminal-quick-fixes.mdx
+    Original: "Terminal Quick Fixes"
+    → "Terminal-Schnellkorrekturen"
+  Progress: 87/87 (100.0%)
+
+
+=== Complete ===
+Successful: 87
+Failed: 0
+Total: 87
+
+Results saved to work-logs/fix-titles-de-1768738086836.json

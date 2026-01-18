@@ -1,0 +1,157 @@
+```
+---
+title: "Historique des prompts"
+description: "Réutilisez rapidement les entrées précédentes de la même manière que dans un terminal"
+---
+
+# Historique des invites
+
+L'historique des invites de Caret fonctionne comme un historique de terminal (bash, zsh), vous permettant de parcourir et de réutiliser les messages précédents. Vous n'avez plus besoin de retaper les commandes ou les invites fréquentes, ce qui améliore considérablement la vitesse du workflow.
+
+## Comment ça marche
+
+Lorsque le champ de saisie est sélectionné, utilisez les touches fléchées Haut/Bas pour naviguer dans les messages précédemment saisis.
+
+### Utilisation de base
+
+**Flèche Haut** : Passez au message précédent. Continuez à appuyer pour remonter plus loin dans le temps.
+
+**Flèche Bas** : Passez au message suivant. Si vous dépassez le message le plus récent et que vous appuyez une fois de plus, vous revenez à votre texte en cours.
+
+### Exemple
+
+```
+1. Saisissez "Show me all TypeScript files in the project" et envoyez
+2. Saisissez "Read package.json" et envoyez
+3. Saisissez "Add usage instructions to README.md" et envoyez
+
+Dans le champ de saisie :
+Flèche Haut une fois -> "Add usage instructions to README.md"
+Flèche Haut à nouveau -> "Read package.json"
+Flèche Haut à nouveau -> "Show me all TypeScript files in the project"
+Flèche Bas une fois -> retour à "Read package.json"
+```
+
+## Caractéristiques principales
+
+### Stockage persistant
+
+Vos entrées sont enregistrées automatiquement et persistent lors des redémarrages. Même si vous fermez et rouvrez un projet, vous pouvez immédiatement rappeler les invites passées.
+
+L'historique est stocké par workspace, de sorte que les invites utilisées dans le Project A sont conservées séparément du Project B.
+
+### Déduplication automatique
+
+Si vous saisissez exactement le même message consécutivement, il n'est stocké qu'une seule fois. Par exemple, saisir "run tests" trois fois de suite ne l'enregistre qu'une seule fois, ce qui évite les doublons inutiles.
+
+```
+Not saved as duplicates:
+"npm run test" entered
+"npm run test" entered again -> not added to history
+
+Saved as separate entries:
+"npm run test" entered
+"Show file list" entered
+"npm run test" entered again -> added (because another command was in between)
+```
+
+### Seules vos entrées sont enregistrées
+
+L'historique stocke **uniquement ce que vous avez tapé**. Les réponses de l'IA ne sont pas incluses, de sorte que la navigation avec les flèches reste claire et axée sur vos propres invites.
+
+### Jusqu'à 1000 éléments
+
+Caret stocke jusqu'à 1000 entrées d'historique. Lorsque vous dépassez la limite, les éléments les plus anciens sont supprimés automatiquement pour maintenir une utilisation efficace de la mémoire.
+
+Pour la plupart des workflows, 1000 entrées suffisent pour des mois d'utilisation.
+
+## Cohérent avec le terminal
+
+L'historique des invites de Caret se comporte exactement comme l'historique du shell dans bash ou zsh. La même expérience de navigation et de rappel avec les flèches Haut/Bas que vous connaissez déjà dans le terminal est disponible dans Caret.
+
+Cette cohérence signifie que vous pouvez l'utiliser immédiatement sans avoir à apprendre une nouvelle interface.
+
+## Conseils pratiques
+
+### Automatisez le travail répétitif
+
+L'historique des invites est très utile lorsque vous devez répéter des tâches similaires.
+
+```
+Scenario: apply the same pattern across multiple files
+
+1. Enter "Add type annotations to all functions in UserController.ts"
+2. After it finishes
+3. Press Up arrow to recall the previous message
+4. Replace "UserController" with "ProductController"
+5. Send
+
+Repeat across files quickly
+```
+
+### Réutilisez les invites réussies
+
+Si une invite a bien fonctionné auparavant, vous pouvez rapidement la retrouver et la réutiliser plus tard.
+
+```
+Effective prompt used two weeks ago:
+"Review this code. Analyze performance, readability, and security,
+and list improvements with priorities."
+
+When you want to reuse that pattern in another project:
+Press Up arrow to browse back or locate the prompt from the same time period
+```
+
+### Reprenez vos projets plus rapidement
+
+Lorsque vous rouvrez un projet après un certain temps, l'historique vous aide à vous souvenir de ce sur quoi vous travailliez.
+
+```
+Reopen a project after 2 weeks:
+Press Up arrow to check recent history
+-> "Add JWT refresh tokens to the auth system"
+-> "Implement Redis session storage"
+-> Oh, I was working on auth!
+```
+
+## Référence des raccourcis clavier
+
+| Key | Action |
+|---|---|
+| Up Arrow | Se déplacer au message précédent |
+| Down Arrow | Se déplacer au message suivant |
+| Enter | Envoyer le message actuellement affiché |
+| Esc | Annuler la navigation dans l'historique et revenir à la saisie actuelle |
+
+## Différence avec Cline
+
+Cline n'a pas d'historique des invites. Pour réutiliser un message précédent, vous devez le retaper à chaque fois.
+
+Le système d'historique de Caret supprime cette friction et réduit considérablement le travail de saisie répétitif.
+
+## FAQ
+
+**Q : Où est stocké l'historique ?**
+
+R : Il est stocké automatiquement dans le stockage du workspace de VS Code. Vous n'avez pas besoin de gérer les fichiers manuellement - VS Code s'en charge.
+
+**Q : Puis-je supprimer ou réinitialiser l'historique ?**
+
+R : Il est actuellement géré automatiquement. Lorsque la limite de 1000 éléments est dépassée, les entrées les plus anciennes sont supprimées, et si vous supprimez le workspace, son historique est également supprimé.
+
+**Q : Puis-je partager l'historique entre les projets ?**
+
+R : Non. L'historique est géré par workspace, de sorte que chaque projet conserve son propre historique indépendant. Cela permet de préserver le contexte spécifique du projet.
+
+**Q : J'ai saisi des informations sensibles (clés API, etc.). Seront-elles stockées ?**
+
+R : Oui, tout ce que vous tapez est stocké. Évitez de placer des données sensibles directement dans les invites. Utilisez plutôt des variables d'environnement ou des fichiers de configuration.
+
+**Q : Les entrées multilignes sont-elles stockées ?**
+
+R : Oui. Les messages multilignes sont enregistrés exactement tels qu'ils ont été saisis, y compris les sauts de ligne, et sont restaurés lorsque vous les rappelez.
+
+---
+
+**L'historique des invites est une fonctionnalité exclusive de Caret.** Vous pouvez utiliser la même navigation avec les flèches Haut/Bas que celle à laquelle vous êtes habitué dans les terminaux, directement dans le chat IA.
+```

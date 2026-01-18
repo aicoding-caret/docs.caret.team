@@ -1,0 +1,109 @@
+```yaml
+---
+title: "Обзор MCP"
+description: "Узнайте о серверах Model Context Protocol (MCP), их возможностях и о том, как Caret может помочь в их создании и использовании. MCP стандартизирует способ, которым приложения предоставляют контекст для LLM, действуя как порт USB-C для AI-приложений."
+---
+
+## Быстрые ссылки
+
+-   [Создание MCP-серверов из GitHub](/russian/mcp/adding-mcp-servers-from-github)
+-   [Создание пользовательских MCP-серверов с нуля](/russian/mcp/mcp-server-development-protocol)
+
+## Обзор
+
+Model Context Protocol - это открытый протокол, который стандартизирует способ, которым приложения предоставляют контекст для LLM. Представьте MCP как порт USB-C для AI-приложений; он предоставляет стандартизированный способ подключения AI-моделей к различным источникам данных и инструментам. MCP-серверы выступают в качестве посредников между большими языковыми моделями (LLM), такими как Claude, и внешними инструментами или источниками данных. Это небольшие программы, которые предоставляют функциональные возможности для LLM, позволяя им взаимодействовать с внешним миром через MCP. MCP-сервер - это, по сути, как API, который может использовать LLM.
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/mcp-diagram.png"
+		alt="MCP diagram showing how MCP servers connect LLMs to external tools and data sources"
+	/>
+</Frame>
+
+## Ключевые концепции
+
+MCP-серверы определяют набор "**tools,**" которые LLM может выполнять. Эти инструменты предлагают широкий спектр возможностей.
+
+**Вот как работает MCP:**
+
+-   **MCP hosts** обнаруживают возможности подключенных серверов и загружают их инструменты, подсказки и ресурсы.
+-   **Resources** обеспечивают согласованный доступ к данным только для чтения, подобно путям к файлам или запросам к базе данных.
+-   **Security** обеспечивается тем, что серверы изолируют учетные данные и конфиденциальные данные. Взаимодействия требуют явного одобрения пользователя.
+
+## Варианты использования
+
+Потенциал MCP-серверов огромен. Их можно использовать для различных целей.
+
+**Вот несколько конкретных примеров того, как можно использовать MCP-серверы:**
+
+-   **Web Services and API Integration:**
+    -   Мониторинг GitHub-репозиториев на предмет новых issues
+    -   Публикация обновлений в Twitter на основе определенных triggers
+    -   Получение данных о погоде в режиме реального времени для сервисов, основанных на местоположении
+-   **Browser Automation:**
+    -   Автоматизация тестирования веб-приложений
+    -   Сбор данных с сайтов электронной коммерции для сравнения цен
+    -   Создание скриншотов для мониторинга веб-сайтов
+-   **Database Queries:**
+    -   Создание еженедельных отчетов о продажах
+    -   Анализ моделей поведения клиентов
+    -   Создание dashboards в режиме реального времени для бизнес-метрик
+-   **Project and Task Management:**
+    -   Автоматизация создания Jira tickets на основе code commits
+    -   Создание еженедельных отчетов о ходе выполнения
+    -   Создание зависимостей задач на основе требований проекта
+-   **Codebase Documentation:**
+    -   Создание API-документации из code comments
+    -   Создание architecture diagrams из code structure
+    -   Поддержание актуальности README files
+
+## Начало работы
+
+Caret не поставляется с предустановленными MCP-серверами. Вам нужно будет найти и установить их отдельно.
+
+**Выберите правильный подход для ваших нужд:**
+
+-   **Community Repositories:** Проверьте наличие списков MCP-серверов, поддерживаемых сообществом, на GitHub. См. [Adding MCP Servers from Github](/russian/mcp/adding-mcp-servers-from-github)
+-   **Caret Marketplace:** Установите один из Caret [MCP Marketplace](/russian/mcp/mcp-marketplace)
+-   **Ask Caret:** Вы можете попросить Caret помочь вам найти или создать MCP-серверы
+-   **Build Your Own:** Создайте пользовательские MCP-серверы, используя [MCP SDK](https://github.com/modelcontextprotocol/)
+-   **Customize Existing Servers:** Измените существующие серверы в соответствии с вашими конкретными требованиями
+
+## Интеграция с Caret
+
+Caret упрощает создание и использование MCP-серверов благодаря своим AI-возможностям.
+
+### Создание MCP-серверов
+
+-   **Natural language understanding:** Поручите Caret на естественном языке создать MCP-сервер, описав его функциональные возможности. Caret интерпретирует ваши инструкции и сгенерирует необходимый code.
+-   **Cloning and building servers:** Caret может клонировать существующие репозитории MCP-серверов из GitHub и автоматически их собирать.
+-   **Configuration and dependency management:** Caret обрабатывает configuration files, environment variables и dependencies.
+-   **Troubleshooting and debugging:** Caret помогает выявлять и устранять ошибки во время разработки.
+
+### Использование MCP-серверов
+
+-   **Tool execution:** Caret беспрепятственно интегрируется с MCP-серверами, позволяя вам выполнять их определенные tools.
+-   **Context-aware interactions:** Caret может интеллектуально предлагать использование соответствующих tools на основе контекста разговора.
+-   **Dynamic integrations:** Объедините возможности нескольких MCP-серверов для выполнения сложных задач. Например, Caret может использовать GitHub server для получения данных и Notion server для создания отформатированного отчета.
+
+## Вопросы безопасности
+
+При работе с MCP-серверами важно соблюдать передовые методы обеспечения безопасности:
+
+-   **Authentication:** Всегда используйте безопасные методы authentication для API access
+-   **Environment Variables:** Храните конфиденциальную информацию в environment variables
+-   **Access Control:** Ограничьте server access только авторизованным пользователям
+-   **Data Validation:** Проверяйте все inputs для предотвращения injection attacks
+-   **Logging:** Внедрите безопасные методы logging без раскрытия конфиденциальных данных
+
+## Ресурсы
+
+Существуют различные ресурсы для поиска и изучения MCP-серверов.
+
+**Вот несколько ссылок на ресурсы для поиска и изучения MCP-серверов:**
+
+-   **GitHub Repositories:** [https://github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) и [https://github.com/punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+-   **Online Directories:** [https://mcpservers.org/](https://mcpservers.org/), [https://mcp.so/](https://mcp.so/), и [https://glama.ai/mcp/servers](https://glama.ai/mcp/servers)
+-   **PulseMCP:** [https://www.pulsemcp.com/](https://www.pulsemcp.com/)
+-   **YouTube Tutorial (AI-Driven Coder):** Видео-руководство по созданию и использованию MCP-серверов: [https://www.youtube.com/watch?v=b5pqTNiuuJg](https://www.youtube.com/watch?v=b5pqTNiuuJg)
+```

@@ -1,0 +1,116 @@
+---
+sidebar_position: 11
+title: ^ Image Tools
+description: Ein exklusives Caret-Feature, das es der KI ermöglicht, Bilder zu generieren und zu analysieren
+---
+
+# ^ Image Tools
+
+Die KI von Caret kann Bilder **generieren** und **analysieren**.
+
+## Unterschied zu Cline
+
+| Feature | Cline | Caret |
+|------|-------|-------|
+| Bildgenerierung | Nicht unterstützt | **Unterstützt via generate_image Tool** |
+| Bildanalyse (Nicht-Vision-Modelle) | Nicht unterstützt | **Unterstützt via analyze_image Tool** |
+| Ratio/Size Einstellungen | Nicht unterstützt | **In der UI konfigurierbar** |
+| Referenzbild-basierte Generierung | Nicht unterstützt | **Image-to-Image unterstützt** |
+
+## Bildgenerierung
+
+### Anwendungsbeispiel
+
+```
+User: Create a cute cat image
+AI: [Uses generate_image tool] → Generates image → Saves to assets/
+```
+
+### Konfigurationsoptionen
+
+| Option | Werte | Beschreibung |
+|------|-----|------|
+| **Ratio** | `16:9`, `9:16`, `4:3`, `3:4`, `1:1` | Bild-Seitenverhältnis |
+| **Size** | `1K`, `2K`, `3K`, `4K` | Bildauflösung |
+
+Speicherort der Einstellungen: Settings > Image Generation
+
+### Speicherort
+
+Generierte Bilder werden im `assets/`-Ordner des Projekts gespeichert:
+
+```
+assets/
+├── img_abc123.png        # Generiertes Bild
+└── img_abc123.md         # Metadaten (Prompt, Einstellungen etc.)
+```
+
+## Bildanalyse
+
+### Vision-Modelle vs. Text-Modelle
+
+| Modell-Typ | Bildanalysemethode |
+|----------|----------------|
+| **Vision-Modelle** (GPT-4o, Claude 3.5 etc.) | Direkte Analyse via `read_file` |
+| **Text-Modelle** (o1, GLM-4 etc.) | Verwendet analyze_image Tool |
+
+### Anwendungsbeispiel
+
+```
+# Nicht-Vision-Modell (GLM-4.7 etc.)
+User: [Attaches image] What's in this image?
+AI: [Uses analyze_image tool] → Analyzes with Gemini Flash → Returns results
+```
+
+### Auswahl des Analysemodells
+
+Bei der Verwendung von Text-Modellen können Sie das Modell für die Bildanalyse auswählen:
+
+- `gemini-2.5-flash` (Standard)
+- `gemini-3.0-flash-preview`
+
+Speicherort der Einstellungen: Settings > Model Info > Image Analysis Model
+
+## Authentifizierungsanforderungen
+
+| Tool | Anforderungen |
+|------|----------|
+| `generate_image` | Caret-Login erforderlich |
+| `analyze_image` | Caret-Login erforderlich (nur Text-Modelle) |
+
+## Konfiguration
+
+### Auto-approve-Einstellungen
+
+| Einstellung | Standard | Beschreibung |
+|------|--------|------|
+| `generateImages` | `true` | Bildgenerierungs-Tool aktivieren |
+| `analyzeImages` | `true` | Bildanalyse-Tool aktivieren |
+
+Speicherort der Einstellungen: Settings > Auto-approve
+
+## Sicherheit
+
+### Freigabe der Bildanalyse
+
+| Dateispeicherort | Verhalten |
+|-----------|------|
+| Innerhalb des Workspace | ✅ Automatisch genehmigt |
+| Außerhalb des Workspace | ⚠️ Benutzerfreigabe erforderlich |
+
+### Bildformate
+
+Unterstützte Bild-Dateiendungen:
+- `.png`, `.jpg`, `.jpeg`, `.webp`
+- `.gif`, `.avif`, `.bmp`, `.tiff`
+
+## Bekannte Einschränkungen
+
+1. **Authentifizierung erforderlich**: Bild-Tools erfordern einen Caret-Login
+2. **Einzelne Ausführung**: Bild-Tools können nur einzeln nacheinander ausgeführt werden
+3. **Größenbeschränkung**: Die maximale Bilddimension beträgt 7500px
+
+## Zugehörige Dokumentation
+
+- [Dokument-Lese-Tools](/german/caret-exclusive/document-tools) - KI liest Dokumente direkt
+- [KI-Organisationswissen & Standardisierung von Regeln](/german/caret-exclusive/knowledge-parity-system) - Verwaltung von Projektregeln

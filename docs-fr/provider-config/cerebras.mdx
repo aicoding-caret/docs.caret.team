@@ -1,0 +1,103 @@
+---
+title: "Cerebras"
+description: "Apprenez à configurer et à utiliser l'inference ultra-rapide de Cerebras avec Caret. Expérimentez jusqu'à 2 600 tokens par seconde avec l'architecture de puce wafer-scale et des modèles de raisonnement en temps réel."
+---
+
+<Note>
+Ceci est un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Toute politique spécifique à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) sera indiquée par un `<Note>` dans le corps du texte.
+</Note>
+
+<Note>
+Amélioration du Provider Setup : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du provider et l'UX de Caret peuvent être renforcées. Veuillez noter que les modèles autorisés/bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Caret.
+</Note>
+
+Cerebras offre l'inference IA la plus rapide au monde grâce à son architecture de puce révolutionnaire wafer-scale. Contrairement aux GPU traditionnels qui transfèrent les poids des modèles depuis une mémoire externe, Cerebras stocke l'intégralité des modèles sur la puce (on-chip), éliminant les goulots d'étranglement de bande passante et atteignant des vitesses allant jusqu'à 2 600 tokens par seconde — souvent 20 fois plus rapides que les GPU.
+
+**Site web :** [https://cloud.cerebras.ai/](https://cloud.cerebras.ai/)
+
+### Obtenir une API Key
+
+1.  **S'inscrire/Se connecter :** Allez sur [Cerebras Cloud](https://cloud.cerebras.ai/) et créez un compte ou connectez-vous.
+2.  **Accéder aux API Keys :** Accédez à la section des API keys dans votre tableau de bord.
+3.  **Créer une clé :** Générez une nouvelle API key. Donnez-lui un nom descriptif (par exemple, "Caret").
+4.  **Copier la clé :** Copiez l'API key immédiatement. Conservez-la en toute sécurité.
+
+### Modèles pris en charge
+
+Caret prend en charge les modèles Cerebras suivants :
+
+-   `zai-glm-4.6` - Modèle polyvalent intelligent avec 1 500 tokens/s
+-   `qwen-3-235b-a22b-instruct-2507` - Modèle avancé de suivi d'instructions
+-   `qwen-3-235b-a22b-thinking-2507` - Modèle de raisonnement avec réflexion étape par étape
+-   `llama-3.3-70b` - Modèle Llama 3.3 de Meta optimisé pour la vitesse
+-   `qwen-3-32b` - Modèle compact mais puissant pour les tâches générales
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le Provider :** Choisissez "Cerebras" dans le menu déroulant "API Provider".
+3.  **Saisir l'API Key :** Collez votre Cerebras API key dans le champ "Cerebras API Key".
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+5.  **(Optionnel) Base URL personnalisée :** La plupart des utilisateurs n'auront pas besoin d'ajuster ce paramètre.
+
+### L'avantage Wafer-Scale de Cerebras
+
+Cerebras a fondamentalement réimaginé l'architecture matérielle de l'IA pour résoudre le problème de vitesse d'inference :
+
+#### Architecture Wafer-Scale
+Les GPU traditionnels utilisent des puces séparées pour le calcul et la mémoire, ce qui les oblige à transférer constamment les poids des modèles. Cerebras a construit la plus grande puce d'IA au monde — un moteur wafer-scale qui stocke des modèles entiers sur la puce. Pas de mémoire externe, pas de goulots d'étranglement de bande passante, pas d'attente.
+
+#### Vitesse révolutionnaire
+- **Jusqu'à 2 600 tokens par seconde** - souvent 20 fois plus rapide que les GPU
+- **Raisonnement en une seule seconde** - ce qui prenait autrefois des minutes se produit maintenant instantanément
+- **Applications en temps réel** - les modèles de raisonnement deviennent pratiques pour une utilisation interactive
+- **Aucune limite de bande passante** - les modèles entiers stockés sur puce éliminent les goulots d'étranglement de la mémoire
+
+#### La Cerebras Scaling Law
+Cerebras a découvert qu'une **inference plus rapide permet une IA plus intelligente**. Les modèles de raisonnement modernes génèrent des milliers de tokens en tant que "monologue interne" avant de répondre. Sur du matériel traditionnel, cela prend trop de temps pour une utilisation en temps réel. Cerebras rend les modèles de raisonnement suffisamment rapides pour les applications quotidiennes.
+
+#### Qualité sans compromis
+Contrairement à d'autres optimisations de vitesse qui sacrifient la précision, Cerebras maintient la qualité totale du modèle tout en offrant une vitesse sans précédent. Vous bénéficiez de l'intelligence des modèles de pointe avec la réactivité des modèles légers.
+
+En savoir plus sur la technologie de Cerebras dans leurs articles de blog :
+- [The Cerebras Scaling Law: Faster Inference Is Smarter AI](https://www.cerebras.ai/blog/the-cerebras-scaling-law-faster-inference-is-smarter-ai)
+- [Introducing Cerebras Code](https://www.cerebras.ai/blog/introducing-cerebras-code)
+
+### Forfaits Cerebras Code
+
+Cerebras propose des forfaits spécialisés pour les développeurs :
+
+#### Code Pro (50 $/mois)
+- Accès à Qwen3-Coder avec des complétions rapides et à haut contexte
+- Jusqu'à 24 millions de tokens par jour
+- Idéal pour les développeurs indépendants et les projets de week-end
+- 3 à 4 heures de codage ininterrompu par jour
+
+#### Code Max (200 $/mois)
+- Prise en charge des flux de travail de codage intensifs
+- Jusqu'à 120 millions de tokens par jour
+- Parfait pour le développement à plein temps et les systèmes multi-agents
+- Pas de limites hebdomadaires, pas de verrouillage d'IDE
+
+### Caractéristiques spéciales
+
+#### Niveau gratuit (Free Tier)
+Le modèle `qwen-3-coder-480b-free` donne accès à une inference haute performance sans frais — un cas unique parmi les fournisseurs axés sur la vitesse.
+
+#### Raisonnement en temps réel
+Les modèles de raisonnement comme `qwen-3-235b-a22b-thinking-2507` peuvent achever un raisonnement complexe en plusieurs étapes en moins d'une seconde, ce qui les rend pratiques pour les flux de travail de développement interactifs.
+
+#### Spécialisation en programmation
+Les modèles Qwen3-Coder sont spécifiquement optimisés pour les tâches de programmation, offrant des performances comparables à Claude Sonnet 4 et GPT-4.1 dans les benchmarks de codage.
+
+#### Pas de verrouillage d'IDE (No IDE Lock-In)
+Fonctionne avec n'importe quel outil compatible OpenAI — Cursor, Continue.dev, Caret ou tout autre éditeur prenant en charge les endpoints OpenAI.
+
+### Conseils et notes
+
+-   **Avantage de vitesse :** Cerebras excelle à rendre les modèles de raisonnement pratiques pour une utilisation en temps réel. Parfait pour les flux de travail agentiques qui nécessitent plusieurs appels LLM.
+-   **Niveau gratuit :** Commencez par le modèle gratuit pour expérimenter la vitesse de Cerebras avant de passer aux forfaits payants.
+-   **Fenêtres de contexte :** Les modèles prennent en charge des fenêtres de contexte allant de 64K à 128K tokens pour inclure un contexte de code substantiel.
+-   **Limites de débit (Rate Limits) :** Limites de débit généreuses conçues pour les flux de travail de développement. Consultez votre tableau de bord pour les limites actuelles.
+-   **Tarification :** Tarification compétitive avec des avantages de vitesse significatifs. Visitez [Cerebras Cloud](https://cloud.cerebras.ai/) pour les tarifs actuels.
+-   **Applications en temps réel :** Idéal pour les applications où le temps de réponse de l'IA est crucial — génération de code, débogage et développement interactif.

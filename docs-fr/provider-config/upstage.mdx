@@ -1,0 +1,75 @@
+---
+title: "Upstage"
+description: "Apprenez à configurer et à utiliser les modèles Upstage Solar avec Caret."
+---
+
+<Note>
+Ce provider est une fonctionnalité exclusive de Caret.
+</Note>
+
+Upstage est une entreprise d'IA coréenne de premier plan qui développe la série de modèles de langage Solar. Les modèles Solar sont reconnus pour leurs excellentes performances en langue coréenne et leur vitesse d'inférence efficace.
+
+**Site web :** [https://console.upstage.ai](https://console.upstage.ai)
+
+## Obtenir une API Key
+
+1. **Créer un compte** : Inscrivez-vous sur [Upstage Console](https://console.upstage.ai).
+2. **Générer une API Key** : Accédez à la section API Keys de votre tableau de bord.
+3. **Copier la clé** : Créez une nouvelle API Key et conservez-la en toute sécurité.
+
+## Modèles supportés
+
+### Solar Pro 2
+
+- **Model ID**: `solar-pro2`
+- **Context Window**: 32,768 tokens
+- **Max Output**: 4,096 tokens
+- **Description**: Modèle de langage avancé pour les tâches complexes
+
+Solar Pro 2 est le dernier modèle phare d'Upstage, excellant dans le codage, le raisonnement et les tâches multilingues.
+
+### Solar Mini
+
+- **Model ID**: `solar-mini`
+- **Context Window**: 32,768 tokens
+- **Max Output**: 4,096 tokens
+- **Description**: Modèle léger et rapide
+
+Solar Mini est optimisé pour la vitesse et l'efficacité, adapté aux tâches nécessitant des réponses rapides.
+
+## Configuration dans Caret
+
+1. **Ouvrir les Settings** : Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2. **Sélectionner le Provider** : Choisissez "Upstage" dans le menu déroulant "API Provider".
+3. **Saisir l'API Key** : Collez votre API Key dans le champ "Upstage API Key".
+4. **Sélectionner le modèle** : Choisissez le modèle souhaité dans le menu déroulant.
+
+## Fonctionnalités d'Upstage
+
+### Optimisation pour la langue coréenne
+
+Les modèles Solar sont entraînés de manière intensive sur des données coréennes, offrant des performances excellentes pour les commentaires de code, la documentation et les tâches de traitement du langage naturel en coréen.
+
+### Architecture efficace
+
+La série Solar utilise la technologie Depth Up-Scaling (DUS) pour implémenter une architecture de modèle efficace. Cela permet d'atteindre des performances élevées avec moins de paramètres.
+
+### API compatible OpenAI
+
+L'API Upstage utilise un format compatible avec OpenAI, facilitant l'intégration avec les workflows existants basés sur OpenAI.
+
+## Conseils d'utilisation
+
+- **Tâches de codage** : Solar Pro 2 est efficace pour la génération de code, le refactoring et la correction de bugs.
+- **Réponses rapides** : Utilisez Solar Mini pour les requêtes simples ou lorsqu'un feedback rapide est nécessaire.
+- **Projets en coréen** : Particulièrement utile pour les projets comportant des commentaires ou de la documentation en coréen.
+- **Efficacité des coûts** : Solar Mini est une option rentable pour les phases de prototypage ou de développement.
+
+## Informations sur les tarifs
+
+Pour les dernières informations sur les tarifs, visitez le [site officiel d'Upstage](https://console.upstage.ai).
+
+## Références
+
+- [Documentation officielle d'Upstage](https://developers.upstage.ai/docs)
+- [Introduction au modèle Solar](https://upstage.ai/solar-llm)

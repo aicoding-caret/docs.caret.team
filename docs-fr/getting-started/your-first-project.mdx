@@ -1,0 +1,119 @@
+---
+title: "Créer Votre Premier Projet"
+description: "Créez votre premier projet avec Caret en moins d'une minute."
+---
+
+<Note>
+Document basé sur Caret. Suit la version fusionnée Caret v3.38.1 et indique par `<Note>` dans le corps du texte les politiques spécifiques à Caret (modèles supportés/paramètres recommandés, authentification/routage) le cas échéant.
+</Note>
+
+Prêt à voir Caret en action ? Ce tutoriel pratique vous guidera à travers la création d'un site web en moins d'une minute. Vous découvrirez comment Caret comprend vos exigences, crée des fichiers et itère sur vos commentaires, le tout grâce à une conversation naturelle.
+
+À la fin de ce guide, vous aurez créé un site web fonctionnel et appris les bases de l'utilisation de Caret.
+
+## Prérequis
+
+- **Caret installé** dans votre éditeur ([Guide d'installation](/french/getting-started/installing-caret))
+- **Modèle d'IA sélectionné** ([Configuration du modèle](/french/getting-started/selecting-your-model))
+- **N'importe quel dossier ouvert** dans votre éditeur (ou créez un nouveau dossier vide)
+
+## Étape 1 : Ouvrir Caret
+
+Cliquez sur l'icône Caret dans la barre latérale de votre éditeur (à gauche). Le panneau de chat s'ouvrira.
+
+<Info>
+**Astuce rapide :** Vous pouvez également utiliser `Cmd+Shift+P` (Mac) ou `Ctrl+Shift+P` (Windows/Linux) et rechercher "Caret: Open In New Tab"
+</Info>
+
+## Étape 2 : Donner une tâche à Caret
+
+Copiez et collez cette invite dans le chat de Caret :
+
+```
+Create a simple website in a single HTML file. It should have:
+- A welcome message saying "Hello from Caret!"
+- A colorful gradient background
+- A button that cycles through different color themes when clicked
+- Modern, clean design
+- All CSS and JavaScript should be included in the same HTML file
+```
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/chat-prompt.png" alt="Caret Chat Prompt"/>
+</Frame>
+
+Appuyez sur Entrée et regardez Caret travailler !
+
+## Étape 3 : Ce qui se passe ensuite
+
+Caret va :
+
+1. **Créer un seul fichier :**
+   - `index.html` - Une page web complète avec CSS et JavaScript intégrés
+
+2. **Demander une approbation** (sauf si vous avez activé l'approbation automatique)
+   - Cliquez sur "Approve" pour permettre à Caret de créer le fichier
+   - Vous pouvez d'abord vérifier ce qu'il prévoit de faire
+
+3. **Terminer la tâche** en quelques secondes
+
+## Étape 4 : Visualiser votre site web
+
+Une fois que Caret a terminé :
+
+1. **Trouvez `index.html`** dans l'explorateur de fichiers de votre éditeur
+2. **Faites un clic droit dessus** et sélectionnez :
+   - "Reveal in Finder/Explorer" puis double-cliquez pour l'ouvrir dans votre navigateur
+3. **Cliquez sur le bouton** pour voir les thèmes de couleurs changer !
+
+## Essayer d'apporter des modifications
+
+Dans le même chat, essayez de demander :
+
+```
+Add a counter that shows how many times the button has been clicked
+```
+
+ou
+
+```
+Make the welcome message fade in when the page loads
+```
+
+Caret comprend le contexte de votre conversation précédente et mettra à jour le fichier en conséquence.
+
+<Tip>
+**Vous savez maintenant comment :**
+- Donner une tâche à Caret avec une invite claire
+- Examiner et approuver les actions de Caret
+- Construire un projet complet en quelques secondes
+- Itérer et améliorer le travail existant
+</Tip>
+
+## Prochaines étapes
+
+Maintenant que vous avez expérimenté les capacités de Caret, explorez davantage :
+
+<CardGroup cols={2}>
+<Card title="@ Mentions" href="/features/at-mentions/overview" icon="at">
+Référencez des fichiers, des dossiers et des URL spécifiques dans vos invites
+</Card>
+
+<Card title="Plan & Act Modes" href="/features/plan-and-act" icon="diagram-project">
+Maîtrisez la planification par rapport à l'exécution pour les tâches complexes
+</Card>
+
+<Card title="Caret Rules" href="/features/caret-rules" icon="list-check">
+Définissez des directives spécifiques au projet pour des résultats cohérents
+</Card>
+
+<Card title="Prompting Guide" href="/prompting/prompt-engineering-guide" icon="wand-magic-sparkles">
+Apprenez à rédiger des invites qui donnent les meilleurs résultats
+</Card>
+</CardGroup>
+
+## Besoin d'aide ?
+
+- **Bloqué ?** Essayez de recommencer avec `/new` dans le chat
+- **Vous avez trouvé un bug ?** Utilisez `/reportbug` pour nous aider à nous améliorer
+- **Vous avez des questions ?** Rejoignez notre [communauté Discord](https://https://discord.gg/WB6yaR89YN)

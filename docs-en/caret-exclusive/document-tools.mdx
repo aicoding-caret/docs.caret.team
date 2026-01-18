@@ -1,0 +1,93 @@
+---
+sidebar_position: 10
+title: ^ Document Reading Tools
+description: A Caret-exclusive feature that allows AI to directly read various documents like PDF, Word, Excel, and Hangul with just a file path
+---
+
+# ^ Document Reading Tools
+
+Caret's AI can **directly read various document files just by providing the path**. Users don't need to attach files manually.
+
+## Difference from Cline
+
+| Feature | Cline | Caret |
+|------|-------|-------|
+| PDF Reading | Only when user attaches | **AI reads directly by path** |
+| DOCX/XLSX Reading | Only when user attaches | **AI reads directly by path** |
+| Hangul (HWPX) | Not supported | **Supported** |
+| Hangul 5.0 (HWP) | Not supported | **Supported** |
+| PowerPoint (PPTX) | Not supported | **Supported** |
+| Jupyter Notebook | Not supported | **Supported** |
+
+## Supported Formats
+
+| Format | Extension | Description |
+|------|--------|------|
+| PDF | `.pdf` | Text extraction |
+| Word | `.docx` | Modern Word documents |
+| Excel | `.xlsx` | Modern Excel spreadsheets |
+| PowerPoint | `.pptx` | Slide text extraction |
+| Hangul (Modern) | `.hwpx` | Hangul 2014 and later |
+| Hangul (Legacy) | `.hwp` | Hangul 5.0 ~ 2010 |
+| Jupyter | `.ipynb` | Notebook cell contents |
+
+### Unsupported Formats
+
+Legacy binary formats are not supported:
+
+| Format | Extension | Alternative |
+|------|--------|------|
+| Word 97-2003 | `.doc` | Convert to `.docx` |
+| Excel 97-2003 | `.xls` | Convert to `.xlsx` |
+| PowerPoint 97-2003 | `.ppt` | Convert to `.pptx` |
+
+Conversion tools: LibreOffice, Google Docs, Microsoft Office
+
+## How to Use
+
+### Example 1: Analyzing Specification Documents
+
+```
+User: Analyze docs/spec.pdf
+AI: [Uses Document Reading Tool] → Extracts PDF content → Provides analysis results
+```
+
+### Example 2: Reading Hangul Documents
+
+```
+User: Summarize the contents of contract.hwp
+AI: [Uses Document Reading Tool] → Extracts HWP text → Provides summary
+```
+
+### Example 3: Analyzing Excel Data
+
+```
+User: Analyze the data in sales-report.xlsx
+AI: [Uses Document Reading Tool] → Extracts spreadsheet data → Provides analysis results
+```
+
+## Security
+
+### Path Protection
+- Path normalization prevents directory traversal attacks
+- Files inside workspace are auto-approved
+- Files outside workspace require user approval
+
+### File Size Limit
+- Maximum 50MB
+- Clear error message when exceeded
+
+## Configuration
+
+Document reading tools are enabled by default. Since it's a read-only operation, there's no separate toggle setting.
+
+## Known Limitations
+
+1. **Images/Charts Not Included**: Images and charts in documents are not converted to text
+2. **Complex Layouts**: Tables and multi-column layouts are converted to simple text
+3. **Original Formatting Lost**: Font, color, and other formatting information is not extracted
+
+## Related Documentation
+
+- [Image Tools](/en/caret-exclusive/image-tools) - AI image generation/analysis features
+- [AI Organization Knowledge & Rules Standardization](/en/caret-exclusive/knowledge-parity-system) - Project rules management

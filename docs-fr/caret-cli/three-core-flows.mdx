@@ -1,0 +1,146 @@
+```
+---
+title: "Trois flux principaux"
+description: "Découvrez les trois façons d'utiliser Caret CLI : mode interactif, automatisation headless et parallélisation multi-instance"
+---
+
+Deux concepts à comprendre :
+
+**Task** (Tâche) - Un job unique que Caret doit réaliser ("ajouter des tests à utils.js"). Vous décrivez ce que vous voulez, Caret planifie comment le faire, puis exécute le plan. Les Tasks s'exécutent sur des Instances.
+
+**Instance** - Un espace de travail Caret indépendant. Chaque Instance exécute une Task à la fois. Créez plusieurs Instances pour exécuter plusieurs Tasks qui travaillent en parallèle sur différentes parties de votre projet.
+
+## 1. Mode interactif : Planifier d'abord, puis agir
+
+Commencez ici pour voir comment Caret fonctionne. Le mode interactif ouvre une session de chat où vous pouvez revoir les plans avant l'exécution.
+
+```bash
+caret
+```
+
+Caret ouvre une session interactive dans votre répertoire courant. Tapez votre Task sous forme de message. Caret entre en mode Plan et propose une stratégie étape par étape.
+
+Passez en revue ou modifiez le plan dans le chat. Lorsque vous êtes prêt, passez à l'exécution :
+
+```bash
+/act
+```
+
+Caret exécute les étapes approuvées : lecture de fichiers, écriture de code, exécution de commandes. Vous gardez le contrôle tout au long du processus.
+
+## 2. Headless single-shot : Effectuer une Task sans chat
+
+Utilisez ceci pour l'automatisation où vous voulez une commande en une ligne qui fait juste le travail.
+
+```bash
+caret instance new --default
+caret task new -y "Generate unit tests for all Go files"
+```
+
+Avec le flag `-y` (YOLO), Caret planifie et exécute de manière autonome sans chat interactif. Parfait pour CI, les tâches cron ou les scripts.
+
+Exemples :
+
+```bash
+# Create a complete feature
+caret task new -y "Create a REST API for user authentication"
+
+# Generate documentation
+caret task new -y "Add JSDoc comments to all functions in src/"
+
+# Refactor code
+caret task new -y "Convert all var declarations to const/let"
+```
+
+Surveillez votre Task avec :
+
+```bash
+# View task status
+caret task view
+
+# Follow task progress in real-time
+caret task view --follow
+```
+
+Appuyez sur Ctrl+C pour quitter la vue.
+
+<Note>
+Exécutez le mode YOLO avec précaution sur un répertoire ou une branche Git propre. Vous gagnez en vitesse en échange d'une surveillance, alors soyez prêt à revenir en arrière si nécessaire.
+</Note>
+
+## 3. Multi-instance : Exécuter des agents en parallèle
+
+Plusieurs Instances vous permettent de paralléliser le travail sur le même projet sans collision de contextes. Exécutez simultanément des Tasks frontend, backend et d'infrastructure.
+
+Créez votre première Instance :
+
+```bash
+caret instance new
+```
+
+Cela renvoie une adresse d'Instance que vous utiliserez pour cibler les Tasks. Attachez une Task à cette Instance :
+
+```bash
+# Frontend work on first instance
+caret task new -y "Build React components"
+```
+
+Créez une deuxième Instance et définissez-la comme Instance par défaut en une seule commande :
+
+```bash
+caret instance new --default
+```
+
+Vous pouvez maintenant créer des Tasks sans spécifier l'adresse : elles utilisent automatiquement l'Instance par défaut :
+
+```bash
+# Backend work on the new default instance
+caret task new -y "Implement API endpoints"
+```
+
+Listez toutes les Instances en cours d'exécution :
+
+```bash
+caret instances list
+```
+
+Arrêtez toutes les Instances une fois terminé :
+
+```bash
+caret instances kill -a
+```
+
+<Tip>
+Gardez une trace des adresses d'Instance renvoyées par `caret instance new`. Lorsque vous scriptez plusieurs agents, stockez ces IDs et dirigez vos Tasks vers l'Instance appropriée.
+</Tip>
+
+## Choisir le bon flux
+
+- **Mode interactif** : Idéal pour explorer de nouveaux problèmes, apprendre comment Caret fonctionne, ou lorsque vous souhaitez revoir les plans avant l'exécution
+- **Headless single-shot** : Parfait pour l'automatisation, CI/CD, et les Tasks où vous faites confiance à Caret pour exécuter sans supervision
+- **Multi-instance** : Utilisez-le lorsque vous devez paralléliser le travail ou maintenir des contextes séparés pour différentes parties de votre projet
+
+<Tip>
+Pour des commandes et des flags détaillés, consultez la page [CLI reference](/french/caret-cli/cli-reference) pour une documentation complète sur toutes les options disponibles.
+</Tip>
+
+## Prochaines étapes
+
+<Columns cols={2}>
+  <Card title="CLI reference" icon="terminal" href="/french/caret-cli/cli-reference">
+    Documentation complète des commandes, y compris la configuration, la gestion des Instances et les commandes de Task.
+  </Card>
+  
+  <Card title="Plan and Act" icon="brain" href="/french/features/plan-and-act">
+    Plongée en profondeur dans les modes Plan et Act, y compris quand utiliser chacun d'eux et comment basculer entre eux.
+  </Card>
+  
+  <Card title="YOLO mode" icon="zap" href="/french/features/yolo-mode">
+    Comprendre comment le mode YOLO fonctionne et quand utiliser l'automatisation complète par rapport à l'approbation manuelle.
+  </Card>
+  
+  <Card title="Task management" icon="clipboard-check" href="/french/getting-started/task-management">
+    Apprenez comment Caret suit et gère les Tasks, y compris la sauvegarde et la restauration de l'état à partir de checkpoints.
+  </Card>
+</Columns>
+```

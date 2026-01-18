@@ -1,0 +1,163 @@
+---
+title: "Leitfaden zum Context Window"
+description: "Verständnis und Verwaltung von Context Windows bei KI-Modellen"
+---
+
+<Note>
+Dies ist ein auf Caret basierendes Dokument. Es folgt dem Caret v3.38.1 Merge-Stand. Falls es Caret-spezifische Richtlinien gibt (Context-Beschränkungen nach unterstützten/blockierten Modellen, Authentifizierung/Routing), werden diese im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+## Was ist ein Context Window?
+
+Ein Context Window ist die maximale Menge an Text, die ein KI-Modell gleichzeitig verarbeiten kann. Stellen Sie es sich als das „Arbeitsgedächtnis“ des Modells vor – es bestimmt, wie viel von Ihrer Konversation und Ihrem Code das Modell bei der Generierung von Antworten berücksichtigen kann.
+
+<Note>
+**Wichtiger Punkt**: Größere Context Windows ermöglichen es dem Modell, mehr von Ihrer Codebase auf einmal zu verstehen, können jedoch die Kosten und Antwortzeiten erhöhen.
+</Note>
+
+## Context Window Größen
+
+### Kurzreferenz
+
+| Größe | Tokens | Ungefähre Wörter | Anwendungsfall |
+|------|--------|------------------|----------|
+| **Klein** | 8K-32K | 6.000-24.000 | Einzelne Dateien, schnelle Korrekturen |
+| **Mittel** | 128K | ~96.000 | Die meisten Coding-Projekte |
+| **Groß** | 200K | ~150.000 | Komplexe Codebases |
+| **Extra Groß** | 400K+ | ~300.000+ | Ganze Applikationen |
+| **Massiv** | 1M+ | ~750.000+ | Analyse mehrerer Projekte |
+
+### Modell Context Windows
+
+| Modell | Context Window | Effektives Window* | Anmerkungen |
+|-------|---------------|------------------|-------|
+| **Claude Sonnet 4.5** | 1M Tokens | ~500K Tokens | Beste Qualität bei hohem Kontext |
+| **GPT-5** | 400K Tokens | ~300K Tokens | Drei Modi beeinflussen die Performance |
+| **Gemini 2.5 Pro** | 1M+ Tokens | ~600K Tokens | Exzellent für Dokumente |
+| **DeepSeek V3** | 128K Tokens | ~100K Tokens | Optimal für die meisten Aufgaben |
+| **Qwen3 Coder** | 256K Tokens | ~200K Tokens | Gute Balance |
+
+*Das effektive Window ist der Bereich, in dem das Modell eine hohe Qualität beibehält.
+
+## Kontext effizient verwalten
+
+### Was zum Kontext zählt
+
+1. **Deine aktuelle Konversation** – Alle Nachrichten im Chat
+2. **Dateiinhalte** – Alle Dateien, die du geteilt hast oder die Caret gelesen hat
+3. **Tool-Outputs** – Ergebnisse von ausgeführten Befehlen
+4. **System-Prompts** – Anweisungen von Caret (minimaler Einfluss)
+
+### Optimierungsstrategien
+
+#### 1. Neu beginnen für neue Features
+```
+/new - Creates a new task with clean context
+```
+Vorteile:
+- Maximaler verfügbarer Kontext
+- Keine irrelevanten Historien
+- Besserer Fokus des Modells
+
+#### 2. @ Mentions strategisch nutzen
+Statt ganze Dateien einzubinden:
+- `@filename.ts` – Nur bei Bedarf einbinden
+- Suche verwenden, anstatt große Dateien zu lesen
+- Beziehe dich auf spezifische Funktionen statt auf ganze Dateien
+
+#### 3. Auto-compact aktivieren
+Caret kann lange Konversationen automatisch zusammenfassen:
+- Settings → Features → Auto-compact
+- Bewahrt wichtigen Kontext
+- Reduziert den Token-Verbrauch
+
+## Context Window Warnungen
+
+### Anzeichen dafür, dass Limits erreicht werden
+
+| Warnsignal | Bedeutung | Lösung |
+|-------------|---------------|----------|
+| **„Context window exceeded“** | Hard Limit erreicht | Neuen Task starten oder Auto-compact aktivieren |
+| **Langsamere Antworten** | Modell hat Schwierigkeiten mit dem Kontext | Enthaltene Dateien reduzieren |
+| **Repetitive Vorschläge** | Kontext-Fragmentierung | Zusammenfassen und neu beginnen |
+| **Fehlende aktuelle Änderungen** | Kontext-Überlauf | Checkpoints verwenden, um Änderungen zu verfolgen |
+
+### Best Practices nach Projektgröße
+
+#### Kleine Projekte (< 50 Dateien)
+- Jedes Modell funktioniert gut
+- Relevante Dateien können frei eingebunden werden
+- Keine spezielle Optimierung erforderlich
+
+#### Mittlere Projekte (50-500 Dateien)
+- Modelle mit 128K+ Kontext verwenden
+- Nur das aktuell benötigte Set an Dateien einbinden
+- Kontext zwischen verschiedenen Features leeren
+
+#### Große Projekte (500+ Dateien)
+- Modelle mit 200K+ Kontext verwenden
+- Auf spezifische Module fokussieren
+- Suche verwenden, anstatt viele Dateien zu lesen
+- Arbeit in kleinere Tasks aufteilen
+
+## Erweitertes Kontextmanagement
+
+### Plan/Act Mode Optimierung
+
+Nutze den Plan/Act Mode für eine bessere Kontextausnutzung:
+- **Plan Mode**: Kleineren Kontext für Diskussionen verwenden
+- **Act Mode**: Notwendige Dateien für die Implementierung einbinden
+
+Konfiguration:
+```
+Plan Mode: DeepSeek V3 (128K) - Kostengünstigere Planung
+Act Mode: Claude Sonnet (1M) - Maximaler Kontext für Coding
+```
+
+### Strategien zum Context Pruning
+
+1. **Temporales Pruning**: Alte Konversationsteile entfernen
+2. **Semantisches Pruning**: Nur relevante Codeabschnitte behalten
+3. **Hierarchisches Pruning**: Struktur auf hoher Ebene beibehalten, Details kürzen
+
+### Tipps zum Zählen von Tokens
+
+#### Grobe Schätzungen
+- **1 Token ≈ 0,75 Wörter**
+- **1 Token ≈ 4 Zeichen**
+- **100 Zeilen Code ≈ 500-1000 Tokens**
+
+#### Richtlinien zur Dateigröße
+| Dateityp | Tokens pro KB |
+|-----------|---------------|
+| **Code** | ~250-400 |
+| **JSON** | ~300-500 |
+| **Markdown** | ~200-300 |
+| **Klartext** | ~200-250 |
+
+## Context Window FAQ
+
+### F: Warum werden die Antworten bei sehr langen Konversationen schlechter?
+**A:** Modelle können bei zu viel Kontext den Fokus verlieren. Das „effektive Window“ liegt typischerweise bei 50-70 % des angegebenen Limits.
+
+### F: Sollte ich immer das größte verfügbare Context Window nutzen?
+**A:** Nicht unbedingt. Größere Kontexte erhöhen die Kosten und können die Antwortqualität verringern. Passen Sie den Kontext an die Größe Ihrer Aufgabe an.
+
+### F: Wie sehe ich, wie viel Kontext ich gerade verbrauche?
+**A:** Caret zeigt den Token-Verbrauch im Interface an. Achten Sie auf die Kontext-Anzeige, wenn sie sich den Limits nähert.
+
+### F: Was passiert, wenn ich das Kontext-Limit überschreite?
+**A:** Caret wird entweder:
+- Die Konversation automatisch zusammenfassen (falls aktiviert)
+- Einen Fehler anzeigen und vorschlagen, einen neuen Task zu starten
+- Ältere Nachrichten kürzen (mit Warnung)
+
+## Empfehlungen nach Anwendungsfall
+
+| Anwendungsfall | Empfohlener Kontext | Modell-Vorschlag |
+|----------|-------------------|------------------|
+| **Schnelle Korrekturen** | 32K-128K | DeepSeek V3 |
+| **Feature-Entwicklung** | 128K-200K | Qwen3 Coder |
+| **Große Refactorings** | 400K+ | Claude Sonnet 4.5 |
+| **Code-Review** | 200K-400K | GPT-5 |
+| **Dokumentation** | 128K | Beliebiges Budget-Modell |

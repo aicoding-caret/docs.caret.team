@@ -1,0 +1,68 @@
+---
+title: "Model-Auswahl"
+description: "Erste Schritte mit Ihrem ersten AI-Modell in Caret"
+---
+
+<Note>
+Dies ist ein Referenzdokument für Caret. Es folgt dem Merge-Stand von Caret v3.38.1. Caret-spezifische Richtlinien (unterstützte/blockierte Modelle, regionale Beschränkungen, Authentifizierung/Routing) werden im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+Caret benötigt ein AI-Modell, um Ihre Anfragen zu verstehen und Code zu schreiben. Betrachten Sie es als die Auswahl eines Experten, mit dem Sie zusammenarbeiten – verschiedene Modelle haben unterschiedliche Stärken und Kosten.
+
+## Schnellstart: Wählen Sie Ihren Provider
+
+Der einfachste Weg für den Einstieg ist die Nutzung von **Caret** als Provider:
+
+1. **Öffnen Sie die Caret Settings**: Klicken Sie auf das Zahnrad-Icon (⚙️) in der oberen rechten Ecke des Caret-Chats
+2. **Wählen Sie "Caret"** aus dem API Provider Dropdown-Menü
+3. **Wählen Sie ein Modell** aus dem Dropdown-Menü – wir empfehlen für den Anfang **Claude Sonnet 4.5** oder **DeepSeek V3**
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Select Caret Provider" />
+</Frame>
+
+**Das ist alles!** Sie müssen keine API keys verwalten und erhalten Zugriff auf mehrere Modelle.
+
+<Tip>
+**Kostenlose Modelle verfügbar**: Caret bietet gelegentlich kostenloses Inferencing über Partner-Provider an. Wenn diese verfügbar sind, sehen Sie diese Optionen in Ihrem Modell-Dropdown.
+</Tip>
+
+## Alternative: Einen anderen Provider verwenden
+
+Wenn Sie lieber Ihre eigenen API keys verwenden möchten, können Sie aus Providern wählen wie:
+
+- **OpenRouter** – Gutes Preis-Leistungs-Verhältnis, mehrere Modelle
+- **Anthropic** – Direkter Zugriff auf Claude Modelle  
+- **OpenAI** – Zugriff auf GPT Modelle
+- **Google Gemini** – Googles AI-Modelle
+- **Ollama** – Modelle lokal auf Ihrem Computer ausführen
+
+Nachdem Sie einen Provider ausgewählt haben, müssen Sie:
+1. Einen API key von deren Website abrufen
+2. Diesen in das API Key Feld in den Caret Settings einfügen
+3. Ihr Modell auswählen
+
+<Note>
+Die meisten Provider erfordern Zahlungsinformationen, bevor sie API keys generieren.
+</Note>
+
+## Welches Modell sollte ich wählen?
+
+Wenn Sie gerade erst anfangen, empfehlen wir:
+
+| Ihre Priorität | Wählen Sie dieses Modell | Warum |
+|----------------|--------------------------|-------|
+| **Zuverlässigkeit** | Claude Sonnet 4.5 | Am zuverlässigsten für Coding-Aufgaben |
+| **Preis-Leistung** | DeepSeek V3 | Hervorragende Performance bei niedrigen Kosten |
+| **Geschwindigkeit** | Qwen3 Coder | Schnelle Antworten |
+| **Datenschutz** | Jedes Ollama Modell | Läuft auf Ihrem Computer |
+
+Sie können das Modell jederzeit wechseln, ohne Ihre Konversation zu verlieren.
+
+## Nächste Schritte
+
+Nachdem Ihr Modell konfiguriert ist, sind Sie startklar! Im nächsten Abschnitt führen wir Sie durch die Erledigung Ihrer ersten Aufgabe mit Caret und zeigen Ihnen, wie Sie mit der AI interagieren, um Code zu schreiben, zu debuggen und zu refactoren.
+
+<Card title="Deep Dive: Leitfaden zur Modellauswahl" icon="graduation-cap" href="/core-features/model-selection-guide">
+  Möchten Sie Modell-Pricing, Context Windows und fortgeschrittene Auswahlstrategien verstehen? Schauen Sie sich unseren umfassenden Leitfaden zur Modellauswahl an.
+</Card>

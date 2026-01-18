@@ -1,0 +1,116 @@
+---
+title: "Baseten"
+description: "Découvrez comment configurer et utiliser les API de modèles de Baseten avec Caret. Accédez à des modèles open-source de pointe avec des performances de niveau entreprise, une fiabilité éprouvée et des tarifs compétitifs."
+---
+
+<Note>
+Ceci est un document de référence pour Caret. Il suit la version Caret v3.38.1. Si des politiques spécifiques à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par `<Note>` dans le corps du texte.
+</Note>
+
+<Note>
+Renforcement de la configuration du Provider : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, Caret peut renforcer la validation et l'UX de la configuration des fournisseurs. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Caret.
+</Note>
+
+Baseten fournit des API de modèles de pointe (frontier models) à la demande, conçues pour les applications en production et pas seulement pour l'expérimentation. S'appuyant sur la Baseten Inference Stack, ces API offrent des performances et une fiabilité de niveau entreprise avec une inférence optimisée pour les principaux modèles open-source d'OpenAI, DeepSeek, Meta, Moonshot AI et Alibaba Cloud.
+
+**Site web :** [https://www.baseten.co/products/model-apis/](https://www.baseten.co/products/model-apis/)
+
+### Obtenir une clé API
+
+1.  **S'inscrire/Se connecter :** Allez sur [Baseten](https://www.baseten.co/) et créez un compte ou connectez-vous.
+2.  **Accéder aux clés API :** Accédez à votre tableau de bord et allez dans la section API Keys.
+3.  **Créer une clé :** Générez une nouvelle clé API. Donnez-lui un nom descriptif (par exemple, "Caret").
+4.  **Copier la clé :** Copiez immédiatement la clé API et conservez-la en lieu sûr.
+
+### Modèles supportés
+
+Caret supporte tous les modèles actuels via les Baseten Model APIs, incluant :
+Pour les tarifs les plus à jour, veuillez consulter : https://www.baseten.co/products/model-apis/
+Note : Les API des modèles Kimi K2 0711, Llama 4 Maverick et Llama 4 Scout ont été dépréciées le 8 octobre à 17h00 PT.
+https://www.baseten.co/resources/changelog/model-api-deprecation-notice-kimi-k2-0711-scout-maverick/
+
+-   `zai-org/GLM-4.6` (Z AI) - Modèle open-source de pointe avec des capacités avancées d'agent, de raisonnement et de codage par Z AI (contexte 200k) - 0,60 $ / 2,20 $ par 1M de tokens
+-   `moonshotai/Kimi-K2-Instruct-0905` (Moonshot AI) - Mise à jour de septembre avec des capacités améliorées (contexte 262K) - 0,60 $ / 2,50 $ par 1M de tokens
+-   `openai/gpt-oss-120b` (OpenAI) - MoE de 120B avec de fortes capacités de raisonnement (contexte 128K) - 0,10 $ / 0,50 $ par 1M de tokens
+-   `Qwen/Qwen3-Coder-480B-A35B-Instruct`- Codage et raisonnement avancés (contexte 262K) - 0,38 $ / 1,53 $ par 1M de tokens
+-   `Qwen/Qwen3-235B-A22B-Instruct-2507` - Expert en mathématiques et raisonnement (contexte 262K) - 0,22 $ / 0,80 $ par 1M de tokens
+-   `deepseek-ai/DeepSeek-R1` - Modèle de raisonnement de première génération de DeepSeek (contexte 163K) - 2,55 $ / 5,95 $ par 1M de tokens
+-   `deepseek-ai/DeepSeek-R1-0528` - Dernière révision du modèle de raisonnement de DeepSeek (contexte 163K) - 2,55 $ / 5,95 $ par 1M de tokens
+-   `deepseek-ai/DeepSeek-V3.1` - Raisonnement hybride avec appel d'outils (tool calling) avancé (contexte 163K) - 0,50 $ / 1,50 $ par 1M de tokens
+-   `deepseek-ai/DeepSeek-V3-0324` - Modèle polyvalent rapide avec raisonnement amélioré (contexte 163K) - 0,77 $ / 0,77 $ par 1M de tokens
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez "Baseten" dans le menu déroulant "API Provider".
+3.  **Saisir la clé API :** Collez votre clé API Baseten dans le champ "Baseten API Key".
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+### Architecture axée sur la production
+
+Les Model APIs de Baseten sont conçues pour les environnements de production avec plusieurs avantages clés :
+
+#### Fiabilité de niveau entreprise
+- **Uptime de 99,99 %** grâce à une redondance active-active
+- **Autoscaling multi-cluster indépendant du cloud** pour une disponibilité constante
+- **Certifié SOC 2 Type II** et **conforme HIPAA** pour les exigences de sécurité
+
+#### Performances optimisées
+- **Modèles pré-optimisés** livrés avec la Baseten Inference Stack
+- **GPU de dernière génération** avec une infrastructure multi-cloud
+- **Inférence ultra-rapide** optimisée de bout en bout pour les charges de travail en production
+
+#### Efficacité des coûts
+- **5 à 10 fois moins cher** que les alternatives propriétaires fermées
+- **Infrastructure multi-cloud optimisée** pour une utilisation efficace des ressources
+- **Tarification transparente** sans coûts cachés ni surprises sur les limites de débit (rate limits)
+
+#### Expérience développeur
+- **API compatible OpenAI** - migrez en changeant simplement une seule URL
+- **Remplacement direct (drop-in)** pour les modèles fermés avec une observabilité complète
+- **Mise à l'échelle transparente** des Model APIs vers des déploiements dédiés
+
+### Fonctionnalités spéciales
+
+#### Function Calling & Tool Use
+Tous les modèles Baseten supportent les sorties structurées, le Function Calling et le Tool Use via la Baseten Inference Stack, ce qui les rend idéaux pour les applications d'agents.
+
+#### Capacités de raisonnement
+Les modèles DeepSeek offrent un raisonnement amélioré avec des processus de réflexion étape par étape, tout en maintenant des performances prêtes pour la production.
+
+#### Support des contextes longs
+- **Jusqu'à 1 million de tokens** pour les modèles Llama 4 (Maverick et Scout)
+- **262K tokens** pour les modèles Qwen3
+- **163K tokens** pour les modèles DeepSeek
+- **Idéal pour les dépôts de code (git)** et les conversations multi-tours complexes
+
+#### Optimisations de quantification
+Les modèles sont déployés avec des techniques de quantification avancées (fp4, fp8, fp16) pour une performance optimale tout en préservant la qualité.
+
+### Migration depuis d'autres fournisseurs
+
+La compatibilité OpenAI de Baseten facilite la migration :
+
+**Depuis OpenAI :**
+- Remplacez `api.openai.com` par `inference.baseten.co/v1`
+- Conservez les formats de requête/réponse existants
+- Bénéficiez d'économies significatives
+
+**Depuis d'autres fournisseurs :**
+- Utilisez le format standard du SDK OpenAI
+- Maintenez vos stratégies de prompting existantes
+- Accédez aux nouveaux modèles open-source
+
+### Conseils et Remarques
+
+-   **Sélection du modèle :** Choisissez les modèles en fonction de votre cas d'utilisation spécifique - modèles de raisonnement pour les tâches complexes, modèles de codage pour le développement et modèles phares pour les applications générales.
+-   **Optimisation des coûts :** Baseten propose des tarifs parmi les plus compétitifs du marché, en particulier pour les modèles open-source.
+-   **Fenêtres de contexte :** Profitez des larges fenêtres de contexte (jusqu'à 1M de tokens) pour inclure des bases de code et une documentation conséquentes.
+-   **Prêt pour l'entreprise :** Baseten est conçu pour une utilisation en production avec une sécurité, une conformité et une fiabilité de niveau entreprise.
+-   **Mises à jour dynamiques des modèles :** Caret récupère automatiquement la liste des modèles la plus récente de Baseten, garantissant l'accès aux nouveaux modèles dès leur sortie.
+-   **Multi-Cloud Capacity Management (MCM) :** L'infrastructure multi-cloud de Baseten garantit une haute disponibilité et une faible latence à l'échelle mondiale.
+-   **Support :** Baseten fournit un support dédié pour les déploiements en production et peut vous accompagner sur des ressources dédiées lors de votre montée en charge.
+
+### Informations tarifaires
+
+La tarification actuelle est hautement compétitive et transparente. Pour obtenir les tarifs les plus récents, visitez la [page des Baseten Model APIs](https://www.baseten.co/products/model-apis/). Les prix varient généralement de 0,10 $ à 6,00 $ par million de tokens, ce qui rend Baseten nettement plus rentable que de nombreuses alternatives à modèles fermés tout en offrant un accès à des modèles open-source à la pointe de la technologie.

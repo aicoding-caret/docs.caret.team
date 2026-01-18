@@ -1,0 +1,142 @@
+```yaml
+---
+title: "Guide de référence des outils Caret"
+description: "Découvrez les outils disponibles dans Caret et comment les utiliser efficacement pour vos tâches de développement."
+---
+
+## Que peut faire Caret ?
+
+Caret est votre assistant IA qui peut :
+
+-   Modifier et créer des fichiers dans votre projet
+-   Exécuter des commandes de terminal
+-   Rechercher et analyser votre code
+-   Aider à déboguer et à corriger les problèmes
+-   Automatiser les tâches répétitives
+-   S'intégrer à des outils externes
+
+## Premiers pas
+
+1. **Démarrer une tâche**
+
+    - Saisissez votre requête dans le chat
+    - Exemple : « Créer un nouveau composant React appelé Header »
+
+2. **Fournir le contexte**
+
+    - Utilisez les mentions @ pour ajouter des fichiers, des dossiers ou des URL
+    - Exemple : « @file:src/components/App.tsx »
+
+3. **Vérifier les modifications**
+    - Caret affichera les diffs avant d'effectuer des modifications
+    - Vous pouvez modifier ou rejeter les modifications
+
+## Fonctionnalités clés
+
+1. **Modification de fichiers**
+
+    - Créer de nouveaux fichiers
+    - Modifier le code existant
+    - Rechercher et remplacer dans les fichiers
+
+2. **Commandes de terminal**
+
+    - Exécuter les commandes npm
+    - Démarrer des serveurs de développement
+    - Installer les dépendances
+
+3. **Analyse de code**
+
+    - Trouver et corriger les erreurs
+    - Refactoriser le code
+    - Ajouter de la documentation
+
+4. **Intégration du navigateur**
+    - Tester des pages Web
+    - Capturer des captures d'écran
+    - Inspecter les journaux de la console
+
+## Outils disponibles
+
+Pour obtenir les détails d'implémentation les plus récents, vous pouvez consulter le code source complet dans le [référentiel Caret](https://github.com/caret/caret/blob/main/src/core/prompts/system-prompt/tools).
+
+Caret a accès aux outils suivants pour diverses tâches :
+
+1. **Opérations sur les fichiers**
+
+    - `write_to_file` : Créer ou écraser des fichiers
+    - `read_file` : Lire le contenu des fichiers
+    - `replace_in_file` : Apporter des modifications ciblées aux fichiers
+    - `search_files` : Rechercher des fichiers à l'aide de regex
+    - `list_files` : Répertorier le contenu des répertoires
+
+2. **Opérations de terminal**
+
+    - `execute_command` : Exécuter des commandes CLI
+    - `list_code_definition_names` : Répertorier les noms des définitions de code
+
+3. **Outils MCP**
+
+    - `use_mcp_tool` : Utiliser les outils des serveurs MCP
+    - `access_mcp_resource` : Accéder aux ressources du serveur MCP
+    - Les utilisateurs peuvent créer des outils MCP personnalisés auxquels Caret peut ensuite accéder
+    - Exemple : Créer un outil d'API météo que Caret peut utiliser pour extraire les prévisions
+
+4. **Outils d'interaction**
+    - `ask_followup_question` : Demander des éclaircissements à l'utilisateur
+    - `attempt_completion` : Présenter les résultats finaux
+
+Chaque outil a des paramètres et des modèles d'utilisation spécifiques. Voici quelques exemples :
+
+-   Créer un nouveau fichier (`write_to_file`) :
+
+    ```xml
+    <write_to_file>
+    <path>src/components/Header.tsx</path>
+    <content>
+    // Header component code
+    </content>
+    </write_to_file>
+    ```
+
+-   Rechercher un modèle (`search_files`) :
+
+    ```xml
+    <search_files>
+    <path>src</path>
+    <regex>function\s+\w+\(</regex>
+    <file_pattern>*.ts</file_pattern>
+    </search_files>
+    ```
+
+-   Exécuter une commande (`execute_command`) :
+    ```xml
+    <execute_command>
+    <command>npm install axios</command>
+    <requires_approval>false</requires_approval>
+    </execute_command>
+    ```
+
+## Tâches courantes
+
+1. **Créer un nouveau composant**
+
+    - « Créer un nouveau composant React appelé Footer »
+
+2. **Corriger un bug**
+
+    - « Corriger l’erreur dans src/utils/format.ts »
+
+3. **Refactoriser le code**
+
+    - « Refactoriser le composant Button pour utiliser TypeScript »
+
+4. **Exécuter des commandes**
+    - « Exécuter npm install pour ajouter axios »
+
+## Obtenir de l’aide
+
+-   [Rejoindre la communauté Discord](https://https://discord.gg/WB6yaR89YN)
+-   Consulter la documentation
+-   Fournir des commentaires pour améliorer Caret
+```

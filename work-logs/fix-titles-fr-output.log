@@ -1,0 +1,219 @@
+[dotenv@17.2.3] injecting env (13) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+
+=== Fixing French Titles ===
+
+Files to process: 64
+
+  [1/64] caret-cli/installation.mdx
+    Original: "Installation"
+    → "Installation"
+  [2/64] caret-cli/samples/github-issue-rca.mdx
+    Original: "Exemple d"
+    → "Exemple de"
+  [3/64] caret-cli/three-core-flows.mdx
+    Original: "Trois Flux Principaux"
+    → "Trois flux principaux"
+  [4/64] enterprise-solutions/mcp-servers.mdx
+    Original: "Serveurs MCP"
+    → "Serveurs MCP"
+  [5/64] enterprise-solutions/overview.mdx
+    Original: "Caret Enterprise"
+    → "Caret Entreprise"
+  [6/64] exploring-carets-tools/document-tools.mdx
+    Original: "Outils de Documents"
+    → "Outils de documents"
+  [7/64] exploring-carets-tools/remote-browser-support.mdx
+    Original: "Prise en charge du navigateur distant"
+    → "Support du navigateur distant"
+  [8/64] features/at-mentions/file-mentions.mdx
+    Original: "Mentions de Fichiers"
+    → "Mentions de fichiers"
+  [9/64] features/at-mentions/folder-mentions.mdx
+    Original: "Mentions de Dossiers"
+    → "Mentions de dossiers"
+  [10/64] features/at-mentions/git-mentions.mdx
+    Original: "Mentions Git"
+    → "Mentions Git"
+  Progress: 10/64 (15.6%)
+
+  [11/64] features/at-mentions/terminal-mentions.mdx
+    Original: "Mentions de Terminal"
+    → "Mentions du Terminal"
+  [12/64] features/at-mentions/url-mentions.mdx
+    Original: "Mentions d"
+    → "Mentions"
+  [13/64] features/commands-and-shortcuts/code-commands.mdx
+    Original: "Commandes de Code"
+    → "Commandes de code"
+  [14/64] features/commands-and-shortcuts/keyboard-shortcuts.mdx
+    Original: "Raccourcis clavier"
+    → "Raccourcis clavier"
+  [15/64] features/editing-messages.mdx
+    Original: "Modification des messages"
+    → "Modification des messages"
+  [16/64] features/focus-chain.mdx
+    Original: "Focus Chain"
+    → "Focus Chain"
+  [17/64] features/hooks.mdx
+    Original: "Hooks"
+    → "Hooks"
+  [18/64] features/input-history.mdx
+    Original: "Historique des invites"
+    → "Historique des prompts"
+  [19/64] features/multiroot-workspace.mdx
+    Original: "Support des espaces de travail multi-racines"
+    → "Prise en charge des espaces de travail multi-racines"
+  [20/64] features/plan-and-act.mdx
+    Original: "Planifier et Agir"
+    → "Plan et Act"
+  Progress: 20/64 (31.3%)
+
+  [21/64] features/slash-commands/deep-planning.mdx
+    Original: "Commande Deep Planning"
+    → "Commande Deep Planning"
+  [22/64] features/slash-commands/report-bug.mdx
+    Original: "Commande Report Bug"
+    → "Commande Signaler un bug"
+  [23/64] features/slash-commands/smol.mdx
+    Original: "Commande Smol"
+    → "Commande Smol"
+  [24/64] features/slash-commands/workflows/best-practices.mdx
+    Original: "Meilleures pratiques de flux de travail"
+    → "Meilleures pratiques de workflow"
+  [25/64] features/slash-commands/workflows.mdx
+    Original: "Workflows"
+    → "Flux de travail"
+  [26/64] features/yolo-mode.mdx
+    Original: "Mode YOLO"
+    → "Mode YOLO"
+  [27/64] getting-started/for-new-coders.mdx
+    Original: "Pour les Nouveaux Codeurs"
+    → "Pour les nouveaux codeurs"
+  [28/64] getting-started/installing-caret.mdx
+    Original: "Installation de Caret"
+    → "Installation de Caret"
+  [29/64] getting-started/understanding-context-management.mdx
+    Original: "Gestion du contexte"
+    → "Gestion du contexte"
+  [30/64] getting-started/what-is-caret.mdx
+    Original: "Qu"
+    → "Qu"
+  Progress: 30/64 (46.9%)
+
+  [31/64] introduction/welcome.mdx
+    Original: "Bienvenue dans Caret"
+    → "Bienvenue dans Caret"
+  [32/64] mcp/adding-mcp-servers-from-github.mdx
+    Original: "Ajouter des serveurs MCP depuis GitHub"
+    → "Ajouter des serveurs MCP depuis GitHub"
+  [33/64] mcp/configuring-mcp-servers.mdx
+    Original: "Configuration des serveurs MCP"
+    → "Configuration des serveurs MCP"
+  [34/64] mcp/mcp-marketplace.mdx
+    Original: "MCP Facile"
+    → "MCP Facile"
+  [35/64] prompting/prompt-engineering-guide.mdx
+    Original: "Guide de Prompt Engineering"
+    → "Guide du Prompt Engineering"
+  [36/64] provider-config/anthropic.mdx
+    Original: "Anthropic"
+    → "Anthropic"
+  [37/64] provider-config/aws-bedrock/api-key.mdx
+    Original: "API Key (Configuration simple)"
+    → "API Key (Configuration simple)"
+  [38/64] provider-config/aws-bedrock/cli-profile.mdx
+    Original: "Profil CLI (SSO)"
+    → "Profil CLI (SSO)"
+  [39/64] provider-config/aws-bedrock/iam-credentials.mdx
+    Original: "Identifiants IAM"
+    → "Identifiants IAM"
+  [40/64] provider-config/baseten.mdx
+    Original: "Baseten"
+    → "Baseten"
+  Progress: 40/64 (62.5%)
+
+  [41/64] provider-config/cerebras.mdx
+    Original: "Cerebras"
+    → "Cerebras"
+  [42/64] provider-config/claude-code.mdx
+    Original: "Claude Code"
+    → "Claude Code"
+  [43/64] provider-config/deepseek.mdx
+    Original: "DeepSeek"
+    → "DeepSeek"
+  [44/64] provider-config/doubao.mdx
+    Original: "Doubao"
+    → "Doubao"
+  [45/64] provider-config/fireworks-ai.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [46/64] provider-config/fireworks.mdx
+    Original: "Fireworks AI"
+    → "Fireworks AI"
+  [47/64] provider-config/gcp-vertex-ai.mdx
+    Original: "GCP Vertex AI"
+    → "GCP Vertex AI"
+  [48/64] provider-config/groq.mdx
+    Original: "Groq"
+    → "Groq"
+  [49/64] provider-config/litellm-and-caret-using-codestral.mdx
+    Original: "LiteLLM & Caret (avec Codestral)"
+    → "LiteLLM & Caret (avec Codestral)"
+  [50/64] provider-config/mistral-ai.mdx
+    Original: "Mistral"
+    → "Mistral"
+  Progress: 50/64 (78.1%)
+
+  [51/64] provider-config/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  [52/64] provider-config/openai-compatible.mdx
+    Original: "Compatible OpenAI"
+    → "Compatible avec OpenAI"
+  [53/64] provider-config/openai.mdx
+    Original: "OpenAI"
+    → "OpenAI"
+  [54/64] provider-config/openrouter.mdx
+    Original: "OpenRouter"
+    → "OpenRouter"
+  [55/64] provider-config/requesty.mdx
+    Original: "Requesty"
+    → "Requesty"
+  [56/64] provider-config/sap-aicore.mdx
+    Original: "SAP AI Core"
+    → "SAP AI Core"
+  [57/64] provider-config/upstage.mdx
+    Original: "Upstage"
+    → "Upstage"
+  [58/64] provider-config/vercel-ai-gateway.mdx
+    Original: "Vercel AI Gateway"
+    → "Vercel AI Gateway"
+  [59/64] provider-config/vscode-language-model-api.mdx
+    Original: "API VS Code Language Model"
+    → "API langage Model VS Code"
+  [60/64] provider-config/xai-grok.mdx
+    Original: "xAI (Grok)"
+    → "xAI (Grok)"
+  Progress: 60/64 (93.8%)
+
+  [61/64] provider-config/zai.mdx
+    Original: "Z AI (Zhipu AI)"
+    → "Z AI (Zhipu AI)"
+  [62/64] running-models-locally/lm-studio.mdx
+    Original: "LM Studio"
+    → "LM Studio"
+  [63/64] running-models-locally/ollama.mdx
+    Original: "Ollama"
+    → "Ollama"
+  [64/64] troubleshooting/terminal-quick-fixes.mdx
+    Original: "Correctifs rapides pour le Terminal"
+    → "Correctifs rapides pour le Terminal"
+  Progress: 64/64 (100.0%)
+
+
+=== Complete ===
+Successful: 64
+Failed: 0
+Total: 64
+
+Results saved to work-logs/fix-titles-fr-1768736991676.json

@@ -1,0 +1,99 @@
+---
+title: "Caret Enterprise"
+sidebarTitle: "Übersicht"
+description: "Enterprise-Sicherheit, Governance und Observability für den Coding-Agenten, dem 3 Millionen Entwickler vertrauen"
+---
+
+<Note>
+Dies ist das Referenzdokument für Caret. Es basiert auf dem Caret v3.38.1 Merge-Stand. Falls es spezifische Caret-Richtlinien gibt (Unterschiede bei Enterprise-Deployment/Authentifizierung/Routing/Telemetrie), werden diese im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+Caret Enterprise bietet zentrale Governance für dieselbe Open-Source-Architektur, die bereits von Millionen von Entwicklern genutzt wird. Ihr Code bleibt in Ihrer Umgebung, Sie nutzen Ihre eigene Inference zu Ihren ausgehandelten Tarifen und erhalten die Sicherheits- und Observability-Funktionen, die Plattform-Teams für ein unternehmensweites Deployment benötigen.
+
+<Card title="Erfahren Sie mehr über Enterprise" icon="building" href="https://caret.bot/enterprise">
+  Besuchen Sie unsere Website für detaillierte Informationen zu Enterprise-Funktionen, Preisen und Deployment-Optionen.
+</Card>
+
+## Was Sie erhalten
+
+Es bietet fünf Kernfunktionen, die Plattform-Teams für den produktiven Einsatz benötigen. Jede davon adressiert eine spezifische Anforderung für die Skalierung von AI-Coding in Ihrer Organisation.
+
+### Security by Design
+
+Ihr Code verlässt niemals Ihre Umgebung. Caret verarbeitet alles lokal – keine Uploads, kein Indexing, kein Training mit Ihren Daten.
+
+<CardGroup cols={2}>
+  <Card title="Client-seitige Ausführung" icon="computer">
+    Alle Verarbeitungsschritte erfolgen innerhalb Ihrer Umgebung
+  </Card>
+
+  <Card title="Keine Daten-Exfiltration" icon="shield-check">
+    Code und Kontext werden niemals extern übertragen
+  </Card>
+
+  <Card title="Kein Codebase-Indexing" icon="database">
+    Repositories werden niemals indexiert oder gecached
+  </Card>
+
+  <Card title="Kein Modell-Training" icon="ban">
+    Ihr Code und Ihre Prompts werden nicht für das Training verwendet
+  </Card>
+</CardGroup>
+
+### Bring Your Own Inference
+
+Nutzen Sie Ihre bestehenden Cloud-Verträge und ausgehandelten Konditionen. Die meisten AI-Tools zwingen Sie dazu, Inference über sie mit einem Preisaufschlag zu kaufen. Caret verbindet sich direkt mit Ihren Providern.
+
+Verbinden Sie sich mit jedem Inference-Provider:
+- AWS Bedrock
+- Google Vertex AI
+- Azure OpenAI
+- Anthropic direct
+- OpenAI direct
+- Cerebras
+- Jeder OpenAI-kompatible Endpoint
+
+Wechseln Sie Modelle sofort, sobald neue veröffentlicht werden. Nutzen Sie Claude Sonnet 4.5 als Ihren täglichen Begleiter, GPT-5 für komplexes Refactoring und Open-Source-Modelle für einfache Aufgaben. Ihre bestehenden Cloud-Guthaben und Verträge aus Startup-Programmen decken nun AI-Coding ab. Wir übernehmen den Agent-Loop. Sie übernehmen die Inference. Kein Preisaufschlag, kein Vendor-Lock-in.
+
+### Governance in großem Maßstab
+
+Plattform-Teams benötigen zentrale Kontrolle, wenn Tausende von Entwicklern KI nutzen. Einzelne API-Keys, die auf Laptops verstreut sind, bergen Sicherheitsrisiken und führen zu Kostenüberschreitungen.
+
+Enterprise-Governance bietet:
+- **SSO-Authentifizierung**: Unternehmens-Credentials anstelle persönlicher API-Keys
+- **Rollenbasierte Zugriffskontrolle (RBAC)**: Granulare Berechtigungen pro Team und Projekt
+- **Modell- und Tool-Kontrolle**: Steuern Sie, auf welche Modelle und Tools jedes Team zugreift
+- **Remote-Konfiguration**: Verwalten Sie Einstellungen für alle Entwickler über ein zentrales Dashboard
+- **Vollständiges Audit-Logging**: Jede KI-Interaktion wird mit detaillierten Logs erfasst
+
+Einmal konfigurieren, überall einsetzen. Entwickler arbeiten so, wie sie es bevorzugen, während Sie die Kontrolle behalten.
+
+### Vollständige Observability
+
+Exportieren Sie Logs in Ihren bestehenden Observability-Stack. Verfolgen Sie Nutzung, Kosten und Performance über alle Teams hinweg.
+
+- **OpenTelemetry-Export**: Direkte Integration mit Datadog, Grafana, Splunk
+- **Echtzeit-Analysen**: Verfolgen Sie Adoption, Performance und Muster
+- **Kostenaufschlüsselung**: Sehen Sie genau, welches Team wie viel für welche Modelle ausgibt
+- **JSON-Ausgabe**: Erstellen Sie benutzerdefinierte Dashboards in Ihren bestehenden Tools
+
+Dieselben Observability-Standards, die Sie für Produktionssysteme voraussetzen.
+
+## Deployment
+
+Caret Enterprise verbindet sich sicher mit Ihrer Infrastruktur. Führen Sie das Deployment in Cloud-Umgebungen, On-Premises oder in Air-Gapped-Netzwerken durch. Konfigurieren Sie es so, dass es Ihren bestehenden Sicherheitsrichtlinien und Compliance-Anforderungen entspricht.
+
+Rollout in Ihrer Organisation:
+1. Konfigurieren Sie Caret Core für die Verbindung mit Ihrer Infrastruktur
+2. Legen Sie SSO-, RBAC- und Governance-Richtlinien fest
+3. Rollen Sie es über Ihre bestehende Softwareverteilung an die Entwickler aus
+4. Überwachen Sie die Nutzung über Ihre Observability-Tools
+
+## Nächste Schritte
+
+- Review der [Sicherheitsarchitektur](/german/enterprise-solutions/security-concerns)
+- Konfiguration des [Cloud-Provider-Setups](/german/provider-config/aws-bedrock/api-key) (AWS Bedrock, Vertex AI, Azure)
+- Einrichten von [MCP-Servern](/german/mcp/mcp-overview) für benutzerdefinierte Tools
+- Hinzufügen von [benutzerdefinierten Anweisungen](/german/features/caret-rules) für Ihre Codebase
+
+Vereinbaren Sie einen Termin für einen Walkthrough, um zu sehen, wie Caret Enterprise in Ihre Infrastruktur passt. Wir arbeiten mit Ihren Sicherheits- und Compliance-Anforderungen zusammen, um das Deployment in Ihrer Umgebung zu realisieren.

@@ -1,0 +1,399 @@
+```
+---
+title: "CLI-Referenz"
+description: "Vollständige Befehlsreferenz für die Caret CLI, einschließlich Konfiguration, Instanzverwaltung und Aufgabenbefehle"
+---
+
+Vollständige Befehlsreferenz für die Caret CLI. Verwenden Sie dies für detaillierte Dokumentation zu allen Befehlen, Optionen und Konfigurationen.
+
+Für schnelle Hilfe in Ihrem Terminal:
+
+```bash
+caret --help          # Zeigt alle Befehle an
+caret task --help     # Zeigt aufgabenspezifische Befehle an
+man caret            # Zeigt die vollständige Handbuchseite an
+```
+
+## Handbuchseite
+
+Die vollständige Handbuchseite für die Caret CLI:
+
+```
+CARET(1)                         User Commands                        CARET(1)
+
+NAME
+       caret - orchestriert und interagiert mit Caret AI-Codierungsagenten
+
+SYNOPSIS
+       caret [prompt] [options]
+
+       caret command [subcommand] [options] [arguments]
+
+DESCRIPTION
+       Versuchen Sie: cat README.md | caret "Fasse dies für mich zusammen:"
+
+       caret ist eine Befehlszeilenschnittstelle zum Orchestrieren mehrerer Caret AI
+       Codierungsagenten. Caret ist ein autonomer KI-Agent, der Code in Ihren Projekten lesen, schreiben
+       und ausführen kann. Er arbeitet über eine Client-Server-Architektur, in der Caret Core als
+       eigenständiger Dienst läuft und die CLI als skriptfähige Schnittstelle zum Verwalten von Aufgaben,
+       Instanzen und Agenteninteraktionen dient.
+
+       Die CLI ist sowohl für die interaktive Nutzung als auch für die Automatisierung konzipiert und eignet
+       sich ideal für CI/CD-Pipelines, parallele Aufgabenbearbeitung und terminalbasierte
+       Workflows. Mehrere Frontends (CLI, VSCode, JetBrains) können sich mit derselben Caret Core-Instanz
+       verbinden und ermöglichen so eine nahtlose Aufgabenübergabe zwischen Umgebungen.
+
+MODES OF OPERATION
+       Instant Task Mode
+              Der einfachste Aufruf: caret "prompt here" erzeugt sofort eine Instanz,
+              erstellt eine Aufgabe und wechselt in den Chat-Modus. Dies entspricht der sequentiellen
+              Ausführung von caret instance new && caret task new && caret task chat.
+
+       Subcommand Mode
+              Erweiterte Verwendung mit expliziter Steuerung: caret <command> [subcommand]
+              [options] bietet eine detaillierte Steuerung von Instanzen, Aufgaben,
+              Authentifizierung und Konfiguration.
+
+AGENT BEHAVIOR
+       Caret arbeitet in zwei primären Modi:
+
+       ACT MODE
+              Caret verwendet aktiv Werkzeuge, um Aufgaben zu erledigen. Er kann Dateien lesen, Code
+              schreiben, Befehle ausführen, einen Headless-Browser verwenden und vieles mehr. Dies ist der
+              Standardmodus für die Ausführung von Aufgaben.
+
+       PLAN MODE
+              Caret sammelt Informationen und erstellt einen detaillierten Plan vor der
+              Implementierung. Er erkundet die Codebasis, stellt klärende Fragen und präsentiert
+              eine Strategie zur Genehmigung durch den Benutzer, bevor er in den ACT MODE wechselt.
+
+INSTANT TASK OPTIONS
+       Bei Verwendung der Instant Task-Syntax caret "prompt" stehen folgende Optionen zur
+       Verfügung:
+
+       -o, --oneshot
+              Vollständig autonomer Modus. Caret schließt die Aufgabe ab und stoppt die
+              Nachverfolgung nach Abschluss. Beispiel: caret -o "was ist 6 + 8?"
+
+       -s, --setting setting value
+              Überschreibt eine Einstellung für diese Aufgabe.
+
+       -y, --no-interactive, --yolo
+              Aktiviert den vollständig autonomen Modus. Deaktiviert jegliche Interaktivität:
+
+              • Das ask_followup_question-Tool ist deaktiviert.
+
+              • attempt_completion erfolgt automatisch.
+
+              • execute_command wird im nicht-blockierenden Modus mit Timeout ausgeführt.
+
+              • Der PLAN MODE wechselt automatisch in den ACT MODE.
+
+       -m, --mode mode
+              Startmodus. Optionen: act (Standard), plan
+
+GLOBAL OPTIONS
+       Diese Optionen gelten für alle Unterbefehle:
+
+       -F, --output-format format
+              Ausgabeformat. Optionen: rich (Standard), json, plain
+
+       -h, --help
+              Zeigt die Hilfeinformationen für den Befehl an.
+
+       -v, --verbose
+              Aktiviert die ausführliche Ausgabe für das Debugging.
+
+COMMANDS
+   Authentication
+       caret auth [provider] [key]
+
+       caret a [provider] [key]
+              Konfigurieren Sie die Authentifizierung für AI-Modellprovider. Startet einen
+              interaktiven Assistenten, wenn keine Argumente angegeben werden. Wenn ein Provider ohne
+              Schlüssel angegeben wird, fordert er den Schlüssel an oder startet den entsprechenden OAuth-Flow.
+
+   Instance Management
+       Caret Core-Instanzen sind unabhängige Agentenprozesse, die im Hintergrund
+       laufen können. Es können mehrere Instanzen gleichzeitig laufen, was die parallele
+       Aufgabenbearbeitung ermöglicht.
+
+       caret instance
+
+       caret i
+              Zeigt die Hilfe zur Instanzverwaltung an.
+
+       caret instance new [-d|--default]
+
+       caret i n [-d|--default]
+              Erzeugt eine neue Caret Core-Instanz. Verwenden Sie --default, um sie als
+              Standardinstanz für nachfolgende Befehle festzulegen.
+
+       caret instance list
+
+       caret i l
+              Listet alle laufenden Caret Core-Instanzen mit ihren Adressen und ihrem
+              Status auf.
+
+       caret instance default address
+
+       caret i d address
+              Legt die Standardinstanz fest, um die Angabe von --address in Aufgabenbefehlen zu
+              vermeiden.
+
+       caret instance kill address [-a|--all]
+
+       caret i k address [-a|--all]
+              Beendet eine Caret Core-Instanz. Verwenden Sie --all, um alle laufenden
+              Instanzen zu beenden.
+
+   Task Management
+       Aufgaben stellen einzelne Arbeitselemente dar, die Caret ausführt. Aufgaben
+       pflegen den Konversationsverlauf, Checkpoints und Einstellungen.
+
+       caret task [-a|--address ADDR]
+
+       caret t [-a|--address ADDR]
+              Zeigt die Hilfe zur Aufgabenverwaltung an. Das Flag --address gibt an,
+              welche Caret Core-Instanz verwendet werden soll (z. B. localhost:50052).
+
+       caret task new prompt [options]
+
+       caret t n prompt [options]
+              Erstellt eine neue Aufgabe in der Standardinstanz oder der angegebenen Instanz.
+              Optionen:
+
+              -s, --setting setting value
+                     Legt aufgabenspezifische Einstellungen fest.
+
+              -y, --no-interactive, --yolo
+                     Aktiviert den autonomen Modus
+
+              -m, --mode mode
+                     Startmodus (act oder plan)
+
+       caret task open task-id [options]
+
+       caret t o task-id [options]
+              Setzt eine vorherige Aufgabe aus dem Verlauf fort. Akzeptiert die gleichen
+              Optionen wie task new.
+
+       caret task list
+
+       caret t l
+              Listet alle Aufgaben im Verlauf mit ihrer ID und ihrem Snippet auf.
+
+       caret task chat
+
+       caret t c
+              Wechselt in den interaktiven Chat-Modus für die aktuelle Aufgabe. Ermöglicht
+              Gespräche mit Caret.
+
+       caret task send [message] [options]
+
+       caret t s [message] [options]
+              Sendet eine Nachricht an Caret. Wenn keine Nachricht angegeben wird, liest er von
+              stdin. Optionen:
+
+              -a, --approve
+                     Genehmigt die von Caret vorgeschlagene Aktion.
+
+              -d, --deny
+                     Lehnt die von Caret vorgeschlagene Aktion ab.
+
+              -f, --file FILE
+                     Hängt eine Datei an die Nachricht an.
+
+              -y, --no-interactive, --yolo
+                     Aktiviert den autonomen Modus
+
+              -m, --mode mode
+                     Wechselt den Modus (act oder plan)
+
+       caret task view [-f|--follow] [-c|--follow-complete]
+
+       caret t v [-f|--follow] [-c|--follow-complete]
+              Zeigt die aktuelle Konversation an. Verwenden Sie --follow, um Updates in
+              Echtzeit zu streamen, oder --follow-complete, um sie bis zum Abschluss der Aufgabe zu
+              verfolgen.
+
+       caret task restore checkpoint
+
+       caret t r checkpoint
+              Stellt die Aufgabe in einen vorherigen Checkpoint-Zustand wieder her.
+
+       caret task pause
+
+       caret t p
+              Pausiert die Ausführung der Aufgabe.
+
+   Configuration
+       Die Konfiguration kann global festgelegt werden. Überschreiben Sie diese globalen
+       Einstellungen für eine Aufgabe mit dem Flag --setting.
+
+       caret config
+
+       caret c
+
+       caret config set key value
+
+       caret c s key value
+              Legt eine Konfigurationsvariable fest.
+
+       caret config get key
+
+       caret c g key
+              Liest eine Konfigurationsvariable.
+
+       caret config list
+
+       caret c l
+              Listet alle Konfigurationsvariablen und ihre Werte auf.
+
+TASK SETTINGS
+       Aufgabeneinstellungen werden im Verzeichnis ~/.caret/x/tasks gespeichert. Wenn eine
+       Aufgabe mit caret task open fortgesetzt wird, werden die Aufgabeneinstellungen automatisch
+       wiederhergestellt.
+
+       Häufige Einstellungen sind:
+
+       yolo   Aktiviert den autonomen Modus (true/false)
+
+       mode   Startmodus (act/plan)
+
+NOTES & EXAMPLES
+       Die Befehle caret task send und caret task new unterstützen das Lesen von stdin,
+       was leistungsstarke Pipeline-Kompositionen ermöglicht:
+
+              cat requirements.txt | caret task send
+              echo "Refactor this code" | caret -y
+
+   Instance Management
+       Verwalten Sie mehrere Caret-Instanzen:
+
+              # Starten Sie eine neue Instanz und machen Sie sie zur Standardinstanz
+              caret instance new --default
+
+              # Listet alle laufenden Instanzen auf
+              caret instance list
+
+              # Beendet eine bestimmte Instanz
+              caret instance kill localhost:50052
+
+              # Beendet alle CLI-Instanzen
+              caret instance kill --all-cli
+
+   Task History
+       Arbeiten Sie mit dem Aufgabenverlauf:
+
+              # Listet vorherige Aufgaben auf
+              caret task list
+
+              # Setzt eine vorherige Aufgabe fort
+              caret task open 1760501486669
+
+              # Zeigt den Konversationsverlauf an
+              caret task view
+
+              # Startet einen interaktiven Chat mit dieser Aufgabe
+              caret task chat
+
+ARCHITECTURE
+       Caret arbeitet mit einer dreischichtigen Architektur:
+
+       Presentation Layer
+              Benutzeroberflächen (CLI, VSCode, JetBrains), die sich über gRPC mit Caret
+              Core verbinden
+
+       Caret Core
+              Der autonome Agentendienst, der Aufgabenverwaltung, AI-Modellintegration,
+              Zustandsverwaltung, Werkzeugorchestrierung und Echtzeit-Streaming-Updates
+              verarbeitet.
+
+       Host Provider Layer
+              Umgebungsspezifische Integrationen (VSCode APIs, JetBrains APIs, Shell APIs), die
+              Caret Core verwendet, um mit dem Hostsystem zu interagieren.
+
+BUGS
+       Melden Sie Fehler unter: <https://github.com/caret/caret/issues>
+
+       Für Hilfe in Echtzeit treten Sie der Discord-Community bei unter:
+       <https://https://discord.gg/WB6yaR89YN>
+
+SEE ALSO
+       Vollständige Dokumentation: <https://docs.caret.bot>
+
+AUTHORS
+       Caret wird von Caret Bot Inc. und der Open-Source-Community entwickelt.
+
+COPYRIGHT
+       Copyright © 2025 Caret Bot Inc. Lizenziert unter der Apache License 2.0.
+```
+
+### Shell Completion
+
+Generieren Sie Autovervollständigungsskripte für verschiedene Shells:
+
+#### Bash
+
+```bash
+# Generate bash completion
+caret completion bash > /etc/bash_completion.d/caret
+
+# Or for user-level installation
+caret completion bash > ~/.local/share/bash-completion/completions/caret
+```
+
+#### Zsh
+
+```bash
+# Generate zsh completion
+caret completion zsh > "${fpath[1]}/_cline"
+
+# Or add to your .zshrc
+echo 'source <(caret completion zsh)' >> ~/.zshrc
+```
+
+#### Fish
+
+```bash
+# Generate fish completion
+caret completion fish > ~/.config/fish/completions/caret.fish
+```
+
+#### PowerShell
+
+```powershell
+# Generate PowerShell completion
+caret completion powershell > caret.ps1
+
+# Add to your PowerShell profile
+Add-Content $PROFILE "caret completion powershell | Out-String | Invoke-Expression"
+```
+
+### Version Command
+
+```bash
+# Show version information
+caret version
+```
+
+### Environment Variables
+
+#### CLINE_DIR
+
+Überschreiben Sie den Standardspeicherort des Caret-Verzeichnisses:
+
+```bash
+# Override default Caret directory
+export CLINE_DIR=/custom/path
+
+# Default: ~/.caret
+```
+
+Dieses Verzeichnis wird verwendet für:
+- Instance registry database
+- Configuration files
+- Task history
+- Checkpoints
+```

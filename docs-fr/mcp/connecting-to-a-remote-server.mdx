@@ -1,0 +1,184 @@
+---
+title: "Connexion à un serveur distant"
+description: "Le Model Context Protocol (MCP) permet à Caret de communiquer avec des serveurs externes qui fournissent des outils et des ressources supplémentaires pour étendre ses capacités. Ce guide explique comment ajouter et se connecter à des serveurs MCP distants via l'interface MCP Servers."
+---
+
+## Ajout et gestion de serveurs MCP distants
+
+### Accéder à l'interface MCP Servers
+
+Pour accéder à l'interface MCP Servers dans Caret :
+
+1. Cliquez sur l'icône Caret dans la barre latérale de VS Code
+2. Ouvrez le menu (⋮) dans le coin supérieur droit du panneau Caret
+3. Sélectionnez "MCP Servers" dans le menu déroulant
+
+### Comprendre l'interface MCP Servers
+
+L'interface MCP Servers est divisée en trois onglets principaux :
+
+-   **Marketplace** : Découvrez et installez des serveurs MCP préconfigurés (si activé)
+-   **Remote Servers** : Connectez-vous à des serveurs MCP existants via des points de terminaison URL
+-   **Installed** : Gérez vos serveurs MCP connectés
+
+### Ajouter un serveur MCP distant
+
+L'onglet "Remote Servers" vous permet de vous connecter à n'importe quel serveur MCP accessible via un point de terminaison URL :
+
+1. Cliquez sur l'onglet "Remote Servers" dans l'interface MCP Servers
+2. Remplissez les informations requises :
+    - **Server Name** : Fournissez un nom unique et descriptif pour le serveur
+    - **Server URL** : Entrez le point de terminaison URL complet du serveur MCP (par exemple, `https://example.com/mcp-sse`)
+    - **Transport Type** : Sélectionnez le protocole de connexion (Streamable HTTP est recommandé pour les serveurs modernes)
+3. Cliquez sur "Add Server" pour lancer la connexion
+4. Caret tentera de se connecter au serveur et affichera l'état de la connexion
+
+> **Note**: Lorsque vous vous connectez à un serveur distant, assurez-vous de faire confiance à la source, car les serveurs MCP peuvent exécuter du code dans votre environnement.
+
+#### Transport Types
+
+Caret prend en charge deux protocoles de transport pour les serveurs MCP distants :
+
+-   **Streamable HTTP (Recommandé)** : Le protocole de transport MCP moderne avec de meilleures performances, une meilleure fiabilité et une prise en charge complète de l'authentification OAuth 2.1. Utilisez-le pour la plupart des serveurs distants.
+-   **SSE (Legacy)** : Transport Server-Sent Events. Utilisez-le uniquement si le serveur nécessite spécifiquement SSE ou ne prend pas en charge Streamable HTTP.
+
+#### Authentification OAuth
+
+Certains serveurs MCP (comme le MCP de Vercel) nécessitent une authentification OAuth pour accéder à vos données en toute sécurité. Lors de la connexion à un serveur compatible OAuth :
+
+1. Ajoutez le serveur comme d'habitude avec son URL
+2. Si le serveur nécessite une authentification, vous verrez un message d'erreur vous demandant de vous authentifier.
+3. Cliquez sur le bouton **"Authenticate"** qui apparaît
+4. Votre navigateur s'ouvrira sur la page d'autorisation du serveur
+5. Connectez-vous et accordez la permission
+6. Vous serez automatiquement redirigé vers Caret
+7. Le serveur se connectera et affichera un point d'état vert
+
+Une fois authentifiées, vos informations d'identification sont stockées en toute sécurité et le serveur se reconnectera automatiquement lorsque vous rechargerez Caret. Vous n'aurez pas besoin de vous authentifier à nouveau, sauf si vous supprimez le serveur ou si vos informations d'identification expirent.
+
+### Découverte de serveurs distants
+
+Si vous recherchez des serveurs MCP auxquels vous connecter, plusieurs places de marché tierces proposent des répertoires de serveurs disponibles avec diverses fonctionnalités.
+
+> **Warning**: Les places de marché tierces suivantes sont répertoriées à titre d'information uniquement. Caret n'approuve, ne vérifie ni n'assume aucune responsabilité pour les serveurs répertoriés sur ces places de marché. Ces serveurs sont des services hébergés dans le cloud qui traitent vos requêtes et peuvent avoir accès aux données que vous partagez avec eux. Consultez toujours les politiques de confidentialité et les conditions d'utilisation avant de vous connecter à des services tiers.
+
+#### Intégration Composio MCP
+
+[Composio's MCP Marketplace](https://mcp.composio.dev/) donne accès à un large éventail de serveurs tiers qui prennent en charge le Model Context Protocol (MCP). Ces serveurs exposent des APIs pour des services tels que GitHub, Notion, Slack et autres. Chaque serveur comprend des instructions de configuration et une prise en charge intégrée de l'authentification (par exemple, OAuth ou des clés API). Pour vous connecter, localisez le service souhaité sur la place de marché et suivez les étapes d'intégration fournies.
+
+#### Connexion via Smithery
+
+Smithery est une place de marché de serveurs MCP tiers qui permet aux utilisateurs de découvrir et de se connecter à une variété de serveurs Model Context Protocol (MCP). Si vous utilisez un client compatible MCP (tel que Cursor, Claude Desktop ou Caret), vous pouvez parcourir les serveurs disponibles et les intégrer directement dans votre flux de travail.
+
+Pour explorer les options disponibles, visitez la place de marché Smithery : [https://smithery.ai](https://smithery.ai)
+
+Veuillez noter que Smithery est maintenu indépendamment et n'est pas affilié à notre projet. Utilisez-le à votre discrétion.
+
+### Gérer les serveurs MCP installés
+
+Une fois ajoutés, vos serveurs MCP apparaissent dans l'onglet "Configure" où vous pouvez :
+
+#### Afficher l'état du serveur
+
+Chaque serveur affiche son état actuel :
+
+-   **Point vert** : Connecté et prêt à l'emploi
+-   **Point jaune** : En cours de connexion
+-   **Point rouge** : Déconnecté ou rencontrant des erreurs
+
+#### Configurer les paramètres du serveur
+
+Cliquez sur un serveur pour développer son panneau de paramètres :
+
+1. **Tools & Resources** :
+    - Affichez tous les outils et ressources disponibles sur le serveur
+    - Configurez les paramètres d'approbation automatique pour les outils (si activé)
+2. **Request Timeout** :
+    - Définissez le temps pendant lequel Caret doit attendre les réponses du serveur
+    - Les options vont de 30 secondes à 1 heure
+3. **Server Management** :
+    - **Restart Server** : Reconnectez-vous si le serveur ne répond plus
+    - **Delete Server** : Supprimez le serveur de votre configuration
+
+#### Activer/Désactiver les serveurs
+
+Basculez le commutateur à côté de chaque serveur pour l'activer ou le désactiver :
+
+-   **Enabled** : Caret peut utiliser les outils et les ressources du serveur
+-   **Disabled** : Le serveur reste dans votre configuration mais n'est pas actif
+
+### Résoudre les problèmes de connexion
+
+Si un serveur ne parvient pas à se connecter :
+
+1. Un message d'erreur s'affichera avec des détails sur l'échec
+2. **Pour les erreurs OAuth** : Cliquez sur le bouton "Authenticate" pour terminer le flux d'autorisation
+3. Vérifiez que l'URL du serveur est correcte et que le serveur est en cours d'exécution
+4. Essayez de sélectionner un type de transport différent (Streamable HTTP vs SSE)
+5. Utilisez le bouton "Restart Server" pour tenter une reconnexion
+6. Si les problèmes persistent, vous pouvez supprimer le serveur et essayer de l'ajouter à nouveau
+
+#### Problèmes spécifiques à OAuth
+
+Si vous rencontrez des problèmes d'authentification avec un serveur compatible OAuth :
+
+-   **"Authentication required" persiste** : Assurez-vous d'avoir terminé le flux d'autorisation dans votre navigateur et de ne pas l'avoir annulé
+-   **Le navigateur ne s'ouvre pas** : Vérifiez les paramètres du navigateur par défaut de votre système et assurez-vous que les URL externes peuvent être ouvertes
+-   **Erreurs de redirection** : Vérifiez que vous utilisez la dernière version de Caret - les anciennes versions peuvent ne pas prendre en charge OAuth
+-   **Réinitialiser l'authentification** : Supprimez le serveur et rajoutez-le pour repartir à zéro avec un nouveau flux OAuth
+
+### Configuration avancée
+
+Pour les utilisateurs avancés, Caret stocke les configurations du serveur MCP dans un fichier JSON qui peut être modifié :
+
+1. Dans l'onglet "Configure", cliquez sur "Configure MCP Servers" pour accéder au fichier de paramètres
+2. La configuration de chaque serveur suit ce format :
+
+```json
+{
+	"mcpServers": {
+		"exampleServer": {
+			"url": "https://example.com/mcp-server",
+			"type": "streamableHttp",
+			"disabled": false,
+			"autoApprove": ["tool1", "tool2"],
+			"timeout": 60
+		}
+	}
+}
+```
+
+Options de configuration clés :
+
+-   **url** : L'URL du point de terminaison (pour les serveurs distants)
+-   **type** : Protocole de transport - `"streamableHttp"` (recommandé) ou `"sse"` (legacy)
+-   **disabled** : Indique si le serveur est actuellement activé (true/false)
+-   **autoApprove** : Liste des noms d'outils qui ne nécessitent pas de confirmation
+-   **timeout** : Durée maximale en secondes à attendre pour les réponses du serveur (par défaut : 60)
+
+Pour des paramètres MCP supplémentaires, cliquez sur le lien "Advanced MCP Settings" pour accéder aux paramètres de VS Code.
+
+### Utilisation des outils du serveur MCP
+
+Une fois connecté, Caret peut utiliser les outils et les ressources fournis par le serveur MCP. Lorsque Caret suggère d'utiliser un outil MCP :
+
+1. Une invite d'approbation de l'outil apparaîtra (sauf si l'approbation automatique est activée)
+2. Examinez les détails et les paramètres de l'outil avant de l'approuver
+3. L'outil s'exécutera et renverra les résultats à Caret
+
+### Exemple : Connexion à Vercel MCP
+
+[Vercel MCP](https://vercel.com/docs/mcp/vercel-mcp) est un serveur compatible OAuth qui fournit des outils pour gérer vos projets et déploiements Vercel :
+
+1. Cliquez sur l'onglet "Remote Servers"
+2. Entrez :
+    - **Server Name** : `vercel`
+    - **Server URL** : `https://mcp.vercel.com`
+    - **Transport Type** : Streamable HTTP (présélectionné)
+3. Cliquez sur "Add Server"
+4. Vous verrez "Authentication required" - cliquez sur le bouton **"Authenticate"**
+5. Connectez-vous à Vercel dans votre navigateur et autorisez Caret
+6. Retournez à Caret - le serveur se connectera automatiquement
+7. Les outils de Vercel (deploy, logs, projects) sont maintenant disponibles pour Caret !
+
+Votre authentification Vercel persiste d'une session à l'autre, vous n'aurez donc pas besoin de vous réauthentifier à chaque fois que vous utilisez Caret.

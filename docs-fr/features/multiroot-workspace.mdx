@@ -1,0 +1,166 @@
+---
+title: "Prise en charge des espaces de travail multi-racines"
+sidebarTitle: "Espace de travail multi-racines"
+---
+
+La fonctionnalité multi-racines de Caret fonctionne de manière transparente avec les espaces de travail multi-racines de VS Code, vous permettant de gérer plusieurs dossiers de projet dans un seul espace de travail.
+
+<Note>
+캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
+</Note>
+
+<Note>
+**Important:** Les espaces de travail multi-racines sont actuellement une fonctionnalité expérimentale et présentent les limitations suivantes :
+- Les **Caret rules** fonctionnent uniquement dans le premier dossier de l'espace de travail
+- Les **Checkpoints** sont automatiquement désactivés avec un message d'avertissement
+- Les deux fonctionnalités sont restaurées lorsque vous revenez à un espace de travail à dossier unique
+</Note>
+
+## Qu'est-ce que le support des espaces de travail multi-racines ?
+
+Au lieu d'être limité à un seul dossier de projet, Caret peut lire des fichiers, écrire du code et exécuter des commandes dans tous les dossiers de votre espace de travail VS Code. Ceci est utile lorsque vous travaillez avec des monorepos, des microservices ou lorsque vous travaillez simultanément sur des projets connexes.
+
+### Comment ça marche
+
+Lorsque vous ouvrez plusieurs dossiers d'espace de travail dans VS Code, Caret automatiquement :
+- Désigne un dossier comme **espace de travail principal** (généralement le premier dossier ajouté)
+- Suit tous les dossiers d'espace de travail et leurs chemins
+- Résout les chemins de fichiers intelligemment dans les espaces de travail
+- Affiche les informations de l'espace de travail dans les détails de l'environnement pour chaque requête API
+
+## Démarrage
+
+### Configuration des espaces de travail multi-racines
+
+1. **Ajoutez des dossiers à votre espace de travail :**
+   - Utilisez `File > Add Folder to Workspace` dans VS Code
+   - Ou créez un fichier `.code-workspace` avec plusieurs chemins de dossier
+   - Glissez-déposez des dossiers dans l'explorateur de fichiers
+   - Sélectionnez plusieurs dossiers lors de l'ouverture d'un nouvel espace de travail
+
+2. **Commencez à utiliser Caret** - Caret détectera automatiquement tous vos dossiers d'espace de travail et interagira avec eux au besoin.
+
+Pour des instructions détaillées sur la configuration des espaces de travail multi-racines dans VS Code, consultez [le guide officiel de Microsoft](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces).
+
+### Comportement technique
+
+**Détection de l'espace de travail**
+- Caret détecte tous les dossiers d'espace de travail lorsqu'une tâche démarre
+- Le premier dossier d'espace de travail devient l'espace de travail principal par défaut
+- Chaque espace de travail peut avoir son propre VCS (Git, SVN, etc.)
+
+**Résolution des chemins**
+- Les chemins relatifs sont résolus par rapport à l'espace de travail principal
+- Vous pouvez utiliser des indications d'espace de travail pour cibler des espaces de travail spécifiques : `@workspaceName:path/to/file`
+- Caret tente de déterminer intelligemment à quel espace de travail appartient un fichier
+
+**Exécution des commandes**
+- Les commandes s'exécutent dans le contexte d'espace de travail approprié
+- Le répertoire de travail est défini en fonction de l'endroit où les fichiers sont consultés
+
+## Travailler entre les espaces de travail
+
+### Référencer des espaces de travail spécifiques
+
+Vous pouvez référencer différents espaces de travail naturellement dans vos prompts :
+
+```
+"Read the package.json in my frontend folder and compare it with the backend dependencies"
+```
+
+```
+"Create a shared utility function and update both the client and server to use it"
+```
+
+```
+"Search for TODO comments across all my workspace folders"
+```
+
+### Indications d'espace de travail
+
+Utilisez des indications d'espace de travail pour référencer explicitement des fichiers dans des espaces de travail spécifiques :
+
+```
+@frontend:src/App.tsx
+@backend:server.ts
+```
+
+Cette syntaxe aide Caret à résoudre les ambiguïtés lorsque plusieurs espaces de travail contiennent des fichiers portant des noms similaires.
+
+## Cas d'utilisation courants
+
+### Développement de Monorepo
+
+Parfait lorsque vous avez des projets connexes dans un seul référentiel :
+
+```
+my-app.code-workspace
+├── web/          (React frontend)
+├── api/          (Node.js backend)
+├── mobile/       (React Native)
+└── shared/       (Common utilities)
+```
+
+Demandez à Caret : *"Update the API endpoint in both web and mobile apps to match the new backend route"*
+
+### Architecture de microservices
+
+Gérez plusieurs services à partir d'un seul espace de travail :
+
+```
+services.code-workspace
+├── user-service/
+├── payment-service/  
+├── notifications/
+└── infrastructure/
+```
+
+### Développement Full-Stack
+
+Gardez tout ensemble tout en maintenant la séparation :
+
+```
+fullstack.code-workspace
+├── client/       (Frontend)
+├── server/       (Backend API)
+├── docs/         (Documentation)  
+└── deploy/       (Scripts & config)
+```
+
+### Intégration d'approbation automatique
+
+Les espaces de travail multi-racines fonctionnent avec [Auto Approve](/french/features/auto-approve) :
+
+- Activez les autorisations pour les opérations dans les dossiers de l'espace de travail
+- Restreignez l'approbation automatique des fichiers en dehors de vos espaces de travail
+- Configurez différents niveaux pour différents dossiers d'espace de travail
+
+### Opérations inter-espaces de travail
+
+Caret peut effectuer des tâches couvrant plusieurs espaces de travail :
+
+- **Refactoring** : mettez à jour les importations et les références entre les projets
+- **Développement de fonctionnalités** : implémentez des fonctionnalités nécessitant des modifications dans plusieurs services
+- **Documentation** : générez des documents référençant le code de plusieurs dossiers
+- **Tests** : créez et exécutez des tests dans tous les espaces de travail et analysez les résultats
+
+Lorsque vous travaillez avec de grands espaces de travail multi-racines, commencez en [mode Plan](/french/features/plan-and-act) pour permettre à Caret de comprendre la structure de votre projet avant d'apporter des modifications.
+
+## Meilleures pratiques
+
+### Organisation de vos espaces de travail
+
+1. **Regroupez les projets connexes** qui nécessitent souvent des modifications coordonnées
+2. **Utilisez des structures de dossiers cohérentes** dans les espaces de travail lorsque cela est possible
+3. **Nommez les dossiers clairement** afin que Caret puisse comprendre la structure de votre projet
+
+### Prompts et conseils efficaces
+
+Lorsque vous travaillez avec des espaces de travail multi-racines, ces approches fonctionnent le mieux :
+
+- **Soyez précis** sur l'espace de travail lorsque cela est important : *"Update the user model in the backend workspace"*
+- **Référencez les relations** : *"The frontend uses the API types from the shared workspace"*
+- **Décrivez les opérations inter-espaces de travail** : *"This change needs to be reflected in both the web and mobile apps"*
+- **Étendue de vos recherches** lorsque vous traitez de grandes bases de code : *"Search for 'TODO' in just the frontend workspace"*
+- **Divisez les tâches importantes** en opérations spécifiques à l'espace de travail lorsque cela est possible
+- **Envisagez d'exclure les dossiers volumineux** tels que `node_modules` de la portée de la recherche de votre espace de travail

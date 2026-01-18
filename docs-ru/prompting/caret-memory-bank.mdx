@@ -1,0 +1,75 @@
+---
+title: "Система контекста Caret (Замена Memory Bank)"
+---
+
+# Система контекста Caret (Замена Memory Bank)
+
+Caret **полностью заменяет** подход Cline Memory Bank.  
+Вместо этого, Caret управляет контекстом проекта через **`AGENTS.md` + `.agents/context` + `caret-docs` + `work-logs`**.
+
+## Быстрый старт
+
+1. **Запустите `/init` для создания каркаса**  
+   Он генерирует базовую структуру `AGENTS.md` и `.agents/context`.
+2. **Прочтите обязательную документацию перед работой**  
+   Проверьте `AGENTS.md` → `.agents/context/caret-rules.json`.
+3. **Загружайте workflows по требованию**  
+   Извлекайте только нужные workflows из `.agents/context/workflows/`.
+4. **Поддерживайте актуальность документации и логов**  
+   Записывайте изменения в `caret-docs/` и `work-logs/`.
+
+## Основные компоненты
+
+| Component | Role | Notes |
+| --- | --- | --- |
+| `AGENTS.md` | Entry/meta rules | порядок загрузки, язык, запреты |
+| `.agents/context` | AI rules SoT | workflows + atoms |
+| `.agents/context/workflows` | On-demand workflows | загружать только при необходимости |
+| `caret-docs/` | Developer documentation | 1:1 паритет с AI rules |
+| `work-logs/` | Progress & decisions | submodule, `.work-logs/` планируется |
+
+## Почему Caret заменил Memory Bank (Преимущества Caret)
+
+- **AAIF international standard**: пути к правилам и загрузка стандартизированы.  
+- **On-demand rule loading**: читаются только необходимые документы.  
+- **AI/Developer knowledge parity**: и AI, и разработчики видят одни и те же документы.  
+- **Separated progress logs**: статус/решения хранятся в `work-logs/`.
+
+## Сопоставление Legacy Memory Bank
+
+| Memory Bank | Caret Replacement |
+| --- | --- |
+| `projectbrief.md` | `caret-docs/development/index.md` + overview specs |
+| `productContext.md` | `caret-docs/features.en/**` |
+| `systemPatterns.md` | `.agents/context/workflows/atoms/**` + architecture docs |
+| `techContext.md` | `caret-docs/development/**` |
+| `activeContext.md`/`progress.md` | `work-logs/**` (master/sub logs) |
+
+> **Важно**: Не используйте папку `memory-bank/`. Перенесите существующие файлы по указанным выше путям.
+
+## Рабочий процесс
+
+### Plan Mode
+1. Прочтите `AGENTS.md` → `.agents/context/caret-rules.json`.
+2. Загрузите только необходимые workflows.
+3. Проверьте `caret-docs/` на наличие спецификаций и руководств.
+4. Поделитесь планом документа перед выполнением.
+
+### Act Mode
+1. Загрузите только необходимые rules/workflows.
+2. Внесите изменения.
+3. Запишите обновления в `caret-docs/` и `work-logs/`.
+
+## Обновление правил
+
+- **Rule/process changes** → обновите `.agents/context` + `caret-docs/` вместе
+- **Feature/requirement changes** → обновите `caret-docs/features.en/**`
+- **Progress/decisions** → запишите в `work-logs/**`
+- **Security** → никогда не храните secrets/tokens в документах
+
+## Связанные документы
+
+- [Agent Standardization (AAIF SoT)](/russian/caret-exclusive/knowledge-parity-system)
+- [AI-Developer Knowledge Parity](/russian/caret-exclusive/knowledge-parity-system)
+- [Caret Rules](/russian/features/caret-rules)
+- [Understanding Context Management](/russian/getting-started/understanding-context-management)

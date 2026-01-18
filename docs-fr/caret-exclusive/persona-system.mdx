@@ -1,0 +1,123 @@
+---
+title: Personnalisation du Persona AI
+---
+
+# Personnalisation du Persona AI
+
+Le système de persona de Caret vous permet de personnaliser le nom et l'avatar de votre AI, vous permettant de créer un partenaire de codage personnalisé qui vous ressemble vraiment.
+
+## Qu'est-ce qu'un Persona ?
+
+Un persona définit les éléments suivants de votre assistant AI :
+
+- **Name** : Le nom d'affichage de votre AI
+- **Avatar Image** : L'image affichée dans l'état par défaut
+- **Thinking Image** : L'image affichée lorsque l'AI travaille
+- **Personality Definition** : Définissez le ton et le comportement de votre AI avec un fichier persona.md
+
+## Personas intégrés
+
+Caret fournit 5 templates de personas prêts à l'emploi :
+
+### 🤖 Caret
+- Un compagnon robot amical
+- Persona par défaut
+
+### 💖 Oh Sarang
+- Développeuse idole K-POP
+- Ton vif et positif
+
+### 🪟 Madobe Ichika
+- Windows 11 OS-tan
+- Professionnelle et efficace
+
+### 🍎 Cyan Macin
+- Assistant macOS
+- Style raffiné et élégant
+
+### 🐧 Tando Ubuntu
+- Collaborateur open source
+- Orienté communauté
+
+## Comment utiliser les Personas
+
+### Sélectionner un Persona
+
+1. Ouvrez les settings (⚙️)
+2. Trouvez la section **Persona Management**
+3. Cliquez sur le bouton **Select Persona Template**
+4. Choisissez votre persona souhaité
+
+### Changer de template
+
+Vous pouvez passer à un autre template à tout moment depuis l'écran des settings.
+
+## Créer un Persona personnalisé
+
+### Télécharger des images
+
+Caret utilise **2 images différentes** pour chaque persona :
+
+**1. Normal Image**
+- Affichée dans l'état par défaut
+- Cliquez sur "Upload Normal Image" dans les settings
+- Sélectionnez un fichier image (tous les formats d'image sont supportés)
+
+**2. Thinking Image**
+- Affichée quand l'AI travaille
+- Cliquez sur "Upload Thinking Image" dans les settings
+- Sélectionnez un fichier image
+
+**Storage** : Les images sont automatiquement sauvegardées dans le stockage interne de VS Code.
+
+### Définir la personnalité (persona.md)
+
+Vous pouvez définir la personnalité de votre AI et son ton de voix en utilisant un fichier persona.md.
+
+**Storage Location** :
+```
+~/Documents/Caret/Rules/persona.md
+```
+
+**Exemple** :
+```markdown
+You are a kind and professional development partner.
+Always respond in Korean and include comments when explaining code.
+Explain changes step by step and specify the reason for each step.
+```
+
+Les modifications prennent effet immédiatement lorsque vous sauvegardez le fichier.
+
+## Persona vs Rules
+
+| Élément | Persona | Rules (.agents/context) |
+|------|----------|---------------------|
+| Portée | Nom de l'AI, image, personnalité | Directives de codage |
+| Lieu de stockage | Global (Interne VS Code + persona.md) | Dossier du projet |
+| Combinaison | Utilisé avec les rules | Utilisé avec le persona |
+
+**Meilleurs résultats** : Utilisez ensemble le persona et les project rules pour des résultats optimaux.
+
+## Foire Aux Questions
+
+**Q : Est-ce que le persona affecte les performances de l'AI ?**
+R : Si vous donnez des traits de personnalité négatifs dans la définition du persona (persona.md), cela peut impacter la qualité du travail de l'AI. Évitez les expressions comme "fait beaucoup d'erreurs" ou "passif".
+
+**Q : Puis-je utiliser différents personas pour différents projets ?**
+R : Non. Les personas sont gérés globalement uniquement. Si vous avez besoin d'une personnalisation spécifique au projet, écrivez des instructions spécifiques au projet dans votre fichier `.agents/context`. (Cependant, comme les images sont globales, elles ne peuvent pas être modifiées par projet)
+
+**Q : Où sont stockés les personas ?**
+R : Les images sont stockées dans le stockage interne de VS Code (globalStorage), et persona.md est stocké dans `~/Documents/Caret/Rules/`.
+
+**Q : Y a-t-il des restrictions de taille ou de format pour les images ?**
+R : Tous les formats d'image sont supportés sans restriction de taille. Les images sont automatiquement converties en base64 lors du téléchargement.
+
+## Étapes suivantes
+
+- [Utiliser avec Dual Modes](/french/caret-exclusive/dual-prompt-modes)
+- [En savoir plus sur les Rules avancées](/french/caret-exclusive/knowledge-parity-system)
+- [Démarrer gratuitement avec Caret Provider](/french/caret-exclusive/caret-provider)
+
+---
+
+**Le système de persona est exclusif à Caret.** Cline ne possède pas cette fonctionnalité.

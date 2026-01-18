@@ -1,0 +1,74 @@
+---
+title: "SAP AI Core"
+description: "Découvrez comment configurer et utiliser les modèles LLM du Generative AI Hub dans SAP AI Core avec Caret."
+---
+
+SAP AI Core et le Generative AI Hub vous aident à intégrer les LLM et l'AI dans de nouveaux processus métier de manière rentable.
+
+**Website :** [SAP Help Portal](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core)
+
+
+<Info>
+SAP AI Core et Generative AI Hub sont des offres de SAP BTP. Vous avez besoin d'un contrat SAP BTP actif et d'un subaccount existant avec une instance SAP AI Core utilisant le service plan `extended` (Pour plus de détails sur les service plans de SAP AI Core et leurs capacités, consultez la [Service Plans documentation](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/service-plans)) pour effectuer ces étapes.
+</Info>
+
+### Obtenir un Service Binding
+
+1. **Accès :** Accédez à votre subaccount via le [BTP Cloud Cockpit](https://cockpit.btp.cloud.sap/cockpit)
+2. **Créer un Service Binding :** Allez dans "Instances and Subscriptions", sélectionnez votre instance de service SAP AI Core et cliquez sur Service Bindings > Create.
+3. **Copier le Service Binding :** Copiez les valeurs du service binding.
+
+### Modèles pris en charge
+
+SAP AI Core prend en charge un nombre important et croissant de modèles.
+Reportez-vous à la page [Generative AI Hub Supported Models](https://me.sap.com/notes/3437766) pour la liste complète et à jour.
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le Provider :** Choisissez "SAP AI Core" dans le menu déroulant "API Provider".
+3.  **Saisir le Client Id :** Ajoutez le champ `.clientid` du service binding dans le champ "AI Core Client Id".
+4.  **Saisir le Client Secret :** Ajoutez le champ `.clientsecret` du service binding dans le champ "AI Core Client Secret".
+5.  **Saisir la Base URL :** Ajoutez le champ `.serviceurls.AI_API_URL` du service binding dans le champ "AI Core Base URL".
+6.  **Saisir l'Auth URL :** Ajoutez le champ `.url` du service binding dans le champ "AI Core Auth URL".
+7.  **Saisir le Resource Group :** Ajoutez le Resource Group où se trouvent vos déploiements de modèles. Voir [Create a Deployment for a Generative AI Model](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-deployment-for-generative-ai-model-in-sap-ai-core).
+8.  **Configurer l'Orchestration Mode :** Si vous avez un service plan `extended`, la case à cocher "Orchestration Mode" apparaîtra automatiquement.
+9.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+### Orchestration Mode vs Native API
+
+**Orchestration Mode :**
+- **Utilisation simplifiée :** Offre un accès à tous les modèles disponibles sans nécessiter de déploiements individuels en utilisant l' [Harmonized API](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/harmonized-api)
+
+**Native API Mode :**
+- **Déploiements manuels :** Nécessite le déploiement et la gestion manuelle des modèles dans votre instance de service SAP AI Core
+
+### Conseils et remarques
+
+- **Prérequis du Service Plan :** Vous devez disposer du service plan SAP AI Core `extended` pour utiliser les LLM avec Caret. Les autres service plans ne permettent pas d'accéder au Generative AI Hub.
+
+- **Orchestration Mode (Recommandé) :** Gardez l'Orchestration Mode activé pour une configuration simplifiée. Il permet un accès automatique à tous les modèles disponibles sans nécessiter de déploiements manuels.
+
+- **Native API Mode :** Ne désactivez l'Orchestration Mode que si vous avez des exigences spécifiques nécessitant un accès direct à l'API AI Core ou si vous avez besoin de fonctionnalités non prises en charge par l'Orchestration Mode.
+
+- **Lors de l'utilisation du mode Native API :**
+    -   **Sélection du modèle :** Le menu déroulant des modèles affiche les modèles dans deux listes distinctes :
+        -   **Deployed Models :** Ces modèles sont déjà déployés dans votre Resource Group spécifié et sont prêts à être utilisés immédiatement.
+        -   **Not Deployed Models :** Ces modèles n'ont pas de déploiements actifs dans votre Resource Group spécifié. Vous ne pourrez pas utiliser ces modèles tant que vous n'aurez pas créé de déploiements pour eux dans SAP AI Core.
+    -   **Création de déploiements :** Pour utiliser un modèle qui n'a pas encore été déployé, vous devrez créer un déploiement dans votre instance de service SAP AI Core. Voir [Create a Deployment for a Generative AI Model](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-deployment-for-generative-ai-model-in-sap-ai-core) pour les instructions.
+
+#### Configuration du Reasoning Effort pour les modèles OpenAI
+
+Lors de l'utilisation de modèles de raisonnement OpenAI (tels que o1, o3, o3-mini, o4-mini) via SAP AI Core, vous pouvez contrôler le Reasoning Effort pour équilibrer performance et coût :
+
+1. **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2. **Naviguer vers Features :** Allez dans la section "Features" des paramètres.
+3. **Trouver OpenAI Reasoning Effort :** Localisez le paramètre "OpenAI Reasoning Effort".
+4. **Choisir le niveau d'effort :** Sélectionnez entre :
+   - **Low :** Réponses plus rapides avec une consommation de tokens plus faible, adapté aux tâches simples
+   - **Medium :** Équilibre entre performance et consommation de tokens pour la plupart des tâches
+   - **High :** Analyse plus approfondie avec une consommation de tokens plus élevée, préférable pour les tâches de raisonnement complexes
+
+<Note>
+Ce paramètre s'applique uniquement lors de l'utilisation de modèles de raisonnement OpenAI (o1, o3, o3-mini, o4-mini, gpt-5, etc.) déployés via SAP AI Core. Les autres modèles ignoreront ce paramètre.
+</Note>

@@ -1,0 +1,140 @@
+---
+title: "Comprendre les tâches"
+description: "Découvrez ce que sont les tâches dans Caret, comment elles fonctionnent et comment créer des invites efficaces pour de meilleurs résultats."
+---
+
+<Note>
+Ceci est la documentation de référence Caret. Elle suit la version fusionnée de Caret v3.38.1 et, le cas échéant, les politiques/restrictions spécifiques à Caret (par exemple, l'emplacement de sauvegarde des tâches, la politique de points de contrôle, l'authentification/le routage) sont indiquées par `<Note>` dans le corps du texte.
+</Note>
+
+<Note>
+Historique des entrées/compte : la fonctionnalité d'historique/de restauration des entrées de Caret peut fonctionner conformément à `caret-docs/features/f10-input-history-system.md`, et les informations de compte/organisation peuvent être gérées conjointement.
+</Note>
+
+## Que sont les tâches ?
+
+La plupart des utilisateurs interagissent avec Caret par le biais de **tâches**, l'unité de travail fondamentale qui anime chaque session de codage. Que vous construisiez une nouvelle fonctionnalité, que vous corrigiez un bug, que vous refactorisiez du code ou que vous exploriez une base de code, chaque interaction avec Caret se déroule dans le contexte d'une tâche. Une tâche représente une conversation complète et une session de travail entre vous et l'agent d'IA, créée par le biais d'**invites** (prompts) : les instructions que vous fournissez pour indiquer à Caret ce que vous voulez accomplir. Les tâches servent de sessions de travail autonomes qui capturent l'intégralité de votre conversation avec Caret, y compris toutes les modifications de code, les exécutions de commandes et les décisions prises en cours de route.
+
+Cette approche garantit que votre travail est organisé, traçable et résumable. Chaque tâche conserve son propre contexte isolé, ce qui vous permet de travailler sur plusieurs projets simultanément sans confusion. La beauté du système de tâches de Caret réside dans sa flexibilité et sa persistance, offrant une session de codage collaborative où vous donnez la direction par le biais d'invites, et Caret exécute votre vision avec précision.
+
+### Caractéristiques principales
+
+Chaque tâche dans Caret :
+
+- **A un identifiant unique** : Chaque tâche reçoit son propre ID et un répertoire de stockage dédié
+- **Contient l'intégralité de la conversation** : Tous les messages, les utilisations d'outils et les résultats sont conservés
+- **Suit les ressources utilisées** : L'utilisation des tokens, les coûts de l'API et le temps d'exécution sont surveillés
+- **Peut être interrompue et reprise** : Les tâches conservent leur état entre les sessions VS Code
+- **Crée des points de contrôle** : Les modifications de fichiers sont suivies via des snapshots basés sur Git
+- **Permet la documentation** : Les tâches peuvent être exportées au format Markdown pour la documentation d'équipe
+- **Fournit une gestion des coûts** : Le suivi des ressources permet de surveiller l'utilisation et les coûts de l'API
+
+Ces fonctionnalités font de Caret non seulement un outil de codage, mais aussi un agent de développement complet qui comprend l'ensemble du cycle de vie de votre travail.
+
+## Création de tâches avec des invites (Prompts)
+
+Les tâches commencent par des invites (prompts) : vos instructions à Caret. La qualité de vos résultats dépend fortement de la façon dont vous décrivez ce que vous voulez.
+
+### Composants d'une invite (Prompt)
+
+Une invite (prompt) bien structurée comprend généralement :
+
+- **Objectif** : Ce que vous voulez accomplir
+- **Contexte** : Informations générales et contraintes
+- **Exigences** : Fonctionnalités spécifiques nécessaires
+- **Préférences** : Choix technologiques, style de codage, etc.
+- **Exemples** : Références pour guider la mise en œuvre
+
+<Note>
+**Vous voulez maîtriser l'art de la formulation d'invites ?**
+
+Plongez au cœur du **Module 1 : « Prompting »** dans [Caret Learn](https://clinelearn.com) pour devenir un expert dans la création d'invites efficaces. Le module couvre :
+- Les techniques de formulation d'invites structurées
+- Les stratégies d'optimisation du contexte
+- Les schémas de formulation d'invites courants
+- L'ingénierie avancée des invites
+- Des exemples et des exercices concrets
+
+De bonnes compétences en matière de formulation d'invites permettent d'accélérer l'exécution des tâches, d'obtenir des résultats plus précis, de réduire le nombre d'itérations nécessaires et d'améliorer la qualité du code.
+</Note>
+
+## Modes d'exécution des tâches
+
+Caret fonctionne selon deux modes distincts qui permettent de structurer votre flux de travail :
+
+- **Mode Plan** : Pour la collecte d'informations, la discussion des approches et la création de stratégies sans apporter de modifications
+- **Mode Act** : Pour la mise en œuvre proprement dite où Caret exécute des modifications de fichiers, exécute des commandes et utilise des outils
+
+→ **[En savoir plus sur les modes Plan et Act](/french/features/plan-and-act)** pour comprendre quand et comment utiliser efficacement chaque mode.
+
+## Ressources des tâches
+
+Chaque tâche consomme des ressources qui sont suivies :
+
+- **Tokens** : La quantité de texte traitée (entrée et sortie)
+- **Coûts de l'API** : Coût monétaire basé sur le modèle et l'utilisation des tokens
+- **Temps** : Durée entre le début et la fin
+- **Points de contrôle** : Nombre de snapshots d'état de fichier créés
+
+## Schémas de tâches courants
+
+### Génération de code
+```
+Create a TypeScript function that validates email addresses using regex. 
+Include unit tests using Jest and handle edge cases like international domains.
+```
+
+### Correction de bugs
+```
+@terminal The app crashes when clicking the submit button. 
+Fix the error and ensure proper error handling is in place.
+```
+
+### Refactoring
+```
+Refactor the authentication logic in @auth.ts to use async/await 
+instead of callbacks. Maintain all existing functionality.
+```
+
+### Mise en œuvre de fonctionnalités
+```
+Add a dark mode toggle to the settings page. Use the existing theme 
+context and persist the preference to localStorage.
+```
+
+## Reprise de tâches
+
+L'une des fonctionnalités puissantes de Caret est la possibilité de reprendre les tâches interrompues :
+
+### Quand les tâches sont interrompues
+
+- Vous arrêtez une tâche de longue durée
+- Une erreur se produit et nécessite une intervention
+- Vous devez passer à une autre tâche
+
+### Reprise d'une tâche
+
+1. Ouvrez la tâche à partir de l'historique
+2. Caret charge l'intégralité de la conversation
+3. Les états des fichiers sont vérifiés par rapport aux points de contrôle
+4. La tâche se poursuit en tenant compte de l'interruption
+5. Vous pouvez fournir un contexte supplémentaire si nécessaire
+
+## Comprendre le contexte des tâches
+
+Les tâches conservent le contexte tout au long de leur cycle de vie :
+
+- **Historique des conversations** : Tous les messages et réponses précédents
+- **Modifications des fichiers** : Modifications suivies et leur ordre
+- **Résultats des outils** : Sortie des commandes et des opérations
+- **États des points de contrôle** : Snapshots des états des fichiers à des points clés
+
+Ce contexte permet à Caret de :
+- Comprendre ce qui a été fait
+- Maintenir la cohérence de l'approche
+- Reprendre le travail intelligemment
+- Tirer des leçons des tentatives précédentes
+
+→ **[En savoir plus sur la gestion du contexte](/french/getting-started/understanding-context-management)** pour comprendre comment Caret gère et optimise le contexte entre les tâches.
+
+Comprendre le fonctionnement des tâches est essentiel pour utiliser Caret efficacement. Avec des invites bien conçues et une compréhension du cycle de vie des tâches, vous pouvez exploiter tout le potentiel de Caret pour accélérer votre flux de travail de développement.

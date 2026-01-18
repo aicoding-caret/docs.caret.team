@@ -1,0 +1,67 @@
+```
+---
+title: "Mentions"URL"
+sidebarTitle: "Mentions d'URL"
+---
+
+Les mentions d'URL vous permettent d'intégrer du contenu web directement dans votre conversation avec Caret. Tapez simplement `@` suivi de n'importe quelle URL, et Caret peut voir le contenu de cette page web sans que vous ayez à copier-coller quoi que ce soit.
+
+Lorsque vous tapez `@` dans le chat suivi d'une URL (comme `@https://example.com`), Caret ira chercher le contenu de cette page web et l'inclura dans le contexte. Cela fonctionne pour les pages de documentation, les issues GitHub, les questions Stack Overflow, ou tout autre contenu web que vous souhaitez référencer.
+
+J'utilise constamment les mentions d'URL lorsque je travaille avec des APIs ou des librairies externes. Au lieu d'essayer d'expliquer comment une API fonctionne ou de copier des extraits de documentation, je référence directement les docs :
+
+```
+J'essaie d'implémenter l'authentification avec cette API : @https://api.example.com/docs
+
+Pouvez-vous m'aider à écrire le code pour obtenir un access token basé sur ces docs ?
+```
+
+Cela donne à Caret la page de documentation complète, afin qu'il puisse voir toutes les exigences d'authentification, les endpoints, les paramètres et les exemples. Caret peut alors fournir une aide plus précise et complète basée sur la documentation officielle.
+
+Les mentions d'URL sont particulièrement utiles pour référencer les issues ou les discussions GitHub :
+
+```
+J'essaie de corriger ce problème dans notre projet : @https://github.com/our-org/our-repo/issues/123
+
+Voici mon implémentation actuelle : @/src/components/Feature.jsx
+
+Quels changements dois-je apporter pour résoudre le problème ?
+```
+
+Cela montre à Caret l'issue GitHub complète, y compris la description, les commentaires, et tous les extraits de code ou captures d'écran. Caret peut alors vous aider à implémenter une solution qui répond directement au problème signalé.
+
+La prochaine fois que vous travaillerez avec de la documentation externe ou des ressources en ligne, essayez d'utiliser les mentions d'URL au lieu de copier-coller du contenu. Vous obtiendrez une aide plus précise car Caret peut voir le contexte complet de la page web, y compris le formatage, les exemples de code et les informations environnantes.
+
+## Comment ça marche sous le capot
+
+Lorsque vous utilisez une mention d'URL dans votre message, voici ce qui se passe en coulisses :
+
+1. Lorsque vous envoyez votre message, Caret détecte le modèle `@http://...` ou `@https://...` dans votre texte
+2. L'extension lance un navigateur headless (Puppeteer) en arrière-plan
+3. Il navigue vers l'URL et attend que la page se charge complètement
+4. Le navigateur capture le contenu de la page, y compris le texte, le formatage et les exemples de code
+5. Le contenu est converti en un format Markdown qui préserve la structure
+6. Ce contenu est ajouté à votre message dans un format structuré :
+
+    ```
+    <url_content url="https://example.com/docs">
+    # Example API Documentation
+
+    ## Authentication
+
+    To authenticate with the API, you need to...
+
+    const token = await api.authenticate({
+      username: 'user',
+      password: 'pass'
+    });
+
+    [Complete webpage content in Markdown format]
+    </url_content>
+    ```
+
+7. Le navigateur est ensuite fermé pour libérer des ressources
+8. Ce message amélioré avec le contenu de la page web intégrée est envoyé à l'IA
+
+Ce processus se produit automatiquement chaque fois que vous utilisez une mention d'URL, donnant à l'IA l'accès au contenu complet de la page web sans que vous ayez à copier-coller quoi que ce soit.
+```

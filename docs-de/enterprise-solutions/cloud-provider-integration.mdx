@@ -1,0 +1,41 @@
+---
+title: "Cloud-Provider-Integration"
+---
+
+Cline unterstützt die wichtigsten Cloud-Provider wie AWS Bedrock und Google Cloud Vertex. Ihr Team kann den Provider, den Sie bereits nutzen, weiterhin verwenden – ein Wechsel des Providers ist für die Nutzung von Cline nicht erforderlich.
+
+Für die Zwecke dieses Dokuments gehen wir davon aus, dass Ihre Organisation Cloud-basierte, State-of-the-art-Modelle einsetzt. Cloud-Inference-Provider bieten die Flexibilität, das beste Modell für die Anforderungen Ihres Teams auszuwählen.
+
+Für bestimmte Szenarien – wie den Umgang mit hochsensiblen Daten, Anwendungen, die eine konsistent niedrige Latency erfordern, oder strenge Data-Sovereignty-Anforderungen – kann der Einsatz lokaler Modelle erforderlich sein. Falls Ihr Team lokale Modelle mit Cline verwenden muss, lesen Sie [Running Models Locally](/running-models-locally/overview).
+
+---
+
+## AWS Bedrock Setup Guide
+
+#### [IAM Security Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) (Admin)
+
+#### [AWS Bedrock Setup für API Keys](/provider-config/aws-bedrock/api-key)
+
+#### [AWS Bedrock Setup für IAM Credentials](/provider-config/aws-bedrock/iam-credentials)
+
+#### [AWS Bedrock Setup für CLI Profiles](/provider-config/aws-bedrock/cli-profile)
+
+#### VPC Endpoint Setup
+
+Um die Daten Ihres Teams zu schützen, unterstützt Cline VPC (Virtual Private Cloud) Endpoints, die eine private Verbindung zwischen Ihren Daten und AWS Bedrock herstellen. AWS VPC verbessert die Sicherheit, indem die Notwendigkeit für öffentliche IPs, Network Gateways oder komplexe Firewall-Regeln entfällt. Im Grunde wird ein privater High-Speed-Highway geschaffen, der das öffentliche Internet vollständig umgeht. Da der Traffic innerhalb des privaten Netzwerks von AWS bleibt, profitieren Teams von geringerer Latency und einer berechenbareren Performance beim Zugriff auf Dienste wie AWS Bedrock oder benutzerdefinierte APIs. Für streng regulierte Branchen wie das Gesundheitswesen oder das Finanzwesen bietet VPC ein ausgewogenes Verhältnis zwischen Cloud-Zugänglichkeit und der Sicherheit privater Infrastrukturen.
+
+---
+
+1. Beziehen Sie sich auf den [AWS Guide zur Erstellung eines VPC Endpoints](https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html), der die Voraussetzungen und die erforderliche Syntax erläutert.
+2. Folgen Sie den Anweisungen in der AWS Console zum [Erstellen eines VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws). Das untenstehende Bild entspricht den Schritten 4 und 5 in diesem Guide.
+
+<figure>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-console.png" alt="VPC Console" />
+</figure>
+
+3. Notieren Sie sich die VPC Endpoint IP-Adresse, öffnen Sie das Settings-Menü von Cline und wählen Sie `AWS Bedrock` im API-Provider-Dropdown aus.
+4. Aktivieren Sie **Use custom VPC endpoint** und geben Sie die VPC Endpoint IP-Adresse ein.
+
+<figure>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/vpc-settings-menu.png" alt="VPC settings menu" />
+</figure>

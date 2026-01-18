@@ -17,7 +17,7 @@ Caret is built on the proven foundation of [Cline](https://github.com/cline/clin
 3. **🧠 Enhanced System Prompts** - Smarter and more efficient AI responses
 4. **🌍 4 Languages Support** - English, Korean, Japanese, Chinese + 4-language manuals
 5. **⌨️ Enhanced UX** - Prompt history, automatic model fetching, and more
-6. **🎯 25 Providers, 300 Models** - Cline v3.32.7 fully compatible + extended
+6. **🎯 31 Providers, 266 Models** - Cline v3.32.7 fully compatible + extended
 
 👉 **See all exclusive features**: [Complete Features Overview](https://docs.caret.team/en/caret-exclusive/overview)
 

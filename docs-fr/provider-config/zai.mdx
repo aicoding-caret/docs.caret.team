@@ -1,0 +1,162 @@
+---
+title: "Z AI (Zhipu AI)"
+description: "Découvrez comment configurer et utiliser les modèles GLM-4.5 de Z AI avec Caret. Profitez d'un raisonnement hybride avancé, de capacités d'agent et de l'excellence de l'open-source avec une optimisation régionale."
+---
+
+Z AI (anciennement Zhipu AI) propose la série révolutionnaire GLM-4.5, dotée de capacités de raisonnement hybride et d'une conception d'IA agentique. Publiés en juillet 2025, ces modèles excellent dans le raisonnement unifié, le codage et les applications d'agents intelligents, tout en restant accessibles en open-source sous licence MIT.
+
+**Site web :** [https://z.ai/model-api](https://z.ai/model-api) (International) | [https://open.bigmodel.cn/](https://open.bigmodel.cn/) (Chine)
+
+### Obtenir une clé API
+
+#### Utilisateurs internationaux
+1.  **S'inscrire / Se connecter :** Allez sur [https://z.ai/model-api](https://z.ai/model-api). Créez un compte ou connectez-vous.
+2.  **Accéder aux clés API :** Accédez au tableau de bord de votre compte et trouvez la section des clés API.
+3.  **Créer une clé :** Générez une nouvelle clé API pour votre application.
+4.  **Copier la clé :** Copiez immédiatement la clé API et conservez-la en lieu sûr.
+
+#### Utilisateurs en Chine continentale
+1.  **S'inscrire / Se connecter :** Allez sur [https://open.bigmodel.cn/](https://open.bigmodel.cn/). Créez un compte ou connectez-vous.
+2.  **Accéder aux clés API :** Accédez au tableau de bord de votre compte et trouvez la section des clés API.
+3.  **Créer une clé :** Générez une nouvelle clé API pour votre application.
+4.  **Copier la clé :** Copiez immédiatement la clé API et conservez-la en lieu sûr.
+
+### Modèles pris en charge
+
+Z AI propose différents catalogues de modèles en fonction de la région sélectionnée :
+
+#### Série GLM-4.5
+-   **GLM-4.5** - Modèle phare avec 355B de paramètres totaux, 32B de paramètres actifs
+-   **GLM-4.5-Air** - Modèle compact avec 106B de paramètres totaux, 12B de paramètres actifs
+
+#### Modèles de raisonnement hybride GLM-4.5
+-   **GLM-4.5 (Mode de réflexion / Thinking Mode)** - Raisonnement avancé avec analyse étape par étape
+-   **GLM-4.5-Air (Mode de réflexion / Thinking Mode)** - Raisonnement efficace pour le matériel grand public
+
+Tous les modèles incluent :
+-   **Fenêtre de contexte de 128 000 tokens** pour le traitement de documents volumineux
+-   **Architecture Mixture of Experts (MoE)** pour des performances optimales
+-   **Conception native pour les agents (Agent-native)** intégrant le raisonnement, le codage et l'utilisation d'outils
+-   **Disponibilité open-source** sous licence MIT
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez "Z AI" dans le menu déroulant "API Provider".
+3.  **Sélectionner la région :** Choisissez votre région :
+    -   "International" pour un accès mondial
+    -   "China" pour un accès en Chine continentale
+4.  **Saisir la clé API :** Collez votre clé API Z AI dans le champ "Z AI API Key".
+5.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+### Forfaits de codage GLM (GLM Coding Plans)
+
+Z AI propose des forfaits d'abonnement spécifiquement conçus pour les applications de codage. Ces forfaits offrent un accès rentable aux modèles GLM-4.5 via une structure basée sur les prompts plutôt que sur une facturation traditionnelle à l'utilisation de l'API.
+
+#### Options de forfait
+
+**GLM Coding Lite** - 3 $/mois
+- 120 prompts par cycle de 5 heures
+- Accès au modèle GLM-4.5
+- Fonctionne exclusivement via des outils de codage comme Caret
+
+**GLM Coding Pro** - 15 $/mois  
+- 600 prompts par cycle de 5 heures
+- Accès au modèle GLM-4.5
+- Fonctionne exclusivement via des outils de codage comme Caret
+
+Les deux forfaits proposent un tarif promotionnel pour le premier mois : Lite passe de 6 $ à 3 $, Pro de 30 $ à 15 $.
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/docs/assets/zAI-coding-plan.png" alt="Page d'abonnement zAI affichant les forfaits GLM Coding Lite et Pro avec leurs tarifs" />
+</Frame>
+
+#### Configuration des forfaits de codage GLM
+
+Pour utiliser les forfaits de codage GLM avec Caret :
+
+1. **S'abonner :** Allez sur [https://z.ai/subscribe](https://z.ai/subscribe) et choisissez votre forfait.
+
+2. **Créer une clé API :** Après vous être abonné, connectez-vous à votre tableau de bord zAI et créez une clé API pour votre forfait de codage.
+
+3. **Configurer dans Caret :** Ouvrez les paramètres de Caret, sélectionnez "Z AI" comme fournisseur et collez votre clé API dans le champ "Z AI API Key".
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/docs/assets/zAI-provider.png" alt="Paramètres de Caret avec le fournisseur zAI sélectionné et le champ de la clé API mis en évidence" />
+</Frame>
+
+La configuration connecte votre abonnement directement à Caret, vous donnant accès aux capacités d'appel d'outils de GLM-4.5 optimisées pour les flux de travail de codage.
+
+### Intelligence hybride de Z AI
+
+La série GLM-4.5 de Z AI introduit des capacités révolutionnaires qui la distinguent des modèles de langage conventionnels :
+
+#### Architecture de raisonnement hybride
+GLM-4.5 fonctionne selon deux modes distincts :
+- **Mode de réflexion (Thinking Mode) :** Conçu pour les tâches de raisonnement complexes et l'utilisation d'outils, engageant des processus analytiques plus profonds.
+- **Mode sans réflexion (Non-Thinking Mode) :** Fournit des réponses immédiates pour les requêtes simples, optimisant l'efficacité.
+
+Cette architecture à double mode représente une philosophie de conception "agent-native" qui adapte l'intensité du traitement en fonction de la complexité de la requête.
+
+#### Performances exceptionnelles
+GLM-4.5 obtient un score global de **63,2** sur 12 benchmarks couvrant les tâches agentiques, le raisonnement et les défis de codage, se classant à la **3ème place** parmi tous les modèles propriétaires et open-source. GLM-4.5-Air maintient des performances compétitives avec un score de **59,8** tout en offrant une efficacité supérieure.
+
+#### Excellence de l'architecture Mixture of Experts
+L'architecture MoE sophistiquée optimise les performances tout en maintenant l'efficacité computationnelle :
+- **GLM-4.5 :** 355B de paramètres totaux avec 32B de paramètres actifs.
+- **GLM-4.5-Air :** 106B de paramètres totaux avec 12B de paramètres actifs.
+
+#### Capacités de contexte étendu
+La fenêtre de contexte de 128 000 tokens permet une compréhension complète de documents et de bases de code volumineux. Des tests en conditions réelles confirment un traitement efficace de bases de code de près de 2 000 lignes tout en maintenant des performances remarquables.
+
+#### Leadership Open-Source
+Publié sous licence MIT, GLM-4.5 offre aux chercheurs et aux développeurs un accès à des capacités de pointe sans restrictions propriétaires, incluant les modèles de base, les versions de raisonnement hybride et les variantes optimisées en FP8.
+
+### Optimisation régionale
+
+#### Points de terminaison API (API Endpoints)
+- **International :** Utilise `https://api.z.ai/api/paas/v4`
+- **Chine :** Utilise `https://open.bigmodel.cn/api/paas/v4`
+
+#### Disponibilité des modèles
+Le paramètre de région détermine à la fois le point de terminaison de l'API et les modèles disponibles, avec un filtrage automatique pour assurer la compatibilité avec la région sélectionnée.
+
+### Fonctionnalités spéciales
+
+#### Capacités agentiques
+L'architecture unifiée de GLM-4.5 le rend particulièrement adapté aux applications complexes d'agents intelligents nécessitant des capacités intégrées de raisonnement, de codage et d'utilisation d'outils.
+
+#### Benchmarking complet
+L'évaluation des performances englobe :
+- **3 benchmarks de tâches agentiques**
+- **7 benchmarks de raisonnement** 
+- **2 benchmarks de codage**
+
+Cette évaluation complète démontre une polyvalence à travers diverses applications d'IA.
+
+#### Intégration pour les développeurs
+Les modèles prennent en charge l'intégration via plusieurs frameworks :
+- **transformers**
+- **vLLM**
+- **SGLang**
+
+Le tout est accompagné du code de modèle dédié, d'un analyseur d'outils (tool parser) et d'implémentations d'analyseurs de raisonnement (reasoning parser).
+
+### Comparaisons de performances
+
+#### vs Claude 4 Sonnet
+GLM-4.5 affiche des performances compétitives dans les tâches de codage agentique et de raisonnement, bien que Claude Sonnet 4 conserve des avantages dans les taux de réussite du codage et le développement autonome d'applications multi-fonctionnalités.
+
+#### vs GPT-4.5
+GLM-4.5 se classe de manière compétitive dans les benchmarks de raisonnement et d'agents, GPT-4.5 menant généralement en termes de précision brute sur les benchmarks professionnels comme MMLU et AIME.
+
+### Conseils et remarques
+
+-   **Sélection de la région :** Choisissez la région appropriée pour des performances optimales et la conformité aux réglementations locales.
+-   **Sélection du modèle :** GLM-4.5 pour des performances maximales, GLM-4.5-Air pour l'efficacité et la compatibilité avec le matériel grand public.
+-   **Avantage du contexte :** La grande fenêtre de contexte de 128K permet de traiter des bases de code et des documents substantiels.
+-   **Avantages de l'Open Source :** La licence MIT permet à la fois l'utilisation commerciale et le développement secondaire.
+-   **Applications agentiques :** Particulièrement robuste pour les applications nécessitant une intégration du raisonnement, du codage et de l'utilisation d'outils.
+-   **Raisonnement hybride :** Utilisez le Mode de réflexion (Thinking Mode) pour les problèmes complexes et le Mode sans réflexion (Non-Thinking Mode) pour les requêtes simples.
+-   **Compatibilité API :** L'API compatible OpenAI fournit des réponses en streaming et des rapports d'utilisation.
+-   **Support des frameworks :** Plusieurs options d'intégration disponibles pour différents scénarios de déploiement.

@@ -1,0 +1,55 @@
+---
+title: "OpenAI"
+description: "Apprenez à configurer et à utiliser les modèles OpenAI officiels avec Caret."
+---
+
+<Note>
+Il s'agit d'un document de référence pour Caret. Il suit la version Caret v3.38.1 et, si des politiques spécifiques à Caret (modèles pris en charge/bloqués, restrictions régionales/de compte, authentification/routage) existent, elles seront indiquées par `<Note>` dans le corps du texte.
+</Note>
+
+<Note>
+Renforcement du Provider Setup : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du fournisseur/UX de Caret peut être renforcée. Notez que les modèles autorisés/bloqués peuvent varier lors de l'application des politiques de compte/organisation ou du routeur Caret.
+</Note>
+
+Caret prend en charge l'accès aux modèles directement via l'API OpenAI officielle.
+
+**Site web :** [https://openai.com/](https://openai.com/)
+
+### Obtenir une clé API
+
+1.  **S'inscrire/Se connecter :** Visitez la [OpenAI Platform](https://platform.openai.com/). Vous devrez créer un compte ou vous connecter si vous en avez déjà un.
+2.  **Accéder aux clés API :** Une fois connecté, rendez-vous dans la [section des clés API](https://platform.openai.com/api-keys) de votre compte.
+3.  **Créer une clé :** Cliquez sur « Create new secret key ». Il est recommandé de donner à votre clé un nom descriptif (par exemple, « Caret API Key »).
+4.  **Copier la clé :** **Crucial :** Copiez immédiatement la clé API générée. Pour des raisons de sécurité, OpenAI ne vous la montrera plus. Conservez cette clé dans un endroit sûr et sécurisé.
+
+### Modèles pris en charge
+
+Caret est compatible avec une variété de modèles OpenAI, incluant mais sans s'y limiter :
+
+-   'o3'
+-   `o3-mini` (effort de raisonnement moyen)
+-   'o4-mini'
+-   `o3-mini-high` (effort de raisonnement élevé)
+-   `o3-mini-low` (effort de raisonnement faible)
+-   `o1`
+-   `o1-preview`
+-   `o1-mini`
+-   `gpt-4o`
+-   `gpt-4o-mini`
+-   'gpt-4.1'
+-   'gpt-4.1-mini'
+
+Pour la liste la plus récente des modèles disponibles et de leurs capacités, veuillez vous référer à la documentation officielle des [modèles OpenAI](https://platform.openai.com/docs/models).
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône d'engrenage des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez « OpenAI » dans le menu déroulant « API Provider ».
+3.  **Saisir la clé API :** Collez votre clé API OpenAI dans le champ « OpenAI API Key ».
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans la liste déroulante « Model ».
+5.  **(Optionnel) Base URL :** Si vous avez besoin d'utiliser un proxy ou une URL de base personnalisée pour l'API OpenAI, vous pouvez la saisir ici. La plupart des utilisateurs n'auront pas besoin de modifier la valeur par défaut.
+
+### Conseils et remarques
+
+-   **Tarification :** Assurez-vous de consulter la page [OpenAI Pricing](https://openai.com/pricing) pour des informations détaillées sur les coûts associés aux différents modèles.
+-   **Service Azure OpenAI :** Si vous souhaitez utiliser le service Azure OpenAI, veuillez noter qu'une documentation spécifique pour Azure OpenAI avec Caret peut être trouvée séparément, ou vous devrez peut-être le configurer comme un endpoint compatible OpenAI si une telle fonctionnalité est prise en charge par Caret pour les configurations personnalisées.

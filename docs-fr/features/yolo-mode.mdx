@@ -1,0 +1,86 @@
+```
+---
+title: "Mode YOLO"
+sidebarTitle: "Mode YOLO"
+description: "Le mode YOLO donne à Caret une autonomie complète, en approuvant automatiquement tout sans demander."
+---
+
+Le mode YOLO est exactement ce à quoi il ressemble - Caret approuve automatiquement tout. Cochez la case dans les paramètres de fonctionnalité et il exécutera les modifications de fichiers, les commandes de terminal, même les transitions du mode Plan au mode Act sans demander.
+
+Considérez-le comme [Approbation Automatique](/french/features/auto-approve) sous stéroïdes - au lieu d'autorisations granulaires, le mode YOLO donne à Caret une autonomie complète.
+
+<Note>
+**Attention : C'est dangereux.** Le mode YOLO désactive tous les contrôles de sécurité. Caret exécutera ce qu'il décide sans demander la permission.
+</Note>
+
+## Ce Qui Est Approuvé Automatiquement
+
+Lorsque le mode YOLO est activé, Caret approuve automatiquement :
+
+- **Toutes les opérations de fichiers** - lecture, écriture et modification de fichiers n'importe où sur votre système
+- **Toutes les commandes de terminal** - y compris les opérations potentiellement destructrices
+- **Actions du navigateur** - web scraping, soumissions de formulaires, navigation
+- **Outils du serveur MCP** - intégrations externes et appels d'API
+- **Transitions de mode** - commutation automatique du mode Plan au mode Act
+
+Essentiellement, chaque garde-fou de sécurité est supprimé. Caret fonctionne en toute autonomie.
+
+## Comment Activer Le Mode YOLO
+
+Accédez à Paramètres Caret → Fonctionnalités et cochez la case "Mode YOLO". C'est tout - pas de boîtes de dialogue de confirmation, pas d'avertissements supplémentaires. Une fois activé, Caret commencera immédiatement à approuver automatiquement toutes les actions.
+
+Pour le désactiver, décochez simplement la case. Toutes les actions en attente nécessiteront toujours votre approbation une fois le mode YOLO désactivé.
+
+## Quand Pourriez-Vous L'utiliser
+
+Le mode YOLO a été conçu principalement pour notre CLI scriptable à venir où une exécution entièrement autonome a du sens. Dans l'interface graphique, vous pouvez l'envisager pour :
+
+**Prototypage rapide** où vous voulez zéro friction et ne vous souciez pas des erreurs potentielles. Parfait pour les expériences jetables ou l'exploration rapide de nouvelles idées.
+
+**Tâches répétitives et fiables** où vous avez déjà validé l'approche de Caret et souhaitez éliminer la surcharge d'approbation. Pensez à la refactorisation de routine ou aux modèles bien établis.
+
+**À des fins de démonstration** où vous voulez montrer les capacités de Caret sans interruptions constantes.
+
+## Ce Qui Pourrait Mal Tourner
+
+Étant donné que le mode YOLO supprime tous les contrôles de sécurité, Caret pourrait :
+
+- Supprimer des fichiers importants sans avertissement
+- Exécuter des commandes qui modifient les paramètres du système
+- Faire des requêtes réseau vers des services externes
+- Écraser les fichiers de configuration
+- Installer ou désinstaller des progiciels
+- Valider et pousser les changements au contrôle de version
+
+Le niveau de risque dépend entièrement de ce que vous demandez à Caret de faire. Les tâches simples restent relativement sûres, mais les demandes complexes peuvent avoir des conséquences imprévisibles.
+
+## Bonnes Pratiques
+
+Si vous décidez d'utiliser le mode YOLO :
+
+**Commencez avec des environnements isolés.** Utilisez-le d'abord dans des projets jetables ou des environnements sandbox. Ne l'activez jamais sur les bases de code de production tant que vous n'avez pas compris les risques.
+
+**Soyez précis dans vos demandes.** Des instructions vagues combinées à des autorisations illimitées peuvent entraîner des résultats inattendus. Plus vos exigences sont claires, plus les actions de Caret sont prévisibles.
+
+**Surveillez la sortie.** Même si Caret ne demande pas la permission, il vous montre quand même ce qu'il fait. Regardez la sortie du terminal et les modifications des fichiers au fur et à mesure qu'elles se produisent.
+
+**Gardez le contrôle de version à portée de main.** Assurez-vous de pouvoir facilement annuler les modifications si quelque chose tourne mal. Git devient votre filet de sécurité lorsque le mode YOLO est votre flux de travail.
+
+## Inspiration : Ce Qui Devient Possible
+
+Avec le mode YOLO activé, vous pouvez :
+
+**Créer des applications entières** à partir d'une seule invite. Décrivez ce que vous voulez et laissez Caret s'occuper de tout - création de fichiers, installation de dépendances, configuration, même les scripts de déploiement.
+
+**Automatiser des flux de travail complexes** qui nécessitent normalement des dizaines de clics d'approbation. Les pipelines de traitement de données, la configuration du système de construction ou les opérations de refactorisation en plusieurs étapes deviennent transparents.
+
+**Cycles d'itération rapide** où vous pouvez rapidement tester des idées sans friction d'approbation. Parfait pour explorer différentes approches ou expérimenter de nouvelles technologies.
+
+**Démonstrations en direct** où vous pouvez montrer toutes les capacités de Caret sans vous arrêter pour approuver chaque action. Idéal pour les présentations ou les scénarios d'enseignement.
+
+La clé est de comprendre que le mode YOLO transforme Caret d'un assistant interactif en un agent autonome. Utilisez ce pouvoir à bon escient.
+
+---
+
+Des questions ou des commentaires ? Contactez-nous sur notre [Discord](https://https://discord.gg/WB6yaR89YN) ou [r/caret](https://reddit.com/r/caret).
+```

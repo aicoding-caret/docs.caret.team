@@ -1,0 +1,22 @@
+---
+title: "Benutzerdefinierte Anweisungen"
+---
+
+## Erstellen von benutzerdefinierten Anweisungen für Ihr Team
+
+**Durch die Erstellung standardisierter Projektanweisungen kann jedes Teammitglied innerhalb konsistenter Richtlinien arbeiten. Beginnen Sie mit der Dokumentation der technischen Grundlagen Ihres Projekts und identifizieren Sie anschließend die Informationen, die enthalten sein sollten. Der genaue Umfang variiert je nach Team, aber im Allgemeinen ist es am besten, so viele Details wie möglich anzugeben. Durch die Erstellung umfassender Anweisungen, die jeder befolgt, schaffen Sie ein gemeinsames Verständnis dafür, wie Code im gesamten Projekt geschrieben, getestet und bereitgestellt wird – was zu wartungsfreundlicherer und konsistenterer Software führt.**
+
+---
+
+Im Folgenden finden Sie einige Themen und Beispiele, die Sie für die benutzerdefinierten Anweisungen Ihres Teams berücksichtigen sollten.
+
+1.  **Test-Frameworks und spezifische Befehle**
+    -   "Alle Komponenten müssen Jest-Tests mit mindestens 85 % Abdeckung enthalten. Führen Sie Tests mit `npm run test:coverage` aus, bevor Sie einen Pull Request einreichen."
+2.  **Explizite Bibliothekspräferenzen**
+    -   "Verwenden Sie React Query für die Datenabfrage und das State Management. Vermeiden Sie Redux, es sei denn, dies ist für komplexe globale Zustände unbedingt erforderlich. Verwenden Sie für das Styling Tailwind CSS mit der benutzerdefinierten Theme-Konfiguration in `src/styles/theme.js`."
+3.  **Dokumentationsorte**
+    -   "Die gesamte API-Dokumentation befindet sich im internen Notion-Workspace unter 'Engineering > API Reference'. Beispiele für die Verwendung von Komponenten finden Sie in unserer Storybook-Instanz unter `https://storybook.internal.company.com`."
+4.  **Zu verwendende MCP-Server und deren Zweck**
+    -   "Verwenden Sie für Datenbankaufgaben den Postgres MCP-Server mit Anmeldeinformationen, die unter 'Development > Database' gespeichert sind. Verwenden Sie für Bereitstellungen den AWS MCP-Server, der Bereitstellungsrollen in IAM erfordert. Informationen zur Einrichtung finden Sie unter `docs/mcp-setup.md`."
+5.  **Projektspezifische Codierungsregeln**
+    -   "Alle React-Komponenten verwenden PascalCase und Hilfsfunktionen verwenden camelCase. Ordnen Sie Komponenten nach Funktion (nicht nach Typ) unter `src/components`. Verwenden Sie immer TypeScript-Interfaces für Prop-Definitionen."

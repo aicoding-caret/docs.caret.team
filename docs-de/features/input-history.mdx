@@ -1,0 +1,157 @@
+```
+---
+title: "Prompt-Verlauf"
+description: "Vorherige Eingaben schnell wiederverwenden, genau wie in einem Terminal"
+---
+
+# Prompt-Verlauf
+
+Der Prompt-Verlauf von Caret funktioniert genau wie ein Terminal-Verlauf (bash, zsh), sodass du frühere Nachrichten durchsuchen und wiederverwenden kannst. Du musst häufige Befehle oder Prompts nicht mehr neu eingeben, was die Workflow-Geschwindigkeit erheblich verbessert.
+
+## Funktionsweise
+
+Wenn das Eingabefeld fokussiert ist, verwende die Aufwärts-/Abwärtspfeiltasten, um durch zuvor eingegebene Nachrichten zu navigieren.
+
+### Grundlegende Verwendung
+
+**Aufwärtspfeil**: Gehe zur vorherigen Nachricht. Drücke weiter, um weiter zurückzugehen.
+
+**Abwärtspfeil**: Gehe zur nächsten Nachricht. Wenn du die letzte Nachricht überschreitest und noch einmal drückst, kehrt du zu deinem aktuellen, unvollendeten Text zurück.
+
+### Beispiel
+
+```
+1. Gib "Zeige mir alle TypeScript-Dateien im Projekt" ein und sende sie
+2. Gib "Lies package.json" ein und sende sie
+3. Gib "Füge Nutzungsanweisungen zu README.md hinzu" ein und sende sie
+
+Im Eingabefeld:
+Aufwärtspfeil einmal -> "Füge Nutzungsanweisungen zu README.md hinzu"
+Aufwärtspfeil erneut -> "Lies package.json"
+Aufwärtspfeil erneut -> "Zeige mir alle TypeScript-Dateien im Projekt"
+Abwärtspfeil einmal -> zurück zu "Lies package.json"
+```
+
+## Hauptmerkmale
+
+### Persistente Speicherung
+
+Deine Eingaben werden automatisch gespeichert und bleiben auch nach Neustarts erhalten. Selbst wenn du ein Projekt schließt und wieder öffnest, kannst du vergangene Prompts sofort abrufen.
+
+Der Verlauf wird pro Workspace gespeichert, sodass Prompts, die in Projekt A verwendet werden, von Projekt B getrennt aufbewahrt werden.
+
+### Automatische Deduplizierung
+
+Wenn du genau dieselbe Nachricht nacheinander eingibst, wird sie nur einmal gespeichert. Wenn du beispielsweise dreimal hintereinander "run tests" eingibst, wird sie dennoch nur einmal aufgezeichnet, wodurch störende Duplikate vermieden werden.
+
+```
+Nicht als Duplikate gespeichert:
+"npm run test" eingegeben
+"npm run test" erneut eingegeben -> nicht zum Verlauf hinzugefügt
+
+Als separate Einträge gespeichert:
+"npm run test" eingegeben
+"Show file list" eingegeben
+"npm run test" erneut eingegeben -> hinzugefügt (weil ein anderer Befehl dazwischen lag)
+```
+
+### Nur deine Eingaben werden gespeichert
+
+Der Verlauf speichert **nur das, was du eingegeben hast**. KI-Antworten sind nicht enthalten, sodass die Pfeilnavigation sauber und auf deine eigenen Prompts konzentriert bleibt.
+
+### Bis zu 1000 Einträge
+
+Caret speichert bis zu 1000 Verlaufseinträge. Wenn du das Limit überschreitest, werden die ältesten Elemente automatisch entfernt, um die Speichernutzung effizient zu halten.
+
+Für die meisten Workflows sind 1000 Einträge für monatelange Nutzung ausreichend.
+
+## Konsistent mit dem Terminal
+
+Der Prompt-Verlauf von Caret verhält sich genau wie der Shell-Verlauf in bash oder zsh. Die gleiche Aufwärts-/Abwärts-Navigation und das Abrufen, die du bereits im Terminal kennst, sind auch in Caret verfügbar.
+
+Diese Konsistenz bedeutet, dass du sie sofort verwenden kannst, ohne eine neue Oberfläche lernen zu müssen.
+
+## Praktische Tipps
+
+### Automatisierung wiederholender Aufgaben
+
+Der Prompt-Verlauf glänzt, wenn du ähnliche Aufgaben wiederholen musst.
+
+```
+Szenario: Wende dasselbe Muster auf mehrere Dateien an
+
+1. Gib "Füge Typannotationen zu allen Funktionen in UserController.ts hinzu" ein
+2. Nachdem es abgeschlossen ist
+3. Drücke die Aufwärtspfeiltaste, um die vorherige Nachricht abzurufen
+4. Ersetze "UserController" durch "ProductController"
+5. Senden
+
+Wiederhole dies schnell für alle Dateien
+```
+
+### Wiederverwenden erfolgreicher Prompts
+
+Wenn ein Prompt zuvor gut funktioniert hat, kannst du ihn später schnell finden und wiederverwenden.
+
+```
+Effektiver Prompt, der vor zwei Wochen verwendet wurde:
+"Überprüfe diesen Code. Analysiere Leistung, Lesbarkeit und Sicherheit
+und liste Verbesserungen mit Prioritäten auf."
+
+Wenn du dieses Muster in einem anderen Projekt wiederverwenden möchtest:
+Drücke die Aufwärtspfeiltaste, um zurückzublättern oder den Prompt aus dem gleichen Zeitraum zu finden
+```
+
+### Projekte schneller fortsetzen
+
+Wenn du ein Projekt nach einer Weile wieder öffnest, hilft dir der Verlauf, dich daran zu erinnern, woran du gearbeitet hast.
+
+```
+Öffne ein Projekt nach 2 Wochen wieder:
+Drücke die Aufwärtspfeiltaste, um den letzten Verlauf zu überprüfen
+-> "Füge JWT Refresh Tokens zum Auth-System hinzu"
+-> "Implementiere Redis Session Storage"
+-> Oh, ich habe an Auth gearbeitet!
+```
+
+## Referenz zu Tastenkombinationen
+
+| Taste | Aktion |
+|---|---|
+| Aufwärtspfeil | Gehe zur vorherigen Nachricht |
+| Abwärtspfeil | Gehe zur nächsten Nachricht |
+| Enter | Sende die aktuell angezeigte Nachricht |
+| Esc | Bricht die Verlaufsnavigation ab und kehrt zur aktuellen Eingabe zurück |
+
+## Unterschied zu Cline
+
+Cline hat keinen Prompt-Verlauf. Um eine vorherige Nachricht wiederzuverwenden, musst du sie jedes Mal von Grund auf neu eingeben.
+
+Das Verlaufssystem von Caret beseitigt diese Reibung und reduziert die sich wiederholende Eingabe erheblich.
+
+## FAQ
+
+**F: Wo wird der Verlauf gespeichert?**
+
+A: Er wird automatisch im Workspace-Speicher von VS Code gespeichert. Du musst keine Dateien manuell verwalten - VS Code erledigt das.
+
+**F: Kann ich den Verlauf löschen oder zurücksetzen?**
+
+A: Er wird derzeit automatisch verwaltet. Wenn das Limit von 1000 Elementen überschritten wird, werden ältere Einträge entfernt, und wenn du den Workspace löschst, wird auch sein Verlauf gelöscht.
+
+**F: Kann ich den Verlauf über Projekte hinweg teilen?**
+
+A: Nein. Der Verlauf wird pro Workspace verwaltet, sodass jedes Projekt seinen eigenen unabhängigen Verlauf behält. Dies trägt dazu bei, den projektspezifischen Kontext zu erhalten.
+
+**F: Ich habe sensible Informationen (API-Schlüssel usw.) eingegeben. Werden diese gespeichert?**
+
+A: Ja – alles, was du eingibst, wird gespeichert. Vermeide es, sensible Daten direkt in Prompts einzugeben. Verwende stattdessen Umgebungsvariablen oder Konfigurationsdateien.
+
+**F: Werden mehrzeilige Eingaben gespeichert?**
+
+A: Ja. Mehrzeilige Nachrichten werden genau wie eingegeben gespeichert, einschließlich Zeilenumbrüchen, und werden wiederhergestellt, wenn du sie abrufst.
+
+---
+
+**Der Prompt-Verlauf ist eine exklusive Funktion von Caret.** Du kannst die gleiche Aufwärts-/Abwärts-Navigation verwenden, die du von Terminals gewohnt bist, direkt im KI-Chat.
+```

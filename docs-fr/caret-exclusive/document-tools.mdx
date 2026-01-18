@@ -1,0 +1,93 @@
+---
+sidebar_position: 10
+title: ^ Outils de lecture de documents
+description: Une fonctionnalité exclusive à Caret qui permet à l'IA de lire directement divers documents comme PDF, Word, Excel et Hangul avec seulement un chemin de fichier
+---
+
+# ^ Outils de lecture de documents
+
+L'IA de Caret peut **lire directement divers fichiers de documents simplement en fournissant le chemin**. Les utilisateurs n'ont pas besoin de joindre les fichiers manuellement.
+
+## Différence avec Cline
+
+| Fonctionnalité | Cline | Caret |
+|------|-------|-------|
+| Lecture PDF | Seulement quand l'utilisateur les joint | **L'IA lit directement par le chemin** |
+| Lecture DOCX/XLSX | Seulement quand l'utilisateur les joint | **L'IA lit directement par le chemin** |
+| Hangul (HWPX) | Non supporté | **Supporté** |
+| Hangul 5.0 (HWP) | Non supporté | **Supporté** |
+| PowerPoint (PPTX) | Non supporté | **Supporté** |
+| Jupyter Notebook | Non supporté | **Supporté** |
+
+## Formats supportés
+
+| Format | Extension | Description |
+|------|--------|------|
+| PDF | `.pdf` | Extraction de texte |
+| Word | `.docx` | Documents Word modernes |
+| Excel | `.xlsx` | Feuilles de calcul Excel modernes |
+| PowerPoint | `.pptx` | Extraction de texte de diapositives |
+| Hangul (Modern) | `.hwpx` | Hangul 2014 et versions ultérieures |
+| Hangul (Legacy) | `.hwp` | Hangul 5.0 ~ 2010 |
+| Jupyter | `.ipynb` | Contenu des cellules du notebook |
+
+### Formats non supportés
+
+Les formats binaires hérités ne sont pas supportés :
+
+| Format | Extension | Alternative |
+|------|--------|------|
+| Word 97-2003 | `.doc` | Convertir en `.docx` |
+| Excel 97-2003 | `.xls` | Convertir en `.xlsx` |
+| PowerPoint 97-2003 | `.ppt` | Convertir en `.pptx` |
+
+Outils de conversion : LibreOffice, Google Docs, Microsoft Office
+
+## Comment utiliser
+
+### Exemple 1 : Analyser des documents de spécification
+
+```
+User: Analyze docs/spec.pdf
+AI: [Uses Document Reading Tool] → Extracts PDF content → Provides analysis results
+```
+
+### Exemple 2 : Lire des documents Hangul
+
+```
+User: Summarize the contents of contract.hwp
+AI: [Uses Document Reading Tool] → Extracts HWP text → Provides summary
+```
+
+### Exemple 3 : Analyser des données Excel
+
+```
+User: Analyze the data in sales-report.xlsx
+AI: [Uses Document Reading Tool] → Extracts spreadsheet data → Provides analysis results
+```
+
+## Sécurité
+
+### Protection des chemins
+- La normalisation des chemins empêche les attaques de type directory traversal
+- Les fichiers à l'intérieur du workspace sont approuvés automatiquement
+- Les fichiers à l'extérieur du workspace nécessitent l'approbation de l'utilisateur
+
+### Limite de taille de fichier
+- Maximum 50 Mo
+- Message d'erreur clair en cas de dépassement
+
+## Configuration
+
+Les outils de lecture de documents sont activés par défaut. Puisqu'il s'agit d'une opération en lecture seule, il n'y a pas de paramètre d'activation distinct.
+
+## Limitations connues
+
+1. **Images/Graphiques non inclus** : Les images et graphiques dans les documents ne sont pas convertis en texte
+2. **Mises en page complexes** : Les tableaux et les mises en page à plusieurs colonnes sont convertis en texte simple
+3. **Formatage original perdu** : Les informations de police, de couleur et autres formatages ne sont pas extraites
+
+## Documentation associée
+
+- [Image Tools](/french/caret-exclusive/image-tools) - Fonctionnalités de génération/analyse d'images par l'IA
+- [AI Organization Knowledge & Rules Standardization](/french/caret-exclusive/knowledge-parity-system) - Gestion des règles de projet

@@ -1,0 +1,142 @@
+```
+---
+title: "Caret Tools Referenzhandbuch"
+description: "Eine Referenz für die in Caret verfügbaren Tools und Funktionen."
+---
+
+## Was Caret leisten kann
+
+Caret ist Ihr KI-Assistent, der Folgendes kann:
+
+-   Dateien in Ihrem Projekt bearbeiten und erstellen
+-   Terminalbefehle ausführen
+-   Ihren Code durchsuchen und analysieren
+-   Beim Debuggen helfen und Probleme beheben
+-   Wiederkehrende Aufgaben automatisieren
+-   Sich in externe Tools integrieren
+
+## Erste Schritte
+
+1. **Eine Aufgabe starten**
+
+    - Geben Sie Ihre Anfrage im Chat ein
+    - Beispiel: "Erstelle eine neue React-Komponente namens Header"
+
+2. **Kontext bereitstellen**
+
+    - Verwenden Sie @-Erwähnungen, um Dateien, Ordner oder URLs hinzuzufügen
+    - Beispiel: "@file:src/components/App.tsx"
+
+3. **Änderungen überprüfen**
+    - Caret zeigt Diffs an, bevor Änderungen vorgenommen werden
+    - Sie können Änderungen bearbeiten oder ablehnen
+
+## Hauptmerkmale
+
+1. **Dateibearbeitung**
+
+    - Neue Dateien erstellen
+    - Vorhandenen Code ändern
+    - Suchen und Ersetzen in Dateien
+
+2. **Terminalbefehle**
+
+    - `npm`-Befehle ausführen
+    - Entwicklungsserver starten
+    - Abhängigkeiten installieren
+
+3. **Codeanalyse**
+
+    - Fehler finden und beheben
+    - Code refaktorisieren
+    - Dokumentation hinzufügen
+
+4. **Browser-Integration**
+    - Webseiten testen
+    - Screenshots erstellen
+    - Konsolenprotokolle inspizieren
+
+## Verfügbare Tools
+
+Für die aktuellsten Implementierungsdetails können Sie den vollständigen Quellcode im [Caret repository](https://github.com/caret/caret/blob/main/src/core/prompts/system-prompt/tools) einsehen.
+
+Caret hat Zugriff auf die folgenden Tools für verschiedene Aufgaben:
+
+1. **Dateioperationen**
+
+    - `write_to_file`: Dateien erstellen oder überschreiben
+    - `read_file`: Dateiinhalte lesen
+    - `replace_in_file`: Gezielte Änderungen an Dateien vornehmen
+    - `search_files`: Dateien mit Regex durchsuchen
+    - `list_files`: Verzeichnisinhalte auflisten
+
+2. **Terminaloperationen**
+
+    - `execute_command`: CLI-Befehle ausführen
+    - `list_code_definition_names`: Code-Definitionen auflisten
+
+3. **MCP Tools**
+
+    - `use_mcp_tool`: Tools von MCP-Servern verwenden
+    - `access_mcp_resource`: Auf MCP-Serverressourcen zugreifen
+    - Benutzer können benutzerdefinierte MCP-Tools erstellen, auf die Caret dann zugreifen kann
+    - Beispiel: Erstellen Sie ein Wetter-API-Tool, mit dem Caret Vorhersagen abrufen kann
+
+4. **Interaktions-Tools**
+    - `ask_followup_question`: Benutzer um Klärung bitten
+    - `attempt_completion`: Endergebnisse präsentieren
+
+Jedes Tool hat spezifische Parameter und Nutzungsmuster. Hier sind einige Beispiele:
+
+-   Eine neue Datei erstellen (write_to_file):
+
+    ```xml
+    <write_to_file>
+    <path>src/components/Header.tsx</path>
+    <content>
+    // Header component code
+    </content>
+    </write_to_file>
+    ```
+
+-   Nach einem Muster suchen (search_files):
+
+    ```xml
+    <search_files>
+    <path>src</path>
+    <regex>function\s+\w+\(</regex>
+    <file_pattern>*.ts</file_pattern>
+    </search_files>
+    ```
+
+-   Einen Befehl ausführen (execute_command):
+    ```xml
+    <execute_command>
+    <command>npm install axios</command>
+    <requires_approval>false</requires_approval>
+    </execute_command>
+    ```
+
+## Häufige Aufgaben
+
+1. **Eine neue Komponente erstellen**
+
+    - "Erstelle eine neue React-Komponente namens Footer"
+
+2. **Einen Fehler beheben**
+
+    - "Behebe den Fehler in src/utils/format.ts"
+
+3. **Code refaktorisieren**
+
+    - "Refaktorisiere die Button-Komponente zur Verwendung von TypeScript"
+
+4. **Befehle ausführen**
+    - "Führe npm install aus, um axios hinzuzufügen"
+
+## Hilfe bekommen
+
+-   [Treten Sie der Discord-Community bei](https://https://discord.gg/WB6yaR89YN)
+-   Überprüfen Sie die Dokumentation
+-   Geben Sie Feedback, um Caret zu verbessern
+```

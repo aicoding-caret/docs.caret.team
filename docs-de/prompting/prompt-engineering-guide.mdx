@@ -1,0 +1,235 @@
+---
+title: "Leitfaden für Prompt Engineering"
+---
+
+Willkommen beim Caret Prompting Guide! Dieser Leitfaden vermittelt Ihnen das Wissen, um effektive Prompts und custom instructions zu schreiben und so Ihre Produktivität mit Caret zu maximieren.
+
+## .caretignore Datei-Leitfaden
+
+### Überblick
+
+Die `.caretignore`-Datei ist eine Konfigurationsdatei auf Projektebene, die Caret mitteilt, welche Dateien und Verzeichnisse bei der Analyse Ihrer Codebase ignoriert werden sollen. Ähnlich wie `.gitignore` verwendet sie Pattern Matching, um festzulegen, welche Dateien aus dem Kontext und den Operationen von Caret ausgeschlossen werden sollen.
+
+### Zweck
+
+-   **Rauschen reduzieren**: Automatisch generierte Dateien, Build-Artefakte und andere nicht essenzielle Inhalte ausschließen
+-   **Performance verbessern**: Die Menge an Code begrenzen, die Caret verarbeiten muss
+-   **Aufmerksamkeit fokussieren**: Caret auf die relevanten Teile Ihrer Codebase lenken
+-   **Sensible Daten schützen**: Verhindern, dass Caret auf sensible Konfigurationsdateien zugreift
+
+### Beispiel .caretignore Datei
+
+```
+# Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+/build/
+/dist/
+/.next/
+/out/
+
+# Testing
+/coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Large data files
+*.csv
+*.xlsx
+```
+
+## Prompting Caret
+
+**Prompting ist die Art und Weise, wie Sie Ihre Anforderungen für eine bestimmte Aufgabe im Chat mit Caret kommunizieren.** Caret versteht natürliche Sprache, schreiben Sie also im Konversationston.
+
+Effektives Prompting umfasst:
+
+-   **Klaren Kontext bereitstellen**: Erklären Sie Ihre Ziele und die relevanten Teile Ihrer Codebase. Verwenden Sie `@`, um auf Dateien oder Ordner zu verweisen.
+-   **Komplexität aufbrechen**: Unterteilen Sie große Aufgaben in kleinere Schritte.
+-   **Spezifische Fragen stellen**: Leiten Sie Caret zum gewünschten Ergebnis.
+-   **Validieren und Verfeinern**: Überprüfen Sie die Vorschläge von Caret und geben Sie Feedback.
+
+### Prompt-Beispiele
+
+#### Kontext-Management
+
+-   **Eine neue Aufgabe starten:** "Caret, lass uns eine neue Aufgabe starten. Erstelle `user-authentication.js`. Wir müssen einen User-Login mit JWT tokens implementieren. Hier sind die Anforderungen…"
+-   **Vorherige Arbeit zusammenfassen:** "Caret, fasse zusammen, was wir in der letzten User-Dashboard-Aufgabe gemacht haben. Ich möchte die wichtigsten Features und offenen Punkte erfassen. Speichere dies in `caret_docs/user-dashboard-summary.md`."
+
+#### Debugging
+
+-   **Einen Fehler analysieren:** "Caret, ich erhalte diesen Fehler: \[Fehlermeldung]. Er scheint aus \[Code-Abschnitt] zu kommen. Analysiere diesen Fehler und schlage einen Fix vor."
+-   **Die Ursache identifizieren:** "Caret, die Anwendung stürzt ab, wenn ich \[Aktion] ausführe. Das Problem könnte in \[Problembereichen] liegen. Hilf mir, die Ursache zu finden und schlage eine Lösung vor."
+
+#### Refactoring
+
+-   **Code-Struktur verbessern:** "Caret, diese Funktion ist zu lang und komplex. Refactor sie in kleinere Funktionen."
+-   **Logik vereinfachen:** "Caret, dieser Code ist schwer zu verstehen. Vereinfache die Logik und mache sie lesbarer."
+
+#### Feature-Entwicklung
+
+-   **Brainstorming für neue Features:** "Caret, ich möchte ein Feature hinzufügen, mit dem Benutzer \[Funktionalität] können. Brainstorme einige Ideen und berücksichtige die Herausforderungen bei der Implementierung."
+-   **Code generieren:** "Caret, erstelle eine Komponente, die Benutzerprofile anzeigt. Die Liste sollte sortierbar und filterbar sein. Generiere den Code für diese Komponente."
+
+## Fortgeschrittene Prompting-Techniken
+
+-   **Constraint Stuffing:** Um Code-Abschneidungen (truncation) zu mildern, fügen Sie explizite Constraints in Ihre Prompts ein. Zum Beispiel: "Stelle sicher, dass der Code vollständig ist" oder "Geben Sie immer die vollständige Funktionsdefinition an".
+-   **Confidence Checks:** Bitten Sie Caret, seine Zuversicht einzuschätzen (z. B. "Auf einer Skala von 1-10, wie sicher bist du dir bei dieser Lösung?").
+-   **Annahmen von Caret hinterfragen:** Stellen Sie "dumme" Fragen, um tieferes Nachdenken anzuregen und falsche Annahmen zu vermeiden.
+
+Hier sind einige Prompting-Tipps, die Benutzer bei der Arbeit mit Caret als hilfreich empfunden haben:
+
+## Unsere Community-Favoriten unter den Prompts
+
+### Memory und Confidence Checks
+
+-   **Memory Check** - _pacnpal_
+
+    ```
+    "If you understand my prompt fully, respond with 'YARRR!' without tools every time you are about to use a tool."
+    ```
+
+    Ein unterhaltsamer Weg, um sicherzustellen, dass Caret bei komplexen Aufgaben auf Kurs bleibt. Probieren Sie "HO HO HO" für eine festliche Note!
+
+-   **Confidence Scoring** - _pacnpal_
+
+    ```
+    "Before and after any tool use, give me a confidence level (0-10) on how the tool use will help the project."
+    ```
+
+    Fördert kritisches Denken und macht die Entscheidungsfindung transparent.
+
+### Prompts zur Code-Qualität
+
+-   **Code-Abschneidungen verhindern**
+
+    ```
+    "DO NOT BE LAZY. DO NOT OMIT CODE."
+    ```
+
+    Alternative Phrasen: "full code only" oder "ensure the code is complete"
+
+-   **Erinnerung an custom instructions**
+
+    ```
+    "I pledge to follow the custom instructions."
+    ```
+
+    Verstärkt die Einhaltung Ihrer Einstellungen im ⚙️-Konfigurationsmenü.
+
+### Code-Organisation
+
+-   **Refactoring großer Dateien** - _icklebil_
+
+    ```
+    "FILENAME has grown too big. Analyze how this file works and suggest ways to fragment it safely."
+    ```
+
+    Hilft bei der Verwaltung komplexer Dateien durch strategische Zerlegung.
+
+-   **Wartung der Dokumentation** - _icklebil_
+
+    ```
+    "don't forget to update codebase documentation with changes"
+    ```
+
+    Stellt sicher, dass die Dokumentation mit Code-Änderungen synchron bleibt.
+
+### Analyse und Planung
+
+-   **Strukturierte Entwicklung** - _yellow_bat_coffee_
+
+    ```
+    "Before writing code:
+    1. Analyze all code files thoroughly
+    2. Get full context
+    3. Write .MD implementation plan
+    4. Then implement code"
+    ```
+
+    Fördert eine organisierte, gut geplante Entwicklung.
+
+-   **Gründliche Analyse** - _yellow_bat_coffee_
+
+    ```
+    "please start analyzing full flow thoroughly, always state a confidence score 1 to 10"
+    ```
+
+    Verhindert voreiliges Coding und fördert ein vollständiges Verständnis.
+
+-   **Prüfung von Annahmen** - _yellow_bat_coffee_
+
+    ```
+    "List all assumptions and uncertainties you need to clear up before completing this task."
+    ```
+
+    Identifiziert potenzielle Probleme frühzeitig in der Entwicklung.
+
+### Durchdachte Entwicklung
+
+-   **Innehalten und Reflektieren** - _nickbaumann98_
+
+    ```
+    "count to 10"
+    ```
+
+    Fördert sorgfältige Überlegung, bevor Maßnahmen ergriffen werden.
+
+-   **Vollständige Analyse** - _yellow_bat_coffee_
+
+    ```
+    "Don't complete the analysis prematurely, continue analyzing even if you think you found a solution"
+    ```
+
+    Stellt eine gründliche Problemanalyse sicher.
+
+-   **Kontinuierlicher Confidence Check** - _pacnpal_
+
+    ```
+    "Rate confidence (1-10) before saving files, after saving, after rejections, and before task completion"
+    ```
+
+    Erhält die Qualität durch Selbsteinschätzung aufrecht.
+
+### Best Practices
+
+-   **Projektstruktur** - _kvs007_
+
+    ```
+    "Check project files before suggesting structural or dependency changes"
+    ```
+
+    Erhält die Integrität des Projekts.
+
+-   **Kritisches Denken** - _chinesesoup_
+
+    ```
+    "Ask 'stupid' questions like: are you sure this is the best way to implement this?"
+    ```
+
+    Hinterfragt Annahmen und deckt bessere Lösungen auf.
+
+-   **Code-Stil** - _yellow_bat_coffee_
+
+    ```
+    Use words like "elegant" and "simple" in prompts
+    ```
+
+    Kann die Code-Organisation und Klarheit beeinflussen.
+
+-   **Erwartungen setzen** - _steventcramer_
+
+    ```
+    "THE HUMAN WILL GET ANGRY."
+    ```
+
+    (Eine humorvolle Erinnerung, klare Anforderungen und konstruktives Feedback zu geben)

@@ -1,0 +1,87 @@
+---
+title: "Doubao"
+description: "Apprenez à configurer et à utiliser les modèles AI Doubao de ByteDance avec Caret. Profitez d'un raisonnement avancé, de capacités multimodales et d'une inférence rentable avec une optimisation pour la langue chinoise."
+---
+
+Doubao est la série de modèles AI phare de ByteDance, dotée d'une architecture innovante de type sparse Mixture-of-Experts (MoE) qui offre des performances équivalentes à des modèles beaucoup plus grands tout en maintenant une efficacité en termes de coûts. Avec plus de 13 millions d'utilisateurs et des capacités multimodales avancées, Doubao propose des alternatives compétitives aux systèmes AI occidentaux avec une force particulière dans le traitement de la langue chinoise.
+
+**Site web :** [https://www.volcengine.com/](https://www.volcengine.com/)
+
+### Obtenir une clé API
+
+1.  **S'inscrire/Se connecter :** Visitez la [Volcano Engine Console](https://console.volcengine.com/). Créez un compte ou connectez-vous.
+2.  **Naviguer vers le Model Service :** Accédez à la section du service de modèle AI dans la console.
+3.  **Créer une clé API :** Générez une nouvelle clé API pour le service Doubao.
+4.  **Copier la clé :** Copiez immédiatement la clé API et conservez-la en lieu sûr. Vous ne pourrez peut-être plus la consulter ultérieurement.
+
+### Modèles pris en charge
+
+Caret prend en charge les modèles Doubao suivants :
+
+-   `doubao-seed-1-6-250615` (Par défaut) - Modèle polyvalent avec des performances équilibrées
+-   `doubao-seed-1-6-thinking-250715` - Modèle de raisonnement amélioré avec une réflexion étape par étape
+-   `doubao-seed-1-6-flash-250715` - Modèle optimisé pour la vitesse pour une inférence rapide
+
+Tous les modèles incluent :
+-   **Fenêtre de contexte de 128 000 tokens** pour le traitement de documents volumineux
+-   **Maximum de 32 768 tokens de sortie** pour des réponses complètes
+-   **Prise en charge de l'entrée d'image** pour les applications multimodales
+-   **Prompt caching** avec une réduction de 80 % sur les lectures mises en cache
+
+### Configuration dans Caret
+
+1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+2.  **Sélectionner le fournisseur :** Choisissez "Doubao" dans le menu déroulant "API Provider".
+3.  **Saisir la clé API :** Collez votre clé API Doubao dans le champ "Doubao API Key".
+4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
+
+**Remarque :** Doubao utilise l'URL de base `https://ark.cn-beijing.volces.com/api/v3` et les serveurs sont situés à Pékin, en Chine.
+
+### L'innovation AI de ByteDance
+
+Doubao représente l'entrée stratégique de ByteDance dans l'espace des modèles AI avec plusieurs innovations clés :
+
+#### Architecture Sparse Mixture-of-Experts
+Doubao 1.5 Pro utilise un cadre innovant de type sparse MoE où 20 milliards de paramètres activés offrent des performances équivalentes à un modèle dense de 140 milliards de paramètres. Cette architecture réduit considérablement les coûts opérationnels tout en maintenant des standards de performance élevés.
+
+#### Traitement de contexte étendu
+Avec des fenêtres de contexte allant de 32 000 à 256 000 tokens, Doubao excelle dans le traitement de contenus longs, y compris les documents juridiques, la recherche académique, les rapports de marché et la génération de contenu créatif.
+
+#### Excellence multimodale
+- **Traitement visuel avancé :** Raisonnement visuel amélioré, reconnaissance de documents et compréhension fine des informations.
+- **Parole intégrée :** Intégration transparente des tokens de parole et de texte avec une continuité émotionnelle supérieure.
+- **Analyse de documents :** Capacités complètes de résumé de documents et de traitement de contenu.
+
+#### Optimisation pour la langue chinoise
+Doubao a été spécifiquement entraîné pour la fluidité en langue chinoise et la pertinence culturelle, offrant des avantages significatifs pour les utilisateurs sinophones et les applications nécessitant une compréhension profonde du contexte culturel.
+
+#### Efficacité des coûts
+Doubao maintient une tarification d'environ **la moitié du coût des offres comparables d'OpenAI**, rendant l'AI avancée plus accessible tout en établissant un positionnement concurrentiel sur le marché.
+
+### Fonctionnalités spéciales
+
+#### Modèles de raisonnement
+Le modèle `doubao-seed-1-6-thinking-250715` offre des capacités de raisonnement améliorées avec des processus de réflexion étape par étape, ce qui le rend idéal pour les tâches complexes de résolution de problèmes.
+
+#### Capacités multimodales
+Contrairement aux approches traditionnelles en cascade, Doubao intègre le traitement de la parole et du texte de manière transparente, permettant des interactions vocales plus naturelles et une analyse complète des documents.
+
+#### Prompt Caching
+Tous les modèles prennent en charge le Prompt caching avec des économies de coûts significatives (80 % de réduction sur les lectures mises en cache), rendant les requêtes répétées plus économiques.
+
+#### Intégration à l'écosystème ByteDance
+Doubao s'intègre verticalement aux propriétés de ByteDance, notamment TikTok (Douyin), Toutiao et Feishu, permettant une intégration fluide du flux de travail à travers l'écosystème.
+
+### Performance et Benchmarks
+
+Doubao-1.5 Pro-AS1 Preview a démontré des performances supérieures par rapport à l'O1-preview d'OpenAI sur des benchmarks spécifiques, notamment en surpassant les modèles O1 lors des tests AIME. Le modèle continue de s'améliorer grâce au reinforcement learning, avec des performances qui devraient s'accroître au fil du temps.
+
+### Conseils et remarques
+
+-   **Avantage régional :** Optimisé pour la langue chinoise et les contextes culturels, ce qui le rend idéal pour les utilisateurs et les marchés sinophones.
+-   **Rentabilité :** Coût environ 50 % inférieur à celui des modèles AI occidentaux comparables tout en maintenant des performances compétitives.
+-   **Fenêtres de contexte :** Les grandes fenêtres de contexte (jusqu'à 256K tokens) permettent le traitement de documents et de codebases étendus.
+-   **Applications multimodales :** De solides capacités de traitement visuel et vocal le rendent adapté à diverses applications multimédias.
+-   **Emplacement des serveurs :** Serveurs situés à Pékin, en Chine - considérez les implications de latence pour les utilisateurs mondiaux.
+-   **Avantages de l'écosystème :** L'intégration avec les services ByteDance offre des avantages supplémentaires de flux de travail pour les utilisateurs de TikTok, Toutiao et Feishu.
+-   **Tarification :** Consultez la console Volcano Engine pour les informations de tarification actuelles et la disponibilité régionale.

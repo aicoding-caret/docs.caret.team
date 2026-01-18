@@ -1,0 +1,302 @@
+---
+title: "Focus Chain"
+---
+
+Focus Chain ist eine Funktionserweiterung für das Task Management in Caret, die eine automatische Todo-Listen-Verwaltung mit Echtzeit-Fortschrittskontrolle während Ihrer Aufgaben bietet. 
+
+<figure>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/2dos.gif"
+		alt="Focus Chain Todo-Listen-Verwaltung mit Echtzeit-Fortschrittskontrolle"
+	/>
+</figure>
+
+Dies ermöglicht es Caret, an langfristigen Aufgaben zu arbeiten, den an LLMs gesendeten Kontext nahtlos zu verwalten und Caret über viele Context Window Resets hinweg auf Kurs zu halten.
+
+:::tip
+  Focus Chain arbeitet besonders gut mit Carets [Deep Planning Slash-Befehl](/german/features/slash-commands/deep-planning) zusammen und bietet eine nahtlose Fortschrittsverfolgung für Implementierungsaufgaben, die durch den [Planungsprozess](/german/features/plan-and-act) erstellt wurden.
+:::
+
+## Hauptmerkmale
+
+### Automatische Todo-Listen-Erstellung
+
+Caret analysiert Ihre Aufgabe und erstellt automatisch eine umfassende Todo-Liste mit:
+- Klaren, umsetzbaren Elementen im Markdown-Checklisten-Format
+- Logischer Aufteilung komplexer Aufgaben in handhabbare Schritte
+- Echtzeit-Aktualisierungen während des Arbeitsfortschritts
+
+### Benutzerdefinierbare Todo-Listen
+
+Todo-Listen werden als bearbeitbare Markdown-Dateien gespeichert:
+- Direktes Bearbeiten mit Ihrem bevorzugten Markdown-Editor
+- Automatische Erkennung Ihrer vorgenommenen Änderungen
+- Nahtlose Integration zurück in den Workflow von Caret
+- Schneller Zugriff über die Bearbeiten-Schaltfläche im Task-Header
+
+### Visuelle Fortschrittsverfolgung
+
+Der Task-Header zeigt klare Fortschrittsanzeigen:
+- **Schrittzähler**, die den aktuellen Fortschritt anzeigen (z. B. „3/8“)
+- **Abgeschlossene Elemente**, die deutlich mit Häkchen markiert sind
+- **Aktuelle Arbeit**, die mit Indikatoren hervorgehoben wird
+- **Erweiterbare Ansicht**, um die vollständige Todo-Liste zu sehen
+
+### Intelligentes Erinnerungssystem
+
+Konfigurierbare Erinnerungen stellen sicher, dass Todo-Listen aktuell bleiben:
+- Standard-Erinnerung alle 6 Nachrichten (anpassbar von 1–100)
+- Automatische Aufforderungen beim Wechsel vom Plan Mode in den Act Mode
+- Benutzergesteuerte Updates, wenn Todo-Listen manuell bearbeitet werden
+
+
+## Erste Schritte
+
+<Steps>
+  <Step title="Caret-Einstellungen öffnen">
+      - Klicken Sie auf das Zahnrad-Symbol in der Caret-Seitenleiste
+      - Navigieren Sie zum Bereich „Features“
+  </Step>
+  <Step title="Focus Chain aktivieren">
+      - Aktivieren Sie „Enable Focus Chain“
+      - Passen Sie optional das „Remind Caret Interval“ an (Standard: 6 Nachrichten)
+  </Step>
+  <Step title="Eine neue Aufgabe starten">
+      - Beginnen Sie eine neue Aufgabe
+      - Caret beginnt automatisch mit der Erstellung und Verwaltung von Todo-Listen
+  </Step>
+</Steps>
+
+| Einstellung | Standard | Bereich | Beschreibung |
+|---------|---------|-------|-------------|
+| Enable Focus Chain | Deaktiviert | Ein/Aus | Aktiviert die erweiterte Aufgaben-Fortschrittsverfolgung |
+| Remind Caret Interval | 6 | 1-100 Nachrichten | Wie oft Caret die Todo-Liste aktualisiert |
+
+## Anwendungsbeispiele
+
+#### 1. Start der Aufgabe
+
+Wenn Sie eine neue Aufgabe mit aktivierter Focus Chain starten:
+
+``` markdown User Request
+User: "Create a user authentication system for my React app"
+
+Caret: [Analyzes request and creates todo list]
+```
+
+#### 2. Erstellte Todo-Liste
+
+Caret erstellt einen umfassenden Plan für die Aufgabe, der in einer Markdown-Datei gespeichert wird:
+
+```markdown Todo List Created
+- [ ] Set up project structure
+- [ ] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
+```
+
+#### 3. Fortschrittsverfolgung
+
+Während Caret arbeitet, zeigt der Task-Header den Echtzeit-Fortschritt:
+
+```markdown Todo List Header
+[3/8] Implement login functionality     ⌄
+```
+
+Klicken Sie zum Erweitern, um die vollständige Liste zu sehen:
+
+```markdown Full Todo List
+✓ Set up project structure
+✓ Install authentication dependencies
+✓ Create user registration component
+○ Implement login functionality  ← Currently working
+○ Add password validation
+○ Set up user database schema
+○ Write authentication tests
+○ Deploy to staging environment
+```
+
+#### 4. Bearbeitung durch den Benutzer
+
+Müssen Sie die Todo-Liste anpassen? Kein Problem.
+
+<Steps>
+  <Step title="Die Todo-Liste öffnen">
+    Klicken Sie auf die Bearbeiten-Schaltfläche in der erweiterten Todo-Ansicht
+  </Step>
+  <Step title="Die Markdown-Datei bearbeiten">
+    Eine Markdown-Datei öffnet sich in Ihrem Editor:
+
+    ```markdown Editing Todo List
+    # Focus Chain Todo List for Task abc123
+
+    <!-- Edit this markdown file to update your focus chain todo list -->
+    <!-- Use - [ ] for incomplete items and - [x] for completed items -->
+
+    - [x] Set up project structure
+    - [x] Install authentication dependencies (e.g., Firebase Auth)
+    - [x] Create user registration component
+    - [ ] Implement login functionality
+    - [ ] Add password reset feature
+    - [ ] Set up protected routes
+    - [ ] Implement logout functionality
+    - [ ] Add user profile page
+    - [ ] Write authentication tests
+    - [ ] Deploy to staging environment
+
+    <!-- Save this file to update the task's todo list -->
+    ```
+  </Step>
+  <Step title="Änderungen vornehmen">
+    Fügen Sie Elemente hinzu, entfernen Sie sie oder ordnen Sie sie nach Bedarf neu
+  </Step>
+  <Step title="Datei speichern">
+    Caret erkennt und verwendet Ihre Aktualisierungen automatisch
+  </Step>
+</Steps>
+
+## Dateistruktur
+
+### Speicherung der Todo-Liste
+
+Todo-Listen werden als Markdown-Dateien in Ihrem Aufgaben-Verzeichnis gespeichert:
+
+``` markdown
+<VSCode Global Storage>/
+  tasks/
+    <taskId>/
+      focus_chain_taskid_<taskId>.md
+      ... other task files
+```
+
+### Markdown-Format
+
+Todo-Dateien verwenden die Standard-Markdown-Checklisten-Syntax:
+
+```markdown Example Todo Syntax
+# Focus Chain Todo List for Task abc123
+
+<!-- Edit this markdown file to update your focus chain todo list -->
+<!-- Use the format: - [ ] for incomplete items and - [x] for completed items -->
+
+- [x] Set up project structure
+- [x] Install authentication dependencies
+- [ ] Create user registration component
+- [ ] Implement login functionality
+- [ ] Add password validation
+- [ ] Set up user database schema
+- [ ] Write authentication tests
+- [ ] Deploy to staging environment
+
+<!-- Save this file and the todo list will be updated in the task -->
+```
+
+
+## Integration mit Plan/Act Mode
+
+Focus Chain arbeitet nahtlos mit dem [Plan/Act-Modus](/german/features/plan-and-act) von Caret zusammen:
+
+- **Plan Mode**: Optionale Todo-Listen zur Darstellung konkreter Schritte
+- **Act Mode**: Automatische Todo-Erstellung beim Wechsel aus dem Plan Mode
+
+:::tip
+  Starten Sie bei komplexen Projekten im Plan Mode, um Ihren Ansatz zu besprechen und zu verfeinern, bevor Sie zur Implementierung in den Act Mode wechseln.
+:::
+
+## Best Practices
+
+:::info
+  :::details Accordion
+    1. **Mit klaren Anfragen beginnen**
+      - Geben Sie detaillierte initiale Aufgabenbeschreibungen an
+      - Fügen Sie spezifische Anforderungen und Einschränkungen hinzu
+      - Erwähnen Sie bevorzugte Technologien oder Ansätze
+
+    2. **Generierte Listen überprüfen**
+      - Prüfen Sie, ob die Aufteilung von Caret Ihren Erwartungen entspricht
+      - Vergewissern Sie sich, dass alle wichtigen Schritte enthalten sind
+      - Stellen Sie sicher, dass die Reihenfolge für Ihr Projekt sinnvoll ist
+
+    3. **Bei Bedarf bearbeiten**
+      - Fügen Sie fehlende Schritte hinzu, die Sie identifizieren
+      - Entfernen Sie unnötige Elemente
+      - Ordnen Sie Schritte für einen besseren Workflow neu
+      - Fügen Sie allgemeinen Elementen spezifischere Details hinzu
+  :::
+  :::details Accordion
+    1. **Zuerst den Plan Mode verwenden**
+      - Besprechen Sie den Ansatz vor der Implementierung
+      - Verfeinern Sie Anforderungen durch Konversation
+      - Wechseln Sie in den Act Mode, wenn Sie bereit sind, mit der Arbeit zu beginnen
+
+    2. **Große Aufgaben unterteilen**
+      - Teilen Sie komplexe Projekte in kleinere, handhabbare Aufgaben auf
+      - Erstellen Sie separate Todo-Listen für verschiedene Komponenten
+      - Konzentrieren Sie sich auf jeweils einen Hauptbereich
+
+    3. **Regelmäßige Überprüfungen**
+      - Überprüfen Sie den Fortschritt bei langen Aufgaben regelmäßig
+      - Aktualisieren Sie Todo-Listen, wenn sich Anforderungen weiterentwickeln
+      - Kommunizieren Sie Änderungen an Caret durch Bearbeitungen
+  :::
+  :::details Accordion
+    1. **Todo-Dateien teilen**
+      - Todo-Markdown-Dateien können mit Teammitgliedern geteilt werden
+      - In die Versionskontrolle für die Projektdokumentation aufnehmen
+      - Als Basis für Projektplanungsgespräche verwenden
+
+    2. **Konsistentes Format**
+      - Folgen Sie dem Standard-Markdown-Checklisten-Format
+      - Halten Sie Elementbeschreibungen klar und umsetzbar
+      - Verwenden Sie eine konsistente Terminologie über alle Todo-Listen hinweg
+  :::
+:::
+
+
+## Fehlerbehebung
+
+Haben Sie Probleme? Versuchen Sie diese schnellen Lösungen:
+
+:::info
+  :::details Accordion
+    - Prüfen Sie, ob Focus Chain in den Einstellungen aktiviert ist
+    - Focus Chain funktioniert möglicherweise nicht so gut mit kleineren, weniger leistungsfähigen Modellen
+    - Stellen Sie sicher, dass die Dateiberechtigungen im Aufgaben-Verzeichnis korrekt sind
+  :::
+  :::details Accordion
+    - Überprüfen Sie, ob Ihr Editor Markdown unterstützt
+    - Stellen Sie sicher, dass VS Code Schreibrechte für das Verzeichnis hat
+  :::
+  :::details Accordion
+    - Stellen Sie sicher, dass Todo-Elemente die korrekte Syntax verwenden (`- [ ]` und `- [x]`)
+    - Überprüfen Sie, ob die Markdown-Datei ordnungsgemäß formatiert ist
+  :::
+:::
+
+Immer noch festgefahren? Verwenden Sie den [/reportbug](/german/features/slash-commands/report-bug) Befehl in Caret, um Hilfe zu erhalten.
+
+## Technische Details (für Neugierige)
+
+:::info
+  :::details Accordion
+    - Echtzeit-Dateiüberwachung erkennt Änderungen an Todo-Markdown-Dateien
+    - Automatische Synchronisation zwischen Dateibearbeitungen und UI-Updates
+    - Reibungslose Handhabung von Dateierstellung, -änderung und -löschung
+  :::
+  :::details Accordion
+    - Dynamische Zählung von abgeschlossenen vs. gesamten Todo-Elementen
+    - Unterstützung sowohl der `- [x]` als auch der `- [X]` Syntax für die Fertigstellung
+    - Unicode-Symbole (✓, ○) für eine verbesserte visuelle Darstellung
+  :::
+  :::details Accordion
+    - Todo-Listen werden lokal im VS Code Workspace gespeichert
+    - Keine Todo-Inhalte werden an externe Dienste übertragen
+    - Nutzungstelemetrie (kann in den Einstellungen deaktiviert werden)
+  :::
+:::
+
+Focus Chain verwandelt Caret in Ihren persönlichen Projektmanager, der Sie auf Kurs hält und Ihre Aufgaben organisiert. Probieren Sie es bei Ihrem nächsten Projekt aus!

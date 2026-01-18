@@ -1,0 +1,78 @@
+---
+title: "Ollama"
+---
+
+Caret unterstützt das lokale Ausführen von Modellen mithilfe von Ollama. Dieser Ansatz bietet Datenschutz, Offline-Zugriff und potenziell geringere Kosten. Er erfordert eine gewisse Ersteinrichtung und einen ausreichend leistungsstarken Computer. Aufgrund des aktuellen Stands der Hardware für Endverbraucher wird die Nutzung von Ollama mit Caret nicht empfohlen, da die Performance bei durchschnittlichen Hardwarekonfigurationen wahrscheinlich schlecht sein wird.
+
+**Website:** [https://ollama.com/](https://ollama.com/)
+
+### Setting up Ollama
+
+1.  **Ollama herunterladen und installieren:**
+    Laden Sie den Ollama-Installer für Ihr Betriebssystem von der [Ollama-Website](https://ollama.com/) herunter und folgen Sie der Installationsanleitung. Stellen Sie sicher, dass Ollama ausgeführt wird. Normalerweise können Sie es starten mit:
+
+    ```bash
+    ollama serve
+    ```
+
+2.  **Ein Modell herunterladen:**
+    Ollama unterstützt eine Vielzahl von Modellen. Eine Liste der verfügbaren Modelle finden Sie in der [Ollama-Modellbibliothek](https://ollama.com/library). Einige für Coding-Aufgaben empfohlene Modelle sind:
+
+    -   `codellama:7b-code` (ein guter, kleinerer Startpunkt)
+    -   `codellama:13b-code` (bietet bessere Qualität, größere Datei)
+    -   `codellama:34b-code` (bietet noch höhere Qualität, sehr groß)
+    -   `qwen2.5-coder:32b`
+    -   `mistralai/Mistral-7B-Instruct-v0.1` (ein solides Mehrzweckmodell)
+    -   `deepseek-coder:6.7b-base` (effektiv für Coding)
+    -   `llama3:8b-instruct-q5_1` (geeignet für allgemeine Aufgaben)
+
+    Um ein Modell herunterzuladen, öffnen Sie Ihr Terminal und führen Sie folgenden Befehl aus:
+
+    ```bash
+    ollama pull <model_name>
+    ```
+
+    Zum Beispiel:
+
+    ```bash
+    ollama pull qwen2.5-coder:32b
+    ```
+
+3.  **Das Context Window des Modells konfigurieren:**
+    Standardmäßig verwenden Ollama-Modelle oft ein Context Window von 2048 Token, was für viele Caret-Anfragen unzureichend sein kann. Ein Minimum von 12.000 Token ist für ordentliche Ergebnisse ratsam, wobei 32.000 Token ideal sind. Um dies anzupassen, modifizieren Sie die Parameter des Modells und speichern es als neue Version.
+
+    Laden Sie zuerst das Modell (am Beispiel von `qwen2.5-coder:32b`):
+
+    ```bash
+    ollama run qwen2.5-coder:32b
+    ```
+
+    Sobald das Modell innerhalb der interaktiven Ollama-Sitzung geladen ist, setzen Sie den Parameter für die Context-Größe:
+
+    ```
+    /set parameter num_ctx 32768
+    ```
+
+    Speichern Sie dieses konfigurierte Modell anschließend unter einem neuen Namen:
+
+    ```
+    /save your_custom_model_name
+    ```
+
+    (Ersetzen Sie `your_custom_model_name` durch einen Namen Ihrer Wahl.)
+
+4.  **Caret konfigurieren:**
+    -   Öffnen Sie die Caret-Sidebar (normalerweise durch das Caret-Icon gekennzeichnet).
+    -   Klicken Sie auf das Zahnrad-Icon für die Einstellungen (⚙️).
+    -   Wählen Sie „ollama“ als API Provider aus.
+    -   Geben Sie den Namen des Modells ein, den Sie im vorherigen Schritt gespeichert haben (z. B. `your_custom_model_name`).
+    -   (Optional) Passen Sie die Basis-URL an, falls Ollama auf einem anderen Rechner oder Port läuft. Der Standardwert ist `http://localhost:11434`.
+    -   (Optional) Konfigurieren Sie die Model context size in den Advanced-Einstellungen von Caret. Dies hilft Caret, sein Context Window effektiv mit Ihrem angepassten Ollama-Modell zu verwalten.
+
+### Tipps und Hinweise
+
+-   **Ressourcenbedarf:** Das lokale Ausführen von großen Sprachmodellen kann hohe Anforderungen an die Systemressourcen stellen. Stellen Sie sicher, dass Ihr Computer die Anforderungen für das gewählte Modell erfüllt.
+-   **Modellauswahl:** Experimentieren Sie mit verschiedenen Modellen, um herauszufinden, welches am besten zu Ihren spezifischen Aufgaben und Vorlieben passt.
+-   **Offline-Fähigkeit:** Nach dem Herunterladen eines Modells können Sie Caret mit diesem Modell auch ohne Internetverbindung nutzen.
+-   **Tracking der Token-Nutzung:** Caret verfolgt die Token-Nutzung für Modelle, auf die über Ollama zugegriffen wird, sodass Sie den Verbrauch überwachen können.
+-   **Eigene Dokumentation von Ollama:** Weitere detaillierte Informationen finden Sie in der offiziellen [Ollama-Dokumentation](https://ollama.com/docs).

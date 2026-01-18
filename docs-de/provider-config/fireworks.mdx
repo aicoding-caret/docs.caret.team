@@ -1,0 +1,131 @@
+---
+title: "Fireworks AI"
+description: "Erfahren Sie, wie Sie die blitzschnelle Inference-Plattform von Fireworks AI mit Caret konfigurieren und nutzen. Erleben Sie bis zu 4x schnellere Inference-Geschwindigkeiten mit optimierten Modellen und wettbewerbsfähigen Preisen."
+---
+
+Fireworks AI ist eine führende Infrastruktur-Plattform für generative AI, die sich auf die Bereitstellung außergewöhnlicher Performance durch optimierte Inference-Funktionen konzentriert. Mit bis zu 4x schnelleren Inference-Geschwindigkeiten als alternative Plattformen und Unterstützung für über 40 verschiedene AI-Modelle eliminiert Fireworks die operative Komplexität beim Betrieb von AI-Modellen in großem Maßstab.
+
+**Website:** [https://fireworks.ai/](https://fireworks.ai/)
+
+### API Key erhalten
+
+1.  **Registrieren/Anmelden:** Gehen Sie zu [Fireworks AI](https://fireworks.ai/) und erstellen Sie einen Account oder melden Sie sich an.
+2.  **Zu API Keys navigieren:** Rufen Sie den Bereich für API Keys in Ihrem Dashboard auf.
+3.  **Key erstellen:** Generieren Sie einen neuen API Key. Vergeben Sie einen beschreibenden Namen (z. B. "Caret").
+4.  **Key kopieren:** Kopieren Sie den API Key sofort. Bewahren Sie ihn sicher auf.
+
+### Unterstützte Modelle
+
+Fireworks AI unterstützt eine Vielzahl von Modellen in verschiedenen Kategorien. Zu den beliebten Modellen gehören:
+
+**Textgenerierungsmodelle:**
+-   Llama 3.1 Serie (8B, 70B, 405B)
+-   Mixtral 8x7B und 8x22B
+-   Qwen 2.5 Serie
+-   DeepSeek Modelle mit Reasoning-Fähigkeiten
+-   Code Llama Modelle für Programmieraufgaben
+
+**Vision-Modelle:**
+-   Llama 3.2 Vision Modelle
+-   Qwen 2-VL Modelle
+
+**Embedding-Modelle:**
+-   Verschiedene Text-Embedding-Modelle für die semantische Suche
+
+Die Plattform kuratiert, optimiert und stellt Modelle mit benutzerdefinierten Kernels und Inference-Optimierungen für maximale Performance bereit.
+
+### Konfiguration in Caret
+
+1.  **Caret-Einstellungen öffnen:** Klicken Sie auf das Settings-Icon (⚙️) im Caret-Panel.
+2.  **Provider auswählen:** Wählen Sie "Fireworks" aus dem "API Provider" Dropdown-Menü.
+3.  **API Key eingeben:** Fügen Sie Ihren Fireworks API Key in das Feld "Fireworks API Key" ein.
+4.  **Model ID eingeben:** Geben Sie das Modell an, das Sie verwenden möchten (z. B. "accounts/fireworks/models/llama-v3p1-70b-instruct").
+5.  **Tokens konfigurieren:** Konfigurieren Sie optional die max completion tokens und die context window size.
+
+### Performance-Fokus von Fireworks AI
+
+Die Wettbewerbsvorteile von Fireworks AI konzentrieren sich auf Performance-Optimierung und Developer Experience:
+
+#### Blitzschnelle Inference
+- **Bis zu 4x schnellere Inference** als alternative Plattformen
+- **250 % höherer Durchsatz** im Vergleich zu Open-Source-Inference-Engines
+- **50 % höhere Geschwindigkeit** bei deutlich reduzierter Latenz
+- **6x geringere Kosten** als HuggingFace Endpoints bei 2,5x höherer Generierungsgeschwindigkeit
+
+#### Fortschrittliche Optimierungstechnologie
+- **Benutzerdefinierte Kernels** und Inference-Optimierungen erhöhen den Durchsatz pro GPU
+- **Multi-LoRA-Architektur** ermöglicht effizientes Ressourcen-Sharing
+- **Hunderte von feingetunten Modellvarianten** können auf einer gemeinsamen Basismodell-Infrastruktur laufen
+- **Asset-Light-Modell** konzentriert sich auf Optimierungssoftware statt auf teures GPU-Eigentum
+
+#### Umfassende Modell-Unterstützung
+- **Über 40 verschiedene AI-Modelle**, kuratiert und für Performance optimiert
+- **Mehrere GPU-Typen** unterstützt: A100, H100, H200, B200, AMD MI300X
+- **Abrechnung pro GPU-Sekunde** ohne zusätzliche Gebühren für Startzeiten
+- **OpenAI API Kompatibilität** für nahtlose Integration
+
+### Preisstruktur
+
+Fireworks AI verwendet ein nutzungsbasiertes Preismodell mit wettbewerbsfähigen Tarifen:
+
+#### Text- und Vision-Modelle (2025)
+| Parameter-Anzahl | Preis pro 1 Mio. Input-Tokens |
+|---|---|
+| Weniger als 4B Parameter | $0.10 |
+| 4B - 16B Parameter | $0.20 |
+| Mehr als 16B Parameter | $0.90 |
+| MoE 0B - 56B Parameter | $0.50 |
+
+#### Fine-Tuning-Services
+| Basismodell-Größe | Preis pro 1 Mio. Trainings-Tokens |
+|---|---|
+| Bis zu 16B Parameter | $0.50 |
+| 16.1B - 80B Parameter | $3.00 |
+| DeepSeek R1 / V3 | $10.00 |
+
+#### Dedizierte Deployments
+| GPU-Typ | Preis pro Stunde |
+|---|---|
+| A100 80GB | $2.90 |
+| H100 80GB | $5.80 |
+| H200 141GB | $6.99 |
+| B200 180GB | $11.99 |
+| AMD MI300X | $4.99 |
+
+### Besondere Funktionen
+
+#### Fine-Tuning-Funktionen
+Fireworks bietet anspruchsvolle Fine-Tuning-Services an, die über ein CLI-Interface zugänglich sind und JSON-formatierte Daten aus Datenbanken wie MongoDB Atlas unterstützen. Feingetunte Modelle kosten bei der Inference dasselbe wie die Basismodelle.
+
+#### Developer Experience
+- **Browser-Playground** für direkte Modell-Interaktion
+- **REST API** mit OpenAI Kompatibilität
+- **Umfangreiches Cookbook** mit sofort einsatzbereiten Rezepten
+- **Mehrere Deployment-Optionen** von Serverless bis hin zu dedizierten GPUs
+
+#### Enterprise-Funktionen
+- **HIPAA- und SOC 2 Type II-Konformität** für regulierte Branchen
+- **Self-Serve-Onboarding** für Entwickler
+- **Enterprise-Vertrieb** für größere Implementierungen
+- **Post-Paid-Abrechnungsoptionen** und Business-Tarif
+
+#### Unterstützung für Reasoning-Modelle
+Fortschrittliche Unterstützung für Reasoning-Modelle mit `<think>` Tag-Verarbeitung und Extraktion von Reasoning-Inhalten, was komplexe mehrstufige Logik für Echtzeitanwendungen praktikabel macht.
+
+### Performance-Vorteile
+
+Die Optimierung von Fireworks AI liefert messbare Verbesserungen:
+- **250 % höherer Durchsatz** gegenüber Open-Source-Engines
+- **50 % höhere Geschwindigkeit** bei reduzierter Latenz
+- **6-fache Kostenersparnis** im Vergleich zu Alternativen
+- **2,5-fache Verbesserung der Generierungsgeschwindigkeit** pro Anfrage
+
+### Tipps und Hinweise
+
+-   **Modellauswahl:** Wählen Sie Modelle basierend auf Ihrem spezifischen Anwendungsfall – kleinere Modelle für Geschwindigkeit, größere Modelle für komplexes Reasoning.
+-   **Performance-Fokus:** Fireworks zeichnet sich dadurch aus, AI-Inference durch fortschrittliche Optimierungen schnell und kosteneffizient zu machen.
+-   **Fine-Tuning:** Nutzen Sie Fine-Tuning-Funktionen, um die Modellgenauigkeit mit Ihren proprietären Daten zu verbessern.
+-   **Compliance:** Die HIPAA- und SOC 2 Type II-Konformität ermöglicht den Einsatz in regulierten Branchen.
+-   **Preismodell:** Die nutzungsbasierte Abrechnung skaliert mit Ihrem Erfolg, im Gegensatz zu traditionellen nutzerbasierten Modellen.
+-   **Entwickler-Ressourcen:** Umfangreiche Dokumentationen und Cookbook-Rezepte beschleunigen die Implementierung.
+-   **GPU-Optionen:** Mehrere GPU-Typen für dedizierte Deployments je nach Performance-Anforderungen verfügbar.

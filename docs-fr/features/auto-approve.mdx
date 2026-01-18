@@ -1,0 +1,53 @@
+Le menu Auto Approve vous permet de définir des permissions granulaires sur ce que vous autorisez Caret à faire de manière automatisée.
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/auto-approve.png" alt="Auto Approve" />
+</Frame>
+
+## Fonctionnement
+
+Par défaut, Caret demandera votre permission avant d'appeler n'importe quel outil, y compris pour la lecture ou l'écriture de fichiers.
+
+Si vous souhaitez autoriser Caret à effectuer une action sans demander, vous pouvez configurer la permission Auto Approve pour cet outil.
+
+## Options de Permission
+
+-   **Read project files**
+
+    -   Permet à Caret de lire les fichiers au sein de votre workspace actuel sans demander
+    -   **Read all files**
+        -   Étend la permission de lecture aux fichiers en dehors de votre workspace (fichiers système, fichiers de config, etc.)
+
+-   **Edit project files**
+
+    -   Permet à Caret de modifier les fichiers au sein de votre workspace actuel sans confirmation
+    -   **Edit all files**
+        -   Étend la permission de modification aux fichiers en dehors de votre workspace
+
+-   **Execute safe commands**
+
+    -   Autorise l'exécution de commandes terminal que le modèle juge non destructives
+    -   **Execute all commands**
+        -   Permet l'exécution de n'importe quelle commande terminal sans demander
+
+-   **Use the browser**
+
+    -   Permet à Caret d'utiliser l'outil browser pour récupérer du contenu web
+
+-   **Use MCP servers**
+
+    -   Permet la connexion et l'utilisation des serveurs MCP pour des fonctionnalités étendues
+
+-   **Maximum requests**
+    -   Définit le nombre d'actions automatisées consécutives que Caret peut effectuer avant de nécessiter votre intervention
+
+## Bonnes Pratiques
+
+Paramètres par défaut suggérés pour la plupart des workflows :
+
+-   Auto-approbation de l'accès en lecture aux fichiers du projet
+-   Définition d'une limite de requêtes maximale raisonnable (10-20)
+
+Cela donne à Caret la liberté d'explorer sans sollicitations constantes tout en exigeant une approbation pour les modifications ou les actions destructives.
+
+Ajustez les permissions selon la situation : restreignez-les pour la production, assouplissez-les pour le prototypage. Utilisez les actions rapides « star » pour activer ou désactiver les éléments auto-approuvés selon vos besoins.

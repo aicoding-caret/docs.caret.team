@@ -1,0 +1,61 @@
+```
+---
+title: "Mentions de dossiers"
+sidebarTitle: "Mentions de Dossiers"
+description: "Utilisez les mentions de dossiers pour inclure des répertoires entiers dans vos conversations avec Caret."
+---
+
+Les mentions de dossiers vous permettent d'intégrer des répertoires entiers dans votre conversation avec Caret. Tapez simplement `@/` suivi d'un chemin de dossier se terminant par une barre oblique, et Caret aura accès à la structure du dossier et à son contenu.
+
+Lorsque vous tapez `@/` dans le chat, Caret affiche vos fichiers et dossiers de l'espace de travail. Naviguez jusqu'au dossier souhaité, assurez-vous d'inclure la barre oblique de fin, et Caret verra la structure et le contenu du dossier.
+
+J'utilise les mentions de dossiers lorsque j'ai besoin d'aide pour comprendre ou refactoriser une section entière de mon codebase. Au lieu de référencer des fichiers individuels un par un, je peux simplement pointer vers le répertoire entier :
+
+```
+J'essaie de comprendre comment fonctionne le flux d'authentification dans mon application.
+Pouvez-vous expliquer la structure et les relations entre les fichiers dans @/src/auth/?
+```
+
+Caret peut alors voir tous les fichiers du répertoire auth, leur contenu et la manière dont ils sont liés les uns aux autres. Cela lui donne le contexte complet pour expliquer les interactions complexes entre plusieurs fichiers.
+
+Les mentions de dossiers sont également parfaites pour obtenir de l'aide sur l'organisation du projet. Lorsque je ne suis pas sûr que la structure de mon projet soit logique, je demande à Caret de l'examiner :
+
+```
+Je suis en train de configurer un nouveau projet React. Cette structure de dossiers est-elle logique ? @/src/
+Que changeriez-vous pour le rendre plus maintenable à mesure que le projet grandit ?
+```
+
+La prochaine fois que vous travaillerez avec plusieurs fichiers liés, essayez d'utiliser les mentions de dossiers au lieu de référencer chaque fichier individuellement. Vous obtiendrez une aide plus complète, car Caret peut avoir une vue d'ensemble de la manière dont tout s'imbrique.
+
+## Comment cela fonctionne en interne
+
+Lorsque vous utilisez une mention de dossier dans votre message, voici ce qui se passe en arrière-plan :
+
+1. Lorsque vous envoyez votre message, Caret détecte le modèle `@/path/to/folder/` (avec une barre oblique de fin) dans votre texte.
+2. L'extension résout le chemin du dossier par rapport à la racine de votre espace de travail.
+3. Elle appelle `fs.readdir()` pour obtenir une liste de tous les fichiers et sous-répertoires de ce dossier.
+4. Pour chaque fichier du répertoire, elle vérifie s'il est binaire ou textuel.
+5. Pour les fichiers texte, elle extrait le contenu complet.
+6. La structure du dossier et le contenu des fichiers sont ajoutés à votre message dans un format structuré :
+
+    ```
+    <folder_content path="path/to/folder">
+    ├── file1.txt
+    ├── file2.js
+    └── subfolder/
+
+    <file_content path="path/to/folder/file1.txt">
+    [File content]
+    </file_content>
+
+    <file_content path="path/to/folder/file2.js">
+    [File content]
+    </file_content>
+    </folder_content>
+    ```
+
+7. Ce message amélioré, avec la structure de dossiers et le contenu des fichiers intégrés, est envoyé à l'IA.
+8. L'IA peut désormais « voir » à la fois la structure du répertoire et le contenu des fichiers de ce répertoire.
+
+Ce processus se produit automatiquement chaque fois que vous utilisez une mention de dossier, ce qui donne à l'IA une vue complète de la structure de votre projet et du contenu des fichiers.
+```

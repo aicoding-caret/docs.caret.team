@@ -1,0 +1,61 @@
+---
+title: "Mistral"
+description: "Erfahren Sie, wie Sie Mistral AI-Modelle, einschließlich Codestral, mit Caret konfigurieren und verwenden. Deckt das API Key Setup und die Modellauswahl ab."
+---
+
+<Note>
+Dies ist ein Referenzdokument für Caret. Es folgt dem Caret v3.38.1 Merge. Falls es Caret-spezifische Richtlinien gibt (erlaubte/blockierte Modelle, regionale Einschränkungen, Authentifizierung/Routing), werden diese im Text mit `<Note>` markiert.
+</Note>
+
+<Note>
+Provider Setup Erweiterung: Gemäß `caret-docs/features/f09-enhanced-provider-setup.md` kann die Validierung/UX des Provider-Setups in Caret verstärkt werden. Bitte beachten Sie, dass sich erlaubte/blockierte Modelle je nach Account-/Organisationsrichtlinien oder Caret-Router-Anwendungen unterscheiden können.
+</Note>
+
+Caret unterstützt den Zugriff auf Modelle über die Mistral AI API, einschließlich der standardmäßigen Mistral-Modelle und des auf Code spezialisierten Codestral-Modells.
+
+**Website:** [https://mistral.ai/](https://mistral.ai/)
+
+### API Key erhalten
+
+1.  **Registrieren/Anmelden:** Gehen Sie zur [Mistral Platform](https://console.mistral.ai/). Erstellen Sie ein Konto oder melden Sie sich an. Möglicherweise müssen Sie einen Verifizierungsprozess durchlaufen.
+2.  **API Key erstellen:**
+    -   [La Plateforme API Key](https://console.mistral.ai/api-keys/) und/oder
+    -   [Codestral API Key](https://console.mistral.ai/codestral)
+
+### Unterstützte Modelle
+
+Caret unterstützt die folgenden Mistral-Modelle:
+
+-   pixtral-large-2411
+-   ministral-3b-2410
+-   ministral-8b-2410
+-   mistral-small-latest
+-   mistral-medium-latest
+-   mistral-small-2501
+-   pixtral-12b-2409
+-   open-mistral-nemo-2407
+-   open-codestral-mamba
+-   codestral-2501
+-   devstral-small-2505
+
+**Hinweis:** Die Verfügbarkeit und Spezifikationen der Modelle können sich ändern.
+Weitere Informationen finden Sie in der [Mistral AI documentation](https://docs.mistral.ai/api/) und im [Mistral Model Overview](https://docs.mistral.ai/getting-started/models/models_overview/).
+
+### Konfiguration in Caret
+
+1.  **Caret Settings öffnen:** Klicken Sie auf das Einstellungen-Icon (⚙️) im Caret-Panel.
+2.  **Provider auswählen:** Wählen Sie „Mistral“ aus dem „API Provider“-Dropdown-Menü.
+3.  **API Key eingeben:** Fügen Sie Ihren Mistral API Key in das Feld „Mistral API Key“ ein, wenn Sie ein standardmäßiges `mistral`-Modell verwenden. Wenn Sie `codestral-latest` verwenden möchten, lesen Sie den Abschnitt „Codestral verwenden“ weiter unten.
+4.  **Modell auswählen:** Wählen Sie das gewünschte Modell aus dem „Model“-Dropdown-Menü.
+
+### Codestral verwenden
+
+[Codestral](https://docs.mistral.ai/capabilities/code_generation/) ist ein Modell, das speziell für die Generierung von Code und die Interaktion damit entwickelt wurde.
+Für Codestral können Sie verschiedene Endpoints verwenden (Standard: codestral.mistral.ai).
+Wenn Sie den La Plateforme API Key für Codestral verwenden, ändern Sie die **Codestral Base Url** in: `https://api.mistral.ai`
+
+So verwenden Sie Codestral mit Caret:
+
+1.  **Wählen Sie „Mistral“ als API Provider in den Caret Settings aus.**
+2.  **Wählen Sie ein Codestral-Modell** (z. B. `codestral-latest`) aus dem „Model“-Dropdown-Menü.
+3.  **Geben Sie Ihren Codestral API Key** (von `codestral.mistral.ai`) oder Ihren La Plateforme API Key (von `api.mistral.ai`) in das entsprechende API Key Feld in Caret ein.

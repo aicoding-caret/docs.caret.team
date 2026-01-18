@@ -1,0 +1,53 @@
+---
+title: "Mentions de Problèmes"
+sidebarTitle: "Mentions de Problèmes"
+---
+
+La mention de problèmes donne à Caret un accès instantané à toutes les erreurs et avertissements dans votre espace de travail. Tapez simplement `@problems` et Caret peut voir tous les problèmes de diagnostic que VS Code a détectés.
+
+Lorsque vous tapez `@` dans le chat, sélectionnez "Problems" dans le menu ou tapez simplement `@problems` directement. Caret verra immédiatement toutes les erreurs et avertissements de votre espace de travail, avec les emplacements des fichiers et les messages d'erreur.
+
+J'utilise constamment la mention de problèmes lorsque je suis bloqué sur des erreurs de build ou des problèmes TypeScript. Au lieu d'essayer de décrire les erreurs ou de les copier une par une, je demande simplement :
+
+```
+J'obtiens ces erreurs TypeScript et je ne sais pas comment les corriger : @problems
+
+Pouvez-vous m'aider à comprendre ce qui ne va pas et comment le réparer ?
+```
+
+Cela donne à Caret la liste complète des erreurs avec leurs emplacements et messages exacts. Caret peut ensuite analyser les modèles à travers plusieurs erreurs et suggérer des solutions complètes.
+
+La mention de problèmes est particulièrement puissante lorsqu'elle est combinée avec les mentions de fichiers. Lorsque je suis confronté à des erreurs de type complexes, je référencerai les deux :
+
+```
+J'obtiens ces erreurs de type : @problems
+
+Voici mon composant : @/src/components/DataTable.tsx
+Et le fichier de types : @/src/types/api.ts
+
+Comment puis-je résoudre ces problèmes ?
+```
+
+Cette approche donne à Caret tout ce dont il a besoin : les erreurs exactes, le code du composant et les définitions de type, le tout sans que j'aie à copier quoi que ce soit manuellement.
+
+La prochaine fois que vous êtes bloqué sur des erreurs, essayez d'utiliser `@problems` au lieu de copier les messages d'erreur. Vous obtiendrez une aide plus précise, car Caret peut voir le contexte et les emplacements complets des erreurs.
+
+## Comment ça marche en coulisses
+
+Lorsque vous utilisez la mention de problèmes dans votre message, voici ce qui se passe en arrière-plan :
+
+1. Lorsque vous envoyez votre message, Caret détecte le modèle `@problems` dans votre texte
+2. L'extension appelle l'API `vscode.languages.getDiagnostics()` intégrée à VS Code pour obtenir toutes les erreurs et tous les avertissements
+3. Il formate ces diagnostics en une représentation textuelle structurée avec les chemins de fichiers, les numéros de ligne et les messages d'erreur
+4. La liste des problèmes formatée est ajoutée à votre message dans un format structuré :
+    ```
+    <workspace_diagnostics>
+    /path/to/file.js:10:5 - error TS2322: Type 'string' is not assignable to type 'number'.
+    /path/to/file.js:15:3 - warning: This variable is never used.
+    </workspace_diagnostics>
+    ```
+5. Ce message amélioré avec les diagnostics intégrés est envoyé à l'IA
+6. L'IA peut maintenant "voir" toutes les erreurs et tous les avertissements dans votre espace de travail, avec leurs emplacements et leurs messages
+
+Ce processus se produit automatiquement chaque fois que vous utilisez la mention de problèmes, ce qui donne à l'IA une vue complète de tous les problèmes de votre espace de travail sans que vous ayez à les copier manuellement.
+```

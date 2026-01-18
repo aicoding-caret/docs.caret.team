@@ -1,0 +1,111 @@
+---
+title: "Workflows – Schnellstart"
+sidebarTitle: "Schnellstart"
+description: "Eine Schritt-für-Schritt-Anleitung zum Erstellen deines ersten Caret-Workflows"
+---
+
+In diesem Tutorial erstellst du einen Workflow, der GitHub Pull Request-Reviews automatisiert. Es zeigt, wie man CLI-Tools, Dateianalyse und Benutzerinteraktion kombiniert.
+
+### Voraussetzungen
+
+* Caret installiert
+* [GitHub CLI (`gh`)](https://cli.github.com/) installiert und authentifiziert
+* Ein Git Repository mit einem PR zum Testen
+
+## Einen PR-Review-Workflow erstellen
+
+Dieser Workflow ruft PR-Informationen ab, analysiert Änderungen und entwirft Review-Kommentare.
+
+<Steps>
+  <Step title="Die Workflow-Datei erstellen">
+    Erstelle ein projektspezifisches Workflow-Verzeichnis.
+
+    1. Erstelle `.agents/context/workflows` im Projektstammverzeichnis
+    2. Erstelle `pr-review.md` innerhalb dieses Ordners
+  </Step>
+
+  <Step title="Den Workflow-Inhalt schreiben">
+    Füge den unten stehenden Inhalt zu `pr-review.md` hinzu.
+
+    ````markdown pr-review.md
+    # Pull Request Reviewer
+
+    Dieser Workflow hilft mir, einen Pull Request zu überprüfen, indem er die Änderungen analysiert und einen Review entwirft.
+
+    ## 1. PR-Informationen sammeln
+    Zuerst muss ich verstehen, worum es in diesem PR geht. Ich werde den Titel, die Beschreibung und die Liste der geänderten Dateien abrufen.
+
+    ```bash
+    gh pr view PR_NUMBER --json title,body,files
+    ```
+
+    ## 2. Geänderte Dateien untersuchen
+    Nun werde ich den Diff untersuchen, um die spezifischen Code-Änderungen zu verstehen.
+
+    ```bash
+    gh pr diff PR_NUMBER
+    ```
+
+    ## 3. Änderungen analysieren
+    Ich werde die Code-Änderungen analysieren auf:
+    *   **Bugs:** Logikfehler oder Edge Cases.
+    *   **Performance:** Ineffiziente Schleifen oder Operationen.
+    *   **Security:** Schwachstellen oder unsichere Praktiken.
+
+    ## 4. Bewertung bestätigen
+    Basierend auf meiner Analyse werde ich meine Ergebnisse präsentieren und fragen, wie du vorgehen möchtest.
+
+    ```xml
+    <ask_followup_question>
+      <question>Ich habe PR #PR_NUMBER überprüft. Hier ist meine Bewertung:
+
+    [Analyse hier einfügen]
+
+    Möchtest du, dass ich diesen PR genehmige, Änderungen anfordere oder nur einen Kommentar hinterlasse?</question>
+      <options>["Approve", "Request Changes", "Comment", "Do nothing"]</options>
+    </ask_followup_question>
+    ```
+
+    ## 5. Review ausführen
+    Schließlich werde ich den Review-Befehl basierend auf deiner Entscheidung ausführen.
+
+    ```bash
+    # Wenn genehmigt wird:
+    gh pr review PR_NUMBER --approve --body "Sieht gut aus! [Zusammenfassung der Analyse]"
+
+    # Wenn Änderungen angefordert werden:
+    gh pr review PR_NUMBER --request-changes --body "Bitte behebe Folgendes: [Liste der Probleme]"
+
+    # Wenn kommentiert wird:
+    gh pr review PR_NUMBER --comment --body "[Kommentare]"
+    ```
+    ````
+
+    <Note>
+      Wenn du diesen Workflow ausführst, ersetze `PR_NUMBER` durch die tatsächliche PR-Nummer (z. B. `/pr-review.md 123`).
+    </Note>
+  </Step>
+
+  <Step title="Den Workflow ausführen">
+    Jetzt bist du bereit, ihn auszuführen.
+
+    1. Öffne das Caret Chat Panel
+    2. Gib `/pr-review.md` gefolgt von der PR-Nummer ein (z. B. `/pr-review.md 42`)
+    3. Caret ruft PR-Details ab, analysiert den Code und zeigt Ergebnisse an
+
+    <Tip>
+      Wenn Caret Befehle wie `gh pr view` ausführt, pausiert er möglicherweise, um die Ausgabe anzuzeigen. Klicke auf **Proceed While Running**, damit Caret fortfahren kann.
+    </Tip>
+  </Step>
+</Steps>
+
+### Andere häufige Anwendungsfälle
+
+Dies ist nur ein Ausgangspunkt. Du kannst Workflows für viele Aufgaben erstellen, wie z. B.:
+
+* **Komponenten erstellen:** Generiere Boilerplate für neue Dateien (React Components, API Endpoints)
+* **Tests ausführen:** Führe eine Testsuite aus und fasse die Ergebnisse zusammen
+* **Deployment Automatisierung:** Verwende Tools wie `docker` und `kubectl`
+* **Geführte Refactorings:** Führe komplexe Refactorings schrittweise durch
+
+Suche nach sich wiederholenden Aufgaben in deinem Workflow und verwandle sie in effiziente Caret Workflows.

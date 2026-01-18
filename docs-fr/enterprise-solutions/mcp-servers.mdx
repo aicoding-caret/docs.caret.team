@@ -1,0 +1,25 @@
+---
+title: "Serveurs MCP"
+---
+
+**Les serveurs *Model Context Protocol* (MCP) étendent les capacités de *Cline* en fournissant un accès standardisé aux sources de données externes et aux outils exécutables. En implémentant des serveurs MCP, les outils LLM peuvent extraire et intégrer dynamiquement les informations pertinentes à partir de sources de données locales et distantes. Cela garantit que les modèles fonctionnent avec les données les plus récentes et les plus appropriées au contexte, améliorant ainsi la précision et la pertinence.**
+
+---
+
+### Principes de base de l'architecture de sécurité
+
+Les serveurs MCP suivent une architecture client-serveur où l'hôte (une application LLM telle que *Cline*) initie des connexions aux serveurs MCP via une couche de transport. Cette conception maintient une séparation claire entre les composants et offre des avantages de sécurité inhérents. Les déploiements en entreprise doivent se concentrer sur la mise en œuvre correcte de cette architecture pour assurer des opérations sécurisées, en particulier en ce qui concerne les modèles d'échange de messages et la gestion du cycle de vie des connexions. Pour plus de détails, consultez [MCP Architecture](https://modelcontextprotocol.io/french/docs/concepts/architecture) et la dernière [MCP Specification](https://spec.modelcontextprotocol.contextprotocol.io/specification/2024-11-05/).
+
+### Sécurité de la couche de transport
+
+Le choix du mécanisme de transport approprié est essentiel dans les environnements d'entreprise. Le transport stdio fonctionne bien pour les processus locaux, tandis que HTTP avec *Server-Sent Events* (SSE) nécessite des mesures de sécurité supplémentaires. Utilisez TLS pour toutes les connexions distantes dans la mesure du possible - ceci est particulièrement important lorsque les serveurs MCP sont déployés sur différents segments de réseau à l'intérieur de l'infrastructure d'entreprise.
+
+### Validation des messages et contrôle d'accès
+
+L'architecture MCP définit des codes d'erreur et des types de messages standard (requête, résultat, erreur et notification), fournissant un cadre structuré pour une communication sécurisée. Les équipes de sécurité doivent envisager la validation des messages, l'assainissement des entrées, les limites de taille des messages et les contrôles de conformité JSON-RPC. Le contrôle d'accès, la validation du chemin et la limitation du taux de requêtes protègent davantage les ressources et réduisent le risque d'abus.
+
+### Surveillance et conformité
+
+Pour les exigences de conformité des entreprises, une journalisation complète des événements de protocole, des flux de messages et des erreurs est essentielle. MCP prend en charge des fonctions de diagnostic telles que les contrôles d'intégrité, la surveillance des connexions et le suivi de l'utilisation des ressources. Les organisations doivent étendre ces fonctionnalités pour répondre aux besoins de conformité et conserver des pistes d'audit pour toutes les interactions avec le serveur MCP et les modèles d'accès aux ressources.
+
+En tirant parti de la conception client-serveur de MCP et en mettant en œuvre des contrôles appropriés à chaque couche, les entreprises peuvent intégrer en toute sécurité les serveurs MCP dans leur environnement tout en maintenant une posture de sécurité et en respectant les exigences réglementaires.

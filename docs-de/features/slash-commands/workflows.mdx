@@ -1,0 +1,445 @@
+---
+title: "Workflows"
+sidebarTitle: "Workflows"
+---
+
+Workflows ermöglichen es Ihnen, eine Abfolge von Schritten zu definieren, um Caret durch wiederkehrende Aufgaben zu führen, wie zum Beispiel das Deployen eines Service oder das Einreichen eines PR.
+
+Um einen Workflow aufzurufen, geben Sie `/[workflow-name.md]` im Chat ein.
+
+## Wie man Workflows erstellt und verwendet
+
+Workflows befinden sich direkt neben den [Caret Rules](/german/features/caret-rules). Das Erstellen eines Workflows ist unkompliziert:
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Workflows tab in Caret" />
+</Frame>
+
+1. Erstellen Sie eine Markdown-Datei mit klaren Anweisungen für die Schritte, die Caret ausführen soll
+2. Speichern Sie diese mit der Endung `.md` in Ihrem Workflows-Verzeichnis
+3. Um einen Workflow auszulösen, geben Sie einfach `/` gefolgt vom Dateinamen des Workflows ein
+4. Geben Sie bei Aufforderung alle erforderlichen Parameter an
+
+Die wahre Stärke liegt in der Strukturierung Ihrer Workflow-Dateien. Sie können:
+
+-   Die [integrierten Tools](/german/exploring-carets-tools/caret-tools-guide) von Caret wie `ask_followup_question`, `read_file`, `search_files` und `new_task` nutzen
+-   Bereits installierte Command-line-Tools wie `gh` oder `docker` verwenden
+-   Externe [MCP tool calls](/german/mcp/mcp-overview) wie Slack oder Whatsapp referenzieren
+-   Mehrere Aktionen in einer spezifischen Sequenz miteinander verketten
+
+## Praxisbeispiel
+
+Ich habe einen PR Review Workflow erstellt, der mir bereits jede Menge Zeit spart.
+
+````md pr-review.md [expandable]
+Sie haben Zugriff auf den `gh` Terminal-Befehl. Ich habe ihn bereits für Sie authentifiziert. Bitte prüfen Sie ihn, um den PR zu verwenden, den ich Sie zu reviewen gebeten habe. Sie befinden sich bereits im `caret` Repo.
+
+<detailed_sequence_of_steps>
+
+# GitHub PR Review Prozess - Detaillierte Schrittfolge
+
+## 1. PR-Informationen sammeln
+
+1. Holen Sie sich den PR-Titel, die Beschreibung und die Kommentare:
+
+    ```bash
+    gh pr view <PR-number> --json title,body,comments
+    ```
+
+2. Holen Sie sich den vollständigen Diff des PR:
+    ```bash
+    gh pr diff <PR-number>
+    ```
+
+## 2. Den Kontext verstehen
+
+1. Identifizieren Sie, welche Dateien im PR geändert wurden:
+
+    ```bash
+    gh pr view <PR-number> --json files
+    ```
+
+2. Untersuchen Sie die Originaldateien im Main Branch, um den Kontext zu verstehen:
+
+    ```xml
+    <read_file>
+    <path>path/to/file</path>
+    </read_file>
+    ```
+
+3. Für spezifische Abschnitte einer Datei können Sie search_files verwenden:
+    ```xml
+    <search_files>
+    <path>path/to/directory</path>
+    <regex>search term</regex>
+    <file_pattern>*.ts</file_pattern>
+    </search_files>
+    ```
+
+## 3. Die Änderungen analysieren
+
+1. Verstehen Sie für jede geänderte Datei:
+
+    - Was wurde geändert
+    - Warum wurde es geändert (basierend auf der PR-Beschreibung)
+    - Wie es die Codebase beeinflusst
+    - Potenzielle Side effects
+
+2. Achten Sie auf:
+    - Code-Qualitätsprobleme
+    - Potenzielle Bugs
+    - Auswirkungen auf die Performance
+    - Sicherheitsbedenken
+    - Test-Abdeckung
+
+## 4. Benutzerbestätigung einholen
+
+1. Bevor Sie eine Entscheidung treffen, fragen Sie den Benutzer, ob Sie den PR genehmigen sollen, und geben Sie Ihre Einschätzung und Begründung ab:
+
+    ```xml
+    <ask_followup_question>
+    <question>Basierend auf meinem Review von PR #<PR-number> empfehle ich [approving/requesting changes]. Hier ist meine Begründung:
+
+    [Detaillierte Begründung mit Eckpunkten zur PR-Qualität, Implementierung und etwaigen Bedenken]
+
+    Möchten Sie, dass ich mit dieser Empfehlung fortfahre?</question>
+    <options>["Ja, PR genehmigen", "Ja, Änderungen anfordern", "Nein, ich möchte das weiter besprechen"]</options>
+    </ask_followup_question>
+    ```
+
+## 5. Fragen, ob ein Kommentar entworfen werden soll
+
+1. Nachdem sich der Benutzer für eine Genehmigung/Ablehnung entschieden hat, fragen Sie, ob ein Kommentar entworfen werden soll:
+
+    ```xml
+    <ask_followup_question>
+    <question>Möchten Sie, dass ich einen Kommentar für diesen PR entwerfe, den Sie kopieren und einfügen können?</question>
+    <options>["Ja, bitte einen Kommentar entwerfen", "Nein, ich kümmere mich selbst um den Kommentar"]</options>
+    </ask_followup_question>
+    ```
+
+2. Wenn der Benutzer einen Entwurf wünscht, stellen Sie einen gut strukturierten Kommentar zum Kopieren bereit:
+
+    ```
+    Vielen Dank für diesen PR! Hier ist meine Einschätzung:
+
+    [Detaillierte Einschätzung mit Eckpunkten zur PR-Qualität, Implementierung und etwaigen Vorschlägen]
+
+    [Spezifisches Feedback zu Code-Qualität, Funktionalität und Tests beifügen]
+    ```
+
+## 6. Eine Entscheidung treffen
+
+1. Genehmigen Sie den PR, wenn er den Qualitätsstandards entspricht:
+
+    ```bash
+    # Für einzeilige Kommentare:
+    gh pr review <PR-number> --approve --body "Ihre Genehmigungsnachricht"
+
+    # Für mehrzeilige Kommentare mit korrekter Formatierung:
+    cat << EOF | gh pr review <PR-number> --approve --body-file -
+    Danke @username für diesen PR! Die Implementierung sieht gut aus.
+
+    Besonders gut gefällt mir, wie du X und Y gelöst hast.
+
+    Gute Arbeit!
+    EOF
+    ```
+
+2. Fordern Sie Änderungen an, wenn Verbesserungen erforderlich sind:
+
+    ```bash
+    # Für einzeilige Kommentare:
+    gh pr review <PR-number> --request-changes --body "Ihre Feedback-Nachricht"
+
+    # Für mehrzeilige Kommentare mit korrekter Formatierung:
+    cat << EOF | gh pr review <PR-number> --request-changes --body-file -
+    Danke @username für diesen PR!
+
+    Die Implementierung sieht vielversprechend aus, aber es gibt ein paar Dinge zu adressieren:
+
+    1. Punkt eins
+    2. Punkt zwei
+
+    Bitte nimm diese Änderungen vor, dann können wir mergen.
+    EOF
+    ```
+
+    Hinweis: Der Ansatz `cat << EOF | ... --body-file -` bewahrt alle Leerzeichen und Formatierungen ohne temporäre Dateien. Der Parameter `-` weist den Befehl an, von der Standardeingabe zu lesen.
+    </detailed_sequence_of_steps>
+
+<example_review_process>
+
+# Beispiel für einen PR Review Prozess
+
+Lassen Sie uns ein reales Beispiel für das Review von PR #3627 durchgehen, der die Berechnung des Thinking Mode für Claude 3.7 Modelle korrigiert.
+
+## Schritt 1: PR-Informationen sammeln
+
+```bash
+# PR-Details abrufen
+gh pr view 3627 --json title,body,comments
+
+# Den vollständigen Diff abrufen
+gh pr diff 3627
+```
+
+## Schritt 2: Den Kontext verstehen
+
+```xml
+# Originaldateien untersuchen, um die Änderungen zu verstehen
+<read_file>
+<path>src/shared/api.ts</path>
+</read_file>
+
+# Implementierung der ThinkingBudgetSlider Komponente ansehen
+<read_file>
+<path>webview-ui/src/components/settings/ThinkingBudgetSlider.tsx</path>
+</read_file>
+
+# Prüfen, wie der Thinking Mode aktuell in den API-Providern gehandhabt wird
+<search_files>
+<path>src/api/providers</path>
+<regex>reasoningOn</regex>
+<file_pattern>*.ts</file_pattern>
+</search_files>
+```
+
+## Schritt 3: Die Änderungen analysieren
+
+Aus den PR-Informationen und der Code-Prüfung geht hervor:
+
+1. Der PR behebt ein Problem bei der Budgetberechnung des Thinking Mode für Claude 3.7 Modelle
+2. Aktuell wird das Thinking Budget fälschlicherweise als 80% von maxTokens (8192) berechnet, was 6553 Token ergibt
+3. Claude 3.7 unterstützt tatsächlich ein viel größeres Thinking Budget (bis zu 64000 Token)
+4. Der PR fügt eine `thinkingConfig` Eigenschaft mit `maxBudget: 64000` zu den Modelldefinitionen hinzu
+5. Er aktualisiert die API-Handler, um diesen Wert zu verwenden, wenn der Reasoning Mode aktiviert ist
+6. Er erweitert die Slider-Komponente, um Maximalwerte basierend auf modellspezifischen Prozentsätzen zu berechnen
+7. Umfassende Tests wurden hinzugefügt, um die Berechnungen zu verifizieren
+
+## Schritt 4: Benutzerbestätigung einholen
+
+```xml
+<ask_followup_question>
+<question>Basierend auf meinem Review von PR #3627 empfehle ich, diesen PR zu genehmigen. Hier ist meine Begründung:
+
+1. Der PR korrigiert die Budgetberechnung für den Thinking Mode bei Claude 3.7 Modellen korrekt
+2. Die Eigenschaft thinkingConfig.maxBudget (64000) wurde ordnungsgemäß für Claude 3.7 Modelle implementiert
+3. Der passende Prozentsatz (50%) für die Slider-Berechnung wird angewendet
+4. Die Änderungen sind durch umfassende Unit Tests gut abgesichert
+5. Die Implementierung ist sauber und folgt den Codierungsstandards des Projekts
+6. Der PR enthält hilfreiche Screenshots, die den Fix demonstrieren
+
+Möchten Sie, dass ich mit der Genehmigung dieses PR fortfahre?</question>
+<options>["Ja, PR genehmigen", "Nein, ich möchte das weiter besprechen", "Lass mich zuerst selbst drüberschauen"]</options>
+</ask_followup_question>
+```
+
+## Schritt 5: Fragen, ob ein Kommentar entworfen werden soll
+
+```xml
+<ask_followup_question>
+<question>Möchten Sie, dass ich einen Kommentar für diesen PR entwerfe, den Sie kopieren und einfügen können?</question>
+<options>["Ja, bitte einen Kommentar entwerfen", "Nein, ich kümmere mich selbst um den Kommentar"]</options>
+</ask_followup_question>
+```
+
+## Schritt 6: Eine Entscheidung treffen
+
+```bash
+# Option 1: Einfacher einzeiliger Kommentar
+gh pr review 3627 --approve --body "Dieser PR sieht gut aus! Er korrigiert die Budgetberechnung für den Thinking Mode bei Claude 3.7 Modellen korrekt."
+
+# Option 2: Mehrzeiliger Kommentar mit korrekter Formatierung
+cat << EOF | gh pr review 3627 --approve --body-file -
+Dieser PR sieht gut aus! Er korrigiert die Budgetberechnung für den Thinking Mode bei Claude 3.7 Modellen korrekt.
+
+Besonders gut gefällt mir:
+1. Die ordnungsgemäße Implementierung der Eigenschaft thinkingConfig.maxBudget (64000)
+2. Der passende Prozentsatz (50%) für die Slider-Berechnung
+3. Die umfassenden Unit Tests
+4. Die saubere Implementierung gemäß den Codierungsstandards des Projekts
+
+Gute Arbeit!
+EOF
+```
+
+</example_review_process>
+
+<common_gh_commands>
+
+# Gängige GitHub CLI Befehle für den PR Review
+
+## Basis-Befehle für PRs
+
+```bash
+# Offene PRs auflisten
+gh pr list
+
+# Einen spezifischen PR ansehen
+gh pr view <PR-number>
+
+# PR mit spezifischen Feldern ansehen
+gh pr view <PR-number> --json title,body,comments,files,commits
+
+# PR-Status prüfen
+gh pr status
+```
+
+## Diff- und Datei-Befehle
+
+```bash
+# Den vollständigen Diff eines PR abrufen
+gh pr diff <PR-number>
+
+# In einem PR geänderte Dateien auflisten
+gh pr view <PR-number> --json files
+
+# Einen PR lokal auschecken
+gh pr checkout <PR-number>
+```
+
+## Review-Befehle
+
+```bash
+# Einen PR genehmigen (einzeiliger Kommentar)
+gh pr review <PR-number> --approve --body "Ihre Genehmigungsnachricht"
+
+# Einen PR genehmigen (mehrzeiliger Kommentar mit Formatierung)
+cat << EOF | gh pr review <PR-number> --approve --body-file -
+Ihre mehrzeilige
+Genehmigungsnachricht mit
+
+korrekter Formatierung
+EOF
+
+# Änderungen anfordern (einzeiliger Kommentar)
+gh pr review <PR-number> --request-changes --body "Ihre Feedback-Nachricht"
+
+# Änderungen anfordern (mehrzeiliger Kommentar mit Formatierung)
+cat << EOF | gh pr review <PR-number> --request-changes --body-file -
+Ihre mehrzeilige
+Anforderung von Änderungen mit
+
+korrekter Formatierung
+EOF
+
+# Einen Review-Kommentar hinzufügen (ohne Genehmigung/Ablehnung)
+gh pr review <PR-number> --comment --body "Ihre Kommentarnachricht"
+
+# Einen Review-Kommentar mit Formatierung hinzufügen
+cat << EOF | gh pr review <PR-number> --comment --body-file -
+Ihr mehrzeiliger
+Kommentar mit
+
+korrekter Formatierung
+EOF
+```
+
+## Zusätzliche Befehle
+
+```bash
+# Status der PR-Checks ansehen
+gh pr checks <PR-number>
+
+# Commits eines PR ansehen
+gh pr view <PR-number> --json commits
+
+# Einen PR mergen (falls Berechtigung vorhanden)
+gh pr merge <PR-number> --merge
+```
+
+</common_gh_commands>
+
+<general_guidelines_for_commenting>
+Wenn Sie einen PR reviewen, sprechen Sie bitte ganz normal und wie ein freundlicher Reviewer. Fassen Sie sich kurz und beginnen Sie damit, dem Autor des PR zu danken und ihn mit @ zu erwähnen.
+
+Unabhängig davon, ob Sie den PR genehmigen oder nicht, sollten Sie eine kurze Zusammenfassung der Änderungen geben, ohne zu wortreich oder definitiv zu sein. Bleiben Sie bescheiden, etwa so, dass dies Ihr Verständnis der Änderungen ist. Ähnlich wie ich gerade mit Ihnen spreche.
+
+Wenn Sie Vorschläge haben oder Dinge geändert werden müssen, fordern Sie Änderungen an, anstatt den PR zu genehmigen.
+
+Inline-Kommentare im Code sind gut, aber nutzen Sie diese nur, wenn Sie etwas Spezifisches zum Code zu sagen haben. Stellen Sie sicher, dass Sie diese Kommentare zuerst hinterlassen und dann die Änderungen im PR mit einem kurzen Kommentar anfordern, der das Gesamtthema Ihrer Änderungswünsche erklärt.
+</general_guidelines_for_commenting>
+
+<example_comments_that_i_have_written_before>
+<brief_approve_comment>
+Sieht gut aus, obwohl wir das irgendwann für alle Provider & Modelle generisch machen sollten.
+</brief_approve_comment>
+<brief_approve_comment>
+Wird das für Modelle funktionieren, die bei OR/Gemini eventuell nicht übereinstimmen? Wie die Thinking Modelle?
+</brief_approve_comment>
+<approve_comment>
+Das sieht super aus! Mir gefällt, wie du den Support für globale Endpunkte gelöst hast – das Hinzufügen zum ModelInfo Interface ergibt absolut Sinn, da es einfach nur ein weiteres Capability-Flag ist, ähnlich wie wir andere Modell-Features handhaben.
+
+Der Ansatz mit der gefilterten Modell-Liste ist sauber und wird einfacher zu warten sein als das Hardcoding der Modelle, die mit globalen Endpunkten funktionieren. Und das Update der genai Library war offensichtlich notwendig, damit das funktioniert.
+
+Danke auch für das Hinzufügen der Docs zu den Einschränkungen – gut für die User zu wissen, dass sie Context Caches nicht mit globalen Endpunkten nutzen können, dafür aber vielleicht weniger 429-Fehler bekommen.
+</approve_comment>
+<requesst_changes_comment>
+Das ist klasse. Danke @scottsus.
+
+Meine Hauptsorge ist jedoch – funktioniert das mit allen möglichen VS Code Themes? Wir hatten damit anfangs Schwierigkeiten, weshalb es aktuell nicht besonders gestylt ist. Bitte teste das und teile Screenshots mit den verschiedenen Themes, bevor wir mergen können.
+</requesst_changes_comment>
+<request_changes_comment>
+Hey, der PR sieht insgesamt gut aus, aber ich habe Bedenken wegen des Entfernens dieser Timeouts. Die waren wahrscheinlich aus einem bestimmten Grund da – die UI von VS Code kann beim Timing etwas eigenwillig sein.
+
+Könntest du die Timeouts nach dem Fokussieren der Sidebar wieder einbauen? Etwa so:
+
+```typescript
+await vscode.commands.executeCommand("claude-dev.SidebarProvider.focus")
+await setTimeoutPromise(100) // Der UI Zeit zum Update geben
+visibleWebview = WebviewProvider.getSidebarInstance()
+```
+
+</request_changes_comment>
+<request_changes_comment>
+Hallo @alejandropta, danke für die Arbeit daran!
+
+Ein paar Anmerkungen:
+1 - Das Hinzufügen zusätzlicher Infos zu den Umgebungsvariablen ist ziemlich problematisch, da Umgebungsvariablen an **jede einzelne Nachricht** angehängt werden. Ich denke nicht, dass das für einen eher speziellen Use Case gerechtfertigt ist.
+2 - Diese Option in die Einstellungen aufzunehmen, könnte eine Möglichkeit sein, aber wir möchten, dass unsere Optionen für neue User einfach und unkompliziert bleiben.
+3 - Wir arbeiten an einer neuen Visualisierung/Organisation unserer Einstellungsseite. Das könnte eventuell abgestimmt werden, sobald das steht und unsere Einstellungsseite klarer abgegrenzt ist.
+
+Bis die Einstellungsseite aktualisiert wurde und dies so integriert ist, dass es sauber ist und neue User nicht verwirrt, können wir das meiner Meinung nach nicht mergen. Bitte hab ein wenig Geduld mit uns.
+</request_changes_comment>
+<request_changes_comment>
+Vergiss bitte auch nicht, ein Changeset hinzuzufügen, da dies einen Bug behebt, der für User sichtbar ist.
+
+Die architektonische Änderung ist solide – die Fokus-Logik in die Command-Handler zu verschieben, ergibt Sinn. Ich möchte nur keine subtilen Timing-Probleme durch das Entfernen der Timeouts riskieren.
+</request_changes_comment>
+</example_comments_that_i_have_written_before>
+````
+
+Früher musste ich den Kontext manuell sammeln, wenn ich einen neuen PR zum Reviewen erhielt: die PR-Beschreibung prüfen, den Diff untersuchen, die umliegenden Dateien ansehen und mir schließlich eine Meinung bilden. Jetzt mache ich einfach:
+
+1. Geben Sie `/pr-review.md` im Chat ein
+2. Fügen Sie die PR-Nummer ein
+3. Lassen Sie Caret den Rest erledigen
+
+Mein Workflow nutzt das `gh` Command-line-Tool und die in Caret integrierte Funktion `ask_followup_question`, um:
+
+-   Die PR-Beschreibung und Kommentare abzurufen
+-   Den Diff zu untersuchen
+-   Umliegende Dateien für den Kontext zu prüfen
+-   Potenzielle Probleme zu analysieren
+-   Mich zu fragen, ob die Genehmigung in Ordnung ist, falls alles gut aussieht, inklusive einer Begründung
+-   Wenn ich "Ja" sage, genehmigt Caret den PR automatisch über den `gh` Befehl
+
+Dies hat meinen PR-Review-Prozess von einer manuellen, mehrstufigen Operation in einen einzigen Befehl verwandelt, der mir alles liefert, was ich für eine fundierte Entscheidung benötige.
+
+> Dies ist nur ein Beispiel für eine Workflow-Datei. Weitere Inspirationen finden Sie in unserem [Prompts-Repository](https://github.com/caret/prompts).
+
+## Eigene Workflows erstellen
+
+Das Schöne an Workflows ist, dass sie komplett an Ihre Bedürfnisse anpassbar sind. Sie könnten Workflows für alle Arten von repetitiven Aufgaben erstellen:
+
+-   Für Releases könnten Sie einen Workflow haben, der alle gemergten PRs sammelt, ein Changelog erstellt und Version-Bumps übernimmt.
+-   Das Aufsetzen neuer Projekte ist perfekt für Workflows. Führen Sie einfach einen Befehl aus, um Ihre Ordnerstruktur zu erstellen, Abhängigkeiten zu installieren und Konfigurationen einzurichten.
+-   Müssen Sie einen Bericht erstellen? Erstellen Sie einen Workflow, der Statistiken aus verschiedenen Quellen sammelt und sie genau so formatiert, wie Sie es wünschen. Sie können sie sogar mit einer Charting-Library visualisieren und anschließend mit einer Library wie [slidev](https://sli.dev/) eine Präsentation daraus machen.
+-   Sie können Workflows sogar nutzen, um Nachrichten an Ihr Team über einen MCP-Server wie Slack oder Whatsapp zu entwerfen, nachdem Sie einen PR eingereicht haben.
+
+Mit Workflows sind Ihrer Fantasie keine Grenzen gesetzt. Das wahre Potenzial entfaltet sich, wenn Sie diese nervigen, repetitiven Aufgaben entdecken, die Sie ständig erledigen.
+
+Wenn Sie etwas beschreiben können als "zuerst mache ich X, dann Y, dann Z" – dann ist das ein perfekter Kandidat für einen Workflow.
+
+Fangen Sie mit etwas Kleinem an, das Sie stört, machen Sie daraus einen Workflow und verfeinern Sie ihn stetig. Sie werden überrascht sein, wie viel Ihres Tages sich auf diese Weise automatisieren lässt.

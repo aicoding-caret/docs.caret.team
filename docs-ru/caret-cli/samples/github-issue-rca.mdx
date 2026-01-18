@@ -1,0 +1,385 @@
+```yaml
+---
+title: "Пример RCA для GitHub Issue"
+description: "Автоматизированный анализ issues на GitHub с использованием Caret CLI для определения первопричин."
+---
+
+# Анализ первопричин GitHub
+
+Автоматизированный анализ issues на GitHub с использованием Caret CLI. Этот скрипт использует автономные AI-возможности Caret для получения, анализа и определения первопричин issues на GitHub, выводя чистые, легко анализируемые результаты, которые можно легко интегрировать в ваши процессы разработки.
+
+<Note>
+**Впервые используете Caret CLI?** Этот пример предполагает, что вы уже выполнили [Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation) и аутентифицировались с помощью `caret auth`. Если вы еще не настроили Caret CLI, пожалуйста, начните с этого.
+</Note>
+
+<Frame>
+  <img src="https://storage.googleapis.com/cline_public_images/cli-rca.gif" alt="CLI Root Cause Analysis Demo" width="600" />
+</Frame>
+
+## Необходимые условия
+
+Этот пример предполагает, что у вас уже есть:
+
+- **Caret CLI** установлен и аутентифицирован ([Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation))
+- **Как минимум один провайдер AI-моделей** сконфигурирован (например, OpenRouter, Anthropic, OpenAI)
+- **Базовое знакомство** с командами Caret CLI
+
+Кроме того, вам понадобится:
+
+- **GitHub CLI** (`gh`) установлен и аутентифицирован
+- **jq** установлен для парсинга JSON
+- **bash** shell (или совместимый shell)
+
+### Инструкции по установке
+
+#### macOS
+
+<Note>
+Эти инструкции требуют установленной [Homebrew](https://brew.sh/). Если у вас нет Homebrew, сначала установите его, выполнив:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+</Note>
+
+```bash
+# Install GitHub CLI
+brew install gh
+
+# Install jq
+brew install jq
+
+# Authenticate with GitHub
+gh auth login
+```
+
+#### Linux
+
+```bash
+# Install GitHub CLI (Debian/Ubuntu)
+sudo apt install gh
+
+# Or for other Linux distributions, see: https://cli.github.com/manual/installation
+
+# Install jq (Debian/Ubuntu)
+sudo apt install jq
+
+# Authenticate with GitHub
+gh auth login
+```
+
+## Получение скрипта
+
+**Вариант 1: Загрузка напрямую с помощью curl**
+```bash
+curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/github-issue-rca/analyze-issue.sh
+```
+
+**Вариант 2: Копирование полного скрипта**
+
+<Accordion title="Нажмите, чтобы просмотреть полный скрипт analyze-issue.sh">
+
+```bash
+#!/bin/bash
+# Analyze a GitHub issue using Caret CLI
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause of this issue?' 127.0.0.1:46529"
+    exit 1
+fi
+
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+
+# Ask Caret for its analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+</Accordion>
+
+<Note>
+**После загрузки или создания скрипта**, сделайте его исполняемым, выполнив:
+```bash
+chmod +x analyze-issue.sh
+```
+</Note>
+
+## Краткие примеры использования
+
+### Базовое использование
+
+Запустите эту команду в своем терминале из каталога, в котором вы сохранили скрипт, чтобы проанализировать issue с запросом первопричины по умолчанию:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123
+```
+
+Это сделает следующее:
+- Получит issue #123 из репозитория
+- Проанализирует issue для определения первопричин
+- Предоставит подробный анализ с рекомендациями
+
+### Пользовательский анализ
+
+Задайте конкретные вопросы о issue:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
+```
+
+### Использование конкретного экземпляра Caret
+
+Укажите конкретный экземпляр Caret по адресу:
+
+```bash
+./analyze-issue.sh https://github.com/owner/repo/issues/123 \
+    "What is the root cause of this issue?" \
+    127.0.0.1:46529
+```
+
+<Warning>
+Это полезно, когда:
+- Запущено несколько экземпляров Caret
+- Используется удаленный сервер Caret
+- Тестируется с определенными конфигурациями
+</Warning>
+
+<Note>
+Скрипт автоматически обработает все: получение issue, анализ с помощью Caret и отображение результатов. Анализ обычно занимает 30-60 секунд в зависимости от сложности issue.
+</Note>
+
+## Как это работает
+
+Давайте проанализируем каждый компонент скрипта, чтобы понять, как он работает.
+
+### Проверка аргументов
+
+Скрипт проверяет ввод и предоставляет инструкции по использованию:
+
+```bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <github-issue-url> [prompt] [address]"
+    echo "Example: $0 https://github.com/owner/repo/issues/123"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'What is the root cause?'"
+    echo "Example: $0 https://github.com/owner/repo/issues/123 'Analyze security impact' 127.0.0.1:46529"
+    exit 1
+fi
+```
+
+**Ключевые моменты:**
+- Проверяет обязательный URL issue на GitHub
+- Показывает четкие примеры использования
+- Поддерживает необязательный пользовательский prompt
+- Поддерживает необязательный адрес экземпляра Caret
+
+### Парсинг аргументов
+
+Скрипт извлекает и настраивает аргументы:
+
+```bash
+# Gather the args
+ISSUE_URL="$1"
+PROMPT="${2:-What is the root cause of this issue?}"
+if [ -n "$3" ]; then
+    ADDRESS="--address $3"
+fi
+```
+
+**Объяснение:**
+- `ISSUE_URL="$1"` - Первый аргумент всегда URL issue
+- `PROMPT="${2:-...}"` - Второй аргумент является необязательным, по умолчанию анализ первопричины
+- `ADDRESS` - Третий аргумент является необязательным, устанавливается только в том случае, если он предоставлен
+
+### Основной конвейер анализа
+
+Здесь происходит волшебство:
+
+```bash
+# Ask Caret for his analysis, showing only the summary
+caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
+    sed -n '/^{/,$p' | \
+    jq -r 'select(.say == "completion_result") | .text' | \
+    sed 's/\\n/\n/g'
+```
+
+<Accordion title="Разбивка конвейера: понимание каждого компонента">
+
+**1. `caret -y "$PROMPT: $ISSUE_URL"`**
+   - `-y` включает yolo mode (без взаимодействия с пользователем)
+   - Конструирует prompt с URL issue
+
+**2. `--mode act`**
+   - Включает act mode для активного исследования
+   - Позволяет Caret использовать инструменты (читать файлы, выполнять команды и т. д.)
+
+**3. `$ADDRESS`**
+   - Необязательный флаг address для конкретного экземпляра
+   - Расширяется до `--address <ip:port>`, если установлено
+
+**4. `-F json`**
+   - Выводит в формате JSON для парсинга
+
+**5. `sed -n '/^{/,$p'`**
+   - Извлекает JSON из вывода
+   - Пропускает любые строки префикса, отличные от JSON
+
+**6. `jq -r 'select(.say == "completion_result") | .text'`**
+   - Фильтрует сообщения с результатами завершения
+   - Извлекает текстовое поле
+   - `-r` выводит необработанные строки (без кавычек JSON)
+
+**7. `sed 's/\\n/\n/g'`**
+   - Преобразует экранированные новые строки в фактические новые строки
+   - Делает вывод читабельным
+
+</Accordion>
+
+## Пример вывода
+
+Вот пример анализа реальной issue Flutter:
+
+```bash
+$ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
+```
+
+**Вывод:**
+
+```markdown
+**Анализ первопричин issue #2: "setState isn't cutting it"**
+
+После изучения issue на GitHub и анализа кодовой базы Flutter counter, 
+я определил первопричину того, почему setState() недостаточен для нужд этого 
+проекта:
+
+## Текущие проблемы реализации
+
+Текущее приложение Flutter counter использует setState() для управления состоянием, что 
+имеет несколько ограничений:
+
+1. **Только локальное состояние**: setState() работает только в пределах одного виджета, что 
+   затрудняет совместное использование состояния в приложении
+2. **Накладные расходы на перестройку**: Каждый вызов setState() перестраивает все дерево виджетов, 
+   что вызывает проблемы с производительностью сложных интерфейсов
+3. **Отсутствие сохранения состояния**: Состояние теряется, когда виджет удаляется
+4. **Проблемы тестирования**: Логика на основе setState тесно связана с пользовательским интерфейсом, 
+   что затрудняет модульное тестирование
+
+## Почему это важно
+
+По мере того, как приложение выходит за рамки простого счетчика, эти ограничения становятся критическими:
+- Нескольким экранам необходимо получить доступ к счетчику
+- Состояние должно сохраняться при навигации
+- Бизнес-логика должна быть тестируемой независимо
+- Пользовательский интерфейс должен перестраиваться только при необходимости
+
+## Рекомендуемые решения
+
+В issue упоминается "Provider или Bloc" - оба являются отличными альтернативами:
+
+1. **Provider**: Простое, легкое управление состоянием с использованием InheritedWidget
+   - Легкий путь миграции из setState
+   - Хорошо подходит для малых и средних приложений
+   - Официальная рекомендация Flutter
+
+2. **Bloc**: Более структурированный подход с четким разделением между событиями, 
+   состояниями и бизнес-логикой
+   - Лучше подходит для сложных приложений
+   - Отличная тестируемость
+   - Четкие архитектурные паттерны
+
+3. **Riverpod**: Современная альтернатива Provider с лучшей производительностью и 
+   опытом разработчика
+   - Безопасность во время компиляции
+   - Лучшая поддержка тестирования
+   - Более гибкий, чем Provider
+
+4. **GetX**: Полнофункциональное решение с управлением состоянием, маршрутизацией и 
+   внедрением зависимостей
+   - Минимальный boilerplate
+   - Быстрый и легкий
+   - Универсальное решение
+
+## Следующие шаги
+
+Текущую кодовую базу необходимо реорганизовать для реализации надлежащей архитектуры управления состоянием, 
+чтобы эффективно обрабатывать более сложные сценарии состояния. Provider 
+был бы самым простым путем миграции, в то время как Bloc обеспечивает лучшую долгосрочную 
+масштабируемость.
+```
+
+## Когда использовать этот шаблон
+
+Этот шаблон скрипта идеально подходит для различных сценариев разработки, где автоматизированный анализ issues на GitHub может ускорить ваш рабочий процесс.
+
+### Исследование ошибок
+
+Быстро анализируйте отчеты об ошибках и определяйте первопричины без ручного исследования кода:
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/123 \
+    "What is the root cause of this bug?"
+```
+
+### Анализ запроса функции
+
+Понимание контекста и последствий запросов функций:
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/456 \
+    "What are the implementation challenges?"
+```
+
+### Аудит безопасности
+
+Оценка последствий для безопасности сообщаемых issues:
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/789 \
+    "What are the security implications?"
+```
+
+### Создание документации
+
+Создавайте подробную техническую документацию из issues:
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/654 \
+    "Provide detailed technical documentation for this issue"
+```
+
+### Помощь в Code Review
+
+Получите второе мнение о предлагаемых изменениях:
+
+```bash
+./analyze-issue.sh https://github.com/project/repo/issues/987 \
+    "Review the proposed solution approach"
+```
+
+## Заключение
+
+Этот пример демонстрирует, как создать автономный инструмент анализа issues на GitHub с использованием Caret CLI:
+
+1. **Создание автономных инструментов CLI** с использованием возможностей Caret
+2. **Парсинг структурированного JSON-вывода** из Caret CLI
+3. **Создание гибких скриптов автоматизации** с пользовательскими запросами
+4. **Интеграция с GitHub** для анализа issues
+5. **Эффективная обработка аргументов командной строки**
+
+Этот шаблон можно адаптировать для многих других сценариев автоматизации, от Code Review pull request до создания документации и анализа качества кода.
+
+## Связанные ресурсы
+
+- [Руководство по установке CLI](https://docs.caret.bot/russian/caret-cli/installation)
+- [Справочная документация CLI](https://docs.caret.bot/russian/caret-cli/cli-reference)
+- [Три основных потока](https://docs.caret.bot/russian/caret-cli/three-core-flows)
+```

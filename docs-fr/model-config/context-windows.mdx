@@ -1,0 +1,163 @@
+---
+title: "Guide de la fenêtre de contexte"
+description: "Comprendre et gérer les fenêtres de contexte des modèles d'IA"
+---
+
+<Note>
+Ce document est basé sur Caret. Il suit la version Caret v3.38.1 et toute politique spécifique à Caret (limites de contexte par modèle supporté/bloqué, authentification/routage) sera signalée par une balise `<Note>` dans le texte.
+</Note>
+
+## Qu'est-ce qu'une fenêtre de contexte ?
+
+Une fenêtre de contexte est la quantité maximale de texte qu'un modèle d'IA peut traiter en une seule fois. Considérez-la comme la « mémoire de travail » du modèle : elle détermine quelle proportion de votre conversation et de votre code le modèle peut prendre en compte lors de la génération de réponses.
+
+<Note>
+**Point clé** : Des fenêtres de contexte plus larges permettent au modèle de comprendre une plus grande partie de votre codebase en une fois, mais peuvent augmenter les coûts et les temps de réponse.
+</Note>
+
+## Tailles des fenêtres de contexte
+
+### Référence rapide
+
+| Taille | Tokens | Mots approximatifs | Cas d'utilisation |
+|------|--------|------------------|----------|
+| **Petite** | 8K-32K | 6 000-24 000 | Fichiers uniques, corrections rapides |
+| **Moyenne** | 128K | ~96 000 | La plupart des projets de code |
+| **Grande** | 200K | ~150 000 | Codebases complexes |
+| **Très grande** | 400K+ | ~300 000+ | Applications entières |
+| **Massive** | 1M+ | ~750 000+ | Analyse multi-projets |
+
+### Fenêtres de contexte par modèle
+
+| Modèle | Fenêtre de contexte | Fenêtre effective* | Notes |
+|-------|---------------|------------------|-------|
+| **Claude Sonnet 4.5** | 1M tokens | ~500K tokens | Meilleure qualité à haut contexte |
+| **GPT-5** | 400K tokens | ~300K tokens | Trois modes affectent la performance |
+| **Gemini 2.5 Pro** | 1M+ tokens | ~600K tokens | Excellent pour les documents |
+| **DeepSeek V3** | 128K tokens | ~100K tokens | Optimal pour la plupart des tâches |
+| **Qwen3 Coder** | 256K tokens | ~200K tokens | Bon équilibre |
+
+*La fenêtre effective est celle où le modèle maintient une haute qualité
+
+## Gérer le contexte efficacement
+
+### Ce qui compte pour le contexte
+
+1. **Votre conversation actuelle** - Tous les messages du chat
+2. **Contenu des fichiers** - Tous les fichiers que vous avez partagés ou que Caret a lus
+3. **Sorties d'outils** - Résultats des commandes exécutées
+4. **System prompts** - Instructions de Caret (impact minimal)
+
+### Stratégies d'optimisation
+
+#### 1. Repartir de zéro pour les nouvelles fonctionnalités
+```
+/new - Creates a new task with clean context
+```
+Avantages :
+- Maximum de contexte disponible
+- Pas d'historique non pertinent
+- Meilleure focalisation du modèle
+
+#### 2. Utiliser les @ mentions stratégiquement
+Au lieu d'inclure des fichiers entiers :
+- `@filename.ts` - À inclure uniquement quand c'est nécessaire
+- Utiliser la recherche plutôt que de lire des fichiers volumineux
+- Référencer des fonctions spécifiques plutôt que des fichiers entiers
+
+#### 3. Activer l'Auto-compact
+Caret peut résumer automatiquement les conversations longues :
+- Settings → Features → Auto-compact
+- Préserve le contexte important
+- Réduit l'utilisation des tokens
+
+## Avertissements sur la fenêtre de contexte
+
+### Signes que vous atteignez les limites
+
+| Signe d'avertissement | Signification | Solution |
+|-------------|---------------|----------|
+| **"Context window exceeded"** | Limite stricte atteinte | Commencer une nouvelle tâche ou activer l'Auto-compact |
+| **Réponses plus lentes** | Le modèle a du mal avec le contexte | Réduire les fichiers inclus |
+| **Suggestions répétitives** | Fragmentation du contexte | Résumer et repartir de zéro |
+| **Changements récents manquants** | Débordement du contexte | Utiliser des checkpoints pour suivre les changements |
+
+### Bonnes pratiques par taille de projet
+
+#### Petits projets (< 50 fichiers)
+- Tous les modèles fonctionnent bien
+- Inclure librement les fichiers pertinents
+- Aucune optimisation spéciale nécessaire
+
+#### Projets moyens (50-500 fichiers)
+- Utiliser des modèles avec 128K+ de contexte
+- Inclure uniquement le groupe de fichiers de travail
+- Effacer le contexte entre les fonctionnalités
+
+#### Grands projets (500+ fichiers)
+- Utiliser des modèles avec 200K+ de contexte
+- Se concentrer sur des modules spécifiques
+- Utiliser la recherche au lieu de lire de nombreux fichiers
+- Diviser le travail en tâches plus petites
+
+## Gestion avancée du contexte
+
+### Optimisation du mode Plan/Act
+
+Tirez parti du mode Plan/Act pour une meilleure utilisation du contexte :
+- **Plan Mode** : Utiliser un contexte plus petit pour la discussion
+- **Act Mode** : Inclure les fichiers nécessaires pour l'implémentation
+
+Configuration :
+```
+Plan Mode: DeepSeek V3 (128K) - Lower cost planning
+Act Mode: Claude Sonnet (1M) - Maximum context for coding
+```
+
+### Stratégies d'élagage du contexte
+
+1. **Élagage temporel** : Supprimer les anciennes parties de la conversation
+2. **Élagage sémantique** : Garder uniquement les sections de code pertinentes
+3. **Élagage hiérarchique** : Maintenir la structure de haut niveau, élaguer les détails
+
+### Conseils pour le comptage des tokens
+
+#### Estimations approximatives
+- **1 token ≈ 0,75 mot**
+- **1 token ≈ 4 caractères**
+- **100 lignes de code ≈ 500-1000 tokens**
+
+#### Directives par taille de fichier
+| Type de fichier | Tokens par KB |
+|-----------|---------------|
+| **Code** | ~250-400 |
+| **JSON** | ~300-500 |
+| **Markdown** | ~200-300 |
+| **Plain text** | ~200-250 |
+
+## FAQ sur la fenêtre de contexte
+
+### Q : Pourquoi les réponses se dégradent-elles avec de très longues conversations ?
+**R :** Les modèles peuvent perdre leur focalisation avec trop de contexte. La « fenêtre effective » représente généralement 50 à 70 % de la limite annoncée.
+
+### Q : Dois-je utiliser la plus grande fenêtre de contexte disponible ?
+**R :** Pas toujours. Les contextes plus larges augmentent les coûts et peuvent réduire la qualité des réponses. Adaptez le contexte à la taille de votre tâche.
+
+### Q : Comment savoir quelle quantité de contexte j'utilise ?
+**R :** Caret affiche l'utilisation des tokens dans l'interface. Surveillez la jauge de contexte lorsqu'elle approche des limites.
+
+### Q : Que se passe-t-il si je dépasse la limite de contexte ?
+**R :** Caret va soit :
+- Compacter automatiquement la conversation (si activé)
+- Afficher une erreur et suggérer de commencer une nouvelle tâche
+- Tronquer les messages plus anciens (avec un avertissement)
+
+## Recommandations par cas d'utilisation
+
+| Cas d'utilisation | Contexte recommandé | Suggestion de modèle |
+|----------|-------------------|------------------|
+| **Corrections rapides** | 32K-128K | DeepSeek V3 |
+| **Développement de fonctionnalités** | 128K-200K | Qwen3 Coder |
+| **Refactorisation majeure** | 400K+ | Claude Sonnet 4.5 |
+| **Revue de code** | 200K-400K | GPT-5 |
+| **Documentation** | 128K | N'importe quel modèle économique |

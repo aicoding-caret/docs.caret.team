@@ -1,0 +1,47 @@
+---
+title: "Commande Smol"
+sidebarTitle: "/smol"
+---
+
+`/smol` (ou son alias, `/compact`) est une commande slash qui compresse l'historique de votre conversation tout en préservant le contexte essentiel.
+
+Contrairement à `/newtask` qui crée une nouvelle tâche, `/smol` condense votre conversation actuelle en un résumé complet, libérant de l'espace dans la fenêtre de contexte tout en vous permettant de continuer à travailler dans la même tâche.
+
+Considérez cela comme un résumé des parties pertinentes d'une conversation tout en écartant le reste.
+
+#### Utilisation de la commande Slash `/smol`
+
+Lorsque votre fenêtre de contexte est presque pleine mais que vous souhaitez continuer dans la même tâche :
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/smol.png" alt="Using the /smol slash command" />
+</Frame>
+
+-   Tapez `/smol` (ou son alias `/compact`) dans le champ de saisie du chat
+-   Caret analysera votre conversation et créera un résumé détaillé qui préserve les informations essentielles
+-   Vous aurez la possibilité d'examiner ce résumé et de fournir des commentaires si nécessaire
+-   Une fois accepté, l'historique détaillé de la conversation est remplacé par cette version condensée
+
+#### Exemple
+
+J'utilise `/smol` lorsque je suis plongé dans une session de débogage complexe et que j'ai besoin de continuer dans la même tâche. Après avoir exploré plusieurs approches et examiné plusieurs fichiers, ma fenêtre de contexte se retrouve encombrée par tous les allers-retours.
+
+En utilisant `/smol`, je peux condenser toute cette exploration en un résumé concis qui capture ce que nous avons appris, quels fichiers nous avons examinés et quelles approches nous avons essayées. Cela libère de l'espace pour continuer le débogage sans perdre les informations que nous avons acquises.
+
+La principale différence avec `/newtask` est que je reste dans le même flux de conversation plutôt que de créer une tâche distincte. Ceci est particulièrement utile lorsque je suis en plein milieu de quelque chose et que je ne veux pas changer de contexte.
+
+#### Inspiration
+
+Voici des façons puissantes dont j'utilise `/smol` dans mon workflow :
+
+-   Lors de longues séances de brainstorming, j'utilise `/smol` pour condenser notre exploration avant de mettre en œuvre la solution choisie, le tout dans la même tâche.
+-   Lors du débogage de problèmes complexes impliquant plusieurs vérifications de fichiers et exécutions de tests, j'utilise `/smol` pour résumer ce que nous avons appris tout en poursuivant le processus de débogage.
+-   Pour le développement itératif, j'utilise `/smol` après avoir terminé chaque fonctionnalité pour compresser les détails de l'implémentation tout en gardant les décisions et les approches clés accessibles.
+-   Lors de la collecte des exigences provenant de plusieurs sources, j'utilise `/smol` pour distiller les besoins essentiels en un résumé concis avant de passer à la phase de conception.
+
+#### Smol vs Newtask
+
+Les gens me demandent souvent quand utiliser `/smol` vs `/newtask`. Franchement, c'est une question de préférence personnelle et de ce que vous essayez de réaliser. Voici quelques directives :
+
+-   Utilisez `/smol` lorsque vous êtes en plein milieu de quelque chose et que vous voulez continuer dans la même tâche. C'est parfait lorsque vous êtes plongé dans un flux de débogage ou une séance de brainstorming et que vous ne voulez pas briser votre élan. L'inconvénient ? Une fois que vous avez compressé votre historique, vous ne pouvez plus récupérer ces conversations détaillées.
+-   Utilisez `/newtask` lorsque vous êtes à un point de transition logique et que vous voulez repartir à zéro. C'est parfait pour passer de la planification à la mise en œuvre, ou lorsque vous voulez conserver l'intégralité de votre historique de conversation (car cela crée une nouvelle tâche plutôt que d'écraser votre tâche actuelle).

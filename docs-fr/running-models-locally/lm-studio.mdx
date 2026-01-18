@@ -1,0 +1,125 @@
+---
+title: "LM Studio"
+description: "Un guide rapide pour configurer LM Studio pour l'exécution locale de modèles d'IA avec Caret."
+---
+
+<Note>
+Ceci est un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Les politiques spécifiques à Caret (runtime local pris en charge, authentification/routage, limitations des modèles) sont indiquées par `<Note>` dans le texte.
+</Note>
+
+## Configurer LM Studio avec Caret
+
+Exécutez des modèles d'IA localement en utilisant LM Studio avec Caret.
+
+### Prérequis
+
+-   Ordinateur Windows, macOS ou Linux avec support AVX2
+-   Caret installé dans VS Code
+
+### Étapes de configuration
+
+#### 1. Installer LM Studio
+
+-   Visitez [lmstudio.ai](https://lmstudio.ai)
+-   Téléchargez et installez pour votre système d'exploitation
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(7).png" alt="LM Studio download page" />
+</Frame>
+
+#### 2. Lancer LM Studio
+
+-   Ouvrez l'application installée
+-   Vous verrez quatre onglets sur la gauche : **Chat**, **Developer** (où vous démarrerez le serveur), **My Models** (où vos modèles téléchargés sont stockés), **Discover** (ajouter de nouveaux modèles)
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(10).png"
+		alt="LM Studio interface overview"
+	/>
+</Frame>
+
+#### 3. Télécharger un modèle
+
+-   Parcourez la page « Discover »
+-   Sélectionnez et téléchargez votre modèle préféré
+-   Attendez que le téléchargement se termine
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-download-model.gif"
+		alt="Downloading a model in LM Studio"
+	/>
+</Frame>
+
+#### 4. Démarrer le serveur
+
+-   Accédez à l'onglet « Developer »
+-   Basculez l'interrupteur du serveur sur « Running »
+-   Note : Le serveur fonctionnera à l'adresse `http://localhost:1234`
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-starting-server.gif"
+		alt="Starting the LM Studio server"
+	/>
+</Frame>
+
+#### 5. Configurer Caret
+
+1. Ouvrez VS Code
+2. Cliquez sur l'icône des paramètres de Caret
+3. Sélectionnez « LM Studio » comme fournisseur d'API
+4. Sélectionnez votre modèle parmi les options disponibles
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-select-model-caret.gif"
+		alt="Configuring Caret with LM Studio"
+	/>
+</Frame>
+
+### Modèle et paramètres recommandés
+
+Pour une expérience optimale avec Caret, utilisez **Qwen3 Coder 30B A3B Instruct**. Ce modèle offre de solides performances en programmation et une utilisation fiable des outils.
+
+#### Paramètres critiques
+
+Après avoir chargé votre modèle dans l'onglet Developer, configurez ces paramètres :
+
+1. **Context Length** : Réglez sur 262 144 (le maximum du modèle)
+2. **KV Cache Quantization** : Laissez décoché (critique pour des performances constantes)
+3. **Flash Attention** : Activez si disponible (améliore les performances)
+
+#### Guide de quantification
+
+Choisissez la quantification en fonction de votre RAM :
+
+- **32 Go de RAM** : Utilisez la quantification 4 bits (~17 Go de téléchargement)
+- **64 Go de RAM** : Utilisez la quantification 8 bits (~32 Go de téléchargement) pour une meilleure qualité
+- **128 Go+ de RAM** : Envisagez la pleine précision ou des modèles plus volumineux
+
+#### Format de modèle
+
+- **Mac (Apple Silicon)** : Utilisez le format MLX pour des performances optimisées
+- **Windows/Linux** : Utilisez le format GGUF
+
+### Activer les Compact Prompts
+
+Pour des performances optimales avec les modèles locaux, activez les prompts compacts dans les paramètres de Caret. Cela réduit la taille du prompt de 90 % tout en conservant les fonctionnalités de base.
+
+Accédez à Caret Settings → Features → Use Compact Prompt et activez l'option.
+
+### Notes importantes
+
+-   Démarrez LM Studio avant de l'utiliser avec Caret
+-   Gardez LM Studio en cours d'exécution en arrière-plan
+-   Le premier téléchargement du modèle peut prendre plusieurs minutes selon sa taille
+-   Les modèles sont stockés localement après le téléchargement
+
+### Dépannage
+
+1. Si Caret ne parvient pas à se connecter à LM Studio :
+2. Vérifiez que le serveur LM Studio est en cours d'exécution (consultez l'onglet Developer)
+3. Assurez-vous qu'un modèle est chargé
+4. Vérifiez que votre système répond aux exigences matérielles

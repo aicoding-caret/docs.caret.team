@@ -1,0 +1,136 @@
+---
+title: "API Key (простая настройка)"
+sidebarTitle: "API Key"
+description: "Настройте AWS Bedrock в Caret с помощью Bedrock API Keys. Самый простой способ получить доступ к передовым моделям для индивидуальных разработчиков."
+---
+
+### Обзор
+
+-   **AWS Bedrock:** полностью управляемый сервис, предоставляющий доступ к ведущим генеративным моделям ИИ (например, Anthropic Claude, Amazon Nova) через AWS.\
+    [Узнать больше об AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html).
+-   **Caret:** расширение для VS Code, которое работает как помощник по написанию кода, интегрируясь с моделями ИИ. Оно позволяет разработчикам генерировать код, выполнять отладку и анализировать данные.
+-   **Фокус на разработчике:** данное руководство предназначено для индивидуальных разработчиков, которые хотят получить доступ к передовым моделям через AWS Bedrock с помощью упрощенной настройки через API Keys.
+
+---
+
+### Шаг 1: Подготовка среды AWS
+
+#### 1.1 Настройка для индивидуального пользователя — создание Bedrock API Key
+
+Для получения более подробных инструкций ознакомьтесь с [документацией](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html).
+
+1. **Войдите в AWS Management Console:**\
+   [AWS Console](https://aws.amazon.com/console/)
+2. **Перейдите в Bedrock Console:**
+    - [Bedrock Console](https://console.aws.amazon.com/bedrock)
+    - Создайте новый Long Lived API Key. Этот API Key по умолчанию будет иметь политику IAM `AmazonBedrockLimitedAccess`.
+      [Просмотреть сведения о политике AmazonBedrockLimitedAccess](https://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html)
+
+#### 1.2 Создание или изменение политики
+
+Чтобы Caret мог взаимодействовать с AWS Bedrock, вашему пользователю или роли IAM требуются определенные разрешения. Хотя управляемая политика `AmazonBedrockLimitedAccess` обеспечивает полный доступ, для более ограниченной и безопасной настройки, соответствующей принципу наименьших привилегий, для основной функции вызова моделей в Caret достаточно следующих минимальных разрешений:
+
+-   `bedrock:InvokeModel`
+-   `bedrock:InvokeModelWithResponseStream`
+-   `bedrock:CallWithBearerToken`
+
+Вы можете создать кастомную политику IAM с этими разрешениями и прикрепить ее к своему пользователю или роли IAM.
+
+1.  В консоли AWS IAM создайте новую политику.
+2.  Используйте редактор JSON, чтобы добавить следующий документ политики:
+    ```json
+    {
+    	"Version": "2012-10-17",
+    	"Statement": [
+    		{
+    			"Effect": "Allow",
+    			"Action": ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream", "bedrock:CallWithBearerToken"],
+    			"Resource": "*" // Для повышения безопасности ограничьте доступ конкретными ARN моделей, если это возможно.
+    		}
+    	]
+    }
+    ```
+3.  Назовите политику (например, `ClineBedrockInvokeAccess`) и прикрепите ее к пользователю IAM, связанному с созданным вами ключом. Пользователь IAM и API Key имеют одинаковый префикс.
+
+**Важные соображения:**
+
+-   **Список моделей в Caret:** минимальных разрешений (`bedrock:InvokeModel`, `bedrock:InvokeModelWithResponseStream`) достаточно для того, чтобы Caret мог *использовать* модель, если вы укажете ID модели напрямую в настройках Caret. Если вы хотите, чтобы Caret динамически выводил список доступных моделей Bedrock, вам могут потребоваться дополнительные разрешения, такие как `bedrock:ListFoundationModels`.
+-   **Подписки AWS Marketplace:** для сторонних моделей (например, Anthropic Claude) политика **`AmazonBedrockLimitedAccess`** предоставляет необходимые разрешения для подписки через AWS Marketplace. Явного включения доступа не требуется. Для моделей Anthropic вам все равно потребуется отправить форму первого использования (FTU) через консоль. Если вы получили в чате Caret сообщение `[ERROR] Failed to process response: Model use case details have not been submitted for this account. Fill out the Anthropic use case details form before using the model.`, откройте [Playground в консоли AWS Bedrock](https://console.aws.amazon.com/bedrock/home?#/text-generation-playground), выберите любую модель Anthropic и заполните форму (возможно, сначала потребуется отправить промпт).
+
+---
+
+### Шаг 2: Проверка доступа к региону и моделям
+
+#### 2.1 Выбор и подтверждение региона
+
+1. **Выберите регион:**\
+   AWS Bedrock доступен в нескольких регионах (например, US East, Europe, Asia Pacific). Выберите регион, который соответствует вашим требованиям к задержке и комплаенсу.\
+   [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
+2. **Проверьте доступ к моделям:**
+    - **Примечание:** некоторые модели доступны только через [Inference Profile](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). В таком случае установите флажок "Cross Region Inference".
+
+---
+
+### Шаг 3: Настройка расширения Caret в VS Code
+
+#### 3.1 Установка и запуск Caret
+
+1. **Установите VS Code:**\
+   Скачайте с [сайта VS Code](https://code.visualstudio.com/).
+2. **Установите расширение Caret:**
+    - Откройте VS Code.
+    - Перейдите в Extensions Marketplace (`Ctrl+Shift+X` или `Cmd+Shift+X`).
+    - Найдите **Caret** и установите его.
+
+#### 3.2 Конфигурация настроек Caret
+
+1. **Откройте настройки Caret:**
+    - Нажмите на иконку шестеренки ⚙️, чтобы выбрать API Provider.
+2. **Выберите AWS Bedrock в качестве API Provider:**
+    - В выпадающем списке API Provider выберите **AWS Bedrock**.
+3. **Введите ваш AWS API Key:**
+    - Введите ваш **API Key**.
+    - Укажите правильный **AWS Region** (например, `us-east-1` или регион, утвержденный вашей организацией).
+4. **Выберите модель:**
+    - Выберите модель on-demand (например, **anthropic.claude-3-5-sonnet-20241022-v2:0**).
+5. **Сохраните и протестируйте:**
+    - Нажмите **Done/Save**, чтобы применить настройки.
+    - Проверьте интеграцию, отправив простой промпт (например, "Generate a Python function to check if a number is prime.").
+
+---
+
+### Шаг 4: Безопасность, мониторинг и лучшие практики
+
+1. **Безопасный доступ:**
+    - По возможности отдавайте предпочтение AWS SSO или федеративным ролям вместо долгосрочных API Key.
+    - [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+2. **Улучшение сетевой безопасности:**
+    - Рассмотрите возможность настройки [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-services-overview.html) для безопасного подключения к Bedrock.
+3. **Мониторинг и логирование активности:**
+    - Включите AWS CloudTrail для логирования вызовов API Bedrock.
+    - Используйте CloudWatch для мониторинга метрик, таких как количество вызовов, задержка и использование токенов.
+    - Настройте алерты для необычной активности.
+4. **Обработка ошибок и управление затратами:**
+    - Используйте экспоненциальную задержку (exponential backoff) для обработки ошибок превышения лимитов (throttling).
+    - Используйте AWS Cost Explorer и настройте оповещения о счетах для отслеживания использования.\
+      [AWS Cost Management](https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-aws-cost-management.html)
+5. **Регулярный аудит и соответствие требованиям:**
+    - Периодически проверяйте роли IAM и логи CloudTrail.
+    - Соблюдайте внутренние политики конфиденциальности данных и управления.
+
+---
+
+### Заключение
+
+Следуя этим шагам, вы сможете быстро интегрировать AWS Bedrock с расширением Caret для VS Code, чтобы ускорить разработку:
+
+1. **Подготовка среды AWS:** создайте Bedrock API Key с необходимыми разрешениями.
+2. **Проверка доступа к региону и моделям:** подтвердите, что выбранный регион поддерживает нужные вам модели.
+3. **Настройка Caret в VS Code:** установите и настройте Caret с вашим AWS API Key и выберите подходящую модель.
+4. **Внедрение мер безопасности и мониторинга:** используйте лучшие практики IAM, сетевой безопасности, мониторинга и управления затратами.
+
+Для получения дополнительной информации обратитесь к [документации AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html). Успешного кодинга!
+
+---
+
+_Это руководство будет обновляться по мере развития AWS Bedrock и Caret. Всегда обращайтесь к актуальной документации и внутренним политикам для получения обновленных рекомендаций._

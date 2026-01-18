@@ -1,0 +1,140 @@
+---
+title: "Outils de documents"
+sidebarTitle: "Outils de Documents"
+description: "Traiter divers fichiers avec des outils d'analyse d'image et de lecture de documents."
+---
+
+<Note>
+Ces outils sont des fonctionnalités exclusives à Caret.
+</Note>
+
+Caret fournit des outils puissants qui permettent à l'IA d'analyser directement les images et les documents. Grâce à ces outils, l'IA peut lire et analyser les fichiers simplement par leur chemin d'accès, sans que les utilisateurs aient à les joindre manuellement.
+
+## Outil d'analyse d'image (analyze_image)
+
+L'outil `analyze_image` analyse les fichiers image pour décrire leur contenu ou répondre à des questions spécifiques.
+
+### Cas d'utilisation
+
+- **Revue UI/UX** : Vérifier les problèmes de mise en page, les erreurs d'alignement, les bugs visuels dans les captures d'écran
+- **Extraction de texte** : Extraire le texte des captures d'écran, des boîtes de dialogue d'erreur, des journaux
+- **Revue de code** : Analyser les captures d'écran de code et identifier les modèles
+- **Comparaison de conception** : Comparer les implémentations d'UI avec les maquettes de conception
+- **Analyse des erreurs** : Interpréter les boîtes de dialogue d'erreur et les traces de pile
+
+### Formats pris en charge
+
+- PNG, JPG, JPEG, WebP, GIF, AVIF, BMP, TIFF
+
+### Utilisation
+
+```
+User: Extract the error message from this screenshot (./screenshots/error.png)
+AI: [Uses analyze_image tool] → Analyzes image → Provides extracted error message
+```
+
+### Exigences
+
+- **Connexion au compte Caret requise** : L'analyse d'image est traitée via l'API Caret
+- **Optimisation automatique des images** : Les grandes images sont automatiquement optimisées avant d'être envoyées
+
+### Paramètres
+
+Dans Paramètres → Fonctionnalités, vous pouvez sélectionner le **Modèle d'analyse d'image** :
+- Gemini 3.0 Flash Preview (par défaut)
+- Gemini 2.5 Flash
+
+---
+
+## Outil de lecture de documents (read_document)
+
+L'outil `read_document` lit divers formats de documents et extrait le texte.
+
+### Comparaison avec Cline
+
+| Feature | Cline | Caret |
+|---------|-------|-------|
+| Read PDF | User attachment only | **AI reads directly by path** |
+| Read DOCX/XLSX | User attachment only | **AI reads directly by path** |
+| HWPX (Korean Hangul) | ❌ Not supported | ✅ **Supported** |
+| HWP 5.0 (Legacy Hangul) | ❌ Not supported | ✅ **Supported** |
+| PPTX | ❌ Not supported | ✅ **Supported** |
+
+### Formats pris en charge
+
+| Format | Extension | Description |
+|--------|-----------|-------------|
+| PDF | `.pdf` | Documents Adobe PDF |
+| Word | `.docx` | Microsoft Word 2007+ |
+| Excel | `.xlsx` | Microsoft Excel 2007+ |
+| PowerPoint | `.pptx` | Microsoft PowerPoint 2007+ |
+| Hangul (New) | `.hwpx` | Hancom Office Hangul 2014+ |
+| Hangul (Legacy) | `.hwp` | Hancom Office Hangul 5.0 |
+| Jupyter | `.ipynb` | Jupyter Notebook |
+
+### Formats non pris en charge
+
+Les formats hérités suivants ne sont pas pris en charge en raison de limitations techniques :
+
+| Format | Extension | Alternative |
+|--------|-----------|-------------|
+| PowerPoint 97-2003 | `.ppt` | Convert to `.pptx` |
+| Word 97-2003 | `.doc` | Convert to `.docx` |
+| Excel 97-2003 | `.xls` | Convert to `.xlsx` |
+
+<Tip>
+Convertissez les formats hérités à l'aide de LibreOffice, Google Docs ou Microsoft Office.
+</Tip>
+
+### Utilisation
+
+```
+User: Analyze docs/spec.pdf in this project
+AI: [Uses read_document tool] → Extracts PDF content → Provides analysis
+```
+
+### Sécurité
+
+- **Validation du chemin** : Normalisation du chemin pour empêcher les attaques de type Path Traversal
+- **Limite de taille de fichier** : Maximum 50 Mo
+- **Validation du format** : Seules les extensions prises en charge sont autorisées
+
+### Limitations
+
+- **Pas d'images/graphiques** : Les images et les graphiques dans les documents ne sont pas extraits
+- **Perte de mise en page** : Les tableaux, les mises en page à plusieurs colonnes sont convertis en texte simple
+
+---
+
+## Conseils d'utilisation
+
+### Utilisation de l'analyse d'image
+
+```
+# Check for UI bugs
+"Check if there are layout issues in the ./screenshots/ui-bug.png screenshot"
+
+# Analyze error messages
+"Analyze the cause of the error from this screenshot (./error.png)"
+
+# Design review
+"Compare if the ./mockup.png design matches the current implementation"
+```
+
+### Utilisation de l'analyse de documents
+
+```
+# Analyze specifications
+"Read docs/api-spec.pdf and list the required API endpoints"
+
+# Data analysis
+"Summarize the contents of data/report.xlsx"
+
+# Korean document processing
+"Extract the key clauses from contracts/contract.hwp"
+```
+
+## Fonctionnalités connexes
+
+- [Guide des outils Caret](/french/exploring-carets-tools/caret-tools-guide)
+- [Système de compétences](/french/features/skills)

@@ -1,0 +1,160 @@
+---
+title: "Deep Planning-Befehl"
+sidebarTitle: "/deep-planning"
+---
+
+`/deep-planning` verwandelt Caret in einen akribischen Architekten, der Ihre Codebase untersucht, klärende Fragen stellt und einen umfassenden Implementierungsplan erstellt, bevor eine einzige Zeile Code geschrieben wird. 
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/deep-planning.png"
+		alt="Deep Planning Befehl in Aktion zeigt den Untersuchungs- und Planungsprozess"
+	/>
+</Frame>
+
+Wenn Sie `/deep-planning` verwenden, folgt Caret einem vierstufigen Prozess, der widerspiegelt, wie Senior-Entwickler komplexe Features angehen: gründliche Untersuchung, Diskussion & Klärung der Anforderungen, detaillierte Planung und strukturierte Task-Erstellung mit Fortschrittsverfolgung.
+
+## Der Vier-Schritte-Prozess
+
+### Schritt 1: Stille Untersuchung
+
+Caret wird zum Detektiv und erkundet geräuschlos Ihre Codebase, um deren Struktur, Muster und Einschränkungen zu verstehen. Er untersucht Quelldateien, analysiert Import-Muster, entdeckt Klassenhierarchien und identifiziert Marker für technische Schulden. Kein Kommentar, keine Erzählung – nur fokussierte Recherche.
+
+Während dieser Phase führt Caret Befehle aus wie:
+- Finden aller Klassen- und Funktionsdefinitionen in Ihrer gesamten Codebase
+- Analyse von Import-Mustern, um Abhängigkeiten zu verstehen
+- Entdecken der Projektstruktur und Dateiorganisation
+- Identifizieren von TODOs und technischen Schulden
+
+### Schritt 2: Diskussion und Fragen
+
+Sobald Caret Ihre Codebase versteht, stellt er gezielte Fragen, die die Implementierung prägen werden. Dies sind keine allgemeinen Fragen – sie beziehen sich spezifisch auf Ihr Projekt und das Feature, das Sie bauen.
+
+Fragen könnten Folgendes abdecken:
+- Klärung mehrdeutiger Anforderungen
+- Wahl zwischen gleichwertigen Implementierungsansätzen
+- Bestätigung von Annahmen über das Systemverhalten
+- Verständnis von Präferenzen für technische Entscheidungen
+
+### Schritt 3: Implementierungsplan-Dokument
+
+Caret erstellt ein strukturiertes Markdown-Dokument (`implementation_plan.md`), das als Ihr Implementierungs-Blueprint dient. Dies ist kein vager Entwurf – es ist eine detaillierte Spezifikation mit exakten Dateipfaden, Funktionssignaturen und der Implementierungsreihenfolge.
+
+Der Plan umfasst acht umfassende Abschnitte:
+- **Overview**: Das Ziel und der übergeordnete Ansatz
+- **Types**: Vollständige Typdefinitionen und Datenstrukturen
+- **Files**: Exakte Dateien, die erstellt, geändert oder gelöscht werden sollen
+- **Functions**: Neue und geänderte Funktionen mit Signaturen
+- **Classes**: Klassenänderungen und Details zur Vererbung
+- **Dependencies**: Paket-Anforderungen und Versionen
+- **Testing**: Validierungsstrategien und Testanforderungen
+- **Implementation Order**: Schritt-für-Schritt-Ausführungssequenz
+
+### Schritt 4: Erstellung von Implementierungs-Tasks
+
+Caret erstellt einen neuen Task, der auf das Plandokument verweist und verfolgbare Implementierungsschritte enthält. Der Task enthält spezifische Befehle zum Lesen jedes Abschnitts des Plans, um sicherzustellen, dass der ausführende Agent (ob Sie das sind oder Caret im Act Mode) effizient durch den Blueprint navigieren kann.
+
+<Tip>
+  Deep Planning funktioniert hervorragend mit der [Focus Chain](/german/features/focus-chain). Die Implementierungsschritte werden automatisch zu einer Todo-Liste mit Fortschrittsverfolgung in Echtzeit, wodurch komplexe Projekte organisiert und auf Kurs bleiben.
+</Tip>
+
+## Deep Planning verwenden
+
+Starten Sie eine Deep Planning Session, indem Sie `/deep-planning` gefolgt von Ihrer Feature-Beschreibung eingeben:
+
+```
+/deep-planning Add user authentication with JWT tokens and role-based access control
+```
+
+Caret wird sofort mit der Untersuchung beginnen. Sie werden sehen, wie er Dateien liest und Befehle ausführt, um Ihre Codebase zu verstehen. Sobald er genügend Kontext gesammelt hat, wird er Sie in eine Diskussion verwickeln, bevor er den Plan erstellt.
+
+## Beispiel-Workflow
+
+So verwende ich `/deep-planning` für ein echtes Feature:
+
+<Steps>
+  <Step title="Planung initiieren">
+    Ich tippe `/deep-planning implement a caching layer for API responses`
+  </Step>
+  <Step title="Stille Untersuchung">
+    Caret erkundet meine Codebase und untersucht:
+    - Aktuelle API-Struktur und Endpunkte
+    - Bestehende Datenflussmuster
+    - Datenbankabfragen und Performance-Engpässe
+    - Konfiguration und Umgebung-Setup
+  </Step>
+  <Step title="Gezielte Diskussion">
+    Caret fragt mich:
+    - "Sollten wir Redis oder In-Memory-Caching verwenden?"
+    - "Was ist die akzeptable Cache-Veralterung für Benutzerdaten?"
+    - "Benötigen Sie Webhooks zur Cache-Invalidierung?"
+  </Step>
+  <Step title="Plan-Erstellung">
+    Caret generiert `implementation_plan.md` mit:
+    - Cache-Service-Klassenspezifikationen
+    - Redis-Verbindungskonfiguration
+    - Modifizierten API-Endpunkten mit Caching-Logik
+    - Strategien zur Cache-Key-Generierung
+    - TTL-Konfigurationen für verschiedene Datentypen
+  </Step>
+  <Step title="Task-Generierung">
+    Caret erstellt einen neuen Task mit:
+    - Verweis auf den Implementierungsplan
+    - Befehlen zum Lesen spezifischer Abschnitte
+    - Verfolgbaren Todo-Elementen für jeden Implementierungsschritt
+    - Aufforderung, für die Ausführung in den Act Mode zu wechseln
+  </Step>
+</Steps>
+
+## Integration mit Plan/Act Mode
+
+Deep Planning ist so konzipiert, dass es nahtlos mit dem [Plan/Act Mode](/german/features/plan-and-act) zusammenarbeitet:
+
+- Verwenden Sie `/deep-planning` im Plan Mode für die Untersuchungs- und Planungsphasen
+- Der generierte Task fordert den Wechsel in den Act Mode für die Implementierung an
+- Die Focus Chain verfolgt automatisch den Fortschritt durch die Implementierungsschritte
+
+Diese Trennung stellt sicher, dass die Planung auf die Architektur fokussiert bleibt, während sich die Implementierung auf die Ausführung konzentriert.
+
+## Best Practices
+
+### Wann man Deep Planning verwenden sollte
+
+Verwenden Sie `/deep-planning` für:
+- Features, die mehrere Teile Ihrer Codebase betreffen
+- Architekturänderungen, die eine sorgfältige Koordination erfordern
+- Komplexe Integrationen mit externen Services
+- Refactoring-Bemühungen, die eine systematische Ausführung benötigen
+- Jedes Feature, für das Sie normalerweise Zeit mit Whiteboarding verbringen würden
+
+### Das Beste aus der Untersuchung herausholen
+
+Lassen Sie Caret seine Untersuchung gründlich abschließen. Die Qualität des Plans korreliert direkt damit, wie gut er Ihre Codebase versteht. Wenn Sie spezifische Bereiche haben, die er untersuchen sollte, erwähnen Sie diese in Ihrer ursprünglichen Anfrage.
+
+### Den Plan überprüfen
+
+Überprüfen Sie immer die `implementation_plan.md`, bevor Sie mit der Implementierung beginnen. Der Plan ist umfassend, aber nicht unveränderlich – Sie können ihn bei Bedarf direkt bearbeiten. Betrachten Sie ihn als ein gemeinsames Dokument zwischen Ihnen und Caret.
+
+### Fortschritt verfolgen
+
+Wenn die Focus Chain aktiviert ist, wird Ihr Implementierungsfortschritt im Task-Header angezeigt. Jeder abgeschlossene Schritt wird automatisch abgehakt, während Caret den Plan abarbeitet, was Ihnen Echtzeit-Einblick in komplexe Implementierungen gibt.
+
+## Inspiration
+
+Ich verwende `/deep-planning` immer dann, wenn ich etwas bauen möchte, das normalerweise ein Design-Dokument erfordern würde. Aktuelle Beispiele aus meinem Workflow:
+
+- **Migration von Authentifizierungssystemen**: Deep Planning hat jeden Endpunkt kartiert, alle Authentifizierungs-Touchpoints identifiziert und einen Migrationsplan erstellt, der Breaking Changes vermied.
+
+- **Hinzufügen von Echtzeit-Features**: Der Plan deckte die WebSocket-Integration, Ereignisbehandlung, Statussynchronisation und Fallback-Mechanismen für Verbindungsabbrüche ab.
+
+- **Datenbankschema-Refactoring**: Caret identifizierte alle betroffenen Abfragen, erstellte Migrationsskripte und plante den Rollout, um Ausfallzeiten zu minimieren.
+
+- **Implementierung von API-Versioning**: Der Plan detaillierte Routenänderungen, Abwärtskompatibilitätsschichten, Deprecation-Hinweise und Migrationspfade für Clients.
+
+Die Stärke von `/deep-planning` liegt darin, dass es eine durchdachte Architektur vor der Implementierung erzwingt. Es ist, als würde ein Senior-Entwickler Ihren Ansatz überprüfen, bevor Sie Code schreiben, nur dass dieser Entwickler perfekte Kenntnisse Ihrer gesamten Codebase hat.
+
+<Note>
+  Deep Planning erfordert Modelle mit starken Reasoning-Fähigkeiten. Es funktioniert am besten mit der neuesten Generation von Modellen wie GPT-5, Claude 4, Gemini 2.5 oder Grok 4. Kleinere Modelle könnten mit der erforderlichen umfassenden Analyse Schwierigkeiten haben.
+</Note>
+
+Für einfachere Aufgaben, die keine umfangreiche Planung erfordern, sollten Sie [/newtask](/german/features/slash-commands/new-task) verwenden, um fokussierte Tasks mit Kontext zu erstellen, oder springen Sie direkt in die Implementierung, wenn der weitere Weg klar ist.

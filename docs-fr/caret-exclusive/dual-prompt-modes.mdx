@@ -1,0 +1,23 @@
+```
+---
+title: "Système à Mode Double"
+description: "Basculez entre l'expérience Chatbot/Agent de Caret et le flux Plan/Act de Cline avec des garde-fous basés sur des prompts."
+---
+
+# Système à Mode Double
+
+Caret maintient intact le flux de travail Plan/Act de Cline tout en ajoutant sa propre expérience **Chatbot/Agent**. Choisissez le mode qui correspond le mieux au niveau d'autonomie et de contrôle que vous souhaitez.
+
+## Comment ça marche
+
+- **Mode Agent (Caret)** : Autonomie totale. Lit/écrit des fichiers et exécute des commandes, mais vous pouvez interrompre et poser des questions à tout moment. Imaginez un "pair programmer qui peut continuer à coder après que vous ayez clarifié quelque chose".
+- **Mode Chatbot (Caret)** : Guidance uniquement. Lit/cherche/répond aux questions ; l'écriture et l'exécution de commandes sont bloquées par défaut afin que vous restiez aux commandes.
+- **Mode Plan/Act (Cline)** : Flux original en deux étapes. Plan demande une approbation, Act exécute jusqu'à ce que vous l'arrêtiez.
+- **Échange de terminologie** : En mode Caret, vous voyez les étiquettes Chatbot/Agent ; le passage en mode Cline affiche les termes et le comportement familiers de Plan/Act.
+
+## Système de prompts et garde-fous
+
+- **Prompts basés sur JSON** : Caret assemble des system prompts par mode, de sorte que le ton et les conseils correspondent à Chatbot vs Agent.
+- **Limites d'outils par mode** : Agent peut utiliser tous les outils. Chatbot est en lecture/recherche/question uniquement ; l'écriture/exécution est bloquée pour empêcher les modifications involontaires.
+- **Basculez à tout moment** : Modifiez les modes dans les paramètres ; le comportement et les étiquettes sont mis à jour immédiatement.
+```

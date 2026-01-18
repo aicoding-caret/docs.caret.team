@@ -1,0 +1,195 @@
+Caret Rules позволяют предоставлять Caret инструкции на системном уровне. Считайте их постоянным способом передачи контекста и предпочтений для ваших проектов или глобально для каждого диалога.
+
+Caret Rules позволяют предоставлять Caret инструкции на системном уровне. Считайте их постоянным способом передачи контекста и предпочтений для ваших проектов или глобально для каждого диалога.
+
+<Note>
+Это справочный документ для Caret. Он соответствует версии Caret v3.38.1. Если существуют специфические для Caret политики (отличия при использовании AGENTS.md, расположение/область видимости правил, аутентификация/маршрутизация), они помечаются в тексте тегом `<Note>`.
+</Note>
+
+<Note>
+Стандартизация Caret Agent: на основе `caret-docs/features/f06-agent-standardization.md`, стандартизация осуществляется через SoT `.agents/context` + иерархию `AGENTS.md` + скаффолдинг `/init`. Пути устаревших (legacy) правил не считываются.
+</Note>
+
+## Creating a Rule
+
+Вы можете создать правило, нажав кнопку `+` на вкладке Rules. Это откроет новый файл в вашей IDE, который вы сможете использовать для написания правила.
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-rules.png" alt="Create a Rule" />
+</Frame>
+
+Как только вы сохраните файл:
+
+-   Ваше правило будет сохранено в директории `.agents/context/` вашего проекта (если это Workspace Rule)
+-   Или в директории Global Rules (если это Global Rule):
+
+### Global Rules Directory Location
+
+Расположение директории Global Rules зависит от вашей операционной системы:
+
+| Operating System | Default Location | Notes |
+|------------------|------------------|-------|
+| **Windows** | `Documents\Caret\Rules` | Использует системную папку Documents |
+| **macOS** | `~/Documents/Caret/Rules` | Использует папку Documents пользователя |
+| **Linux/WSL** | `~/Documents/Caret/Rules` | На некоторых системах может использоваться `~/Caret/Rules` |
+
+> **Примечание для пользователей Linux/WSL**: Если вы не нашли свои глобальные правила в `~/Documents/Caret/Rules`, проверьте `~/Caret/Rules`, так как расположение может меняться в зависимости от конфигурации системы и наличия директории Documents.
+
+Вы также можете попросить Caret создать правило для вас с помощью [слэш-команды /newrule](/russian/features/slash-commands/new-rule) в чате.
+
+```markdown Example Caret Rule Structure [expandable]
+# Project Guidelines
+
+## Documentation Requirements
+
+-   Update relevant documentation in /docs when modifying features
+-   Keep README.md in sync with new capabilities
+-   Maintain changelog entries in CHANGELOG.md
+
+## Architecture Decision Records
+
+Create ADRs in /docs/adr for:
+
+-   Major dependency changes
+-   Architectural pattern changes
+-   New integration patterns
+-   Database schema changes
+    Follow template in /docs/adr/template.md
+
+## Code Style & Patterns
+
+-   Generate API clients using OpenAPI Generator
+-   Use TypeScript axios template
+-   Place generated code in /src/generated
+-   Prefer composition over inheritance
+-   Use repository pattern for data access
+-   Follow error handling pattern in /src/utils/errors.ts
+
+## Testing Standards
+
+-   Unit tests required for business logic
+-   Integration tests for API endpoints
+-   E2E tests for critical user flows
+```
+
+### Key Benefits
+
+1. **Version Controlled**: Файл `.agents/context` становится частью исходного кода вашего проекта.
+2. **Team Consistency**: Обеспечивает единообразное поведение для всех участников команды.
+3. **Project-Specific**: Правила и стандарты адаптированы под нужды каждого конкретного проекта.
+4. **Institutional Knowledge**: Сохраняет стандарты и практики проекта непосредственно в коде.
+
+Разместите файл `.agents/context` в корневой директории вашего проекта:
+
+```
+your-project/
+├── .agents/context
+├── src/
+├── docs/
+└── ...
+```
+
+С другой стороны, системный промпт Caret не редактируется пользователем ([здесь вы можете его найти](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). Для более широкого ознакомления с лучшими практиками prompt engineering изучите [этот ресурс](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+
+### AGENTS.md Standard Support
+
+Caret также поддерживает стандарт [AGENTS.md](https://agents.md/) в качестве резервного варианта (в дополнение к Caret Rules), автоматически обнаруживая файлы `AGENTS.md` в корне вашего рабочего пространства. Это позволяет использовать один и тот же файл правил в различных инструментах для написания кода с ИИ.
+
+```
+your-project/
+├── AGENTS.md
+├── src/
+└── ...
+```
+
+### Tips for Writing Effective Caret Rules
+
+-   Будьте ясны и лаконичны: используйте простой язык и избегайте двусмысленности.
+-   Сосредоточьтесь на желаемых результатах: описывайте то, что вы хотите получить, а не конкретные шаги.
+-   Тестируйте и итерируйте: экспериментируйте, чтобы найти то, что лучше всего подходит для вашего рабочего процесса.
+
+### .agents/context/ Folder System
+
+```
+your-project/
+├── .agents/context/              # Folder containing active rules
+│   ├── 01-coding.md          # Core coding standards
+│   ├── 02-documentation.md   # Documentation requirements
+│   └── current-sprint.md     # Rules specific to current work
+├── src/
+└── ...
+```
+
+Caret автоматически обрабатывает **все Markdown-файлы** внутри директории `.agents/context/`, объединяя их в единый набор правил. Числовые префиксы (необязательно) помогают организовать файлы в логической последовательности.
+
+#### Inactive Rules Library (Optional)
+
+Для проектов с несколькими контекстами или командами храните неактивные правила в отдельной папке и копируйте их в `.agents/context/` только при необходимости. Папка библиотеки не загружается автоматически.
+
+```
+your-project/
+├── .agents/context/              # Active rules - automatically applied
+│   ├── 01-coding.md
+│   └── client-a.md
+│
+├── rules-bank/               # Inactive rules library
+│   ├── clients/              # Client-specific rule sets
+│   │   ├── client-a.md
+│   │   └── client-b.md
+│   ├── frameworks/           # Framework-specific rules
+│   │   ├── react.md
+│   │   └── vue.md
+│   └── project-types/        # Project type standards
+│       ├── api-service.md
+│       └── frontend-app.md
+└── ...
+```
+
+#### Benefits of the Folder Approach
+
+1. **Contextual Activation**: Копируйте из банка в активную папку только релевантные правила.
+2. **Easier Maintenance**: Обновляйте отдельные файлы правил, не затрагивая остальные.
+3. **Team Flexibility**: Разные участники команды могут активировать правила, специфичные для их текущей задачи.
+4. **Reduced Noise**: Держите активный набор правил сфокусированным и актуальным.
+
+#### Usage Examples
+
+Переключение между проектами клиентов:
+
+```bash
+# Switch to Client B project
+rm .agents/context/client-a.md
+cp rules-bank/clients/client-b.md .agents/context/
+```
+
+Адаптация к разным технологическим стекам:
+
+```bash
+# Frontend React project
+cp rules-bank/frameworks/react.md .agents/context/
+```
+
+#### Implementation Tips
+
+-   Фокусируйте отдельные файлы правил на конкретных задачах.
+-   Используйте описательные имена файлов, которые четко указывают на назначение правила.
+-   Рассмотрите возможность добавления активной папки `.agents/context/` в git-ignore, при этом отслеживая `rules-bank/`.
+-   Создавайте командные скрипты для быстрой активации часто используемых комбинаций правил.
+
+Система папок превращает ваши правила Caret из статического документа в динамическую систему знаний, которая адаптируется к меняющимся контекстам и требованиям вашей команды.
+
+### Managing Rules with the Toggleable Popover
+
+Чтобы сделать управление как отдельными файлами `.agents/context`, так и системой папок еще проще, в Caret v3.13 представлен специальный интерфейс всплывающего окна (popover UI), доступный непосредственно из интерфейса чата.
+
+Расположенное под полем ввода чата, это всплывающее окно позволяет вам:
+
+-   **Мгновенно видеть активные правила:** Просматривайте, какие глобальные правила (из ваших пользовательских настроек) и правила рабочего пространства (файл `.agents/context` или содержимое папки) активны в данный момент.
+-   **Быстро переключать правила:** Включайте или отключайте конкретные файлы правил в папке `.agents/context/` вашего рабочего пространства одним кликом. Это идеально подходит для активации контекстно-зависимых правил (например, `react-rules.md` или `api-rules.md`) только тогда, когда они необходимы.
+-   **Легко добавлять/управлять правилами:** Быстро создавайте файл или папку `.agents/context` в рабочем пространстве, если они не существуют, или добавляйте новые файлы правил в существующую папку.
+
+Этот интерфейс значительно упрощает переключение контекстов и управление различными наборами инструкций без необходимости вручную редактировать файлы или конфигурации во время диалога.
+
+<Frame>
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+</Frame>

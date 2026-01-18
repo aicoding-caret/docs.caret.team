@@ -1,0 +1,162 @@
+```
+---
+title: "Dictée"
+description: "Communiquez avec Caret en utilisant votre voix pour une collaboration IA plus rapide et plus naturelle"
+---
+
+<Note>
+Ceci est la documentation standard de Caret. Basée sur le "merge" Caret v3.38.1 et indique, avec `<Note>`, les politiques spécifiques à Caret (OS/permissions micro supportés, authentification/routage, limitations de traitement de la voix).
+</Note>
+
+<Note>
+Portage de la fonctionnalité vocale : Comme documenté dans `merging/v3.38.1/attempt-2-master.md`, certaines propriétés de style VoiceRecorder/PulsingBorder n'ont pas été portées. La documentation doit indiquer les styles/comportements non supportés par Caret.
+</Note>
+
+La dictée transforme votre façon de travailler avec l'IA. Au lieu de taper des pensées complexes, vous parlez naturellement et partagez votre intention complète. Il ne s'agit pas seulement de rapidité - bien que la voix soit plus rapide - il s'agit de permettre une collaboration fluide que la frappe ne peut égaler.
+
+## Pourquoi la voix change tout
+
+Lorsque vous tapez, vous vous auto-éditez. Vous simplifiez les idées complexes, sautez le contexte et perdez les nuances. Lorsque vous parlez, vous partagez tout ce qui vous passe par la tête - le problème complet, les contraintes, les cas limites qui vous inquiètent.
+
+Utilisez la dictée constamment dans le [mode Plan](/french/features/plan-and-act) pour des discussions rapides et interactives. Au lieu de taper des invites structurées et soignées, réfléchissez à un problème. Caret pose des questions de clarification, répondez immédiatement et itérez jusqu'à obtenir un plan solide.
+
+La friction de la frappe freinait la collaboration réelle. La voix supprime cette friction.
+
+## Démarrage
+
+**Activer la dictée :**
+1. Allez dans Settings → Features → Dictation
+2. Activez "Enable Dictation"
+3. Connectez-vous à votre compte Caret lorsque vous y êtes invité
+4. Installez FFmpeg si ce n'est pas déjà fait (Caret vous guidera)
+
+Une fois activée, vous verrez un bouton de microphone dans la zone de saisie du chat.
+
+**Utilisation de la dictée :**
+- Cliquez sur le bouton du microphone pour démarrer l'enregistrement
+- Parlez naturellement
+- Cliquez à nouveau pour arrêter l'enregistrement
+- Attendez que la transcription apparaisse dans le chat
+
+<Tip>
+La dictée fonctionne avec n'importe quel modèle d'IA que vous avez configuré. La transcription se fait via le service de Caret, mais votre conversation se poursuit avec le modèle que vous utilisez.
+</Tip>
+
+## Configuration système requise
+
+<Note>
+La dictée n'est actuellement pas disponible sur Windows. Le support de Windows est prévu pour une future version.
+</Note>
+
+La dictée utilise FFmpeg pour capturer votre voix sur toutes les plateformes :
+
+- **macOS** : FFmpeg (via Homebrew : `brew install ffmpeg`)
+- **Linux** : FFmpeg (via apt : `sudo apt-get install ffmpeg`)
+
+Si vous n'avez pas FFmpeg installé, Caret le détectera automatiquement et vous invitera à l'installer en un seul clic.
+
+## Où la dictée excelle
+
+### Conversations en mode Plan
+
+La dictée est parfaite pour les discussions en [mode Plan](/french/features/plan-and-act). Au lieu de rédiger soigneusement des invites, vous pouvez :
+
+- Dicter l'ensemble du contexte de votre problème en une seule fois
+- Répondre immédiatement aux questions de Caret
+- Itérer sur les idées sans la friction de la frappe
+- Penser à voix haute pendant que Caret écoute
+
+Commencez une session de planification en parlant pendant 2 à 3 minutes d'affilée, en expliquant le contexte complet de ce que vous essayez de construire, les contraintes avec lesquelles vous travaillez et les défis spécifiques auxquels vous êtes confronté.
+
+### Explication de problèmes complexes
+
+Certains problèmes sont difficiles à taper. Lorsque vous traitez avec :
+- Des flux de travail en plusieurs étapes avec des cas limites
+- Des défis d'intégration entre plusieurs systèmes
+- Des problèmes de performance avec des étapes de reproduction spécifiques
+- Des problèmes d'UI/UX qui nécessitent un contexte détaillé
+
+La parole vous permet d'expliquer la situation complète naturellement, y compris tous les détails "oh, et aussi..." qui comptent.
+
+### Revue de code et débogage
+
+Lors de la revue de code ou de l'explication de bugs, la voix vous permet de parcourir votre processus de pensée :
+- "Cette fonction semble correcte, mais je m'inquiète de ce qui se passe quand..."
+- "Le problème pourrait être dans cette section, ou peut-être dans cette autre zone..."
+- "J'ai essayé X et Y, mais aucun n'a fonctionné parce que..."
+
+Vous pouvez partager votre parcours de débogage complet au lieu de simplement la question finale.
+
+## Exigences techniques
+
+**Configuration système requise :**
+- FFmpeg installé sur votre système
+- Connexion internet active
+- Compte Caret avec des crédits de transcription
+
+**Qualité audio :**
+- Enregistrements au format WebM avec codec Opus
+- Audio mono à un taux d'échantillonnage de 16 kHz
+- Optimisé pour la reconnaissance vocale
+
+**Confidentialité :**
+- Audio enregistré localement sur votre machine
+- Seuls les fichiers audio sont envoyés pour la transcription
+- Aucun audio n'est stocké après la transcription
+- Les fichiers temporaires sont automatiquement nettoyés
+
+## Coût et crédits
+
+La transcription vocale coûte 0,006 $ par minute via votre compte Caret. Pour la plupart des utilisateurs, cela revient à quelques centimes par session.
+
+Une conversation de planification typique de 5 minutes coûte environ 3 cents. Même les utilisateurs intensifs de la voix dépensent rarement plus de quelques dollars par mois.
+
+<Note>
+La tarification est expérimentale et peut changer au fur et à mesure que nous affinons le service.
+</Note>
+
+## Bonnes pratiques
+
+**Parlez naturellement**
+N'essayez pas de parler comme vous tapez. Utilisez votre ton de conversation normal et ne vous souciez pas d'une grammaire parfaite.
+
+**Donnez d'abord le contexte**
+Commencez par la vue d'ensemble, puis approfondissez les détails. "Je construis une application React qui doit gérer des données en temps réel, et je rencontre des problèmes de performance avec la connexion WebSocket..."
+
+**Utilisez la voix pour l'exploration**
+La dictée est parfaite pour les conversations exploratoires où vous n'êtes pas sûr de ce dont vous avez exactement besoin. Commencez à parler du problème et laissez la conversation évoluer.
+
+**Combinez avec du texte**
+Vous n'êtes pas obligé d'utiliser la voix pour tout. Utilisez la voix pour les explications complexes et le contexte, puis passez au texte pour les suivis rapides ou les extraits de code.
+
+## Dépannage
+
+**Microphone ne fonctionnant pas**
+- Vérifiez les permissions de votre IDE pour l'accès au microphone
+- Assurez-vous que FFmpeg est correctement installé
+- Essayez d'actualiser VS Code/votre éditeur
+
+**Mauvaise qualité de transcription**
+- Parlez clairement et à un volume normal
+- Réduisez le bruit de fond si possible
+- Vérifiez les paramètres de votre microphone
+
+**Problèmes de connexion**
+- Vérifiez la connexion internet
+- Vérifiez si le pare-feu bloque les serveurs de Caret
+- Essayez de vous déconnecter et de vous reconnecter à votre compte Caret
+
+**Problèmes d'authentification**
+- Déconnectez-vous et reconnectez-vous à votre compte Caret si vous voyez des erreurs d'authentification
+- Vérifiez que votre compte dispose de suffisamment de crédits de transcription
+- Vérifiez que votre connexion internet est stable
+
+**Problèmes d'enregistrement audio**
+- Assurez-vous que FFmpeg est correctement installé et accessible
+- Vérifiez que votre navigateur/IDE a les permissions du microphone
+- Essayez de redémarrer votre éditeur si la capture audio échoue
+
+## L'avenir de la collaboration IA
+
+Lorsque vous pouvez exprimer vos pensées aussi vite que vous les pensez, vous arrêtez de vous auto-éditer. Vous partagez le contexte complet, les cas limites, les scénarios "et si" qui comptent. Cela conduit à de meilleures solutions et à moins de clarifications en va-et-vient.
+```

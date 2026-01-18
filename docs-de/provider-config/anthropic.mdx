@@ -1,0 +1,69 @@
+---
+title: "Anthropic"
+description: "Erfahren Sie, wie Sie Anthropic Claude-Modelle mit Caret konfigurieren und verwenden. Deckt die Einrichtung des API-Keys, die Modellauswahl und erweiterte Funktionen wie Prompt Caching ab."
+---
+
+<Note>
+Dies ist ein Referenzdokument für Caret. Es folgt dem Caret v3.38.2 Merge-Stand. Falls Caret-spezifische Richtlinien (unterstützte/blockierte Modelle, regionale Einschränkungen, Authentifizierung/Routing) existieren, werden diese im Text mit `<Note>` gekennzeichnet.
+</Note>
+
+<Note>
+Verbessertes Provider-Setup: Basierend auf `caret-docs/features/f09-enhanced-provider-setup.md` bietet Caret möglicherweise eine verbesserte Validierung/UX für Provider-Einstellungen. Beachten Sie, dass erlaubte/blockierte Modelle je nach Account- oder Organisationsrichtlinien variieren können.
+</Note>
+
+**Website:** [https://www.anthropic.com/](https://www.anthropic.com/)
+
+### Erhalt eines API-Keys
+
+1.  **Konto erstellen/Anmelden:** Gehen Sie zur [Anthropic Console](https://console.anthropic.com/). Erstellen Sie ein Konto oder melden Sie sich an.
+2.  **Zu API-Keys navigieren:** Gehen Sie zum Bereich [API keys](https://console.anthropic.com/settings/keys).
+3.  **Key erstellen:** Klicken Sie auf „Create Key“. Geben Sie Ihrem Key einen beschreibenden Namen (z. B. „Caret“).
+4.  **Key kopieren:** **Wichtig:** Kopieren Sie den API-Key _sofort_. Sie können ihn später nicht mehr einsehen. Bewahren Sie ihn sicher auf.
+
+### Unterstützte Modelle
+
+Caret unterstützt die folgenden Anthropic Claude-Modelle:
+
+-   `claude-haiku-4-5-20251001`
+-   `claude-opus-4-5-20251101`
+-   `claude-opus-4-1-20250805`
+-   `claude-opus-4-20250514`
+-   `anthropic/claude-sonnet-4.5` (Empfohlen)
+-   `claude-3-7-sonnet-20250219`
+-   `claude-3-5-sonnet-20241022`
+-   `claude-3-5-haiku-20241022`
+-   `claude-3-opus-20240229`
+-   `claude-3-haiku-20240307`
+
+Weitere Informationen zu den Funktionen der einzelnen Modelle finden Sie in der [Modell-Dokumentation von Anthropic](https://docs.anthropic.com/german/docs/about-claude/models).
+
+### Konfiguration in Caret
+
+1.  **Caret-Einstellungen öffnen:** Klicken Sie auf das Einstellungen-Icon (⚙️) im Caret-Panel.
+2.  **Provider auswählen:** Wählen Sie „Anthropic“ aus dem Dropdown-Menü „API Provider“ aus.
+3.  **API-Key eingeben:** Fügen Sie Ihren Anthropic API-Key in das Feld „Anthropic API Key“ ein.
+4.  **Modell auswählen:** Wählen Sie Ihr gewünschtes Claude-Modell aus dem Dropdown-Menü „Model“ aus.
+5.  **(Optional) Custom Base URL:** Wenn Sie eine benutzerdefinierte Base URL für die Anthropic API verwenden müssen, aktivieren Sie „Use custom base URL“ und geben Sie die URL ein. Die meisten Benutzer müssen diese Einstellung nicht anpassen.
+
+### Extended Thinking
+
+Anthropic-Modelle bieten eine „Extended Thinking“-Funktion, die darauf ausgelegt ist, ihnen verbesserte Argumentationsfähigkeiten für komplexe Aufgaben zu verleihen. Diese Funktion ermöglicht es dem Modell, seinen schrittweisen Denkprozess auszugeben, bevor es eine endgültige Antwort liefert, was Transparenz bietet und eine gründlichere Analyse für anspruchsvolle Prompts ermöglicht.
+
+Wenn Extended Thinking in Caret aktiv ist, generiert das Modell `thinking`-Content-Blöcke, die seine internen Überlegungen detailliert darstellen. Diese Erkenntnisse fließen dann in die endgültige Antwort ein.
+Caret-Benutzer können dies nutzen, indem sie das Kontrollkästchen `Enable Extended Thinking` unter dem Modellauswahlmenü aktivieren, nachdem sie ein Claude-Modell eines beliebigen Providers ausgewählt haben.
+
+**Wichtige Aspekte von Extended Thinking:**
+
+-   **Unterstützte Modelle:** Diese Funktion ist für ausgewählte Modelle verfügbar, darunter Claude Opus 4, Claude Sonnet 4.5 und Claude Sonnet 3.7.
+-   **Zusammengefasstes Denken (Claude 4):** Bei Claude 4- und 4.5-Modellen gibt die API eine Zusammenfassung des vollständigen Denkprozesses zurück, um Einsicht mit Effizienz auszubalancieren und Missbrauch zu verhindern. Die Abrechnung erfolgt für die gesamten Thinking-Tokens, nicht nur für die Zusammenfassung.
+-   **Streaming:** Extended Thinking-Antworten, einschließlich der `thinking`-Blöcke, können gestreamt werden.
+-   **Tool Use & Prompt Caching:** Extended Thinking interagiert mit Tool Use (erfordert die Rückgabe von Thinking-Blöcken) und Prompt Caching (mit spezifischen Verhaltensweisen bei Cache-Invalidierung und Kontext).
+
+Ausführliche Informationen zur Funktionsweise von Extended Thinking, einschließlich API-Beispielen, Interaktion mit Tool Use, Prompt Caching und Preisgestaltung, finden Sie in der [offiziellen Anthropic-Dokumentation zu Extended Thinking](https://docs.anthropic.com/german/docs/build-with-claude/extended-thinking).
+
+### Tipps und Hinweise
+
+-   **Prompt Caching:** Claude 3-Modelle unterstützen [prompt caching](https://docs.anthropic.com/german/docs/build-with-claude/prompt-caching), was die Kosten und Latenzzeiten bei wiederholten Prompts erheblich reduzieren kann.
+-   **Context Window:** Claude-Modelle verfügen über große Context Windows (200.000 Tokens), sodass Sie eine beträchtliche Menge an Code und Kontext in Ihre Prompts aufnehmen können.
+-   **Pricing:** Aktuelle Preisinformationen finden Sie auf der Seite [Anthropic Pricing](https://www.anthropic.com/pricing).
+-   **Rate Limits:** Anthropic hat strikte Rate Limits basierend auf [usage tiers](https://docs.anthropic.com/german/api/rate-limits#requirements-to-advance-tier). Wenn Sie wiederholt an Rate Limits stoßen, wenden Sie sich an den Anthropic-Vertrieb oder greifen Sie über einen anderen Provider wie [OpenRouter](/german/provider-config/openrouter) oder [Requesty](/german/provider-config/requesty) auf Claude zu.

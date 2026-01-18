@@ -1,0 +1,71 @@
+---
+title: "Commit-Nachricht generieren"
+sidebarTitle: "Commit-Nachricht generieren"
+---
+
+Carets Git-Integration bringt KI-Unterstützung direkt in Ihren Versionskontroll-Workflow. Generieren Sie Commit-Nachrichten, ohne Ihren Editor zu verlassen.
+
+## Commit-Nachricht generieren
+
+Eine der nützlichsten Git-Integrationen ist die Möglichkeit, automatisch aussagekräftige Commit-Nachrichten zu generieren:
+
+<Frame>
+	<img
+		src="https://storage.googleapis.com/cline_public_images/docs/assets/generate-commit-message-with-caret.png"
+		alt="Generate Commit Message with Caret"
+	/>
+</Frame>
+
+1. Nehmen Sie Ihre Änderungen vor und stagen Sie diese in Git.
+2. Klicken Sie auf das Roboter-Symbol in der Source Control-Ansicht oder führen Sie den Befehl "Generate Commit Message with Caret" aus.
+3. Caret analysiert Ihre Änderungen und generiert eine beschreibende Commit-Nachricht.
+4. Die Nachricht wird automatisch in das Eingabefeld für die Commit-Nachricht eingefügt.
+
+Die generierten Commit-Nachrichten:
+
+-   Beginnen mit einer prägnanten Zusammenfassung (50-72 Zeichen)
+-   Verwenden den Imperativ (z. B. "Funktion hinzufügen" nicht "Funktion hinzugefügt")
+-   Beschreiben, was geändert wurde und warum
+-   Befolgen die Git Best Practices
+
+Diese Funktion spart Zeit und stellt sicher, dass Ihre Commit-Historie konsistent und informativ ist.
+
+<Tip>
+	Informationen zur Verwendung von `@git-changes` und `@[commit-hash]` Erwähnungen in Ihren Chat-Nachrichten finden Sie in der
+	[Git Mentions](/german/features/at-mentions/git-mentions) Dokumentation.
+</Tip>
+
+## Funktionsweise
+
+Wenn Sie die Commit-Nachrichten-Generierungsfunktion von Caret verwenden, passiert Folgendes im Hintergrund:
+
+1. Caret ruft den aktuellen Git-Diff mit `getWorkingState()` ab.
+2. Es formatiert diesen Diff in einen speziellen Prompt für die KI.
+3. Die KI analysiert die Änderungen und generiert eine passende Commit-Nachricht.
+4. Die Nachricht wird extrahiert und in das Git-Commit-Nachrichten-Eingabefeld eingefügt.
+
+Dieser Prozess verwendet Ihre aktuelle Caret API-Konfiguration, sodass die Qualität der generierten Nachrichten mit Ihrem gewählten KI-Modell übereinstimmt.
+
+## Tipps für eine effektive Nutzung
+
+-   **Generieren Sie Commit-Nachrichten für komplexe Änderungen**: Die KI zeichnet sich dadurch aus, mehrere zusammenhängende Änderungen zu einer kohärenten Nachricht zusammenzufassen.
+
+-   **Überprüfen und bearbeiten Sie generierte Nachrichten**: Obwohl die KI qualitativ hochwertige Nachrichten generiert, ist es immer eine gute Praxis, diese bei Bedarf zu überprüfen und anzupassen.
+
+-   **Stagen Sie zusammengehörige Änderungen zusammen**: Für beste Ergebnisse stagen Sie zusammengehörige Änderungen zusammen, damit die KI eine zusammenhängende Nachricht generieren kann.
+
+-   **Verwenden Sie sie für eine konsistente Commit-Historie**: Die Verwendung der Funktion zum Generieren von Commit-Nachrichten trägt dazu bei, einen konsistenten Stil in Ihrer Commit-Historie beizubehalten.
+
+## Funktionsweise im Detail
+
+Die Generierung von Commit-Nachrichten nutzt die VSCode Git Extension API, um auf Repository-Informationen zuzugreifen:
+
+1. Wenn Sie den Befehl auslösen:
+    - Caret ruft den aktuellen Diff ab
+    - Es sendet diesen mit spezifischen Anweisungen zur Formatierung von Commit-Nachrichten an die KI
+    - Es analysiert die Antwort der KI
+    - Es greift auf die Git Extension API zu, um die Commit-Nachricht festzulegen
+
+Diese Integration mit Git macht es einfach, qualitativ hochwertige Commit-Nachrichten zu generieren, ohne Ihren Workflow zu unterbrechen.
+
+Wenn Sie das nächste Mal Schwierigkeiten haben, eine gute Commit-Nachricht zu schreiben, versuchen Sie, Carets Commit-Nachrichtengenerierung zu verwenden. Sie sparen Zeit und verbessern Ihren Versionskontroll-Workflow mit KI-Unterstützung genau dort, wo Sie sie benötigen.
