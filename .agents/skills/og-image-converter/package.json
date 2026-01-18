@@ -1,0 +1,12 @@
+{
+  "name": "og-image-converter",
+  "version": "1.0.0",
+  "description": "Convert images to OG tag format (1200x630 WebP)",
+  "type": "module",
+  "scripts": {
+    "convert": "node convert.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  }
+}

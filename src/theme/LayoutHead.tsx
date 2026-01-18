@@ -8,6 +8,9 @@ const localeImageMap: Record<string, string> = {
 	ko: "/og/ogtag-ko.webp",
 	ja: "/og/ogtag-ja.webp",
 	zh: "/og/ogtag-zh.webp",
+	fr: "/og/ogtag-fr.webp",
+	de: "/og/ogtag-de.webp",
+	ru: "/og/ogtag-ru.webp",
 }
 
 const ogLocaleMap: Record<string, string> = {
