@@ -4,9 +4,9 @@ import Link from "@docusaurus/Link"
 import { useLocation } from "@docusaurus/router"
 import React, { useEffect, useState } from "react"
 
-type Locale = "en" | "ko" | "ja" | "zh"
+type Locale = "en" | "ko" | "ja" | "zh" | "fr" | "de" | "ru"
 
-const localePrefixes: Locale[] = ["en", "ko", "ja", "zh"]
+const localePrefixes: Locale[] = ["en", "ko", "ja", "zh", "fr", "de", "ru"]
 
 const getLocaleFromPath = (pathname: string): Locale => {
 	const trimmed = pathname.startsWith("/") ? pathname.slice(1) : pathname
@@ -61,6 +61,9 @@ const footerLinks = {
 	ko: buildFooterLinks("ko"),
 	ja: buildFooterLinks("ja"),
 	zh: buildFooterLinks("zh"),
+	fr: buildFooterLinks("fr"),
+	de: buildFooterLinks("de"),
+	ru: buildFooterLinks("ru"),
 }
 
 const localizedCopy: Record<
@@ -217,6 +220,138 @@ const localizedCopy: Record<
 			},
 		],
 		copyright: "© 2025 Caretive INC / Caret. 保留所有权利。",
+	},
+	fr: {
+		description: "",
+		sections: [
+			{
+				title: "Produit",
+				items: [
+					{ label: "Télécharger (VS Code)", href: footerLinks.fr.product[0].href },
+					{ label: "Télécharger (Open VSX)", href: footerLinks.fr.product[1].href },
+					{ label: "Brochure Caret Enterprise", href: footerLinks.fr.product[2].href },
+					{ label: "Fonctionnalités", href: footerLinks.fr.product[3].href },
+					{ label: "Tarifs", href: footerLinks.fr.product[4].href },
+					{ label: "Documentation", href: footerLinks.fr.product[5].href },
+					{ label: "Notes de version", href: footerLinks.fr.product[6].href },
+					{ label: "Contact", href: footerLinks.fr.product[7].href },
+				],
+			},
+			{
+				title: "Communauté",
+				items: [
+					{ label: "Blog", href: footerLinks.fr.community[0].href },
+					{ label: "YouTube", href: footerLinks.fr.community[1].href },
+					{ label: "Discord", href: footerLinks.fr.community[2].href },
+					{ label: "GitHub", href: footerLinks.fr.community[3].href },
+				],
+			},
+			{
+				title: "Entreprise",
+				items: [
+					{ label: "À propos", href: footerLinks.fr.company[0].href },
+					{ label: "Actualités", href: footerLinks.fr.company[1].href },
+					{ label: "Carrières", href: footerLinks.fr.company[2].href },
+					{ label: "Contact", href: footerLinks.fr.company[3].href },
+				],
+			},
+			{
+				title: "Mentions légales",
+				items: [
+					{ label: "Conditions d'utilisation", href: footerLinks.fr.legal[0].href },
+					{ label: "Politique de confidentialité", href: footerLinks.fr.legal[1].href },
+				],
+			},
+		],
+		copyright: "© 2025 Caretive INC / Caret. Tous droits réservés.",
+	},
+	de: {
+		description: "",
+		sections: [
+			{
+				title: "Produkt",
+				items: [
+					{ label: "Download (VS Code)", href: footerLinks.de.product[0].href },
+					{ label: "Download (Open VSX)", href: footerLinks.de.product[1].href },
+					{ label: "Caret Enterprise-Broschüre", href: footerLinks.de.product[2].href },
+					{ label: "Funktionen", href: footerLinks.de.product[3].href },
+					{ label: "Preise", href: footerLinks.de.product[4].href },
+					{ label: "Dokumentation", href: footerLinks.de.product[5].href },
+					{ label: "Änderungsprotokoll", href: footerLinks.de.product[6].href },
+					{ label: "Kontakt", href: footerLinks.de.product[7].href },
+				],
+			},
+			{
+				title: "Gemeinschaft",
+				items: [
+					{ label: "Blog", href: footerLinks.de.community[0].href },
+					{ label: "YouTube", href: footerLinks.de.community[1].href },
+					{ label: "Discord", href: footerLinks.de.community[2].href },
+					{ label: "GitHub", href: footerLinks.de.community[3].href },
+				],
+			},
+			{
+				title: "Unternehmen",
+				items: [
+					{ label: "Über uns", href: footerLinks.de.company[0].href },
+					{ label: "Nachrichten", href: footerLinks.de.company[1].href },
+					{ label: "Karrieren", href: footerLinks.de.company[2].href },
+					{ label: "Kontakt", href: footerLinks.de.company[3].href },
+				],
+			},
+			{
+				title: "Rechtliches",
+				items: [
+					{ label: "Nutzungsbedingungen", href: footerLinks.de.legal[0].href },
+					{ label: "Datenschutzerklärung", href: footerLinks.de.legal[1].href },
+				],
+			},
+		],
+		copyright: "© 2025 Caretive INC / Caret. Alle Rechte vorbehalten.",
+	},
+	ru: {
+		description: "",
+		sections: [
+			{
+				title: "Продукт",
+				items: [
+					{ label: "Скачать (VS Code)", href: footerLinks.ru.product[0].href },
+					{ label: "Скачать (Open VSX)", href: footerLinks.ru.product[1].href },
+					{ label: "Брошюра Caret Enterprise", href: footerLinks.ru.product[2].href },
+					{ label: "Функции", href: footerLinks.ru.product[3].href },
+					{ label: "Цены", href: footerLinks.ru.product[4].href },
+					{ label: "Документация", href: footerLinks.ru.product[5].href },
+					{ label: "История изменений", href: footerLinks.ru.product[6].href },
+					{ label: "Контакт", href: footerLinks.ru.product[7].href },
+				],
+			},
+			{
+				title: "Сообщество",
+				items: [
+					{ label: "Блог", href: footerLinks.ru.community[0].href },
+					{ label: "YouTube", href: footerLinks.ru.community[1].href },
+					{ label: "Discord", href: footerLinks.ru.community[2].href },
+					{ label: "GitHub", href: footerLinks.ru.community[3].href },
+				],
+			},
+			{
+				title: "Компания",
+				items: [
+					{ label: "О нас", href: footerLinks.ru.company[0].href },
+					{ label: "Новости", href: footerLinks.ru.company[1].href },
+					{ label: "Карьера", href: footerLinks.ru.company[2].href },
+					{ label: "Контакт", href: footerLinks.ru.company[3].href },
+				],
+			},
+			{
+				title: "Юридические документы",
+				items: [
+					{ label: "Условия обслуживания", href: footerLinks.ru.legal[0].href },
+					{ label: "Политика конфиденциальности", href: footerLinks.ru.legal[1].href },
+				],
+			},
+		],
+		copyright: "© 2025 Caretive INC / Caret. Все права защищены.",
 	},
 }
 

@@ -4,7 +4,7 @@ import { useLocation } from "@docusaurus/router"
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
 import React, { useEffect, useState } from "react"
 
-const localePrefixes = ["en", "ko", "ja", "zh"]
+const localePrefixes = ["en", "ko", "ja", "zh", "fr", "de", "ru"]
 
 const getLocaleFromPath = (pathname) => {
 	const trimmed = pathname.startsWith("/") ? pathname.slice(1) : pathname

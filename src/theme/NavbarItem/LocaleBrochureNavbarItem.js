@@ -2,7 +2,7 @@
 import { useLocation } from "@docusaurus/router"
 import clsx from "clsx"
 
-const localePrefixes = ["en", "ko", "ja", "zh"]
+const localePrefixes = ["en", "ko", "ja", "zh", "fr", "de", "ru"]
 
 const getLocaleFromPath = (pathname) => {
 	const trimmed = pathname.startsWith("/") ? pathname.slice(1) : pathname

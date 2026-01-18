@@ -4,7 +4,7 @@ import { useLocation } from "@docusaurus/router"
 import DropdownNavbarItem from "@theme/NavbarItem/DropdownNavbarItem"
 import React, { useEffect, useState } from "react"
 
-const localePrefixes = ["en", "ko", "ja", "zh"]
+const localePrefixes = ["en", "ko", "ja", "zh", "fr", "de", "ru"]
 
 const getLocaleFromPath = (pathname) => {
 	const trimmed = pathname.startsWith("/") ? pathname.slice(1) : pathname
@@ -32,6 +32,9 @@ const languageItems = [
 	{ label: "한국어", href: "/ko/getting-started/what-is-caret" },
 	{ label: "日本語", href: "/ja/getting-started/what-is-caret" },
 	{ label: "中文", href: "/zh/getting-started/what-is-caret" },
+	{ label: "Français", href: "/fr/getting-started/what-is-caret" },
+	{ label: "Deutsch", href: "/de/getting-started/what-is-caret" },
+	{ label: "Русский", href: "/ru/getting-started/what-is-caret" },
 ]
 
 export default function LocaleLanguageDropdownNavbarItem({ labels, ...props }) {

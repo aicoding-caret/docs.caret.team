@@ -15,6 +15,9 @@ const ogLocaleMap: Record<string, string> = {
 	ko: "ko_KR",
 	ja: "ja_JP",
 	zh: "zh_CN",
+	fr: "fr_FR",
+	de: "de_DE",
+	ru: "ru_RU",
 }
 
 const fallbackImage = "/og/ogtag-en.webp"
