@@ -108,7 +108,6 @@ const sidebars: SidebarsConfig = {
 					type: "category",
 					label: "Caret Exclusive",
 					items: [
-						"caret-exclusive/overview",
 						"caret-exclusive/persona-system",
 						"caret-exclusive/dual-prompt-modes",
 						"caret-exclusive/brand-switching",

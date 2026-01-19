@@ -39,11 +39,6 @@ const sidebars: SidebarsConfig = {
 			items: [
 				{
 					type: "doc",
-					id: "caret-exclusive/overview",
-					label: "^ Caret独有的特色功能",
-				},
-				{
-					type: "doc",
 					id: "caret-exclusive/persona-system",
 					label: "^ 角色系统",
 				},

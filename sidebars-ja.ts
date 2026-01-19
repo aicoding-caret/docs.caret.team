@@ -29,7 +29,6 @@ const sidebars: SidebarsConfig = {
 			type: "category",
 			label: "^ Caret独占機能",
 			items: [
-				{ type: "doc", id: "caret-exclusive/overview", label: "^ 概要" },
 				{ type: "doc", id: "caret-exclusive/persona-system", label: "^ ペルソナシステム" },
 				{ type: "doc", id: "caret-exclusive/dual-prompt-modes", label: "^ デュアルモードシステム" },
 				{ type: "doc", id: "caret-exclusive/brand-switching", label: "^ OEMブランドカスタマイズ" },

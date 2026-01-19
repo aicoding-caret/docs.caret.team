@@ -39,11 +39,6 @@ const sidebars: SidebarsConfig = {
 			items: [
 				{
 					type: "doc",
-					id: "caret-exclusive/overview",
-					label: "^ Caret만의 특별한 기능들",
-				},
-				{
-					type: "doc",
 					id: "caret-exclusive/persona-system",
 					label: "^ 페르소나 시스템",
 				},
