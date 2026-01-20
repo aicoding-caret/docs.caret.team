@@ -2,7 +2,7 @@
 title: "Careti 规则"
 ---
 
-Careti 规则允许您为 Careti 提供系统级指导。将它们视为为您的项目或全局每次对话持续包含上下文和首选项的方式。
+<BrandName /> 规则允许您为 <BrandName /> 提供系统级指导。将它们视为为您的项目或全局每次对话持续包含上下文和首选项的方式。
 
 ## 创建规则
 
@@ -22,13 +22,13 @@ Careti 规则允许您为 Careti 提供系统级指导。将它们视为为您�
 
 | 操作系统 | 默认位置 | 注释 |
 |----------|----------|------|
-| **Windows** | `Documents\Careti\Rules` | 使用系统文档文件夹 |
+| **Windows** | `Documents\<BrandName />\Rules` | 使用系统文档文件夹 |
 | **macOS** | `~/Documents/Careti/Rules` | 使用用户文档文件夹 |
 | **Linux/WSL** | `~/Documents/Careti/Rules` | 在某些系统上可能回退到 `~/Careti/Rules` |
 
 > **Linux/WSL 用户注意事项**：如果您在 `~/Documents/Careti/Rules` 中找不到全局规则，请检查 `~/Careti/Rules`，因为位置可能因您的系统配置和文档目录是否存在而有所不同。
 
-您还可以通过在聊天中使用 [`/newrule` 斜杠命令](/zh/features/slash-commands/new-rule) 让 Careti 为您创建规则。
+您还可以通过在聊天中使用 [`/newrule` 斜杠命令](/zh/features/slash-commands/new-rule) 让 <BrandName /> 为您创建规则。
 
 ```markdown 示例 Careti 规则结构 [expandable]
 # 项目指南
@@ -82,9 +82,9 @@ your-project/
 └── ...
 ```
 
-另一方面，Careti 的系统提示是用户不可编辑的（[您可以在这里找到它](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)）。有关提示工程最佳实践的更广泛了解，请查看[这个资源](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)。
+另一方面，<BrandName /> 的系统提示是用户不可编辑的（[您可以在这里找到它](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)）。有关提示工程最佳实践的更广泛了解，请查看[这个资源](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)。
 
-### 编写有效 Careti 规则的技巧
+### 编写有效 <BrandName /> 规则的技巧
 
 -   简洁明了：使用简单语言，避免歧义。
 -   专注于期望结果：描述您想要的结果，而不是具体步骤。
@@ -102,7 +102,7 @@ your-project/
 └── ...
 ```
 
-Careti 自动处理 `.agents/context/` 目录内的**所有 Markdown 文件**，将它们组合成统一的规则集。数字前缀（可选）有助于按逻辑顺序组织文件。
+<BrandName /> 自动处理 `.agents/context/` 目录内的**所有 Markdown 文件**，将它们组合成统一的规则集。数字前缀（可选）有助于按逻辑顺序组织文件。
 
 #### 使用规则库
 
@@ -158,11 +158,11 @@ cp clinerules-bank/frameworks/react.md .agents/context/
 -   考虑 git 忽略活动的 `.agents/context/` 文件夹，同时跟踪 `clinerules-bank/`
 -   创建团队脚本以快速激活常见规则组合
 
-文件夹系统将您的 Careti 规则从静态文档转变为适应团队不断变化的上下文和需求的动态知识系统。
+文件夹系统将您的 <BrandName /> 规则从静态文档转变为适应团队不断变化的上下文和需求的动态知识系统。
 
 ### 使用可切换弹出窗口管理规则
 
-为了让管理单个 `.agents/context` 文件和文件夹系统变得更加容易，Careti v3.13 引入了一个专门的弹出窗口用户界面，可直接从聊天界面访问。
+为了让管理单个 `.agents/context` 文件和文件夹系统变得更加容易，<BrandName /> v3.13 引入了一个专门的弹出窗口用户界面，可直接从聊天界面访问。
 
 方便地位于聊天输入字段下方，此弹出窗口允许您：
 

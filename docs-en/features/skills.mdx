@@ -10,14 +10,14 @@ Skills is an experimental feature. Enable it in Settings → Features → "Enabl
 
 Skills are reusable instruction sets for specific tasks. Each skill packages detailed guidance, workflows, and additional resources, loading only when relevant to your request.
 
-Unlike rules (which are always active), skills load **on-demand**. You can install dozens of skills without affecting context or performance because Careti only sees the skill name and description until it's actually needed.
+Unlike rules (which are always active), skills load **on-demand**. You can install dozens of skills without affecting context or performance because <BrandName /> only sees the skill name and description until it's actually needed.
 
 ## Why Skills?
 
 Think about how you'd onboard a new team member: you wouldn't dump every document on them at once. You'd give them a brief overview, then point them to detailed guides when they're working on specific tasks.
 
 Skills work the same way:
-- **At startup**: Careti sees only a brief description of each skill
+- **At startup**: <BrandName /> sees only a brief description of each skill
 - **When triggered**: The full instructions for that skill are loaded
 - **As needed**: Additional files bundled with skills are read only when referenced
 
@@ -57,9 +57,9 @@ Detailed instructions for Careti to follow when this skill is activated.
 
 **Required fields:**
 - `name`: Must exactly match the directory name
-- `description`: Tells Careti when to use this skill (max 1024 characters)
+- `description`: Tells <BrandName /> when to use this skill (max 1024 characters)
 
-The description is critical because it's how Careti decides whether to activate a skill. Be specific about what the skill does and when it should be used.
+The description is critical because it's how <BrandName /> decides whether to activate a skill. Be specific about what the skill does and when it should be used.
 
 ## Where Skills Live
 
@@ -75,7 +75,7 @@ Skills can be stored in two locations:
 When a global skill and project skill have the same name, **global skills take precedence**. This lets you customize skills for your personal workflow while still using project defaults.
 
 <Note>
-**Careti Standardization**: Careti uses a dual-directory architecture.
+**<BrandName /> Standardization**: <BrandName /> uses a dual-directory architecture.
 - `.agents/` - For AI (token-optimized)
 - `.users/` - For humans (detailed explanations)
 
@@ -93,9 +93,9 @@ Click the scale icon below the chat input to open the rules and workflows panel.
 
 Skills are enabled by default when discovered. Toggle them off if you want them available but not active for the current project.
 
-## How Careti Uses Skills
+## How <BrandName /> Uses Skills
 
-When you send a message, Careti sees a list of available skills with their descriptions. If your request matches a skill's description, Careti activates it using the `use_skill` tool, which loads the full instructions.
+When you send a message, <BrandName /> sees a list of available skills with their descriptions. If your request matches a skill's description, <BrandName /> activates it using the `use_skill` tool, which loads the full instructions.
 
 For example, if you have a skill for deploying to AWS:
 
@@ -106,7 +106,7 @@ description: Deploy applications to AWS using CDK. Use when deploying, updating 
 ---
 ```
 
-Asking "deploy this to AWS" would trigger Careti to activate the skill, load its detailed instructions, and follow them to complete your request.
+Asking "deploy this to AWS" would trigger <BrandName /> to activate the skill, load its detailed instructions, and follow them to complete your request.
 
 ## Example: Data Analysis Skill
 
@@ -165,7 +165,7 @@ For visualization, prefer matplotlib or seaborn depending on complexity.
 
 ## Bundling Supporting Files
 
-Skills can include additional files that Careti accesses only when needed:
+Skills can include additional files that <BrandName /> accesses only when needed:
 
 ```
 complex-skill/
@@ -192,7 +192,7 @@ python scripts/validate.py
 ```
 ````
 
-Careti reads these files using `read_file` when the instructions reference them. Scripts can be executed directly, with only the output entering the context (not the script code itself).
+<BrandName /> reads these files using `read_file` when the instructions reference them. Scripts can be executed directly, with only the output entering the context (not the script code itself).
 
 ## Ideas for Skills
 
@@ -217,7 +217,7 @@ The best skills encode institutional knowledge that would otherwise live only in
 
 | Feature | Purpose | When Active |
 |---------|---------|-------------|
-| **Rules** | Define how Careti should behave | Always (or contextually) |
+| **Rules** | Define how <BrandName /> should behave | Always (or contextually) |
 | **Workflows** | Step-by-step task automation | Invoked with `/workflow.md` |
 | **Skills** | Domain expertise loaded on-demand | Triggered by matching requests |
 
@@ -225,7 +225,7 @@ The best skills encode institutional knowledge that would otherwise live only in
 
 **Workflows** are explicit sequences you invoke for specific tasks (like `/release.md` for a release process).
 
-**Skills** are expertise that Careti activates automatically when relevant (like data analysis knowledge when you're working with CSV files).
+**Skills** are expertise that <BrandName /> activates automatically when relevant (like data analysis knowledge when you're working with CSV files).
 
 Use rules for ongoing constraints, workflows for explicit automation, and skills for domain knowledge that should be available but not always active.
 

@@ -3,26 +3,26 @@ title: "ワークフロー"
 sidebarTitle: "Workflows"
 ---
 
-ワークフローでは、サービスのデプロイやPRの提出など、反復的なタスクセットを通じて Careti をガイドする一連のステップを定義できます。
+ワークフローでは、サービスのデプロイやPRの提出など、反復的なタスクセットを通じて <BrandName /> をガイドする一連のステップを定義できます。
 
 ワークフローを呼び出すには、チャットで `/[workflow-name.md]` と入力します。
 
 ## ワークフローの作成と使用方法
 
-ワークフローは [Careti Rules](/ja/features/caret-rules) と並んで存在します。作成は簡単です：
+ワークフローは [<BrandName /> Rules](/ja/features/caret-rules) と並んで存在します。作成は簡単です：
 
 <figure>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Careti のワークフロータブ" />
 </figure>
 
-1. Careti が実行すべきステップの明確な指示を含むマークダウンファイルを作成
+1. <BrandName /> が実行すべきステップの明確な指示を含むマークダウンファイルを作成
 2. ワークフローディレクトリに `.md` 拡張子で保存
 3. ワークフローをトリガーするには、ワークフローファイル名に続けて `/` と入力
 4. プロンプトが表示されたら必要なパラメータを提供
 
 真の力は、ワークフローファイルの構造化方法から生まれます。以下が可能です：
 
--   `ask_followup_question`、`read_file`、`search_files`、`new_task` などの Careti の [組み込みツール](/ja/exploring-carets-tools/caret-tools-guide) を活用
+-   `ask_followup_question`、`read_file`、`search_files`、`new_task` などの <BrandName /> の [組み込みツール](/ja/exploring-carets-tools/caret-tools-guide) を活用
 -   既にインストールされている `gh` や `docker` などのコマンドラインツールを使用
 -   Slack や Whatsapp などの外部 [MCP ツール呼び出し](/ja/mcp/mcp-overview) を参照
 -   複数のアクションを特定のシーケンスで連鎖
@@ -414,16 +414,16 @@ The architectural change is solid - moving the focus logic to the command handle
 
 1. チャットで `/pr-review.md` と入力
 2. PR 番号を貼り付け
-3. Careti に残りすべてを処理させる
+3. <BrandName /> に残りすべてを処理させる
 
-私のワークフローは `gh` コマンドラインツールと Careti の組み込み `ask_followup_question` を使用して：
+私のワークフローは `gh` コマンドラインツールと <BrandName /> の組み込み `ask_followup_question` を使用して：
 
 -   PR の説明とコメントを取得
 -   diff を調査
 -   コンテキストのために周辺ファイルをチェック
 -   潜在的な問題を分析
 -   すべて良好に見える場合、承認して良いかを正当化理由と共に確認
--   「はい」と答えると、Careti が自動的に `gh` コマンドで PR を承認
+-   「はい」と答えると、<BrandName /> が自動的に `gh` コマンドで PR を承認
 
 これにより、PR レビュープロセスが手動の複数ステップ操作から、情報に基づいた決定を行うために必要なすべてを提供する単一コマンドに変わりました。
 

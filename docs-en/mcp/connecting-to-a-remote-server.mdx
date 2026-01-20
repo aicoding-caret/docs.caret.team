@@ -7,10 +7,10 @@ description: "The Model Context Protocol (MCP) allows Careti to communicate with
 
 ### Accessing the MCP Servers Interface
 
-To access the MCP Servers interface in Careti:
+To access the MCP Servers interface in <BrandName />:
 
-1. Click on the Careti icon in the VSCode sidebar
-2. Open the menu (⋮) in the top right corner of the Careti panel
+1. Click on the <BrandName /> icon in the VSCode sidebar
+2. Open the menu (⋮) in the top right corner of the <BrandName /> panel
 3. Select "MCP Servers" from the dropdown menu
 
 ### Understanding the MCP Servers Interface
@@ -31,13 +31,13 @@ The "Remote Servers" tab allows you to connect to any MCP server that's accessib
     - **Server URL**: Enter the complete URL endpoint of the MCP server (e.g., `https://example.com/mcp-sse`)
     - **Transport Type**: Select the connection protocol (Streamable HTTP is recommended for modern servers)
 3. Click "Add Server" to initiate the connection
-4. Careti will attempt to connect to the server and display the connection status
+4. <BrandName /> will attempt to connect to the server and display the connection status
 
 > **Note**: When connecting to a remote server, ensure you trust the source, as MCP servers can execute code in your environment.
 
 #### Transport Types
 
-Careti supports two transport protocols for remote MCP servers:
+<BrandName /> supports two transport protocols for remote MCP servers:
 
 -   **Streamable HTTP (Recommended)**: The modern MCP transport protocol with better performance, reliability, and full OAuth 2.1 authentication support. Use this for most remote servers.
 -   **SSE (Legacy)**: Server-Sent Events transport. Use this only if the server specifically requires SSE or doesn't support Streamable HTTP.
@@ -51,16 +51,16 @@ Some MCP servers (like Vercel's MCP) require OAuth authentication to access your
 3. Click the **"Authenticate"** button that appears
 4. Your browser will open to the server's authorization page
 5. Sign in and grant permission
-6. You'll be redirected back to Careti automatically
+6. You'll be redirected back to <BrandName /> automatically
 7. The server will connect and show a green status dot
 
-Once authenticated, your credentials are securely stored and the server will reconnect automatically when you reload Careti. You won't need to authenticate again unless you delete the server or your credentials expire.
+Once authenticated, your credentials are securely stored and the server will reconnect automatically when you reload <BrandName />. You won't need to authenticate again unless you delete the server or your credentials expire.
 
 ### Remote Server Discovery
 
 If you're looking for MCP servers to connect to, several third-party marketplaces provide directories of available servers with various capabilities.
 
-> **Warning**: The following third-party marketplaces are listed for informational purposes only. Careti does not endorse, verify, or take responsibility for any servers listed on these marketplaces. These servers are cloud-hosted services that process your requests and may have access to data you share with them. Always review privacy policies and terms of use before connecting to third-party services.
+> **Warning**: The following third-party marketplaces are listed for informational purposes only. <BrandName /> does not endorse, verify, or take responsibility for any servers listed on these marketplaces. These servers are cloud-hosted services that process your requests and may have access to data you share with them. Always review privacy policies and terms of use before connecting to third-party services.
 
 #### Composio MCP Integration
 
@@ -68,7 +68,7 @@ If you're looking for MCP servers to connect to, several third-party marketplace
 
 #### Connecting via Smithery
 
-Smithery is a third-party MCP server marketplace that allows users to discover and connect to a variety of Model Context Protocol (MCP) servers. If you're using an MCP-compatible client (such as Cursor, Claude Desktop, or Careti), you can browse available servers and integrate them directly into your workflow.
+Smithery is a third-party MCP server marketplace that allows users to discover and connect to a variety of Model Context Protocol (MCP) servers. If you're using an MCP-compatible client (such as Cursor, Claude Desktop, or <BrandName />), you can browse available servers and integrate them directly into your workflow.
 
 To explore available options, visit the Smithery marketplace: [https://smithery.ai](https://smithery.ai)
 
@@ -94,7 +94,7 @@ Click on a server to expand its settings panel:
     - View all available tools and resources from the server
     - Configure auto-approval settings for tools (if enabled)
 2. **Request Timeout**:
-    - Set how long Careti should wait for server responses
+    - Set how long <BrandName /> should wait for server responses
     - Options range from 30 seconds to 1 hour
 3. **Server Management**:
     - **Restart Server**: Reconnect if the server becomes unresponsive
@@ -104,7 +104,7 @@ Click on a server to expand its settings panel:
 
 Toggle the switch next to each server to enable or disable it:
 
--   **Enabled**: Careti can use the server's tools and resources
+-   **Enabled**: <BrandName /> can use the server's tools and resources
 -   **Disabled**: The server remains in your configuration but is not active
 
 ### Troubleshooting Connection Issues
@@ -124,12 +124,12 @@ If you're having trouble authenticating with an OAuth-enabled server:
 
 -   **"Authentication required" persists**: Make sure you completed the authorization flow in your browser and didn't cancel it
 -   **Browser doesn't open**: Check your system's default browser settings and ensure external URLs can be opened
--   **Redirect errors**: Verify you're using the latest version of Careti - older versions may not support OAuth
+-   **Redirect errors**: Verify you're using the latest version of <BrandName /> - older versions may not support OAuth
 -   **Reset authentication**: Delete the server and re-add it to start fresh with a new OAuth flow
 
 ### Advanced Configuration
 
-For advanced users, Careti stores MCP server configurations in a JSON file that can be modified:
+For advanced users, <BrandName /> stores MCP server configurations in a JSON file that can be modified:
 
 1. In the "Configure" tab, click "Configure MCP Servers" to access the settings file
 2. The configuration for each server follows this format:
@@ -160,11 +160,11 @@ For additional MCP settings, click the "Advanced MCP Settings" link to access VS
 
 ### Using MCP Server Tools
 
-Once connected, Careti can use the tools and resources provided by the MCP server. When Careti suggests using an MCP tool:
+Once connected, <BrandName /> can use the tools and resources provided by the MCP server. When <BrandName /> suggests using an MCP tool:
 
 1. A tool approval prompt will appear (unless auto-approved)
 2. Review the tool details and parameters before approving
-3. The tool will execute and return results to Careti
+3. The tool will execute and return results to <BrandName />
 
 ### Example: Connecting to Vercel MCP
 
@@ -177,8 +177,8 @@ Once connected, Careti can use the tools and resources provided by the MCP serve
     - **Transport Type**: Streamable HTTP (pre-selected)
 3. Click "Add Server"
 4. You'll see "Authentication required" - click the **"Authenticate"** button
-5. Sign in to Vercel in your browser and authorize Careti
-6. Return to Careti - the server will automatically connect
-7. Vercel's tools (deploy, logs, projects) are now available to Careti!
+5. Sign in to Vercel in your browser and authorize <BrandName />
+6. Return to <BrandName /> - the server will automatically connect
+7. Vercel's tools (deploy, logs, projects) are now available to <BrandName />!
 
-Your Vercel authentication persists across sessions, so you won't need to re-authenticate each time you use Careti.
+Your Vercel authentication persists across sessions, so you won't need to re-authenticate each time you use <BrandName />.

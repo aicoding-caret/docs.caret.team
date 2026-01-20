@@ -8,7 +8,7 @@ description: "Bedrock API キーを使用して AWS Bedrock を Careti でセッ
 
 -   **AWS Bedrock:** AWS を通じて主要な生成 AI モデル（例：Anthropic Claude、Amazon Nova）へのアクセスを提供する完全マネージドサービス。\
     [AWS Bedrock の詳細を確認](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
--   **Careti:** AI モデルと統合してコード生成、デバッグ、データ分析を可能にする VS Code 拡張機能であるコーディングアシスタント。
+-   **<BrandName />:** AI モデルと統合してコード生成、デバッグ、データ分析を可能にする VS Code 拡張機能であるコーディングアシスタント。
 -   **開発者向け:** このガイドは API キーを使用した簡略化されたセットアップで、AWS Bedrock 経由で最先端モデルへのアクセスを有効にしたい個人開発者向けです。
 
 ---
@@ -28,7 +28,7 @@ description: "Bedrock API キーを使用して AWS Bedrock を Careti でセッ
 
 #### 1.2 ポリシーの作成または変更
 
-Careti が AWS Bedrock と連携できるように、IAM ユーザーまたはロールには特定の権限が必要です。`AmazonBedrockLimitedAccess` マネージドポリシーは包括的なアクセスを提供しますが、最小権限の原則に従ったより制限的で安全な設定のために、以下の最小権限が Careti のコアモデル呼び出し機能に十分です：
+<BrandName /> が AWS Bedrock と連携できるように、IAM ユーザーまたはロールには特定の権限が必要です。`AmazonBedrockLimitedAccess` マネージドポリシーは包括的なアクセスを提供しますが、最小権限の原則に従ったより制限的で安全な設定のために、以下の最小権限が <BrandName /> のコアモデル呼び出し機能に十分です：
 
 -   `bedrock:InvokeModel`
 -   `bedrock:InvokeModelWithResponseStream`
@@ -54,8 +54,8 @@ Careti が AWS Bedrock と連携できるように、IAM ユーザーまたは�
 
 **重要な考慮事項:**
 
--   **Careti でのモデルリスト:** 最小権限（`bedrock:InvokeModel`、`bedrock:InvokeModelWithResponseStream`）は、Careti の設定でモデル ID を直接指定する場合の Careti のモデル _使用_ に十分です。Careti が利用可能な Bedrock モデルを動的にリストすることに依存する場合、`bedrock:ListFoundationModels` などの追加権限が必要になる場合があります。
--   **AWS Marketplace サブスクリプション:** サードパーティモデル（例：Anthropic Claude）について、**`AmazonBedrockLimitedAccess`** ポリシーは AWS Marketplace 経由でサブスクライブするための必要な権限を付与します。明示的に有効にするアクセスはありません。Anthropic モデルについては、コンソール経由で初回使用（FTU）フォームを提出する必要があります。Careti チャットで `[ERROR] Failed to process response: Model use case details have not been submitted for this account. Fill out the Anthropic use case details form before using the model.` というメッセージが表示された場合は、[AWS Bedrock Console の Playground](https://console.aws.amazon.com/bedrock/home?#/text-generation-playground) を開いて任意の Anthropic モデルを選択し、フォームに記入してください（最初にプロンプトを送信する必要があるかもしれません）
+-   **<BrandName /> でのモデルリスト:** 最小権限（`bedrock:InvokeModel`、`bedrock:InvokeModelWithResponseStream`）は、<BrandName /> の設定でモデル ID を直接指定する場合の <BrandName /> のモデル _使用_ に十分です。<BrandName /> が利用可能な Bedrock モデルを動的にリストすることに依存する場合、`bedrock:ListFoundationModels` などの追加権限が必要になる場合があります。
+-   **AWS Marketplace サブスクリプション:** サードパーティモデル（例：Anthropic Claude）について、**`AmazonBedrockLimitedAccess`** ポリシーは AWS Marketplace 経由でサブスクライブするための必要な権限を付与します。明示的に有効にするアクセスはありません。Anthropic モデルについては、コンソール経由で初回使用（FTU）フォームを提出する必要があります。<BrandName /> チャットで `[ERROR] Failed to process response: Model use case details have not been submitted for this account. Fill out the Anthropic use case details form before using the model.` というメッセージが表示された場合は、[AWS Bedrock Console の Playground](https://console.aws.amazon.com/bedrock/home?#/text-generation-playground) を開いて任意の Anthropic モデルを選択し、フォームに記入してください（最初にプロンプトを送信する必要があるかもしれません）
 
 ---
 
@@ -71,20 +71,20 @@ Careti が AWS Bedrock と連携できるように、IAM ユーザーまたは�
 
 ---
 
-### ステップ 3: Careti VS Code 拡張機能の設定
+### ステップ 3: <BrandName /> VS Code 拡張機能の設定
 
-#### 3.1 Careti のインストールと開き方
+#### 3.1 <BrandName /> のインストールと開き方
 
 1. **VS Code のインストール:**\
    [VS Code ウェブサイト](https://code.visualstudio.com/)からダウンロードしてください。
-2. **Careti 拡張機能のインストール:**
+2. **<BrandName /> 拡張機能のインストール:**
     - VS Code を開きます。
     - 拡張機能マーケットプレイスに移動します（`Ctrl+Shift+X` または `Cmd+Shift+X`）。
-    - **Careti** を検索してインストールします。
+    - **<BrandName />** を検索してインストールします。
 
-#### 3.2 Careti 設定の構成
+#### 3.2 <BrandName /> 設定の構成
 
-1. **Careti 設定を開く:**
+1. **<BrandName /> 設定を開く:**
     - 設定 ⚙️ をクリックして API プロバイダーを選択します。
 2. **AWS Bedrock を API プロバイダーとして選択:**
     - API Provider ドロップダウンから **AWS Bedrock** を選択します。
@@ -122,15 +122,15 @@ Careti が AWS Bedrock と連携できるように、IAM ユーザーまたは�
 
 ### 結論
 
-これらの手順に従うことで、AWS Bedrock を Careti VS Code 拡張機能と統合して開発を加速できます：
+これらの手順に従うことで、AWS Bedrock を <BrandName /> VS Code 拡張機能と統合して開発を加速できます：
 
 1. **AWS 環境の準備:** 必要な権限を持つ Bedrock API キーを作成します。
 2. **地域とモデルアクセスの確認:** 選択した地域が必要なモデルをサポートしていることを確認します。
-3. **VS Code での Careti 設定:** AWS API キーで Careti をインストール・設定し、適切なモデルを選択します。
+3. **VS Code での <BrandName /> 設定:** AWS API キーで <BrandName /> をインストール・設定し、適切なモデルを選択します。
 4. **セキュリティとモニタリングの実装:** IAM、ネットワークセキュリティ、モニタリング、コスト管理のベストプラクティスを使用します。
 
 さらなる詳細については、[AWS Bedrock ドキュメント](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)を参照してください。ハッピーコーディング！
 
 ---
 
-_このガイドは AWS Bedrock と Careti の進化に合わせて更新されます。最新のプラクティスについては、常に最新のドキュメントと内部ポリシーを参照してください。_
+_このガイドは AWS Bedrock と <BrandName /> の進化に合わせて更新されます。最新のプラクティスについては、常に最新のドキュメントと内部ポリシーを参照してください。_

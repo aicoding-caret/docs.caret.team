@@ -20,6 +20,7 @@ import {
 	Warning,
 } from "@site/src/components/MDXComponents"
 import MDXComponents from "@theme-original/MDXComponents"
+import BrandName from "@site/src/components/BrandName"
 
 export default {
 	...MDXComponents,
@@ -42,4 +43,5 @@ export default {
 	TabItem,
 	Tabs: TabsWrapper,
 	Tab,
+	BrandName,
 }

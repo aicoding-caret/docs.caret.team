@@ -4,10 +4,10 @@ sidebarTitle: "ターミナルトラブルシューティング"
 description: "Caretのターミナル統合問題を解決するための完全ガイド"
 ---
 
-このガイドは、Caretのターミナル統合問題を解決するのに役立ちます。ターミナル統合は、Caretがコマンドを実行し、その出力を読み取るために不可欠であり、エラー、テスト結果、コマンド応答を理解できるようにします。
+このガイドは、<BrandName />のターミナル統合問題を解決するのに役立ちます。ターミナル統合は、<BrandName />がコマンドを実行し、その出力を読み取るために不可欠であり、エラー、テスト結果、コマンド応答を理解できるようにします。
 
 <Tip>
-	ターミナルの問題が発生している場合は、Caret設定の「Terminal Settings」で`bash`のようなシンプルなシェルに切り替えてみてください
+	ターミナルの問題が発生している場合は、<BrandName />設定の「Terminal Settings」で`bash`のようなシンプルなシェルに切り替えてみてください
 
     これにより、ほとんどのターミナル統合問題が解決されます。
 
@@ -48,8 +48,8 @@ graph TD
 **症状：**
 
 -   メッセージ：「Shell Integration Unavailable」
--   コマンドは実行されるがCaretは出力を読み取れない
--   ターミナルは手動では正常に動作するがCaretでは動作しない
+-   コマンドは実行されるが<BrandName />は出力を読み取れない
+-   ターミナルは手動では正常に動作するが<BrandName />では動作しない
 
 **クイックソリューション：**
 
@@ -57,7 +57,7 @@ graph TD
 
 -   **bashに切り替える**
 
-    1. Caret設定に移動
+    1. <BrandName />設定に移動
     2. **「Terminal Settings」**タブを左クリック
     3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「bash」**を選択
 
@@ -85,7 +85,7 @@ graph TD
 -   **PowerShell 7を使用**
 
     1. Microsoft Storeからインストール
-    2. Caret設定に移動
+    2. <BrandName />設定に移動
     3. **「Terminal Settings」**タブを左クリック
     4. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「PowerShell 7」**を選択
 
@@ -96,7 +96,7 @@ graph TD
     3. オプションのチェックを外す
 
 -   **コマンドプロンプトを試す**
-    1. Caret設定に移動
+    1. <BrandName />設定に移動
     2. **「Terminal Settings」**タブを左クリック
     3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「Command Prompt」**を選択
 
@@ -104,7 +104,7 @@ graph TD
 
 -   **bashを使用**
 
-    1. Caret設定に移動
+    1. <BrandName />設定に移動
     2. **「Terminal Settings」**タブを左クリック
     3. **「Default Terminal Profile」**に移動し、ドロップダウンメニューから**「bash」**を選択
 
@@ -119,21 +119,21 @@ graph TD
 
 **症状：**
 
--   Caretがチャットで述べる：「[Command is running but producing no output]」
--   コマンドは完了するがCaretは結果を見ることができない
+-   <BrandName />がチャットで述べる：「[Command is running but producing no output]」
+-   コマンドは完了するが<BrandName />は結果を見ることができない
 -   コマンドが時々動作するが一貫性がない
 
 **ソリューション：**
 
 -   **シェル統合タイムアウトを増やす**
 
-    1. Caret内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
+    1. <BrandName />内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
     2. **Settings**ウィンドウに入ったら、左側の列から**「Terminal Settings」**タブを左クリック
     3. 「Shell integration timeout (seconds)」に移動し、テキストフィールドに**「10」**を入力
 
 -   **ターミナル再利用を無効にする**
 
-    1. Caret内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
+    1. <BrandName />内で、チャットウィンドウの右上隅にある**Settings**ボタンを左クリック
     2. **Settings**ウィンドウに入ったら、左側の列から**「Terminal Settings」**タブを左クリック
     3. **「Enable aggressive terminal reuse」**を探し、このオプションの**チェックを外す**
 
@@ -152,10 +152,10 @@ graph TD
 これは出力処理の既知のバグです。回避策：
 
 -   AIにファイル出力の使用を推奨
-    1. チャットまたはCaretルールでCaretに、ファイルを読み取る前に`command > output.txt`を使用するように指示
+    1. チャットまたは<BrandName />ルールで<BrandName />に、ファイルを読み取る前に`command > output.txt`を使用するように指示
 
 <Tip>
-	この問題ファミリーは最新のCaretバージョンで部分的にのみ解決されているため、まだこの問題に直面している場合は、持続的な問題である場合はGitHub issueを作成してください。
+	この問題ファミリーは最新の<BrandName />バージョンで部分的にのみ解決されているため、まだこの問題に直面している場合は、持続的な問題である場合はGitHub issueを作成してください。
 </Tip>
 
 ### 4. 長時間実行コマンドとプログレスバー
@@ -164,25 +164,25 @@ graph TD
 
 -   Dockerビルドがcaretで完了しない
 -   プログレスバーが数千のトークンを消費する
--   チャット内のCaretボタン「Proceed while running」が正常に動作しない
+-   チャット内の<BrandName />ボタン「Proceed while running」が正常に動作しない
 
 <Tip>
-	この問題ファミリーは最新のCaretバージョンで解決されていますが、まだ問題が発生する場合は、GitHub issueを作成してください。
+	この問題ファミリーは最新の<BrandName />バージョンで解決されていますが、まだ問題が発生する場合は、GitHub issueを作成してください。
 </Tip>
 
 ## ターミナル設定の説明
 
-設定アイコンをクリックし、「Terminal Settings」セクションに移動してCaretでこれらにアクセスします：
+設定アイコンをクリックし、「Terminal Settings」セクションに移動して<BrandName />でこれらにアクセスします：
 
 ### デフォルトターミナルプロファイル
 
--   **機能**：Caretがコマンドに使用するシェルを選択
+-   **機能**：<BrandName />がコマンドに使用するシェルを選択
 -   **変更するタイミング**：デフォルトシェルでシェル統合問題が発生している場合
 -   **推奨**：- macOS：bash（zshに問題がある場合）- Windows：PowerShell 7 - Linux：bash
 
 ### シェル統合タイムアウト
 
--   **機能**：Caretがターミナルの準備を待機する時間
+-   **機能**：<BrandName />がターミナルの準備を待機する時間
 -   **デフォルト**：4秒
 -   **増やすタイミング**：
     -   シェル起動が遅い（重い.zshrc/.bashrc）
@@ -201,7 +201,7 @@ graph TD
 
 ### ターミナル出力行制限
 
--   **機能**：Caretがターミナル出力から読み取る行数を制限
+-   **機能**：<BrandName />がターミナル出力から読み取る行数を制限
 -   **デフォルト**：500行
 -   **調整するタイミング**：
     -   詳細なビルド出力のために増やす
@@ -303,13 +303,13 @@ WSLの問題：
 
 1. VSCode用のWSL拡張機能を使用
 2. WSLでフォルダーを開く：WSLターミナルから`code .`
-3. Caretでターミナルプロファイルとして「WSL Bash」を選択
+3. <BrandName />でターミナルプロファイルとして「WSL Bash」を選択
 
 #### パスの問題
 
 Windowsパスの問題：
 
-1. Caretでスラッシュを使用：`C:/Users/...`
+1. <BrandName />でスラッシュを使用：`C:/Users/...`
 2. スペースを含むパスを引用符で囲む：`"C:/Program Files/..."`
 3. `~`を避ける - フルパスを使用
 
@@ -319,7 +319,7 @@ Windowsパスの問題：
 
 リモート開発の場合：
 
-1. ローカルではなくリモートマシンにCaretをインストール
+1. ローカルではなくリモートマシンに<BrandName />をインストール
 2. SSH拡張機能の統合ターミナルを使用
 3. タイムアウトを15秒以上に増やす
 
@@ -327,7 +327,7 @@ Windowsパスの問題：
 
 コンテナで開発する場合：
 
-1. コンテナにCaretをインストール
+1. コンテナに<BrandName />をインストール
 2. Dev Containers拡張機能を使用
 3. シェル統合スクリプトが利用可能であることを確認
 
@@ -389,7 +389,7 @@ $ProgressPreference = 'SilentlyContinue'
 1. VSCodeコマンドパレットを開く（Cmd/Ctrl+Shift+P）
 2. 実行：「Developer: Set Log Level...」
 3. 「Trace」を選択
-4. 出力パネル → 「Careti」でターミナルログを確認
+4. 出力パネル → 「<BrandName />」でターミナルログを確認
 
 ### 手動シェル統合テスト
 
@@ -403,13 +403,13 @@ echo $VSCODE_SHELL_INTEGRATION  # 「1」である必要があります
 
 ## FAQ
 
-### なぜCaretは多くのターミナルを作成するのですか？
+### なぜ<BrandName />は多くのターミナルを作成するのですか？
 
-シェル統合が失敗すると、Caretはターミナルを安全に再利用できません（長いプロセスが実行されている可能性があります）。シェル統合を有効にするか、ターミナル再利用設定を調整してください。
+シェル統合が失敗すると、<BrandName />はターミナルを安全に再利用できません（長いプロセスが実行されている可能性があります）。シェル統合を有効にするか、ターミナル再利用設定を調整してください。
 
 ### カスタムシェル（nushell、xonshなど）を使用できますか？
 
-Caretは公式にbash、zsh、fish、PowerShellをサポートしています。カスタムシェルは動作する可能性がありますが、保証されていません。フォールバックとしてbashを使用してください。
+<BrandName />は公式にbash、zsh、fish、PowerShellをサポートしています。カスタムシェルは動作する可能性がありますが、保証されていません。フォールバックとしてbashを使用してください。
 
 ### 一部のコマンドは動作するのに他のコマンドは動作しないのはなぜですか？
 
@@ -417,7 +417,7 @@ Caretは公式にbash、zsh、fish、PowerShellをサポートしています。
 
 ### シェル統合が機能しているかどうかをどのように知ることができますか？
 
-動作している統合は、Caretのチャットにコマンド出力を表示します。失敗した統合は「Shell Integration Unavailable」または「[Command is running but producing no output]」を表示します。
+動作している統合は、<BrandName />のチャットにコマンド出力を表示します。失敗した統合は「Shell Integration Unavailable」または「[Command is running but producing no output]」を表示します。
 
 ## まだ問題がありますか？
 
@@ -434,7 +434,7 @@ Caretは公式にbash、zsh、fish、PowerShellをサポートしています。
     ```
 
 2. **問題を報告**：
-    - Careti github issuesで`/reportbug`を使用
+    - <BrandName /> github issuesで`/reportbug`を使用
     - デバッグ情報を含める
     - 試したソリューションを言及
 

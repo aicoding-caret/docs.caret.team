@@ -5,10 +5,10 @@ description: "Careti CLI で GitHub イシューを自動分析し根本原因�
 
 # GitHub 根本原因分析
 
-Careti CLI を使った GitHub イシューの自動分析サンプルです。Careti の自律 AI によりイシューを取得・分析し、根本原因を特定します。解析結果はワークフローに組み込みやすい形式で出力されます。
+<BrandName /> CLI を使った GitHub イシューの自動分析サンプルです。<BrandName /> の自律 AI によりイシューを取得・分析し、根本原因を特定します。解析結果はワークフローに組み込みやすい形式で出力されます。
 
 <Note>
-**Careti CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了し、`caret auth` で認証済みであることを前提にしています。
+**<BrandName /> CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了し、`caret auth` で認証済みであることを前提にしています。
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Careti CLI を使った GitHub イシューの自動分析サンプルです。C
 
 このサンプルでは以下が完了していることを想定します:
 
-- **Careti CLI** のインストールと認証 ([インストールガイド](/ja/caret-cli/installation))
+- **<BrandName /> CLI** のインストールと認証 ([インストールガイド](/ja/caret-cli/installation))
 - **少なくとも 1 つのモデルプロバイダー** 設定 (例: OpenRouter、Anthropic、OpenAI)
-- **Careti CLI の基本操作** の理解
+- **<BrandName /> CLI の基本操作** の理解
 
 追加で必要:
 
@@ -137,7 +137,7 @@ chmod +x analyze-issue.sh
 
 ### 特定インスタンスの使用
 
-特定の Careti インスタンスを指定:
+特定の <BrandName /> インスタンスを指定:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -148,7 +148,7 @@ chmod +x analyze-issue.sh
 <Warning>
 次のケースで有効です:
 - 複数インスタンスを運用している
-- リモート Careti サーバーを使用している
+- リモート <BrandName /> サーバーを使用している
 - 特定設定で検証したい
 </Warning>
 
@@ -348,8 +348,8 @@ scalability.
 
 このサンプルは以下を示します:
 
-1. Careti を使った **自律 CLI ツール** の構築
-2. Careti CLI の **JSON 出力解析**
+1. <BrandName /> を使った **自律 CLI ツール** の構築
+2. <BrandName /> CLI の **JSON 出力解析**
 3. **カスタムプロンプト**による柔軟な自動化
 4. GitHub イシュー分析への **統合**
 5. **コマンドライン引数**の扱い

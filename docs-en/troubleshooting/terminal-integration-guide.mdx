@@ -4,10 +4,10 @@ sidebarTitle: "Terminal Troubleshooting"
 description: "Complete guide to resolving terminal integration issues in Careti"
 ---
 
-This guide helps you resolve terminal integration issues in Careti. Terminal integration is crucial for Careti to execute commands and read their output, enabling it to understand errors, test results, and command responses.
+This guide helps you resolve terminal integration issues in <BrandName />. Terminal integration is crucial for <BrandName /> to execute commands and read their output, enabling it to understand errors, test results, and command responses.
 
 <Tip>
-	If you're experiencing terminal issues, try switching to a simpler shell like `bash` in the Careti settings, under "Terminal Settings"
+	If you're experiencing terminal issues, try switching to a simpler shell like `bash` in the <BrandName /> settings, under "Terminal Settings"
 
     This resolves most terminal integration problems.
 
@@ -48,8 +48,8 @@ graph TD
 **Symptoms:**
 
 -   Message: "Shell Integration Unavailable"
--   Commands execute but Careti can't read output
--   Terminal works fine manually but not with Careti
+-   Commands execute but <BrandName /> can't read output
+-   Terminal works fine manually but not with <BrandName />
 
 **Quick Solutions:**
 
@@ -57,7 +57,7 @@ graph TD
 
 -   **Switch to bash**
 
-    1. Go to Careti Settings
+    1. Go to <BrandName /> Settings
     2. Left-Click the **"Terminal Settings"** tab
     3. Navigate to **"Default Terminal Profile"** and select **"bash"** from the drop-down menu
 
@@ -85,7 +85,7 @@ graph TD
 -   **Use PowerShell 7**
 
     1. Install from Microsoft Store
-    2. Go to Careti Settings
+    2. Go to <BrandName /> Settings
     3. Left-Click the **"Terminal Settings"** tab
     4. Navigate to **"Default Terminal Profile"** and select **"PowerShell 7"** from the drop-down menu
 
@@ -96,7 +96,7 @@ graph TD
     3. Uncheck the option
 
 -   **Try Command Prompt**
-    1. Go to Careti Settings
+    1. Go to <BrandName /> Settings
     2. Left-Click the **"Terminal Settings"** tab
     3. Navigate to **"Default Terminal Profile"** and select **"Command Prompt"** from the drop-down menu
 
@@ -104,7 +104,7 @@ graph TD
 
 -   **Use bash**
 
-    1. Go to Careti Settings
+    1. Go to <BrandName /> Settings
     2. Left-Click the **"Terminal Settings"** tab
     3. Navigate to **"Default Terminal Profile"** and select **"bash"** from the drop-down menu
 
@@ -119,21 +119,21 @@ graph TD
 
 **Symptoms:**
 
--   Careti states in chat: "[Command is running but producing no output]"
--   Commands complete but Careti doesn't see results
+-   <BrandName /> states in chat: "[Command is running but producing no output]"
+-   Commands complete but <BrandName /> doesn't see results
 -   Commands work sometimes but not consistently
 
 **Solutions:**
 
 -   **Increase Shell Integration Timeout**
 
-    1. Within Careti, left-click the **Settings** button in the top right-hand corner of the chat window
+    1. Within <BrandName />, left-click the **Settings** button in the top right-hand corner of the chat window
     2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
     3. Navigate to "Shell integration timeout (seconds)" and enter **"10"** into the text field
 
 -   **Disable Terminal Reuse**
 
-    1. Within Careti, left-click the **Settings** button in the top right-hand corner of the chat window
+    1. Within <BrandName />, left-click the **Settings** button in the top right-hand corner of the chat window
     2. Once in the **Settings** window, left-click the **"Terminal Settings"** tab from the left-hand column
     3. Look for **"Enable aggressive terminal reuse"**, and **uncheck** this option
 
@@ -152,10 +152,10 @@ graph TD
 This is a known bug in output processing. Workarounds:
 
 -   Recommend AI to use file output instead
-    1. Tell Careti in chat or Careti rules, to use `command > output.txt` before reading the file/s
+    1. Tell <BrandName /> in chat or <BrandName /> rules, to use `command > output.txt` before reading the file/s
 
 <Tip>
-	This family of issues is only partially solved in the latest Careti versions, so if you still face this, create a GitHub issue
+	This family of issues is only partially solved in the latest <BrandName /> versions, so if you still face this, create a GitHub issue
 	if it is a persistent problem.
 </Tip>
 
@@ -163,28 +163,28 @@ This is a known bug in output processing. Workarounds:
 
 **Symptoms:**
 
--   Docker builds never complete in Careti
+-   Docker builds never complete in <BrandName />
 -   Progress bars consume thousands of tokens
--   The Careti button "Proceed while running" doesn't work properly in chat
+-   The <BrandName /> button "Proceed while running" doesn't work properly in chat
 
 <Tip>
-	This family of issues has been solved in latest Careti versions but if you still face any issues, then create a GitHub issue
+	This family of issues has been solved in latest <BrandName /> versions but if you still face any issues, then create a GitHub issue
 	for this.
 </Tip>
 
 ## Terminal Settings Explained
 
-Access these in Careti by clicking the settings icon, and navigating to the "Terminal Settings" section:
+Access these in <BrandName /> by clicking the settings icon, and navigating to the "Terminal Settings" section:
 
 ### Default Terminal Profile
 
--   **What it does**: Selects which shell Careti uses for commands
+-   **What it does**: Selects which shell <BrandName /> uses for commands
 -   **When to change**: If experiencing shell integration issues with your default shell
 -   **Recommended**: - macOS: bash (if zsh has issues) - Windows: PowerShell 7 - Linux: bash
 
 ### Shell Integration Timeout
 
--   **What it does**: How long Careti waits for the terminal to be ready
+-   **What it does**: How long <BrandName /> waits for the terminal to be ready
 -   **Default**: 4 seconds
 -   **When to increase**:
     -   Slow shell startup (heavy .zshrc/.bashrc)
@@ -203,7 +203,7 @@ Access these in Careti by clicking the settings icon, and navigating to the "Ter
 
 ### Terminal Output Line Limit
 
--   **What it does**: Limits how many lines Careti reads from terminal output
+-   **What it does**: Limits how many lines <BrandName /> reads from terminal output
 -   **Default**: 500 lines
 -   **When to adjust**:
     -   Increase for verbose build outputs
@@ -305,13 +305,13 @@ For WSL issues:
 
 1. Use WSL extension for VSCode
 2. Open folder in WSL: `code .` from WSL terminal
-3. Select "WSL Bash" as terminal profile in Careti
+3. Select "WSL Bash" as terminal profile in <BrandName />
 
 #### Path Issues
 
 Windows path problems:
 
-1. Use forward slashes in Careti: `C:/Users/...`
+1. Use forward slashes in <BrandName />: `C:/Users/...`
 2. Quote paths with spaces: `"C:/Program Files/..."`
 3. Avoid `~` - use full paths
 
@@ -321,7 +321,7 @@ Windows path problems:
 
 For remote development:
 
-1. Install Careti on the remote machine, not locally
+1. Install <BrandName /> on the remote machine, not locally
 2. Use SSH extension's integrated terminal
 3. Increase timeout to 15+ seconds
 
@@ -329,7 +329,7 @@ For remote development:
 
 When developing in containers:
 
-1. Install Careti in the container
+1. Install <BrandName /> in the container
 2. Use Dev Containers extension
 3. Ensure shell integration scripts are available
 
@@ -391,7 +391,7 @@ Enable terminal debugging to see what's happening:
 1. Open VSCode Command Palette (Cmd/Ctrl+Shift+P)
 2. Run: "Developer: Set Log Level..."
 3. Choose "Trace"
-4. Check Output panel → "Careti" for terminal logs
+4. Check Output panel → "<BrandName />" for terminal logs
 
 ### Manual Shell Integration Test
 
@@ -405,13 +405,13 @@ echo $VSCODE_SHELL_INTEGRATION  # Should be "1"
 
 ## FAQ
 
-### Why does Careti create so many terminals?
+### Why does <BrandName /> create so many terminals?
 
-When shell integration fails, Careti can't reuse terminals safely (they might be running long processes). Enable shell integration or adjust the terminal reuse setting.
+When shell integration fails, <BrandName /> can't reuse terminals safely (they might be running long processes). Enable shell integration or adjust the terminal reuse setting.
 
 ### Can I use my custom shell (nushell, xonsh, etc.)?
 
-Careti officially supports bash, zsh, fish, and PowerShell. Custom shells may work but aren't guaranteed. Use bash as a fallback.
+<BrandName /> officially supports bash, zsh, fish, and PowerShell. Custom shells may work but aren't guaranteed. Use bash as a fallback.
 
 ### Why do some commands work but others don't?
 
@@ -419,7 +419,7 @@ Commands that use interactive features (pagers, progress bars, curses) often fai
 
 ### How do I know if shell integration is working?
 
-Working integration shows command output in Careti's chat. Failed integration shows "Shell Integration Unavailable" or "[Command is running but producing no output]".
+Working integration shows command output in <BrandName />'s chat. Failed integration shows "Shell Integration Unavailable" or "[Command is running but producing no output]".
 
 ## Still Having Issues?
 
@@ -436,7 +436,7 @@ If you've tried everything:
     ```
 
 2. **Report the Issue**:
-    - Use `/reportbug` in Careti github issues
+    - Use `/reportbug` in <BrandName /> github issues
     - Include your debug info
     - Mention which solutions you tried
 

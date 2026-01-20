@@ -9,18 +9,18 @@ Automate GitHub issue analysis with AI. Mention `@caret` in any issue comment to
 
 
 <Note>
-**New to Careti CLI?** This sample assumes you understand Careti CLI basics and have completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation). If you're new to Careti CLI, we recommend starting with the [GitHub RCA sample](/en/caret-cli/samples/github-issue-rca) first, as it's simpler and will help you understand the fundamentals before setting up GitHub Actions.
+**New to <BrandName /> CLI?** This sample assumes you understand <BrandName /> CLI basics and have completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation). If you're new to <BrandName /> CLI, we recommend starting with the [GitHub RCA sample](/en/caret-cli/samples/github-issue-rca) first, as it's simpler and will help you understand the fundamentals before setting up GitHub Actions.
 </Note>
 
 ## The Workflow
 
-Trigger Careti by mentioning `@caret` in any issue comment:
+Trigger <BrandName /> by mentioning `@caret` in any issue comment:
 
 <Frame>
   <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
 </Frame>
 
-Careti's automated analysis appears as a new comment, with insights drawn from your actual codebase:
+<BrandName />'s automated analysis appears as a new comment, with insights drawn from your actual codebase:
 
 <Frame>
   <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
@@ -34,7 +34,7 @@ Let's configure your repository.
 
 Before you begin, you'll need:
 
-- **Careti CLI knowledge** - Completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and understand basic usage
+- **<BrandName /> CLI knowledge** - Completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and understand basic usage
 - **GitHub repository** - With admin access to configure Actions and secrets
 - **GitHub Actions familiarity** - Basic understanding of workflows and CI/CD
 - **API provider account** - OpenRouter, Anthropic, or similar with API key
@@ -180,7 +180,7 @@ This tells the workflow where to download the analysis script from your reposito
 </Warning>
 
 The workflow will look for new or updated issues, check for `@caret` mentions, and then
-start up an instance of the Careti CLI to dig into the issue, providing feedback
+start up an instance of the <BrandName /> CLI to dig into the issue, providing feedback
 as a reply to the issue.
 
 ### 2. Configure API Keys
@@ -211,7 +211,7 @@ Add your AI provider API keys as repository secrets:
      <img src="https://storage.googleapis.com/cline_public_images/ss03-ready.png" alt="API key configured" width="600" />
    </Frame>
 
-Now you're ready to supply Careti with the credentials it needs in a GitHub Action.
+Now you're ready to supply <BrandName /> with the credentials it needs in a GitHub Action.
 
 ### 3. Add Analysis Script
 
@@ -270,7 +270,7 @@ chmod +x git-scripts/analyze-issue.sh
 ```
 </Accordion>
 
-This analysis script calls Careti to execute a prompt on a GitHub issue,
+This analysis script calls <BrandName /> to execute a prompt on a GitHub issue,
 summarizing the output to populate the reply to the issue.
 
 ### 4. Commit and Push
@@ -296,10 +296,10 @@ Once set up, simply mention `@caret` in any issue comment:
 
 GitHub Actions will:
 1. Detect the `@caret` mention
-2. Start a Careti CLI instance
+2. Start a <BrandName /> CLI instance
 3. Download the analysis script
 4. Analyze the issue using act mode with yolo (fully autonomous)
-5. Post Careti's analysis as a new comment
+5. Post <BrandName />'s analysis as a new comment
 
 **Note**: The workflow only triggers on issue comments, not pull request
 comments.
@@ -310,8 +310,8 @@ The workflow (`caret-responder.yml`):
 
 1. **Triggers** on issue comments (created or edited)
 2. **Detects** `@caret` mentions (case-insensitive)
-3. **Installs** Careti CLI globally using npm
-4. **Creates** a Careti instance using `caret instance new`
+3. **Installs** <BrandName /> CLI globally using npm
+4. **Creates** a <BrandName /> instance using `caret instance new`
 5. **Configures** authentication using `caret config set open-router-api-key=...
    --address ...`
 6. **Downloads** the reusable `analyze-issue.sh` script from the

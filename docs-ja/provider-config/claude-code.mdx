@@ -5,7 +5,7 @@ description: "トークン単位の支払いではなく、Claude Max または 
 
 **ウェブサイト:** [https://docs.anthropic.com/en/docs/claude-code/setup](https://docs.anthropic.com/en/docs/claude-code/setup)
 
-Claude Code プロバイダーを使用すると、既存の Claude サブスクリプションを Careti で使用できます。Claude Max または Pro をお持ちの場合、追加の API コストを支払うことなく、Careti で Claude を使用できます。
+Claude Code プロバイダーを使用すると、既存の Claude サブスクリプションを <BrandName /> で使用できます。Claude Max または Pro をお持ちの場合、追加の API コストを支払うことなく、<BrandName /> で Claude を使用できます。
 
 <figure>
 	<img
@@ -20,8 +20,8 @@ Claude Code プロバイダーを使用すると、既存の Claude サブスク
 
 1. **Claude Code をインストール**: Anthropic の[公式セットアップガイド](https://docs.anthropic.com/en/docs/claude-code/setup)に従って、Claude CLI をインストールし、認証してください。
 
-2. **Careti で設定**:
-    - Careti 設定を開く（⚙️ アイコン）
+2. **<BrandName /> で設定**:
+    - <BrandName /> 設定を開く（⚙️ アイコン）
     - **API Provider** ドロップダウンから **Claude Code** を選択
     - Claude CLI 実行可能ファイルのパスを設定（通常は PATH にある場合は `claude` のみ）
 
@@ -35,7 +35,7 @@ Claude Code プロバイダーを使用すると、既存の Claude サブスク
 <br />
 
 <Accordion title="Windows セットアップ">
-	Anthropic は Windows での Claude Code の完全サポートを導入しました。[通常の Claude Code セットアップ手順](#setup)に従い、最新の Claude Code と Careti バージョンを使用していることを確認してください。
+	Anthropic は Windows での Claude Code の完全サポートを導入しました。[通常の Claude Code セットアップ手順](#setup)に従い、最新の Claude Code と <BrandName /> バージョンを使用していることを確認してください。
 </Accordion>
 
 ### Claude Code パスの確認
@@ -59,9 +59,9 @@ Claude Code プロバイダーは以下のモデルをサポートします：
 
 ## 仕組み
 
-Claude Code を Careti で使用する場合の背景での処理：
+Claude Code を <BrandName /> で使用する場合の背景での処理：
 
-Careti は Claude Code CLI をラップしてリクエストを処理します。メッセージを送信するたびに、Careti は新しい `claude` プロセスを開始し、会話を送信し、レスポンスをストリーミングで返します。AI 推論は Claude Code から来ますが、実際のファイル編集、ターミナルコマンド、その他のツールはすべて Careti によって処理されます。
+<BrandName /> は Claude Code CLI をラップしてリクエストを処理します。メッセージを送信するたびに、<BrandName /> は新しい `claude` プロセスを開始し、会話を送信し、レスポンスをストリーミングで返します。AI 推論は Claude Code から来ますが、実際のファイル編集、ターミナルコマンド、その他のツールはすべて <BrandName /> によって処理されます。
 
 主な違いは、他のプロバイダーのようにレスポンスが文字単位でストリーミングされないことです。代わりに、Claude Code は完全なリクエストを処理してから、完全なレスポンスを送り返します。
 
@@ -79,13 +79,13 @@ Claude Code を使用する際に覚えておくべき点がいくつかあり�
 
 **認証の問題**: サブスクリプションアカウントで Claude Code にログインしていることを確認してください。`claude auth status` を実行して確認します。
 
-**パスの問題**: Careti 設定の Claude CLI パスが正しいことを再確認してください。ターミナルで `claude --version` を実行して動作することを確認します。
+**パスの問題**: <BrandName /> 設定の Claude CLI パスが正しいことを再確認してください。ターミナルで `claude --version` を実行して動作することを確認します。
 
 **まだ問題がありますか?** この統合を積極的に改善しています。[GitHub](https://github.com/caret/caret/issues) で問題を報告するか、[Discord](https://https://discord.gg/WB6yaR89YN) でヘルプを求めてください。
 
 ## サブスクリプションでの使用
 
-Claude Max サブスクリプションをお持ちの場合、追加の API コストを支払っていないため、Careti での使用量は請求インターフェースで $0.00 と表示されます。使用量はサブスクリプション制限に対してカウントされますが、トークン単位の料金は表示されません。
+Claude Max サブスクリプションをお持ちの場合、追加の API コストを支払っていないため、<BrandName /> での使用量は請求インターフェースで $0.00 と表示されます。使用量はサブスクリプション制限に対してカウントされますが、トークン単位の料金は表示されません。
 
 サブスクリプションでの Claude Code の使用に関する詳細については、Anthropic のドキュメントを確認してください：
 

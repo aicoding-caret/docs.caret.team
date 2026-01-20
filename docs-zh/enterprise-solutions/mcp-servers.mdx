@@ -2,13 +2,13 @@
 title: "MCP 服务器"
 ---
 
-**模型上下文协议（MCP）服务器通过提供对外部数据源和可执行函数的标准化访问来扩展 Careti 的功能。通过实施 MCP 服务器，LLM 工具可以动态检索和整合来自本地和远程数据源的相关信息。此功能确保模型使用最新和上下文相关的数据运行，提高其输出的准确性和相关性。**
+**模型上下文协议（MCP）服务器通过提供对外部数据源和可执行函数的标准化访问来扩展 <BrandName /> 的功能。通过实施 MCP 服务器，LLM 工具可以动态检索和整合来自本地和远程数据源的相关信息。此功能确保模型使用最新和上下文相关的数据运行，提高其输出的准确性和相关性。**
 
 ---
 
 ### 安全架构基础
 
-MCP 服务器遵循客户端-服务器架构，其中主机（如 Careti 等 LLM 应用程序）通过传输层向 MCP 服务器发起连接。此架构固有地提供安全优势，因为它维持组件之间的清晰分离。企业部署应专注于此架构的正确实施，以确保安全操作，特别是关于消息交换模式和连接生命周期管理。有关 MCP 架构详细信息，请参阅 [MCP 架构](https://modelcontextprotocol.io/docs/concepts/architecture)，有关最新规范，请参阅 [MCP 规范](https://spec.modelcontextprotocol.io/specification/2024-11-05/)。
+MCP 服务器遵循客户端-服务器架构，其中主机（如 <BrandName /> 等 LLM 应用程序）通过传输层向 MCP 服务器发起连接。此架构固有地提供安全优势，因为它维持组件之间的清晰分离。企业部署应专注于此架构的正确实施，以确保安全操作，特别是关于消息交换模式和连接生命周期管理。有关 MCP 架构详细信息，请参阅 [MCP 架构](https://modelcontextprotocol.io/docs/concepts/architecture)，有关最新规范，请参阅 [MCP 规范](https://spec.modelcontextprotocol.io/specification/2024-11-05/)。
 
 ### 传输层安全
 

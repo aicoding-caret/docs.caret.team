@@ -4,7 +4,7 @@ description: "Understanding and managing AI model context windows"
 ---
 
 <Note>
-캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(지원/차단 모델별 컨텍스트 제한, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(<BrandName />) 기준 문서입니다. <BrandName /> v3.38.1 머지본을 따르며, 캐러티 전용 정책(지원/차단 모델별 컨텍스트 제한, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 ## What is a Context Window?
@@ -44,9 +44,9 @@ A context window is the maximum amount of text an AI model can process at once. 
 ### What Counts Toward Context
 
 1. **Your current conversation** - All messages in the chat
-2. **File contents** - Any files you've shared or Careti has read
+2. **File contents** - Any files you've shared or <BrandName /> has read
 3. **Tool outputs** - Results from executed commands
-4. **System prompts** - Careti's instructions (minimal impact)
+4. **System prompts** - <BrandName />'s instructions (minimal impact)
 
 ### Optimization Strategies
 
@@ -66,7 +66,7 @@ Instead of including entire files:
 - Reference specific functions rather than whole files
 
 #### 3. Enable Auto-compact
-Careti can automatically summarize long conversations:
+<BrandName /> can automatically summarize long conversations:
 - Settings → Features → Auto-compact
 - Preserves important context
 - Reduces token usage
@@ -144,10 +144,10 @@ Act Mode: Claude Sonnet (1M) - Maximum context for coding
 **A:** Not always. Larger contexts increase cost and can reduce response quality. Match the context to your task size.
 
 ### Q: How can I tell how much context I'm using?
-**A:** Careti shows token usage in the interface. Watch for the context meter approaching limits.
+**A:** <BrandName /> shows token usage in the interface. Watch for the context meter approaching limits.
 
 ### Q: What happens when I exceed the context limit?
-**A:** Careti will either:
+**A:** <BrandName /> will either:
 - Automatically compact the conversation (if enabled)
 - Show an error and suggest starting a new task
 - Truncate older messages (with warning)

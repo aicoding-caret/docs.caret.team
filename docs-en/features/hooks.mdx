@@ -4,7 +4,7 @@ sidebarTitle: "Hooks"
 description: "Inject custom logic into Careti's workflow to validate operations, monitor tool usage, and shape AI decisions"
 ---
 
-Hooks let you inject custom logic into Careti's workflow at key moments. Think of them as automated checkpoints where you can validate operations before they execute, monitor tool usage as it happens, and shape how Careti makes decisions.
+Hooks let you inject custom logic into <BrandName />'s workflow at key moments. Think of them as automated checkpoints where you can validate operations before they execute, monitor tool usage as it happens, and shape how <BrandName /> makes decisions.
 
 Hooks run automatically when specific events happen during development. They receive detailed information about each operation, can block problematic actions before they cause issues, and can inject context that guides future AI decisions.
 
@@ -26,14 +26,14 @@ Hooks are currently supported on macOS and Linux only. Windows support is not av
 	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
 </Frame>
 
-Enabling hooks in Careti is straightforward. Here's what you need to do:
+Enabling hooks in <BrandName /> is straightforward. Here's what you need to do:
 
 <Steps>
 <Step title="Enable Hooks in Settings">
-Open Careti settings and check the **"Enable Hooks"** checkbox.
+Open <BrandName /> settings and check the **"Enable Hooks"** checkbox.
 
 You can find this setting by:
-1. Opening Careti
+1. Opening <BrandName />
 2. Click the "Settings" button on the top right corner
 3. Click the "Feature" section in the left side navigation menu.
 4. Scroll down until you see the "Enable Hooks" checkbox and check it. 
@@ -84,7 +84,7 @@ chmod +x .agents/hooks/TaskStart
 </Step>
 
 <Step title="Test Your Hook">
-Start a task in Careti and verify your hook executes.
+Start a task in <BrandName /> and verify your hook executes.
 </Step>
 </Steps>
 
@@ -115,12 +115,12 @@ Once you understand the basics, hooks open up creative possibilities:
   </Card>
 </CardGroup>
 
-The key is combining hooks with external tools. A hook can be the glue between Careti's workflow and the rest of your development ecosystem.
+The key is combining hooks with external tools. A hook can be the glue between <BrandName />'s workflow and the rest of your development ecosystem.
 
 
 ## Hook Types
 
-Careti provides multiple hook types that let you tap into different stages of the AI workflow. They're organized into categories based on their trigger points and use cases.
+<BrandName /> provides multiple hook types that let you tap into different stages of the AI workflow. They're organized into categories based on their trigger points and use cases.
 
 <Note>
 The hook names below are the exact file names you need to create. For example, to use the TaskStart hook, create a file named `TaskStart` (no file extension) in your hooks directory.
@@ -177,11 +177,11 @@ Runs after a tool completes. Use it to learn from results, track performance met
 
 ### User Interaction
 
-These hooks monitor and enhance user communication with Careti. Use them to validate input, inject context, and track interaction patterns.
+These hooks monitor and enhance user communication with <BrandName />. Use them to validate input, inject context, and track interaction patterns.
 
 #### UserPromptSubmit
 
-Runs when a user sends a message to Careti. Use it to validate input, inject context based on the prompt, and track interaction patterns.
+Runs when a user sends a message to <BrandName />. Use it to validate input, inject context based on the prompt, and track interaction patterns.
 
 **Input Fields:**
 ```json
@@ -205,7 +205,7 @@ These hooks monitor and respond to task state changes from start to finish. Use 
 
 #### TaskStart
 
-Runs when a new task begins. Use it to detect project type, initialize tracking, and inject initial context that shapes how Careti approaches the work.
+Runs when a new task begins. Use it to detect project type, initialize tracking, and inject initial context that shapes how <BrandName /> approaches the work.
 
 **Input Fields:**
 ```json
@@ -302,7 +302,7 @@ Runs when a task finishes successfully. Use it for final cleanup, tracking metri
 
 ### System Events
 
-These hooks monitor internal Careti operations and system-level events. Use them to track context usage, log system behavior, and analyze performance patterns.
+These hooks monitor internal <BrandName /> operations and system-level events. Use them to track context usage, log system behavior, and analyze performance patterns.
 
 {/*
 #### PreCompact
@@ -340,7 +340,7 @@ Hooks receive JSON via stdin and return JSON via stdout.
 }
 ```
 
-Your hook script can output logging or diagnostic information to stdout during execution, as long as the JSON response is the last thing written. Careti will parse only the final JSON object from stdout.
+Your hook script can output logging or diagnostic information to stdout during execution, as long as the JSON response is the last thing written. <BrandName /> will parse only the final JSON object from stdout.
 
 For example:
 ```bash
@@ -373,7 +373,7 @@ This means PreToolUse hooks are for blocking bad actions, while PostToolUse hook
 - Ensure the "Enable Hooks" setting is checked
 - Verify the hook file is executable (`chmod +x hookname`)
 - Check the hook file has no syntax errors
-- Look for errors in VSCode's Output panel (Careti channel)
+- Look for errors in VSCode's Output panel (<BrandName /> channel)
 
 ### Hook Timing Out
 - Reduce complexity of the hook script
@@ -381,7 +381,7 @@ This means PreToolUse hooks are for blocking bad actions, while PostToolUse hook
 - Consider moving complex logic to a background process
 
 ### Context Not Affecting Behavior
-Remember that context modifications affect future AI decisions, not the current operation. The AI's current behavior is based on the previous "API Request..." block, and your `contextModification` gets injected into the next "API Request..." block. This means if you need immediate effect, you should use PreToolUse hooks for validation and return `cancel: true` in your hook's JSON response to block Careti from continuing.
+Remember that context modifications affect future AI decisions, not the current operation. The AI's current behavior is based on the previous "API Request..." block, and your `contextModification` gets injected into the next "API Request..." block. This means if you need immediate effect, you should use PreToolUse hooks for validation and return `cancel: true` in your hook's JSON response to block <BrandName /> from continuing.
 
 When adding context, ensure your modifications are clear and actionable so the AI can understand and apply them effectively. Also check that your context isn't being truncated due to the 50KB limit, as this could prevent important information from reaching the AI.
 
@@ -412,8 +412,8 @@ Hooks run with the same permissions as VS Code. They can access all workspace fi
 
 ## Related Features
 
-Hooks complement other Careti features:
+Hooks complement other <BrandName /> features:
 
-- [Careti Rules](/en/features/caret-rules) define high-level guidance that hooks can enforce
+- [<BrandName /> Rules](/en/features/caret-rules) define high-level guidance that hooks can enforce
 - [Checkpoints](/en/features/checkpoints) let you roll back changes if a hook didn't catch an issue
 - [Auto-Approve](/en/features/auto-approve) works well with hooks as safety nets for automated operations

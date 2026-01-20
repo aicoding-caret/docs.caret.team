@@ -1,9 +1,9 @@
-Careti Rules allow you to provide Careti with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+<BrandName /> Rules allow you to provide <BrandName /> with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
-Careti Rules allow you to provide Careti with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+<BrandName /> Rules allow you to provide <BrandName /> with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
 <Note>
-캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(<BrandName />) 기준 문서입니다. <BrandName /> v3.38.1 머지본을 따르며, 캐러티 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 <Note>
@@ -29,13 +29,13 @@ The location of your Global Rules directory depends on your operating system:
 
 | Operating System | Default Location | Notes |
 |------------------|------------------|-------|
-| **Windows** | `Documents\Careti\Rules` | Uses system Documents folder |
+| **Windows** | `Documents\<BrandName />\Rules` | Uses system Documents folder |
 | **macOS** | `~/Documents/Careti/Rules` | Uses user Documents folder |
 | **Linux/WSL** | `~/Documents/Careti/Rules` | May fall back to `~/Careti/Rules` on some systems |
 
 > **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Careti/Rules`, check `~/Careti/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
 
-You can also have Careti create a rule for you by using the [`/newrule` slash command](/en/features/slash-commands/new-rule) in the chat.
+You can also have <BrandName /> create a rule for you by using the [`/newrule` slash command](/en/features/slash-commands/new-rule) in the chat.
 
 ```markdown Example Careti Rule Structure [expandable]
 # Project Guidelines
@@ -89,12 +89,12 @@ your-project/
 └── ...
 ```
 
-Careti's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+<BrandName />'s system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
 
 ### AGENTS.md Standard Support
 
-Careti also supports the [AGENTS.md](https://agents.md/) standard as a fallback 
-(in addition to Careti Rules) by automatically detecting `AGENTS.md` files in 
+<BrandName /> also supports the [AGENTS.md](https://agents.md/) standard as a fallback 
+(in addition to <BrandName /> Rules) by automatically detecting `AGENTS.md` files in 
 your workspace root. This allows you to use the same rules file across different AI 
 coding tools.
 
@@ -105,7 +105,7 @@ your-project/
 └── ...
 ```
 
-### Tips for Writing Effective Careti Rules
+### Tips for Writing Effective <BrandName /> Rules
 
 -   Be Clear and Concise: Use simple language and avoid ambiguity.
 -   Focus on Desired Outcomes: Describe the results you want, not the specific steps.
@@ -123,7 +123,7 @@ your-project/
 └── ...
 ```
 
-Careti automatically processes **all Markdown files** inside the `.agents/context/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
+<BrandName /> automatically processes **all Markdown files** inside the `.agents/context/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
 
 #### Inactive Rules Library (Optional)
 
@@ -179,11 +179,11 @@ cp rules-bank/frameworks/react.md .agents/context/
 -   Consider git-ignoring the active `.agents/context/` folder while tracking `rules-bank/`
 -   Create team scripts to quickly activate common rule combinations
 
-The folder system transforms your Careti rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
+The folder system transforms your <BrandName /> rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
 
 ### Managing Rules with the Toggleable Popover
 
-To make managing both single `.agents/context` files and the folder system even easier, Careti v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
+To make managing both single `.agents/context` files and the folder system even easier, <BrandName /> v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
 
 Located conveniently under the chat input field, this popover allows you to:
 

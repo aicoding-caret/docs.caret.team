@@ -5,7 +5,7 @@ description: "使用您的 Claude Max 或 Pro 订阅与 Careti，而不是按 to
 
 **网站：** [https://docs.anthropic.com/en/docs/claude-code/setup](https://docs.anthropic.com/en/docs/claude-code/setup)
 
-Claude Code 提供商让您可以在 Careti 中使用现有的 Claude 订阅。如果您有 Claude Max 或 Pro，这意味着您可以在 Careti 中使用 Claude 而无需支付额外的 API 费用。
+Claude Code 提供商让您可以在 <BrandName /> 中使用现有的 Claude 订阅。如果您有 Claude Max 或 Pro，这意味着您可以在 <BrandName /> 中使用 Claude 而无需支付额外的 API 费用。
 
 
 	<img
@@ -20,8 +20,8 @@ Claude Code 提供商让您可以在 Careti 中使用现有的 Claude 订阅。�
 
 1. **安装 Claude Code**：按照 Anthropic 的[官方设置指南](https://docs.anthropic.com/en/docs/claude-code/setup)安装并认证 Claude CLI。
 
-2. **在 Careti 中配置**：
-    - 打开 Careti 设置（⚙️ 图标）
+2. **在 <BrandName /> 中配置**：
+    - 打开 <BrandName /> 设置（⚙️ 图标）
     - 从**API 提供商**下拉菜单中选择 **Claude Code**
     - 设置 Claude CLI 可执行文件的路径（如果在 PATH 中，通常只需 `claude`）
 
@@ -35,7 +35,7 @@ Claude Code 提供商让您可以在 Careti 中使用现有的 Claude 订阅。�
 <br />
 
 
-	Anthropic 在 Windows 上引入了对 Claude Code 的完整支持。按照[正常设置 Claude Code 的说明](#设置)操作，并确保您拥有最新的 Claude Code 和 Careti 版本。
+	Anthropic 在 Windows 上引入了对 Claude Code 的完整支持。按照[正常设置 Claude Code 的说明](#设置)操作，并确保您拥有最新的 Claude Code 和 <BrandName /> 版本。
 
 
 ### 查找您的 Claude Code 路径
@@ -59,9 +59,9 @@ Claude Code 提供商支持以下模型：
 
 ## 工作原理
 
-当您在 Careti 中使用 Claude Code 时，幕后发生的情况如下：
+当您在 <BrandName /> 中使用 Claude Code 时，幕后发生的情况如下：
 
-Careti 封装 Claude Code CLI 来处理您的请求。每次发送消息时，Careti 启动一个新的 `claude` 进程，发送您的对话，并将响应流式传输回来。AI 推理来自 Claude Code，但所有实际的文件编辑、终端命令和其他工具都由 Careti 处理。
+<BrandName /> 封装 Claude Code CLI 来处理您的请求。每次发送消息时，<BrandName /> 启动一个新的 `claude` 进程，发送您的对话，并将响应流式传输回来。AI 推理来自 Claude Code，但所有实际的文件编辑、终端命令和其他工具都由 <BrandName /> 处理。
 
 您会注意到的主要区别是响应不像其他提供商那样逐字符流式传输。相反，Claude Code 在发送完整响应之前处理您的完整请求。
 
@@ -79,13 +79,13 @@ Careti 封装 Claude Code CLI 来处理您的请求。每次发送消息时，Ca
 
 **身份验证问题**：确保您使用订阅账户登录到 Claude Code。运行 `claude auth status` 进行检查。
 
-**路径问题**：仔细检查 Careti 设置中的 Claude CLI 路径是否正确。尝试在终端中运行 `claude --version` 以验证其是否正常工作。
+**路径问题**：仔细检查 <BrandName /> 设置中的 Claude CLI 路径是否正确。尝试在终端中运行 `claude --version` 以验证其是否正常工作。
 
 **仍有问题？** 我们正在积极改进这一集成。在我们的 [GitHub](https://github.com/caret/caret/issues) 上报告问题或在我们的 [Discord](https://https://discord.gg/WB6yaR89YN) 中寻求帮助。
 
 ## 订阅使用
 
-如果您有 Claude Max 订阅，由于您不支付额外的 API 费用，您在 Careti 中的使用在计费界面中显示为 $0.00。您的使用仍计入订阅限制，但您不会看到按 token 收费。
+如果您有 Claude Max 订阅，由于您不支付额外的 API 费用，您在 <BrandName /> 中的使用在计费界面中显示为 $0.00。您的使用仍计入订阅限制，但您不会看到按 token 收费。
 
 有关使用 Claude Code 与您的订阅的更多详细信息，请查看 Anthropic 的文档：
 

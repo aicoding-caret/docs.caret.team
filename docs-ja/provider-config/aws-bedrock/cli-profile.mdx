@@ -6,7 +6,7 @@ description: "AWS CLI プロファイルを使用して Careti で AWS Bedrock �
 
 ### 概要
 
-Careti は AWS 認証情報または AWS プロファイルを利用して AWS Bedrock サービスにアクセスするオプションを提供します。レガシー IAM 設定よりも SSO/フェデレーテッドロールが推奨されています。このガイドでは、Careti が認証に SSO ロールを使用するように環境を設定する方法について説明します。
+<BrandName /> は AWS 認証情報または AWS プロファイルを利用して AWS Bedrock サービスにアクセスするオプションを提供します。レガシー IAM 設定よりも SSO/フェデレーテッドロールが推奨されています。このガイドでは、<BrandName /> が認証に SSO ロールを使用するように環境を設定する方法について説明します。
 
 ---
 
@@ -25,11 +25,11 @@ Careti は AWS 認証情報または AWS プロファイルを利用して AWS B
 3. [`aws configure sso` CLI ウィザード](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html#cli-configure-sso-configure)を使用してプロファイルの設定を続行
 
     - 設定完了後、次のコマンドを使用して AWS CLI を認証します：`aws sso login --profile <AWS-profile-name>`
-    - AWS アカウントに接続したプロファイル名をメモしてください。これは次の手順で Careti を設定するために必要です
+    - AWS アカウントに接続したプロファイル名をメモしてください。これは次の手順で <BrandName /> を設定するために必要です
 
-4. まだ行っていない場合は、VSCode と Careti 拡張機能をインストールしてください。ガイダンスについては[はじめに](/en/getting-started/installing-caret)ページを参照してください。
+4. まだ行っていない場合は、VSCode と <BrandName /> 拡張機能をインストールしてください。ガイダンスについては[はじめに](/en/getting-started/installing-caret)ページを参照してください。
 
-5. Careti 拡張機能を開き、設定ボタン ⚙️ をクリックして API プロバイダーを選択します。
+5. <BrandName /> 拡張機能を開き、設定ボタン ⚙️ をクリックして API プロバイダーを選択します。
     - API Provider ドロップダウンから AWS Bedrock を選択
     - AWS Profile ラジオボタンを選択し、ステップ 3 の AWS Profile Name を入力
     - ドロップダウンメニューから AWS Region を選択

@@ -3,15 +3,15 @@ title: "Careti セッション中のターミナルページャーを無効化"
 description: "Careti がコマンドを実行する際に less などのページャーを無効化して非対話出力にする"
 ---
 
-多くの CLI ツール(Git など)は `less` などのページャーを使用します。Careti がターミナルでコマンドを実行する際、このインタラクティブな挙動が止まりの原因になることがあります。Careti セッションだけページャーを無効化する設定が可能です。
+多くの CLI ツール(Git など)は `less` などのページャーを使用します。<BrandName /> がターミナルでコマンドを実行する際、このインタラクティブな挙動が止まりの原因になることがあります。<BrandName /> セッションだけページャーを無効化する設定が可能です。
 
 ## 仕組み
 
-Careti はコマンド実行用ターミナルに環境変数を設定します:
+<BrandName /> はコマンド実行用ターミナルに環境変数を設定します:
 
-- `CLINE_ACTIVE` — Careti によって起動されたシェルで非空
+- `CLINE_ACTIVE` — <BrandName /> によって起動されたシェルで非空
 
-この変数をシェル設定で検出し、Careti セッションのみ設定を変更します。
+この変数をシェル設定で検出し、<BrandName /> セッションのみ設定を変更します。
 
 ## クイック設定 (Zsh/Bash)
 
@@ -38,7 +38,7 @@ fi
 
 ## 確認
 
-- Careti でターミナルを実行後、次を確認:
+- <BrandName /> でターミナルを実行後、次を確認:
   - `echo "$CLINE_ACTIVE"` が非空
   - `git log` などが止まらず出力
 - 反映されない場合:
@@ -58,7 +58,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-- Careti セッションのみ alias を設定する方法:
+- <BrandName /> セッションのみ alias を設定する方法:
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then

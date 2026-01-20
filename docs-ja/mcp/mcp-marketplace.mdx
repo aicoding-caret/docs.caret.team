@@ -62,16 +62,16 @@ When you install an MCP server, several things happen automatically:
 
 ### 3. Server Launch
 
--   Careti detects the configuration change
--   Careti launches your server as a separate process
+-   <BrandName /> detects the configuration change
+-   <BrandName /> launches your server as a separate process
 -   Communication is established via stdio or HTTP
 
-### 4. Integration with Careti
+### 4. Integration with <BrandName />
 
--   Your server's capabilities are added to Careti's system prompt
+-   Your server's capabilities are added to <BrandName />'s system prompt
 -   Tools become available via `use_mcp_tool` commands
 -   Resources become available via `access_mcp_resource` commands
--   Careti can now use these capabilities when prompted by the user
+-   <BrandName /> can now use these capabilities when prompted by the user
 
 ## Troubleshooting
 
@@ -112,7 +112,7 @@ To completely remove a faulty MCP server:
 1. Open the MCP settings file: `/Users/<username>/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
 2. Delete the entire entry for your server from the `mcpServers` object
 3. Save the file
-4. Restart Careti
+4. Restart <BrandName />
 
 ### I'm Still Getting an Error
 
@@ -124,17 +124,17 @@ If you're getting an error when using an MCP server, you can try the following:
 -   Ensure all required environment variables are set
 -   Check if another process is using the same port (for HTTP-based servers)
 -   Try removing and reinstalling the server (remove from both the `cline_mcp_settings.json` file and the `/Users/<username>/Documents/Careti/MCP/` directory)
--   Use a terminal and run the command with its arguments directly. This will allow you to see the same errors that Careti is seeing
+-   Use a terminal and run the command with its arguments directly. This will allow you to see the same errors that <BrandName /> is seeing
 
 ## MCP Server Rules
 
-Careti is already aware of your active MCP servers and what they are for, but when you have a lot of MCP servers enabled, it can be useful to define when to use each server.
+<BrandName /> is already aware of your active MCP servers and what they are for, but when you have a lot of MCP servers enabled, it can be useful to define when to use each server.
 
-Utilize a `.agents/context` file or custom instructions to support intelligent MCP server activation through keyword-based triggers, making Careti's tool selection more intuitive and context-aware.
+Utilize a `.agents/context` file or custom instructions to support intelligent MCP server activation through keyword-based triggers, making <BrandName />'s tool selection more intuitive and context-aware.
 
 ### How MCP Rules Work
 
-MCP Rules group your connected MCP servers into functional categories and define trigger keywords that activate them automatically when detected in your conversations with Careti.
+MCP Rules group your connected MCP servers into functional categories and define trigger keywords that activate them automatically when detected in your conversations with <BrandName />.
 
 ```json
 {
@@ -157,14 +157,14 @@ MCP Rules group your connected MCP servers into functional categories and define
 
 ### Benefits of MCP Rules
 
--   **Contextual Tool Selection**: Careti selects appropriate tools based on conversation context
+-   **Contextual Tool Selection**: <BrandName /> selects appropriate tools based on conversation context
 -   **Reduced Friction**: No need to manually specify which tool to use
 -   **Organized Capabilities**: Logically group related tools and servers
 -   **Prioritization**: Handle ambiguous cases with explicit priority ordering
 
 ### Example Usage
 
-When you write "Can you scrape this website?", Careti detects "scrape" and "website" as triggers, automatically selecting web-related MCP servers.
+When you write "Can you scrape this website?", <BrandName /> detects "scrape" and "website" as triggers, automatically selecting web-related MCP servers.
 
 For finance tasks like "What's Apple's stock price?", keywords like "stock" and "price" trigger finance-related servers.
 
@@ -196,4 +196,4 @@ For finance tasks like "What's Apple's stock price?", keywords like "stock" and 
 }
 ```
 
-Add this to your `.agents/context` file or to your custom instructions to make Careti's MCP server selection more intuitive and context-aware.
+Add this to your `.agents/context` file or to your custom instructions to make <BrandName />'s MCP server selection more intuitive and context-aware.

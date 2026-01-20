@@ -2,13 +2,13 @@
 title: "从 GitHub 添加 MCP 服务器"
 ---
 
-本指南提供了如何使用 Careti 从 GitHub 仓库构建现有 MCP 服务器的分步教程。
+本指南提供了如何使用 <BrandName /> 从 GitHub 仓库构建现有 MCP 服务器的分步教程。
 
 ## **查找 MCP 服务器**
 
 在线有多个地方可以找到 MCP 服务器：
 
--   **Careti 可以自动将 MCP 服务器添加到其列表中，然后您可以进行编辑。** Careti 可以直接从 GitHub 克隆仓库并为您构建服务器。
+-   **<BrandName /> 可以自动将 MCP 服务器添加到其列表中，然后您可以进行编辑。** <BrandName /> 可以直接从 GitHub 克隆仓库并为您构建服务器。
 -   **GitHub：** 在 GitHub 上查找 MCP 服务器的两个最常见的地方包括：
     -   [官方 MCP 服务器仓库](https://github.com/modelcontextprotocol/servers)
     -   [Awesome-MCP 服务器仓库](https://github.com/punkpeye/awesome-mcp-servers)
@@ -23,12 +23,12 @@ title: "从 GitHub 添加 MCP 服务器"
 
 -   **PulseMCP：** 该网站有一篇博客文章讨论 AI 如何使用 MCP 服务器使网站变得过时。PulseMCP 还包含关于 MCP 服务器的常见问题解答部分：[https://www.pulsemcp.com/](https://www.pulsemcp.com/)
 
-## **使用 Careti 构建**
+## **使用 <BrandName /> 构建**
 
-1. **启动流程：** 向 Careti 提供以下信息：
+1. **启动流程：** 向 <BrandName /> 提供以下信息：
     - **GitHub 仓库 URL：** 服务器仓库的 URL。
-    - **README.md 内容：** 这是可选的，但有助于 Careti 了解服务器的目的和配置。您可以从 GitHub 仓库复制 README.md 文件。
-2. **与 Careti 的示例交互：**
+    - **README.md 内容：** 这是可选的，但有助于 <BrandName /> 了解服务器的目的和配置。您可以从 GitHub 仓库复制 README.md 文件。
+2. **与 <BrandName /> 的示例交互：**
 
     ```
     用户："Careti，我想添加用于 Brave 浏览器控制的 MCP 服务器。这是 GitHub 链接：@https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search 你能添加它吗？"
@@ -48,23 +48,23 @@ title: "从 GitHub 添加 MCP 服务器"
     Careti："太好了！启动 MCP Inspector 以测试服务器连接。之后，我们可以尝试从 Careti 控制浏览器。"
     ```
 
-3. **Careti 的操作：** 根据您的指示，Careti 将执行以下操作：
-    - **仓库克隆：** Careti 将仓库克隆到您的本地计算机，通常在配置中指定的目录中。
-    - **调整：** 您可以引导 Careti 修改服务器的配置。例如：
+3. **<BrandName /> 的操作：** 根据您的指示，<BrandName /> 将执行以下操作：
+    - **仓库克隆：** <BrandName /> 将仓库克隆到您的本地计算机，通常在配置中指定的目录中。
+    - **调整：** 您可以引导 <BrandName /> 修改服务器的配置。例如：
         - **用户：** "此服务器需要 API 密钥。你能找到应该在哪里添加它吗？"
-        - Careti 可能会根据您的指示自动更新 `cline_mcp_settings.json` 文件或其他相关文件。
-    - **构建服务器：** Careti 将运行适合服务器的构建命令，通常是 `npm run build`。
-    - **将服务器添加到设置：** Careti 将把服务器的配置添加到 `cline_mcp_settings.json` 文件。
+        - <BrandName /> 可能会根据您的指示自动更新 `cline_mcp_settings.json` 文件或其他相关文件。
+    - **构建服务器：** <BrandName /> 将运行适合服务器的构建命令，通常是 `npm run build`。
+    - **将服务器添加到设置：** <BrandName /> 将把服务器的配置添加到 `cline_mcp_settings.json` 文件。
 
 ## **测试和故障排除**
 
-1. **测试服务器：** 一旦 Careti 完成构建过程，测试服务器以确保其按预期工作。如果遇到任何问题，Careti 可以协助您。
+1. **测试服务器：** 一旦 <BrandName /> 完成构建过程，测试服务器以确保其按预期工作。如果遇到任何问题，<BrandName /> 可以协助您。
 2. **MCP Inspector：** 您可以使用 MCP Inspector 测试服务器的连接和功能。
 
 ## **最佳实践**
 
--   **了解基础知识：** 虽然 Careti 简化了流程，但对服务器代码、MCP 协议（[了解更多](/zh/mcp/mcp-overview)）以及如何配置服务器有基本的了解是有益的。这有助于更有效地进行故障排除和自定义。
--   **清晰的指示：** 在整个过程中向 Careti 提供清晰和具体的指示。
+-   **了解基础知识：** 虽然 <BrandName /> 简化了流程，但对服务器代码、MCP 协议（[了解更多](/zh/mcp/mcp-overview)）以及如何配置服务器有基本的了解是有益的。这有助于更有效地进行故障排除和自定义。
+-   **清晰的指示：** 在整个过程中向 <BrandName /> 提供清晰和具体的指示。
 -   **测试：** 在安装和配置后彻底测试服务器，以确保其正常运行。
 -   **版本控制：** 使用版本控制系统（如 Git）来跟踪服务器代码的更改。
 -   **保持更新：** 保持您的 MCP 服务器更新，以受益于最新功能和安全补丁。

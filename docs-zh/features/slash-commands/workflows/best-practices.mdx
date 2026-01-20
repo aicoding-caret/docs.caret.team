@@ -6,9 +6,9 @@ description: "构建高效且稳定的 Careti 工作流的技巧与策略"
 
 要写出好的工作流，需要在 **清晰指令**、**模块化** 和 **工具使用** 之间取得平衡。请参考以下建议。
 
-## 使用 Careti 构建工作流
+## 使用 <BrandName /> 构建工作流
 
-Careti 能理解项目上下文，是工作流设计的优秀搭档。
+<BrandName /> 能理解项目上下文，是工作流设计的优秀搭档。
 
 ### 用工作流来生成工作流
 
@@ -16,7 +16,7 @@ Careti 能理解项目上下文，是工作流设计的优秀搭档。
 
 先将 [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) 保存到工作区（例如 `.agents/context/workflows/`）。
 
-然后运行 `/create-new-workflow.md`，Careti 会按以下步骤引导你：
+然后运行 `/create-new-workflow.md`，<BrandName /> 会按以下步骤引导你：
 
 1. 询问目的和简短名称
 2. 描述目标与预期结果
@@ -24,7 +24,7 @@ Careti 能理解项目上下文，是工作流设计的优秀搭档。
 4. 生成结构化的工作流文件
 
 <Tip>
-  **自动化工作记录：** 完成的任务是最佳工作流候选。任务结束后说“把刚才的过程变成工作流”，Careti 会分析对话并生成工作流文件。
+  **自动化工作记录：** 完成的任务是最佳工作流候选。任务结束后说“把刚才的过程变成工作流”，<BrandName /> 会分析对话并生成工作流文件。
 </Tip>
 
 项目级工作流放在 `.agents/context/workflows/`，全局工作流放在 `~/Documents/Careti/Workflows/`。同名时以项目工作流为准。
@@ -41,13 +41,13 @@ Careti 能理解项目上下文，是工作流设计的优秀搭档。
 
 ### 清晰的注释
 
-像写代码一样，解释“为什么”很重要。清晰的注释能让 Careti 和团队更理解你的意图。
+像写代码一样，解释“为什么”很重要。清晰的注释能让 <BrandName /> 和团队更理解你的意图。
 
 ### 版本管理
 
 把工作流放在 `.agents/context/workflows/` 并纳入 Git，方便版本管理和团队共享。
 
-## Careti 的提示词设计
+## <BrandName /> 的提示词设计
 
 ### 明确指定工具
 

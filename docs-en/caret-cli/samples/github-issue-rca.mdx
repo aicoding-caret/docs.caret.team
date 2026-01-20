@@ -5,10 +5,10 @@ description: "Automated GitHub issue analysis using Careti CLI to identify root 
 
 # GitHub Root Cause Analysis
 
-Automated GitHub issue analysis using Careti CLI. This script uses Careti's autonomous AI capabilities to fetch, analyze, and identify root causes of GitHub issues, outputting clean, parseable results that can be easily integrated into your development workflows.
+Automated GitHub issue analysis using <BrandName /> CLI. This script uses <BrandName />'s autonomous AI capabilities to fetch, analyze, and identify root causes of GitHub issues, outputting clean, parseable results that can be easily integrated into your development workflows.
 
 <Note>
-**New to Careti CLI?** This sample assumes you have already completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and authenticated with `caret auth`. If you haven't set up Careti CLI yet, please start there first.
+**New to <BrandName /> CLI?** This sample assumes you have already completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and authenticated with `caret auth`. If you haven't set up <BrandName /> CLI yet, please start there first.
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Automated GitHub issue analysis using Careti CLI. This script uses Careti's auto
 
 This sample assumes you have already:
 
-- **Careti CLI** installed and authenticated ([Installation Guide](https://docs.caret.bot/caret-cli/installation))
+- **<BrandName /> CLI** installed and authenticated ([Installation Guide](https://docs.caret.bot/caret-cli/installation))
 - **At least one AI model provider** configured (e.g., OpenRouter, Anthropic, OpenAI)
-- **Basic familiarity** with Careti CLI commands
+- **Basic familiarity** with <BrandName /> CLI commands
 
 Additionally, you'll need:
 
@@ -135,9 +135,9 @@ Ask specific questions about the issue:
 ./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
 ```
 
-### Using Specific Careti Instance
+### Using Specific <BrandName /> Instance
 
-Target a particular Careti instance by address:
+Target a particular <BrandName /> instance by address:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -147,13 +147,13 @@ Target a particular Careti instance by address:
 
 <Warning>
 This is useful when:
-- Running multiple Careti instances
-- Using a remote Careti server
+- Running multiple <BrandName /> instances
+- Using a remote <BrandName /> server
 - Testing with specific configurations
 </Warning>
 
 <Note>
-The script will automatically handle everything: fetching the issue, analyzing it with Careti, and displaying the results. The analysis typically takes 30-60 seconds depending on the issue complexity.
+The script will automatically handle everything: fetching the issue, analyzing it with <BrandName />, and displaying the results. The analysis typically takes 30-60 seconds depending on the issue complexity.
 </Note>
 
 ## How It Works
@@ -178,7 +178,7 @@ fi
 - Validates required GitHub issue URL
 - Shows clear usage examples
 - Supports optional custom prompt
-- Supports optional Careti instance address
+- Supports optional <BrandName /> instance address
 
 ### Argument Parsing
 
@@ -218,7 +218,7 @@ caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
 
 **2. `--mode act`**
    - Enables act mode for active investigation
-   - Allows Careti to use tools (read files, run commands, etc.)
+   - Allows <BrandName /> to use tools (read files, run commands, etc.)
 
 **3. `$ADDRESS`**
    - Optional address flag for specific instance
@@ -366,10 +366,10 @@ Get second opinions on proposed changes:
 
 ## Conclusion
 
-This sample demonstrates how to build an autonomous GitHub issue analysis tool using Careti CLI:
+This sample demonstrates how to build an autonomous GitHub issue analysis tool using <BrandName /> CLI:
 
-1. **Building autonomous CLI tools** using Careti's capabilities
-2. **Parsing structured JSON output** from Careti CLI
+1. **Building autonomous CLI tools** using <BrandName />'s capabilities
+2. **Parsing structured JSON output** from <BrandName /> CLI
 3. **Creating flexible automation scripts** with custom prompting
 4. **Integrating with GitHub** for issue analysis
 5. **Handling command-line arguments** effectively

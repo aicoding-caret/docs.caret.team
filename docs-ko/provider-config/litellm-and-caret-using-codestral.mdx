@@ -3,9 +3,9 @@ title: "LiteLLM & 캐러티 (Codestral 사용)"
 description: "Codestral 모델을 사용해 LiteLLM을 캐러티와 함께 설정하고 실행하는 방법을 안내합니다. Docker 설정, 구성, 캐러티 연동을 포함합니다."
 ---
 
-### 캐러티와 함께 LiteLLM 사용
+### <BrandName particle="and" /> 함께 LiteLLM 사용
 
-이 가이드는 Codestral 모델을 사용해 LiteLLM 데모를 구동하고 캐러티와 연결하는 과정을 보여줍니다.
+이 가이드는 Codestral 모델을 사용해 LiteLLM 데모를 구동하고 <BrandName particle="and" /> 연결하는 과정을 보여줍니다.
 
 #### 전제 조건
 
@@ -50,9 +50,9 @@ description: "Codestral 모델을 사용해 LiteLLM을 캐러티와 함께 설�
         --config /app/config.yaml --detailed_debug
     ```
 
-2. **캐러티에서 LiteLLM 설정**
+2. **<BrandName particle="from" /> LiteLLM 설정**
 
-    LiteLLM 서버가 올라오면 캐러티 설정에 다음을 입력합니다:
+    LiteLLM 서버가 올라오면 <BrandName /> 설정에 다음을 입력합니다:
 
     - Base URL: `http://0.0.0.0:4000/v1`
     - API Key: `.env`의 `LITELLM_MASTER_KEY`
@@ -62,13 +62,13 @@ description: "Codestral 모델을 사용해 LiteLLM을 캐러티와 함께 설�
 
 -   [LiteLLM Documentation](https://docs.litellm.ai/)
 -   [Mistral AI Console](https://console.mistral.ai/)
--   [캐러티 Discord Community](https://https://discord.gg/WB6yaR89YN)
+-   [<BrandName /> Discord Community](https://https://discord.gg/WB6yaR89YN)
 
 ---
 
-## 🚀 캐러티 프로바이더 개선 사항
+## 🚀 <BrandName /> 프로바이더 개선 사항
 
-캐러티는 LiteLLM 연동 시 **모델 목록 자동 조회** 등 운영 편의성을 강화했습니다.
+<BrandName particle="topic" /> LiteLLM 연동 시 **모델 목록 자동 조회** 등 운영 편의성을 강화했습니다.
 
 ### 주요 개선 사항
 
@@ -76,6 +76,6 @@ description: "Codestral 모델을 사용해 LiteLLM을 캐러티와 함께 설�
 - 수동으로 모델 ID를 입력해야 함
 - 지원 모델 확인을 위해 문서를 따로 참고해야 함
 
-**캐러티 개선**:
+**<BrandName /> 개선**:
 - ✅ **자동 모델 조회**: LiteLLM API 연동으로 지원 모델을 자동 표시
-- ✅ **실시간 업데이트**: 새 모델 출시 시 캐러티 업데이트 없이 즉시 반영
+- ✅ **실시간 업데이트**: 새 모델 출시 시 <BrandName /> 업데이트 없이 즉시 반영

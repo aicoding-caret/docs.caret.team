@@ -3,26 +3,26 @@ title: "Multiroot Workspace Support"
 sidebarTitle: "Multiroot Workspace"
 ---
 
-Careti's Multiroot feature works seamlessly with VSCode's multi-root workspaces, letting you manage multiple project folders in a single workspace.
+<BrandName />'s Multiroot feature works seamlessly with VSCode's multi-root workspaces, letting you manage multiple project folders in a single workspace.
 
 <Note>
-캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(<BrandName />) 기준 문서입니다. <BrandName /> v3.38.1 머지본을 따르며, 캐러티 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 <Note>
 **Important:** Multi-root workspaces are currently an experimental feature and have the following limitations:
-- **Careti rules** only work in the first workspace folder
+- **<BrandName /> rules** only work in the first workspace folder
 - **Checkpoints** are automatically disabled with a warning message
 - Both features are restored when you return to a single-folder workspace
 </Note>
 
 ## What is multiroot workspace support?
 
-Instead of being limited to one project folder, Careti can read files, write code, and run commands across all folders in your VSCode workspace. This is helpful when working with monorepos, microservices, or when you're working on related projects simultaneously.
+Instead of being limited to one project folder, <BrandName /> can read files, write code, and run commands across all folders in your VSCode workspace. This is helpful when working with monorepos, microservices, or when you're working on related projects simultaneously.
 
 ### How it works
 
-When you open multiple workspace folders in VSCode, Careti automatically:
+When you open multiple workspace folders in VSCode, <BrandName /> automatically:
 - Designates one folder as the **primary workspace** (typically the first folder added)
 - Tracks all workspace folders and their paths
 - Resolves file paths intelligently across workspaces
@@ -38,21 +38,21 @@ When you open multiple workspace folders in VSCode, Careti automatically:
    - Drag and drop folders to the File Explorer
    - Select multiple folders when opening a new workspace
 
-2. **Start using Careti** - Careti will automatically detect all your workspace folders and interact with them as needed.
+2. **Start using <BrandName />** - <BrandName /> will automatically detect all your workspace folders and interact with them as needed.
 
 For detailed instructions on setting up multi-root workspaces in VS Code, see [Microsoft's official guide](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces).
 
 ### Technical behavior
 
 **Workspace detection**
-- Careti detects all workspace folders when a task starts
+- <BrandName /> detects all workspace folders when a task starts
 - The first workspace folder becomes the primary workspace by default
 - Each workspace can have its own VCS (Git, SVN, etc.)
 
 **Path resolution**
 - Relative paths are resolved relative to the primary workspace
 - You can use workspace hints to target specific workspaces: `@workspaceName:path/to/file`
-- Careti attempts to intelligently determine which workspace a file belongs to
+- <BrandName /> attempts to intelligently determine which workspace a file belongs to
 
 **Command execution**
 - Commands execute in the appropriate workspace context
@@ -85,7 +85,7 @@ Use workspace hints to explicitly reference files in specific workspaces:
 @backend:server.ts
 ```
 
-This syntax helps Careti resolve ambiguity when multiple workspaces contain similarly named files.
+This syntax helps <BrandName /> resolve ambiguity when multiple workspaces contain similarly named files.
 
 
 ## Common use cases
@@ -102,7 +102,7 @@ my-app.code-workspace
 └── shared/       (Common utilities)
 ```
 
-Ask Careti: *"Update the API endpoint in both web and mobile apps to match the new backend route"*
+Ask <BrandName />: *"Update the API endpoint in both web and mobile apps to match the new backend route"*
 
 ### Microservices Architecture
 
@@ -139,14 +139,14 @@ Multiroot workspaces work with [Auto Approve](/en/features/auto-approve):
 
 ### Cross-Workspace Operations
 
-Careti can complete tasks spanning multiple workspaces:
+<BrandName /> can complete tasks spanning multiple workspaces:
 
 - **Refactoring**: Update imports and references across projects
 - **Feature development**: Implement features requiring changes in multiple services  
 - **Documentation**: Generate docs referencing code from multiple folders
 - **Testing**: Build & run tests across all workspaces and analyze results
 
-When working with large multiroot workspaces, start in [Plan mode](/en/features/plan-and-act) to let Careti understand your project structure before making changes.
+When working with large multiroot workspaces, start in [Plan mode](/en/features/plan-and-act) to let <BrandName /> understand your project structure before making changes.
 
 ## Best Practices
 
@@ -154,7 +154,7 @@ When working with large multiroot workspaces, start in [Plan mode](/en/features/
 
 1. **Group related projects** that often need coordinated changes
 2. **Use consistent folder structures** across workspaces when possible
-3. **Name folders clearly** so Careti can understand your project structure
+3. **Name folders clearly** so <BrandName /> can understand your project structure
 
 ### Effective Prompting & Tips
 

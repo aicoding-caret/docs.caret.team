@@ -8,7 +8,7 @@ description: "在 GitHub Actions 中使用 Careti CLI，通过 @caret 自动回�
 使用 AI 自动分析 GitHub Issue。在任何 Issue 评论中提及 `@caret` 即可触发自动分析，读取代码并给出建议，所有流程在 GitHub Actions 中自动执行。
 
 <Note>
-**第一次使用 Careti CLI？** 本示例假设你已完成 [安装指南](/zh/caret-cli/installation)。建议先看更简单的 [GitHub RCA 示例](/zh/caret-cli/samples/github-issue-rca)。
+**第一次使用 <BrandName /> CLI？** 本示例假设你已完成 [安装指南](/zh/caret-cli/installation)。建议先看更简单的 [GitHub RCA 示例](/zh/caret-cli/samples/github-issue-rca)。
 </Note>
 
 ## 工作流
@@ -19,7 +19,7 @@ description: "在 GitHub Actions 中使用 Careti CLI，通过 @caret 自动回�
   <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
 </Frame>
 
-Careti 会以新评论形式给出分析结果：
+<BrandName /> 会以新评论形式给出分析结果：
 
 <Frame>
   <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
@@ -29,7 +29,7 @@ Careti 会以新评论形式给出分析结果：
 
 ## 前置条件
 
-- **已掌握 Careti CLI** ([安装指南](/zh/caret-cli/installation))
+- **已掌握 <BrandName /> CLI** ([安装指南](/zh/caret-cli/installation))
 - **GitHub 仓库** (具备 Actions/Secrets 管理权限)
 - **了解 GitHub Actions**
 - **API Provider 账号** (OpenRouter/Anthropic 等)
@@ -169,7 +169,7 @@ export GITREPO="myproject"
 ```
 </Warning>
 
-该工作流会检测 `@caret` 提及，启动 Careti CLI 实例进行分析并回复。
+该工作流会检测 `@caret` 提及，启动 <BrandName /> CLI 实例进行分析并回复。
 
 ### 2. 配置 API Key
 
@@ -272,7 +272,7 @@ git push
 
 GitHub Actions 将：
 1. 检测 `@caret`
-2. 启动 Careti CLI 实例
+2. 启动 <BrandName /> CLI 实例
 3. 下载分析脚本
 4. act + yolo 自动分析
 5. 回复分析结果
@@ -285,8 +285,8 @@ GitHub Actions 将：
 
 1. 监听 Issue 评论(创建/编辑)
 2. 检测 `@caret`
-3. 安装 Careti CLI
-4. 创建 Careti 实例
+3. 安装 <BrandName /> CLI
+4. 创建 <BrandName /> 实例
 5. 配置认证
 6. 下载分析脚本
 7. 执行分析

@@ -3,15 +3,15 @@ title: "在 Careti 会话中禁用终端分页器"
 description: "当 Careti 执行命令时禁用 less 等分页器，实现非交互输出"
 ---
 
-很多 CLI 工具(如 Git)会使用 `less` 作为分页器。Careti 执行命令时分页器会阻塞输出，影响自动化。可以仅在 Careti 会话中禁用分页器。
+很多 CLI 工具(如 Git)会使用 `less` 作为分页器。<BrandName /> 执行命令时分页器会阻塞输出，影响自动化。可以仅在 <BrandName /> 会话中禁用分页器。
 
 ## 原理
 
-Careti 会在它启动的终端中设置环境变量：
+<BrandName /> 会在它启动的终端中设置环境变量：
 
-- `CLINE_ACTIVE` — 表示该 shell 由 Careti 启动
+- `CLINE_ACTIVE` — 表示该 shell 由 <BrandName /> 启动
 
-在 shell 启动脚本中检测该变量，仅对 Careti 会话生效。
+在 shell 启动脚本中检测该变量，仅对 <BrandName /> 会话生效。
 
 ## 快速设置 (Zsh/Bash)
 
@@ -36,7 +36,7 @@ fi
 
 ## 验证
 
-- 在 Careti 运行终端命令后:
+- 在 <BrandName /> 运行终端命令后:
   - `echo "$CLINE_ACTIVE"` 应输出非空
   - `git log` 等不应停在分页器
 
@@ -49,7 +49,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-也可以仅在 Careti 会话内定义 alias：
+也可以仅在 <BrandName /> 会话内定义 alias：
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then

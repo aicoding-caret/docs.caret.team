@@ -4,7 +4,7 @@ sidebarTitle: "훅"
 description: "캐러티 워크플로우에 커스텀 로직을 주입해 작업 검증, 도구 사용 모니터링, AI 결정 흐름을 제어합니다."
 ---
 
-훅(Hooks)은 캐러티 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
+훅(Hooks)은 <BrandName /> 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
 
 훅은 개발 과정에서 특정 이벤트가 발생할 때 자동으로 실행됩니다. 각 작업의 상세 정보를 받아 문제되는 행동을 사전에 차단하거나, 앞으로의 AI 결정을 돕는 컨텍스트를 추가할 수 있습니다.
 
@@ -26,14 +26,14 @@ description: "캐러티 워크플로우에 커스텀 로직을 주입해 작업 
 	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
 </Frame>
 
-캐러티에서 훅을 활성화하는 방법은 간단합니다. 다음 단계를 따라주세요:
+<BrandName particle="from" /> 훅을 활성화하는 방법은 간단합니다. 다음 단계를 따라주세요:
 
 <Steps>
 <Step title="설정에서 훅 활성화">
-캐러티 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
+<BrandName /> 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
 
 경로:
-1. 캐러티 열기
+1. <BrandName /> 열기
 2. 우측 상단 "Settings" 클릭
 3. 좌측 메뉴의 "Feature" 섹션 클릭
 4. "Enable Hooks" 항목을 찾아 체크
@@ -84,7 +84,7 @@ chmod +x .agents/hooks/TaskStart
 </Step>
 
 <Step title="훅 테스트">
-캐러티에서 작업을 시작하고 훅이 실행되는지 확인합니다.
+<BrandName particle="from" /> 작업을 시작하고 훅이 실행되는지 확인합니다.
 </Step>
 </Steps>
 
@@ -115,12 +115,12 @@ chmod +x .agents/hooks/TaskStart
   </Card>
 </CardGroup>
 
-훅은 캐러티 워크플로우와 외부 생태계를 연결하는 접착제 역할을 합니다.
+훅은 <BrandName /> 워크플로우와 외부 생태계를 연결하는 접착제 역할을 합니다.
 
 
 ## 훅 타입
 
-캐러티는 AI 워크플로우의 서로 다른 단계에서 사용할 수 있는 여러 훅 타입을 제공합니다. 훅 타입은 트리거 지점과 용도에 따라 분류됩니다.
+<BrandName particle="topic" /> AI 워크플로우의 서로 다른 단계에서 사용할 수 있는 여러 훅 타입을 제공합니다. 훅 타입은 트리거 지점과 용도에 따라 분류됩니다.
 
 <Note>
 아래 훅 이름은 **정확한 파일명**입니다. 예를 들어 TaskStart 훅을 사용하려면 `TaskStart`라는 이름의 파일(확장자 없음)을 생성해야 합니다.
@@ -302,7 +302,7 @@ chmod +x .agents/hooks/TaskStart
 
 ### 시스템 이벤트
 
-캐러티 내부 동작과 시스템 이벤트를 모니터링합니다.
+<BrandName /> 내부 동작과 시스템 이벤트를 모니터링합니다.
 
 {/*
 #### PreCompact
@@ -340,7 +340,7 @@ chmod +x .agents/hooks/TaskStart
 }
 ```
 
-훅 실행 중 stdout으로 로그/진단 정보를 출력할 수 있지만, **마지막 출력은 반드시 JSON**이어야 합니다. 캐러티는 stdout의 마지막 JSON 객체만 파싱합니다.
+훅 실행 중 stdout으로 로그/진단 정보를 출력할 수 있지만, **마지막 출력은 반드시 JSON**이어야 합니다. <BrandName particle="topic" /> stdout의 마지막 JSON 객체만 파싱합니다.
 
 예시:
 ```bash
@@ -373,7 +373,7 @@ echo '{"cancel": false}'
 - "Enable Hooks" 설정이 체크되어 있는지 확인
 - 훅 파일이 실행 가능(`chmod +x hookname`)한지 확인
 - 훅 파일에 문법 오류가 없는지 확인
-- VS Code 출력 패널(캐러티 채널)의 에러 확인
+- VS Code 출력 패널(<BrandName /> 채널)의 에러 확인
 
 ### 훅 타임아웃
 - 훅 스크립트의 복잡도를 줄이세요
@@ -381,7 +381,7 @@ echo '{"cancel": false}'
 - 복잡한 로직은 백그라운드 프로세스로 분리하세요
 
 ### 컨텍스트가 동작에 반영되지 않음
-컨텍스트 수정은 현재가 아닌 **다음 AI 결정**에 반영됩니다. AI의 현재 동작은 이전 "API Request..." 블록을 기준으로 결정되며, `contextModification`은 다음 "API Request..." 블록에 주입됩니다. 즉, 즉시 효과가 필요하다면 PreToolUse 훅에서 검증 후 `cancel: true`를 반환해 캐러티의 진행을 차단해야 합니다.
+컨텍스트 수정은 현재가 아닌 **다음 AI 결정**에 반영됩니다. AI의 현재 동작은 이전 "API Request..." 블록을 기준으로 결정되며, `contextModification`은 다음 "API Request..." 블록에 주입됩니다. 즉, 즉시 효과가 필요하다면 PreToolUse 훅에서 검증 후 `cancel: true`를 반환해 <BrandName particle="of" /> 진행을 차단해야 합니다.
 
 컨텍스트를 추가할 때는 AI가 이해하고 적용할 수 있도록 명확하고 실행 가능한 내용으로 작성하세요. 또한 컨텍스트가 50KB 제한으로 잘리는지 확인해야 합니다. 제한으로 잘리면 중요한 정보가 전달되지 않을 수 있습니다.
 
@@ -412,8 +412,8 @@ jq -n --arg ctx "$output" '{cancel: false, contextModification: $ctx}'
 
 ## 관련 기능
 
-훅은 다른 캐러티 기능과 함께 사용할 때 더 강력합니다:
+훅은 다른 <BrandName /> 기능과 함께 사용할 때 더 강력합니다:
 
-- [캐러티 규칙](/ko/features/caret-rules)으로 상위 가이드를 정의하고 훅으로 강제할 수 있습니다
+- [<BrandName /> 규칙](/ko/features/caret-rules)으로 상위 가이드를 정의하고 훅으로 강제할 수 있습니다
 - [체크포인트](/ko/features/checkpoints)로 훅이 놓친 문제를 되돌릴 수 있습니다
 - [자동 승인](/ko/features/auto-approve)은 훅을 안전 장치로 활용할 때 특히 유용합니다

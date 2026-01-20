@@ -3,7 +3,7 @@ title: "自动上下文摘要"
 sidebarTitle: "自动压缩"
 ---
 
-当您的对话接近模型的上下文窗口限制时，Careti 会自动对其进行摘要以释放空间并继续工作。
+当您的对话接近模型的上下文窗口限制时，<BrandName /> 会自动对其进行摘要以释放空间并继续工作。
 
 
 	<img
@@ -14,7 +14,7 @@ sidebarTitle: "自动压缩"
 
 ## 工作原理
 
-Careti 在对话过程中监控令牌使用情况。当您接近限制时，他会：
+<BrandName /> 在对话过程中监控令牌使用情况。当您接近限制时，他会：
 
 1. 创建发生的所有事情的综合摘要
 2. 保留所有技术细节、代码更改和决策
@@ -25,25 +25,25 @@ Careti 在对话过程中监控令牌使用情况。当您接近限制时，他�
 
 ## 为什么这很重要
 
-以前，Careti 在达到上下文限制时会截断较旧的消息。这意味着会丢失对话早期的重要上下文。
+以前，<BrandName /> 在达到上下文限制时会截断较旧的消息。这意味着会丢失对话早期的重要上下文。
 
 现在有了摘要功能：
 - 保留所有技术决策和代码模式
 - 文件更改和项目上下文保持完整
-- Careti 记住他所做的一切
+- <BrandName /> 记住他所做的一切
 - 您可以不间断地处理更大的项目
 
 :::tip
-上下文摘要与[焦点链](/zh/features/focus-chain)完美协同。当启用焦点链时，待办事项列表会在摘要中持续存在。这意味着 Careti 可以处理跨越多个上下文窗口的长期任务，同时通过待办事项列表在每次重置中保持正轨。
+上下文摘要与[焦点链](/zh/features/focus-chain)完美协同。当启用焦点链时，待办事项列表会在摘要中持续存在。这意味着 <BrandName /> 可以处理跨越多个上下文窗口的长期任务，同时通过待办事项列表在每次重置中保持正轨。
 :::
 
 ## 技术细节
 
 摘要通过您配置的 API 提供商使用您已经在使用的相同模型进行。它利用提示缓存来最小化成本。
 
-1. Careti 使用[摘要提示](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts)请求对话摘要。
+1. <BrandName /> 使用[摘要提示](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts)请求对话摘要。
 
-2. 一旦生成摘要，Careti 用[继续提示](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69)替换对话历史记录，该提示要求 Careti 继续工作并提供摘要作为上下文。
+2. 一旦生成摘要，<BrandName /> 用[继续提示](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69)替换对话历史记录，该提示要求 <BrandName /> 继续工作并提供摘要作为上下文。
 
 不同模型在自动摘要启动时有不同的上下文窗口阈值。您可以在[context-window-utils.ts](https://github.com/caret/caret/blob/main/src/core/context/context-management/context-window-utils.ts)中看到如何确定阈值。
 
@@ -71,5 +71,5 @@ Careti 在对话过程中监控令牌使用情况。当您接近限制时，他�
 - **Grok 4**
 
 :::note
-使用其他模型时，即使在设置中启用了自动压缩，Careti 也会自动回退到标准的基于规则的上下文截断方法。
+使用其他模型时，即使在设置中启用了自动压缩，<BrandName /> 也会自动回退到标准的基于规则的上下文截断方法。
 :::

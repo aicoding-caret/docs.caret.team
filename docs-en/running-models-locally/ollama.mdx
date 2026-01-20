@@ -4,13 +4,13 @@ description: "A quick guide to setting up Ollama for local AI model execution wi
 ---
 
 <Note>
-캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(지원 로컬 런타임, 인증/라우팅, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(<BrandName />) 기준 문서입니다. <BrandName /> v3.38.1 머지본을 따르며, 캐러티 전용 정책(지원 로컬 런타임, 인증/라우팅, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 ### Prerequisites
 
 -   Windows, macOS, or Linux computer
--   Careti installed in VS Code
+-   <BrandName /> installed in VS Code
 
 ### Setup Steps
 
@@ -57,9 +57,9 @@ description: "A quick guide to setting up Ollama for local AI model execution wi
 	/>
 </Frame>
 
-Your model is now ready to use within Careti.
+Your model is now ready to use within <BrandName />.
 
-#### 3. Configure Careti
+#### 3. Configure <BrandName />
 
 <Frame>
 	<img
@@ -68,16 +68,16 @@ Your model is now ready to use within Careti.
 	/>
 </Frame>
 
-Open VS Code and configure Careti:
+Open VS Code and configure <BrandName />:
 
-1. Click the Careti settings icon
+1. Click the <BrandName /> settings icon
 2. Select "Ollama" as your API provider
 3. Base URL: `http://localhost:11434/` (default, usually no need to change)
 4. Select your model from the dropdown
 
 ### Recommended Models
 
-For the best experience with Careti, use **Qwen3 Coder 30B**. This model provides strong coding capabilities and reliable tool use for local development.
+For the best experience with <BrandName />, use **Qwen3 Coder 30B**. This model provides strong coding capabilities and reliable tool use for local development.
 
 To download it:
 ```bash
@@ -90,19 +90,19 @@ Other capable models include:
 
 ### Important Notes
 
--   Start Ollama before using with Careti
+-   Start Ollama before using with <BrandName />
 -   Keep Ollama running in background
 -   First model download may take several minutes
 
 ### Enable Compact Prompts
 
-For better performance with local models, enable compact prompts in Careti settings. This reduces the prompt size by 90% while maintaining core functionality.
+For better performance with local models, enable compact prompts in <BrandName /> settings. This reduces the prompt size by 90% while maintaining core functionality.
 
-Navigate to Careti Settings → Features → Use Compact Prompt and toggle it on.
+Navigate to <BrandName /> Settings → Features → Use Compact Prompt and toggle it on.
 
 ### Troubleshooting
 
-If Careti can't connect to Ollama:
+If <BrandName /> can't connect to Ollama:
 
 1. Verify Ollama is running
 2. Check base URL is correct
