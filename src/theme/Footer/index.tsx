@@ -5,6 +5,32 @@ import { useLocation } from "@docusaurus/router"
 import React, { useEffect, useState } from "react"
 
 type Locale = "en" | "ko" | "ja" | "zh" | "fr" | "de" | "ru"
+type BrandType = "caret" | "careti"
+
+// Domain to brand mapping
+const BRAND_DOMAINS: Record<string, BrandType> = {
+	"docs.caret.team": "caret",
+	"caret.team": "caret",
+	"docs.careti.ai": "careti",
+	"careti.ai": "careti",
+	localhost: "careti",
+}
+
+// Brand names by locale
+const BRAND_NAMES: Record<BrandType, Record<Locale, string>> = {
+	caret: { en: "Caret", ko: "캐럿", ja: "Caret", zh: "Caret", fr: "Caret", de: "Caret", ru: "Caret" },
+	careti: { en: "Careti", ko: "캐러티", ja: "Careti", zh: "Careti", fr: "Careti", de: "Careti", ru: "Careti" },
+}
+
+const detectBrand = (): BrandType => {
+	if (typeof window === "undefined") return "careti"
+	const hostname = window.location.hostname
+	if (BRAND_DOMAINS[hostname]) return BRAND_DOMAINS[hostname]
+	for (const [domain, brand] of Object.entries(BRAND_DOMAINS)) {
+		if (hostname.includes(domain)) return brand
+	}
+	return "careti"
+}
 
 const localePrefixes: Locale[] = ["en", "ko", "ja", "zh", "fr", "de", "ru"]
 
@@ -358,6 +384,11 @@ const localizedCopy: Record<
 const Footer = (): JSX.Element => {
 	const { pathname } = useLocation()
 	const [locale, setLocale] = useState<Locale>(() => getLocaleFromPath(pathname))
+	const [brand, setBrand] = useState<BrandType>("careti")
+
+	useEffect(() => {
+		setBrand(detectBrand())
+	}, [])
 
 	useEffect(() => {
 		const pathLocale = getLocaleFromPath(pathname)
@@ -401,6 +432,8 @@ const Footer = (): JSX.Element => {
 	}, [])
 
 	const copy = localizedCopy[locale]
+	const brandName = BRAND_NAMES[brand][locale]
+	const dynamicCopyright = copy.copyright.replace(/Careti|Caret/g, brandName)
 
 	return (
 		<footer className="footer footer--dark">
@@ -436,7 +469,7 @@ const Footer = (): JSX.Element => {
 					))}
 				</div>
 				<div className="footer__bottom text--center">
-					<div className="footer__copyright">{copy.copyright}</div>
+					<div className="footer__copyright">{dynamicCopyright}</div>
 					{copy.addressLines ? (
 						<address className="footer__address">
 							{copy.addressLines.map((line) => (

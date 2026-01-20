@@ -9,7 +9,7 @@ type BrandType = 'caret' | 'careti';
 
 // Domain to brand mapping for runtime detection
 const BRAND_DOMAINS: Record<string, BrandType> = {
-  'docs.careti.ai': 'caret',
+  'docs.caret.team': 'caret',
   'caret.team': 'caret',
   'docs.careti.ai': 'careti',
   'careti.ai': 'careti',
@@ -18,7 +18,7 @@ const BRAND_DOMAINS: Record<string, BrandType> = {
 
 // Brand-specific content mapping
 const brandNames: Record<BrandType, {en: string; ko: string; ja: string; zh: string}> = {
-  caret: {en: 'Careti', ko: '캐러티', ja: 'Careti', zh: 'Careti'},
+  caret: {en: 'Caret', ko: '캐럿', ja: 'Caret', zh: 'Caret'},
   careti: {en: 'Careti', ko: '캐러티', ja: 'Careti', zh: 'Careti'},
 };
 

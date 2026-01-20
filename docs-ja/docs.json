@@ -1,7 +1,7 @@
 {
 	"$schema": "https://mintlify.com/docs.json",
 	"theme": "linden",
-	"name": "Cline",
+	"name": "Careti",
 	"description": "AI-powered coding assistant for VSCode",
 	"colors": {
 		"primary": "#9D4EDD",
@@ -39,7 +39,7 @@
 		"links": [
 			{
 				"label": "GitHub",
-				"href": "https://github.com/cline/cline"
+				"href": "https://github.com/careti/careti"
 			},
 			{
 				"label": "Discord",
@@ -48,8 +48,8 @@
 		],
 		"primary": {
 			"type": "button",
-			"label": "Install Cline",
-			"href": "https://cline.bot/install?utm_source=website&utm_medium=header"
+			"label": "Install Careti",
+			"href": "https://careti.bot/install?utm_source=website&utm_medium=header"
 		}
 	},
 	"navigation": {
@@ -57,9 +57,9 @@
 			{
 				"group": "Getting Started",
 				"pages": [
-					"getting-started/what-is-cline",
+					"getting-started/what-is-careti",
 					"getting-started/model-selection-guide",
-					"getting-started/installing-cline",
+					"getting-started/installing-careti",
 					"getting-started/task-management",
 					"getting-started/understanding-context-management",
 					{
@@ -75,7 +75,7 @@
 				"group": "Improving Your Prompting Skills",
 				"pages": [
 					"prompting/prompt-engineering-guide",
-					"prompting/cline-memory-bank"
+					"prompting/careti-memory-bank"
 				]
 			},
 			{
@@ -83,7 +83,7 @@
 				"pages": [
 					"features/auto-approve",
 					"features/checkpoints",
-					"features/cline-rules",
+					"features/careti-rules",
 					"features/drag-and-drop",
 					"features/plan-and-act",
 					"features/slash-commands/workflows",
@@ -124,11 +124,11 @@
 				]
 			},
 			{
-				"group": "Exploring Cline's Tools",
+				"group": "Exploring Careti's Tools",
 				"pages": [
-					"exploring-clines-tools/cline-tools-guide",
-					"exploring-clines-tools/new-task-tool",
-					"exploring-clines-tools/remote-browser-support"
+					"exploring-caretis-tools/careti-tools-guide",
+					"exploring-caretis-tools/new-task-tool",
+					"exploring-caretis-tools/remote-browser-support"
 				]
 			},
 			{
@@ -166,7 +166,7 @@
 						]
 					},
 					"provider-config/gcp-vertex-ai",
-					"provider-config/litellm-and-cline-using-codestral",
+					"provider-config/litellm-and-careti-using-codestral",
 					"provider-config/vscode-language-model-api",
 					"provider-config/xai-grok",
 					"provider-config/mistral-ai",
@@ -210,20 +210,20 @@
 	},
 	"footer": {
 		"socials": {
-			"x": "https://x.com/cline",
-			"github": "https://github.com/cline/cline",
+			"x": "https://x.com/careti",
+			"github": "https://github.com/careti/careti",
 			"discord": "https://https://discord.gg/WB6yaR89YN"
 		}
 	},
 	"anchors": [
 		{
-			"name": "What is Cline",
+			"name": "What is Careti",
 			"icon": "house",
-			"url": "getting-started/what-is-cline"
+			"url": "getting-started/what-is-careti"
 		}
 	],
 	"search": {
-		"prompt": "Search Cline documentation..."
+		"prompt": "Search Careti documentation..."
 	},
 	"contextual": {
 		"options": [

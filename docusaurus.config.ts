@@ -7,8 +7,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // Brand configuration for multi-domain deployment
 type BrandType = 'caret' | 'careti';
 const BRANDS = {
-  caret: { name: 'Careti', domain: 'docs.careti.ai', serviceDomain: 'caret.team' },
-  careti: { name: 'Careti', domain: 'docs.careti.ai', serviceDomain: 'careti.ai' },
+  caret: { name: 'Caret', nameKo: '캐럿', domain: 'docs.caret.team', serviceDomain: 'caret.team' },
+  careti: { name: 'Careti', nameKo: '캐러티', domain: 'docs.careti.ai', serviceDomain: 'careti.ai' },
 };
 const brand: BrandType = (process.env.BRAND === 'caret' || process.env.BRAND === 'careti')
   ? process.env.BRAND
