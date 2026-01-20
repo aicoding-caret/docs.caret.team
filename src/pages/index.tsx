@@ -7,10 +7,36 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 type Locale = 'en' | 'ko' | 'ja' | 'zh';
 type BrandType = 'caret' | 'careti';
 
+// Domain to brand mapping for runtime detection
+const BRAND_DOMAINS: Record<string, BrandType> = {
+  'docs.caret.team': 'caret',
+  'caret.team': 'caret',
+  'docs.careti.ai': 'careti',
+  'careti.ai': 'careti',
+  'localhost': 'careti', // Development default
+};
+
 // Brand-specific content mapping
 const brandNames: Record<BrandType, {en: string; ko: string; ja: string; zh: string}> = {
   caret: {en: 'Caret', ko: '캐럿', ja: 'Caret', zh: 'Caret'},
   careti: {en: 'Careti', ko: '캐러티', ja: 'Careti', zh: 'Careti'},
+};
+
+// Detect brand from hostname (client-side)
+const detectBrandFromHost = (defaultBrand: BrandType): BrandType => {
+  if (typeof window === 'undefined') return defaultBrand;
+  const hostname = window.location.hostname;
+  // Check exact match first
+  if (BRAND_DOMAINS[hostname]) {
+    return BRAND_DOMAINS[hostname];
+  }
+  // Check if hostname contains the domain
+  for (const [domain, brand] of Object.entries(BRAND_DOMAINS)) {
+    if (hostname.includes(domain)) {
+      return brand;
+    }
+  }
+  return defaultBrand;
 };
 
 const localeList: Locale[] = ['en', 'ko', 'ja', 'zh'];
@@ -111,18 +137,26 @@ const detectLocale = (): Locale => {
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
-  const brand = (siteConfig.customFields?.brand as BrandType) || 'careti';
-  const brandName = (siteConfig.customFields?.brandName as string) || 'Careti';
-  const brandServiceDomain = (siteConfig.customFields?.brandServiceDomain as string) || 'careti.ai';
-  const brandNameKo = brand === 'caret' ? '캐럿' : '캐러티';
+  const configBrand = (siteConfig.customFields?.brand as BrandType) || 'careti';
 
+  // Detect brand from hostname at runtime (client-side)
+  const [brand, setBrand] = useState<BrandType>(configBrand);
   const [lang, setLang] = useState<Locale>('en');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const detected = detectLocale();
-    setLang(detected);
-  }, []);
+    // Detect brand from hostname
+    const detectedBrand = detectBrandFromHost(configBrand);
+    setBrand(detectedBrand);
+    // Detect locale
+    const detectedLocale = detectLocale();
+    setLang(detectedLocale);
+  }, [configBrand]);
+
+  // Derive brand info from detected brand
+  const brandName = brandNames[brand].en;
+  const brandNameKo = brandNames[brand].ko;
+  const brandServiceDomain = brand === 'caret' ? 'caret.team' : 'careti.ai';
 
   const copy = useMemo(() => getCopy(brandName, brandNameKo), [brandName, brandNameKo]);
   const strings = useMemo(() => copy[lang] ?? copy.en, [copy, lang]);
