@@ -1,10 +1,10 @@
 ---
 title: "훅"
 sidebarTitle: "훅"
-description: "Caret 워크플로우에 커스텀 로직을 주입해 작업 검증, 도구 사용 모니터링, AI 결정 흐름을 제어합니다."
+description: "Careti 워크플로우에 커스텀 로직을 주입해 작업 검증, 도구 사용 모니터링, AI 결정 흐름을 제어합니다."
 ---
 
-훅(Hooks)은 Caret 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
+훅(Hooks)은 Careti 워크플로우의 특정 시점에 커스텀 로직을 주입해 작업을 검증하거나 도구 사용을 모니터링하고, AI의 의사결정에 영향을 줄 수 있게 해줍니다.
 
 훅은 개발 과정에서 특정 이벤트가 발생할 때 자동으로 실행됩니다. 각 작업의 상세 정보를 받아 문제되는 행동을 사전에 차단하거나, 앞으로의 AI 결정을 돕는 컨텍스트를 추가할 수 있습니다.
 
@@ -30,10 +30,10 @@ Caret에서 훅을 활성화하는 방법은 간단합니다. 다음 단계를 �
 
 <Steps>
 <Step title="설정에서 훅 활성화">
-Caret 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
+Careti 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
 
 경로:
-1. Caret 열기
+1. Careti 열기
 2. 우측 상단 "Settings" 클릭
 3. 좌측 메뉴의 "Feature" 섹션 클릭
 4. "Enable Hooks" 항목을 찾아 체크
@@ -45,7 +45,7 @@ Caret 설정에서 **"Enable Hooks"** 체크박스를 활성화합니다.
 **전역 훅** (모든 프로젝트에 적용):
 - **macOS/Linux:** `~/Documents/.agents/hooks/`
 - **Windows:** `C:\Users\USERNAME\Documents\.agents\hooks\`
-- 레거시 경로: `~/Documents/Caret/Hooks/` (폴백 지원)
+- 레거시 경로: `~/Documents/Careti/Hooks/` (폴백 지원)
 
 **프로젝트 훅** (현재 워크스페이스에만 적용):
 - `.agents/hooks/` (권장)
@@ -115,7 +115,7 @@ Caret에서 작업을 시작하고 훅이 실행되는지 확인합니다.
   </Card>
 </CardGroup>
 
-훅은 Caret 워크플로우와 외부 생태계를 연결하는 접착제 역할을 합니다.
+훅은 Careti 워크플로우와 외부 생태계를 연결하는 접착제 역할을 합니다.
 
 
 ## 훅 타입
@@ -302,7 +302,7 @@ Caret는 AI 워크플로우의 서로 다른 단계에서 사용할 수 있는 �
 
 ### 시스템 이벤트
 
-Caret 내부 동작과 시스템 이벤트를 모니터링합니다.
+Careti 내부 동작과 시스템 이벤트를 모니터링합니다.
 
 {/*
 #### PreCompact
@@ -373,7 +373,7 @@ echo '{"cancel": false}'
 - "Enable Hooks" 설정이 체크되어 있는지 확인
 - 훅 파일이 실행 가능(`chmod +x hookname`)한지 확인
 - 훅 파일에 문법 오류가 없는지 확인
-- VS Code 출력 패널(Caret 채널)의 에러 확인
+- VS Code 출력 패널(Careti 채널)의 에러 확인
 
 ### 훅 타임아웃
 - 훅 스크립트의 복잡도를 줄이세요
@@ -412,8 +412,8 @@ jq -n --arg ctx "$output" '{cancel: false, contextModification: $ctx}'
 
 ## 관련 기능
 
-훅은 다른 Caret 기능과 함께 사용할 때 더 강력합니다:
+훅은 다른 Careti 기능과 함께 사용할 때 더 강력합니다:
 
-- [Caret 규칙](/ko/features/caret-rules)으로 상위 가이드를 정의하고 훅으로 강제할 수 있습니다
+- [Careti 규칙](/ko/features/caret-rules)으로 상위 가이드를 정의하고 훅으로 강제할 수 있습니다
 - [체크포인트](/ko/features/checkpoints)로 훅이 놓친 문제를 되돌릴 수 있습니다
 - [자동 승인](/ko/features/auto-approve)은 훅을 안전 장치로 활용할 때 특히 유용합니다

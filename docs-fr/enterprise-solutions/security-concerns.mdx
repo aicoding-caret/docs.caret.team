@@ -1,35 +1,35 @@
 ```
 ---
 title: "Considérations de Sécurité"
-description: "Découvrez comment Caret protège votre code et vos données grâce à son architecture côté client et son intégration sécurisée au cloud."
+description: "Découvrez comment Careti protège votre code et vos données grâce à son architecture côté client et son intégration sécurisée au cloud."
 ---
 
 <Note>
-Il s'agit d'un document basé sur Caret. Il suit la version fusionnée Caret v3.38.1 et, s'il existe une politique dédiée à Caret (authentification/routage, politique de télémétrie/journaux, limitation de modèle), elle est indiquée par `<Note>` dans le corps du texte.
+Il s'agit d'un document basé sur Careti. Il suit la version fusionnée Careti v3.38.1 et, s'il existe une politique dédiée à Careti (authentification/routage, politique de télémétrie/journaux, limitation de modèle), elle est indiquée par `<Note>` dans le corps du texte.
 </Note>
 
-## Sécurité d'entreprise avec Caret
+## Sécurité d'entreprise avec Careti
 
-Caret répond aux préoccupations de sécurité des entreprises grâce à son architecture unique côté client qui donne la priorité à la confidentialité des données, à l'intégration sécurisée au cloud et aux opérations transparentes. Vous trouverez ci-dessous un aperçu complet de la manière dont Caret maintient des mesures de sécurité robustes pour les environnements d'entreprise.
+Careti répond aux préoccupations de sécurité des entreprises grâce à son architecture unique côté client qui donne la priorité à la confidentialité des données, à l'intégration sécurisée au cloud et aux opérations transparentes. Vous trouverez ci-dessous un aperçu complet de la manière dont Careti maintient des mesures de sécurité robustes pour les environnements d'entreprise.
 
 ### Architecture côté client
 
-Caret fonctionne exclusivement comme une extension VS Code côté client, sans aucun composant côté serveur. Ce choix de conception fondamental garantit que votre code et vos données restent à tout moment dans votre environnement sécurisé. Contrairement aux assistants d'IA traditionnels qui envoient des données à des serveurs externes pour traitement, Caret se connecte directement aux endpoints d'IA du fournisseur cloud que vous avez choisi, gardant ainsi toutes les informations sensibles à l'intérieur des limites de votre infrastructure.
+Careti fonctionne exclusivement comme une extension VS Code côté client, sans aucun composant côté serveur. Ce choix de conception fondamental garantit que votre code et vos données restent à tout moment dans votre environnement sécurisé. Contrairement aux assistants d'IA traditionnels qui envoient des données à des serveurs externes pour traitement, Careti se connecte directement aux endpoints d'IA du fournisseur cloud que vous avez choisi, gardant ainsi toutes les informations sensibles à l'intérieur des limites de votre infrastructure.
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-arch.png"
-		alt="Relation entre Caret et les ressources locales et distantes"
+		alt="Relation entre Careti et les ressources locales et distantes"
 	/>
 </Frame>
 
 ### Engagement en matière de confidentialité des données
 
-Caret met en œuvre une politique stricte de zéro conservation des données, ce qui signifie que votre propriété intellectuelle ne quitte jamais votre environnement sécurisé. L'extension ne collecte, ne stocke ni ne transmet votre code à des serveurs centraux. Cette approche réduit considérablement les vecteurs d'attaque potentiels qui pourraient autrement être introduits par la transmission de données à des systèmes tiers. La collecte de données de télémétrie est facultative et nécessite un consentement explicite.
+Careti met en œuvre une politique stricte de zéro conservation des données, ce qui signifie que votre propriété intellectuelle ne quitte jamais votre environnement sécurisé. L'extension ne collecte, ne stocke ni ne transmet votre code à des serveurs centraux. Cette approche réduit considérablement les vecteurs d'attaque potentiels qui pourraient autrement être introduits par la transmission de données à des systèmes tiers. La collecte de données de télémétrie est facultative et nécessite un consentement explicite.
 
 ### Intégration du fournisseur cloud
 
-Les équipes d'entreprise peuvent accéder à des modèles d'IA de pointe grâce à leurs déploiements cloud existants. Caret prend en charge l'intégration transparente avec :
+Les équipes d'entreprise peuvent accéder à des modèles d'IA de pointe grâce à leurs déploiements cloud existants. Careti prend en charge l'intégration transparente avec :
 
 -   AWS Bedrock
 -   Google Cloud Vertex AI
@@ -39,19 +39,19 @@ Ces intégrations utilisent les informations d'identification de sécurité exis
 
 ### Transparence Open-Source
 
-Le code source de Caret est entièrement open-source, ce qui permet un audit de sécurité complet par vos équipes internes. Cette transparence permet aux professionnels de la sécurité de vérifier exactement comment l'extension fonctionne et de confirmer qu'elle respecte les exigences de sécurité de votre organisation. Les organisations peuvent examiner le code pour s'assurer qu'il correspond à leurs politiques de sécurité avant le déploiement.
+Le code source de Careti est entièrement open-source, ce qui permet un audit de sécurité complet par vos équipes internes. Cette transparence permet aux professionnels de la sécurité de vérifier exactement comment l'extension fonctionne et de confirmer qu'elle respecte les exigences de sécurité de votre organisation. Les organisations peuvent examiner le code pour s'assurer qu'il correspond à leurs politiques de sécurité avant le déploiement.
 
 ### Modifications contrôlées
 
-L'extension met en œuvre des mesures de protection contre les modifications non autorisées de votre code source. Caret exige l'approbation explicite de l'utilisateur pour toutes les modifications de fichiers et les commandes du terminal, empêchant ainsi les modifications accidentelles ou indésirables. Ce workflow basé sur l'approbation maintient l'intégrité de vos projets tout en fournissant une assistance d'IA.
+L'extension met en œuvre des mesures de protection contre les modifications non autorisées de votre code source. Careti exige l'approbation explicite de l'utilisateur pour toutes les modifications de fichiers et les commandes du terminal, empêchant ainsi les modifications accidentelles ou indésirables. Ce workflow basé sur l'approbation maintient l'intégrité de vos projets tout en fournissant une assistance d'IA.
 
 ### Assistance au déploiement en entreprise
 
-Pour les organisations soumises à des processus d'examen de sécurité stricts, Caret fournit une documentation complète comprenant des diagrammes de déploiement détaillés, des diagrammes de séquence illustrant tous les flux de données et une documentation complète sur la posture de sécurité. Ces documents facilitent les examens de sécurité approfondis et aident à démontrer la conformité aux normes et réglementations de l'entreprise en matière de gestion des données.
+Pour les organisations soumises à des processus d'examen de sécurité stricts, Careti fournit une documentation complète comprenant des diagrammes de déploiement détaillés, des diagrammes de séquence illustrant tous les flux de données et une documentation complète sur la posture de sécurité. Ces documents facilitent les examens de sécurité approfondis et aident à démontrer la conformité aux normes et réglementations de l'entreprise en matière de gestion des données.
 
 ### Contrôle d'accès
 
-Les éditions Entreprise de Caret (prévues pour le deuxième trimestre 2025) comprendront des fonctionnalités d'administration centralisée qui permettront aux organisations de :
+Les éditions Entreprise de Careti (prévues pour le deuxième trimestre 2025) comprendront des fonctionnalités d'administration centralisée qui permettront aux organisations de :
 
 -   Gérer l'accès des utilisateurs avec des niveaux d'autorisation personnalisables
 -   Provisionner des comptes avec des informations d'identification d'entreprise
@@ -62,7 +62,7 @@ Les éditions Entreprise de Caret (prévues pour le deuxième trimestre 2025) co
 
 ### Conformité et gouvernance
 
-L'architecture de Caret prend en charge la conformité aux exigences de souveraineté des données et aux réglementations de l'entreprise en matière de gestion des données. L'édition Entreprise Complète prévue améliorera encore la gouvernance grâce à une journalisation d'audit détaillée, des rapports de conformité et des mécanismes d'application automatisés des politiques.
+L'architecture de Careti prend en charge la conformité aux exigences de souveraineté des données et aux réglementations de l'entreprise en matière de gestion des données. L'édition Entreprise Complète prévue améliorera encore la gouvernance grâce à une journalisation d'audit détaillée, des rapports de conformité et des mécanismes d'application automatisés des politiques.
 
-En combinant le traitement côté client, l'intégration directe du fournisseur cloud et les opérations transparentes, Caret offre aux équipes d'entreprise un moyen sécurisé de tirer parti de l'assistance de l'IA tout en maintenant un contrôle strict sur leur code et leurs données sensibles.
+En combinant le traitement côté client, l'intégration directe du fournisseur cloud et les opérations transparentes, Careti offre aux équipes d'entreprise un moyen sécurisé de tirer parti de l'assistance de l'IA tout en maintenant un contrôle strict sur leur code et leurs données sensibles.
 ```

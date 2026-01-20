@@ -3,7 +3,7 @@ title: "Résumé automatique du contexte"
 sidebarTitle: "Auto Compact"
 ---
 
-Lorsque votre conversation approche de la limite de la fenêtre de contexte du modèle, Caret la résume automatiquement pour libérer de l'espace et continuer à travailler.
+Lorsque votre conversation approche de la limite de la fenêtre de contexte du modèle, Careti la résume automatiquement pour libérer de l'espace et continuer à travailler.
 
 <Frame>
 	<img
@@ -14,7 +14,7 @@ Lorsque votre conversation approche de la limite de la fenêtre de contexte du m
 
 ## Comment ça marche
 
-Caret surveille l'utilisation des tokens pendant votre conversation. Lorsque vous approchez de la limite, il :
+Careti surveille l'utilisation des tokens pendant votre conversation. Lorsque vous approchez de la limite, il :
 
 1. Crée un résumé complet de tout ce qui s'est passé
 2. Conserve tous les détails techniques, les modifications de code et les décisions
@@ -25,25 +25,25 @@ Vous verrez un appel d'outil de résumé lorsque cela se produit, affichant le c
 
 ## Pourquoi c'est important
 
-Auparavant, Caret tronquait les messages plus anciens lorsqu'il atteignait les limites de contexte. Cela signifiait perdre un contexte important du début de la conversation.
+Auparavant, Careti tronquait les messages plus anciens lorsqu'il atteignait les limites de contexte. Cela signifiait perdre un contexte important du début de la conversation.
 
 Désormais, avec la Summarization :
 - Toutes les décisions techniques et les modèles de code sont conservés
 - Les modifications de fichiers et le contexte du projet restent intacts
-- Caret se souvient de tout ce qu'il a fait
+- Careti se souvient de tout ce qu'il a fait
 - Vous pouvez travailler sur des projets beaucoup plus vastes sans interruption
 
 <Tip>
-La Context Summarization est en parfaite synergie avec [Focus Chain](/french/features/focus-chain). Lorsque Focus Chain est activé, les listes de tâches persistent à travers les summarizations. Cela signifie que Caret peut travailler sur des tâches à long terme qui s'étendent sur plusieurs fenêtres de contexte tout en restant sur la bonne voie grâce à la liste de tâches qui le guide à travers chaque réinitialisation.
+La Context Summarization est en parfaite synergie avec [Focus Chain](/french/features/focus-chain). Lorsque Focus Chain est activé, les listes de tâches persistent à travers les summarizations. Cela signifie que Careti peut travailler sur des tâches à long terme qui s'étendent sur plusieurs fenêtres de contexte tout en restant sur la bonne voie grâce à la liste de tâches qui le guide à travers chaque réinitialisation.
 </Tip>
 
 ## Détails techniques
 
 La summarization s'effectue via votre fournisseur d'API configuré en utilisant le même modèle que celui que vous utilisez déjà. Elle exploite le caching des prompts pour minimiser les coûts.
 
-1. Caret utilise un [summarization prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts) pour demander un résumé de la conversation.
+1. Careti utilise un [summarization prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts) pour demander un résumé de la conversation.
 
-2. Une fois le résumé généré, Caret remplace l'historique de la conversation par un [continuation prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69) qui demande à Caret de continuer à travailler et fournit le résumé comme contexte.
+2. Une fois le résumé généré, Careti remplace l'historique de la conversation par un [continuation prompt](https://github.com/caret/caret/blob/main/src/core/prompts/contextManagement.ts#L69) qui demande à Careti de continuer à travailler et fournit le résumé comme contexte.
 
 Différents modèles ont différents seuils de fenêtre de contexte pour le déclenchement de l'auto-summarization. Vous pouvez voir comment les seuils sont déterminés dans [context-window-utils.ts](https://github.com/caret/caret/blob/main/src/core/context/context-management/context-window-utils.ts).
 
@@ -71,5 +71,5 @@ Auto Compact utilise une summarization avancée basée sur LLM qui, selon nos co
 - **Grok 4**
 
 <Note>
-Lorsque vous utilisez d'autres modèles, Caret revient automatiquement à la méthode standard de troncature de contexte basée sur des règles, même si Auto Compact est activé dans les paramètres.
+Lorsque vous utilisez d'autres modèles, Careti revient automatiquement à la méthode standard de troncature de contexte basée sur des règles, même si Auto Compact est activé dans les paramètres.
 </Note>

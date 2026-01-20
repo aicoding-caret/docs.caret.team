@@ -1,22 +1,22 @@
 ---
 title: "Context Management"
-description: "Master context management to unlock Caret's full potential"
+description: "Master context management to unlock Careti's full potential"
 ---
 
 <Info>
 **Quick Reference**
 
-- **Context** = All information Caret knows about your project
-- **Context Window** = Maximum information Caret can process at once (varies by model)
+- **Context** = All information Careti knows about your project
+- **Context Window** = Maximum information Careti can process at once (varies by model)
 - **Token** = Unit of text measurement (~3/4 of an English word)
-- **Auto-management** = Caret automatically handles context through Focus Chain & Auto Compact
+- **Auto-management** = Careti automatically handles context through Focus Chain & Auto Compact
 </Info>
 
 ## What is Context Management?
 
-Context management is how Caret maintains understanding of your project throughout a conversation. Think of it as the shared memory between you and Caret - containing code, decisions, requirements, and progress.
+Context management is how Careti maintains understanding of your project throughout a conversation. Think of it as the shared memory between you and Careti - containing code, decisions, requirements, and progress.
 
-<Frame caption="Context is like a shared workspace where Caret builds understanding of your project">
+<Frame caption="Context is like a shared workspace where Careti builds understanding of your project">
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2).png"
 		alt="Context visualization showing the relationship between total context and context window"
@@ -54,13 +54,13 @@ Every AI model has a **context window** - the maximum amount of information it c
 - A typical source file: 500-2,000 tokens
 </Tip>
 
-## How Caret Builds Context
+## How Careti Builds Context
 
-Building effective context is what makes Caret truly useful. When you start a task, Caret doesn't just passively wait for information - he actively gathers context about your project, asks clarifying questions when needed, and adapts to what's happening in real-time. This combination of automatic discovery, user guidance, and dynamic adaptation ensures Caret always has the right information to solve your problems effectively.
+Building effective context is what makes Careti truly useful. When you start a task, Careti doesn't just passively wait for information - he actively gathers context about your project, asks clarifying questions when needed, and adapts to what's happening in real-time. This combination of automatic discovery, user guidance, and dynamic adaptation ensures Careti always has the right information to solve your problems effectively.
 
 ### 1. Automatic Context Gathering
 
-When you start a task, Caret proactively:
+When you start a task, Careti proactively:
 
 ```mermaid
 graph LR
@@ -71,7 +71,7 @@ graph LR
     E --> F[Build Mental Model]
 ```
 
-**What Caret automatically discovers:**
+**What Careti automatically discovers:**
 - Project structure and file organization
 - Import relationships and dependencies
 - Code patterns and conventions
@@ -80,18 +80,18 @@ graph LR
 
 ### 2. User-Guided Context
 
-While automatic discovery handles much of the work, you control what Caret focuses on. The more specific and relevant context you provide, the better Caret can understand your needs and deliver accurate solutions.
+While automatic discovery handles much of the work, you control what Careti focuses on. The more specific and relevant context you provide, the better Careti can understand your needs and deliver accurate solutions.
 
 You enhance context by:
 - **@ Mentioning** files, folders, or URLs
 - **Providing requirements** in natural language
 - **Sharing screenshots** for UI context
 - **Adding documentation** through AGENTS.md + .agents/context + caret-docs
-- **Answering questions** when Caret needs clarification
+- **Answering questions** when Careti needs clarification
 
 ### 3. Dynamic Context Adaptation
 
-Caret adapts context dynamically throughout your conversation. It considers the complexity of your request, available context window space, current task progress, error messages and feedback, plus previous decisions made during the conversation to determine what information matters most at each step.
+Careti adapts context dynamically throughout your conversation. It considers the complexity of your request, available context window space, current task progress, error messages and feedback, plus previous decisions made during the conversation to determine what information matters most at each step.
 
 ## The Context Window Progress Bar
 
@@ -114,11 +114,11 @@ Monitor your context usage in real-time:
 
 ## Automatic Context Management Features
 
-Caret includes intelligent systems that handle context for you:
+Careti includes intelligent systems that handle context for you:
 
 ### Focus Chain (Default: ON)
 
-Focus Chain maintains task continuity through automatic todo lists. When you start a task, Caret generates actionable steps and updates them as work progresses. This keeps critical context visible even after Auto Compact runs, letting you track progress without scrolling through the entire conversation.
+Focus Chain maintains task continuity through automatic todo lists. When you start a task, Careti generates actionable steps and updates them as work progresses. This keeps critical context visible even after Auto Compact runs, letting you track progress without scrolling through the entire conversation.
 
 [Learn more →](/en/features/focus-chain)
 
@@ -130,7 +130,7 @@ When context usage hits around 80%, Auto Compact automatically creates a compreh
 
 ### Context Truncation System
 
-If your conversation approaches the model's context window limit before Auto Compact runs, Caret's Context Manager automatically truncates older parts of the conversation to prevent errors.
+If your conversation approaches the model's context window limit before Auto Compact runs, Careti's Context Manager automatically truncates older parts of the conversation to prevent errors.
 
 The system prioritizes what matters most:
 - Your original task description stays
@@ -144,15 +144,15 @@ What gets removed first:
 - Intermediate debugging steps
 - Verbose explanations that served their purpose
 
-This happens automatically. You'll keep working without interruption, and Caret maintains enough context to continue solving your problem effectively.
+This happens automatically. You'll keep working without interruption, and Careti maintains enough context to continue solving your problem effectively.
 
 ## Best Practices
 
-- **Be specific** - Clear objectives help Caret understand your needs
+- **Be specific** - Clear objectives help Careti understand your needs
 - **Use @ mentions strategically** - Reference specific files rather than entire folders
 - **Monitor the progress bar** - Yellow/red means consider using `/smol` or `/newtask`
 - **Trust auto-management** - Focus Chain and Auto Compact handle complexity automatically
-- **Use the Caret Context System** - Keep AGENTS.md + .agents/context + caret-docs aligned
+- **Use the Careti Context System** - Keep AGENTS.md + .agents/context + caret-docs aligned
 
 ## Next Steps
 
@@ -163,10 +163,10 @@ This happens automatically. You'll keep working without interruption, and Caret 
 	<Card title="Auto Compact" icon="compress" href="/features/auto-compact">
 		Understand automatic conversation compression
 	</Card>
-	<Card title="Caret Context System" icon="brain" href="/prompting/caret-memory-bank">
+	<Card title="Careti Context System" icon="brain" href="/prompting/caret-memory-bank">
 		Replace Memory Bank with AGENTS.md + .agents/context
 	</Card>
-	<Card title="Caret Rules" icon="gavel" href="/features/caret-rules">
+	<Card title="Careti Rules" icon="gavel" href="/features/caret-rules">
 		Define project-specific conventions
 	</Card>
 </CardGroup>

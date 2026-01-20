@@ -1,24 +1,24 @@
 ---
-title: "Terminal-Pager während Caret-Sitzungen deaktivieren"
-description: "Sorge dafür, dass die CLI-Ausgabe nicht-interaktiv ist, wenn Caret Befehle ausführt, indem die CLINE_ACTIVE-Umgebungsvariable erkannt und Pager wie less deaktiviert werden."
+title: "Terminal-Pager während Careti-Sitzungen deaktivieren"
+description: "Sorge dafür, dass die CLI-Ausgabe nicht-interaktiv ist, wenn Careti Befehle ausführt, indem die CLINE_ACTIVE-Umgebungsvariable erkannt und Pager wie less deaktiviert werden."
 ---
 
-Viele CLI-Tools (wie Git) verwenden einen Pager wie `less` für interaktive, scrollbare Ausgaben. Wenn Caret Befehle in Ihrem Terminal ausführt, stört diese Interaktivität - der Pager kann auf der ersten Seite pausieren und den Fortschritt blockieren. Sie können Ihre Shell so konfigurieren, dass Pager deaktiviert und Ausgaben normal durchgeleitet werden, wenn ein Terminal von Caret gestartet wird.
+Viele CLI-Tools (wie Git) verwenden einen Pager wie `less` für interaktive, scrollbare Ausgaben. Wenn Careti Befehle in Ihrem Terminal ausführt, stört diese Interaktivität - der Pager kann auf der ersten Seite pausieren und den Fortschritt blockieren. Sie können Ihre Shell so konfigurieren, dass Pager deaktiviert und Ausgaben normal durchgeleitet werden, wenn ein Terminal von Careti gestartet wird.
 
 ## Funktionsweise
 
-Caret setzt eine Umgebungsvariable für Terminals, die es öffnet, um Befehle auszuführen:
+Careti setzt eine Umgebungsvariable für Terminals, die es öffnet, um Befehle auszuführen:
 
-- `CLINE_ACTIVE` — nicht leer, wenn die Shell unter Caret läuft
+- `CLINE_ACTIVE` — nicht leer, wenn die Shell unter Careti läuft
 
-Sie können diese Variable in Ihrer Shell-Startup-Datei erkennen und Umgebungsvariablen oder Aliase nur für von Caret ausgeführte Sitzungen anpassen. Dies hält Ihre normalen interaktiven Terminals unverändert.
+Sie können diese Variable in Ihrer Shell-Startup-Datei erkennen und Umgebungsvariablen oder Aliase nur für von Careti ausgeführte Sitzungen anpassen. Dies hält Ihre normalen interaktiven Terminals unverändert.
 
 ## Schnelle Einrichtung (Zsh/Bash)
 
 Fügen Sie Folgendes zu Ihrer `~/.zshrc`, `~/.bashrc` oder `~/.bash_profile` hinzu:
 
 ```bash
-# Disable pagers when the terminal is launched by Caret
+# Disable pagers when the terminal is launched by Careti
 if [[ -n "$CLINE_ACTIVE" ]]; then
   export PAGER=cat
   export GIT_PAGER=cat
@@ -38,7 +38,7 @@ Diese Konfiguration gilt nur, wenn `CLINE_ACTIVE` gesetzt ist, sodass Ihre norma
 
 ## Überprüfen
 
-- Öffnen Sie eine Aufgabe in Caret, die Terminalbefehle ausführt, und prüfen Sie:
+- Öffnen Sie eine Aufgabe in Careti, die Terminalbefehle ausführt, und prüfen Sie:
   - `echo "$CLINE_ACTIVE"` gibt einen nicht leeren Wert aus
   - `git log` oder andere lange Ausgaben sollten ohne Pause durchlaufen
 - Wenn Änderungen nicht wirksam werden:
@@ -58,7 +58,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-- Sie können das Paging auch über Shell-Aliase überschreiben, die auf Caret-Sitzungen beschränkt sind, indem Sie Optionen anstelle von Umgebungsvariablen verwenden:
+- Sie können das Paging auch über Shell-Aliase überschreiben, die auf Careti-Sitzungen beschränkt sind, indem Sie Optionen anstelle von Umgebungsvariablen verwenden:
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then
@@ -74,6 +74,6 @@ fi
 - Wenn Sie Umgebungsvariablen bevorzugen, berücksichtigen viele CLIs auch eine generische oder toolspezifische Pager-Variable:
   - Git: `GIT_PAGER=cat`
   - Systemd: `SYSTEMD_PAGER=cat`
-  - Man pages: `MANPAGER=cat` (in der Regel nicht für Caret-gesteuerte Befehle erforderlich)
+  - Man pages: `MANPAGER=cat` (in der Regel nicht für Careti-gesteuerte Befehle erforderlich)
 
 - Aliase beeinflussen die aktuelle interaktive Shell, während Umgebungsvariablen an Kindprozesse weitergegeben werden. Wählen Sie den Ansatz, der am besten zu Ihrem Workflow passt.

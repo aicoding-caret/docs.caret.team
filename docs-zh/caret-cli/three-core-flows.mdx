@@ -1,13 +1,13 @@
 ---
 title: "三大核心流程"
-description: "Caret CLI 的三种使用方式：交互模式、无头自动化、多实例并行"
+description: "Careti CLI 的三种使用方式：交互模式、无头自动化、多实例并行"
 ---
 
 需要先理解两个概念：
 
-**任务(Task)** - Caret 执行的单个工作(如“给 utils.js 添加测试”)。
+**任务(Task)** - Careti 执行的单个工作(如“给 utils.js 添加测试”)。
 
-**实例(Instance)** - 独立的 Caret 工作空间。每个实例一次只跑一个任务。
+**实例(Instance)** - 独立的 Careti 工作空间。每个实例一次只跑一个任务。
 
 ## 1. 交互模式：先计划再执行
 
@@ -15,7 +15,7 @@ description: "Caret CLI 的三种使用方式：交互模式、无头自动化�
 caret
 ```
 
-Caret 会在当前目录开启会话，进入 Plan 模式给出逐步计划。确认后执行：
+Careti 会在当前目录开启会话，进入 Plan 模式给出逐步计划。确认后执行：
 
 ```bash
 /act
@@ -28,7 +28,7 @@ caret instance new --default
 caret task new -y "Generate unit tests for all Go files"
 ```
 
-`-y`(YOLO) 让 Caret 自动计划并执行，适合 CI/脚本。
+`-y`(YOLO) 让 Careti 自动计划并执行，适合 CI/脚本。
 
 示例：
 
@@ -87,7 +87,7 @@ caret instances kill -a
 
 ## 选择哪种流程？
 
-- **交互模式**：探索问题/学习 Caret/需要审核计划
+- **交互模式**：探索问题/学习 Careti/需要审核计划
 - **无头单次**：自动化、CI/CD
 - **多实例**：需要并行或隔离上下文
 

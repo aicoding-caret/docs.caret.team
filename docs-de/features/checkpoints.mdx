@@ -7,13 +7,13 @@ Checkpoints speichern automatisch Snapshots Ihres Workspace nach jedem Schritt i
 
 ## Wie Checkpoints funktionieren
 
-Caret erstellt nach jeder Nutzung eines Tools (Dateibearbeitungen, Befehle usw.) einen Checkpoint. Diese Checkpoints:
+Careti erstellt nach jeder Nutzung eines Tools (Dateibearbeitungen, Befehle usw.) einen Checkpoint. Diese Checkpoints:
 
 -   Funktionieren parallel zu Ihrem Git-Workflow ohne Interferenzen
 -   Behalten den Kontext zwischen Wiederherstellungen bei
 -   Nutzen ein Shadow-Git-Repository, um Änderungen zu verfolgen
 
-Wenn Sie beispielsweise an einem Feature arbeiten und Caret mehrere Dateiänderungen vornimmt, erzeugt jede Änderung einen Checkpoint. Das bedeutet, dass Sie jede Modifikation überprüfen und bei Bedarf zu jedem beliebigen Punkt zurückkehren können, ohne Ihr Haupt-Git-Repository zu beeinflussen.
+Wenn Sie beispielsweise an einem Feature arbeiten und Careti mehrere Dateiänderungen vornimmt, erzeugt jede Änderung einen Checkpoint. Das bedeutet, dass Sie jede Modifikation überprüfen und bei Bedarf zu jedem beliebigen Punkt zurückkehren können, ohne Ihr Haupt-Git-Repository zu beeinflussen.
 
 ## Änderungen anzeigen & Wiederherstellen
 
@@ -39,7 +39,7 @@ Um zu einem vorherigen Punkt zurückzukehren:
     - **Restore Task Only**: Behält die Änderungen an der Codebasis bei, setzt aber den Task-Kontext zurück
     - **Restore Workspace Only**: Setzt die Codebasis zurück, während der Task-Kontext erhalten bleibt
 
-Beispiel: Wenn Caret beim Styling einer Komponente Änderungen vornimmt, die Ihnen nicht gefallen, können Sie „Restore Workspace Only“ verwenden, um die Code-Änderungen rückgängig zu machen, während der Konversationskontext erhalten bleibt, sodass Sie einen anderen Ansatz ausprobieren können.
+Beispiel: Wenn Careti beim Styling einer Komponente Änderungen vornimmt, die Ihnen nicht gefallen, können Sie „Restore Workspace Only“ verwenden, um die Code-Änderungen rückgängig zu machen, während der Konversationskontext erhalten bleibt, sodass Sie einen anderen Ansatz ausprobieren können.
 
 <Frame caption="Zurücksetzen von Codebasis und Task auf den Zustand vor allen Änderungen, um von vorne zu beginnen">
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/checkpointsDemo.gif" alt="Checkpoint-Wiederherstellungs-Demo" />
@@ -47,7 +47,7 @@ Beispiel: Wenn Caret beim Styling einer Komponente Änderungen vornimmt, die Ihn
 
 ## Anwendungsfälle
 
-Checkpoints ermöglichen es Ihnen, experimenteller mit Caret zu arbeiten. Während menschliches Coding oft methodisch und iterativ ist, kann KI schnell umfangreiche Änderungen vornehmen. Checkpoints helfen Ihnen, diese Änderungen zu verfolgen und bei Bedarf rückgängig zu machen.
+Checkpoints ermöglichen es Ihnen, experimenteller mit Careti zu arbeiten. Während menschliches Coding oft methodisch und iterativ ist, kann KI schnell umfangreiche Änderungen vornehmen. Checkpoints helfen Ihnen, diese Änderungen zu verfolgen und bei Bedarf rückgängig zu machen.
 
 ### Nutzung des Auto-Approve-Modus
 

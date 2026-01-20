@@ -2,7 +2,7 @@
 ---
 title: "Système de compétences"
 sidebarTitle: "Compétences"
-description: "Étendez les capacités de Caret avec des modules de connaissances réutilisables."
+description: "Étendez les capacités de Careti avec des modules de connaissances réutilisables."
 ---
 
 <Note>
@@ -11,14 +11,14 @@ Les compétences sont une fonctionnalité expérimentale. Activez-la dans Param�
 
 Les compétences sont des ensembles d'instructions réutilisables pour des tâches spécifiques. Chaque compétence regroupe des conseils détaillés, des flux de travail et des ressources supplémentaires, qui ne sont chargés que lorsqu'ils sont pertinents pour votre demande.
 
-Contrairement aux règles (qui sont toujours actives), les compétences sont chargées **à la demande**. Vous pouvez installer des dizaines de compétences sans affecter le contexte ou les performances, car Caret ne voit que le nom et la description de la compétence tant qu'elle n'est pas réellement nécessaire.
+Contrairement aux règles (qui sont toujours actives), les compétences sont chargées **à la demande**. Vous pouvez installer des dizaines de compétences sans affecter le contexte ou les performances, car Careti ne voit que le nom et la description de la compétence tant qu'elle n'est pas réellement nécessaire.
 
 ## Pourquoi les compétences ?
 
 Pensez à la façon dont vous intégreriez un nouveau membre à l'équipe : vous ne lui jetteriez pas tous les documents à la fois. Vous lui donneriez un bref aperçu, puis vous l'orienteriez vers des guides détaillés lorsqu'il travaille sur des tâches spécifiques.
 
 Les compétences fonctionnent de la même manière :
-- **Au démarrage** : Caret ne voit qu'une brève description de chaque compétence
+- **Au démarrage** : Careti ne voit qu'une brève description de chaque compétence
 - **Lors du déclenchement** : Les instructions complètes de cette compétence sont chargées
 - **Au besoin** : Les fichiers supplémentaires fournis avec les compétences ne sont lus que lorsqu'ils sont référencés
 
@@ -47,7 +47,7 @@ description: Brève description de ce que fait cette compétence et quand l'util
 
 # My Skill
 
-Instructions détaillées que Caret doit suivre lorsque cette compétence est activée.
+Instructions détaillées que Careti doit suivre lorsque cette compétence est activée.
 
 ## Steps
 
@@ -58,9 +58,9 @@ Instructions détaillées que Caret doit suivre lorsque cette compétence est ac
 
 **Champs obligatoires :**
 - `name` : Doit correspondre exactement au nom du répertoire
-- `description` : Indique à Caret quand utiliser cette compétence (1024 caractères maximum)
+- `description` : Indique à Careti quand utiliser cette compétence (1024 caractères maximum)
 
-La description est essentielle, car c'est ainsi que Caret décide s'il faut activer une compétence. Soyez précis sur ce que fait la compétence et quand elle doit être utilisée.
+La description est essentielle, car c'est ainsi que Careti décide s'il faut activer une compétence. Soyez précis sur ce que fait la compétence et quand elle doit être utilisée.
 
 ## Où vivent les compétences
 
@@ -76,7 +76,7 @@ Les **compétences de projet** s'appliquent uniquement à l'espace de travail ac
 Lorsqu'une compétence globale et une compétence de projet ont le même nom, les **compétences globales sont prioritaires**. Cela vous permet de personnaliser les compétences pour votre flux de travail personnel tout en utilisant les paramètres par défaut du projet.
 
 <Note>
-**Standardisation Caret** : Caret utilise une architecture à double répertoire.
+**Standardisation Careti** : Careti utilise une architecture à double répertoire.
 - `.agents/` - Pour l'IA (optimisé pour les jetons)
 - `.users/` - Pour les humains (explications détaillées)
 
@@ -94,9 +94,9 @@ Cliquez sur l'icône de balance située sous la saisie de chat pour ouvrir le pa
 
 Les compétences sont activées par défaut lorsqu'elles sont découvertes. Désactivez-les si vous voulez qu'elles soient disponibles mais pas actives pour le projet actuel.
 
-## Comment Caret utilise les compétences
+## Comment Careti utilise les compétences
 
-Lorsque vous envoyez un message, Caret voit une liste des compétences disponibles avec leurs descriptions. Si votre demande correspond à la description d'une compétence, Caret l'active à l'aide de l'outil `use_skill`, qui charge les instructions complètes.
+Lorsque vous envoyez un message, Careti voit une liste des compétences disponibles avec leurs descriptions. Si votre demande correspond à la description d'une compétence, Careti l'active à l'aide de l'outil `use_skill`, qui charge les instructions complètes.
 
 Par exemple, si vous avez une compétence pour le déploiement sur AWS :
 
@@ -107,7 +107,7 @@ description: Deploy applications to AWS using CDK. Use when deploying, updating 
 ---
 ```
 
-Demander "deploy this to AWS" inciterait Caret à activer la compétence, à charger ses instructions détaillées et à les suivre pour mener à bien votre demande.
+Demander "deploy this to AWS" inciterait Careti à activer la compétence, à charger ses instructions détaillées et à les suivre pour mener à bien votre demande.
 
 ## Exemple : Compétence en analyse de données
 
@@ -166,7 +166,7 @@ For visualization, prefer matplotlib or seaborn depending on complexity.
 
 ## Regroupement de fichiers de prise en charge
 
-Les compétences peuvent inclure des fichiers supplémentaires auxquels Caret n'accède qu'en cas de besoin :
+Les compétences peuvent inclure des fichiers supplémentaires auxquels Careti n'accède qu'en cas de besoin :
 
 ```
 complex-skill/
@@ -193,7 +193,7 @@ python scripts/validate.py
 ```
 ````
 
-Caret lit ces fichiers à l'aide de `read_file` lorsque les instructions les référencent. Les scripts peuvent être exécutés directement, avec uniquement la sortie entrant dans le contexte (pas le code de script lui-même).
+Careti lit ces fichiers à l'aide de `read_file` lorsque les instructions les référencent. Les scripts peuvent être exécutés directement, avec uniquement la sortie entrant dans le contexte (pas le code de script lui-même).
 
 ## Idées de compétences
 
@@ -218,7 +218,7 @@ Les meilleures compétences encodent les connaissances institutionnelles qui, au
 
 | Fonctionnalité | Objectif | Quand est-ce actif |
 |---------|---------|-------------|
-| **Règles** | Définir le comportement de Caret | Toujours (ou contextuellement) |
+| **Règles** | Définir le comportement de Careti | Toujours (ou contextuellement) |
 | **Flux de travail** | Automatisation étape par étape des tâches | Invoqué avec `/workflow.md` |
 | **Compétences** | Expertise du domaine chargée à la demande | Déclenché par des demandes correspondantes |
 
@@ -226,7 +226,7 @@ Les **règles** définissent les contraintes et les préférences (comme "toujou
 
 Les **flux de travail** sont des séquences explicites que vous invoquez pour des tâches spécifiques (comme `/release.md` pour un processus de publication).
 
-Les **compétences** sont une expertise que Caret active automatiquement lorsqu'elle est pertinente (comme les connaissances en analyse de données lorsque vous travaillez avec des fichiers CSV).
+Les **compétences** sont une expertise que Careti active automatiquement lorsqu'elle est pertinente (comme les connaissances en analyse de données lorsque vous travaillez avec des fichiers CSV).
 
 Utilisez des règles pour les contraintes permanentes, des flux de travail pour l'automatisation explicite et des compétences pour les connaissances du domaine qui doivent être disponibles mais pas toujours actives.
 

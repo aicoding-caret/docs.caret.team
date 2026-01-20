@@ -1,24 +1,24 @@
 ---
-title: "Disable Terminal Pagers During Caret Sessions"
-description: "Make CLI output non-interactive when Caret runs commands by detecting the CLINE_ACTIVE environment variable and disabling pagers like less."
+title: "Disable Terminal Pagers During Careti Sessions"
+description: "Make CLI output non-interactive when Careti runs commands by detecting the CLINE_ACTIVE environment variable and disabling pagers like less."
 ---
 
-Many CLI tools (like Git) use a pager such as `less` for interactive, scrollable output. When Caret runs commands in your terminal, that interactivity gets in the way — the pager can pause on the first page and block progress. You can configure your shell so that when a terminal is spawned by Caret, pagers are disabled and output streams through normally.
+Many CLI tools (like Git) use a pager such as `less` for interactive, scrollable output. When Careti runs commands in your terminal, that interactivity gets in the way — the pager can pause on the first page and block progress. You can configure your shell so that when a terminal is spawned by Careti, pagers are disabled and output streams through normally.
 
 ## How it works
 
-Caret sets an environment variable for terminals it opens to run commands:
+Careti sets an environment variable for terminals it opens to run commands:
 
-- `CLINE_ACTIVE` — non-empty when the shell is running under Caret
+- `CLINE_ACTIVE` — non-empty when the shell is running under Careti
 
-You can detect this variable in your shell startup file and adjust environment variables or aliases only for Caret-run sessions. This keeps your normal interactive terminals unchanged.
+You can detect this variable in your shell startup file and adjust environment variables or aliases only for Careti-run sessions. This keeps your normal interactive terminals unchanged.
 
 ## Quick setup (Zsh/Bash)
 
 Add the following to your `~/.zshrc`, `~/.bashrc`, or `~/.bash_profile`:
 
 ```bash
-# Disable pagers when the terminal is launched by Caret
+# Disable pagers when the terminal is launched by Careti
 if [[ -n "$CLINE_ACTIVE" ]]; then
   export PAGER=cat
   export GIT_PAGER=cat
@@ -38,7 +38,7 @@ This configuration only applies when `CLINE_ACTIVE` is set, so your normal termi
 
 ## Verify
 
-- Open a task in Caret that runs terminal commands and check:
+- Open a task in Careti that runs terminal commands and check:
   - `echo "$CLINE_ACTIVE"` prints a non-empty value
   - `git log` or other long outputs should stream without pausing
 - If changes don't take effect:
@@ -58,7 +58,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-- You can also override paging via shell aliases scoped to Caret sessions using options rather than env vars:
+- You can also override paging via shell aliases scoped to Careti sessions using options rather than env vars:
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then
@@ -74,6 +74,6 @@ fi
 - If you prefer environment variables, many CLIs also respect a generic or tool-specific pager variable:
   - Git: `GIT_PAGER=cat`
   - Systemd: `SYSTEMD_PAGER=cat`
-  - Man pages: `MANPAGER=cat` (not typically needed for Caret-driven commands)
+  - Man pages: `MANPAGER=cat` (not typically needed for Careti-driven commands)
 
 - Aliases affect the current interactive shell, while environment variables propagate to child processes. Choose the approach that best fits your workflow.

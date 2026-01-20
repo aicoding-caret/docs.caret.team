@@ -3,7 +3,7 @@ title: "Commande Deep Planning"
 sidebarTitle: "/deep-planning"
 ---
 
-`/deep-planning` transforme Caret en un architecte méticuleux qui examine votre codebase, pose des questions de clarification et crée un plan d'implémentation complet avant d'écrire une seule ligne de code.
+`/deep-planning` transforme Careti en un architecte méticuleux qui examine votre codebase, pose des questions de clarification et crée un plan d'implémentation complet avant d'écrire une seule ligne de code.
 
 <Frame>
 	<img
@@ -12,15 +12,15 @@ sidebarTitle: "/deep-planning"
 	/>
 </Frame>
 
-Lorsque vous utilisez `/deep-planning`, Caret suit un processus en quatre étapes qui reflète la manière dont les développeurs expérimentés abordent les fonctionnalités complexes : investigation approfondie, discussion et clarification des exigences, planification détaillée et création de tâches structurées avec suivi des progrès.
+Lorsque vous utilisez `/deep-planning`, Careti suit un processus en quatre étapes qui reflète la manière dont les développeurs expérimentés abordent les fonctionnalités complexes : investigation approfondie, discussion et clarification des exigences, planification détaillée et création de tâches structurées avec suivi des progrès.
 
 ## Le processus en quatre étapes
 
 ### Étape 1 : Investigation silencieuse
 
-Caret devient un détective, explorant silencieusement votre codebase pour comprendre sa structure, ses modèles et ses contraintes. Il examine les fichiers sources, analyse les modèles d'importation, découvre les hiérarchies de classes et identifie les marqueurs de dette technique. Pas de commentaires, pas de narration, juste une recherche ciblée.
+Careti devient un détective, explorant silencieusement votre codebase pour comprendre sa structure, ses modèles et ses contraintes. Il examine les fichiers sources, analyse les modèles d'importation, découvre les hiérarchies de classes et identifie les marqueurs de dette technique. Pas de commentaires, pas de narration, juste une recherche ciblée.
 
-Pendant cette phase, Caret exécute des commandes telles que :
+Pendant cette phase, Careti exécute des commandes telles que :
 - Trouver toutes les définitions de classes et de fonctions dans votre codebase
 - Analyser les modèles d'importation pour comprendre les dépendances
 - Découvrir la structure du projet et l'organisation des fichiers
@@ -28,7 +28,7 @@ Pendant cette phase, Caret exécute des commandes telles que :
 
 ### Étape 2 : Discussion et questions
 
-Une fois que Caret comprend votre codebase, il pose des questions ciblées qui façonneront l'implémentation. Ce ne sont pas des questions génériques, elles sont spécifiques à votre projet et à la fonctionnalité que vous créez.
+Une fois que Careti comprend votre codebase, il pose des questions ciblées qui façonneront l'implémentation. Ce ne sont pas des questions génériques, elles sont spécifiques à votre projet et à la fonctionnalité que vous créez.
 
 Les questions peuvent porter sur :
 - Clarifier les exigences ambiguës
@@ -38,7 +38,7 @@ Les questions peuvent porter sur :
 
 ### Étape 3 : Document de plan d'implémentation
 
-Caret crée un document markdown structuré (`implementation_plan.md`) qui sert de plan d'implémentation. Ce n'est pas un vague aperçu, c'est une spécification détaillée avec des chemins de fichiers exacts, des signatures de fonctions et un ordre d'implémentation.
+Careti crée un document markdown structuré (`implementation_plan.md`) qui sert de plan d'implémentation. Ce n'est pas un vague aperçu, c'est une spécification détaillée avec des chemins de fichiers exacts, des signatures de fonctions et un ordre d'implémentation.
 
 Le plan comprend huit sections complètes :
 - **Vue d'ensemble** : L'objectif et l'approche de haut niveau
@@ -52,7 +52,7 @@ Le plan comprend huit sections complètes :
 
 ### Étape 4 : Création de tâches d'implémentation
 
-Caret crée une nouvelle tâche qui fait référence au document de plan et inclut des étapes d'implémentation suivables. La tâche est livrée avec des commandes spécifiques pour lire chaque section du plan, garantissant que l'agent d'implémentation (que ce soit vous ou Caret en Act Mode) peut naviguer efficacement dans le plan.
+Careti crée une nouvelle tâche qui fait référence au document de plan et inclut des étapes d'implémentation suivables. La tâche est livrée avec des commandes spécifiques pour lire chaque section du plan, garantissant que l'agent d'implémentation (que ce soit vous ou Careti en Act Mode) peut naviguer efficacement dans le plan.
 
 <Tip>
   Deep Planning fonctionne à merveille avec [Focus Chain](/french/features/focus-chain). Les étapes d'implémentation deviennent automatiquement une liste de tâches avec suivi des progrès en temps réel, ce qui permet de garder les projets complexes organisés et sur la bonne voie.
@@ -66,7 +66,7 @@ Démarrez une session de deep planning en tapant `/deep-planning` suivi de la de
 /deep-planning Add user authentication with JWT tokens and role-based access control
 ```
 
-Caret commencera immédiatement son investigation. Vous le verrez lire des fichiers et exécuter des commandes pour comprendre votre codebase. Une fois qu'il aura recueilli suffisamment de contexte, il entamera une discussion avec vous avant de créer le plan.
+Careti commencera immédiatement son investigation. Vous le verrez lire des fichiers et exécuter des commandes pour comprendre votre codebase. Une fois qu'il aura recueilli suffisamment de contexte, il entamera une discussion avec vous avant de créer le plan.
 
 ## Exemple de flux de travail
 
@@ -77,20 +77,20 @@ Voici comment j'utilise `/deep-planning` pour une fonctionnalité réelle :
     Je tape `/deep-planning implement a caching layer for API responses`
   </Step>
   <Step title="Investigation silencieuse">
-    Caret explore ma codebase, en examinant :
+    Careti explore ma codebase, en examinant :
     - La structure et les endpoints de l'API actuelle
     - Les modèles de flux de données existants
     - Les requêtes de base de données et les goulots d'étranglement des performances
     - La configuration et la configuration de l'environnement
   </Step>
   <Step title="Discussion ciblée">
-    Caret me demande :
+    Careti me demande :
     - "Devrions-nous utiliser Redis ou la mise en cache en mémoire ?"
     - "Quelle est la tolérance acceptable de la mise en cache des données utilisateur ?"
     - "Avez-vous besoin de webhooks d'invalidation de cache ?"
   </Step>
   <Step title="Création de plan">
-    Caret génère `implementation_plan.md` avec :
+    Careti génère `implementation_plan.md` avec :
     - Les spécifications de la classe de service de cache
     - La configuration de la connexion Redis
     - Les endpoints d'API modifiés avec la logique de mise en cache
@@ -98,7 +98,7 @@ Voici comment j'utilise `/deep-planning` pour une fonctionnalité réelle :
     - Les configurations TTL pour différents types de données
   </Step>
   <Step title="Génération de tâches">
-    Caret crée une nouvelle tâche avec :
+    Careti crée une nouvelle tâche avec :
     - Une référence au plan d'implémentation
     - Des commandes pour lire des sections spécifiques
     - Des éléments de tâches suivables pour chaque étape d'implémentation
@@ -129,15 +129,15 @@ Utilisez `/deep-planning` pour :
 
 ### Tirer le meilleur parti de l'investigation
 
-Laissez Caret terminer son investigation de manière approfondie. La qualité du plan est directement corrélée à la qualité de sa compréhension de votre codebase. Si vous avez des domaines spécifiques qu'il devrait examiner, mentionnez-les dans votre demande initiale.
+Laissez Careti terminer son investigation de manière approfondie. La qualité du plan est directement corrélée à la qualité de sa compréhension de votre codebase. Si vous avez des domaines spécifiques qu'il devrait examiner, mentionnez-les dans votre demande initiale.
 
 ### Examen du plan
 
-Examinez toujours `implementation_plan.md` avant de commencer l'implémentation. Le plan est complet mais pas immuable : vous pouvez le modifier directement si nécessaire. Considérez-le comme un document collaboratif entre vous et Caret.
+Examinez toujours `implementation_plan.md` avant de commencer l'implémentation. Le plan est complet mais pas immuable : vous pouvez le modifier directement si nécessaire. Considérez-le comme un document collaboratif entre vous et Careti.
 
 ### Suivi des progrès
 
-Avec Focus Chain activé, votre progression d'implémentation s'affiche dans l'en-tête de la tâche. Chaque étape terminée est cochée automatiquement au fur et à mesure que Caret travaille sur le plan, ce qui vous donne une visibilité en temps réel sur les implémentations complexes.
+Avec Focus Chain activé, votre progression d'implémentation s'affiche dans l'en-tête de la tâche. Chaque étape terminée est cochée automatiquement au fur et à mesure que Careti travaille sur le plan, ce qui vous donne une visibilité en temps réel sur les implémentations complexes.
 
 ## Inspiration
 
@@ -147,7 +147,7 @@ J'utilise `/deep-planning` chaque fois que je suis sur le point de créer quelqu
 
 - **Ajout de fonctionnalités en temps réel** : Le plan couvrait l'intégration WebSocket, la gestion des événements, la synchronisation de l'état et les mécanismes de secours en cas de déconnexion.
 
-- **Refactorisation du schéma de base de données** : Caret a identifié toutes les requêtes affectées, créé des scripts de migration et planifié le déploiement afin de minimiser les temps d'arrêt.
+- **Refactorisation du schéma de base de données** : Careti a identifié toutes les requêtes affectées, créé des scripts de migration et planifié le déploiement afin de minimiser les temps d'arrêt.
 
 - **Implémentation du versionnage de l'API** : Le plan détaillait les modifications de routes, les couches de compatibilité descendante, les avis de dépréciation et les chemins de migration des clients.
 

@@ -2,12 +2,12 @@
 ---
 title: "Mentions du Terminal"
 sidebarTitle: "Mentions de Terminal"
-description: "Mentionnez votre sortie de terminal directement dans vos conversations avec Caret."
+description: "Mentionnez votre sortie de terminal directement dans vos conversations avec Careti."
 ---
 
-La mention de terminal vous permet d'intégrer directement la sortie de votre terminal dans votre conversation avec Caret. Tapez simplement `@terminal` et Caret peut voir la sortie récente de votre terminal.
+La mention de terminal vous permet d'intégrer directement la sortie de votre terminal dans votre conversation avec Careti. Tapez simplement `@terminal` et Careti peut voir la sortie récente de votre terminal.
 
-Lorsque vous tapez `@` dans le chat, sélectionnez "Terminal" dans le menu ou tapez simplement `@terminal` directement. Caret verra immédiatement la sortie récente de votre terminal actif, y compris les messages d'erreur, les journaux de construction ou les résultats de commandes.
+Lorsque vous tapez `@` dans le chat, sélectionnez "Terminal" dans le menu ou tapez simplement `@terminal` directement. Careti verra immédiatement la sortie récente de votre terminal actif, y compris les messages d'erreur, les journaux de construction ou les résultats de commandes.
 
 J'utilise la mention de terminal tout le temps lorsque je suis confronté à des erreurs de construction, des échecs de tests ou des sorties de débogage. Au lieu d'essayer de copier et coller la sortie du terminal (ce qui perd souvent le formatage), je demande simplement :
 
@@ -17,7 +17,7 @@ Je reçois cette erreur lors de l'exécution de mes tests : @terminal
 Qu'est-ce qui cause cela et comment puis-je le résoudre ?
 ```
 
-Cela donne à Caret la sortie complète du terminal avec tout son formatage intact. Caret peut ensuite analyser les messages d'erreur, les stack traces et le contexte environnant pour fournir une aide plus précise.
+Cela donne à Careti la sortie complète du terminal avec tout son formatage intact. Careti peut ensuite analyser les messages d'erreur, les stack traces et le contexte environnant pour fournir une aide plus précise.
 
 La mention de terminal est particulièrement puissante lorsqu'elle est combinée avec les mentions de fichiers. Lorsque je débogue un appel d' API ayant échoué, je référence les deux :
 
@@ -30,15 +30,15 @@ Et l'implémentation du endpoint : @/src/server/routes/users.js
 Qu'est-ce que je fais de mal ?
 ```
 
-Cette approche donne à Caret tout ce dont il a besoin - la sortie d'erreur exacte, le code client et l'implémentation du serveur - le tout sans que j'aie à copier quoi que ce soit manuellement.
+Cette approche donne à Careti tout ce dont il a besoin - la sortie d'erreur exacte, le code client et l'implémentation du serveur - le tout sans que j'aie à copier quoi que ce soit manuellement.
 
-La prochaine fois que vous rencontrez des problèmes avec la sortie de commandes ou des erreurs de construction, essayez d'utiliser `@terminal` au lieu de copier la sortie. Vous obtiendrez une aide plus précise, car Caret peut voir le contexte complet du terminal avec un formatage approprié.
+La prochaine fois que vous rencontrez des problèmes avec la sortie de commandes ou des erreurs de construction, essayez d'utiliser `@terminal` au lieu de copier la sortie. Vous obtiendrez une aide plus précise, car Careti peut voir le contexte complet du terminal avec un formatage approprié.
 
 ## Comment cela fonctionne en coulisses
 
 Lorsque vous utilisez la mention de terminal dans votre message, voici ce qui se passe en arrière-plan :
 
-1. Lorsque vous envoyez votre message, Caret détecte le modèle `@terminal` dans votre texte
+1. Lorsque vous envoyez votre message, Careti détecte le modèle `@terminal` dans votre texte
 2. L'extension appelle `getLatestTerminalOutput()` qui accède à l' API terminal de VS Code
 3. Il capture le buffer de sortie récent de votre terminal actif
 4. La sortie du terminal est ajoutée à votre message dans un format structuré :
@@ -68,8 +68,8 @@ Si vous rencontrez des problèmes avec les mentions de terminal ou l'intégratio
 Les problèmes courants incluent :
 
 -   Les mentions de terminal ne capturent pas la sortie
--   Messages "Shell Integration Unavailable" dans le chat Caret
--   Commandes s'exécutant mais sortie non visible par Caret
+-   Messages "Shell Integration Unavailable" dans le chat Careti
+-   Commandes s'exécutant mais sortie non visible par Careti
 -   Intégration du terminal fonctionnant de manière incohérente
 
 Le guide de dépannage fournit des solutions spécifiques à la plateforme et des étapes de configuration détaillées pour résoudre ces problèmes.

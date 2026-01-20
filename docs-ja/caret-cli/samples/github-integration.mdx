@@ -1,14 +1,14 @@
 ---
 title: "GitHub Actions 連携"
-description: "GitHub Actions で Caret CLI を使い、@caret メンションのイシューに自動応答"
+description: "GitHub Actions で Careti CLI を使い、@caret メンションのイシューに自動応答"
 ---
 
 # GitHub 連携サンプル
 
-AI を使って GitHub イシュー解析を自動化します。コメントで `@caret` をメンションすると、Caret がファイルを読み、コードを分析し、実用的なインサイトを返します。すべて GitHub Actions 上で自動実行されます。
+AI を使って GitHub イシュー解析を自動化します。コメントで `@caret` をメンションすると、Careti がファイルを読み、コードを分析し、実用的なインサイトを返します。すべて GitHub Actions 上で自動実行されます。
 
 <Note>
-**Caret CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了していることを前提にしています。最初は簡単な [GitHub RCA サンプル](/ja/caret-cli/samples/github-issue-rca) から始めるのがおすすめです。
+**Careti CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了していることを前提にしています。最初は簡単な [GitHub RCA サンプル](/ja/caret-cli/samples/github-issue-rca) から始めるのがおすすめです。
 </Note>
 
 ## ワークフロー
@@ -22,7 +22,7 @@ AI を使って GitHub イシュー解析を自動化します。コメントで
 分析結果は新しいコメントとして投稿されます:
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
 </Frame>
 
 ファイル探索から結果投稿まで、すべて GitHub Actions で自律的に実行されます。
@@ -33,7 +33,7 @@ AI を使って GitHub イシュー解析を自動化します。コメントで
 
 以下が必要です:
 
-- **Caret CLI の基礎** - [インストールガイド](/ja/caret-cli/installation) を完了
+- **Careti CLI の基礎** - [インストールガイド](/ja/caret-cli/installation) を完了
 - **GitHub リポジトリ** - Actions とシークレットを設定する管理権限
 - **GitHub Actions の基本** - ワークフロー/CI の理解
 - **API プロバイダーアカウント** - OpenRouter、Anthropic などの API キー
@@ -54,7 +54,7 @@ curl -o .github/workflows/caret-responder.yml https://raw.githubusercontent.com/
 
 <Accordion title="caret-responder.yml 全文を見る">
 ```yaml
-name: Caret Issue Assistant
+name: Careti Issue Assistant
 
 on:
   issue_comment:
@@ -85,19 +85,19 @@ jobs:
         if: steps.detect.outputs.hit == 'true'
         uses: actions/checkout@v4
 
-      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      # Node v20 is needed for Careti CLI on GitHub Actions Linux
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Setup Caret CLI
+      - name: Setup Careti CLI
         if: steps.detect.outputs.hit == 'true'
         run: |
-          # Install the Caret CLI
+          # Install the Careti CLI
           sudo npm install -g caret
 
-      - name: Create Caret Instance
+      - name: Create Careti Instance
         if: steps.detect.outputs.hit == 'true'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -176,7 +176,7 @@ export GITREPO="myproject"
 これにより、ステップ 3 でコミットしたスクリプトを正しい場所から取得できます。
 </Warning>
 
-このワークフローは新規/更新されたイシューをチェックし、`@caret` メンションを検出したら Caret CLI インスタンスを起動して解析し、コメントで返信します。
+このワークフローは新規/更新されたイシューをチェックし、`@caret` メンションを検出したら Careti CLI インスタンスを起動して解析し、コメントで返信します。
 
 ### 2. API キーの設定
 
@@ -204,7 +204,7 @@ AI プロバイダーの API キーをリポジトリシークレットとして
      <img src="https://storage.googleapis.com/cline_public_images/ss03-ready.png" alt="API key configured" width="600" />
    </Frame>
 
-これで GitHub Action で Caret が使用する認証情報を準備できます。
+これで GitHub Action で Careti が使用する認証情報を準備できます。
 
 ### 3. 解析スクリプトを追加
 
@@ -231,7 +231,7 @@ nano git-scripts/analyze-issue.sh  # または vim, code など
 <Accordion title="analyze-issue.sh 全文を見る">
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -248,7 +248,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -261,14 +261,14 @@ chmod +x git-scripts/analyze-issue.sh
 ```
 </Accordion>
 
-この解析スクリプトは、Caret に GitHub イシューを解析させ、返答に必要な要約出力のみを抽出します。
+この解析スクリプトは、Careti に GitHub イシューを解析させ、返答に必要な要約出力のみを抽出します。
 
 ### 4. コミットとプッシュ
 
 ```bash
 git add .github/workflows/caret-responder.yml
 git add git-scripts/analyze-issue.sh
-git commit -m "Add Caret issue assistant workflow"
+git commit -m "Add Careti issue assistant workflow"
 git push
 ```
 
@@ -286,7 +286,7 @@ git push
 
 GitHub Actions は次を実行します:
 1. `@caret` メンション検出
-2. Caret CLI インスタンス起動
+2. Careti CLI インスタンス起動
 3. 解析スクリプトをダウンロード
 4. act モード + yolo で解析
 5. 解析結果をコメントとして投稿
@@ -299,7 +299,7 @@ GitHub Actions は次を実行します:
 
 1. イシューコメント(作成/編集)で **トリガー**
 2. `@caret` メンションを **検出** (大文字小文字無視)
-3. npm で Caret CLI を **インストール**
+3. npm で Careti CLI を **インストール**
 4. `caret instance new` で **インスタンス作成**
 5. `caret config set open-router-api-key=... --address ...` で **認証設定**
 6. `github-issue-rca` サンプルの `analyze-issue.sh` を **ダウンロード**

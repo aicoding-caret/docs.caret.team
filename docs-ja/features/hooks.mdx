@@ -1,18 +1,18 @@
 ---
 title: "Hooks"
 sidebarTitle: "Hooks"
-description: "Caret ワークフローにカスタムロジックを注入し、操作検証やツール利用の監視、AI の判断を制御します。"
+description: "Careti ワークフローにカスタムロジックを注入し、操作検証やツール利用の監視、AI の判断を制御します。"
 ---
 
 <Note>
-キャレット(Caret)基準の文書です。Caret v3.38.1 マージ版に準拠し、許可スコープや認証/ルーティング、ロギング/テレメトリ差異があれば `<Note>` で示します。
+キャレット(Careti)基準の文書です。Careti v3.38.1 マージ版に準拠し、許可スコープや認証/ルーティング、ロギング/テレメトリ差異があれば `<Note>` で示します。
 </Note>
 
 <Note>
-Caret のアカウント/組織フックは `caret-docs/features/f04-caret-account.md` に基づき、アカウント情報がフックデータに含まれる場合があります。ログ/テレメトリは `caret-src/utils/` を参照します。
+Careti のアカウント/組織フックは `caret-docs/features/f04-caret-account.md` に基づき、アカウント情報がフックデータに含まれる場合があります。ログ/テレメトリは `caret-src/utils/` を参照します。
 </Note>
 
-Hooks は Caret ワークフローの特定タイミングでカスタムロジックを注入し、操作の検証、ツール使用の監視、AI の意思決定の制御を可能にします。
+Hooks は Careti ワークフローの特定タイミングでカスタムロジックを注入し、操作の検証、ツール使用の監視、AI の意思決定の制御を可能にします。
 
 Hooks はイベント発生時に自動で実行されます。詳細情報を受け取り、問題のある操作を事前にブロックしたり、今後の判断に役立つコンテキストを注入できます。
 
@@ -34,14 +34,14 @@ Hooks は現在 macOS / Linux のみ対応です。Windows は未対応です。
 	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
 </Frame>
 
-Caret で Hooks を有効にする手順:
+Careti で Hooks を有効にする手順:
 
 <Steps>
 <Step title="設定で Hooks を有効化">
-Caret 設定で **"Enable Hooks"** を有効にします。
+Careti 設定で **"Enable Hooks"** を有効にします。
 
 手順:
-1. Caret を開く
+1. Careti を開く
 2. 右上の "Settings" をクリック
 3. 左側の "Feature" セクションをクリック
 4. "Enable Hooks" をチェック
@@ -91,7 +91,7 @@ chmod +x .agents/hooks/TaskStart
 </Step>
 
 <Step title="Hook のテスト">
-Caret でタスクを開始し、Hook が実行されるか確認します。
+Careti でタスクを開始し、Hook が実行されるか確認します。
 </Step>
 </Steps>
 
@@ -119,11 +119,11 @@ Caret でタスクを開始し、Hook が実行されるか確認します。
   </Card>
 </CardGroup>
 
-Hooks は Caret のワークフローと外部エコシステムをつなぐ接着剤です。
+Hooks は Careti のワークフローと外部エコシステムをつなぐ接着剤です。
 
 ## Hook Types
 
-Caret はさまざまなフックタイプを提供し、AI ワークフローの異なる段階にアクセスできます。
+Careti はさまざまなフックタイプを提供し、AI ワークフローの異なる段階にアクセスできます。
 
 <Note>
 以下の Hook 名は **正確なファイル名** です。例: TaskStart を使う場合は `TaskStart` というファイル名(拡張子なし)で作成します。
@@ -333,7 +333,7 @@ Hooks は stdin で JSON を受け取り、stdout に JSON を返します。
 }
 ```
 
-stdout にログを出しても構いませんが、**最後は必ず JSON** である必要があります。Caret は最後の JSON オブジェクトのみを読み取ります。
+stdout にログを出しても構いませんが、**最後は必ず JSON** である必要があります。Careti は最後の JSON オブジェクトのみを読み取ります。
 
 例:
 ```bash
@@ -363,7 +363,7 @@ echo '{"cancel": false}'
 - "Enable Hooks" が有効か確認
 - Hook ファイルが実行可能(`chmod +x hookname`)か確認
 - 文法エラーがないか確認
-- VS Code の Output(Caret) を確認
+- VS Code の Output(Careti) を確認
 
 ### Hook がタイムアウトする
 - スクリプトの複雑度を下げる
@@ -399,6 +399,6 @@ Hooks は VS Code と同じ権限で実行されます。信頼できないソ�
 
 ## 関連機能
 
-- [Caret Rules](/ja/features/caret-rules)
+- [Careti Rules](/ja/features/caret-rules)
 - [Checkpoints](/ja/features/checkpoints)
 - [Auto-Approve](/ja/features/auto-approve)

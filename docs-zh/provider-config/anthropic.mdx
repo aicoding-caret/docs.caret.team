@@ -1,6 +1,6 @@
 ---
 title: "Anthropic"
-description: "学习如何在 Caret 中配置和使用 Anthropic Claude 模型。涵盖 API 密钥设置、模型选择以及提示缓存等高级功能。"
+description: "学习如何在 Careti 中配置和使用 Anthropic Claude 模型。涵盖 API 密钥设置、模型选择以及提示缓存等高级功能。"
 ---
 
 **网站：** [https://www.anthropic.com/](https://www.anthropic.com/)
@@ -9,12 +9,12 @@ description: "学习如何在 Caret 中配置和使用 Anthropic Claude 模型�
 
 1.  **注册/登录：** 前往 [Anthropic Console](https://console.anthropic.com/)。创建账户或登录。
 2.  **导航到 API 密钥：** 前往 [API keys](https://console.anthropic.com/settings/keys) 部分。
-3.  **创建密钥：** 点击"Create Key"。为您的密钥起一个描述性名称（例如，"Caret"）。
+3.  **创建密钥：** 点击"Create Key"。为您的密钥起一个描述性名称（例如，"Careti"）。
 4.  **复制密钥：** **重要：** _立即_ 复制 API 密钥。您将无法再次看到它。安全存储。
 
 ### 支持的模型
 
-Caret 支持以下 Anthropic Claude 模型：
+Careti 支持以下 Anthropic Claude 模型：
 
 -   `claude-opus-4-1-20250805`
 -   `claude-opus-4-20250514`
@@ -30,9 +30,9 @@ Caret 支持以下 Anthropic Claude 模型：
 
 有关每个模型功能的更多详细信息，请参阅 [Anthropic 模型文档](https://docs.anthropic.com/en/docs/about-claude/models)。
 
-### 在 Caret 中配置
+### 在 Careti 中配置
 
-1.  **打开 Caret 设置：** 点击 Caret 面板中的设置图标（⚙️）。
+1.  **打开 Careti 设置：** 点击 Careti 面板中的设置图标（⚙️）。
 2.  **选择提供商：** 从"API 提供商"下拉菜单中选择"Anthropic"。
 3.  **输入 API 密钥：** 将您的 Anthropic API 密钥粘贴到"Anthropic API Key"字段中。
 4.  **选择模型：** 从"模型"下拉菜单中选择所需的 Claude 模型。
@@ -42,12 +42,12 @@ Caret 支持以下 Anthropic Claude 模型：
 
 Anthropic 模型提供"扩展思考"功能，旨在为复杂任务提供增强的推理能力。此功能允许模型在提供最终答案之前输出其逐步思考过程，提供透明度并对具有挑战性的提示进行更彻底的分析。
 
-在 Caret 中使用扩展思考时，模型会生成详细描述其内部推理的 `thinking` 内容块。这些洞察随后被整合到其最终响应中。
-Caret 用户可以通过在从任何提供商选择 Claude 模型后勾选模型选择菜单下方的 `启用扩展思考` 复选框来利用此功能。
+在 Careti 中使用扩展思考时，模型会生成详细描述其内部推理的 `thinking` 内容块。这些洞察随后被整合到其最终响应中。
+Careti 用户可以通过在从任何提供商选择 Claude 模型后勾选模型选择菜单下方的 `启用扩展思考` 复选框来利用此功能。
 
 **扩展思考的关键方面：**
 
--   **支持的模型：** 此功能适用于特定模型，包括 Claude Opus 4、Claude Sonnet 4 和 Claude Sonnet 3.7 的变体。上面"支持的模型"部分中列出的带有 `:thinking` 后缀的特定模型在 Caret 中已预配置以利用此功能。
+-   **支持的模型：** 此功能适用于特定模型，包括 Claude Opus 4、Claude Sonnet 4 和 Claude Sonnet 3.7 的变体。上面"支持的模型"部分中列出的带有 `:thinking` 后缀的特定模型在 Careti 中已预配置以利用此功能。
 -   **总结思考（Claude 4）：** 对于 Claude 4 模型，API 返回完整思考过程的摘要，以平衡洞察与效率并防止滥用。您需要为完整的思考令牌付费，而不仅仅是摘要。
 -   **流式传输：** 包括 `thinking` 块在内的扩展思考响应可以进行流式传输。
 -   **工具使用和提示缓存：** 扩展思考与工具使用（需要将思考块传回）和提示缓存（围绕缓存失效和上下文的特定行为）交互。

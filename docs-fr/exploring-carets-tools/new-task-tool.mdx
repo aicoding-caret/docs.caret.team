@@ -1,14 +1,14 @@
 ```
 ---
 title: "Nouvel Outil de Tâche"
-description: "Comprendre et utiliser l'outil `new_task` de Caret pour gérer la continuité du flux de travail et la préservation du contexte."
+description: "Comprendre et utiliser l'outil `new_task` de Careti pour gérer la continuité du flux de travail et la préservation du contexte."
 ---
 
 ### L'outil `new_task` et les stratégies de gestion du contexte
 
 #### Aperçu
 
-Caret inclut un puissant outil interne, `new_task`, conçu pour aider à gérer la continuité du flux de travail et la préservation du contexte, en particulier lors de tâches complexes ou de longue durée. Cet outil, combiné à la conscience qu'a Caret de sa propre utilisation de la fenêtre de contexte et à la flexibilité de `.agents/context`, permet des stratégies sophistiquées pour décomposer le travail et assurer des transitions fluides entre les sessions de tâches.
+Careti inclut un puissant outil interne, `new_task`, conçu pour aider à gérer la continuité du flux de travail et la préservation du contexte, en particulier lors de tâches complexes ou de longue durée. Cet outil, combiné à la conscience qu'a Careti de sa propre utilisation de la fenêtre de contexte et à la flexibilité de `.agents/context`, permet des stratégies sophistiquées pour décomposer le travail et assurer des transitions fluides entre les sessions de tâches.
 
 Comprendre les capacités de base et comment elles interagissent avec les règles personnalisées est essentiel pour tirer parti de cette fonctionnalité efficacement.
 
@@ -17,19 +17,19 @@ Comprendre les capacités de base et comment elles interagissent avec les règle
 Deux capacités fondamentales permettent une gestion avancée du contexte :
 
 1. **L'outil `new_task` :**
-    - **Fonction :** Permet à Caret, avec l'approbation de l'utilisateur, de mettre fin à la session de tâche en cours et d'en démarrer immédiatement une nouvelle.
-    - **Préchargement du contexte :** Il est essentiel que Caret puisse **précharger** cette nouvelle session de tâche avec un contexte spécifique fourni dans le bloc `<context>` de l'outil. Ce contexte peut être tout ce que Caret ou un fichier `.agents/context` définit – résumés, extraits de code, prochaines étapes, état du projet, etc.
+    - **Fonction :** Permet à Careti, avec l'approbation de l'utilisateur, de mettre fin à la session de tâche en cours et d'en démarrer immédiatement une nouvelle.
+    - **Préchargement du contexte :** Il est essentiel que Careti puisse **précharger** cette nouvelle session de tâche avec un contexte spécifique fourni dans le bloc `<context>` de l'outil. Ce contexte peut être tout ce que Careti ou un fichier `.agents/context` définit – résumés, extraits de code, prochaines étapes, état du projet, etc.
 2. **Conscience de la fenêtre de contexte :**
-    - **Suivi :** Caret suit en interne le pourcentage de sa fenêtre de contexte disponible actuellement utilisée pendant une tâche.
-    - **Visibilité :** Cette information est visible dans les `environment_details` fournis à Caret dans son prompt.
+    - **Suivi :** Careti suit en interne le pourcentage de sa fenêtre de contexte disponible actuellement utilisée pendant une tâche.
+    - **Visibilité :** Cette information est visible dans les `environment_details` fournis à Careti dans son prompt.
 
 #### Utilisation de la commande Slash `/newtask`
 
-Comme alternative rapide à la suggestion de l'outil `newtask` par Caret ou à la définition de règles complexes, vous pouvez lancer directement le processus à l'aide d'une commande Slash.
+Comme alternative rapide à la suggestion de l'outil `newtask` par Careti ou à la définition de règles complexes, vous pouvez lancer directement le processus à l'aide d'une commande Slash.
 
 -   **Comment :** Tapez simplement `/newtask` dans le champ de saisie du chat.
--   **Action :** Caret proposera de créer une nouvelle tâche, en suggérant généralement un contexte basé sur la session en cours (similaire à son comportement par défaut lors de l'utilisation de l'outil). Vous obtiendrez toujours le prompt `ask_followup_question` pour confirmer et potentiellement modifier le contexte avant la création de la nouvelle tâche.
--   **Avantage :** Fournit un moyen rapide, initié par l'utilisateur, de tirer parti de la fonctionnalité `new_task` pour explorer des ramifications ou gérer de longues sessions sans attendre que Caret le suggère.
+-   **Action :** Careti proposera de créer une nouvelle tâche, en suggérant généralement un contexte basé sur la session en cours (similaire à son comportement par défaut lors de l'utilisation de l'outil). Vous obtiendrez toujours le prompt `ask_followup_question` pour confirmer et potentiellement modifier le contexte avant la création de la nouvelle tâche.
+-   **Avantage :** Fournit un moyen rapide, initié par l'utilisateur, de tirer parti de la fonctionnalité `new_task` pour explorer des ramifications ou gérer de longues sessions sans attendre que Careti le suggère.
 
 <Note>
 	Pour plus de détails sur l'utilisation de la commande slash `/newtask`, consultez la documentation [Commande New Task](/french/features/slash-commands/new-task).
@@ -39,21 +39,21 @@ Comme alternative rapide à la suggestion de l'outil `newtask` par Caret ou à l
 
 Par défaut, sans `.agents/context` spécifique dictant son comportement :
 
--   **Disponibilité de l'outil :** L'outil `new_task` existe et Caret _peut_ choisir de l'utiliser.
--   **Conscience du contexte :** Caret _est_ conscient de son pourcentage d'utilisation du contexte.
--   **Pas de déclencheur automatique :** Caret **n'initiera pas** automatiquement un transfert de tâche _uniquement_ en fonction du fait que l'utilisation du contexte atteigne un pourcentage spécifique (comme 50 %). La décision de suggérer l'utilisation de `new_task` provient du raisonnement du modèle d'IA basé sur la progression globale de la tâche et les instructions du prompt.
--   **Préchargement de contexte de base :** Si `new_task` est utilisé sans règles spécifiques définissant la structure du bloc `<context>`, Caret tentera de précharger les informations pertinentes en fonction de sa compréhension actuelle (par exemple, un résumé de base des progrès et des prochaines étapes), mais cela peut être moins complet qu'une approche axée sur les règles.
+-   **Disponibilité de l'outil :** L'outil `new_task` existe et Careti _peut_ choisir de l'utiliser.
+-   **Conscience du contexte :** Careti _est_ conscient de son pourcentage d'utilisation du contexte.
+-   **Pas de déclencheur automatique :** Careti **n'initiera pas** automatiquement un transfert de tâche _uniquement_ en fonction du fait que l'utilisation du contexte atteigne un pourcentage spécifique (comme 50 %). La décision de suggérer l'utilisation de `new_task` provient du raisonnement du modèle d'IA basé sur la progression globale de la tâche et les instructions du prompt.
+-   **Préchargement de contexte de base :** Si `new_task` est utilisé sans règles spécifiques définissant la structure du bloc `<context>`, Careti tentera de précharger les informations pertinentes en fonction de sa compréhension actuelle (par exemple, un résumé de base des progrès et des prochaines étapes), mais cela peut être moins complet qu'une approche axée sur les règles.
 
 #### La puissance de `.agents/context` : Activation de flux de travail personnalisés
 
-Bien que les capacités de base existent par défaut, la véritable puissance, l'automatisation et la personnalisation émergent lorsque vous combinez `new_task` et la conscience du contexte avec des flux de travail personnalisés définis dans `.agents/context`. Cela vous permet de contrôler précisément _quand_ et _comment_ Caret gère le contexte et la continuité des tâches.
+Bien que les capacités de base existent par défaut, la véritable puissance, l'automatisation et la personnalisation émergent lorsque vous combinez `new_task` et la conscience du contexte avec des flux de travail personnalisés définis dans `.agents/context`. Cela vous permet de contrôler précisément _quand_ et _comment_ Careti gère le contexte et la continuité des tâches.
 
 Principaux avantages de l'utilisation de `.agents/context` avec `new_task` :
 
 -   **Gestion automatisée du contexte :** Définissez des règles pour déclencher automatiquement des transferts à des pourcentages de contexte spécifiques (par exemple, > 50 %, > 70 %) ou des nombres de tokens, garantissant ainsi des performances optimales et empêchant la perte de contexte.
 -   **Optimisation spécifique au modèle :** Adaptez les déclencheurs de transfert en fonction des seuils connus pour différents LLM (par exemple, déclenchez plus tôt pour les modèles connus pour se dégrader au-delà d'un certain nombre de tokens).
--   **Points d'arrêt intelligents :** Demandez à Caret via des règles de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
--   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Caret crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche, en préchargeant le contexte pour la _prochaine_ sous-tâche.
+-   **Points d'arrêt intelligents :** Demandez à Careti via des règles de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
+-   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Careti crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche, en préchargeant le contexte pour la _prochaine_ sous-tâche.
 -   **Emballage de contexte personnalisé :** Exigez la structure et le contenu exacts du bloc `<context>` dans `.agents/context` pour des transferts très détaillés et cohérents (voir l'exemple ci-dessous).
 -   **Persistance de la mémoire améliorée :** Utilisez les blocs de contexte `new_task` comme moyen principal et intégré de conserver les informations entre les sessions, en remplaçant ou en complétant potentiellement les systèmes de mémoire basés sur des fichiers.
 -   **Automatisation du flux de travail :** Définissez des règles pour des scénarios spécifiques, comme le préchargement systématique de certaines instructions de configuration ou du boilerplate de projet lors du démarrage de tâches d'un type particulier.
@@ -62,8 +62,8 @@ Principaux avantages de l'utilisation de `.agents/context` avec `new_task` :
 
 Un flux de travail courant, **piloté par un fichier `.agents/context` spécifique comme dans l'exemple ci-dessous**, implique les étapes suivantes :
 
-1. **Identification du déclencheur (basée sur des règles) :** Caret surveille les points de transfert définis dans les règles (par exemple, utilisation du contexte > 50 %, achèvement de la tâche).
-2. **Confirmation de l'utilisateur :** Caret utilise `ask_followup_question` pour proposer la création d'une nouvelle tâche, en montrant souvent le contexte prévu défini par les règles.
+1. **Identification du déclencheur (basée sur des règles) :** Careti surveille les points de transfert définis dans les règles (par exemple, utilisation du contexte > 50 %, achèvement de la tâche).
+2. **Confirmation de l'utilisateur :** Careti utilise `ask_followup_question` pour proposer la création d'une nouvelle tâche, en montrant souvent le contexte prévu défini par les règles.
 
     ```xml
     <ask_followup_question>
@@ -72,8 +72,8 @@ Un flux de travail courant, **piloté par un fichier `.agents/context` spécifiq
     </ask_followup_question>
     ```
 
-3. **Contrôle de l'utilisateur :** Vous pouvez approuver, refuser ou demander à Caret de modifier le contexte avant la création de la nouvelle tâche.
-4. **Emballage du contexte (outil `new_task`) :** Si approuvé, Caret utilise `new_task`, en emballant le contexte selon la structure exigée par le `.agents/context`.
+3. **Contrôle de l'utilisateur :** Vous pouvez approuver, refuser ou demander à Careti de modifier le contexte avant la création de la nouvelle tâche.
+4. **Emballage du contexte (outil `new_task`) :** Si approuvé, Careti utilise `new_task`, en emballant le contexte selon la structure exigée par le `.agents/context`.
 5. **Création d'une nouvelle tâche :** La tâche en cours se termine et une nouvelle session commence immédiatement, préchargée avec le contexte spécifié.
 
 #### Le bloc de contexte de transfert (structure définie par des règles)
@@ -91,8 +91,8 @@ L'efficacité des transferts axés sur les règles dépend fortement de la faço
 La flexibilité de `new_task` combinée à `.agents/context` ouvre de nombreuses possibilités :
 
 -   **Gestion proactive de la fenêtre de contexte :** Déclenchez automatiquement des transferts à des pourcentages spécifiques (par exemple, 50 %, 70 %) ou des nombres de tokens pour maintenir des performances optimales.
--   **Points d'arrêt intelligents :** Demandez à Caret de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
--   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Caret crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche.
+-   **Points d'arrêt intelligents :** Demandez à Careti de trouver des points d'arrêt logiques (par exemple, après avoir terminé une fonction ou un test) _après_ le dépassement d'un seuil de contexte, garantissant ainsi des transferts plus propres.
+-   **Décomposition structurée des tâches :** Utilisez le mode Plan pour définir des sous-tâches, puis utilisez `.agents/context` pour que Careti crée automatiquement une nouvelle tâche via `new_task` à la fin de chaque sous-tâche.
 -   **Résumés de session automatisés :** Configurez le bloc `<context>` pour qu'il inclue toujours un résumé des principaux points de discussion de la session précédente.
 -   **Préchargement de boilerplate/configuration :** Démarrez de nouvelles tâches liées à des projets spécifiques préchargés avec des instructions de configuration standard ou des modèles de fichiers.
 -   **Prise en charge du système de contexte :** Utilisez les blocs de contexte `new_task` comme méthode de transfert principale entre les sessions, alignée sur `AGENTS.md`/`.agents/context` et `work-logs/`.
@@ -381,7 +381,7 @@ En suivant strictement ces directives, vous assurerez des transitions fluides en
 ## Interaction de l'utilisateur et considérations relatives au flux de travail
 
 -   **Flux linéaire :** Actuellement, l'utilisation de `new_task` crée une séquence linéaire. L'ancienne tâche se termine et la nouvelle commence. L'historique de l'ancienne tâche reste accessible pour revenir en arrière.
--   **Approbation de l'utilisateur :** Vous avez toujours le contrôle, en approuvant le transfert et en ayant la possibilité de modifier le contexte que Caret propose de faire avancer.
+-   **Approbation de l'utilisateur :** Vous avez toujours le contrôle, en approuvant le transfert et en ayant la possibilité de modifier le contexte que Careti propose de faire avancer.
 -   **Flexibilité :** L'outil `new_task` de base est un bloc de construction flexible. Expérimentez avec `.agents/context` pour créer des flux de travail qui conviennent le mieux à vos besoins, que ce soit pour une gestion stricte du contexte, une décomposition des tâches ou d'autres utilisations créatives.
 ```
 ````

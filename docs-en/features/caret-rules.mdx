@@ -1,13 +1,13 @@
-Caret Rules allow you to provide Caret with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+Careti Rules allow you to provide Careti with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
-Caret Rules allow you to provide Caret with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
+Careti Rules allow you to provide Careti with system-level guidance. Think of them as a persistent way to include context and preferences for your projects or globally for every conversation.
 
 <Note>
-캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(AGENTS.md 사용 시 차이, 규칙 저장 위치/스코프, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 <Note>
-캐럿 Agent Standardization: `caret-docs/features/f06-agent-standardization.md` 기준으로 `.agents/context` SoT + `AGENTS.md` 계층 + `/init` 스캐폴드로 표준화합니다. 레거시 규칙 경로는 읽지 않습니다.
+캐러티 Agent Standardization: `caret-docs/features/f06-agent-standardization.md` 기준으로 `.agents/context` SoT + `AGENTS.md` 계층 + `/init` 스캐폴드로 표준화합니다. 레거시 규칙 경로는 읽지 않습니다.
 </Note>
 
 ## Creating a Rule
@@ -29,15 +29,15 @@ The location of your Global Rules directory depends on your operating system:
 
 | Operating System | Default Location | Notes |
 |------------------|------------------|-------|
-| **Windows** | `Documents\Caret\Rules` | Uses system Documents folder |
-| **macOS** | `~/Documents/Caret/Rules` | Uses user Documents folder |
-| **Linux/WSL** | `~/Documents/Caret/Rules` | May fall back to `~/Caret/Rules` on some systems |
+| **Windows** | `Documents\Careti\Rules` | Uses system Documents folder |
+| **macOS** | `~/Documents/Careti/Rules` | Uses user Documents folder |
+| **Linux/WSL** | `~/Documents/Careti/Rules` | May fall back to `~/Careti/Rules` on some systems |
 
-> **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Caret/Rules`, check `~/Caret/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
+> **Note for Linux/WSL users**: If you don't find your global rules in `~/Documents/Careti/Rules`, check `~/Careti/Rules` as the location may vary depending on your system configuration and whether the Documents directory exists.
 
-You can also have Caret create a rule for you by using the [`/newrule` slash command](/en/features/slash-commands/new-rule) in the chat.
+You can also have Careti create a rule for you by using the [`/newrule` slash command](/en/features/slash-commands/new-rule) in the chat.
 
-```markdown Example Caret Rule Structure [expandable]
+```markdown Example Careti Rule Structure [expandable]
 # Project Guidelines
 
 ## Documentation Requirements
@@ -89,12 +89,12 @@ your-project/
 └── ...
 ```
 
-Caret's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+Careti's system prompt, on the other hand, is not user-editable ([here's where you can find it](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). For a broader look at prompt engineering best practices, check out [this resource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
 
 ### AGENTS.md Standard Support
 
-Caret also supports the [AGENTS.md](https://agents.md/) standard as a fallback 
-(in addition to Caret Rules) by automatically detecting `AGENTS.md` files in 
+Careti also supports the [AGENTS.md](https://agents.md/) standard as a fallback 
+(in addition to Careti Rules) by automatically detecting `AGENTS.md` files in 
 your workspace root. This allows you to use the same rules file across different AI 
 coding tools.
 
@@ -105,7 +105,7 @@ your-project/
 └── ...
 ```
 
-### Tips for Writing Effective Caret Rules
+### Tips for Writing Effective Careti Rules
 
 -   Be Clear and Concise: Use simple language and avoid ambiguity.
 -   Focus on Desired Outcomes: Describe the results you want, not the specific steps.
@@ -123,7 +123,7 @@ your-project/
 └── ...
 ```
 
-Caret automatically processes **all Markdown files** inside the `.agents/context/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
+Careti automatically processes **all Markdown files** inside the `.agents/context/` directory, combining them into a unified set of rules. The numeric prefixes (optional) help organize files in a logical sequence.
 
 #### Inactive Rules Library (Optional)
 
@@ -179,11 +179,11 @@ cp rules-bank/frameworks/react.md .agents/context/
 -   Consider git-ignoring the active `.agents/context/` folder while tracking `rules-bank/`
 -   Create team scripts to quickly activate common rule combinations
 
-The folder system transforms your Caret rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
+The folder system transforms your Careti rules from a static document into a dynamic knowledge system that adapts to your team's changing contexts and requirements.
 
 ### Managing Rules with the Toggleable Popover
 
-To make managing both single `.agents/context` files and the folder system even easier, Caret v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
+To make managing both single `.agents/context` files and the folder system even easier, Careti v3.13 introduces a dedicated popover UI directly accessible from the chat interface.
 
 Located conveniently under the chat input field, this popover allows you to:
 
@@ -194,5 +194,5 @@ Located conveniently under the chat input field, this popover allows you to:
 This UI significantly simplifies switching contexts and managing different sets of instructions without needing to manually edit files or configurations during a conversation.
 
 <Frame>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Careti Logo" />
 </Frame>

@@ -2,29 +2,29 @@
 ---
 title: "Multiroot Workspace Unterstützung"
 sidebarTitle: "Multiroot Workspace"
-description: "Caret's Multiroot Feature funktioniert nahtlos mit VSCode's Multi-Root Workspaces, wodurch Sie mehrere Projektordner in einem einzigen Workspace verwalten können."
+description: "Careti's Multiroot Feature funktioniert nahtlos mit VSCode's Multi-Root Workspaces, wodurch Sie mehrere Projektordner in einem einzigen Workspace verwalten können."
 ---
 
-Caret's Multiroot Feature funktioniert nahtlos mit VSCode's multi-root workspaces, letting you manage multiple project folders in a single workspace.
+Careti's Multiroot Feature funktioniert nahtlos mit VSCode's multi-root workspaces, letting you manage multiple project folders in a single workspace.
 
 <Note>
-캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책/제한(멀티루트 지원 범위, 체크포인트/룰 동작 차이)이 있는 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 <Note>
 **Important:** Multi-root workspaces are currently an experimental feature and have the following limitations:
-- **Caret rules** only work in the first workspace folder
+- **Careti rules** only work in the first workspace folder
 - **Checkpoints** are automatically disabled with a warning message
 - Both features are restored when you return to a single-folder workspace
 </Note>
 
 ## Was ist Multi-Root Workspace Unterstützung?
 
-Anstatt auf einen Projektordner beschränkt zu sein, kann Caret Dateien lesen, Code schreiben und Befehle in allen Ordnern Ihres VSCode-Workspaces ausführen. Dies ist hilfreich, wenn Sie mit Monorepos, Microservices arbeiten oder wenn Sie gleichzeitig an verwandten Projekten arbeiten.
+Anstatt auf einen Projektordner beschränkt zu sein, kann Careti Dateien lesen, Code schreiben und Befehle in allen Ordnern Ihres VSCode-Workspaces ausführen. Dies ist hilfreich, wenn Sie mit Monorepos, Microservices arbeiten oder wenn Sie gleichzeitig an verwandten Projekten arbeiten.
 
 ### Wie es funktioniert
 
-Wenn Sie mehrere Workspace-Ordner in VSCode öffnen, führt Caret automatisch Folgendes aus:
+Wenn Sie mehrere Workspace-Ordner in VSCode öffnen, führt Careti automatisch Folgendes aus:
 - Kennzeichnet einen Ordner als **primären Workspace** (in der Regel der erste hinzugefügte Ordner)
 - Verfolgt alle Workspace-Ordner und deren Pfade
 - Löst Dateipfade intelligent über Workspaces hinweg auf
@@ -40,21 +40,21 @@ Wenn Sie mehrere Workspace-Ordner in VSCode öffnen, führt Caret automatisch Fo
    - Ziehen Sie Ordner per Drag & Drop in den Datei-Explorer
    - Wählen Sie mehrere Ordner aus, wenn Sie einen neuen Workspace öffnen
 
-2. **Verwenden Sie Caret** - Caret erkennt automatisch alle Ihre Workspace-Ordner und interagiert bei Bedarf mit ihnen.
+2. **Verwenden Sie Careti** - Careti erkennt automatisch alle Ihre Workspace-Ordner und interagiert bei Bedarf mit ihnen.
 
 Detaillierte Anweisungen zum Einrichten von Multi-Root Workspaces in VS Code finden Sie im [offiziellen Leitfaden von Microsoft](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces).
 
 ### Technisches Verhalten
 
 **Workspace-Erkennung**
-- Caret erkennt alle Workspace-Ordner, wenn eine Aufgabe startet
+- Careti erkennt alle Workspace-Ordner, wenn eine Aufgabe startet
 - Der erste Workspace-Ordner wird standardmäßig zum primären Workspace
 - Jeder Workspace kann sein eigenes VCS (Git, SVN, etc.) haben
 
 **Pfadauflösung**
 - Relative Pfade werden relativ zum primären Workspace aufgelöst
 - Sie können Workspace-Hinweise verwenden, um bestimmte Workspaces anzusprechen: `@workspaceName:path/to/file`
-- Caret versucht intelligent zu bestimmen, zu welchem Workspace eine Datei gehört
+- Careti versucht intelligent zu bestimmen, zu welchem Workspace eine Datei gehört
 
 **Befehlsausführung**
 - Befehle werden im entsprechenden Workspace-Kontext ausgeführt
@@ -87,7 +87,7 @@ Verwenden Sie Workspace-Hinweise, um explizit auf Dateien in bestimmten Workspac
 @backend:server.ts
 ```
 
-Diese Syntax hilft Caret, Mehrdeutigkeiten aufzulösen, wenn mehrere Workspaces ähnlich benannte Dateien enthalten.
+Diese Syntax hilft Careti, Mehrdeutigkeiten aufzulösen, wenn mehrere Workspaces ähnlich benannte Dateien enthalten.
 
 
 ## Häufige Anwendungsfälle
@@ -104,7 +104,7 @@ my-app.code-workspace
 └── shared/       (Common utilities)
 ```
 
-Fragen Sie Caret: *"Update the API endpoint in both web and mobile apps to match the new backend route"*
+Fragen Sie Careti: *"Update the API endpoint in both web and mobile apps to match the new backend route"*
 
 ### Microservices-Architektur
 
@@ -141,14 +141,14 @@ Multiroot Workspaces funktionieren mit [Auto Approve](/german/features/auto-appr
 
 ### Cross-Workspace Operationen
 
-Caret kann Aufgaben erledigen, die sich über mehrere Workspaces erstrecken:
+Careti kann Aufgaben erledigen, die sich über mehrere Workspaces erstrecken:
 
 - **Refactoring**: Aktualisieren Sie Imports und Referenzen über Projekte hinweg
 - **Feature-Entwicklung**: Implementieren Sie Features, die Änderungen in mehreren Diensten erfordern
 - **Dokumentation**: Generieren Sie Dokumente, die Code aus mehreren Ordnern referenzieren
 - **Testen**: Erstellen und führen Sie Tests in allen Workspaces aus und analysieren Sie die Ergebnisse
 
-Wenn Sie mit großen Multiroot Workspaces arbeiten, starten Sie im [Plan Mode](/german/features/plan-and-act), damit Caret Ihre Projektstruktur versteht, bevor Änderungen vorgenommen werden.
+Wenn Sie mit großen Multiroot Workspaces arbeiten, starten Sie im [Plan Mode](/german/features/plan-and-act), damit Careti Ihre Projektstruktur versteht, bevor Änderungen vorgenommen werden.
 
 ## Bewährte Verfahren
 
@@ -156,7 +156,7 @@ Wenn Sie mit großen Multiroot Workspaces arbeiten, starten Sie im [Plan Mode](/
 
 1. **Gruppieren Sie verwandte Projekte**, die häufig koordinierte Änderungen erfordern
 2. **Verwenden Sie nach Möglichkeit konsistente Ordnerstrukturen** über Workspaces hinweg
-3. **Benennen Sie Ordner eindeutig**, damit Caret Ihre Projektstruktur verstehen kann
+3. **Benennen Sie Ordner eindeutig**, damit Careti Ihre Projektstruktur verstehen kann
 
 ### Effektive Prompts & Tipps
 

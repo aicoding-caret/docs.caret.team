@@ -1,22 +1,22 @@
 ---
 title: "Gestion du contexte"
-description: "Maîtrisez la gestion du contexte pour exploiter pleinement le potentiel de Caret"
+description: "Maîtrisez la gestion du contexte pour exploiter pleinement le potentiel de Careti"
 ---
 
 <Info>
 **Référence Rapide**
 
-- **Contexte** = Toutes les informations que Caret connaît sur votre projet
-- **Fenêtre de contexte** = Quantité maximale d'informations que Caret peut traiter en même temps (varie selon le modèle)
+- **Contexte** = Toutes les informations que Careti connaît sur votre projet
+- **Fenêtre de contexte** = Quantité maximale d'informations que Careti peut traiter en même temps (varie selon le modèle)
 - **Token** = Unité de mesure de texte (~3/4 d'un mot anglais)
-- **Auto-gestion** = Caret gère automatiquement le contexte via Focus Chain & Auto Compact
+- **Auto-gestion** = Careti gère automatiquement le contexte via Focus Chain & Auto Compact
 </Info>
 
 ## Qu'est-ce que la gestion du contexte ?
 
-La gestion du contexte est la manière dont Caret maintient une compréhension de votre projet tout au long d'une conversation. Considérez-le comme la mémoire partagée entre vous et Caret - contenant le code, les décisions, les exigences et l'avancement.
+La gestion du contexte est la manière dont Careti maintient une compréhension de votre projet tout au long d'une conversation. Considérez-le comme la mémoire partagée entre vous et Careti - contenant le code, les décisions, les exigences et l'avancement.
 
-<Frame caption="Le contexte est comme un espace de travail partagé où Caret construit une compréhension de votre projet">
+<Frame caption="Le contexte est comme un espace de travail partagé où Careti construit une compréhension de votre projet">
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(2).png"
 		alt="Context visualization showing the relationship between total context and context window"
@@ -54,13 +54,13 @@ Chaque modèle d'IA a une **fenêtre de contexte** - la quantité maximale d'inf
 - Un fichier source typique : 500-2 000 tokens
 </Tip>
 
-## Comment Caret construit le contexte
+## Comment Careti construit le contexte
 
-La construction d'un contexte efficace est ce qui rend Caret vraiment utile. Lorsque vous démarrez une tâche, Caret n'attend pas passivement les informations - il rassemble activement le contexte de votre projet, pose des questions de clarification si nécessaire et s'adapte à ce qui se passe en temps réel. Cette combinaison de découverte automatique, de guidage de l'utilisateur et d'adaptation dynamique garantit que Caret dispose toujours des bonnes informations pour résoudre efficacement vos problèmes.
+La construction d'un contexte efficace est ce qui rend Careti vraiment utile. Lorsque vous démarrez une tâche, Careti n'attend pas passivement les informations - il rassemble activement le contexte de votre projet, pose des questions de clarification si nécessaire et s'adapte à ce qui se passe en temps réel. Cette combinaison de découverte automatique, de guidage de l'utilisateur et d'adaptation dynamique garantit que Careti dispose toujours des bonnes informations pour résoudre efficacement vos problèmes.
 
 ### 1. Collecte automatique du contexte
 
-Lorsque vous démarrez une tâche, Caret prend l'initiative de :
+Lorsque vous démarrez une tâche, Careti prend l'initiative de :
 
 ```mermaid
 graph LR
@@ -71,7 +71,7 @@ graph LR
     E --> F[Build Mental Model]
 ```
 
-**Ce que Caret découvre automatiquement :**
+**Ce que Careti découvre automatiquement :**
 - Structure du projet et organisation des fichiers
 - Relations d'importation et dépendances
 - Modèles et conventions de code
@@ -80,18 +80,18 @@ graph LR
 
 ### 2. Contexte guidé par l'utilisateur
 
-Bien que la découverte automatique prenne en charge une grande partie du travail, vous contrôlez ce sur quoi Caret se concentre. Plus le contexte que vous fournissez est spécifique et pertinent, mieux Caret peut comprendre vos besoins et fournir des solutions précises.
+Bien que la découverte automatique prenne en charge une grande partie du travail, vous contrôlez ce sur quoi Careti se concentre. Plus le contexte que vous fournissez est spécifique et pertinent, mieux Careti peut comprendre vos besoins et fournir des solutions précises.
 
 Vous améliorez le contexte en :
 - **@ Mentionnant** des fichiers, des dossiers ou des URL
 - **Fournissant des exigences** en langage naturel
 - **Partageant des captures d'écran** pour le contexte de l'interface utilisateur
 - **Ajoutant de la documentation** via AGENTS.md + .agents/context + caret-docs
-- **Répondant aux questions** lorsque Caret a besoin de clarifications
+- **Répondant aux questions** lorsque Careti a besoin de clarifications
 
 ### 3. Adaptation dynamique du contexte
 
-Caret adapte le contexte de manière dynamique tout au long de votre conversation. Il prend en compte la complexité de votre demande, l'espace disponible dans la fenêtre de contexte, l'avancement actuel de la tâche, les messages d'erreur et les commentaires, ainsi que les décisions précédentes prises au cours de la conversation pour déterminer quelles informations sont les plus importantes à chaque étape.
+Careti adapte le contexte de manière dynamique tout au long de votre conversation. Il prend en compte la complexité de votre demande, l'espace disponible dans la fenêtre de contexte, l'avancement actuel de la tâche, les messages d'erreur et les commentaires, ainsi que les décisions précédentes prises au cours de la conversation pour déterminer quelles informations sont les plus importantes à chaque étape.
 
 ## La barre de progression de la fenêtre de contexte
 
@@ -114,11 +114,11 @@ Surveillez votre utilisation du contexte en temps réel :
 
 ## Fonctionnalités de gestion automatique du contexte
 
-Caret comprend des systèmes intelligents qui gèrent le contexte pour vous :
+Careti comprend des systèmes intelligents qui gèrent le contexte pour vous :
 
 ### Focus Chain (Par défaut : ACTIVÉ)
 
-Focus Chain maintient la continuité des tâches grâce à des listes de tâches automatiques. Lorsque vous démarrez une tâche, Caret génère des étapes réalisables et les met à jour à mesure que le travail progresse. Cela maintient le contexte essentiel visible même après l'exécution d'Auto Compact, vous permettant de suivre l'avancement sans faire défiler toute la conversation.
+Focus Chain maintient la continuité des tâches grâce à des listes de tâches automatiques. Lorsque vous démarrez une tâche, Careti génère des étapes réalisables et les met à jour à mesure que le travail progresse. Cela maintient le contexte essentiel visible même après l'exécution d'Auto Compact, vous permettant de suivre l'avancement sans faire défiler toute la conversation.
 
 [En savoir plus →](/french/features/focus-chain)
 
@@ -130,7 +130,7 @@ Lorsque l'utilisation du contexte atteint environ 80 %, Auto Compact crée auto
 
 ### Système de troncation du contexte
 
-Si votre conversation approche de la limite de la fenêtre de contexte du modèle avant l'exécution d'Auto Compact, le gestionnaire de contexte de Caret tronque automatiquement les parties les plus anciennes de la conversation pour éviter les erreurs.
+Si votre conversation approche de la limite de la fenêtre de contexte du modèle avant l'exécution d'Auto Compact, le gestionnaire de contexte de Careti tronque automatiquement les parties les plus anciennes de la conversation pour éviter les erreurs.
 
 Le système priorise ce qui compte le plus :
 - La description de votre tâche d'origine reste
@@ -144,15 +144,15 @@ Ce qui est supprimé en premier :
 - Étapes de débogage intermédiaires
 - Explications détaillées qui ont servi leur objectif
 
-Cela se produit automatiquement. Vous continuerez à travailler sans interruption, et Caret conserve suffisamment de contexte pour continuer à résoudre votre problème efficacement.
+Cela se produit automatiquement. Vous continuerez à travailler sans interruption, et Careti conserve suffisamment de contexte pour continuer à résoudre votre problème efficacement.
 
 ## Bonnes pratiques
 
-- **Soyez précis** - Des objectifs clairs aident Caret à comprendre vos besoins
+- **Soyez précis** - Des objectifs clairs aident Careti à comprendre vos besoins
 - **Utilisez les @ mentions de manière stratégique** - Faites référence à des fichiers spécifiques plutôt qu'à des dossiers entiers
 - **Surveillez la barre de progression** - Jaune/rouge signifie qu'il faut envisager d'utiliser `/smol` ou `/newtask`
 - **Faites confiance à l'auto-gestion** - Focus Chain et Auto Compact gèrent automatiquement la complexité
-- **Utilisez le Caret Context System** - Gardez AGENTS.md + .agents/context + caret-docs alignés
+- **Utilisez le Careti Context System** - Gardez AGENTS.md + .agents/context + caret-docs alignés
 
 ## Prochaines étapes
 
@@ -163,10 +163,10 @@ Cela se produit automatiquement. Vous continuerez à travailler sans interruptio
 	<Card title="Auto Compact" icon="compress" href="/french/features/auto-compact">
 		Comprendre la compression automatique des conversations
 	</Card>
-	<Card title="Caret Context System" icon="brain" href="/french/prompting/caret-memory-bank">
+	<Card title="Careti Context System" icon="brain" href="/french/prompting/caret-memory-bank">
 		Remplacez Memory Bank par AGENTS.md + .agents/context
 	</Card>
-	<Card title="Caret Rules" icon="gavel" href="/french/features/caret-rules">
+	<Card title="Careti Rules" icon="gavel" href="/french/features/caret-rules">
 		Définir des conventions spécifiques au projet
 	</Card>
 </CardGroup>

@@ -1,9 +1,9 @@
 ---
 title: "CLI 参考"
-description: "Caret CLI 的完整命令参考，包括配置、实例管理与任务命令"
+description: "Careti CLI 的完整命令参考，包括配置、实例管理与任务命令"
 ---
 
-Caret CLI 的完整命令参考。
+Careti CLI 的完整命令参考。
 
 快速帮助：
 
@@ -15,13 +15,13 @@ man caret            # 完整手册
 
 ## 手册页
 
-以下为 Caret CLI 手册页示例(英文原文输出):
+以下为 Careti CLI 手册页示例(英文原文输出):
 
 ```
 CARET(1)                         User Commands                        CARET(1)
 
 NAME
-       caret - orchestrate and interact with Caret AI coding agents
+       caret - orchestrate and interact with Careti AI coding agents
 
 SYNOPSIS
        caret [prompt] [options]
@@ -31,17 +31,17 @@ SYNOPSIS
 DESCRIPTION
        Try: cat README.md | caret "Summarize this for me:"
 
-       caret is a command-line interface for orchestrating multiple Caret AI
-       coding agents.  Caret is an autonomous AI agent who can read, write,
+       caret is a command-line interface for orchestrating multiple Careti AI
+       coding agents.  Careti is an autonomous AI agent who can read, write,
        and execute code across your projects.  He operates through a
-       client-server architecture where Caret Core runs as a standalone
+       client-server architecture where Careti Core runs as a standalone
        service, and the CLI acts as a scriptable interface for managing tasks,
        instances, and agent interactions.
 
        The CLI is designed for both interactive use and automation, making it
        ideal for CI/CD pipelines, parallel task execution, and terminal-based
        workflows.  Multiple frontends (CLI, VSCode, JetBrains) can attach to
-       the same Caret Core instance, enabling seamless task handoff between
+       the same Careti Core instance, enabling seamless task handoff between
        environments.
 
 MODES OF OPERATION
@@ -57,15 +57,15 @@ MODES OF OPERATION
               instances, tasks, authentication, and configuration.
 
 AGENT BEHAVIOR
-       Caret operates in two primary modes:
+       Careti operates in two primary modes:
 
        ACT MODE
-              Caret actively uses tools to accomplish tasks.  He can read
+              Careti actively uses tools to accomplish tasks.  He can read
               files, write code, execute commands, use a headless browser, and
               more.  This is the default mode for task execution.
 
        PLAN MODE
-              Caret gathers information and creates a detailed plan before
+              Careti gathers information and creates a detailed plan before
               implementation.  He explores the codebase, asks clarifying
               questions, and presents a strategy for user approval before
               switching to ACT MODE.
@@ -75,7 +75,7 @@ INSTANT TASK OPTIONS
        are available:
 
        -o, --oneshot
-              Full autonomous mode.  Caret completes the task and stops
+              Full autonomous mode.  Careti completes the task and stops
               following after completion.  Example: caret -o "what's 6 + 8?"
 
        -s, --setting setting value
@@ -118,7 +118,7 @@ COMMANDS
               appropriate OAuth flow.
 
    Instance Management
-       Caret Core instances are independent agent processes that can run in
+       Careti Core instances are independent agent processes that can run in
        the background.  Multiple instances can run simultaneously, enabling
        parallel task execution.
 
@@ -130,13 +130,13 @@ COMMANDS
        caret instance new [-d|--default]
 
        caret i n [-d|--default]
-              Spawn a new Caret Core instance.  Use --default to set it as
+              Spawn a new Careti Core instance.  Use --default to set it as
               the default instance for subsequent commands.
 
        caret instance list
 
        caret i l
-              List all running Caret Core instances with their addresses and
+              List all running Careti Core instances with their addresses and
               status.
 
        caret instance default address
@@ -148,18 +148,18 @@ COMMANDS
        caret instance kill address [-a|--all]
 
        caret i k address [-a|--all]
-              Terminate a Caret Core instance.  Use --all to kill all running
+              Terminate a Careti Core instance.  Use --all to kill all running
               instances.
 
    Task Management
-       Tasks represent individual work items that Caret executes.  Tasks
+       Tasks represent individual work items that Careti executes.  Tasks
        maintain conversation history, checkpoints, and settings.
 
        caret task [-a|--address ADDR]
 
        caret t [-a|--address ADDR]
               Display task management help.  The --address flag specifies
-              which Caret Core instance to use (e.g., localhost:50052).
+              which Careti Core instance to use (e.g., localhost:50052).
 
        caret task new prompt [options]
 
@@ -191,19 +191,19 @@ COMMANDS
 
        caret t c
               Enter interactive chat mode for the current task.  Allows
-              back-and-forth conversation with Caret.
+              back-and-forth conversation with Careti.
 
        caret task send [message] [options]
 
        caret t s [message] [options]
-              Send a message to Caret.  If no message is provided, reads from
+              Send a message to Careti.  If no message is provided, reads from
               stdin.  Options:
 
               -a, --approve
-                     Approve Caret's proposed action
+                     Approve Careti's proposed action
 
               -d, --deny
-                     Deny Caret's proposed action
+                     Deny Careti's proposed action
 
               -f, --file FILE
                      Attach a file to the message
@@ -273,7 +273,7 @@ NOTES & EXAMPLES
               echo "Refactor this code" | caret -y
 
    Instance Management
-       Manage multiple Caret instances:
+       Manage multiple Careti instances:
 
               # Start a new instance and make it default
               caret instance new --default
@@ -303,20 +303,20 @@ NOTES & EXAMPLES
               caret task chat
 
 ARCHITECTURE
-       Caret operates on a three-layer architecture:
+       Careti operates on a three-layer architecture:
 
        Presentation Layer
-              User interfaces (CLI, VSCode, JetBrains) that connect to Caret
+              User interfaces (CLI, VSCode, JetBrains) that connect to Careti
               Core via gRPC
 
-       Caret Core
+       Careti Core
               The autonomous agent service handling task management, AI model
               integration, state management, tool orchestration, and real-time
               streaming updates
 
        Host Provider Layer
               Environment-specific integrations (VSCode APIs, JetBrains APIs,
-              shell APIs) that Caret Core uses to interact with the host
+              shell APIs) that Careti Core uses to interact with the host
               system
 
 BUGS
@@ -329,10 +329,10 @@ SEE ALSO
        Full documentation: <https://docs.caret.bot>
 
 AUTHORS
-       Caret is developed by the Caret Bot Inc. and the open source community.
+       Careti is developed by the Careti Bot Inc. and the open source community.
 
 COPYRIGHT
-       Copyright © 2025 Caret Bot Inc. Licensed under the Apache License 2.0.
+       Copyright © 2025 Careti Bot Inc. Licensed under the Apache License 2.0.
 ```
 
 ### Shell 补全

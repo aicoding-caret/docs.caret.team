@@ -1,14 +1,14 @@
 ---
 title: "API Key (Configuration simple)"
 sidebarTitle: "API Key"
-description: "Configurez AWS Bedrock avec Caret en utilisant les API Keys Bedrock. La configuration la plus simple pour permettre aux développeurs individuels d'accéder aux frontier models."
+description: "Configurez AWS Bedrock avec Careti en utilisant les API Keys Bedrock. La configuration la plus simple pour permettre aux développeurs individuels d'accéder aux frontier models."
 ---
 
 ### Overview
 
 -   **AWS Bedrock :** Un service entièrement géré qui offre un accès aux modèles d'IA générative de pointe (par exemple, Anthropic Claude, Amazon Nova) via AWS.\
     [En savoir plus sur AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html).
--   **Caret :** Une extension VS Code qui agit comme un assistant de codage en s'intégrant aux modèles d'IA, permettant aux développeurs de générer du code, de débugger et d'analyser des données.
+-   **Careti :** Une extension VS Code qui agit comme un assistant de codage en s'intégrant aux modèles d'IA, permettant aux développeurs de générer du code, de débugger et d'analyser des données.
 -   **Focus Développeur :** Ce guide est conçu pour les développeurs individuels qui souhaitent activer l'accès aux frontier models via AWS Bedrock avec une configuration simplifiée utilisant des API Keys.
 
 ---
@@ -28,7 +28,7 @@ Pour des instructions plus détaillées, consultez la [documentation](https://do
 
 #### 1.2 Créer ou modifier la politique
 
-Pour garantir que Caret peut interagir avec AWS Bedrock, votre utilisateur ou rôle IAM a besoin de permissions spécifiques. Bien que la politique gérée `AmazonBedrockLimitedAccess` fournisse un accès complet, pour une configuration plus restreinte et sécurisée respectant le principe du moindre privilège, les permissions minimales suivantes sont suffisantes pour la fonctionnalité principale d'invocation de modèle de Caret :
+Pour garantir que Careti peut interagir avec AWS Bedrock, votre utilisateur ou rôle IAM a besoin de permissions spécifiques. Bien que la politique gérée `AmazonBedrockLimitedAccess` fournisse un accès complet, pour une configuration plus restreinte et sécurisée respectant le principe du moindre privilège, les permissions minimales suivantes sont suffisantes pour la fonctionnalité principale d'invocation de modèle de Careti :
 
 -   `bedrock:InvokeModel`
 -   `bedrock:InvokeModelWithResponseStream`
@@ -54,8 +54,8 @@ Vous pouvez créer une politique IAM personnalisée avec ces permissions et l'at
 
 **Considérations importantes :**
 
--   **Liste des modèles dans Caret :** Les permissions minimales (`bedrock:InvokeModel`, `bedrock:InvokeModelWithResponseStream`) sont suffisantes pour que Caret puisse *utiliser* un modèle si vous spécifiez l'ID du modèle directement dans les paramètres de Caret. Si vous comptez sur Caret pour lister dynamiquement les modèles Bedrock disponibles, vous pourriez avoir besoin de permissions supplémentaires comme `bedrock:ListFoundationModels`.
--   **Abonnements AWS Marketplace :** Pour les modèles tiers (par exemple, Anthropic Claude), la politique **`AmazonBedrockLimitedAccess`** vous accorde les permissions nécessaires pour vous abonner via le AWS Marketplace. Il n'y a pas d'accès explicite à activer. Pour les modèles Anthropic, vous devez toujours soumettre un formulaire de première utilisation (FTU) via la Console. Si vous recevez le message suivant dans le chat Caret `[ERROR] Failed to process response: Model use case details have not been submitted for this account. Fill out the Anthropic use case details form before using the model.`, ouvrez alors le [Playground dans la console AWS Bedrock](https://console.aws.amazon.com/bedrock/home?#/text-generation-playground), sélectionnez n'importe quel modèle Anthropic et remplissez le formulaire (vous devrez peut-être envoyer un prompt au préalable).
+-   **Liste des modèles dans Careti :** Les permissions minimales (`bedrock:InvokeModel`, `bedrock:InvokeModelWithResponseStream`) sont suffisantes pour que Careti puisse *utiliser* un modèle si vous spécifiez l'ID du modèle directement dans les paramètres de Careti. Si vous comptez sur Careti pour lister dynamiquement les modèles Bedrock disponibles, vous pourriez avoir besoin de permissions supplémentaires comme `bedrock:ListFoundationModels`.
+-   **Abonnements AWS Marketplace :** Pour les modèles tiers (par exemple, Anthropic Claude), la politique **`AmazonBedrockLimitedAccess`** vous accorde les permissions nécessaires pour vous abonner via le AWS Marketplace. Il n'y a pas d'accès explicite à activer. Pour les modèles Anthropic, vous devez toujours soumettre un formulaire de première utilisation (FTU) via la Console. Si vous recevez le message suivant dans le chat Careti `[ERROR] Failed to process response: Model use case details have not been submitted for this account. Fill out the Anthropic use case details form before using the model.`, ouvrez alors le [Playground dans la console AWS Bedrock](https://console.aws.amazon.com/bedrock/home?#/text-generation-playground), sélectionnez n'importe quel modèle Anthropic et remplissez le formulaire (vous devrez peut-être envoyer un prompt au préalable).
 
 ---
 
@@ -71,20 +71,20 @@ Vous pouvez créer une politique IAM personnalisée avec ces permissions et l'at
 
 ---
 
-### Step 3: Configurer l'extension VS Code Caret
+### Step 3: Configurer l'extension VS Code Careti
 
-#### 3.1 Installer et ouvrir Caret
+#### 3.1 Installer et ouvrir Careti
 
 1. **Installer VS Code :**\
    Téléchargez-le depuis le [site web de VS Code](https://code.visualstudio.com/).
-2. **Installer l'extension Caret :**
+2. **Installer l'extension Careti :**
     - Ouvrez VS Code.
     - Allez dans l'Extensions Marketplace (`Ctrl+Shift+X` ou `Cmd+Shift+X`).
-    - Recherchez **Caret** et installez-le.
+    - Recherchez **Careti** et installez-le.
 
-#### 3.2 Configurer les paramètres de Caret
+#### 3.2 Configurer les paramètres de Careti
 
-1. **Ouvrir les paramètres de Caret :**
+1. **Ouvrir les paramètres de Careti :**
     - Cliquez sur les paramètres ⚙️ pour sélectionner votre API Provider.
 2. **Sélectionner AWS Bedrock comme API Provider :**
     - Dans le menu déroulant API Provider, choisissez **AWS Bedrock**.
@@ -122,15 +122,15 @@ Vous pouvez créer une politique IAM personnalisée avec ces permissions et l'at
 
 ### Conclusion
 
-En suivant ces étapes, vous pouvez rapidement intégrer AWS Bedrock avec l'extension VS Code Caret pour accélérer votre développement :
+En suivant ces étapes, vous pouvez rapidement intégrer AWS Bedrock avec l'extension VS Code Careti pour accélérer votre développement :
 
 1. **Préparez votre environnement AWS :** Créez une API Key Bedrock avec les permissions nécessaires.
 2. **Vérifiez l'accès à la région et au modèle :** Confirmez que votre région sélectionnée prend en charge les modèles requis.
-3. **Configurez Caret dans VS Code :** Installez et configurez Caret avec votre AWS API Key et choisissez un modèle approprié.
+3. **Configurez Careti dans VS Code :** Installez et configurez Careti avec votre AWS API Key et choisissez un modèle approprié.
 4. **Implémentez la sécurité et la surveillance :** Utilisez les meilleures pratiques pour IAM, la sécurité réseau, la surveillance et la gestion des coûts.
 
 Pour plus de détails, consultez la [documentation AWS Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html). Bon codage !
 
 ---
 
-_Ce guide sera mis à jour au fur et à mesure de l'évolution de AWS Bedrock et de Caret. Référez-vous toujours à la documentation la plus récente et aux politiques internes pour les pratiques à jour._
+_Ce guide sera mis à jour au fur et à mesure de l'évolution de AWS Bedrock et de Careti. Référez-vous toujours à la documentation la plus récente et aux politiques internes pour les pratiques à jour._

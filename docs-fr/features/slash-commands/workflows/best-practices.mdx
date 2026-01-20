@@ -2,14 +2,14 @@
 ---
 title: "Meilleures pratiques de workflow"
 sidebarTitle: "Meilleures pratiques"
-description: "Conseils et stratégies pour créer des flux de travail Caret efficaces et fiables"
+description: "Conseils et stratégies pour créer des flux de travail Careti efficaces et fiables"
 ---
 
 La création de bons flux de travail nécessite le juste équilibre entre des **instructions claires**, la **modularité** et l'**utilisation des outils**. Utilisez les conseils ci-dessous comme guide.
 
-## Création de flux de travail avec Caret
+## Création de flux de travail avec Careti
 
-Caret comprend le contexte de votre projet, ce qui en fait un excellent partenaire pour la conception de flux de travail.
+Careti comprend le contexte de votre projet, ce qui en fait un excellent partenaire pour la conception de flux de travail.
 
 ### Un flux de travail pour créer des flux de travail
 
@@ -17,7 +17,7 @@ La création de flux de travail est plus facile qu'il n'y paraît - et vous pouv
 
 Tout d'abord, enregistrez le fichier [create-new-workflow.md](https://github.com/cline/prompts/blob/main/workflows/create-new-workflow.md) dans votre espace de travail (par exemple, `.agents/context/workflows/`).
 
-Ensuite, exécutez `/create-new-workflow.md` et Caret vous guidera à travers :
+Ensuite, exécutez `/create-new-workflow.md` et Careti vous guidera à travers :
 
 1. Demande de l'objectif et d'un nom court
 2. Description des objectifs et des résultats attendus
@@ -25,10 +25,10 @@ Ensuite, exécutez `/create-new-workflow.md` et Caret vous guidera à travers :
 4. Génération d'un fichier de flux de travail structuré
 
 <Tip>
-  **Automatisez vos journaux de travail :** Les tâches terminées sont d'excellents candidats pour les flux de travail. Une fois que vous avez terminé une tâche, demandez "Transforme ce que je viens de faire en un flux de travail", et Caret analysera la conversation et générera un fichier de flux de travail.
+  **Automatisez vos journaux de travail :** Les tâches terminées sont d'excellents candidats pour les flux de travail. Une fois que vous avez terminé une tâche, demandez "Transforme ce que je viens de faire en un flux de travail", et Careti analysera la conversation et générera un fichier de flux de travail.
 </Tip>
 
-Stockez les flux de travail spécifiques au projet dans `.agents/context/workflows/` et les flux de travail globaux dans `~/Documents/Caret/Workflows/`. En cas de conflit de noms, les flux de travail de projet sont prioritaires.
+Stockez les flux de travail spécifiques au projet dans `.agents/context/workflows/` et les flux de travail globaux dans `~/Documents/Careti/Workflows/`. En cas de conflit de noms, les flux de travail de projet sont prioritaires.
 
 ## Conception de flux de travail
 
@@ -42,13 +42,13 @@ Les flux de travail plus petits et réutilisables sont plus faciles à maintenir
 
 ### Commentaires clairs
 
-Comme pour le code, il est important d'expliquer **pourquoi**. De bons commentaires aident Caret et votre équipe à comprendre l'intention.
+Comme pour le code, il est important d'expliquer **pourquoi**. De bons commentaires aident Careti et votre équipe à comprendre l'intention.
 
 ### Contrôle de version
 
 Conservez les flux de travail dans `.agents/context/workflows/` et commitez-les dans Git. Cela facilite le contrôle de version et le partage en équipe.
 
-## Conception d'invites pour Caret
+## Conception d'invites pour Careti
 
 ### Soyez précis sur l'utilisation des outils
 
@@ -102,7 +102,7 @@ Différents outils renvoient différents niveaux de détail. Choisissez l'outil 
 
 ### Utiliser la structure
 
-Les flux de travail structurés sont plus faciles à suivre pour Caret. Utilisez des sections telles que :
+Les flux de travail structurés sont plus faciles à suivre pour Careti. Utilisez des sections telles que :
 
 - **But**
 - **Entrées**

@@ -2,46 +2,46 @@
 ---
 title: "Raccourcis clavier"
 sidebarTitle: "Raccourcis clavier"
-description: "Les raccourcis clavier de Caret vous permettent d'accéder à l'assistance de l'IA sans lâcher votre clavier. Accélérez votre flux de travail en utilisant des raccourcis pour les actions courantes de Caret."
+description: "Les raccourcis clavier de Careti vous permettent d'accéder à l'assistance de l'IA sans lâcher votre clavier. Accélérez votre flux de travail en utilisant des raccourcis pour les actions courantes de Careti."
 ---
 
-Les raccourcis clavier de Caret vous permettent d'accéder à l'assistance de l'IA sans lâcher votre clavier. Accélérez votre flux de travail en utilisant des raccourcis pour les actions courantes de Caret.
+Les raccourcis clavier de Careti vous permettent d'accéder à l'assistance de l'IA sans lâcher votre clavier. Accélérez votre flux de travail en utilisant des raccourcis pour les actions courantes de Careti.
 
 ## Raccourcis clavier par défaut
 
-Caret est livré avec les raccourcis clavier intégrés suivants pour rationaliser votre flux de travail :
+Careti est livré avec les raccourcis clavier intégrés suivants pour rationaliser votre flux de travail :
 
 | Action                  | Windows/Linux | macOS   | Condition                            | Description                                            |
 | ----------------------- | ------------- | ------- | ------------------------------------ | ------------------------------------------------------ |
-| Ajouter à Caret         | `Ctrl+'`      | `Cmd+'` | Lorsqu'un texte est sélectionné     | Ajoute le code sélectionné au chat Caret               |
-| Focus sur la saisie Chat | `Ctrl+'`      | `Cmd+'` | Lorsqu'aucun texte n'est sélectionné | Met le focus sur le champ de saisie du chat Caret     |
+| Ajouter à Careti         | `Ctrl+'`      | `Cmd+'` | Lorsqu'un texte est sélectionné     | Ajoute le code sélectionné au chat Careti               |
+| Focus sur la saisie Chat | `Ctrl+'`      | `Cmd+'` | Lorsqu'aucun texte n'est sélectionné | Met le focus sur le champ de saisie du chat Careti     |
 | Générer un message Commit | (non défini)  | (non défini)  | Lorsque Git est le fournisseur SCM | Disponible via la vue Source Control                |
 
 ## Commandes disponibles pour les raccourcis personnalisés
 
-Bien que Caret ne dispose que de quelques raccourcis clavier par défaut, vous pouvez attribuer vos propres raccourcis à l'une de ces commandes :
+Bien que Careti ne dispose que de quelques raccourcis clavier par défaut, vous pouvez attribuer vos propres raccourcis à l'une de ces commandes :
 
 | ID de commande                                                                             | Description                                        |
 | ------------------------------------------------------------------------------------------ | -------------------------------------------------- |
-| [`caret.addToChat`](/french/features/commands-and-shortcuts/code-commands)                   | Ajoute le code sélectionné au chat Caret          |
-| [`caret.addTerminalOutputToChat`](/french/features/commands-and-shortcuts/terminal-integration) | Ajoute la sortie du terminal à Caret              |
-| `caret.focusChatInput`                                                                    | Met le focus sur le champ de saisie du chat Caret  |
+| [`caret.addToChat`](/french/features/commands-and-shortcuts/code-commands)                   | Ajoute le code sélectionné au chat Careti          |
+| [`caret.addTerminalOutputToChat`](/french/features/commands-and-shortcuts/terminal-integration) | Ajoute la sortie du terminal à Careti              |
+| `caret.focusChatInput`                                                                    | Met le focus sur le champ de saisie du chat Careti  |
 | [`caret.generateGitCommitMessage`](/french/features/commands-and-shortcuts/git-integration)    | Génère un message de commit pour les modifications indexées |
 | [`caret.explainCode`](/french/features/commands-and-shortcuts/code-commands)                  | Explique le code sélectionné                     |
 | [`caret.improveCode`](/french/features/commands-and-shortcuts/code-commands)                  | Suggère des améliorations pour le code sélectionné |
 | [`caret.fixWithCline`](/french/features/commands-and-shortcuts/code-commands)                 | Corrige le code avec des erreurs                  |
-| `claude-dev.SidebarProvider.focus`                                                        | Ouvre et met le focus sur la sidebar Caret        |
+| `claude-dev.SidebarProvider.focus`                                                        | Ouvre et met le focus sur la sidebar Careti        |
 
 ## Personnalisation des raccourcis clavier
 
-Vous pouvez personnaliser les raccourcis clavier de Caret en fonction de vos préférences :
+Vous pouvez personnaliser les raccourcis clavier de Careti en fonction de vos préférences :
 
 1. Ouvrez l'éditeur Keyboard Shortcuts dans VS Code :
 
     - Appuyez sur `Ctrl+K Ctrl+S` (Windows/Linux) ou `Cmd+K Cmd+S` (macOS)
     - Ou allez dans File > Preferences > Keyboard Shortcuts
 
-2. Recherchez "Caret" pour voir toutes les commandes disponibles
+2. Recherchez "Careti" pour voir toutes les commandes disponibles
 
 3. Cliquez sur l'icône en forme de crayon à côté d'une commande pour modifier son raccourci
 
@@ -55,26 +55,26 @@ Voici quelques raccourcis suggérés que vous pourriez trouver utiles :
 
 | Action                    | Raccourci suggéré                  | ID de commande                              | Description                             |
 | ------------------------- | ------------------------------------ | ------------------------------------------- | --------------------------------------- |
-| Ouvrir la Sidebar Caret   | `Ctrl+Shift+C` / `Cmd+Shift+C`       | `claude-dev.SidebarProvider.focus`          | Ouvre le panneau de la sidebar Caret    |
-| Nouvelle Tâche             | `Alt+N`                              | `caret.plusButtonClicked`                   | Démarre une nouvelle tâche Caret        |
-| Ajouter Terminal à Caret | `Alt+T`                              | `caret.addTerminalOutputToChat`             | Ajoute la sortie du terminal à Caret    |
+| Ouvrir la Sidebar Careti   | `Ctrl+Shift+C` / `Cmd+Shift+C`       | `claude-dev.SidebarProvider.focus`          | Ouvre le panneau de la sidebar Careti    |
+| Nouvelle Tâche             | `Alt+N`                              | `caret.plusButtonClicked`                   | Démarre une nouvelle tâche Careti        |
+| Ajouter Terminal à Careti | `Alt+T`                              | `caret.addTerminalOutputToChat`             | Ajoute la sortie du terminal à Careti    |
 | Effacer la tâche actuelle | `Alt+C`                              | (Nécessite une liaison de touche personnalisée à l'action de l'interface utilisateur) | Efface la tâche actuelle              |
 
 ## Flux de travail uniquement au clavier
 
-Avec les bons raccourcis, vous pouvez utiliser Caret sans jamais toucher la souris :
+Avec les bons raccourcis, vous pouvez utiliser Careti sans jamais toucher la souris :
 
 1. Sélectionnez le code avec la navigation au clavier (touches `Shift+Flèche`)
-2. Envoyez à Caret avec `Ctrl+'` / `Cmd+'`
+2. Envoyez à Careti avec `Ctrl+'` / `Cmd+'`
 3. Tapez votre question et appuyez sur Entrée
 4. Examinez la réponse et appliquez les suggestions
 
 ## Raccourcis d'intégration de l'éditeur
 
-Les raccourcis clavier de Caret s'intègrent parfaitement aux raccourcis intégrés de VS Code :
+Les raccourcis clavier de Careti s'intègrent parfaitement aux raccourcis intégrés de VS Code :
 
--   Utilisez les raccourcis de sélection de VS Code (`Ctrl+L` / `Cmd+L` pour sélectionner la ligne, etc.) avant d'envoyer du code à Caret
--   Combinez avec les raccourcis de l'éditeur divisé de VS Code pour afficher le code et Caret côte à côte
+-   Utilisez les raccourcis de sélection de VS Code (`Ctrl+L` / `Cmd+L` pour sélectionner la ligne, etc.) avant d'envoyer du code à Careti
+-   Combinez avec les raccourcis de l'éditeur divisé de VS Code pour afficher le code et Careti côte à côte
 -   Utilisez le raccourci de focus du terminal de VS Code (`` Ctrl+` `` / `` Cmd+` ``) avant de capturer la sortie du terminal
 
 ## Conseils pour une utilisation efficace
@@ -84,14 +84,14 @@ Les raccourcis clavier de Caret s'intègrent parfaitement aux raccourcis intégr
 -   **Personnalisez pour votre flux de travail** : attribuez des raccourcis aux commandes que vous utilisez fréquemment
 -   **Tenez compte de l'ergonomie** : choisissez des raccourcis qui sont confortables pour votre disposition de clavier
 
-Les raccourcis clavier peuvent sembler être une petite optimisation, mais ils peuvent considérablement accélérer votre flux de travail lorsque vous utilisez Caret régulièrement. En gardant vos mains sur le clavier, vous maintenez votre flux de codage tout en obtenant une assistance de l'IA exactement au moment où vous en avez besoin.
+Les raccourcis clavier peuvent sembler être une petite optimisation, mais ils peuvent considérablement accélérer votre flux de travail lorsque vous utilisez Careti régulièrement. En gardant vos mains sur le clavier, vous maintenez votre flux de codage tout en obtenant une assistance de l'IA exactement au moment où vous en avez besoin.
 
 ## Comment trouver toutes les commandes disponibles
 
-Pour voir toutes les commandes Caret auxquelles des raccourcis peuvent être attribués :
+Pour voir toutes les commandes Careti auxquelles des raccourcis peuvent être attribués :
 
 1. Ouvrez la Palette de commandes (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Tapez "Caret" pour filtrer la liste
+2. Tapez "Careti" pour filtrer la liste
 3. Parcourez les commandes disponibles
 
 <Frame>

@@ -1,12 +1,12 @@
 ---
-title: "Caret 규칙"
+title: "Careti 규칙"
 description: "프로젝트 또는 전역 범위에서 Caret에 지속적인 시스템 지침을 제공합니다."
 ---
 
-Caret 규칙을 사용하면 Caret에 시스템 수준 지침을 제공할 수 있습니다. 프로젝트 또는 모든 대화에 대해 전역적으로 컨텍스트와 기본 설정을 포함하는 **지속적인 규칙**이라고 생각하면 됩니다.
+Careti 규칙을 사용하면 Caret에 시스템 수준 지침을 제공할 수 있습니다. 프로젝트 또는 모든 대화에 대해 전역적으로 컨텍스트와 기본 설정을 포함하는 **지속적인 규칙**이라고 생각하면 됩니다.
 
 <Note>
-캐럿 Agent Standardization: Caret은 `.agents/context` 폴더를 기본 규칙 소스(SoT)로 사용하며, `AGENTS.md` 파일도 지원합니다. `/init` 명령으로 표준 구조를 쉽게 생성할 수 있습니다.
+캐러티 Agent Standardization: Caret은 `.agents/context` 폴더를 기본 규칙 소스(SoT)로 사용하며, `AGENTS.md` 파일도 지원합니다. `/init` 명령으로 표준 구조를 쉽게 생성할 수 있습니다.
 </Note>
 
 ## 규칙 생성
@@ -28,15 +28,15 @@ Rules 탭의 `+` 버튼을 클릭하면 규칙을 생성할 수 있습니다. ID
 
 | 운영 체제 | 기본 위치 | 참고 |
 |---|---|---|
-| **Windows** | `Documents\Caret\Rules` | 시스템 문서 폴더 사용 |
-| **macOS** | `~/Documents/Caret/Rules` | 사용자 문서 폴더 사용 |
-| **Linux/WSL** | `~/Documents/Caret/Rules` | 일부 시스템에서는 `~/Caret/Rules`로 대체될 수 있습니다. |
+| **Windows** | `Documents\Careti\Rules` | 시스템 문서 폴더 사용 |
+| **macOS** | `~/Documents/Careti/Rules` | 사용자 문서 폴더 사용 |
+| **Linux/WSL** | `~/Documents/Careti/Rules` | 일부 시스템에서는 `~/Careti/Rules`로 대체될 수 있습니다. |
 
-> **Linux/WSL 사용자 참고**: `~/Documents/Caret/Rules`에서 전역 규칙을 찾을 수 없으면 `~/Caret/Rules`도 확인하세요. 문서 디렉토리 유무에 따라 위치가 달라질 수 있습니다.
+> **Linux/WSL 사용자 참고**: `~/Documents/Careti/Rules`에서 전역 규칙을 찾을 수 없으면 `~/Careti/Rules`도 확인하세요. 문서 디렉토리 유무에 따라 위치가 달라질 수 있습니다.
 
 채팅에서 [`/newrule` 슬래시 명령](/ko/features/slash-commands/new-rule)을 사용해 Caret이 규칙 파일을 생성하도록 할 수도 있습니다.
 
-```markdown Example Caret Rule Structure [expandable]
+```markdown Example Careti Rule Structure [expandable]
 # Project Guidelines
 
 ## Documentation Requirements
@@ -92,7 +92,7 @@ Caret의 시스템 프롬프트는 사용자가 편집할 수 없지만, 규칙 
 
 ### AGENTS.md 표준 지원
 
-Caret는 Caret 규칙과 별도로 [AGENTS.md](https://agents.md/) 표준도 지원합니다. 워크스페이스 루트에 `AGENTS.md`가 있을 때 자동으로 감지합니다. 이를 통해 다른 AI 코딩 도구에서도 동일한 규칙 파일을 재사용할 수 있습니다.
+Caret는 Careti 규칙과 별도로 [AGENTS.md](https://agents.md/) 표준도 지원합니다. 워크스페이스 루트에 `AGENTS.md`가 있을 때 자동으로 감지합니다. 이를 통해 다른 AI 코딩 도구에서도 동일한 규칙 파일을 재사용할 수 있습니다.
 
 ```
 your-project/
@@ -101,7 +101,7 @@ your-project/
 └── ...
 ```
 
-### 효과적인 Caret 규칙 작성 팁
+### 효과적인 Careti 규칙 작성 팁
 
 -   명확하고 간결하게 작성
 -   원하는 결과에 집중(세부 절차보다 목표 중심)
@@ -175,11 +175,11 @@ cp rules-bank/frameworks/react.md .agents/context/
 -   활성 `.agents/context/`는 git-ignore하고 `rules-bank/`만 추적하는 방식을 고려
 -   자주 쓰는 조합은 팀 스크립트로 자동화
 
-폴더 시스템은 Caret 규칙을 정적 문서에서 팀 컨텍스트에 맞게 진화하는 지식 시스템으로 바꿔줍니다.
+폴더 시스템은 Careti 규칙을 정적 문서에서 팀 컨텍스트에 맞게 진화하는 지식 시스템으로 바꿔줍니다.
 
 ### 토글 가능한 팝오버로 규칙 관리
 
-Caret v3.13은 채팅 인터페이스에서 바로 접근 가능한 **규칙 관리 팝오버 UI**를 제공합니다. 이 UI를 통해:
+Careti v3.13은 채팅 인터페이스에서 바로 접근 가능한 **규칙 관리 팝오버 UI**를 제공합니다. 이 UI를 통해:
 
 -   **활성 규칙 즉시 확인**: 전역 규칙과 워크스페이스 규칙을 한눈에 확인
 -   **규칙 빠르게 토글**: `.agents/context/` 폴더 내 규칙 파일을 클릭 한 번으로 활성/비활성화
@@ -188,5 +188,5 @@ Caret v3.13은 채팅 인터페이스에서 바로 접근 가능한 **규칙 관
 대화 중 파일을 수동 편집하지 않고도 컨텍스트를 전환할 수 있어 워크플로가 훨씬 매끄러워집니다.
 
 <Frame>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Careti Logo" />
 </Frame>

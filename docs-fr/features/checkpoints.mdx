@@ -7,13 +7,13 @@ Les points de contrôle sauvegardent automatiquement des instantanés de votre e
 
 ## Comment fonctionnent les points de contrôle
 
-Caret crée un point de contrôle après chaque utilisation d'un outil (modifications de fichiers, commandes, etc.). Ces points de contrôle :
+Careti crée un point de contrôle après chaque utilisation d'un outil (modifications de fichiers, commandes, etc.). Ces points de contrôle :
 
 -   Fonctionnent en parallèle de votre flux de travail Git sans interférence
 -   Maintiennent le contexte entre les restaurations
 -   Utilisent un référentiel Git shadow pour suivre les modifications
 
-Par exemple, si vous travaillez sur une fonctionnalité et que Caret apporte plusieurs modifications de fichiers, chaque modification crée un point de contrôle. Cela signifie que vous pouvez examiner chaque modification et, si nécessaire, revenir à n'importe quel point sans affecter votre référentiel Git principal.
+Par exemple, si vous travaillez sur une fonctionnalité et que Careti apporte plusieurs modifications de fichiers, chaque modification crée un point de contrôle. Cela signifie que vous pouvez examiner chaque modification et, si nécessaire, revenir à n'importe quel point sans affecter votre référentiel Git principal.
 
 ## Affichage des modifications et restauration
 
@@ -39,7 +39,7 @@ Pour restaurer un point antérieur :
     - **Restore Task Only** : Conserve les modifications de la codebase mais restaure le contexte de la tâche
     - **Restore Workspace Only** : Réinitialise la codebase tout en préservant le contexte de la tâche
 
-Exemple : Si Caret effectue des modifications que vous n'aimez pas lors du styling d'un composant, vous pouvez utiliser "Restore Workspace Only" pour annuler les modifications du code tout en conservant le contexte de la conversation, ce qui vous permet d'essayer une approche différente.
+Exemple : Si Careti effectue des modifications que vous n'aimez pas lors du styling d'un composant, vous pouvez utiliser "Restore Workspace Only" pour annuler les modifications du code tout en conservant le contexte de la conversation, ce qui vous permet d'essayer une approche différente.
 
 <Frame caption="Reverting both codebase and task to before any changes were made to start fresh">
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/checkpointsDemo.gif" alt="Checkpoint restore demo" />
@@ -47,7 +47,7 @@ Exemple : Si Caret effectue des modifications que vous n'aimez pas lors du styl
 
 ## Cas d'utilisation
 
-Les points de contrôle vous permettent d'être plus expérimental avec Caret. Alors que le codage humain est souvent méthodique et itératif, l'IA peut effectuer des modifications importantes rapidement. Les points de contrôle vous aident à suivre ces modifications et à revenir en arrière si nécessaire.
+Les points de contrôle vous permettent d'être plus expérimental avec Careti. Alors que le codage humain est souvent méthodique et itératif, l'IA peut effectuer des modifications importantes rapidement. Les points de contrôle vous aident à suivre ces modifications et à revenir en arrière si nécessaire.
 
 ### Utilisation du mode Auto-Approve
 

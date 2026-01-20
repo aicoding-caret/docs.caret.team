@@ -2,7 +2,7 @@
 title: "Focus Chain"
 ---
 
-Focus Chain is a task management enhancement feature in Caret that provides automatic todo list management with real-time progress tracking throughout your tasks. 
+Focus Chain is a task management enhancement feature in Careti that provides automatic todo list management with real-time progress tracking throughout your tasks. 
 
 <figure>
 	<img
@@ -11,17 +11,17 @@ Focus Chain is a task management enhancement feature in Caret that provides auto
 	/>
 </figure>
 
-This enables Caret to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Caret on track across many context window resets.
+This enables Careti to work on long-horizon tasks, seamlessly managing the context sent to LLMs, and keeping Careti on track across many context window resets.
 
 :::tip
-  Focus Chain works particularly well with Caret's [Deep Planning slash command](/en/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/en/features/plan-and-act).
+  Focus Chain works particularly well with Careti's [Deep Planning slash command](/en/features/slash-commands/deep-planning), providing seamless progress tracking for implementation tasks created through the [planning process](/en/features/plan-and-act).
 :::
 
 ## Key Features
 
 ### Automatic Todo List Generation
 
-Caret analyzes your task and automatically creates a comprehensive todo list with:
+Careti analyzes your task and automatically creates a comprehensive todo list with:
 - Clear, actionable items in markdown checklist format
 - Logical breakdown of complex tasks into manageable steps
 - Real-time updates as work progresses
@@ -31,7 +31,7 @@ Caret analyzes your task and automatically creates a comprehensive todo list wit
 Todo lists are stored as editable markdown files:
 - Direct editing through your preferred markdown editor
 - Automatic detection of changes you make
-- Seamless integration back into Caret's workflow
+- Seamless integration back into Careti's workflow
 - Quick access through the edit button in the task header
 
 ### Visual Progress Tracking
@@ -53,24 +53,24 @@ Configurable reminders ensure todo lists stay current:
 ## Getting Started
 
 <Steps>
-  <Step title="Open Caret Settings">
-      - Click the gear icon in the Caret sidebar
+  <Step title="Open Careti Settings">
+      - Click the gear icon in the Careti sidebar
       - Navigate to the "Features" section
   </Step>
   <Step title="Enable Focus Chain">
       - Check "Enable Focus Chain"
-      - Optionally adjust "Remind Caret Interval" (default: 6 messages)
+      - Optionally adjust "Remind Careti Interval" (default: 6 messages)
   </Step>
   <Step title="Start a New Task">
       - Begin a new task
-      - Caret will automatically start creating and managing todo lists
+      - Careti will automatically start creating and managing todo lists
   </Step>
 </Steps>
 
 | Setting | Default | Range | Description |
 |---------|---------|-------|-------------|
 | Enable Focus Chain | Disabled | On/Off | Enables enhanced task progress tracking |
-| Remind Caret Interval | 6 | 1-100 messages | How often Caret updates the todo list |
+| Remind Careti Interval | 6 | 1-100 messages | How often Careti updates the todo list |
 
 ## Usage Examples
 
@@ -81,12 +81,12 @@ When you start a new task with Focus Chain enabled:
 ``` markdown User Request
 User: "Create a user authentication system for my React app"
 
-Caret: [Analyzes request and creates todo list]
+Careti: [Analyzes request and creates todo list]
 ```
 
 #### 2. Todo List Created
 
-Caret creates a comprehensive plan for the task, stored in a markdown file:
+Careti creates a comprehensive plan for the task, stored in a markdown file:
 
 ```markdown Todo List Created
 - [ ] Set up project structure
@@ -101,7 +101,7 @@ Caret creates a comprehensive plan for the task, stored in a markdown file:
 
 #### 3. Progress Tracking
 
-As Caret works, the task header shows real-time progress:
+As Careti works, the task header shows real-time progress:
 
 ```markdown Todo List Header
 [3/8] Implement login functionality     ⌄
@@ -155,7 +155,7 @@ Need to tweak the todo list? No problem.
     Add, remove, or reorder items as needed
   </Step>
   <Step title="Save the file">
-    Caret automatically detects and uses your updates
+    Careti automatically detects and uses your updates
   </Step>
 </Steps>
 
@@ -198,7 +198,7 @@ Todo files use standard markdown checklist syntax:
 
 ## Integration with Plan/Act Mode
 
-Focus Chain works seamlessly with Caret's [Plan/Act mode](/en/features/plan-and-act):
+Focus Chain works seamlessly with Careti's [Plan/Act mode](/en/features/plan-and-act):
 
 - **Plan Mode**: Optional todo lists for presenting concrete steps
 - **Act Mode**: Automatic todo creation when switching from Plan Mode
@@ -217,7 +217,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/en/features/plan-and-
       - Mention any preferred technologies or approaches
 
     2. **Review Generated Lists**
-      - Check that Caret's breakdown aligns with your expectations
+      - Check that Careti's breakdown aligns with your expectations
       - Verify that all important steps are included
       - Ensure the order makes sense for your project
 
@@ -241,7 +241,7 @@ Focus Chain works seamlessly with Caret's [Plan/Act mode](/en/features/plan-and-
     3. **Regular Reviews**
       - Check progress periodically during long tasks
       - Update todo lists as requirements evolve
-      - Communicate changes to Caret through edits
+      - Communicate changes to Careti through edits
   :::
   :::details Accordion
     1. **Share Todo Files**
@@ -277,7 +277,7 @@ Having issues? Try these quick fixes:
   :::
 :::
 
-Still stuck? Use the [/reportbug](/en/features/slash-commands/report-bug) command in Caret to get help.
+Still stuck? Use the [/reportbug](/en/features/slash-commands/report-bug) command in Careti to get help.
 
 ## Technical Details (for the curious)
 
@@ -299,4 +299,4 @@ Still stuck? Use the [/reportbug](/en/features/slash-commands/report-bug) comman
   :::
 :::
 
-Focus Chain turns Caret into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!
+Focus Chain turns Careti into your personal project manager, keeping you on track and your tasks organized. Give it a try on your next project!

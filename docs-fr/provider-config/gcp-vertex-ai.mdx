@@ -1,6 +1,6 @@
 ---
 title: "GCP Vertex AI"
-description: "Configurez GCP Vertex AI avec Caret pour accéder aux modèles d'IA générative de pointe comme Claude 3.5 Sonnet v2. Ce guide couvre la configuration de l'environnement GCP, l'authentification et l'intégration sécurisée pour les équipes d'entreprise."
+description: "Configurez GCP Vertex AI avec Careti pour accéder aux modèles d'IA générative de pointe comme Claude 3.5 Sonnet v2. Ce guide couvre la configuration de l'environnement GCP, l'authentification et l'intégration sécurisée pour les équipes d'entreprise."
 ---
 
 ### Overview
@@ -64,28 +64,28 @@ L'endpoint Global peut offrir une plus grande disponibilité et réduire les err
 
 ---
 
-### Step 3: Configurer l'extension Caret pour VS Code
+### Step 3: Configurer l'extension Careti pour VS Code
 
-#### 3.1 Installer et ouvrir Caret
+#### 3.1 Installer et ouvrir Careti
 
 -   **Télécharger VS Code :**\
     [Télécharger Visual Studio Code](https://code.visualstudio.com/)
--   **Installer l'extension Caret :**
+-   **Installer l'extension Careti :**
     -   Ouvrez VS Code
     -   Naviguez vers le Marketplace des extensions (Ctrl+Shift+X ou Cmd+Shift+X)
-    -   Recherchez **Caret** et installez l'extension
+    -   Recherchez **Careti** et installez l'extension
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/caret-extension-arrow.png"
-		alt="Caret extension in VS Code"
+		alt="Careti extension in VS Code"
 	/>
 </Frame>
 
-#### 3.2 Configurer les paramètres de Caret
+#### 3.2 Configurer les paramètres de Careti
 
--   **Ouvrir les paramètres de Caret :**\
-    Cliquez sur l'icône des paramètres ⚙️ dans l'extension Caret
+-   **Ouvrir les paramètres de Careti :**\
+    Cliquez sur l'icône des paramètres ⚙️ dans l'extension Careti
 -   **Définir l'API Provider :**\
     Choisissez **GCP Vertex AI** dans le menu déroulant API Provider
 -   **Saisir votre Google Cloud Project ID :**\
@@ -115,7 +115,7 @@ L'endpoint Global peut offrir une plus grande disponibilité et réduire les err
     - Cela configure les Application Default Credentials (ADC) en utilisant votre compte Google
 
 3. **Redémarrer VS Code :**\
-   Assurez-vous de redémarrer VS Code pour que l'extension Caret puisse récupérer les nouveaux identifiants
+   Assurez-vous de redémarrer VS Code pour que l'extension Careti puisse récupérer les nouveaux identifiants
 
 #### Option B: Utiliser un Service Account (Clé JSON)
 
@@ -140,7 +140,7 @@ L'endpoint Global peut offrir une plus grande disponibilité et réduire les err
     export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
     ```
 
-    - Cela indique aux bibliothèques clientes Google Cloud (et à Caret) d'utiliser cette clé
+    - Cela indique aux bibliothèques clientes Google Cloud (et à Careti) d'utiliser cette clé
 
 5. **Redémarrer VS Code :**\
    Lancez VS Code à partir d'un terminal où la variable `GOOGLE_APPLICATION_CREDENTIALS` est définie
@@ -190,14 +190,14 @@ L'endpoint Global peut offrir une plus grande disponibilité et réduire les err
 
 ### Conclusion
 
-En suivant ces étapes, votre équipe d'entreprise peut intégrer en toute sécurité GCP Vertex AI avec l'extension Caret pour VS Code afin d'exploiter la puissance de **Claude 3.5 Sonnet v2** :
+En suivant ces étapes, votre équipe d'entreprise peut intégrer en toute sécurité GCP Vertex AI avec l'extension Careti pour VS Code afin d'exploiter la puissance de **Claude 3.5 Sonnet v2** :
 
 -   **Préparez votre environnement GCP :**\
     Créez ou utilisez un projet, configurez IAM avec le moindre privilège, et assurez-vous que les rôles nécessaires (y compris le rôle Vertex AI Service Agent) sont attachés
 -   **Vérifiez l'accès régional et au modèle :**\
     Confirmez que votre Region choisie prend en charge Claude 3.5 Sonnet v2 et que le modèle est activé
--   **Configurez Caret dans VS Code :**\
-    Installez Caret, saisissez votre Project ID, sélectionnez la Region appropriée et choisissez le modèle
+-   **Configurez Careti dans VS Code :**\
+    Installez Careti, saisissez votre Project ID, sélectionnez la Region appropriée et choisissez le modèle
 -   **Configurez l'authentification :**\
     Utilisez soit des identifiants utilisateur (via `gcloud auth application-default login`), soit un Service Account avec une clé JSON
 -   **Implémentez la sécurité et la surveillance :**\
@@ -206,4 +206,4 @@ En suivant ces étapes, votre équipe d'entreprise peut intégrer en toute sécu
 Pour plus de détails, veuillez consulter la [documentation GCP Vertex AI](https://cloud.google.com/vertex-ai/docs) et vos politiques de sécurité internes.\
 Bon codage !
 
-_Ce guide sera mis à jour au fur et à mesure de l'évolution de GCP Vertex AI et de Caret. Référez-vous toujours à la documentation la plus récente pour les pratiques actuelles._
+_Ce guide sera mis à jour au fur et à mesure de l'évolution de GCP Vertex AI et de Careti. Référez-vous toujours à la documentation la plus récente pour les pratiques actuelles._

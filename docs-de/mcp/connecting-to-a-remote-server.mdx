@@ -1,16 +1,16 @@
 ---
 title: "Verbindung zu einem Remote-Server herstellen"
-description: "Das Model Context Protocol (MCP) ermöglicht es Caret, mit externen Servern zu kommunizieren, die zusätzliche Tools und Ressourcen bereitstellen, um dessen Funktionen zu erweitern. Diese Anleitung erklärt, wie man Remote MCP Server über das MCP Servers Interface hinzufügt und verbindet."
+description: "Das Model Context Protocol (MCP) ermöglicht es Careti, mit externen Servern zu kommunizieren, die zusätzliche Tools und Ressourcen bereitstellen, um dessen Funktionen zu erweitern. Diese Anleitung erklärt, wie man Remote MCP Server über das MCP Servers Interface hinzufügt und verbindet."
 ---
 
 ## Remote MCP Server hinzufügen und verwalten
 
 ### Zugriff auf das MCP Servers Interface
 
-Um auf das MCP Servers Interface in Caret zuzugreifen:
+Um auf das MCP Servers Interface in Careti zuzugreifen:
 
-1. Klicken Sie auf das Caret-Icon in der VS Code Sidebar
-2. Öffnen Sie das Menü (⋮) in der oberen rechten Ecke des Caret-Panels
+1. Klicken Sie auf das Careti-Icon in der VS Code Sidebar
+2. Öffnen Sie das Menü (⋮) in der oberen rechten Ecke des Careti-Panels
 3. Wählen Sie "MCP Servers" aus dem Dropdown-Menü
 
 ### Das MCP Servers Interface verstehen
@@ -31,13 +31,13 @@ Der Tab "Remote Servers" ermöglicht es Ihnen, sich mit jedem MCP Server zu verb
     - **Server URL**: Geben Sie den vollständigen URL-Endpunkt des MCP Servers ein (z. B. `https://example.com/mcp-sse`)
     - **Transport Type**: Wählen Sie das Verbindungsprotokoll aus (Streamable HTTP wird für moderne Server empfohlen)
 3. Klicken Sie auf "Add Server", um die Verbindung zu initiieren
-4. Caret wird versuchen, eine Verbindung zum Server herzustellen und den Verbindungsstatus anzeigen
+4. Careti wird versuchen, eine Verbindung zum Server herzustellen und den Verbindungsstatus anzeigen
 
 > **Hinweis**: Wenn Sie eine Verbindung zu einem Remote Server herstellen, stellen Sie sicher, dass Sie der Quelle vertrauen, da MCP Server Code in Ihrer Umgebung ausführen können.
 
 #### Transport-Typen
 
-Caret unterstützt zwei Transportprotokolle für Remote MCP Server:
+Careti unterstützt zwei Transportprotokolle für Remote MCP Server:
 
 -   **Streamable HTTP (Empfohlen)**: Das moderne MCP-Transportprotokoll mit besserer Performance, Zuverlässigkeit und voller OAuth 2.1-Authentifizierungsunterstützung. Verwenden Sie dies für die meisten Remote Server.
 -   **SSE (Legacy)**: Server-Sent Events Transport. Verwenden Sie dies nur, wenn der Server explizit SSE erfordert oder Streamable HTTP nicht unterstützt.
@@ -51,16 +51,16 @@ Einige MCP Server (wie der von Vercel) erfordern eine OAuth-Authentifizierung, u
 3. Klicken Sie auf die Schaltfläche **"Authenticate"**, die erscheint
 4. Ihr Browser öffnet sich mit der Autorisierungsseite des Servers
 5. Melden Sie sich an und erteilen Sie die Berechtigung
-6. Sie werden automatisch zu Caret zurückgeleitet
+6. Sie werden automatisch zu Careti zurückgeleitet
 7. Der Server verbindet sich und zeigt einen grünen Statuspunkt an
 
-Sobald Sie authentifiziert sind, werden Ihre Zugangsdaten sicher gespeichert und der Server verbindet sich automatisch neu, wenn Sie Caret neu laden. Sie müssen sich nicht erneut authentifizieren, es sei denn, Sie löschen den Server oder Ihre Zugangsdaten laufen ab.
+Sobald Sie authentifiziert sind, werden Ihre Zugangsdaten sicher gespeichert und der Server verbindet sich automatisch neu, wenn Sie Careti neu laden. Sie müssen sich nicht erneut authentifizieren, es sei denn, Sie löschen den Server oder Ihre Zugangsdaten laufen ab.
 
 ### Entdeckung von Remote Servern
 
 Wenn Sie nach MCP Servern suchen, mit denen Sie sich verbinden können, bieten mehrere Marktplätze von Drittanbietern Verzeichnisse verfügbarer Server mit verschiedenen Funktionen an.
 
-> **Warnung**: Die folgenden Marktplätze von Drittanbietern werden nur zu Informationszwecken aufgeführt. Caret unterstützt, verifiziert oder übernimmt keine Verantwortung für Server, die auf diesen Marktplätzen gelistet sind. Diese Server sind Cloud-gehostete Dienste, die Ihre Anfragen verarbeiten und Zugriff auf die von Ihnen geteilten Daten haben können. Prüfen Sie immer die Datenschutzrichtlinien und Nutzungsbedingungen, bevor Sie sich mit Diensten von Drittanbietern verbinden.
+> **Warnung**: Die folgenden Marktplätze von Drittanbietern werden nur zu Informationszwecken aufgeführt. Careti unterstützt, verifiziert oder übernimmt keine Verantwortung für Server, die auf diesen Marktplätzen gelistet sind. Diese Server sind Cloud-gehostete Dienste, die Ihre Anfragen verarbeiten und Zugriff auf die von Ihnen geteilten Daten haben können. Prüfen Sie immer die Datenschutzrichtlinien und Nutzungsbedingungen, bevor Sie sich mit Diensten von Drittanbietern verbinden.
 
 #### Composio MCP Integration
 
@@ -68,7 +68,7 @@ Wenn Sie nach MCP Servern suchen, mit denen Sie sich verbinden können, bieten m
 
 #### Verbindung über Smithery
 
-Smithery ist ein MCP Server Marktplatz eines Drittanbieters, der es Benutzern ermöglicht, verschiedene Model Context Protocol (MCP) Server zu entdecken und sich mit ihnen zu verbinden. Wenn Sie einen MCP-kompatiblen Client verwenden (wie Cursor, Claude Desktop oder Caret), können Sie die verfügbaren Server durchsuchen und sie direkt in Ihren Workflow integrieren.
+Smithery ist ein MCP Server Marktplatz eines Drittanbieters, der es Benutzern ermöglicht, verschiedene Model Context Protocol (MCP) Server zu entdecken und sich mit ihnen zu verbinden. Wenn Sie einen MCP-kompatiblen Client verwenden (wie Cursor, Claude Desktop oder Careti), können Sie die verfügbaren Server durchsuchen und sie direkt in Ihren Workflow integrieren.
 
 Um die verfügbaren Optionen zu erkunden, besuchen Sie den Smithery Marketplace: [https://smithery.ai](https://smithery.ai)
 
@@ -94,7 +94,7 @@ Klicken Sie auf einen Server, um dessen Einstellungsbereich zu erweitern:
     - Alle verfügbaren Tools und Ressourcen des Servers anzeigen
     - Einstellungen für die automatische Genehmigung (Auto-Approval) von Tools konfigurieren (falls aktiviert)
 2. **Request Timeout**:
-    - Festlegen, wie lange Caret auf Serverantworten warten soll
+    - Festlegen, wie lange Careti auf Serverantworten warten soll
     - Die Optionen reichen von 30 Sekunden bis zu 1 Stunde
 3. **Server Management**:
     - **Restart Server**: Neu verbinden, wenn der Server nicht mehr reagiert
@@ -104,7 +104,7 @@ Klicken Sie auf einen Server, um dessen Einstellungsbereich zu erweitern:
 
 Betätigen Sie den Schalter neben jedem Server, um ihn zu aktivieren oder zu deaktivieren:
 
--   **Aktiviert**: Caret kann die Tools und Ressourcen des Servers verwenden
+-   **Aktiviert**: Careti kann die Tools und Ressourcen des Servers verwenden
 -   **Deaktiviert**: Der Server bleibt in Ihrer Konfiguration, ist aber nicht aktiv
 
 ### Fehlerbehebung bei Verbindungsproblemen
@@ -124,12 +124,12 @@ Wenn Sie Probleme bei der Authentifizierung mit einem OAuth-fähigen Server habe
 
 -   **"Authentication required" bleibt bestehen**: Stellen Sie sicher, dass Sie den Autorisierungsprozess im Browser abgeschlossen und nicht abgebrochen haben
 -   **Browser öffnet sich nicht**: Überprüfen Sie die Standard-Browser-Einstellungen Ihres Systems und stellen Sie sicher, dass externe URLs geöffnet werden können
--   **Redirect-Fehler**: Stellen Sie sicher, dass Sie die neueste Version von Caret verwenden – ältere Versionen unterstützen OAuth möglicherweise nicht
+-   **Redirect-Fehler**: Stellen Sie sicher, dass Sie die neueste Version von Careti verwenden – ältere Versionen unterstützen OAuth möglicherweise nicht
 -   **Authentifizierung zurücksetzen**: Löschen Sie den Server und fügen Sie ihn erneut hinzu, um einen neuen OAuth-Prozess zu starten
 
 ### Erweiterte Konfiguration
 
-Für fortgeschrittene Benutzer speichert Caret MCP Server-Konfigurationen in einer JSON-Datei, die geändert werden kann:
+Für fortgeschrittene Benutzer speichert Careti MCP Server-Konfigurationen in einer JSON-Datei, die geändert werden kann:
 
 1. Klicken Sie im Tab "Configure" auf "Configure MCP Servers", um auf die Einstellungsdatei zuzugreifen
 2. Die Konfiguration für jeden Server folgt diesem Format:
@@ -160,11 +160,11 @@ Für zusätzliche MCP-Einstellungen klicken Sie auf den Link "Advanced MCP Setti
 
 ### MCP Server Tools verwenden
 
-Sobald die Verbindung hergestellt ist, kann Caret die vom MCP Server bereitgestellten Tools und Ressourcen verwenden. Wenn Caret die Verwendung eines MCP Tools vorschlägt:
+Sobald die Verbindung hergestellt ist, kann Careti die vom MCP Server bereitgestellten Tools und Ressourcen verwenden. Wenn Careti die Verwendung eines MCP Tools vorschlägt:
 
 1. Eine Aufforderung zur Tool-Genehmigung erscheint (sofern nicht automatisch genehmigt)
 2. Überprüfen Sie die Tool-Details und Parameter, bevor Sie sie genehmigen
-3. Das Tool wird ausgeführt und gibt die Ergebnisse an Caret zurück
+3. Das Tool wird ausgeführt und gibt die Ergebnisse an Careti zurück
 
 ### Beispiel: Verbindung zu Vercel MCP herstellen
 
@@ -177,8 +177,8 @@ Sobald die Verbindung hergestellt ist, kann Caret die vom MCP Server bereitgeste
     - **Transport Type**: Streamable HTTP (vorausgewählt)
 3. Klicken Sie auf "Add Server"
 4. Sie sehen "Authentication required" – klicken Sie auf die Schaltfläche **"Authenticate"**
-5. Melden Sie sich in Ihrem Browser bei Vercel an und autorisieren Sie Caret
-6. Kehren Sie zu Caret zurück – der Server wird sich automatisch verbinden
-7. Vercels Tools (deploy, logs, projects) stehen Caret nun zur Verfügung!
+5. Melden Sie sich in Ihrem Browser bei Vercel an und autorisieren Sie Careti
+6. Kehren Sie zu Careti zurück – der Server wird sich automatisch verbinden
+7. Vercels Tools (deploy, logs, projects) stehen Careti nun zur Verfügung!
 
-Ihre Vercel-Authentifizierung bleibt über Sitzungen hinweg bestehen, sodass Sie sich nicht jedes Mal neu authentifizieren müssen, wenn Sie Caret verwenden.
+Ihre Vercel-Authentifizierung bleibt über Sitzungen hinweg bestehen, sodass Sie sich nicht jedes Mal neu authentifizieren müssen, wenn Sie Careti verwenden.

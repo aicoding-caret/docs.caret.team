@@ -3,9 +3,9 @@ title: "URL-Erwähnungen"
 sidebarTitle: "URL-Erwähnungen"
 ---
 
-Mit URL-Erwähnungen kannst du Webinhalte direkt in deine Konversation mit Caret einbringen. Gib einfach `@` gefolgt von einer beliebigen URL ein, und Caret kann den Inhalt dieser Webseite sehen, ohne dass du etwas kopieren und einfügen musst.
+Mit URL-Erwähnungen kannst du Webinhalte direkt in deine Konversation mit Careti einbringen. Gib einfach `@` gefolgt von einer beliebigen URL ein, und Careti kann den Inhalt dieser Webseite sehen, ohne dass du etwas kopieren und einfügen musst.
 
-Wenn du in einem Chat `@` gefolgt von einer URL (wie `@https://example.com`) eingibst, ruft Caret den Inhalt dieser Webseite ab und fügt ihn in den Kontext ein. Dies funktioniert für Dokumentationsseiten, GitHub Issues, Stack Overflow-Fragen oder andere Webinhalte, auf die du verweisen möchtest.
+Wenn du in einem Chat `@` gefolgt von einer URL (wie `@https://example.com`) eingibst, ruft Careti den Inhalt dieser Webseite ab und fügt ihn in den Kontext ein. Dies funktioniert für Dokumentationsseiten, GitHub Issues, Stack Overflow-Fragen oder andere Webinhalte, auf die du verweisen möchtest.
 
 Ich verwende URL-Erwähnungen ständig, wenn ich mit externen APIs oder Bibliotheken arbeite. Anstatt zu versuchen, die Funktionsweise einer API zu erklären oder Dokumentationsausschnitte zu kopieren, verweise ich einfach direkt auf die Dokumentation:
 
@@ -15,7 +15,7 @@ Ich versuche, die Authentifizierung mit dieser API zu implementieren: @https://a
 Kannst du mir helfen, den Code zu schreiben, um ein Access Token basierend auf dieser Dokumentation zu erhalten?
 ```
 
-Dadurch erhält Caret die vollständige Dokumentationsseite, sodass alle Authentifizierungsanforderungen, Endpunkte, Parameter und Beispiele angezeigt werden können. Caret kann dann genauere und umfassendere Hilfe auf der Grundlage der offiziellen Dokumentation leisten.
+Dadurch erhält Careti die vollständige Dokumentationsseite, sodass alle Authentifizierungsanforderungen, Endpunkte, Parameter und Beispiele angezeigt werden können. Careti kann dann genauere und umfassendere Hilfe auf der Grundlage der offiziellen Dokumentation leisten.
 
 URL-Erwähnungen sind besonders nützlich, um auf GitHub Issues oder Diskussionen zu verweisen:
 
@@ -27,15 +27,15 @@ Hier ist meine aktuelle Implementierung: @/src/components/Feature.jsx
 Welche Änderungen muss ich vornehmen, um das Problem zu beheben?
 ```
 
-Dadurch wird Caret das vollständige GitHub Issue angezeigt, einschließlich der Beschreibung, Kommentare und aller Code-Snippets oder Screenshots. Caret kann dir dann helfen, eine Lösung zu implementieren, die das gemeldete Problem direkt behebt.
+Dadurch wird Careti das vollständige GitHub Issue angezeigt, einschließlich der Beschreibung, Kommentare und aller Code-Snippets oder Screenshots. Careti kann dir dann helfen, eine Lösung zu implementieren, die das gemeldete Problem direkt behebt.
 
-Wenn du das nächste Mal mit externer Dokumentation oder Online-Ressourcen arbeitest, versuche URL-Erwähnungen zu verwenden, anstatt Inhalte zu kopieren und einzufügen. Du erhältst genauere Hilfe, da Caret den vollständigen Kontext der Webseite sehen kann, einschließlich Formatierung, Code-Beispiele und umgebende Informationen.
+Wenn du das nächste Mal mit externer Dokumentation oder Online-Ressourcen arbeitest, versuche URL-Erwähnungen zu verwenden, anstatt Inhalte zu kopieren und einzufügen. Du erhältst genauere Hilfe, da Careti den vollständigen Kontext der Webseite sehen kann, einschließlich Formatierung, Code-Beispiele und umgebende Informationen.
 
 ## Wie es unter der Haube funktioniert
 
 Wenn du eine URL-Erwähnung in deiner Nachricht verwendest, passiert Folgendes im Hintergrund:
 
-1. Wenn du deine Nachricht sendest, erkennt Caret das Muster `@http://...` oder `@https://...` in deinem Text
+1. Wenn du deine Nachricht sendest, erkennt Careti das Muster `@http://...` oder `@https://...` in deinem Text
 2. Die Extension startet einen Headless Browser (Puppeteer) im Hintergrund
 3. Er navigiert zur URL und wartet, bis die Seite vollständig geladen ist
 4. Der Browser erfasst den Seiteninhalt, einschließlich Text, Formatierung und Code-Beispiele

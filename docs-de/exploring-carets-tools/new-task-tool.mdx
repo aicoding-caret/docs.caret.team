@@ -1,14 +1,14 @@
 ```yaml
 ---
 title: "Neues Task-Tool"
-description: "Erfahren Sie mehr über das Tool 'new_task' in Caret, mit dem komplexe Aufgaben in kleinere, überschaubare Abschnitte unterteilt werden können, und wie es in Kombination mit '.agents/context' zur Automatisierung von Arbeitsabläufen eingesetzt werden kann."
+description: "Erfahren Sie mehr über das Tool 'new_task' in Careti, mit dem komplexe Aufgaben in kleinere, überschaubare Abschnitte unterteilt werden können, und wie es in Kombination mit '.agents/context' zur Automatisierung von Arbeitsabläufen eingesetzt werden kann."
 ---
 
 ### Das Tool `new_task` und Strategien für das Kontextmanagement
 
 #### Überblick
 
-Caret enthält ein leistungsstarkes internes Tool, `new_task`, das dazu dient, die Kontinuität des Workflows und die Aufrechterhaltung des Kontexts zu verwalten, insbesondere bei komplexen oder langwierigen Aufgaben. Dieses Tool, kombiniert mit Carets Bewusstsein für die eigene Nutzung des Kontextfensters und der Flexibilität von `.agents/context`, ermöglicht ausgefeilte Strategien zum Aufteilen von Aufgaben und zur Gewährleistung nahtloser Übergänge zwischen Aufgabensitzungen.
+Careti enthält ein leistungsstarkes internes Tool, `new_task`, das dazu dient, die Kontinuität des Workflows und die Aufrechterhaltung des Kontexts zu verwalten, insbesondere bei komplexen oder langwierigen Aufgaben. Dieses Tool, kombiniert mit Carets Bewusstsein für die eigene Nutzung des Kontextfensters und der Flexibilität von `.agents/context`, ermöglicht ausgefeilte Strategien zum Aufteilen von Aufgaben und zur Gewährleistung nahtloser Übergänge zwischen Aufgabensitzungen.
 
 Das Verständnis der Kernfunktionen und ihrer Interaktion mit benutzerdefinierten Regeln ist der Schlüssel zur effektiven Nutzung dieser Funktion.
 
@@ -17,19 +17,19 @@ Das Verständnis der Kernfunktionen und ihrer Interaktion mit benutzerdefinierte
 Zwei grundlegende Funktionen ermöglichen ein fortschrittliches Kontextmanagement:
 
 1. **Das Tool `new_task`:**
-    - **Funktion:** Ermöglicht es Caret, nach Genehmigung durch den Benutzer die aktuelle Aufgabensitzung zu beenden und sofort eine neue zu starten.
-    - **Kontext-Vorabladen:** Entscheidend ist, dass Caret diese neue Aufgabensitzung mit spezifischem Kontext **vorladen** kann, der innerhalb des `<context>`-Blocks des Tools bereitgestellt wird. Dieser Kontext kann alles sein, was Caret oder eine `.agents/context`-Datei definieren – Zusammenfassungen, Code-Snippets, nächste Schritte, Projektstatus usw.
+    - **Funktion:** Ermöglicht es Careti, nach Genehmigung durch den Benutzer die aktuelle Aufgabensitzung zu beenden und sofort eine neue zu starten.
+    - **Kontext-Vorabladen:** Entscheidend ist, dass Careti diese neue Aufgabensitzung mit spezifischem Kontext **vorladen** kann, der innerhalb des `<context>`-Blocks des Tools bereitgestellt wird. Dieser Kontext kann alles sein, was Careti oder eine `.agents/context`-Datei definieren – Zusammenfassungen, Code-Snippets, nächste Schritte, Projektstatus usw.
 2. **Bewusstsein für das Kontextfenster:**
-    - **Verfolgung:** Caret verfolgt intern den Prozentsatz des verfügbaren Kontextfensters, der während einer Aufgabe aktuell verwendet wird.
-    - **Sichtbarkeit:** Diese Informationen sind in den `environment_details` sichtbar, die Caret in seinem Prompt zur Verfügung gestellt werden.
+    - **Verfolgung:** Careti verfolgt intern den Prozentsatz des verfügbaren Kontextfensters, der während einer Aufgabe aktuell verwendet wird.
+    - **Sichtbarkeit:** Diese Informationen sind in den `environment_details` sichtbar, die Careti in seinem Prompt zur Verfügung gestellt werden.
 
 #### Verwenden des Slash-Befehls `/newtask`
 
-Als schnelle Alternative zu Caret, das das Tool `newtask` vorschlägt oder komplexe Regeln definiert, können Sie den Prozess direkt mit einem Slash-Befehl initiieren.
+Als schnelle Alternative zu Careti, das das Tool `newtask` vorschlägt oder komplexe Regeln definiert, können Sie den Prozess direkt mit einem Slash-Befehl initiieren.
 
 -   **Wie:** Geben Sie einfach `/newtask` in das Chat-Eingabefeld ein.
--   **Aktion:** Caret schlägt die Erstellung einer neuen Aufgabe vor und schlägt in der Regel Kontext basierend auf der aktuellen Sitzung vor (ähnlich dem Standardverhalten bei Verwendung des Tools). Sie erhalten weiterhin den `ask_followup_question`-Prompt, um den Kontext zu bestätigen und möglicherweise zu ändern, bevor die neue Aufgabe erstellt wird.
--   **Vorteil:** Bietet eine schnelle, vom Benutzer initiierte Möglichkeit, die `new_task`-Funktionalität für verzweigende Erkundungen oder die Verwaltung langer Sitzungen zu nutzen, ohne darauf zu warten, dass Caret sie vorschlägt.
+-   **Aktion:** Careti schlägt die Erstellung einer neuen Aufgabe vor und schlägt in der Regel Kontext basierend auf der aktuellen Sitzung vor (ähnlich dem Standardverhalten bei Verwendung des Tools). Sie erhalten weiterhin den `ask_followup_question`-Prompt, um den Kontext zu bestätigen und möglicherweise zu ändern, bevor die neue Aufgabe erstellt wird.
+-   **Vorteil:** Bietet eine schnelle, vom Benutzer initiierte Möglichkeit, die `new_task`-Funktionalität für verzweigende Erkundungen oder die Verwaltung langer Sitzungen zu nutzen, ohne darauf zu warten, dass Careti sie vorschlägt.
 
 <Note>
 	Weitere Informationen zur Verwendung des Slash-Befehls `/newtask` finden Sie in der
@@ -40,21 +40,21 @@ Als schnelle Alternative zu Caret, das das Tool `newtask` vorschlägt oder kompl
 
 Standardmäßig, ohne dass eine spezifische `.agents/context`-Datei das Verhalten vorgibt:
 
--   **Tool-Verfügbarkeit:** Das Tool `new_task` ist vorhanden und Caret _kann_ es verwenden.
--   **Kontextbewusstsein:** Caret _ist_ sich des prozentualen Anteils der Kontextnutzung bewusst.
--   **Kein automatischer Auslöser:** Caret **wird** eine Aufgabenübergabe **nicht** automatisch initiieren, _allein_ aufgrund der Tatsache, dass die Kontextnutzung einen bestimmten Prozentsatz (z. B. 50 %) erreicht hat. Die Entscheidung, die Verwendung von `new_task` vorzuschlagen, basiert auf der Argumentation des KI-Modells anhand des gesamten Aufgabenfortschritts und der Prompt-Anweisungen.
--   **Grundlegendes Kontext-Vorabladen:** Wenn `new_task` ohne spezifische Regeln verwendet wird, die die Struktur des `<context>`-Blocks definieren, versucht Caret, relevante Informationen basierend auf seinem aktuellen Verständnis vorzuladen (z. B. eine grundlegende Zusammenfassung des Fortschritts und der nächsten Schritte), dies ist jedoch möglicherweise weniger umfassend als ein regelbasierter Ansatz.
+-   **Tool-Verfügbarkeit:** Das Tool `new_task` ist vorhanden und Careti _kann_ es verwenden.
+-   **Kontextbewusstsein:** Careti _ist_ sich des prozentualen Anteils der Kontextnutzung bewusst.
+-   **Kein automatischer Auslöser:** Careti **wird** eine Aufgabenübergabe **nicht** automatisch initiieren, _allein_ aufgrund der Tatsache, dass die Kontextnutzung einen bestimmten Prozentsatz (z. B. 50 %) erreicht hat. Die Entscheidung, die Verwendung von `new_task` vorzuschlagen, basiert auf der Argumentation des KI-Modells anhand des gesamten Aufgabenfortschritts und der Prompt-Anweisungen.
+-   **Grundlegendes Kontext-Vorabladen:** Wenn `new_task` ohne spezifische Regeln verwendet wird, die die Struktur des `<context>`-Blocks definieren, versucht Careti, relevante Informationen basierend auf seinem aktuellen Verständnis vorzuladen (z. B. eine grundlegende Zusammenfassung des Fortschritts und der nächsten Schritte), dies ist jedoch möglicherweise weniger umfassend als ein regelbasierter Ansatz.
 
 #### Die Leistungsfähigkeit von `.agents/context`: Ermöglichen von benutzerdefinierten Arbeitsabläufen
 
-Während die Kernfunktionen standardmäßig vorhanden sind, entfalten sich die wahre Leistungsfähigkeit, Automatisierung und Anpassung, wenn Sie `new_task` und Kontextbewusstsein mit benutzerdefinierten Workflows kombinieren, die in `.agents/context` definiert sind. Dies ermöglicht es Ihnen, genau zu steuern, _wann_ und _wie_ Caret den Kontext und die Aufgabenkontinuität verwaltet.
+Während die Kernfunktionen standardmäßig vorhanden sind, entfalten sich die wahre Leistungsfähigkeit, Automatisierung und Anpassung, wenn Sie `new_task` und Kontextbewusstsein mit benutzerdefinierten Workflows kombinieren, die in `.agents/context` definiert sind. Dies ermöglicht es Ihnen, genau zu steuern, _wann_ und _wie_ Careti den Kontext und die Aufgabenkontinuität verwaltet.
 
 Hauptvorteile der Verwendung von `.agents/context` mit `new_task`:
 
 -   **Automatisiertes Kontextmanagement:** Definieren Sie Regeln, um Übergaben automatisch bei bestimmten Kontextprozentsätzen (z. B. >50 %, >70 %) oder Token-Anzahlen auszulösen, um eine optimale Leistung zu gewährleisten und Kontextverluste zu vermeiden.
 -   **Modellspezifische Optimierung:** Passen Sie Übergabeauslöser basierend auf bekannten Schwellenwerten für verschiedene LLMs an (z. B. früher auslösen für Modelle, von denen bekannt ist, dass sie sich ab einer bestimmten Token-Anzahl verschlechtern).
--   **Intelligente Haltepunkte:** Weisen Sie Caret über Regeln an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
--   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Caret nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt und den Kontext für die _nächste_ Teilaufgabe vorlädt.
+-   **Intelligente Haltepunkte:** Weisen Sie Careti über Regeln an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
+-   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Careti nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt und den Kontext für die _nächste_ Teilaufgabe vorlädt.
 -   **Benutzerdefinierte Kontextverpackung:** Legen Sie die genaue Struktur und den Inhalt des `<context>`-Blocks in `.agents/context` für hochdetaillierte und konsistente Übergaben fest (siehe Beispiel unten).
 -   **Verbesserte Speicherpersistenz:** Verwenden Sie `new_task`-Kontextblöcke als primäre, integrierte Möglichkeit, Informationen sitzungsübergreifend zu speichern, und ersetzen oder ergänzen Sie möglicherweise dateibasierte Speichersysteme.
 -   **Workflow-Automatisierung:** Definieren Sie Regeln für bestimmte Szenarien, z. B. das automatische Vorladen bestimmter Einrichtungsanweisungen oder Projekt-Boilerplate beim Starten von Aufgaben eines bestimmten Typs.
@@ -63,8 +63,8 @@ Hauptvorteile der Verwendung von `.agents/context` mit `new_task`:
 
 Ein gängiger Workflow, **gesteuert durch spezifische `.agents/context` wie im folgenden Beispiel**, umfasst diese Schritte:
 
-1. **Auslösererkennung (regelbasiert):** Caret überwacht Übergabepunkte, die in den Regeln definiert sind (z. B. Kontextnutzung > 50 %, Aufgabenabschluss).
-2. **Benutzerbestätigung:** Caret verwendet `ask_followup_question`, um die Erstellung einer neuen Aufgabe vorzuschlagen und zeigt oft den beabsichtigten, durch die Regeln definierten Kontext an.
+1. **Auslösererkennung (regelbasiert):** Careti überwacht Übergabepunkte, die in den Regeln definiert sind (z. B. Kontextnutzung > 50 %, Aufgabenabschluss).
+2. **Benutzerbestätigung:** Careti verwendet `ask_followup_question`, um die Erstellung einer neuen Aufgabe vorzuschlagen und zeigt oft den beabsichtigten, durch die Regeln definierten Kontext an.
 
     ```xml
     <ask_followup_question>
@@ -73,8 +73,8 @@ Ein gängiger Workflow, **gesteuert durch spezifische `.agents/context` wie im f
     </ask_followup_question>
     ```
 
-3. **Benutzerkontrolle:** Sie können die Erstellung der neuen Aufgabe genehmigen, ablehnen oder Caret bitten, den Kontext zu ändern, bevor die neue Aufgabe erstellt wird.
-4. **Kontextverpackung (Tool `new_task`):** Wenn die Erstellung genehmigt wurde, verwendet Caret `new_task` und verpackt den Kontext gemäß der durch `.agents/context` vorgeschriebenen Struktur.
+3. **Benutzerkontrolle:** Sie können die Erstellung der neuen Aufgabe genehmigen, ablehnen oder Careti bitten, den Kontext zu ändern, bevor die neue Aufgabe erstellt wird.
+4. **Kontextverpackung (Tool `new_task`):** Wenn die Erstellung genehmigt wurde, verwendet Careti `new_task` und verpackt den Kontext gemäß der durch `.agents/context` vorgeschriebenen Struktur.
 5. **Erstellung neuer Aufgaben:** Die aktuelle Aufgabe wird beendet und sofort eine neue Sitzung gestartet, die mit dem angegebenen Kontext vorab geladen wird.
 
 #### Der Übergabe-Kontextblock (regeldefinierte Struktur)
@@ -92,8 +92,8 @@ Die Effektivität regelgesteuerter Übergaben hängt stark davon ab, wie `.agent
 Die Flexibilität von `new_task` in Kombination mit `.agents/context` eröffnet viele Möglichkeiten:
 
 -   **Proaktives Kontextfenstermanagement:** Automatisches Auslösen von Übergaben bei bestimmten Prozentsätzen (z. B. 50 %, 70 %) oder Token-Anzahlen, um eine optimale Leistung aufrechtzuerhalten.
--   **Intelligente Haltepunkte:** Weisen Sie Caret an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
--   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Caret nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt.
+-   **Intelligente Haltepunkte:** Weisen Sie Careti an, logische Haltepunkte zu finden (z. B. nach Abschluss einer Funktion oder eines Tests) _nachdem_ ein Kontextschwellenwert überschritten wurde, um sauberere Übergaben zu gewährleisten.
+-   **Strukturierte Aufgabenzerlegung:** Verwenden Sie den Plan-Modus, um Teilaufgaben zu definieren, und verwenden Sie dann `.agents/context`, damit Careti nach Abschluss jeder Teilaufgabe automatisch eine neue Aufgabe über `new_task` erstellt.
 -   **Automatisierte Sitzungszusammenfassungen:** Konfigurieren Sie den `<context>`-Block so, dass er immer eine Zusammenfassung der wichtigsten Diskussionspunkte der vorherigen Sitzung enthält.
 -   **Vorabladen von Boilerplate/Setup:** Starten Sie neue Aufgaben im Zusammenhang mit bestimmten Projekten, die mit Standard-Setup-Anweisungen oder Dateivorlagen vorab geladen werden.
 -   **Unterstützung für das Kontexsystem:** Verwenden Sie `new_task`-Kontextblöcke als primäre Übergabemethode über Sitzungen hinweg, die an `AGENTS.md`/`.agents/context` und `work-logs/` ausgerichtet sind.
@@ -382,7 +382,7 @@ Indem Sie diese Richtlinien strikt befolgen, stellen Sie reibungslose Übergäng
 ## Benutzerinteraktion und Workflow-Überlegungen
 
 -   **Linearer Fluss:** Derzeit erstellt die Verwendung von `new_task` eine lineare Sequenz. Die alte Aufgabe wird beendet und die neue beginnt. Die alte Aufgabenhistorie bleibt für das Backtracking zugänglich.
--   **Benutzergenehmigung:** Sie haben immer die Kontrolle, genehmigen die Übergabe und haben die Möglichkeit, den Kontext zu ändern, den Caret weiterführen soll.
+-   **Benutzergenehmigung:** Sie haben immer die Kontrolle, genehmigen die Übergabe und haben die Möglichkeit, den Kontext zu ändern, den Careti weiterführen soll.
 -   **Flexibilität:** Das Kern-Tool `new_task` ist ein flexibler Baustein. Experimentieren Sie mit `.agents/context`, um Workflows zu erstellen, die Ihren Bedürfnissen am besten entsprechen, sei es für ein striktes Kontextmanagement, die Zerlegung von Aufgaben oder andere kreative Zwecke.
 ```
 ````

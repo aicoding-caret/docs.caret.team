@@ -1,20 +1,20 @@
 ---
 title: "Claude Code"
-description: "Use your Claude Max or Pro subscription with Caret instead of paying per token. Learn how to set up and configure the Claude Code provider."
+description: "Use your Claude Max or Pro subscription with Careti instead of paying per token. Learn how to set up and configure the Claude Code provider."
 ---
 
 <Note>
-캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(허용/차단 모델, 지역 제한, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(허용/차단 모델, 지역 제한, 인증/라우팅)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
 **Website:** [https://docs.anthropic.com/en/docs/claude-code/setup](https://docs.anthropic.com/en/docs/claude-code/setup)
 
-The Claude Code provider lets you use your existing Claude subscription with Caret. If you have Claude Max or Pro, this means you can use Claude in Caret without paying extra API costs.
+The Claude Code provider lets you use your existing Claude subscription with Careti. If you have Claude Max or Pro, this means you can use Claude in Careti without paying extra API costs.
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-use-opus.gif"
-		alt="Using the Claude Code provider in Caret with Opus model"
+		alt="Using the Claude Code provider in Careti with Opus model"
 	/>
 </Frame>
 
@@ -24,15 +24,15 @@ First, you'll need to install and authenticate Claude Code on your system:
 
 1. **Install Claude Code**: Follow Anthropic's [official setup guide](https://docs.anthropic.com/en/docs/claude-code/setup) to install and authenticate the Claude CLI.
 
-2. **Configure in Caret**:
-    - Open Caret settings (⚙️ icon)
+2. **Configure in Careti**:
+    - Open Careti settings (⚙️ icon)
     - Select **Claude Code** from the **API Provider** dropdown
     - Set the path to your Claude CLI executable (usually just `claude` if it's in your PATH)
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/claude-code-setup.gif"
-		alt="Setting up the Claude Code provider in Caret"
+		alt="Setting up the Claude Code provider in Careti"
 	/>
 </Frame>
 
@@ -56,9 +56,9 @@ The Claude Code provider supports these models:
 
 ## How it works
 
-When you use Claude Code with Caret, here's what happens behind the scenes:
+When you use Claude Code with Careti, here's what happens behind the scenes:
 
-Caret wraps the Claude Code CLI to handle your requests. Each time you send a message, Caret starts a new `claude` process, sends your conversation, and streams the response back. The AI reasoning comes from Claude Code, but all the actual file editing, terminal commands, and other tools are handled by Caret.
+Careti wraps the Claude Code CLI to handle your requests. Each time you send a message, Careti starts a new `claude` process, sends your conversation, and streams the response back. The AI reasoning comes from Claude Code, but all the actual file editing, terminal commands, and other tools are handled by Careti.
 
 The main difference you'll notice is that responses don't stream character-by-character like other providers. Instead, Claude Code processes your full request before sending back the complete response.
 
@@ -76,13 +76,13 @@ If you run into issues:
 
 **Authentication problems**: Make sure you're logged into Claude Code with your subscription account. Run `claude auth status` to check.
 
-**Path issues**: Double-check that the Claude CLI path in Caret's settings is correct. Try running `claude --version` in your terminal to verify it's working.
+**Path issues**: Double-check that the Claude CLI path in Careti's settings is correct. Try running `claude --version` in your terminal to verify it's working.
 
 **Still having trouble?** We're actively improving this integration. Report issues on our [GitHub](https://github.com/caret/caret/issues) or ask for help in our [Discord](https://https://discord.gg/WB6yaR89YN).
 
 ## Usage with subscriptions
 
-If you have a Claude Max subscription, your usage in Caret shows up as $0.00 in the billing interface since you're not paying additional API costs. Your usage still counts against your subscription limits, but you won't see per-token charges.
+If you have a Claude Max subscription, your usage in Careti shows up as $0.00 in the billing interface since you're not paying additional API costs. Your usage still counts against your subscription limits, but you won't see per-token charges.
 
 For more details about using Claude Code with your subscription, check out Anthropic's documentation:
 

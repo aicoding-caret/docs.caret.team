@@ -3,9 +3,9 @@ title: "Problem-Erwähnungen"
 sidebarTitle: "Problem-Erwähnungen"
 ---
 
-Die Problem-Erwähnung gibt Caret sofortigen Zugriff auf alle Fehler und Warnungen in Ihrem Workspace. Geben Sie einfach `@problems` ein, und Caret kann jedes diagnostische Problem sehen, das VS Code erkannt hat.
+Die Problem-Erwähnung gibt Careti sofortigen Zugriff auf alle Fehler und Warnungen in Ihrem Workspace. Geben Sie einfach `@problems` ein, und Careti kann jedes diagnostische Problem sehen, das VS Code erkannt hat.
 
-Wenn Sie in einem Chat `@` eingeben, wählen Sie "Problems" aus dem Menü oder geben Sie einfach direkt `@problems` ein. Caret sieht sofort alle Fehler und Warnungen aus Ihrem Workspace, komplett mit Dateipfaden und Fehlermeldungen.
+Wenn Sie in einem Chat `@` eingeben, wählen Sie "Problems" aus dem Menü oder geben Sie einfach direkt `@problems` ein. Careti sieht sofort alle Fehler und Warnungen aus Ihrem Workspace, komplett mit Dateipfaden und Fehlermeldungen.
 
 Ich verwende die Problem-Erwähnung ständig, wenn ich bei Build-Fehlern oder TypeScript-Problemen nicht weiterkomme. Anstatt zu versuchen, die Fehler zu beschreiben oder sie einzeln zu kopieren, frage ich einfach:
 
@@ -15,7 +15,7 @@ Ich erhalte diese TypeScript-Fehler und bin mir nicht sicher, wie ich sie behebe
 Können Sie mir helfen zu verstehen, was falsch ist und wie ich es beheben kann?
 ```
 
-Dies gibt Caret die vollständige Liste der Fehler mit ihren genauen Positionen und Meldungen. Caret kann dann die Muster über mehrere Fehler hinweg analysieren und umfassende Lösungen vorschlagen.
+Dies gibt Careti die vollständige Liste der Fehler mit ihren genauen Positionen und Meldungen. Careti kann dann die Muster über mehrere Fehler hinweg analysieren und umfassende Lösungen vorschlagen.
 
 Die Problem-Erwähnung ist besonders leistungsstark in Kombination mit Datei-Erwähnungen. Wenn ich mit komplexen Typfehlern zu tun habe, beziehe ich mich auf beides:
 
@@ -28,15 +28,15 @@ Und die Typdefinitionsdatei: @/src/types/api.ts
 Wie kann ich diese Probleme beheben?
 ```
 
-Dieser Ansatz gibt Caret alles, was es braucht – die genauen Fehler, den Komponentencode und die Typdefinitionen – alles, ohne dass ich irgendetwas manuell kopieren muss.
+Dieser Ansatz gibt Careti alles, was es braucht – die genauen Fehler, den Komponentencode und die Typdefinitionen – alles, ohne dass ich irgendetwas manuell kopieren muss.
 
-Wenn Sie das nächste Mal bei Fehlern nicht weiterkommen, versuchen Sie, `@problems` zu verwenden, anstatt Fehlermeldungen zu kopieren. Sie erhalten genauere Hilfe, da Caret den vollständigen Fehlerkontext und die Speicherorte sehen kann.
+Wenn Sie das nächste Mal bei Fehlern nicht weiterkommen, versuchen Sie, `@problems` zu verwenden, anstatt Fehlermeldungen zu kopieren. Sie erhalten genauere Hilfe, da Careti den vollständigen Fehlerkontext und die Speicherorte sehen kann.
 
 ## Wie es unter der Haube funktioniert
 
 Wenn Sie die Problem-Erwähnung in Ihrer Nachricht verwenden, passiert Folgendes im Hintergrund:
 
-1. Wenn Sie Ihre Nachricht senden, erkennt Caret das `@problems`-Muster in Ihrem Text
+1. Wenn Sie Ihre Nachricht senden, erkennt Careti das `@problems`-Muster in Ihrem Text
 2. Die Erweiterung ruft die in VSCode integrierte `vscode.languages.getDiagnostics()` API auf, um alle Fehler und Warnungen abzurufen
 3. Es formatiert diese Diagnosen in eine strukturierte Textdarstellung mit Dateipfaden, Zeilennummern und Fehlermeldungen
 4. Die formatierte Problemliste wird Ihrer Nachricht in einem strukturierten Format angehängt:

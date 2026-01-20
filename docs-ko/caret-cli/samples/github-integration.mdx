@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions 통합"
-description: "GitHub Actions에서 Caret CLI를 사용해 @caret 멘션 이슈에 자동 응답하기"
+description: "GitHub Actions에서 Careti CLI를 사용해 @caret 멘션 이슈에 자동 응답하기"
 ---
 
 # GitHub 통합 샘플
@@ -8,7 +8,7 @@ description: "GitHub Actions에서 Caret CLI를 사용해 @caret 멘션 이슈�
 AI로 GitHub 이슈 분석을 자동화하세요. 이슈 댓글에 `@caret`을 멘션하면 Caret이 파일을 읽고 코드를 분석해 실행 가능한 인사이트를 제공합니다. 모든 과정은 GitHub Actions에서 자동으로 수행됩니다.
 
 <Note>
-**Caret CLI가 처음이신가요?** 이 샘플은 Caret CLI 기본을 이해하고 [설치 가이드](/ko/caret-cli/installation)를 완료했다고 가정합니다. 처음이라면 더 간단한 [GitHub RCA 샘플](/ko/caret-cli/samples/github-issue-rca)부터 시작하는 것을 권장합니다.
+**Careti CLI가 처음이신가요?** 이 샘플은 Careti CLI 기본을 이해하고 [설치 가이드](/ko/caret-cli/installation)를 완료했다고 가정합니다. 처음이라면 더 간단한 [GitHub RCA 샘플](/ko/caret-cli/samples/github-issue-rca)부터 시작하는 것을 권장합니다.
 </Note>
 
 ## 워크플로
@@ -22,7 +22,7 @@ AI로 GitHub 이슈 분석을 자동화하세요. 이슈 댓글에 `@caret`을 �
 Caret의 자동 분석 결과가 새 댓글로 게시됩니다:
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
 </Frame>
 
 이 전체 분석은 GitHub Actions에서 자율적으로 수행됩니다(파일 탐색 → 분석 → 결과 게시).
@@ -33,7 +33,7 @@ Caret의 자동 분석 결과가 새 댓글로 게시됩니다:
 
 시작 전에 다음이 필요합니다:
 
-- **Caret CLI 지식** - [설치 가이드](/ko/caret-cli/installation) 완료 및 기본 사용법 숙지
+- **Careti CLI 지식** - [설치 가이드](/ko/caret-cli/installation) 완료 및 기본 사용법 숙지
 - **GitHub 저장소** - Actions와 시크릿을 설정할 관리자 권한
 - **GitHub Actions 이해** - 워크플로/CI·CD 기본 개념
 - **API 프로바이더 계정** - OpenRouter, Anthropic 등 API 키 보유
@@ -54,7 +54,7 @@ curl -o .github/workflows/caret-responder.yml https://raw.githubusercontent.com/
 
 <Accordion title="caret-responder.yml 전체 보기">
 ```yaml
-name: Caret Issue Assistant
+name: Careti Issue Assistant
 
 on:
   issue_comment:
@@ -85,19 +85,19 @@ jobs:
         if: steps.detect.outputs.hit == 'true'
         uses: actions/checkout@v4
 
-      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      # Node v20 is needed for Careti CLI on GitHub Actions Linux
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Setup Caret CLI
+      - name: Setup Careti CLI
         if: steps.detect.outputs.hit == 'true'
         run: |
-          # Install the Caret CLI
+          # Install the Careti CLI
           sudo npm install -g caret
 
-      - name: Create Caret Instance
+      - name: Create Careti Instance
         if: steps.detect.outputs.hit == 'true'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -176,7 +176,7 @@ export GITREPO="myproject"
 이렇게 해야 3단계에서 커밋한 분석 스크립트를 워크플로가 올바른 위치에서 다운로드할 수 있습니다.
 </Warning>
 
-이 워크플로는 새로 생성되거나 수정된 이슈를 확인하고 `@caret` 멘션을 감지한 뒤, Caret CLI 인스턴스를 띄워 이슈를 분석하고 결과를 댓글로 남깁니다.
+이 워크플로는 새로 생성되거나 수정된 이슈를 확인하고 `@caret` 멘션을 감지한 뒤, Careti CLI 인스턴스를 띄워 이슈를 분석하고 결과를 댓글로 남깁니다.
 
 ### 2. API 키 설정
 
@@ -233,7 +233,7 @@ nano git-scripts/analyze-issue.sh  # 또는 vim, code 등
 <Accordion title="analyze-issue.sh 전체 보기">
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -250,7 +250,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -270,7 +270,7 @@ chmod +x git-scripts/analyze-issue.sh
 ```bash
 git add .github/workflows/caret-responder.yml
 git add git-scripts/analyze-issue.sh
-git commit -m "Add Caret issue assistant workflow"
+git commit -m "Add Careti issue assistant workflow"
 git push
 ```
 
@@ -288,10 +288,10 @@ git push
 
 GitHub Actions는 다음을 수행합니다:
 1. `@caret` 멘션 감지
-2. Caret CLI 인스턴스 생성
+2. Careti CLI 인스턴스 생성
 3. 분석 스크립트 다운로드
 4. act 모드 + yolo로 이슈 분석
-5. Caret 분석 결과를 댓글로 게시
+5. Careti 분석 결과를 댓글로 게시
 
 **주의:** 이 워크플로는 이슈 댓글에서만 동작하며 PR 댓글에서는 동작하지 않습니다.
 
@@ -301,8 +301,8 @@ GitHub Actions는 다음을 수행합니다:
 
 1. 이슈 댓글(생성/수정) 이벤트에 **트리거**
 2. `@caret` 멘션을 **감지** (대소문자 무시)
-3. npm으로 Caret CLI를 전역 **설치**
-4. `caret instance new`로 Caret 인스턴스 **생성**
+3. npm으로 Careti CLI를 전역 **설치**
+4. `caret instance new`로 Careti 인스턴스 **생성**
 5. `caret config set open-router-api-key=... --address ...`로 **인증 구성**
 6. `github-issue-rca` 샘플의 재사용 가능한 `analyze-issue.sh`를 **다운로드**
 7. 인스턴스 주소로 **분석 실행**

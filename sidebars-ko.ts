@@ -65,7 +65,7 @@ const sidebars: SidebarsConfig = {
 				{
 					type: "doc",
 					id: "caret-exclusive/caret-provider",
-					label: "^ Caret 제공자",
+					label: "^ Careti 제공자",
 				},
 				{
 					type: "doc",
@@ -154,10 +154,10 @@ const sidebars: SidebarsConfig = {
 				},
 			],
 		},
-		/* Caret CLI hidden for v0.4.4.
+		/* Careti CLI hidden for v0.4.4.
 		{
 			type: "category",
-			label: "Caret CLI",
+			label: "Careti CLI",
 			items: [
 				"caret-cli/overview",
 				"caret-cli/installation",
@@ -257,7 +257,7 @@ const sidebars: SidebarsConfig = {
 		},
 		{
 			type: "category",
-			label: "Caret 도구 탐색",
+			label: "Careti 도구 탐색",
 			items: [
 				"exploring-carets-tools/caret-tools-guide",
 				"exploring-carets-tools/document-tools",

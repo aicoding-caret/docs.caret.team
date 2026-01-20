@@ -1,6 +1,6 @@
 ---
 title: "Anthropic"
-description: "Anthropic Claude モデルを Caret で設定・使用する方法について説明します。API キーの設定、モデル選択、プロンプトキャッシュなどの高度な機能をカバーします。"
+description: "Anthropic Claude モデルを Careti で設定・使用する方法について説明します。API キーの設定、モデル選択、プロンプトキャッシュなどの高度な機能をカバーします。"
 ---
 
 **ウェブサイト:** [https://www.anthropic.com/](https://www.anthropic.com/)
@@ -9,12 +9,12 @@ description: "Anthropic Claude モデルを Caret で設定・使用する方法
 
 1.  **サインアップ/サインイン:** [Anthropic Console](https://console.anthropic.com/) にアクセスします。アカウントを作成するか、サインインしてください。
 2.  **API キーに移動:** [API keys](https://console.anthropic.com/settings/keys) セクションに移動します。
-3.  **キーを作成:** "Create Key" をクリックします。キーに分かりやすい名前を付けてください（例："Caret"）。
+3.  **キーを作成:** "Create Key" をクリックします。キーに分かりやすい名前を付けてください（例："Careti"）。
 4.  **キーをコピー:** **重要:** API キーを _すぐに_ コピーしてください。再表示することはできません。安全に保管してください。
 
 ### サポートされているモデル
 
-Caret は以下の Anthropic Claude モデルをサポートしています：
+Careti は以下の Anthropic Claude モデルをサポートしています：
 
 -   `claude-opus-4-1-20250805`
 -   `claude-opus-4-20250514`
@@ -30,9 +30,9 @@ Caret は以下の Anthropic Claude モデルをサポートしています：
 
 各モデルの機能の詳細については、[Anthropic のモデルドキュメント](https://docs.anthropic.com/en/docs/about-claude/models)を参照してください。
 
-### Caret での設定
+### Careti での設定
 
-1.  **Caret 設定を開く:** Caret パネルの設定アイコン（⚙️）をクリックします。
+1.  **Careti 設定を開く:** Careti パネルの設定アイコン（⚙️）をクリックします。
 2.  **プロバイダーを選択:** "API Provider" ドロップダウンから "Anthropic" を選択します。
 3.  **API キーを入力:** "Anthropic API Key" フィールドに Anthropic API キーを貼り付けます。
 4.  **モデルを選択:** "Model" ドロップダウンから希望する Claude モデルを選択します。
@@ -42,12 +42,12 @@ Caret は以下の Anthropic Claude モデルをサポートしています：
 
 Anthropic モデルは、複雑なタスクに対する強化された推論機能を提供する "Extended Thinking" 機能を提供しています。この機能により、モデルは最終回答を提供する前にステップバイステップの思考プロセスを出力し、透明性を提供し、困難なプロンプトに対してより徹底的な分析を可能にします。
 
-Extended Thinking が Caret で使用されると、モデルは内部推論を詳述する `thinking` コンテンツブロックを生成します。これらの洞察は最終回答に組み込まれます。
-Caret ユーザーは、任意のプロバイダーから Claude モデルを選択した後、モデル選択メニューの下にある `Enable Extended Thinking` ボックスをチェックすることでこれを活用できます。
+Extended Thinking が Careti で使用されると、モデルは内部推論を詳述する `thinking` コンテンツブロックを生成します。これらの洞察は最終回答に組み込まれます。
+Careti ユーザーは、任意のプロバイダーから Claude モデルを選択した後、モデル選択メニューの下にある `Enable Extended Thinking` ボックスをチェックすることでこれを活用できます。
 
 **Extended Thinking の主要な側面:**
 
--   **サポートされているモデル:** この機能は、Claude Opus 4、Claude Sonnet 4、Claude Sonnet 3.7 のバリアントを含む選択されたモデルで利用できます。上記の "サポートされているモデル" セクションでリストされている `:thinking` サフィックス付きの特定のモデルは、これを利用するよう Caret で事前設定されています。
+-   **サポートされているモデル:** この機能は、Claude Opus 4、Claude Sonnet 4、Claude Sonnet 3.7 のバリアントを含む選択されたモデルで利用できます。上記の "サポートされているモデル" セクションでリストされている `:thinking` サフィックス付きの特定のモデルは、これを利用するよう Careti で事前設定されています。
 -   **Summarized Thinking（Claude 4）:** Claude 4 モデルの場合、API は洞察と効率性のバランスを取り、悪用を防ぐために、完全な思考プロセスの要約を返します。要約だけでなく、完全な thinking トークンに対して課金されます。
 -   **ストリーミング:** `thinking` ブロックを含む Extended Thinking レスポンスはストリーミングできます。
 -   **ツール使用とプロンプトキャッシュ:** Extended Thinking は、ツール使用（thinking ブロックを戻す必要がある）やプロンプトキャッシュ（キャッシュの無効化とコンテキストに関する特定の動作）と相互作用します。

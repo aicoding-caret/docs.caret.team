@@ -1,10 +1,10 @@
-# Caret 문서 사이트
+# Careti 문서 사이트
 
 [English](README.md) | [한국어](README.ko.md)
 
-🌍 **Caret AI 코딩 어시스턴트를 위한 다국어 문서 사이트**
+🌍 **Careti AI 코딩 어시스턴트를 위한 다국어 문서 사이트**
 
-이 저장소에는 Caret - [Cline](https://github.com/cline/cline)을 기반으로 한 AI 코딩 어시스턴트 - 의 공식 다국어 문서 사이트 [docs.caret.team](https://docs.caret.team)의 소스 코드가 포함되어 있습니다.
+이 저장소에는 Careti - [Cline](https://github.com/cline/cline)을 기반으로 한 AI 코딩 어시스턴트 - 의 공식 다국어 문서 사이트 [docs.careti.ai](https://docs.careti.ai)의 소스 코드가 포함되어 있습니다.
 
 ## 🎯 이 프로젝트에 대하여
 
@@ -19,7 +19,7 @@ Caret은 검증된 [Cline](https://github.com/cline/cline)을 기반으로, 강�
 5. **⌨️ 개선된 UX** - 프롬프트 히스토리, 자동 모델 가져오기 등
 6. **🎯 31개 프로바이더, 266개 모델** - Cline v3.32.7 완벽 호환 + 확장
 
-👉 **모든 전용 기능 보기**: [기능 전체 목록](https://docs.caret.team/en/caret-exclusive/overview)
+👉 **모든 전용 기능 보기**: [기능 전체 목록](https://docs.careti.ai/en/caret-exclusive/overview)
 
 ### 지원 언어
 - 🇺🇸 **영어** (`/en`) - 전체 문서
@@ -37,8 +37,8 @@ Caret은 검증된 [Cline](https://github.com/cline/cline)을 기반으로, 강�
 
 1. **저장소 클론**
    ```bash
-   git clone https://github.com/aicoding-caret/docs.caret.team.git
-   cd docs.caret.team
+   git clone https://github.com/aicoding-caret/docs.careti.ai.git
+   cd docs.careti.ai
    ```
 
 2. **의존성 설치**
@@ -134,7 +134,7 @@ GIT_USER=<Your GitHub username> yarn deploy
 # 파일명을 'cline'에서 'caret'으로 일괄 변경
 ./scripts/cline-to-caret-renamer.sh [directory]
 
-# 텍스트 'Cline'을 'Caret'으로 교체 (what-is-caret.mdx 표기 유지)
+# 텍스트 'Cline'을 'Careti'으로 교체 (what-is-caret.mdx 표기 유지)
 ./scripts/cline-to-caret-content-replacer.sh [directory]
 
 # 컴포넌트 포맷팅 이슈 수정
@@ -224,31 +224,31 @@ npm run typecheck      # TypeScript 타입 체크
 이 프로젝트는 Apache 2.0 라이선스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 확인하세요.
 
 ### 출처 표기
-- **Caret Documentation**: Apache 2.0 © 2025 Caretive INC.
+- **Careti Documentation**: Apache 2.0 © 2025 Caretive INC.
 - **Based on Cline**: 본 프로젝트는 [Cline](https://github.com/cline/cline) (Apache 2.0 © 2025 Cline Bot Inc.)을 기반으로 합니다.
 - **Docusaurus Framework**: MIT License © Meta Platforms, Inc.
 
-## 🔄 Caret 메인 저장소와의 동기화
+## 🔄 Careti 메인 저장소와의 동기화
 
-이 문서 사이트는 [Caret 메인 저장소](https://github.com/aicoding-caret/caret)와 Cline 병합 프로세스를 따라 동기화됩니다.
+이 문서 사이트는 [Careti 메인 저장소](https://github.com/aicoding-caret/caret)와 Cline 병합 프로세스를 따라 동기화됩니다.
 
 ### 개발자를 위한 최신 Cline 문서 동기화
 
 Caret이 Cline 업스트림을 병합할 때, 새 문서는 이 사이트와 동기화해야 합니다.
 
-1. **Caret 병합 전략 가이드 확인**:
+1. **Careti 병합 전략 가이드 확인**:
    - [영어 버전](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
    - [한국어 버전](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **상세 동기화 분석**:
    종합적인 동기화 계획을 확인하세요:
-   - [docs.caret.team 동기화 분석 (한국어)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
+   - [docs.careti.ai 동기화 분석 (한국어)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
 
 3. **빠른 시작**:
    ```bash
-   # Caret 메인 저장소 안에 이 저장소 클론
+   # Careti 메인 저장소 안에 이 저장소 클론
    cd /path/to/caret
-   git clone https://github.com/aicoding-caret/docs.caret.team
+   git clone https://github.com/aicoding-caret/docs.careti.ai
 
    # 동기화는 병합 전략 가이드를 따릅니다
    ```
@@ -257,31 +257,31 @@ Caret이 Cline 업스트림을 병합할 때, 새 문서는 이 사이트와 동
 
 ```mermaid
 graph LR
-    A[Cline Upstream] --> B[Caret Main Repo]
+    A[Cline Upstream] --> B[Careti Main Repo]
     B --> C[caret/docs/]
-    C --> D[docs.caret.team/docs-en/]
+    C --> D[docs.careti.ai/docs-en/]
     D --> E[ko, ja, zh로 번역]
-    E --> F[https://docs.caret.team 배포]
+    E --> F[https://docs.careti.ai 배포]
 ```
 
 **핵심 단계**:
 1. Caret이 Cline 업스트림을 병합
 2. 새로운 Cline 문서가 `caret/docs/`에 반영
-3. 브랜드 변경: Cline → Caret
-4. `docs.caret.team/docs-en/`으로 동기화
+3. 브랜드 변경: Cline → Careti
+4. `docs.careti.ai/docs-en/`으로 동기화
 5. 한국어·일본어·중국어로 번역
 6. 빌드 및 배포
 
 ## 🔗 연관 프로젝트
 
-- **[Caret Extension](https://github.com/aicoding-caret/caret)** - 주요 Caret VS Code 확장
+- **[Careti Extension](https://github.com/aicoding-caret/caret)** - 주요 Careti VS Code 확장
 - **[Cline Project](https://github.com/cline/cline)** - 오리지널 Cline 자율 코딩 에이전트
-- **[Caret Website](https://caret.team)** - 공식 Caret 웹사이트
+- **[Careti Website](https://careti.ai)** - 공식 Careti 웹사이트
 
 ## 📞 지원
 
-- **문서 이슈**: [GitHub Issues](https://github.com/aicoding-caret/docs.caret.team/issues)
-- **Caret 지원**: [Caret GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
+- **문서 이슈**: [GitHub Issues](https://github.com/aicoding-caret/docs.careti.ai/issues)
+- **Careti 지원**: [Careti GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
 - **커뮤니티**: 개발자 커뮤니티에서 질문과 토론에 참여하세요
 
 ---

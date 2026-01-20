@@ -1,9 +1,9 @@
 ---
 title: "MCP-Transportmechanismen"
-description: "Erfahren Sie mehr über die zwei primären Transportmechanismen für die Kommunikation zwischen Caret und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle."
+description: "Erfahren Sie mehr über die zwei primären Transportmechanismen für die Kommunikation zwischen Careti und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle."
 ---
 
-Model Context Protocol (MCP) unterstützt zwei primäre Transportmechanismen für die Kommunikation zwischen Caret und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle.
+Model Context Protocol (MCP) unterstützt zwei primäre Transportmechanismen für die Kommunikation zwischen Careti und MCP-Servern: Standard Input/Output (STDIO) und Server-Sent Events (SSE). Jeder hat spezifische Eigenschaften, Vorteile und Anwendungsfälle.
 
 ## STDIO-Transport
 
@@ -11,7 +11,7 @@ STDIO-Transport läuft lokal auf Ihrer Maschine und kommuniziert über Standard-
 
 ### Wie STDIO-Transport funktioniert
 
-1. Der Client (Caret) startet einen MCP-Server als Child-Process
+1. Der Client (Careti) startet einen MCP-Server als Child-Process
 2. Die Kommunikation erfolgt über Process-Streams: Der Client schreibt in den STDIN des Servers, der Server antwortet über STDOUT
 3. Jede Nachricht wird durch ein Newline-Zeichen getrennt
 4. Nachrichten sind als JSON-RPC 2.0 formatiert
@@ -27,7 +27,7 @@ Client                    Server
 
 ### STDIO-Charakteristika
 
--   **Lokalität**: Läuft auf derselben Maschine wie Caret
+-   **Lokalität**: Läuft auf derselben Maschine wie Careti
 -   **Performance**: Sehr geringe Latenz und niedriger Overhead (kein Network Stack involviert)
 -   **Einfachheit**: Direkte Prozesskommunikation ohne Netzwerkkonfiguration
 -   **Beziehung**: Eins-zu-eins-Beziehung zwischen Client und Server
@@ -40,7 +40,7 @@ STDIO-Transport ist ideal für:
 -   Lokale Integrationen und Tools, die auf derselben Maschine laufen
 -   Sicherheitskritische Operationen
 -   Anforderungen an niedrige Latenz
--   Single-Client-Szenarien (eine Caret-Instanz pro Server)
+-   Single-Client-Szenarien (eine Careti-Instanz pro Server)
 -   Command-Line-Tools oder IDE-Extensions
 
 ### STDIO-Implementierungsbeispiel
@@ -63,7 +63,7 @@ Server-Sent Events (SSE) Transport läuft auf einem Remote-Server und kommunizie
 
 ### Wie SSE-Transport funktioniert
 
-1. Der Client (Caret) verbindet sich über einen HTTP-GET-Request mit dem SSE-Endpoint des Servers
+1. Der Client (Careti) verbindet sich über einen HTTP-GET-Request mit dem SSE-Endpoint des Servers
 2. Dies baut eine persistente Verbindung auf, über die der Server Events an den Client pushen kann
 3. Für die Kommunikation vom Client zum Server sendet der Client HTTP-POST-Requests an einen separaten Endpoint
 4. Die Kommunikation erfolgt über zwei Kanäle:
@@ -83,7 +83,7 @@ Client                             Server
 
 ### SSE-Charakteristika
 
--   **Remote-Zugriff**: Kann auf einer anderen Maschine als Ihre Caret-Instanz gehostet werden
+-   **Remote-Zugriff**: Kann auf einer anderen Maschine als Ihre Careti-Instanz gehostet werden
 -   **Skalierbarkeit**: Kann mehrere Client-Verbindungen gleichzeitig verarbeiten
 -   **Protokoll**: Funktioniert über Standard-HTTP (keine speziellen Protokolle erforderlich)
 -   **Persistenz**: Hält eine persistente Verbindung für Server-zu-Client-Nachrichten aufrecht
@@ -124,7 +124,7 @@ Die Wahl zwischen STDIO- und SSE-Transporten beeinflusst direkt, wie Sie Ihre MC
 
 ### STDIO: Lokales Deployment-Modell
 
-STDIO-Server laufen lokal auf derselben Maschine wie Caret, was mehrere wichtige Auswirkungen hat:
+STDIO-Server laufen lokal auf derselben Maschine wie Careti, was mehrere wichtige Auswirkungen hat:
 
 -   **Installation**: Das Server-Executable muss auf dem Rechner jedes Benutzers installiert sein
 -   **Distribution**: Sie müssen Installationspakete für verschiedene Betriebssysteme bereitstellen
@@ -132,7 +132,7 @@ STDIO-Server laufen lokal auf derselben Maschine wie Caret, was mehrere wichtige
 -   **Ressourcen**: Nutzt CPU, Memory und Disk der lokalen Maschine
 -   **Zugriffskontrolle**: Basiert auf den Filesystem-Berechtigungen der lokalen Maschine
 -   **Integration**: Einfache Integration mit lokalen Systemressourcen (Files, Prozesse)
--   **Ausführung**: Startet und stoppt mit Caret (Child-Process-Lifecycle)
+-   **Ausführung**: Startet und stoppt mit Careti (Child-Process-Lifecycle)
 -   **Abhängigkeiten**: Alle Abhängigkeiten müssen auf dem Rechner des Benutzers installiert sein
 
 #### Praktisches Beispiel
@@ -141,9 +141,9 @@ Ein lokales File-Search-Tool, das STDIO verwendet, würde:
 
 -   Auf dem Rechner des Benutzers laufen
 -   Direkten Zugriff auf das lokale Filesystem haben
--   Bei Bedarf von Caret gestartet werden
+-   Bei Bedarf von Careti gestartet werden
 -   Keine Netzwerkkonfiguration erfordern
--   Zusammen mit Caret oder über einen Package Manager installiert werden müssen
+-   Zusammen mit Careti oder über einen Package Manager installiert werden müssen
 
 ### SSE: Hosted Deployment-Modell
 
@@ -192,6 +192,6 @@ Einige Szenarien profitieren von einem hybriden Ansatz:
 | **Ressourcennutzung**| Nutzt Client-Ressourcen  | Nutzt Server-Ressourcen             |
 | **Abhängigkeiten**   | Client-seitige Abhängigkeiten | Server-seitige Abhängigkeiten       |
 
-## Konfiguration von Transporten in Caret
+## Konfiguration von Transporten in Careti
 
-Detaillierte Informationen zur Konfiguration von STDIO- und SSE-Transporten in Caret, einschließlich Beispielen, finden Sie unter [Configuring MCP Servers](/german/mcp/configuring-mcp-servers).
+Detaillierte Informationen zur Konfiguration von STDIO- und SSE-Transporten in Careti, einschließlich Beispielen, finden Sie unter [Configuring MCP Servers](/german/mcp/configuring-mcp-servers).

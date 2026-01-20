@@ -1,9 +1,9 @@
 ---
 title: "Vercel AI Gateway"
-description: "在 Caret 中使用 Vercel AI Gateway，通过一个端点访问 100 多个模型，具备路由、重试和支出可观察性。"
+description: "在 Careti 中使用 Vercel AI Gateway，通过一个端点访问 100 多个模型，具备路由、重试和支出可观察性。"
 ---
 
-Vercel AI Gateway 为您提供一个 API 来访问来自多个提供商的模型。您只需通过模型 ID 切换，无需交换 SDK 或处理多个密钥。Caret 直接集成，因此您可以在下拉菜单中选择 Gateway 模型，像使用任何其他提供商一样使用它，并在流中查看 token 和缓存使用情况。
+Vercel AI Gateway 为您提供一个 API 来访问来自多个提供商的模型。您只需通过模型 ID 切换，无需交换 SDK 或处理多个密钥。Careti 直接集成，因此您可以在下拉菜单中选择 Gateway 模型，像使用任何其他提供商一样使用它，并在流中查看 token 和缓存使用情况。
 
 有用的链接：
 - 团队仪表板：https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai
@@ -25,12 +25,12 @@ Vercel AI Gateway 为您提供一个 API 来访问来自多个提供商的模型
 
 有关身份验证和 OIDC 选项的更多信息，请参阅 https://vercel.com/docs/ai-gateway/authentication
 
-## 在 Caret 中配置
+## 在 Careti 中配置
 
-1. 打开 Caret 设置
+1. 打开 Careti 设置
 2. 选择 **Vercel AI Gateway** 作为 API 提供商
 3. 粘贴您的 Gateway API 密钥
-4. 从列表中选择一个模型。Caret 会自动获取目录。您也可以粘贴确切的 ID
+4. 从列表中选择一个模型。Careti 会自动获取目录。您也可以粘贴确切的 ID
 
 注意：
 - 模型 ID 通常遵循 `provider/model` 格式。从目录复制确切的 ID
@@ -62,7 +62,7 @@ Vercel AI Gateway 为您提供一个 API 来访问来自多个提供商的模型
 
 ## 支持的模型
 
-Gateway 支持大量且不断变化的模型集。Caret 从 Gateway API 拉取列表并在本地缓存。有关当前目录，请参阅 https://vercel.com/ai-gateway/models
+Gateway 支持大量且不断变化的模型集。Careti 从 Gateway API 拉取列表并在本地缓存。有关当前目录，请参阅 https://vercel.com/ai-gateway/models
 
 ## 提示
 
@@ -87,7 +87,7 @@ Vercel 不添加速率限制。上游提供商可能会。新账户每 30 天会
 
 ## 灵感
 
-- 多模型评估 - 仅在 Caret 中交换模型 ID，并比较延迟和输出 tokens
+- 多模型评估 - 仅在 Careti 中交换模型 ID，并比较延迟和输出 tokens
 - 渐进式推出 - 在仪表板中将小百分比路由到新模型，并根据指标增加
 - 预算执行 - 设置按项目限制，无需更改代码
 

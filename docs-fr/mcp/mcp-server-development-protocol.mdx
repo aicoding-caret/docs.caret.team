@@ -1,13 +1,13 @@
 ---
 title: "Protocole de Développement de Serveur MCP"
-description: "Ce protocole est conçu pour rationaliser le processus de développement de la construction de serveurs MCP avec Caret."
+description: "Ce protocole est conçu pour rationaliser le processus de développement de la construction de serveurs MCP avec Careti."
 ---
 
-> **Construisez et partagez vos serveurs MCP avec le monde entier.** Une fois que vous avez créé un excellent serveur MCP, soumettez-le au [Caret MCP Marketplace](https://github.com/caret/mcp-marketplace) pour le rendre découvrable et installable en un clic par des milliers de développeurs.
+> **Construisez et partagez vos serveurs MCP avec le monde entier.** Une fois que vous avez créé un excellent serveur MCP, soumettez-le au [Careti MCP Marketplace](https://github.com/caret/mcp-marketplace) pour le rendre découvrable et installable en un clic par des milliers de développeurs.
 
 ## Que sont les Serveurs MCP ?
 
-Les serveurs Model Context Protocol (MCP) étendent les assistants IA comme Caret en leur donnant la possibilité de :
+Les serveurs Model Context Protocol (MCP) étendent les assistants IA comme Careti en leur donnant la possibilité de :
 
 -   Accéder aux APIs et services externes
 -   Récupérer des données en temps réel
@@ -18,14 +18,14 @@ Sans MCP, les assistants IA sont puissants, mais isolés. Avec MCP, ils acquièr
 
 ## Le Protocole de Développement
 
-Le cœur du développement efficace de serveur MCP consiste à suivre un protocole structuré. Ce protocole est mis en œuvre via un fichier `.agents/context` qui se trouve à la **racine** de votre répertoire de travail MCP (/Users/your-name/Documents/Caret/MCP).
+Le cœur du développement efficace de serveur MCP consiste à suivre un protocole structuré. Ce protocole est mis en œuvre via un fichier `.agents/context` qui se trouve à la **racine** de votre répertoire de travail MCP (/Users/your-name/Documents/Careti/MCP).
 
 ### Utilisation des Fichiers `.agents/context`
 
-Un fichier `.agents/context` est une configuration spéciale que Caret lit automatiquement lorsqu’il travaille dans le répertoire où il est placé. Ces fichiers :
+Un fichier `.agents/context` est une configuration spéciale que Careti lit automatiquement lorsqu’il travaille dans le répertoire où il est placé. Ces fichiers :
 
--   Configurent le comportement de Caret et appliquent les meilleures pratiques
--   Basculent Caret dans un mode de développement MCP spécialisé
+-   Configurent le comportement de Careti et appliquent les meilleures pratiques
+-   Basculent Careti dans un mode de développement MCP spécialisé
 -   Fournissent un protocole étape par étape pour la construction de serveurs
 -   Mettent en œuvre des mesures de sécurité comme la prévention d’une fin prématurée
 -   Vous guident à travers les phases de planification, de mise en œuvre et de test
@@ -160,7 +160,7 @@ Only after ALL tools have been tested can attempt_completion be used.
 -   NEVER skip testing before completion
 ````
 
-Lorsque ce fichier `.agents/context` est présent dans votre répertoire de travail, Caret :
+Lorsque ce fichier `.agents/context` est présent dans votre répertoire de travail, Careti :
 
 1. Démarrera en **PLAN MODE** pour concevoir votre serveur avant la mise en œuvre
 2. Appliquera des modèles d’implémentation appropriés en **ACT MODE**
@@ -173,11 +173,11 @@ La création d’un serveur MCP nécessite seulement quelques étapes simples po
 
 ### 1. Créer un fichier `.agents/context` (IMPORTANT)
 
-Tout d’abord, ajoutez un fichier `.agents/context` à la racine de votre répertoire de travail MCP en utilisant le protocole ci-dessus. Ce fichier configure Caret pour utiliser le protocole de développement MCP lorsque vous travaillez dans ce dossier.
+Tout d’abord, ajoutez un fichier `.agents/context` à la racine de votre répertoire de travail MCP en utilisant le protocole ci-dessus. Ce fichier configure Careti pour utiliser le protocole de développement MCP lorsque vous travaillez dans ce dossier.
 
 ### 2. Démarrer une Conversation avec une Description Claire
 
-Commencez votre conversation Caret en décrivant clairement ce que vous voulez construire. Soyez précis sur :
+Commencez votre conversation Careti en décrivant clairement ce que vous voulez construire. Soyez précis sur :
 
 -   Le but de votre serveur MCP
 -   Avec quelle API ou service vous voulez vous intégrer
@@ -193,7 +193,7 @@ et de récupérer des informations financières sur l'entreprise.
 
 ### 3. Travailler à Travers le Protocole
 
-Caret démarrera automatiquement en PLAN MODE, vous guidant à travers le processus de planification :
+Careti démarrera automatiquement en PLAN MODE, vous guidant à travers le processus de planification :
 
 -   Discuter de la portée du problème
 -   Examiner la documentation de l’API
@@ -204,20 +204,20 @@ Lorsque vous êtes prêt, passez en ACT MODE en utilisant le bouton bascule en b
 
 ### 4. Fournir la Documentation de l’API Tôt
 
-L’une des façons les plus efficaces d’aider Caret à construire votre serveur MCP est de partager la documentation officielle de l’API dès le début :
+L’une des façons les plus efficaces d’aider Careti à construire votre serveur MCP est de partager la documentation officielle de l’API dès le début :
 
 ```plaintext
 Voici la documentation de l'API pour le service :
 [Coller la documentation de l'API ici]
 ```
 
-Fournir des détails complets sur l’API (points de terminaison, authentification, structures de données) améliore considérablement la capacité de Caret à mettre en œuvre un serveur MCP efficace.
+Fournir des détails complets sur l’API (points de terminaison, authentification, structures de données) améliore considérablement la capacité de Careti à mettre en œuvre un serveur MCP efficace.
 
 ## Comprendre les Deux Modes
 
 ### PLAN MODE
 
-Dans cette phase collaborative, vous travaillez avec Caret pour concevoir votre serveur MCP :
+Dans cette phase collaborative, vous travaillez avec Careti pour concevoir votre serveur MCP :
 
 -   Définir la portée du problème
 -   Choisir les APIs appropriées
@@ -227,7 +227,7 @@ Dans cette phase collaborative, vous travaillez avec Caret pour concevoir votre 
 
 ### ACT MODE
 
-Une fois la planification terminée, Caret aide à mettre en œuvre le serveur :
+Une fois la planification terminée, Careti aide à mettre en œuvre le serveur :
 
 -   Mettre en place la structure du projet
 -   Écrire le code d’implémentation
@@ -598,7 +598,7 @@ try {
 
 ## Ressources MCP
 
-Les ressources permettent à vos serveurs MCP d’exposer des données à Caret sans exécuter de code. Elles sont parfaites pour fournir un contexte tel que des fichiers, des réponses d’API ou des enregistrements de base de données que Caret peut référencer lors de conversations.
+Les ressources permettent à vos serveurs MCP d’exposer des données à Careti sans exécuter de code. Elles sont parfaites pour fournir un contexte tel que des fichiers, des réponses d’API ou des enregistrements de base de données que Careti peut référencer lors de conversations.
 
 ### Ajout de Ressources à Votre Serveur MCP
 
@@ -639,7 +639,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 })
 ```
 
-Les ressources rendent vos serveurs MCP plus conscients du contexte, permettant à Caret d’accéder à des informations spécifiques sans que vous ayez à copier/coller. Pour plus d’informations, reportez-vous à la [documentation officielle](https://modelcontextprotocol.io/docs/concepts/resources).
+Les ressources rendent vos serveurs MCP plus conscients du contexte, permettant à Careti d’accéder à des informations spécifiques sans que vous ayez à copier/coller. Pour plus d’informations, reportez-vous à la [documentation officielle](https://modelcontextprotocol.io/docs/concepts/resources).
 
 ## Défis Courants et Solutions
 

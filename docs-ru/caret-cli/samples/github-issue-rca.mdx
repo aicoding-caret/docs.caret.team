@@ -1,14 +1,14 @@
 ---
 title: "Пример RCA для GitHub Issue"
-description: "Автоматизированный анализ issues на GitHub с использованием Caret CLI для определения первопричин."
+description: "Автоматизированный анализ issues на GitHub с использованием Careti CLI для определения первопричин."
 ---
 
 # Анализ первопричин GitHub
 
-Автоматизированный анализ issues на GitHub с использованием Caret CLI. Этот скрипт использует автономные AI-возможности Caret для получения, анализа и определения первопричин issues на GitHub, выводя чистые, легко анализируемые результаты, которые можно легко интегрировать в ваши процессы разработки.
+Автоматизированный анализ issues на GitHub с использованием Careti CLI. Этот скрипт использует автономные AI-возможности Careti для получения, анализа и определения первопричин issues на GitHub, выводя чистые, легко анализируемые результаты, которые можно легко интегрировать в ваши процессы разработки.
 
 <Note>
-**Впервые используете Caret CLI?** Этот пример предполагает, что вы уже выполнили [Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation) и аутентифицировались с помощью `caret auth`. Если вы еще не настроили Caret CLI, пожалуйста, начните с этого.
+**Впервые используете Careti CLI?** Этот пример предполагает, что вы уже выполнили [Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation) и аутентифицировались с помощью `caret auth`. Если вы еще не настроили Careti CLI, пожалуйста, начните с этого.
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ description: "Автоматизированный анализ issues на GitH
 
 Этот пример предполагает, что у вас уже есть:
 
-- **Caret CLI** установлен и аутентифицирован ([Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation))
+- **Careti CLI** установлен и аутентифицирован ([Руководство по установке](https://docs.caret.bot/russian/caret-cli/installation))
 - **Как минимум один провайдер AI-моделей** сконфигурирован (например, OpenRouter, Anthropic, OpenAI)
-- **Базовое знакомство** с командами Caret CLI
+- **Базовое знакомство** с командами Careti CLI
 
 Кроме того, вам понадобится:
 
@@ -79,7 +79,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -96,7 +96,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -135,9 +135,9 @@ chmod +x analyze-issue.sh
 ./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
 ```
 
-### Использование конкретного экземпляра Caret
+### Использование конкретного экземпляра Careti
 
-Укажите конкретный экземпляр Caret по адресу:
+Укажите конкретный экземпляр Careti по адресу:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -147,13 +147,13 @@ chmod +x analyze-issue.sh
 
 <Warning>
 Это полезно, когда:
-- Запущено несколько экземпляров Caret
-- Используется удаленный сервер Caret
+- Запущено несколько экземпляров Careti
+- Используется удаленный сервер Careti
 - Тестируется с определенными конфигурациями
 </Warning>
 
 <Note>
-Скрипт автоматически обработает все: получение issue, анализ с помощью Caret и отображение результатов. Анализ обычно занимает 30-60 секунд в зависимости от сложности issue.
+Скрипт автоматически обработает все: получение issue, анализ с помощью Careti и отображение результатов. Анализ обычно занимает 30-60 секунд в зависимости от сложности issue.
 </Note>
 
 ## Как это работает
@@ -178,7 +178,7 @@ fi
 - Проверяет обязательный URL issue на GitHub
 - Показывает четкие примеры использования
 - Поддерживает необязательный пользовательский prompt
-- Поддерживает необязательный адрес экземпляра Caret
+- Поддерживает необязательный адрес экземпляра Careti
 
 ### Парсинг аргументов
 
@@ -203,7 +203,7 @@ fi
 Здесь происходит волшебство:
 
 ```bash
-# Ask Caret for his analysis, showing only the summary
+# Ask Careti for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -218,7 +218,7 @@ caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
 
 **2. `--mode act`**
    - Включает act mode для активного исследования
-   - Позволяет Caret использовать инструменты (читать файлы, выполнять команды и т. д.)
+   - Позволяет Careti использовать инструменты (читать файлы, выполнять команды и т. д.)
 
 **3. `$ADDRESS`**
    - Необязательный флаг address для конкретного экземпляра
@@ -366,10 +366,10 @@ $ ./analyze-issue.sh https://github.com/csells/flutter_counter/issues/2
 
 ## Заключение
 
-Этот пример демонстрирует, как создать автономный инструмент анализа issues на GitHub с использованием Caret CLI:
+Этот пример демонстрирует, как создать автономный инструмент анализа issues на GitHub с использованием Careti CLI:
 
-1. **Создание автономных инструментов CLI** с использованием возможностей Caret
-2. **Парсинг структурированного JSON-вывода** из Caret CLI
+1. **Создание автономных инструментов CLI** с использованием возможностей Careti
+2. **Парсинг структурированного JSON-вывода** из Careti CLI
 3. **Создание гибких скриптов автоматизации** с пользовательскими запросами
 4. **Интеграция с GitHub** для анализа issues
 5. **Эффективная обработка аргументов командной строки**

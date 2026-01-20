@@ -1,14 +1,14 @@
 ---
 title: "Baseten"
-description: "Découvrez comment configurer et utiliser les API de modèles de Baseten avec Caret. Accédez à des modèles open-source de pointe avec des performances de niveau entreprise, une fiabilité éprouvée et des tarifs compétitifs."
+description: "Découvrez comment configurer et utiliser les API de modèles de Baseten avec Careti. Accédez à des modèles open-source de pointe avec des performances de niveau entreprise, une fiabilité éprouvée et des tarifs compétitifs."
 ---
 
 <Note>
-Ceci est un document de référence pour Caret. Il suit la version Caret v3.38.1. Si des politiques spécifiques à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par `<Note>` dans le corps du texte.
+Ceci est un document de référence pour Careti. Il suit la version Careti v3.38.1. Si des politiques spécifiques à Careti (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par `<Note>` dans le corps du texte.
 </Note>
 
 <Note>
-Renforcement de la configuration du Provider : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, Caret peut renforcer la validation et l'UX de la configuration des fournisseurs. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Caret.
+Renforcement de la configuration du Provider : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, Careti peut renforcer la validation et l'UX de la configuration des fournisseurs. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Careti.
 </Note>
 
 Baseten fournit des API de modèles de pointe (frontier models) à la demande, conçues pour les applications en production et pas seulement pour l'expérimentation. S'appuyant sur la Baseten Inference Stack, ces API offrent des performances et une fiabilité de niveau entreprise avec une inférence optimisée pour les principaux modèles open-source d'OpenAI, DeepSeek, Meta, Moonshot AI et Alibaba Cloud.
@@ -19,12 +19,12 @@ Baseten fournit des API de modèles de pointe (frontier models) à la demande, c
 
 1.  **S'inscrire/Se connecter :** Allez sur [Baseten](https://www.baseten.co/) et créez un compte ou connectez-vous.
 2.  **Accéder aux clés API :** Accédez à votre tableau de bord et allez dans la section API Keys.
-3.  **Créer une clé :** Générez une nouvelle clé API. Donnez-lui un nom descriptif (par exemple, "Caret").
+3.  **Créer une clé :** Générez une nouvelle clé API. Donnez-lui un nom descriptif (par exemple, "Careti").
 4.  **Copier la clé :** Copiez immédiatement la clé API et conservez-la en lieu sûr.
 
 ### Modèles supportés
 
-Caret supporte tous les modèles actuels via les Baseten Model APIs, incluant :
+Careti supporte tous les modèles actuels via les Baseten Model APIs, incluant :
 Pour les tarifs les plus à jour, veuillez consulter : https://www.baseten.co/products/model-apis/
 Note : Les API des modèles Kimi K2 0711, Llama 4 Maverick et Llama 4 Scout ont été dépréciées le 8 octobre à 17h00 PT.
 https://www.baseten.co/resources/changelog/model-api-deprecation-notice-kimi-k2-0711-scout-maverick/
@@ -39,9 +39,9 @@ https://www.baseten.co/resources/changelog/model-api-deprecation-notice-kimi-k2-
 -   `deepseek-ai/DeepSeek-V3.1` - Raisonnement hybride avec appel d'outils (tool calling) avancé (contexte 163K) - 0,50 $ / 1,50 $ par 1M de tokens
 -   `deepseek-ai/DeepSeek-V3-0324` - Modèle polyvalent rapide avec raisonnement amélioré (contexte 163K) - 0,77 $ / 0,77 $ par 1M de tokens
 
-### Configuration dans Caret
+### Configuration dans Careti
 
-1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+1.  **Ouvrir les paramètres de Careti :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Careti.
 2.  **Sélectionner le fournisseur :** Choisissez "Baseten" dans le menu déroulant "API Provider".
 3.  **Saisir la clé API :** Collez votre clé API Baseten dans le champ "Baseten API Key".
 4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
@@ -107,7 +107,7 @@ La compatibilité OpenAI de Baseten facilite la migration :
 -   **Optimisation des coûts :** Baseten propose des tarifs parmi les plus compétitifs du marché, en particulier pour les modèles open-source.
 -   **Fenêtres de contexte :** Profitez des larges fenêtres de contexte (jusqu'à 1M de tokens) pour inclure des bases de code et une documentation conséquentes.
 -   **Prêt pour l'entreprise :** Baseten est conçu pour une utilisation en production avec une sécurité, une conformité et une fiabilité de niveau entreprise.
--   **Mises à jour dynamiques des modèles :** Caret récupère automatiquement la liste des modèles la plus récente de Baseten, garantissant l'accès aux nouveaux modèles dès leur sortie.
+-   **Mises à jour dynamiques des modèles :** Careti récupère automatiquement la liste des modèles la plus récente de Baseten, garantissant l'accès aux nouveaux modèles dès leur sortie.
 -   **Multi-Cloud Capacity Management (MCM) :** L'infrastructure multi-cloud de Baseten garantit une haute disponibilité et une faible latence à l'échelle mondiale.
 -   **Support :** Baseten fournit un support dédié pour les déploiements en production et peut vous accompagner sur des ressources dédiées lors de votre montée en charge.
 

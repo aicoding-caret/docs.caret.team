@@ -4,7 +4,7 @@ description: "Verständnis und Verwaltung von Context Windows bei KI-Modellen"
 ---
 
 <Note>
-Dies ist ein auf Caret basierendes Dokument. Es folgt dem Caret v3.38.1 Merge-Stand. Falls es Caret-spezifische Richtlinien gibt (Context-Beschränkungen nach unterstützten/blockierten Modellen, Authentifizierung/Routing), werden diese im Text mit `<Note>` gekennzeichnet.
+Dies ist ein auf Careti basierendes Dokument. Es folgt dem Careti v3.38.1 Merge-Stand. Falls es Careti-spezifische Richtlinien gibt (Context-Beschränkungen nach unterstützten/blockierten Modellen, Authentifizierung/Routing), werden diese im Text mit `<Note>` gekennzeichnet.
 </Note>
 
 ## Was ist ein Context Window?
@@ -44,9 +44,9 @@ Ein Context Window ist die maximale Menge an Text, die ein KI-Modell gleichzeiti
 ### Was zum Kontext zählt
 
 1. **Deine aktuelle Konversation** – Alle Nachrichten im Chat
-2. **Dateiinhalte** – Alle Dateien, die du geteilt hast oder die Caret gelesen hat
+2. **Dateiinhalte** – Alle Dateien, die du geteilt hast oder die Careti gelesen hat
 3. **Tool-Outputs** – Ergebnisse von ausgeführten Befehlen
-4. **System-Prompts** – Anweisungen von Caret (minimaler Einfluss)
+4. **System-Prompts** – Anweisungen von Careti (minimaler Einfluss)
 
 ### Optimierungsstrategien
 
@@ -66,7 +66,7 @@ Statt ganze Dateien einzubinden:
 - Beziehe dich auf spezifische Funktionen statt auf ganze Dateien
 
 #### 3. Auto-compact aktivieren
-Caret kann lange Konversationen automatisch zusammenfassen:
+Careti kann lange Konversationen automatisch zusammenfassen:
 - Settings → Features → Auto-compact
 - Bewahrt wichtigen Kontext
 - Reduziert den Token-Verbrauch
@@ -144,10 +144,10 @@ Act Mode: Claude Sonnet (1M) - Maximaler Kontext für Coding
 **A:** Nicht unbedingt. Größere Kontexte erhöhen die Kosten und können die Antwortqualität verringern. Passen Sie den Kontext an die Größe Ihrer Aufgabe an.
 
 ### F: Wie sehe ich, wie viel Kontext ich gerade verbrauche?
-**A:** Caret zeigt den Token-Verbrauch im Interface an. Achten Sie auf die Kontext-Anzeige, wenn sie sich den Limits nähert.
+**A:** Careti zeigt den Token-Verbrauch im Interface an. Achten Sie auf die Kontext-Anzeige, wenn sie sich den Limits nähert.
 
 ### F: Was passiert, wenn ich das Kontext-Limit überschreite?
-**A:** Caret wird entweder:
+**A:** Careti wird entweder:
 - Die Konversation automatisch zusammenfassen (falls aktiviert)
 - Einen Fehler anzeigen und vorschlagen, einen neuen Task zu starten
 - Ältere Nachrichten kürzen (mit Warnung)

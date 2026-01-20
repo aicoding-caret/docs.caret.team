@@ -1,14 +1,14 @@
 ---
 title: "Cerebras"
-description: "Erfahren Sie, wie Sie die ultraschnelle Inference von Cerebras mit Caret konfigurieren und nutzen. Erleben Sie bis zu 2.600 Tokens pro Sekunde mit Wafer-Scale-Chip-Architektur und Echtzeit-Reasoning-Modellen."
+description: "Erfahren Sie, wie Sie die ultraschnelle Inference von Cerebras mit Careti konfigurieren und nutzen. Erleben Sie bis zu 2.600 Tokens pro Sekunde mit Wafer-Scale-Chip-Architektur und Echtzeit-Reasoning-Modellen."
 ---
 
 <Note>
-Dies ist ein Caret-Standarddokument. Es folgt dem Caret v3.38.1 Merge-Stand. Falls Caret-spezifische Richtlinien (erlaubte/blockierte Modelle, regionale Einschränkungen, Authentifizierung/Routing) existieren, werden diese im Text mit `<Note>` markiert.
+Dies ist ein Careti-Standarddokument. Es folgt dem Careti v3.38.1 Merge-Stand. Falls Careti-spezifische Richtlinien (erlaubte/blockierte Modelle, regionale Einschränkungen, Authentifizierung/Routing) existieren, werden diese im Text mit `<Note>` markiert.
 </Note>
 
 <Note>
-Provider Setup Erweiterung: Gemäß `caret-docs/features/f09-enhanced-provider-setup.md` kann die Validierung/UX der Provider-Einstellungen in Caret verstärkt werden. Bitte beachten Sie, dass sich die erlaubten/blockierten Modelle je nach Account-/Organisationsrichtlinien oder Caret-Router-Anwendung unterscheiden können.
+Provider Setup Erweiterung: Gemäß `caret-docs/features/f09-enhanced-provider-setup.md` kann die Validierung/UX der Provider-Einstellungen in Careti verstärkt werden. Bitte beachten Sie, dass sich die erlaubten/blockierten Modelle je nach Account-/Organisationsrichtlinien oder Careti-Router-Anwendung unterscheiden können.
 </Note>
 
 Cerebras bietet die weltweit schnellste AI-Inference durch ihre revolutionäre Wafer-Scale-Chip-Architektur. Im Gegensatz zu herkömmlichen GPUs, die Modellgewichte aus externem Speicher laden, speichert Cerebras ganze Modelle direkt auf dem Chip. Dies eliminiert Bandbreiten-Engpässe und ermöglicht Geschwindigkeiten von bis zu 2.600 Tokens pro Sekunde – oft 20-mal schneller als GPUs.
@@ -19,12 +19,12 @@ Cerebras bietet die weltweit schnellste AI-Inference durch ihre revolutionäre W
 
 1.  **Registrieren/Anmelden:** Gehen Sie zu [Cerebras Cloud](https://cloud.cerebras.ai/) und erstellen Sie ein Konto oder melden Sie sich an.
 2.  **Zu API Keys navigieren:** Rufen Sie den Bereich für API Keys in Ihrem Dashboard auf.
-3.  **Key erstellen:** Generieren Sie einen neuen API Key. Geben Sie ihm einen aussagekräftigen Namen (z. B. "Caret").
+3.  **Key erstellen:** Generieren Sie einen neuen API Key. Geben Sie ihm einen aussagekräftigen Namen (z. B. "Careti").
 4.  **Key kopieren:** Kopieren Sie den API Key sofort. Bewahren Sie ihn sicher auf.
 
 ### Supported Models
 
-Caret unterstützt die folgenden Cerebras-Modelle:
+Careti unterstützt die folgenden Cerebras-Modelle:
 
 -   `zai-glm-4.6` – Intelligentes Allzweckmodell mit 1.500 Tokens/s
 -   `qwen-3-235b-a22b-instruct-2507` – Fortgeschrittenes Instruction-Following-Modell
@@ -32,9 +32,9 @@ Caret unterstützt die folgenden Cerebras-Modelle:
 -   `llama-3.3-70b` – Metas Llama 3.3 Modell, optimiert für Geschwindigkeit
 -   `qwen-3-32b` – Kompaktes und dennoch leistungsstarkes Modell für allgemeine Aufgaben
 
-### Configuration in Caret
+### Configuration in Careti
 
-1.  **Caret-Einstellungen öffnen:** Klicken Sie auf das Zahnrad-Icon (⚙️) im Caret-Panel.
+1.  **Careti-Einstellungen öffnen:** Klicken Sie auf das Zahnrad-Icon (⚙️) im Careti-Panel.
 2.  **Provider auswählen:** Wählen Sie „Cerebras“ aus dem Dropdown-Menü „API Provider“.
 3.  **API Key eingeben:** Fügen Sie Ihren Cerebras API Key in das Feld „Cerebras API Key“ ein.
 4.  **Modell auswählen:** Wählen Sie Ihr gewünschtes Modell aus dem Dropdown-Menü „Model“.
@@ -91,7 +91,7 @@ Reasoning-Modelle wie `qwen-3-235b-a22b-thinking-2507` können komplexe, mehrstu
 Qwen3-Coder-Modelle sind speziell für Programmieraufgaben optimiert und liefern in Coding-Benchmarks eine Leistung, die mit Claude Sonnet 4 und GPT-4.1 vergleichbar ist.
 
 #### Kein IDE-Lock-in
-Funktioniert mit jedem OpenAI-kompatiblen Tool – Cursor, Continue.dev, Caret oder jedem anderen Editor, der OpenAI-Endpoints unterstützt.
+Funktioniert mit jedem OpenAI-kompatiblen Tool – Cursor, Continue.dev, Careti oder jedem anderen Editor, der OpenAI-Endpoints unterstützt.
 
 ### Tips and Notes
 

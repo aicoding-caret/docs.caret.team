@@ -6,12 +6,12 @@
 
 설정에서 전환하기:
 
-Caret 설정 창을 엽니다 (⚙️ 아이콘)
+Careti 설정 창을 엽니다 (⚙️ 아이콘)
 일반 탭으로 이동합니다
 AI 모드 섹션에서 원하는 모드를 선택합니다:
 Cline 모드 (Plan/Act)
-Caret Agent 모드
-Caret Chatbot 모드
+Careti Agent 모드
+Careti Chatbot 모드
 변경 사항은 즉시 적용됩니다
 프로젝트별 설정도 가능합니다. 프로젝트 루트에 .vscode/settings.json 파일을 만들고:
 

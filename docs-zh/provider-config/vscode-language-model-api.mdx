@@ -1,9 +1,9 @@
 ---
 title: "VS Code Language Model API"
-description: "了解如何将 Caret 与实验性的 VS Code Language Model API 一起使用，从而访问来自 GitHub Copilot 和其他兼容扩展的模型。"
+description: "了解如何将 Careti 与实验性的 VS Code Language Model API 一起使用，从而访问来自 GitHub Copilot 和其他兼容扩展的模型。"
 ---
 
-Caret 为 [VS Code Language Model API](https://code.visualstudio.com/api/extension-guides/language-model) 提供 _实验性_ 支持。此 API 使扩展能够直接在 VS Code 环境中授予对语言模型的访问权限。因此，您可能能够利用来自以下来源的模型：
+Careti 为 [VS Code Language Model API](https://code.visualstudio.com/api/extension-guides/language-model) 提供 _实验性_ 支持。此 API 使扩展能够直接在 VS Code 环境中授予对语言模型的访问权限。因此，您可能能够利用来自以下来源的模型：
 
 -   **GitHub Copilot：** 前提是您拥有有效的 Copilot 订阅并安装了扩展。
 -   **其他 VS Code 扩展：** 任何实现 Language Model API 的扩展。
@@ -19,8 +19,8 @@ Caret 为 [VS Code Language Model API](https://code.visualstudio.com/api/extensi
 
 ### 配置步骤
 
-1. **确保 Copilot 账户处于活动状态并且已安装扩展：** 登录到 Copilot 或 Copilot Chat 扩展的用户应该能够通过 Caret 获得访问权限。
-2. **访问 Caret 设置：** 点击 Caret 面板中的齿轮图标（⚙️）。
+1. **确保 Copilot 账户处于活动状态并且已安装扩展：** 登录到 Copilot 或 Copilot Chat 扩展的用户应该能够通过 Careti 获得访问权限。
+2. **访问 Careti 设置：** 点击 Careti 面板中的齿轮图标（⚙️）。
 3. **选择提供商：** 从"API 提供商"下拉菜单中选择"VS Code LM API"。
 4. **选择模型：** 如果已安装 Copilot 扩展并且用户已登录到其 Copilot 账户，则"语言模型"下拉菜单将在短时间后填充可用模型。命名约定为 `vendor/family`。例如，如果 Copilot 处于活动状态，您可能会遇到以下选项：
     - `copilot - gpt-3.5-turbo`
@@ -37,10 +37,10 @@ Caret 为 [VS Code Language Model API](https://code.visualstudio.com/api/extensi
 ### 当前限制
 
 -   **实验性 API 状态：** VS Code Language Model API 仍在积极开发中。预计可能会有更改和不稳定性。
--   **依赖于扩展：** 此功能完全取决于其他扩展提供模型。Caret 无法直接控制可访问模型的列表。
+-   **依赖于扩展：** 此功能完全取决于其他扩展提供模型。Careti 无法直接控制可访问模型的列表。
 -   **受限功能：** VS Code Language Model API 可能不包含通过其他 API 提供商可用的所有功能（例如，图像输入功能、流式响应、详细的使用指标）。
--   **无直接成本管理：** 用户需遵守提供模型的扩展的定价结构和服务条款。Caret 无法直接监控或调节相关成本。
--   **GitHub Copilot 速率限制：** 当将 VS Code LM API 与 GitHub Copilot 一起使用时，请注意 GitHub 可能会对 Copilot 使用强制执行速率限制。这些限制由 GitHub 管理，而非 Caret。
+-   **无直接成本管理：** 用户需遵守提供模型的扩展的定价结构和服务条款。Careti 无法直接监控或调节相关成本。
+-   **GitHub Copilot 速率限制：** 当将 VS Code LM API 与 GitHub Copilot 一起使用时，请注意 GitHub 可能会对 Copilot 使用强制执行速率限制。这些限制由 GitHub 管理，而非 Careti。
 
 ### 故障排除提示
 

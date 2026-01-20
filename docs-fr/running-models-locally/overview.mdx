@@ -3,14 +3,14 @@ title: "Aperçu des Modèles Locaux"
 ---
 
 <Note>
-Ceci est un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Si des politiques spécifiques à Caret (runtime local supporté, authentification/routage, limitations des modèles) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
+Ceci est un document de référence pour Careti. Il suit la version fusionnée de Careti v3.38.1. Si des politiques spécifiques à Careti (runtime local supporté, authentification/routage, limitations des modèles) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
 </Note>
 
-## Exécuter des modèles localement avec Caret
+## Exécuter des modèles localement avec Careti
 
-Exécutez Caret entièrement hors ligne avec des modèles réellement performants sur votre propre matériel. Pas de coûts d'API, pas de données quittant votre machine, pas de dépendance à Internet.
+Exécutez Careti entièrement hors ligne avec des modèles réellement performants sur votre propre matériel. Pas de coûts d'API, pas de données quittant votre machine, pas de dépendance à Internet.
 
-Les modèles locaux ont atteint un tournant où ils sont désormais exploitables pour un travail de développement réel. Ce guide couvre tout ce que vous devez savoir pour exécuter Caret avec des modèles locaux.
+Les modèles locaux ont atteint un tournant où ils sont désormais exploitables pour un travail de développement réel. Ce guide couvre tout ce que vous devez savoir pour exécuter Careti avec des modèles locaux.
 
 ## Démarrage rapide
 
@@ -27,19 +27,19 @@ Votre RAM détermine quels modèles vous pouvez exécuter efficacement :
 | RAM | Modèle recommandé | Quantification | Niveau de performance |
 | --- | --- | --- | --- |
 | 32GB | Qwen3 Coder 30B | 4-bit | Codage local d'entrée de gamme |
-| 64GB | Qwen3 Coder 30B | 8-bit | Fonctionnalités Caret complètes |
+| 64GB | Qwen3 Coder 30B | 8-bit | Fonctionnalités Careti complètes |
 | 128GB+ | GLM-4.5-Air | 4-bit | Performance compétitive face au cloud |
 
 ## Modèles recommandés
 
 ### Recommandation principale : Qwen3 Coder 30B
 
-Après des tests approfondis, **Qwen3 Coder 30B** est le modèle le plus fiable sous la barre des 70B paramètres pour Caret :
+Après des tests approfondis, **Qwen3 Coder 30B** est le modèle le plus fiable sous la barre des 70B paramètres pour Careti :
 
 - **Fenêtre de contexte native de 256K** - Gère des dépôts entiers
 - **Capacités de tool-use robustes** - Exécution fiable des commandes
 - **Compréhension à l'échelle du dépôt** - Maintient le contexte à travers les fichiers
-- **Fiabilité éprouvée** - Résultats cohérents avec le format d'outils de Caret
+- **Fiabilité éprouvée** - Résultats cohérents avec le format d'outils de Careti
 
 Tailles de téléchargement :
 - 4-bit : ~17GB (recommandé pour 32GB RAM)
@@ -48,7 +48,7 @@ Tailles de téléchargement :
 
 ### Pourquoi pas de modèles plus petits ?
 
-La plupart des modèles de moins de 30B paramètres (7B-20B) échouent avec Caret car ils :
+La plupart des modèles de moins de 30B paramètres (7B-20B) échouent avec Careti car ils :
 - Produisent des sorties tool-use erronées
 - Refusent d'exécuter des commandes
 - Ne parviennent pas à maintenir le contexte de la conversation
@@ -72,7 +72,7 @@ La plupart des modèles de moins de 30B paramètres (7B-20B) échouent avec Care
 
 ### Paramètres requis
 
-**Dans Caret :**
+**Dans Careti :**
 - ✅ Activez "Use Compact Prompt" - Réduit la taille du prompt de 90%
 - ✅ Définissez le modèle approprié dans les paramètres
 - ✅ Configurez la Base URL pour correspondre à votre serveur
@@ -153,7 +153,7 @@ La quantification réduit la précision du modèle pour l'adapter au matériel g
 ### Problèmes courants et solutions
 
 **"Shell integration unavailable"**
-- Passez à bash dans Caret Settings → Terminal → Default Terminal Profile
+- Passez à bash dans Careti Settings → Terminal → Default Terminal Profile
 - Résout 90% des problèmes d'intégration du terminal
 
 **"No connection could be made"**
@@ -225,6 +225,6 @@ Prêt à commencer ? Choisissez votre voie :
 
 ## Résumé
 
-Les modèles locaux avec Caret sont désormais véritablement exploitables. Bien qu'ils n'égalent pas les API cloud de premier plan en termes de vitesse, ils offrent une confidentialité totale, un coût nul et une capacité hors ligne. Avec une configuration appropriée et le bon matériel, Qwen3 Coder 30B peut gérer efficacement la plupart des tâches de codage.
+Les modèles locaux avec Careti sont désormais véritablement exploitables. Bien qu'ils n'égalent pas les API cloud de premier plan en termes de vitesse, ils offrent une confidentialité totale, un coût nul et une capacité hors ligne. Avec une configuration appropriée et le bon matériel, Qwen3 Coder 30B peut gérer efficacement la plupart des tâches de codage.
 
 La clé réside dans une installation correcte : RAM adéquate, configuration exacte et attentes réalistes. Suivez ce guide et vous disposerez d'un assistant de codage performant fonctionnant entièrement sur votre matériel.

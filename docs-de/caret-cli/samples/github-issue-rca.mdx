@@ -1,14 +1,14 @@
 ---
 title: "GitHub-Issue-RCA-Beispiel"
-description: "Automatisierte GitHub-Issue-Analyse mit der Caret CLI, um Ursachen zu identifizieren."
+description: "Automatisierte GitHub-Issue-Analyse mit der Careti CLI, um Ursachen zu identifizieren."
 ---
 
 # GitHub Ursachenanalyse
 
-Automatisierte GitHub-Issue-Analyse mit der Caret CLI. Dieses Skript nutzt die autonomen KI-Funktionen von Caret, um GitHub-Issues abzurufen, zu analysieren und die Ursachen zu identifizieren. Es gibt saubere, parsierbare Ergebnisse aus, die einfach in Ihre Entwicklungs-Workflows integriert werden können.
+Automatisierte GitHub-Issue-Analyse mit der Careti CLI. Dieses Skript nutzt die autonomen KI-Funktionen von Careti, um GitHub-Issues abzurufen, zu analysieren und die Ursachen zu identifizieren. Es gibt saubere, parsierbare Ergebnisse aus, die einfach in Ihre Entwicklungs-Workflows integriert werden können.
 
 <Note>
-**Neu bei Caret CLI?** Dieses Beispiel setzt voraus, dass Sie die [Installationsanleitung](https://docs.caret.bot/german/caret-cli/installation) bereits abgeschlossen und sich mit `caret auth` authentifiziert haben. Wenn Sie die Caret CLI noch nicht eingerichtet haben, beginnen Sie bitte zuerst dort.
+**Neu bei Careti CLI?** Dieses Beispiel setzt voraus, dass Sie die [Installationsanleitung](https://docs.caret.bot/german/caret-cli/installation) bereits abgeschlossen und sich mit `caret auth` authentifiziert haben. Wenn Sie die Careti CLI noch nicht eingerichtet haben, beginnen Sie bitte zuerst dort.
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Automatisierte GitHub-Issue-Analyse mit der Caret CLI. Dieses Skript nutzt die a
 
 Dieses Beispiel setzt voraus, dass Sie bereits Folgendes haben:
 
-- **Caret CLI** installiert und authentifiziert ([Installationsanleitung](https://docs.caret.bot/german/caret-cli/installation))
+- **Careti CLI** installiert und authentifiziert ([Installationsanleitung](https://docs.caret.bot/german/caret-cli/installation))
 - **Mindestens einen KI-Modellanbieter** konfiguriert (z. B. OpenRouter, Anthropic, OpenAI)
-- **Grundlegende Vertrautheit** mit Caret CLI Befehlen
+- **Grundlegende Vertrautheit** mit Careti CLI Befehlen
 
 Zusätzlich benötigen Sie:
 
@@ -79,7 +79,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -96,7 +96,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -135,9 +135,9 @@ Stellen Sie spezifische Fragen zum Issue:
 ./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
 ```
 
-### Verwenden einer bestimmten Caret Instanz
+### Verwenden einer bestimmten Careti Instanz
 
-Richten Sie sich an eine bestimmte Caret Instanz nach Adresse:
+Richten Sie sich an eine bestimmte Careti Instanz nach Adresse:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -147,13 +147,13 @@ Richten Sie sich an eine bestimmte Caret Instanz nach Adresse:
 
 <Warning>
 Dies ist nützlich, wenn:
-- Mehrere Caret Instanzen ausgeführt werden
-- Ein Remote-Caret-Server verwendet wird
+- Mehrere Careti Instanzen ausgeführt werden
+- Ein Remote-Careti-Server verwendet wird
 - Tests mit bestimmten Konfigurationen durchgeführt werden
 </Warning>
 
 <Note>
-Das Skript erledigt automatisch alles: Abrufen des Issues, Analysieren mit Caret und Anzeigen der Ergebnisse. Die Analyse dauert in der Regel 30-60 Sekunden, abhängig von der Komplexität des Issues.
+Das Skript erledigt automatisch alles: Abrufen des Issues, Analysieren mit Careti und Anzeigen der Ergebnisse. Die Analyse dauert in der Regel 30-60 Sekunden, abhängig von der Komplexität des Issues.
 </Note>
 
 ## Wie es funktioniert
@@ -178,7 +178,7 @@ fi
 - Validiert die erforderliche GitHub-Issue-URL
 - Zeigt klare Anwendungsbeispiele
 - Unterstützt optionale benutzerdefinierte Prompts
-- Unterstützt optionale Caret Instanzadressen
+- Unterstützt optionale Careti Instanzadressen
 
 ### Argument Parsing
 
@@ -203,7 +203,7 @@ fi
 Hier geschieht die Magie:
 
 ```bash
-# Ask Caret for his analysis, showing only the summary
+# Ask Careti for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -218,7 +218,7 @@ caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
 
 **2. `--mode act`**
    - Aktiviert den Akt-Modus für aktive Untersuchungen
-   - Ermöglicht Caret die Verwendung von Tools (Dateien lesen, Befehle ausführen usw.)
+   - Ermöglicht Careti die Verwendung von Tools (Dateien lesen, Befehle ausführen usw.)
 
 **3. `$ADDRESS`**
    - Optionales Adress-Flag für eine bestimmte Instanz
@@ -354,10 +354,10 @@ Holen Sie sich eine zweite Meinung zu vorgeschlagenen Änderungen:
 
 ## Fazit
 
-Dieses Beispiel zeigt, wie Sie mit der Caret CLI ein autonomes GitHub-Issue-Analysetool erstellen:
+Dieses Beispiel zeigt, wie Sie mit der Careti CLI ein autonomes GitHub-Issue-Analysetool erstellen:
 
-1. **Erstellen autonomer CLI-Tools** mit den Funktionen von Caret
-2. **Parsen strukturierter JSON-Ausgabe** von der Caret CLI
+1. **Erstellen autonomer CLI-Tools** mit den Funktionen von Careti
+2. **Parsen strukturierter JSON-Ausgabe** von der Careti CLI
 3. **Erstellen flexibler Automatisierungsskripte** mit benutzerdefinierten Prompts
 4. **Integration mit GitHub** zur Issue-Analyse
 5. **Effektive Verarbeitung von Befehlszeilenargumenten**

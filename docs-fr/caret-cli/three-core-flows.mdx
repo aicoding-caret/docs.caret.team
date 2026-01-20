@@ -1,24 +1,24 @@
 ```
 ---
 title: "Trois flux principaux"
-description: "Découvrez les trois façons d'utiliser Caret CLI : mode interactif, automatisation headless et parallélisation multi-instance"
+description: "Découvrez les trois façons d'utiliser Careti CLI : mode interactif, automatisation headless et parallélisation multi-instance"
 ---
 
 Deux concepts à comprendre :
 
-**Task** (Tâche) - Un job unique que Caret doit réaliser ("ajouter des tests à utils.js"). Vous décrivez ce que vous voulez, Caret planifie comment le faire, puis exécute le plan. Les Tasks s'exécutent sur des Instances.
+**Task** (Tâche) - Un job unique que Careti doit réaliser ("ajouter des tests à utils.js"). Vous décrivez ce que vous voulez, Careti planifie comment le faire, puis exécute le plan. Les Tasks s'exécutent sur des Instances.
 
-**Instance** - Un espace de travail Caret indépendant. Chaque Instance exécute une Task à la fois. Créez plusieurs Instances pour exécuter plusieurs Tasks qui travaillent en parallèle sur différentes parties de votre projet.
+**Instance** - Un espace de travail Careti indépendant. Chaque Instance exécute une Task à la fois. Créez plusieurs Instances pour exécuter plusieurs Tasks qui travaillent en parallèle sur différentes parties de votre projet.
 
 ## 1. Mode interactif : Planifier d'abord, puis agir
 
-Commencez ici pour voir comment Caret fonctionne. Le mode interactif ouvre une session de chat où vous pouvez revoir les plans avant l'exécution.
+Commencez ici pour voir comment Careti fonctionne. Le mode interactif ouvre une session de chat où vous pouvez revoir les plans avant l'exécution.
 
 ```bash
 caret
 ```
 
-Caret ouvre une session interactive dans votre répertoire courant. Tapez votre Task sous forme de message. Caret entre en mode Plan et propose une stratégie étape par étape.
+Careti ouvre une session interactive dans votre répertoire courant. Tapez votre Task sous forme de message. Careti entre en mode Plan et propose une stratégie étape par étape.
 
 Passez en revue ou modifiez le plan dans le chat. Lorsque vous êtes prêt, passez à l'exécution :
 
@@ -26,7 +26,7 @@ Passez en revue ou modifiez le plan dans le chat. Lorsque vous êtes prêt, pass
 /act
 ```
 
-Caret exécute les étapes approuvées : lecture de fichiers, écriture de code, exécution de commandes. Vous gardez le contrôle tout au long du processus.
+Careti exécute les étapes approuvées : lecture de fichiers, écriture de code, exécution de commandes. Vous gardez le contrôle tout au long du processus.
 
 ## 2. Headless single-shot : Effectuer une Task sans chat
 
@@ -37,7 +37,7 @@ caret instance new --default
 caret task new -y "Generate unit tests for all Go files"
 ```
 
-Avec le flag `-y` (YOLO), Caret planifie et exécute de manière autonome sans chat interactif. Parfait pour CI, les tâches cron ou les scripts.
+Avec le flag `-y` (YOLO), Careti planifie et exécute de manière autonome sans chat interactif. Parfait pour CI, les tâches cron ou les scripts.
 
 Exemples :
 
@@ -116,8 +116,8 @@ Gardez une trace des adresses d'Instance renvoyées par `caret instance new`. Lo
 
 ## Choisir le bon flux
 
-- **Mode interactif** : Idéal pour explorer de nouveaux problèmes, apprendre comment Caret fonctionne, ou lorsque vous souhaitez revoir les plans avant l'exécution
-- **Headless single-shot** : Parfait pour l'automatisation, CI/CD, et les Tasks où vous faites confiance à Caret pour exécuter sans supervision
+- **Mode interactif** : Idéal pour explorer de nouveaux problèmes, apprendre comment Careti fonctionne, ou lorsque vous souhaitez revoir les plans avant l'exécution
+- **Headless single-shot** : Parfait pour l'automatisation, CI/CD, et les Tasks où vous faites confiance à Careti pour exécuter sans supervision
 - **Multi-instance** : Utilisez-le lorsque vous devez paralléliser le travail ou maintenir des contextes séparés pour différentes parties de votre projet
 
 <Tip>
@@ -140,7 +140,7 @@ Pour des commandes et des flags détaillés, consultez la page [CLI reference](/
   </Card>
   
   <Card title="Task management" icon="clipboard-check" href="/french/getting-started/task-management">
-    Apprenez comment Caret suit et gère les Tasks, y compris la sauvegarde et la restauration de l'état à partir de checkpoints.
+    Apprenez comment Careti suit et gère les Tasks, y compris la sauvegarde et la restauration de l'état à partir de checkpoints.
   </Card>
 </Columns>
 ```

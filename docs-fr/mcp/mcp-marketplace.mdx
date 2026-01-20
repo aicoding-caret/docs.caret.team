@@ -1,11 +1,11 @@
 ---
 title: "MCP Facile"
-description: "Apprenez à utiliser le MCP Marketplace pour découvrir, installer et configurer des serveurs MCP qui améliorent les capacités de Caret avec des outils et des ressources supplémentaires."
+description: "Apprenez à utiliser le MCP Marketplace pour découvrir, installer et configurer des serveurs MCP qui améliorent les capacités de Careti avec des outils et des ressources supplémentaires."
 ---
 
 ## Qu'est-ce qu'un serveur MCP ?
 
-Les serveurs MCP sont des extensions spécialisées qui améliorent les capacités de Caret. Ils permettent à Caret d'effectuer des tâches supplémentaires telles que la récupération de pages Web, le traitement d'images, l'accès aux APIs, et bien plus encore.
+Les serveurs MCP sont des extensions spécialisées qui améliorent les capacités de Careti. Ils permettent à Careti d'effectuer des tâches supplémentaires telles que la récupération de pages Web, le traitement d'images, l'accès aux APIs, et bien plus encore.
 
 ## Visite guidée du MCP Marketplace
 
@@ -13,7 +13,7 @@ Le MCP Marketplace offre une expérience d'installation en un clic pour des cent
 
 ### 1. Accéder au Marketplace
 
--   Dans Caret, cliquez sur le bouton "Extensions" (icône carrée) dans la barre d'outils supérieure.
+-   Dans Careti, cliquez sur le bouton "Extensions" (icône carrée) dans la barre d'outils supérieure.
 -   Le MCP Marketplace s'ouvrira, affichant les serveurs disponibles par catégorie.
 
 ### 2. Parcourir et sélectionner un serveur
@@ -24,24 +24,24 @@ Le MCP Marketplace offre une expérience d'installation en un clic pour des cent
 ### 3. Installer et configurer
 
 -   Cliquez sur le bouton d'installation du serveur choisi.
--   Si le serveur nécessite une API key (la plupart en ont besoin), Caret vous guidera à travers :
+-   Si le serveur nécessite une API key (la plupart en ont besoin), Careti vous guidera à travers :
     -   Où obtenir l'API key
     -   Comment l'entrer en toute sécurité
 -   Le serveur sera automatiquement ajouté à vos paramètres MCP.
 
 ### 4. Vérifier l'installation
 
--   Caret affichera une confirmation lorsque l'installation sera terminée.
--   Vérifiez l'état du serveur dans l'interface utilisateur des paramètres MCP de Caret.
+-   Careti affichera une confirmation lorsque l'installation sera terminée.
+-   Vérifiez l'état du serveur dans l'interface utilisateur des paramètres MCP de Careti.
 
 ### 5. Utilisation de votre nouveau serveur
 
--   Après une installation réussie, Caret intégrera automatiquement les capacités du serveur.
--   Vous verrez de nouveaux outils et ressources disponibles dans l'invite système de Caret.
--   Demandez simplement à Caret d'utiliser les capacités de votre nouveau serveur.
+-   Après une installation réussie, Careti intégrera automatiquement les capacités du serveur.
+-   Vous verrez de nouveaux outils et ressources disponibles dans l'invite système de Careti.
+-   Demandez simplement à Careti d'utiliser les capacités de votre nouveau serveur.
 -   Exemple : "Rechercher sur le web les dernières mises à jour de React à l'aide de Perplexity"
 
-**Utilisateurs professionnels :** Si vous utilisez Caret dans un environnement professionnel, assurez-vous d'avoir l'autorisation d'installer des serveurs MCP tiers conformément aux politiques de sécurité de votre organisation.
+**Utilisateurs professionnels :** Si vous utilisez Careti dans un environnement professionnel, assurez-vous d'avoir l'autorisation d'installer des serveurs MCP tiers conformément aux politiques de sécurité de votre organisation.
 
 ## Que se passe-t-il en coulisses ?
 
@@ -49,7 +49,7 @@ Lorsque vous installez un serveur MCP, plusieurs choses se produisent automatiqu
 
 ### 1. Processus d'installation
 
--   Le code du serveur est cloné/installé dans `/Users/<username>/Documents/Caret/MCP/`
+-   Le code du serveur est cloné/installé dans `/Users/<username>/Documents/Careti/MCP/`
 -   Les dépendances sont installées
 -   Le serveur est construit (compilation TypeScript/JavaScript ou installation du package Python)
 
@@ -62,16 +62,16 @@ Lorsque vous installez un serveur MCP, plusieurs choses se produisent automatiqu
 
 ### 3. Lancement du serveur
 
--   Caret détecte le changement de configuration.
--   Caret lance votre serveur en tant que processus distinct.
+-   Careti détecte le changement de configuration.
+-   Careti lance votre serveur en tant que processus distinct.
 -   La communication est établie via stdio ou HTTP.
 
-### 4. Intégration avec Caret
+### 4. Intégration avec Careti
 
--   Les capacités de votre serveur sont ajoutées à l'invite système de Caret.
+-   Les capacités de votre serveur sont ajoutées à l'invite système de Careti.
 -   Les outils deviennent disponibles via les commandes `use_mcp_tool`.
 -   Les ressources deviennent disponibles via les commandes `access_mcp_resource`.
--   Caret peut maintenant utiliser ces capacités lorsque l'utilisateur le demande.
+-   Careti peut maintenant utiliser ces capacités lorsque l'utilisateur le demande.
 
 ## Dépannage
 
@@ -112,7 +112,7 @@ Pour supprimer complètement un serveur MCP défectueux :
 1. Ouvrez le fichier de paramètres MCP : `/Users/<username>/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
 2. Supprimez l'entrée entière de votre serveur de l'objet `mcpServers`
 3. Enregistrez le fichier
-4. Redémarrez Caret
+4. Redémarrez Careti
 
 ### Je reçois toujours une erreur
 
@@ -123,18 +123,18 @@ Si vous recevez une erreur lors de l'utilisation d'un serveur MCP, vous pouvez e
 -   Vérifiez que les chemins d'accès aux fichiers de votre serveur sont corrects.
 -   Assurez-vous que toutes les variables d'environnement requises sont définies.
 -   Vérifiez si un autre processus utilise le même port (pour les serveurs basés sur HTTP).
--   Essayez de supprimer et de réinstaller le serveur (supprimez-le à la fois du fichier `cline_mcp_settings.json` et du répertoire `/Users/<username>/Documents/Caret/MCP/`)
--   Utilisez un terminal et exécutez la commande directement avec ses arguments. Cela vous permettra de voir les mêmes erreurs que celles que Caret voit.
+-   Essayez de supprimer et de réinstaller le serveur (supprimez-le à la fois du fichier `cline_mcp_settings.json` et du répertoire `/Users/<username>/Documents/Careti/MCP/`)
+-   Utilisez un terminal et exécutez la commande directement avec ses arguments. Cela vous permettra de voir les mêmes erreurs que celles que Careti voit.
 
 ## Règles du serveur MCP
 
-Caret est déjà au courant de vos serveurs MCP actifs et de leur utilité, mais lorsque vous avez beaucoup de serveurs MCP activés, il peut être utile de définir quand utiliser chaque serveur.
+Careti est déjà au courant de vos serveurs MCP actifs et de leur utilité, mais lorsque vous avez beaucoup de serveurs MCP activés, il peut être utile de définir quand utiliser chaque serveur.
 
-Utilisez un fichier `.agents/context` ou des instructions personnalisées pour prendre en charge l'activation intelligente du serveur MCP via des déclencheurs basés sur des mots clés, ce qui rend la sélection d'outils de Caret plus intuitive et contextuelle.
+Utilisez un fichier `.agents/context` ou des instructions personnalisées pour prendre en charge l'activation intelligente du serveur MCP via des déclencheurs basés sur des mots clés, ce qui rend la sélection d'outils de Careti plus intuitive et contextuelle.
 
 ### Comment fonctionnent les règles MCP
 
-Les règles MCP regroupent vos serveurs MCP connectés en catégories fonctionnelles et définissent des mots clés de déclenchement qui les activent automatiquement lorsqu'ils sont détectés dans vos conversations avec Caret.
+Les règles MCP regroupent vos serveurs MCP connectés en catégories fonctionnelles et définissent des mots clés de déclenchement qui les activent automatiquement lorsqu'ils sont détectés dans vos conversations avec Careti.
 
 ```json
 {
@@ -157,14 +157,14 @@ Les règles MCP regroupent vos serveurs MCP connectés en catégories fonctionne
 
 ### Avantages des règles MCP
 
--   **Sélection d'outils contextuels :** Caret sélectionne les outils appropriés en fonction du contexte de la conversation.
+-   **Sélection d'outils contextuels :** Careti sélectionne les outils appropriés en fonction du contexte de la conversation.
 -   **Friction réduite :** Pas besoin de spécifier manuellement quel outil utiliser.
 -   **Capacités organisées :** Regroupez logiquement les outils et les serveurs associés.
 -   **Priorisation :** Gérez les cas ambigus avec un ordre de priorité explicite.
 
 ### Exemple d'utilisation
 
-Lorsque vous écrivez "Pouvez-vous scraper ce site Web ?", Caret détecte "scrape" et "website" comme déclencheurs, sélectionnant automatiquement les serveurs MCP liés au Web.
+Lorsque vous écrivez "Pouvez-vous scraper ce site Web ?", Careti détecte "scrape" et "website" comme déclencheurs, sélectionnant automatiquement les serveurs MCP liés au Web.
 
 Pour les tâches financières telles que "Quel est le cours de l'action Apple ?", les mots clés tels que "stock" et "price" déclenchent des serveurs liés à la finance.
 
@@ -196,4 +196,4 @@ Pour les tâches financières telles que "Quel est le cours de l'action Apple ?
 }
 ```
 
-Ajoutez ceci à votre fichier `.agents/context` ou à vos instructions personnalisées pour rendre la sélection de serveur MCP de Caret plus intuitive et contextuelle.
+Ajoutez ceci à votre fichier `.agents/context` ou à vos instructions personnalisées pour rendre la sélection de serveur MCP de Careti plus intuitive et contextuelle.

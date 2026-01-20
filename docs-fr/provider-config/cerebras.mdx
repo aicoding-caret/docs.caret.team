@@ -1,14 +1,14 @@
 ---
 title: "Cerebras"
-description: "Apprenez à configurer et à utiliser l'inference ultra-rapide de Cerebras avec Caret. Expérimentez jusqu'à 2 600 tokens par seconde avec l'architecture de puce wafer-scale et des modèles de raisonnement en temps réel."
+description: "Apprenez à configurer et à utiliser l'inference ultra-rapide de Cerebras avec Careti. Expérimentez jusqu'à 2 600 tokens par seconde avec l'architecture de puce wafer-scale et des modèles de raisonnement en temps réel."
 ---
 
 <Note>
-Ceci est un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Toute politique spécifique à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) sera indiquée par un `<Note>` dans le corps du texte.
+Ceci est un document de référence pour Careti. Il suit la version fusionnée de Careti v3.38.1. Toute politique spécifique à Careti (modèles autorisés/bloqués, restrictions régionales, authentification/routage) sera indiquée par un `<Note>` dans le corps du texte.
 </Note>
 
 <Note>
-Amélioration du Provider Setup : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du provider et l'UX de Caret peuvent être renforcées. Veuillez noter que les modèles autorisés/bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Caret.
+Amélioration du Provider Setup : conformément à `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du provider et l'UX de Careti peuvent être renforcées. Veuillez noter que les modèles autorisés/bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du routeur Careti.
 </Note>
 
 Cerebras offre l'inference IA la plus rapide au monde grâce à son architecture de puce révolutionnaire wafer-scale. Contrairement aux GPU traditionnels qui transfèrent les poids des modèles depuis une mémoire externe, Cerebras stocke l'intégralité des modèles sur la puce (on-chip), éliminant les goulots d'étranglement de bande passante et atteignant des vitesses allant jusqu'à 2 600 tokens par seconde — souvent 20 fois plus rapides que les GPU.
@@ -19,12 +19,12 @@ Cerebras offre l'inference IA la plus rapide au monde grâce à son architecture
 
 1.  **S'inscrire/Se connecter :** Allez sur [Cerebras Cloud](https://cloud.cerebras.ai/) et créez un compte ou connectez-vous.
 2.  **Accéder aux API Keys :** Accédez à la section des API keys dans votre tableau de bord.
-3.  **Créer une clé :** Générez une nouvelle API key. Donnez-lui un nom descriptif (par exemple, "Caret").
+3.  **Créer une clé :** Générez une nouvelle API key. Donnez-lui un nom descriptif (par exemple, "Careti").
 4.  **Copier la clé :** Copiez l'API key immédiatement. Conservez-la en toute sécurité.
 
 ### Modèles pris en charge
 
-Caret prend en charge les modèles Cerebras suivants :
+Careti prend en charge les modèles Cerebras suivants :
 
 -   `zai-glm-4.6` - Modèle polyvalent intelligent avec 1 500 tokens/s
 -   `qwen-3-235b-a22b-instruct-2507` - Modèle avancé de suivi d'instructions
@@ -32,9 +32,9 @@ Caret prend en charge les modèles Cerebras suivants :
 -   `llama-3.3-70b` - Modèle Llama 3.3 de Meta optimisé pour la vitesse
 -   `qwen-3-32b` - Modèle compact mais puissant pour les tâches générales
 
-### Configuration dans Caret
+### Configuration dans Careti
 
-1.  **Ouvrir les paramètres de Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+1.  **Ouvrir les paramètres de Careti :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Careti.
 2.  **Sélectionner le Provider :** Choisissez "Cerebras" dans le menu déroulant "API Provider".
 3.  **Saisir l'API Key :** Collez votre Cerebras API key dans le champ "Cerebras API Key".
 4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
@@ -91,7 +91,7 @@ Les modèles de raisonnement comme `qwen-3-235b-a22b-thinking-2507` peuvent ache
 Les modèles Qwen3-Coder sont spécifiquement optimisés pour les tâches de programmation, offrant des performances comparables à Claude Sonnet 4 et GPT-4.1 dans les benchmarks de codage.
 
 #### Pas de verrouillage d'IDE (No IDE Lock-In)
-Fonctionne avec n'importe quel outil compatible OpenAI — Cursor, Continue.dev, Caret ou tout autre éditeur prenant en charge les endpoints OpenAI.
+Fonctionne avec n'importe quel outil compatible OpenAI — Cursor, Continue.dev, Careti ou tout autre éditeur prenant en charge les endpoints OpenAI.
 
 ### Conseils et notes
 

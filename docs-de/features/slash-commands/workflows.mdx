@@ -3,26 +3,26 @@ title: "Workflows"
 sidebarTitle: "Workflows"
 ---
 
-Workflows ermöglichen es Ihnen, eine Abfolge von Schritten zu definieren, um Caret durch wiederkehrende Aufgaben zu führen, wie zum Beispiel das Deployen eines Service oder das Einreichen eines PR.
+Workflows ermöglichen es Ihnen, eine Abfolge von Schritten zu definieren, um Careti durch wiederkehrende Aufgaben zu führen, wie zum Beispiel das Deployen eines Service oder das Einreichen eines PR.
 
 Um einen Workflow aufzurufen, geben Sie `/[workflow-name.md]` im Chat ein.
 
 ## Wie man Workflows erstellt und verwendet
 
-Workflows befinden sich direkt neben den [Caret Rules](/german/features/caret-rules). Das Erstellen eines Workflows ist unkompliziert:
+Workflows befinden sich direkt neben den [Careti Rules](/german/features/caret-rules). Das Erstellen eines Workflows ist unkompliziert:
 
 <Frame>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Workflows tab in Caret" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Workflows tab in Careti" />
 </Frame>
 
-1. Erstellen Sie eine Markdown-Datei mit klaren Anweisungen für die Schritte, die Caret ausführen soll
+1. Erstellen Sie eine Markdown-Datei mit klaren Anweisungen für die Schritte, die Careti ausführen soll
 2. Speichern Sie diese mit der Endung `.md` in Ihrem Workflows-Verzeichnis
 3. Um einen Workflow auszulösen, geben Sie einfach `/` gefolgt vom Dateinamen des Workflows ein
 4. Geben Sie bei Aufforderung alle erforderlichen Parameter an
 
 Die wahre Stärke liegt in der Strukturierung Ihrer Workflow-Dateien. Sie können:
 
--   Die [integrierten Tools](/german/exploring-carets-tools/caret-tools-guide) von Caret wie `ask_followup_question`, `read_file`, `search_files` und `new_task` nutzen
+-   Die [integrierten Tools](/german/exploring-carets-tools/caret-tools-guide) von Careti wie `ask_followup_question`, `read_file`, `search_files` und `new_task` nutzen
 -   Bereits installierte Command-line-Tools wie `gh` oder `docker` verwenden
 -   Externe [MCP tool calls](/german/mcp/mcp-overview) wie Slack oder Whatsapp referenzieren
 -   Mehrere Aktionen in einer spezifischen Sequenz miteinander verketten
@@ -414,16 +414,16 @@ Früher musste ich den Kontext manuell sammeln, wenn ich einen neuen PR zum Revi
 
 1. Geben Sie `/pr-review.md` im Chat ein
 2. Fügen Sie die PR-Nummer ein
-3. Lassen Sie Caret den Rest erledigen
+3. Lassen Sie Careti den Rest erledigen
 
-Mein Workflow nutzt das `gh` Command-line-Tool und die in Caret integrierte Funktion `ask_followup_question`, um:
+Mein Workflow nutzt das `gh` Command-line-Tool und die in Careti integrierte Funktion `ask_followup_question`, um:
 
 -   Die PR-Beschreibung und Kommentare abzurufen
 -   Den Diff zu untersuchen
 -   Umliegende Dateien für den Kontext zu prüfen
 -   Potenzielle Probleme zu analysieren
 -   Mich zu fragen, ob die Genehmigung in Ordnung ist, falls alles gut aussieht, inklusive einer Begründung
--   Wenn ich "Ja" sage, genehmigt Caret den PR automatisch über den `gh` Befehl
+-   Wenn ich "Ja" sage, genehmigt Careti den PR automatisch über den `gh` Befehl
 
 Dies hat meinen PR-Review-Prozess von einer manuellen, mehrstufigen Operation in einen einzigen Befehl verwandelt, der mir alles liefert, was ich für eine fundierte Entscheidung benötige.
 

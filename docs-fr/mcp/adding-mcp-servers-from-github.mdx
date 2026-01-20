@@ -1,16 +1,16 @@
 ```yaml
 ---
 title: "Ajouter des serveurs MCP depuis GitHub"
-description: "Ce guide fournit une présentation étape par étape de la façon d'utiliser Caret pour construire un serveur MCP existant à partir d'un dépôt GitHub."
+description: "Ce guide fournit une présentation étape par étape de la façon d'utiliser Careti pour construire un serveur MCP existant à partir d'un dépôt GitHub."
 ---
 
-Ce guide fournit une présentation étape par étape de la façon d'utiliser Caret pour construire un serveur MCP existant à partir d'un dépôt GitHub.
+Ce guide fournit une présentation étape par étape de la façon d'utiliser Careti pour construire un serveur MCP existant à partir d'un dépôt GitHub.
 
 ## **Trouver un serveur MCP**
 
 Il existe plusieurs endroits en ligne pour trouver des serveurs MCP :
 
--   **Caret peut ajouter automatiquement des serveurs MCP à sa liste, que vous pouvez ensuite modifier.** Caret peut cloner des dépôts directement depuis GitHub et construire les serveurs pour vous.
+-   **Careti peut ajouter automatiquement des serveurs MCP à sa liste, que vous pouvez ensuite modifier.** Careti peut cloner des dépôts directement depuis GitHub et construire les serveurs pour vous.
 -   **GitHub :** Deux des endroits les plus courants pour trouver des serveurs MCP sur GitHub sont les suivants :
     -   [Dépôt officiel des serveurs MCP](https://github.com/modelcontextprotocol/servers)
     -   [Dépôt Awesome-MCP des serveurs](https://github.com/punkpeye/awesome-mcp-servers)
@@ -25,48 +25,48 @@ Il existe plusieurs endroits en ligne pour trouver des serveurs MCP :
 
 -   **PulseMCP :** Ce site web propose un article de blog expliquant comment l’IA pourrait utiliser les serveurs MCP pour rendre les sites web obsolètes. PulseMCP comprend également une section FAQ sur les serveurs MCP : [https://www.pulsemcp.com/](https://www.pulsemcp.com/)
 
-## **Construire avec Caret**
+## **Construire avec Careti**
 
-1. **Lancer le processus :** Fournissez à Caret les informations suivantes :
+1. **Lancer le processus :** Fournissez à Careti les informations suivantes :
     - **URL du dépôt GitHub :** L’URL du dépôt du serveur.
-    - **Contenu de README.md :** Ceci est facultatif, mais utile pour que Caret comprenne l’objectif et la configuration du serveur. Vous pouvez copier le fichier README.md du dépôt GitHub.
-2. **Exemple d’interaction avec Caret :**
+    - **Contenu de README.md :** Ceci est facultatif, mais utile pour que Careti comprenne l’objectif et la configuration du serveur. Vous pouvez copier le fichier README.md du dépôt GitHub.
+2. **Exemple d’interaction avec Careti :**
 
     ```
-    User: "Caret, I want to add the MCP server for Brave browser control. Here's the GitHub link: @https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search Can you add it?"
+    User: "Careti, I want to add the MCP server for Brave browser control. Here's the GitHub link: @https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search Can you add it?"
 
-    Caret: "OK. Cloning the repository to the MCP directory. It needs to be built because it has a 'package.json' file. Should I run 'npm run build'?"
+    Careti: "OK. Cloning the repository to the MCP directory. It needs to be built because it has a 'package.json' file. Should I run 'npm run build'?"
 
     User: "Yes, build it."
 
-    Caret: "Build complete. This server needs a browser path. Where's your Brave browser executable?"
+    Careti: "Build complete. This server needs a browser path. Where's your Brave browser executable?"
 
     User: "It's in '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'."
 
-    Caret: "OK. I've updated the server config with that path and added it to 'cline_mcp_settings.json'. Anything else?"
+    Careti: "OK. I've updated the server config with that path and added it to 'cline_mcp_settings.json'. Anything else?"
 
     User: "No, that's all. Let's test it."
 
-    Caret: "Great! Starting the MCP Inspector to test the server connection. After that, we can try controlling the browser from Caret."
+    Careti: "Great! Starting the MCP Inspector to test the server connection. After that, we can try controlling the browser from Careti."
     ```
 
-3. **Actions de Caret :** Selon vos instructions, Caret effectuera les opérations suivantes :
-    - **Clonage du dépôt :** Caret clonera le dépôt sur votre machine locale, généralement dans le répertoire spécifié dans votre configuration.
-    - **Ajustement :** Vous pouvez guider Caret pour modifier la configuration du serveur. Par exemple :
+3. **Actions de Careti :** Selon vos instructions, Careti effectuera les opérations suivantes :
+    - **Clonage du dépôt :** Careti clonera le dépôt sur votre machine locale, généralement dans le répertoire spécifié dans votre configuration.
+    - **Ajustement :** Vous pouvez guider Careti pour modifier la configuration du serveur. Par exemple :
         - **User :** "This server requires an API key. Can you find where it should be added?"
-        - Caret peut automatiquement mettre à jour le fichier `cline_mcp_settings.json` ou d’autres fichiers pertinents en fonction de vos instructions.
-    - **Construction du serveur :** Caret exécutera la commande de construction appropriée pour le serveur, qui est généralement `npm run build`.
-    - **Ajout du serveur aux paramètres :** Caret ajoutera la configuration du serveur au fichier `cline_mcp_settings.json`.
+        - Careti peut automatiquement mettre à jour le fichier `cline_mcp_settings.json` ou d’autres fichiers pertinents en fonction de vos instructions.
+    - **Construction du serveur :** Careti exécutera la commande de construction appropriée pour le serveur, qui est généralement `npm run build`.
+    - **Ajout du serveur aux paramètres :** Careti ajoutera la configuration du serveur au fichier `cline_mcp_settings.json`.
 
 ## **Test et dépannage**
 
-1. **Tester le serveur :** Une fois que Caret a terminé le processus de construction, testez le serveur pour vous assurer qu’il fonctionne comme prévu. Caret peut vous aider si vous rencontrez des problèmes.
+1. **Tester le serveur :** Une fois que Careti a terminé le processus de construction, testez le serveur pour vous assurer qu’il fonctionne comme prévu. Careti peut vous aider si vous rencontrez des problèmes.
 2. **MCP Inspector :** Vous pouvez utiliser le MCP Inspector pour tester la connexion et les fonctionnalités du serveur.
 
 ## **Meilleures pratiques**
 
--   **Comprendre les bases :** Bien que Caret simplifie le processus, il est avantageux d’avoir une compréhension de base du code du serveur, du protocole MCP ([en savoir plus](/french/mcp/mcp-overview)) et de la façon de configurer le serveur. Cela permet un dépannage et une personnalisation plus efficaces.
--   **Instructions claires :** Fournissez des instructions claires et spécifiques à Caret tout au long du processus.
+-   **Comprendre les bases :** Bien que Careti simplifie le processus, il est avantageux d’avoir une compréhension de base du code du serveur, du protocole MCP ([en savoir plus](/french/mcp/mcp-overview)) et de la façon de configurer le serveur. Cela permet un dépannage et une personnalisation plus efficaces.
+-   **Instructions claires :** Fournissez des instructions claires et spécifiques à Careti tout au long du processus.
 -   **Tests :** Testez minutieusement le serveur après l’installation et la configuration pour vous assurer qu’il fonctionne correctement.
 -   **Contrôle de version :** Utilisez un système de contrôle de version (comme Git) pour suivre les modifications apportées au code du serveur.
 -   **Rester à jour :** Gardez vos serveurs MCP à jour pour bénéficier des dernières fonctionnalités et des correctifs de sécurité.

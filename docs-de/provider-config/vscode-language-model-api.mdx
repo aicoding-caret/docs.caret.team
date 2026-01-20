@@ -1,9 +1,9 @@
 ---
 title: "VS Code Language Model API"
-description: "Erfahren Sie, wie Sie Caret mit der experimentellen VS Code Language Model API verwenden, um Zugriff auf Modelle von GitHub Copilot und anderen kompatiblen Extensions zu erhalten."
+description: "Erfahren Sie, wie Sie Careti mit der experimentellen VS Code Language Model API verwenden, um Zugriff auf Modelle von GitHub Copilot und anderen kompatiblen Extensions zu erhalten."
 ---
 
-Caret bietet _experimentelle_ Unterstützung für die [VS Code Language Model API](https://code.visualstudio.com/api/extension-guides/language-model). Diese API ermöglicht es Extensions, den Zugriff auf Language Models direkt innerhalb der VS Code Umgebung zu gewähren. Folglich können Sie möglicherweise Modelle nutzen von:
+Careti bietet _experimentelle_ Unterstützung für die [VS Code Language Model API](https://code.visualstudio.com/api/extension-guides/language-model). Diese API ermöglicht es Extensions, den Zugriff auf Language Models direkt innerhalb der VS Code Umgebung zu gewähren. Folglich können Sie möglicherweise Modelle nutzen von:
 
 -   **GitHub Copilot:** Vorausgesetzt, Sie haben ein aktives Copilot Abonnement und die Extension installiert.
 -   **Andere VS Code Extensions:** Jede Extension, welche die Language Model API implementiert.
@@ -19,8 +19,8 @@ Caret bietet _experimentelle_ Unterstützung für die [VS Code Language Model AP
 
 ### Konfigurationsschritte
 
-1. **Sicherstellen, dass der Copilot Account aktiv und die Extensions installiert sind:** Benutzer, die entweder in der Copilot oder Copilot Chat Extension angemeldet sind, sollten über Caret Zugriff erhalten können.
-2. **Caret Settings aufrufen:** Klicken Sie auf das Zahnrad-Symbol (⚙️) im Caret Panel.
+1. **Sicherstellen, dass der Copilot Account aktiv und die Extensions installiert sind:** Benutzer, die entweder in der Copilot oder Copilot Chat Extension angemeldet sind, sollten über Careti Zugriff erhalten können.
+2. **Careti Settings aufrufen:** Klicken Sie auf das Zahnrad-Symbol (⚙️) im Careti Panel.
 3. **Provider wählen:** Wählen Sie „VS Code LM API“ aus dem „API Provider“ Dropdown-Menü.
 4. **Modell auswählen:** Wenn die Copilot Extension(s) installiert sind und der Benutzer in seinem Copilot Account angemeldet ist, füllt sich das „Language Model“ Dropdown nach kurzer Zeit mit den verfügbaren Modellen. Die Namenskonvention ist `vendor/family`. Wenn Copilot aktiv ist, könnten Ihnen beispielsweise Optionen begegnen wie:
     - `copilot - gpt-3.5-turbo`
@@ -37,10 +37,10 @@ Für die besten Ergebnisse mit dem VS Code LM API Provider empfehlen wir die Ver
 ### Aktuelle Einschränkungen
 
 -   **Experimenteller API-Status:** Die VS Code Language Model API befindet sich noch in der aktiven Entwicklung. Rechnen Sie mit potenziellen Änderungen und Instabilität.
--   **Abhängigkeit von Extensions:** Diese Funktion hängt vollständig davon ab, dass andere Extensions Modelle zur Verfügung stellen. Caret hat keinen direkten Einfluss auf die Liste der verfügbaren Modelle.
+-   **Abhängigkeit von Extensions:** Diese Funktion hängt vollständig davon ab, dass andere Extensions Modelle zur Verfügung stellen. Careti hat keinen direkten Einfluss auf die Liste der verfügbaren Modelle.
 -   **Eingeschränkte Funktionalität:** Die VS Code Language Model API umfasst möglicherweise nicht alle Funktionen, die über andere API Provider verfügbar sind (z. B. Image-Input-Fähigkeiten, Streaming-Antworten, detaillierte Usage Metrics).
--   **Kein direktes Kostenmanagement:** Benutzer unterliegen den Preisstrukturen und Nutzungsbedingungen der Extension, die das Modell bereitstellt. Caret kann die damit verbundenen Kosten nicht direkt überwachen oder regulieren.
--   **GitHub Copilot Rate Throttling:** Beachten Sie bei der Verwendung der VS Code LM API mit GitHub Copilot, dass GitHub Rate Limits für die Copilot Nutzung erzwingen kann. Diese Einschränkungen werden von GitHub verwaltet, nicht von Caret.
+-   **Kein direktes Kostenmanagement:** Benutzer unterliegen den Preisstrukturen und Nutzungsbedingungen der Extension, die das Modell bereitstellt. Careti kann die damit verbundenen Kosten nicht direkt überwachen oder regulieren.
+-   **GitHub Copilot Rate Throttling:** Beachten Sie bei der Verwendung der VS Code LM API mit GitHub Copilot, dass GitHub Rate Limits für die Copilot Nutzung erzwingen kann. Diese Einschränkungen werden von GitHub verwaltet, nicht von Careti.
 
 ### Tipps zur Fehlerbehebung
 

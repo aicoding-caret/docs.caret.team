@@ -1,7 +1,7 @@
-# Caret Docs Update Master Plan - 2025-12-01
+# Careti Docs Update Master Plan - 2025-12-01
 
 ## 1. Project Structure & Status
-- **Root**: `/home/luke/dev/docs.caret.team`
+- **Root**: `/home/luke/dev/docs.careti.ai`
 - **Core Directories**:
     - `caret/`: Submodule/folder tracking the upstream `caret` repository (currently synced to `origin/main`).
     - `docs-en/`: English documentation, recently updated from `caret/docs` via scripts.
@@ -9,7 +9,7 @@
     - `scripts/`: Automation scripts for updating and converting docs.
 - **Current Status**:
     - `caret` folder updated to latest `main`.
-    - `docs-en` updated with latest content from `caret`, converted to Docusaurus format, and branding updated to 'Caret'.
+    - `docs-en` updated with latest content from `caret`, converted to Docusaurus format, and branding updated to 'Careti'.
     - `sidebars-en.ts` updated to reflect the new structure.
     - Build (`npm run build`) verified successfully.
 
@@ -18,7 +18,7 @@
 2.  **Translate & Convert**:
     - Read updated English docs (`docs-en`).
     - Translate content to Korean (`docs-ko`).
-    - Ensure 'Caret' branding and specific features are correctly represented in both languages.
+    - Ensure 'Careti' branding and specific features are correctly represented in both languages.
 3.  **Verify & Feedback**:
     - Start local server (`npm start`).
     - Review changes in the browser.
@@ -38,7 +38,7 @@
 - [ ] **Identify Changes**: Compare `docs-en` (new) vs `docs-ko` (old) or check git diffs to see what needs translation.
 - [ ] **Translate**: Update `docs-ko` files to match `docs-en`.
     - Priority: New features, changed structures.
-- [ ] **Caret Conversion**: Ensure all 'Cline' references are appropriately changed to 'Caret' in Korean docs (English is already done by script).
+- [ ] **Careti Conversion**: Ensure all 'Cline' references are appropriately changed to 'Careti' in Korean docs (English is already done by script).
 
 ### Phase 3: Review
 - [ ] Start development server.

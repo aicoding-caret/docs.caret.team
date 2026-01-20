@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **multilingual Docusaurus documentation site** for Caret AI Coding Assistant, supporting 4 languages (English, Korean, Japanese, Chinese). The site is built on Docusaurus v3.8.1 with a multi-instance architecture where each language has its own docs plugin instance.
+This is a **multilingual Docusaurus documentation site** for Careti AI Coding Assistant, supporting 4 languages (English, Korean, Japanese, Chinese). The site is built on Docusaurus v3.8.1 with a multi-instance architecture where each language has its own docs plugin instance.
 
 **Key Architecture Points:**
 - Multi-instance Docusaurus setup (not i18n) - each language is a separate docs plugin
@@ -66,7 +66,7 @@ Located in `scripts/` directory for content conversion and maintenance:
 # Convert Mintlify format to Docusaurus (for new content)
 ./scripts/mintlify-to-docusaurus-converter-v2.sh [directory]
 
-# Convert Cline references to Caret
+# Convert Cline references to Careti
 ./scripts/cline-to-caret-renamer.sh [directory]           # Rename files
 ./scripts/cline-to-caret-content-replacer.sh [directory]  # Replace content
 

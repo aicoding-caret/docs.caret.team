@@ -3,26 +3,26 @@ title: "Workflows"
 sidebarTitle: "Workflows"
 ---
 
-Workflows позволяют определять последовательность шагов, чтобы направлять Caret при выполнении повторяющихся задач, таких как развертывание сервиса или отправка PR.
+Workflows позволяют определять последовательность шагов, чтобы направлять Careti при выполнении повторяющихся задач, таких как развертывание сервиса или отправка PR.
 
 Чтобы вызвать workflow, введите `/[workflow-name.md]` в чате.
 
 ## Как создавать и использовать Workflows
 
-Workflows находятся рядом с [Caret Rules](/russian/features/caret-rules). Создать их очень просто:
+Workflows находятся рядом с [Careti Rules](/russian/features/caret-rules). Создать их очень просто:
 
 <Frame>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Вкладка Workflows в Caret" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/workflows.png" alt="Вкладка Workflows в Careti" />
 </Frame>
 
-1. Создайте Markdown-файл с четкими инструкциями по шагам, которые должен выполнить Caret.
+1. Создайте Markdown-файл с четкими инструкциями по шагам, которые должен выполнить Careti.
 2. Сохраните его с расширением `.md` в вашей директории workflows.
 3. Чтобы запустить workflow, просто введите `/`, а затем имя файла workflow.
 4. Укажите необходимые параметры по запросу.
 
 Настоящая сила заключается в том, как вы структурируете файлы workflow. Вы можете:
 
--   Использовать [встроенные инструменты](/russian/exploring-carets-tools/caret-tools-guide) Caret, такие как `ask_followup_question`, `read_file`, `search_files` и `new_task`.
+-   Использовать [встроенные инструменты](/russian/exploring-carets-tools/caret-tools-guide) Careti, такие как `ask_followup_question`, `read_file`, `search_files` и `new_task`.
 -   Использовать уже установленные инструменты командной строки, такие как `gh` или `docker`.
 -   Обращаться к внешним [вызовам инструментов MCP](/russian/mcp/mcp-overview), таким как Slack или Whatsapp.
 -   Связывать несколько действий в определенную последовательность.
@@ -414,16 +414,16 @@ The architectural change is solid - moving the focus logic to the command handle
 
 1. Ввожу `/pr-review.md` в чате
 2. Вставляю номер PR
-3. Позволяю Caret сделать все остальное
+3. Позволяю Careti сделать все остальное
 
-Мой workflow использует инструмент командной строки `gh` и встроенную функцию Caret `ask_followup_question`, чтобы:
+Мой workflow использует инструмент командной строки `gh` и встроенную функцию Careti `ask_followup_question`, чтобы:
 
 -   Получить описание PR и комментарии
 -   Изучить diff
 -   Проверить окружающие файлы для понимания контекста
 -   Проанализировать потенциальные проблемы
 -   Спросить меня, можно ли одобрить PR, если все выглядит хорошо, с обоснованием того, почему он должен быть одобрен
--   Если я отвечаю «да», Caret автоматически одобряет PR с помощью команды `gh`
+-   Если я отвечаю «да», Careti автоматически одобряет PR с помощью команды `gh`
 
 Это превратило мой процесс ревью PR из ручной многоэтапной операции в одну команду, которая дает мне все необходимое для принятия взвешенного решения.
 

@@ -1,14 +1,14 @@
 ---
 title: "GitHub Issue RCA 示例"
-description: "使用 Caret CLI 自动分析 GitHub Issue 并定位根因。"
+description: "使用 Careti CLI 自动分析 GitHub Issue 并定位根因。"
 ---
 
 # GitHub 根因分析
 
-使用 Caret CLI 自动分析 GitHub Issue 的示例。通过 Caret 自治 AI 获取、分析并定位根因，输出清晰可解析的结果，便于集成到工作流中。
+使用 Careti CLI 自动分析 GitHub Issue 的示例。通过 Careti 自治 AI 获取、分析并定位根因，输出清晰可解析的结果，便于集成到工作流中。
 
 <Note>
-**第一次使用 Caret CLI？** 请先完成 [安装指南](/zh/caret-cli/installation) 并执行 `caret auth`。
+**第一次使用 Careti CLI？** 请先完成 [安装指南](/zh/caret-cli/installation) 并执行 `caret auth`。
 </Note>
 
 <Frame>
@@ -17,7 +17,7 @@ description: "使用 Caret CLI 自动分析 GitHub Issue 并定位根因。"
 
 ## 前置条件
 
-- **已安装并认证 Caret CLI** ([安装指南](/zh/caret-cli/installation))
+- **已安装并认证 Careti CLI** ([安装指南](/zh/caret-cli/installation))
 - **至少一个模型提供商** (OpenRouter/Anthropic/OpenAI 等)
 - **基本 CLI 使用**
 
@@ -65,7 +65,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -82,7 +82,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -294,8 +294,8 @@ scalability.
 
 该示例展示了如何:
 
-1. 使用 Caret 构建自治 CLI 工具
-2. 解析 Caret CLI JSON 输出
+1. 使用 Careti 构建自治 CLI 工具
+2. 解析 Careti CLI JSON 输出
 3. 编写灵活的自动化脚本
 4. 集成 GitHub Issue 分析
 5. 正确处理命令行参数

@@ -3,38 +3,38 @@ title: "Model Selection Guide"
 description: "Last updated: August 20, 2025."
 ---
 
-New models drop constantly, so this guide focuses on what's working well with Caret right now. We'll keep it updated as the landscape shifts.
+New models drop constantly, so this guide focuses on what's working well with Careti right now. We'll keep it updated as the landscape shifts.
 
 <Callout type="tip">
-**New to model selection?** Start with [Module 2 of Caret's Learning Path](https://caret.bot/learn) for a comprehensive guide to choosing and configuring models.
+**New to model selection?** Start with [Module 2 of Careti's Learning Path](https://caret.bot/learn) for a comprehensive guide to choosing and configuring models.
 </Callout>
 
 ## What is an AI Model?
 
-Think of an AI model as the "brain" that powers Caret. When you ask Caret to write code, fix bugs, or refactor your project, it's the model that actually understands your request and generates the response.
+Think of an AI model as the "brain" that powers Careti. When you ask Careti to write code, fix bugs, or refactor your project, it's the model that actually understands your request and generates the response.
 
 **Key points:**
 - **Models are trained AI systems** that understand natural language and code
 - **Different models have different strengths** some excel at complex reasoning, others prioritize speed or cost
-- **You choose which model Caret uses** like picking between different experts for different tasks
+- **You choose which model Careti uses** like picking between different experts for different tasks
 - **Models are accessed via API providers** - companies like Anthropic, OpenAI, and OpenRouter host these models
 
-**Why it matters:** The model you choose directly impacts Caret's capabilities, response quality, speed, and cost. A premium model might handle complex refactoring beautifully but cost more, while a budget model works great for routine tasks at a fraction of the price.
+**Why it matters:** The model you choose directly impacts Careti's capabilities, response quality, speed, and cost. A premium model might handle complex refactoring beautifully but cost more, while a budget model works great for routine tasks at a fraction of the price.
 
-## How to Select a Model in Caret
+## How to Select a Model in Careti
 
-Follow these 5 simple steps to get Caret up and running with your preferred AI model:
+Follow these 5 simple steps to get Careti up and running with your preferred AI model:
 
-### Step 1: Open Caret Settings
+### Step 1: Open Careti Settings
 
-First, you need to access Caret's configuration panel.
+First, you need to access Careti's configuration panel.
 
 **Two ways to open settings:**
-- **Quick method**: Click the **gear icon (⚙️)** in the top-right corner of Caret's chat interface
-- **Command palette**: Press **Cmd/Ctrl + Shift + P** → type "Caret: Open Settings"
+- **Quick method**: Click the **gear icon (⚙️)** in the top-right corner of Careti's chat interface
+- **Command palette**: Press **Cmd/Ctrl + Shift + P** → type "Careti: Open Settings"
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Caret Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Careti Settings Panel" />
 </Frame>
 
 The settings panel will open, showing configuration options with "API Provider" at the top.
@@ -49,14 +49,14 @@ Choose your preferred AI provider from the dropdown menu.
 
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Caret Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Careti Settings Panel" />
 </Frame>
 
 **Popular providers at a glance:**
 
 | Provider | Best For | Notes |
 |----------|----------|-------|
-| **Caret** | Easiest setup | No API keys needed, access to multiple models including stealth models |
+| **Careti** | Easiest setup | No API keys needed, access to multiple models including stealth models |
 | **OpenRouter** | Value seekers | Multiple models, competitive pricing |
 | **Anthropic** | Reliability | Claude models, most dependable tool usage |
 | **OpenAI** | Latest tech | GPT models |
@@ -67,16 +67,16 @@ Choose your preferred AI provider from the dropdown menu.
 See the [full provider list](/en/provider-config/openrouter) for more options including Cerebras, Vertex AI, Azure, and more.
 
 <Info>
-**Recommended for beginners:** Start with **Caret** as your provider - no API key management needed, instant access to multiple models, and occasional free inferencing through partner providers.
+**Recommended for beginners:** Start with **Careti** as your provider - no API key management needed, instant access to multiple models, and occasional free inferencing through partner providers.
 </Info>
 
 ### Step 3: Add Your API Key (or Sign In)
 
 The next step depends on which provider you selected.
 
-#### If you selected **Caret** as your provider:
+#### If you selected **Careti** as your provider:
 
-- **No API key needed!** Simply sign in with your Caret account
+- **No API key needed!** Simply sign in with your Careti account
 - Click the **Sign In** button when prompted
 - You'll be redirected to [app.caret.bot](https://app.caret.bot) to authenticate
 - After signing in, return to your IDE
@@ -96,12 +96,12 @@ You'll need to get an API key from your chosen provider:
 
 3. **Copy the API key** to your clipboard
 
-4. **Paste your key** in the **"API Key"** field in Caret settings
+4. **Paste your key** in the **"API Key"** field in Careti settings
 
 5. **Save automatically** - Your key is stored securely in your editor's secrets storage
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Caret API Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Careti API Selection" />
 </Frame>
 
 <Warning>
@@ -113,7 +113,7 @@ You'll need to get an API key from your chosen provider:
 Once your API key is added (or you've signed in), the **"Model"** dropdown becomes available.
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Caret Model Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Careti Model Selection" />
 </Frame>
 
 **Quick model selection guide:**
@@ -144,11 +144,11 @@ Here are the most common picks right now:
 - **Local:** Any Ollama-hosted model  
 - **Latest features:** GPT-5
 
-### Step 5: Start Using Caret
+### Step 5: Start Using Careti
 
-**Congratulations! You're all set up.** Here's how to start coding with Caret:
+**Congratulations! You're all set up.** Here's how to start coding with Careti:
 
-1. **Type your request** in the Caret chat box
+1. **Type your request** in the Careti chat box
    - Example: "Create a React component for a login form"
    - Example: "Debug this TypeScript error"
    - Example: "Refactor this function to be more efficient"
@@ -209,4 +209,4 @@ For detailed model comparisons, pricing, and performance metrics, see:
 
 ## What Others Are Using
 
-Check [OpenRouter's Caret usage stats](https://openrouter.ai/apps?url=https%3A%2F%2Fcline.bot%2F) to see real usage patterns from the community.
+Check [OpenRouter's Careti usage stats](https://openrouter.ai/apps?url=https%3A%2F%2Fcline.bot%2F) to see real usage patterns from the community.

@@ -4,7 +4,7 @@ description: "Comprendre et gérer les fenêtres de contexte des modèles d'IA"
 ---
 
 <Note>
-Ce document est basé sur Caret. Il suit la version Caret v3.38.1 et toute politique spécifique à Caret (limites de contexte par modèle supporté/bloqué, authentification/routage) sera signalée par une balise `<Note>` dans le texte.
+Ce document est basé sur Careti. Il suit la version Careti v3.38.1 et toute politique spécifique à Careti (limites de contexte par modèle supporté/bloqué, authentification/routage) sera signalée par une balise `<Note>` dans le texte.
 </Note>
 
 ## Qu'est-ce qu'une fenêtre de contexte ?
@@ -44,9 +44,9 @@ Une fenêtre de contexte est la quantité maximale de texte qu'un modèle d'IA p
 ### Ce qui compte pour le contexte
 
 1. **Votre conversation actuelle** - Tous les messages du chat
-2. **Contenu des fichiers** - Tous les fichiers que vous avez partagés ou que Caret a lus
+2. **Contenu des fichiers** - Tous les fichiers que vous avez partagés ou que Careti a lus
 3. **Sorties d'outils** - Résultats des commandes exécutées
-4. **System prompts** - Instructions de Caret (impact minimal)
+4. **System prompts** - Instructions de Careti (impact minimal)
 
 ### Stratégies d'optimisation
 
@@ -66,7 +66,7 @@ Au lieu d'inclure des fichiers entiers :
 - Référencer des fonctions spécifiques plutôt que des fichiers entiers
 
 #### 3. Activer l'Auto-compact
-Caret peut résumer automatiquement les conversations longues :
+Careti peut résumer automatiquement les conversations longues :
 - Settings → Features → Auto-compact
 - Préserve le contexte important
 - Réduit l'utilisation des tokens
@@ -144,10 +144,10 @@ Act Mode: Claude Sonnet (1M) - Maximum context for coding
 **R :** Pas toujours. Les contextes plus larges augmentent les coûts et peuvent réduire la qualité des réponses. Adaptez le contexte à la taille de votre tâche.
 
 ### Q : Comment savoir quelle quantité de contexte j'utilise ?
-**R :** Caret affiche l'utilisation des tokens dans l'interface. Surveillez la jauge de contexte lorsqu'elle approche des limites.
+**R :** Careti affiche l'utilisation des tokens dans l'interface. Surveillez la jauge de contexte lorsqu'elle approche des limites.
 
 ### Q : Que se passe-t-il si je dépasse la limite de contexte ?
-**R :** Caret va soit :
+**R :** Careti va soit :
 - Compacter automatiquement la conversation (si activé)
 - Afficher une erreur et suggérer de commencer une nouvelle tâche
 - Tronquer les messages plus anciens (avec un avertissement)

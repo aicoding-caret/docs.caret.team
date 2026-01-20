@@ -1,9 +1,9 @@
 ---
 title: "OpenAI-kompatibel"
-description: "Erfahren Sie, wie Sie Caret mit verschiedenen KI-Modellanbietern konfigurieren, die OpenAI-kompatible APIs anbieten."
+description: "Erfahren Sie, wie Sie Careti mit verschiedenen KI-Modellanbietern konfigurieren, die OpenAI-kompatible APIs anbieten."
 ---
 
-Caret unterstützt eine breite Palette von KI-Modellanbietern, die APIs anbieten, welche mit dem OpenAI API-Standard kompatibel sind. Dies ermöglicht es Ihnen, Modelle von anderen Anbietern als OpenAI zu nutzen und dabei dennoch eine vertraute API-Schnittstelle zu verwenden. Dazu gehören Anbieter wie:
+Careti unterstützt eine breite Palette von KI-Modellanbietern, die APIs anbieten, welche mit dem OpenAI API-Standard kompatibel sind. Dies ermöglicht es Ihnen, Modelle von anderen Anbietern als OpenAI zu nutzen und dabei dennoch eine vertraute API-Schnittstelle zu verwenden. Dazu gehören Anbieter wie:
 
 -   **Lokale Modelle**, die über Tools wie Ollama und LM Studio laufen (welche in ihren jeweiligen Abschnitten behandelt werden).
 -   **Cloud-Anbieter** wie Perplexity, Together AI, Anyscale und viele andere.
@@ -13,13 +13,13 @@ Dieses Dokument konzentriert sich auf die Einrichtung von anderen Anbietern als 
 
 ### Allgemeine Konfiguration
 
-Der Schlüssel zur Verwendung eines OpenAI-kompatiblen Anbieters mit Caret liegt in der Konfiguration dieser Haupteinstellungen:
+Der Schlüssel zur Verwendung eines OpenAI-kompatiblen Anbieters mit Careti liegt in der Konfiguration dieser Haupteinstellungen:
 
 1.  **Base URL:** Dies ist der für den Anbieter spezifische API-Endpunkt. Es wird _nicht_ `https://api.openai.com/v1` sein (diese URL ist für die offizielle OpenAI API).
 2.  **API Key:** Dies ist der geheime Schlüssel, den Sie von Ihrem gewählten Anbieter erhalten.
 3.  **Model ID:** Dies ist der spezifische Name oder Bezeichner für das Modell, das Sie verwenden möchten.
 
-Sie finden diese Einstellungen im Caret-Einstellungsmenü (klicken Sie auf das ⚙️-Symbol):
+Sie finden diese Einstellungen im Careti-Einstellungsmenü (klicken Sie auf das ⚙️-Symbol):
 
 -   **API Provider:** Wählen Sie "OpenAI Compatible".
 -   **Base URL:** Geben Sie die vom gewählten Anbieter bereitgestellte Base URL ein. **Dies ist ein entscheidender Schritt.**
@@ -35,7 +35,7 @@ Sie finden diese Einstellungen im Caret-Einstellungsmenü (klicken Sie auf das �
 
 ### Unterstützte Modelle (für OpenAI Native Endpoint)
 
-Während der Provider-Typ "OpenAI Compatible" die Verbindung zu verschiedenen Endpunkten ermöglicht, erkennt Caret die folgenden Model IDs basierend auf der `openAiNativeModels`-Definition in seinem Quellcode, wenn Sie sich direkt mit der offiziellen OpenAI API verbinden (oder mit einem Endpunkt, der diese exakt spiegelt):
+Während der Provider-Typ "OpenAI Compatible" die Verbindung zu verschiedenen Endpunkten ermöglicht, erkennt Careti die folgenden Model IDs basierend auf der `openAiNativeModels`-Definition in seinem Quellcode, wenn Sie sich direkt mit der offiziellen OpenAI API verbinden (oder mit einem Endpunkt, der diese exakt spiegelt):
 
 -   `o3-mini`
 -   `o3-mini-high`
@@ -48,11 +48,11 @@ Während der Provider-Typ "OpenAI Compatible" die Verbindung zu verschiedenen En
 
 **Hinweis:** Wenn Sie einen anderen OpenAI-kompatiblen Anbieter verwenden (wie Together AI, Anyscale usw.), weichen die verfügbaren Model IDs ab. Beziehen Sie sich immer auf die Dokumentation Ihres spezifischen Anbieters für die unterstützten Modellnamen und alle einzigartigen Konfigurationsdetails.
 
-### v0 (Vercel SDK) in Caret:
+### v0 (Vercel SDK) in Careti:
 
--   Für Entwickler, die mit v0 arbeiten, bietet deren [AI SDK-Dokumentation](https://vercel.com/docs/v0/caret) wertvolle Einblicke und Beispiele für die Integration verschiedener Modelle, von denen viele OpenAI-kompatibel sind. Dies kann eine hilfreiche Ressource sein, um zu verstehen, wie Aufrufe strukturiert und Konfigurationen verwaltet werden, wenn Caret mit Diensten verwendet wird, die auf Vercel bereitgestellt oder in Vercel integriert sind.
+-   Für Entwickler, die mit v0 arbeiten, bietet deren [AI SDK-Dokumentation](https://vercel.com/docs/v0/caret) wertvolle Einblicke und Beispiele für die Integration verschiedener Modelle, von denen viele OpenAI-kompatibel sind. Dies kann eine hilfreiche Ressource sein, um zu verstehen, wie Aufrufe strukturiert und Konfigurationen verwaltet werden, wenn Careti mit Diensten verwendet wird, die auf Vercel bereitgestellt oder in Vercel integriert sind.
 
--   v0 kann in Caret mit dem OpenAI Compatible-Anbieter verwendet werden.
+-   v0 kann in Careti mit dem OpenAI Compatible-Anbieter verwendet werden.
 
 -   ### Quickstart
 
@@ -68,4 +68,4 @@ Während der Provider-Typ "OpenAI Compatible" die Verbindung zu verschiedenen En
 -   **Connection Errors:** Überprüfen Sie, ob die Base URL korrekt ist, ob die API Ihres Anbieters von Ihrem Rechner aus erreichbar ist und ob keine Firewall- oder Netzwerkprobleme vorliegen.
 -   **Unexpected Results:** Wenn Sie unerwartete Ausgaben erhalten, versuchen Sie es mit einem anderen Modell oder überprüfen Sie alle Konfigurationsparameter erneut.
 
-Durch die Nutzung eines OpenAI-kompatiblen Anbieters können Sie die Flexibilität von Caret mit einer größeren Auswahl an KI-Modellen nutzen. Denken Sie daran, immer die Dokumentation Ihres Anbieters zu konsultieren, um die genauesten und aktuellsten Informationen zu erhalten.
+Durch die Nutzung eines OpenAI-kompatiblen Anbieters können Sie die Flexibilität von Careti mit einer größeren Auswahl an KI-Modellen nutzen. Denken Sie daran, immer die Dokumentation Ihres Anbieters zu konsultieren, um die genauesten und aktuellsten Informationen zu erhalten.

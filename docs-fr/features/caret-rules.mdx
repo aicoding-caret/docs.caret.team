@@ -1,13 +1,13 @@
-Les Caret Rules vous permettent de fournir à Caret des directives au niveau système. Considérez-les comme un moyen persistant d'inclure du contexte et des préférences pour vos projets ou de manière globale pour chaque conversation.
+Les Careti Rules vous permettent de fournir à Careti des directives au niveau système. Considérez-les comme un moyen persistant d'inclure du contexte et des préférences pour vos projets ou de manière globale pour chaque conversation.
 
-Les Caret Rules vous permettent de fournir à Caret des directives au niveau système. Considérez-les comme un moyen persistant d'inclure du contexte et des préférences pour vos projets ou de manière globale pour chaque conversation.
+Les Careti Rules vous permettent de fournir à Careti des directives au niveau système. Considérez-les comme un moyen persistant d'inclure du contexte et des préférences pour vos projets ou de manière globale pour chaque conversation.
 
 <Note>
-Il s'agit d'un document de référence pour Caret. Il suit la version fusionnée de Caret v3.38.1. Les politiques spécifiques à Caret (différences lors de l'utilisation d'AGENTS.md, emplacement/portée de stockage des règles, authentification/routage) sont indiquées par `<Note>` dans le corps du texte.
+Il s'agit d'un document de référence pour Careti. Il suit la version fusionnée de Careti v3.38.1. Les politiques spécifiques à Careti (différences lors de l'utilisation d'AGENTS.md, emplacement/portée de stockage des règles, authentification/routage) sont indiquées par `<Note>` dans le corps du texte.
 </Note>
 
 <Note>
-Caret Agent Standardization : Standardisation basée sur `caret-docs/features/f06-agent-standardization.md` avec `.agents/context` SoT + hiérarchie `AGENTS.md` + scaffold `/init`. Les chemins de règles legacy ne sont pas lus.
+Careti Agent Standardization : Standardisation basée sur `caret-docs/features/f06-agent-standardization.md` avec `.agents/context` SoT + hiérarchie `AGENTS.md` + scaffold `/init`. Les chemins de règles legacy ne sont pas lus.
 </Note>
 
 ## Créer une règle
@@ -29,15 +29,15 @@ L'emplacement de votre répertoire Global Rules dépend de votre système d'expl
 
 | Système d'exploitation | Emplacement par défaut | Notes |
 |------------------|------------------|-------|
-| **Windows** | `Documents\Caret\Rules` | Utilise le dossier Documents du système |
-| **macOS** | `~/Documents/Caret/Rules` | Utilise le dossier Documents de l'utilisateur |
-| **Linux/WSL** | `~/Documents/Caret/Rules` | Peut se rabattre sur `~/Caret/Rules` sur certains systèmes |
+| **Windows** | `Documents\Careti\Rules` | Utilise le dossier Documents du système |
+| **macOS** | `~/Documents/Careti/Rules` | Utilise le dossier Documents de l'utilisateur |
+| **Linux/WSL** | `~/Documents/Careti/Rules` | Peut se rabattre sur `~/Careti/Rules` sur certains systèmes |
 
-> **Note pour les utilisateurs Linux/WSL** : Si vous ne trouvez pas vos règles globales dans `~/Documents/Caret/Rules`, vérifiez `~/Caret/Rules` car l'emplacement peut varier selon la configuration de votre système et l'existence du répertoire Documents.
+> **Note pour les utilisateurs Linux/WSL** : Si vous ne trouvez pas vos règles globales dans `~/Documents/Careti/Rules`, vérifiez `~/Careti/Rules` car l'emplacement peut varier selon la configuration de votre système et l'existence du répertoire Documents.
 
-Vous pouvez également demander à Caret de créer une règle pour vous en utilisant la [slash command `/newrule`](/french/features/slash-commands/new-rule) dans le chat.
+Vous pouvez également demander à Careti de créer une règle pour vous en utilisant la [slash command `/newrule`](/french/features/slash-commands/new-rule) dans le chat.
 
-```markdown Example Caret Rule Structure [expandable]
+```markdown Example Careti Rule Structure [expandable]
 # Project Guidelines
 
 ## Documentation Requirements
@@ -89,11 +89,11 @@ your-project/
 └── ...
 ```
 
-Le system prompt de Caret, en revanche, n'est pas modifiable par l'utilisateur ([vous pouvez le trouver ici](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). Pour un aperçu plus large des meilleures pratiques de prompt engineering, consultez [cette ressource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
+Le system prompt de Careti, en revanche, n'est pas modifiable par l'utilisateur ([vous pouvez le trouver ici](https://github.com/caret/caret/blob/main/src/core/prompts/system.ts)). Pour un aperçu plus large des meilleures pratiques de prompt engineering, consultez [cette ressource](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview).
 
 ### Support du standard AGENTS.md
 
-Caret supporte également le standard [AGENTS.md](https://agents.md/) comme solution de secours (en plus des Caret Rules) en détectant automatiquement les fichiers `AGENTS.md` à la racine de votre workspace. Cela vous permet d'utiliser le même fichier de règles à travers différents outils de codage par IA.
+Careti supporte également le standard [AGENTS.md](https://agents.md/) comme solution de secours (en plus des Careti Rules) en détectant automatiquement les fichiers `AGENTS.md` à la racine de votre workspace. Cela vous permet d'utiliser le même fichier de règles à travers différents outils de codage par IA.
 
 ```
 your-project/
@@ -102,7 +102,7 @@ your-project/
 └── ...
 ```
 
-### Conseils pour écrire des Caret Rules efficaces
+### Conseils pour écrire des Careti Rules efficaces
 
 -   Soyez clair et concis : Utilisez un langage simple et évitez l'ambiguïté.
 -   Concentrez-vous sur les résultats souhaités : Décrivez les résultats que vous voulez, pas les étapes spécifiques.
@@ -120,7 +120,7 @@ your-project/
 └── ...
 ```
 
-Caret traite automatiquement **tous les fichiers Markdown** à l'intérieur du répertoire `.agents/context/`, en les combinant en un ensemble de règles unifié. Les préfixes numériques (optionnels) aident à organiser les fichiers dans une séquence logique.
+Careti traite automatiquement **tous les fichiers Markdown** à l'intérieur du répertoire `.agents/context/`, en les combinant en un ensemble de règles unifié. Les préfixes numériques (optionnels) aident à organiser les fichiers dans une séquence logique.
 
 #### Bibliothèque de règles inactives (Optionnel)
 
@@ -176,11 +176,11 @@ cp rules-bank/frameworks/react.md .agents/context/
 -   Envisagez d'ajouter le dossier `.agents/context/` actif au git-ignore tout en suivant `rules-bank/`
 -   Créez des scripts d'équipe pour activer rapidement des combinaisons de règles courantes
 
-Le système de dossiers transforme vos Caret Rules d'un document statique en un système de connaissances dynamique qui s'adapte aux contextes et exigences changeants de votre équipe.
+Le système de dossiers transforme vos Careti Rules d'un document statique en un système de connaissances dynamique qui s'adapte aux contextes et exigences changeants de votre équipe.
 
 ### Gérer les règles avec le popover escamotable
 
-Pour faciliter encore plus la gestion des fichiers `.agents/context` uniques et du système de dossiers, Caret v3.13 introduit une interface utilisateur de popover dédiée accessible directement depuis l'interface de chat.
+Pour faciliter encore plus la gestion des fichiers `.agents/context` uniques et du système de dossiers, Careti v3.13 introduit une interface utilisateur de popover dédiée accessible directement depuis l'interface de chat.
 
 Situé commodément sous le champ de saisie du chat, ce popover vous permet de :
 
@@ -191,5 +191,5 @@ Situé commodément sous le champ de saisie du chat, ce popover vous permet de :
 Cette interface simplifie considérablement le changement de contexte et la gestion de différents ensembles d'instructions sans avoir besoin de modifier manuellement des fichiers ou des configurations pendant une conversation.
 
 <Frame>
-	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Caret Logo" />
+	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/image%20(1).png" alt="Careti Logo" />
 </Frame>

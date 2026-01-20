@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions 集成"
-description: "在 GitHub Actions 中使用 Caret CLI，通过 @caret 自动回复 Issue"
+description: "在 GitHub Actions 中使用 Careti CLI，通过 @caret 自动回复 Issue"
 ---
 
 # GitHub 集成示例
@@ -8,7 +8,7 @@ description: "在 GitHub Actions 中使用 Caret CLI，通过 @caret 自动回�
 使用 AI 自动分析 GitHub Issue。在任何 Issue 评论中提及 `@caret` 即可触发自动分析，读取代码并给出建议，所有流程在 GitHub Actions 中自动执行。
 
 <Note>
-**第一次使用 Caret CLI？** 本示例假设你已完成 [安装指南](/zh/caret-cli/installation)。建议先看更简单的 [GitHub RCA 示例](/zh/caret-cli/samples/github-issue-rca)。
+**第一次使用 Careti CLI？** 本示例假设你已完成 [安装指南](/zh/caret-cli/installation)。建议先看更简单的 [GitHub RCA 示例](/zh/caret-cli/samples/github-issue-rca)。
 </Note>
 
 ## 工作流
@@ -19,17 +19,17 @@ description: "在 GitHub Actions 中使用 Caret CLI，通过 @caret 自动回�
   <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
 </Frame>
 
-Caret 会以新评论形式给出分析结果：
+Careti 会以新评论形式给出分析结果：
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
 </Frame>
 
 整个过程在 GitHub Actions 中自动执行。
 
 ## 前置条件
 
-- **已掌握 Caret CLI** ([安装指南](/zh/caret-cli/installation))
+- **已掌握 Careti CLI** ([安装指南](/zh/caret-cli/installation))
 - **GitHub 仓库** (具备 Actions/Secrets 管理权限)
 - **了解 GitHub Actions**
 - **API Provider 账号** (OpenRouter/Anthropic 等)
@@ -49,7 +49,7 @@ curl -o .github/workflows/caret-responder.yml https://raw.githubusercontent.com/
 
 <Accordion title="查看完整 caret-responder.yml">
 ```yaml
-name: Caret Issue Assistant
+name: Careti Issue Assistant
 
 on:
   issue_comment:
@@ -80,19 +80,19 @@ jobs:
         if: steps.detect.outputs.hit == 'true'
         uses: actions/checkout@v4
 
-      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      # Node v20 is needed for Careti CLI on GitHub Actions Linux
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Setup Caret CLI
+      - name: Setup Careti CLI
         if: steps.detect.outputs.hit == 'true'
         run: |
-          # Install the Caret CLI
+          # Install the Careti CLI
           sudo npm install -g caret
 
-      - name: Create Caret Instance
+      - name: Create Careti Instance
         if: steps.detect.outputs.hit == 'true'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -169,7 +169,7 @@ export GITREPO="myproject"
 ```
 </Warning>
 
-该工作流会检测 `@caret` 提及，启动 Caret CLI 实例进行分析并回复。
+该工作流会检测 `@caret` 提及，启动 Careti CLI 实例进行分析并回复。
 
 ### 2. 配置 API Key
 
@@ -219,7 +219,7 @@ nano git-scripts/analyze-issue.sh
 <Accordion title="查看完整 analyze-issue.sh">
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -236,7 +236,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -254,7 +254,7 @@ chmod +x git-scripts/analyze-issue.sh
 ```bash
 git add .github/workflows/caret-responder.yml
 git add git-scripts/analyze-issue.sh
-git commit -m "Add Caret issue assistant workflow"
+git commit -m "Add Careti issue assistant workflow"
 git push
 ```
 
@@ -272,7 +272,7 @@ git push
 
 GitHub Actions 将：
 1. 检测 `@caret`
-2. 启动 Caret CLI 实例
+2. 启动 Careti CLI 实例
 3. 下载分析脚本
 4. act + yolo 自动分析
 5. 回复分析结果
@@ -285,8 +285,8 @@ GitHub Actions 将：
 
 1. 监听 Issue 评论(创建/编辑)
 2. 检测 `@caret`
-3. 安装 Caret CLI
-4. 创建 Caret 实例
+3. 安装 Careti CLI
+4. 创建 Careti 实例
 5. 配置认证
 6. 下载分析脚本
 7. 执行分析

@@ -1,13 +1,13 @@
 ---
 title: "Leitfaden zur Fehlerbehebung der Terminal-Integration"
 sidebarTitle: "Terminal-Fehlerbehebung"
-description: "Vollständiger Leitfaden zur Lösung von Terminal-Integrationsproblemen in Caret"
+description: "Vollständiger Leitfaden zur Lösung von Terminal-Integrationsproblemen in Careti"
 ---
 
-Dieser Leitfaden hilft Ihnen bei der Behebung von Terminal-Integrationsproblemen in Caret. Die Terminal-Integration ist entscheidend, damit Caret Befehle ausführen und deren Ausgabe lesen kann, was es ermöglicht, Fehler, Testergebnisse und Befehlsantworten zu verstehen.
+Dieser Leitfaden hilft Ihnen bei der Behebung von Terminal-Integrationsproblemen in Careti. Die Terminal-Integration ist entscheidend, damit Careti Befehle ausführen und deren Ausgabe lesen kann, was es ermöglicht, Fehler, Testergebnisse und Befehlsantworten zu verstehen.
 
 <Tip>
-	Wenn Sie Terminal-Probleme haben, versuchen Sie, in den Caret-Einstellungen unter „Terminal Settings“ zu einer einfacheren Shell wie `bash` zu wechseln.
+	Wenn Sie Terminal-Probleme haben, versuchen Sie, in den Careti-Einstellungen unter „Terminal Settings“ zu einer einfacheren Shell wie `bash` zu wechseln.
 
     Dies löst die meisten Terminal-Integrationsprobleme.
 </Tip>
@@ -18,9 +18,9 @@ Folgen Sie diesem Ablaufdiagramm, um Ihr Problem schnell zu identifizieren:
 
 ```mermaid
 graph TD
-    A[Terminal-Problem] --> B{Kann Caret Befehle ausführen?}
+    A[Terminal-Problem] --> B{Kann Careti Befehle ausführen?}
     B -->|Nein| C[Shell-Integration nicht verfügbar]
-    B -->|Ja| D{Kann Caret die Ausgabe sehen?}
+    B -->|Ja| D{Kann Careti die Ausgabe sehen?}
     D -->|Nein| E[Ausgabeerfassung fehlgeschlagen]
     D -->|Ja| F{Ist die Ausgabe fehlerhaft?}
     F -->|Ja| G[Zeichenfilterungs-Problem]
@@ -47,8 +47,8 @@ graph TD
 **Symptome:**
 
 -   Meldung: „Shell Integration Unavailable“
--   Befehle werden ausgeführt, aber Caret kann die Ausgabe nicht lesen
--   Das Terminal funktioniert manuell einwandfrei, aber nicht mit Caret
+-   Befehle werden ausgeführt, aber Careti kann die Ausgabe nicht lesen
+-   Das Terminal funktioniert manuell einwandfrei, aber nicht mit Careti
 
 **Schnelle Lösungen:**
 
@@ -56,7 +56,7 @@ graph TD
 
 -   **Zu bash wechseln**
 
-    1. Öffnen Sie die Caret Settings
+    1. Öffnen Sie die Careti Settings
     2. Klicken Sie mit der linken Maustaste auf den Tab **„Terminal Settings“**
     3. Navigieren Sie zu **„Default Terminal Profile“** und wählen Sie **„bash“** aus dem Drop-down-Menü
 
@@ -84,7 +84,7 @@ graph TD
 -   **PowerShell 7 verwenden**
 
     1. Aus dem Microsoft Store installieren
-    2. Öffnen Sie die Caret Settings
+    2. Öffnen Sie die Careti Settings
     3. Klicken Sie mit der linken Maustaste auf den Tab **„Terminal Settings“**
     4. Navigieren Sie zu **„Default Terminal Profile“** und wählen Sie **„PowerShell 7“** aus dem Drop-down-Menü
 
@@ -95,7 +95,7 @@ graph TD
     3. Deaktivieren Sie die Option
 
 -   **Eingabeaufforderung (Command Prompt) versuchen**
-    1. Öffnen Sie die Caret Settings
+    1. Öffnen Sie die Careti Settings
     2. Klicken Sie mit der linken Maustaste auf den Tab **„Terminal Settings“**
     3. Navigieren Sie zu **„Default Terminal Profile“** und wählen Sie **„Command Prompt“** aus dem Drop-down-Menü
 
@@ -103,7 +103,7 @@ graph TD
 
 -   **bash verwenden**
 
-    1. Öffnen Sie die Caret Settings
+    1. Öffnen Sie die Careti Settings
     2. Klicken Sie mit der linken Maustaste auf den Tab **„Terminal Settings“**
     3. Navigieren Sie zu **„Default Terminal Profile“** und wählen Sie **„bash“** aus dem Drop-down-Menü
 
@@ -118,21 +118,21 @@ graph TD
 
 **Symptome:**
 
--   Caret meldet im Chat: „[Command is running but producing no output]“
--   Befehle werden abgeschlossen, aber Caret sieht die Ergebnisse nicht
+-   Careti meldet im Chat: „[Command is running but producing no output]“
+-   Befehle werden abgeschlossen, aber Careti sieht die Ergebnisse nicht
 -   Befehle funktionieren manchmal, aber nicht konsistent
 
 **Lösungen:**
 
 -   **Shell-Integration-Timeout erhöhen**
 
-    1. Klicken Sie innerhalb von Caret auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
+    1. Klicken Sie innerhalb von Careti auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
     2. Klicken Sie im **Settings**-Fenster in der linken Spalte auf den Tab **„Terminal Settings“**
     3. Navigieren Sie zu „Shell integration timeout (seconds)“ und geben Sie **„10“** in das Textfeld ein
 
 -   **Terminal-Wiederverwendung deaktivieren**
 
-    1. Klicken Sie innerhalb von Caret auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
+    1. Klicken Sie innerhalb von Careti auf die Schaltfläche **Settings** in der oberen rechten Ecke des Chat-Fensters
     2. Klicken Sie im **Settings**-Fenster in der linken Spalte auf den Tab **„Terminal Settings“**
     3. Suchen Sie nach **„Enable aggressive terminal reuse“** und **deaktivieren** Sie diese Option
 
@@ -151,37 +151,37 @@ graph TD
 Dies ist ein bekannter Fehler bei der Ausgabeverarbeitung. Workarounds:
 
 -   Empfehlen Sie der AI, stattdessen die Dateiausgabe zu verwenden
-    1. Weisen Sie Caret im Chat oder über Caret-Regeln an, `command > output.txt` zu verwenden, bevor die Datei(en) gelesen werden
+    1. Weisen Sie Careti im Chat oder über Careti-Regeln an, `command > output.txt` zu verwenden, bevor die Datei(en) gelesen werden
 
 <Tip>
-	Diese Kategorie von Problemen ist in den neuesten Caret-Versionen nur teilweise gelöst. Wenn Sie also weiterhin damit konfrontiert sind, erstellen Sie ein GitHub-Issue, falls es sich um ein dauerhaftes Problem handelt.
+	Diese Kategorie von Problemen ist in den neuesten Careti-Versionen nur teilweise gelöst. Wenn Sie also weiterhin damit konfrontiert sind, erstellen Sie ein GitHub-Issue, falls es sich um ein dauerhaftes Problem handelt.
 </Tip>
 
 ### 4. Langlaufende Befehle & Fortschrittsbalken
 
 **Symptome:**
 
--   Docker-Builds werden in Caret nie abgeschlossen
+-   Docker-Builds werden in Careti nie abgeschlossen
 -   Fortschrittsbalken verbrauchen tausende Tokens
--   Die Caret-Schaltfläche „Proceed while running“ funktioniert im Chat nicht ordnungsgemäß
+-   Die Careti-Schaltfläche „Proceed while running“ funktioniert im Chat nicht ordnungsgemäß
 
 <Tip>
-	Diese Kategorie von Problemen wurde in den neuesten Caret-Versionen gelöst. Sollten Sie dennoch auf Probleme stoßen, erstellen Sie bitte ein GitHub-Issue dazu.
+	Diese Kategorie von Problemen wurde in den neuesten Careti-Versionen gelöst. Sollten Sie dennoch auf Probleme stoßen, erstellen Sie bitte ein GitHub-Issue dazu.
 </Tip>
 
 ## Terminal-Einstellungen erklärt
 
-Greifen Sie in Caret darauf zu, indem Sie auf das Zahnrad-Symbol klicken und zum Bereich „Terminal Settings“ navigieren:
+Greifen Sie in Careti darauf zu, indem Sie auf das Zahnrad-Symbol klicken und zum Bereich „Terminal Settings“ navigieren:
 
 ### Default Terminal Profile
 
--   **Funktion**: Wählt aus, welche Shell Caret für Befehle verwendet
+-   **Funktion**: Wählt aus, welche Shell Careti für Befehle verwendet
 -   **Wann zu ändern**: Bei Shell-Integrationsproblemen mit Ihrer Standard-Shell
 -   **Empfohlen**: - macOS: bash (falls zsh Probleme macht) - Windows: PowerShell 7 - Linux: bash
 
 ### Shell Integration Timeout
 
--   **Funktion**: Wie lange Caret wartet, bis das Terminal bereit ist
+-   **Funktion**: Wie lange Careti wartet, bis das Terminal bereit ist
 -   **Standard**: 4 Sekunden
 -   **Wann zu erhöhen**:
     -   Langsamer Shell-Start (aufgrund umfangreicher .zshrc/.bashrc)
@@ -200,7 +200,7 @@ Greifen Sie in Caret darauf zu, indem Sie auf das Zahnrad-Symbol klicken und zum
 
 ### Terminal Output Line Limit
 
--   **Funktion**: Begrenzt, wie viele Zeilen Caret aus der Terminal-Ausgabe liest
+-   **Funktion**: Begrenzt, wie viele Zeilen Careti aus der Terminal-Ausgabe liest
 -   **Standard**: 500 Zeilen
 -   **Wann anzupassen**:
     -   Erhöhen bei ausführlichen Build-Ausgaben
@@ -302,13 +302,13 @@ Bei WSL-Problemen:
 
 1. Verwenden Sie die WSL Extension für VS Code
 2. Ordner in WSL öffnen: `code .` vom WSL-Terminal aus
-3. Wählen Sie „WSL Bash“ als Terminal-Profil in Caret
+3. Wählen Sie „WSL Bash“ als Terminal-Profil in Careti
 
 #### Pfad-Probleme
 
 Windows-Pfadprobleme:
 
-1. Verwenden Sie Vorwärts-Slashes in Caret: `C:/Users/...`
+1. Verwenden Sie Vorwärts-Slashes in Careti: `C:/Users/...`
 2. Setzen Sie Pfade mit Leerzeichen in Anführungszeichen: `"C:/Program Files/..."`
 3. Vermeiden Sie `~` - verwenden Sie vollständige Pfade
 
@@ -318,7 +318,7 @@ Windows-Pfadprobleme:
 
 Für Remote-Entwicklung:
 
-1. Installieren Sie Caret auf der Remote-Maschine, nicht lokal
+1. Installieren Sie Careti auf der Remote-Maschine, nicht lokal
 2. Verwenden Sie das integrierte Terminal der SSH Extension
 3. Erhöhen Sie das Timeout auf 15+ Sekunden
 
@@ -326,7 +326,7 @@ Für Remote-Entwicklung:
 
 Bei der Entwicklung in Containern:
 
-1. Installieren Sie Caret im Container
+1. Installieren Sie Careti im Container
 2. Verwenden Sie die Dev Containers Extension
 3. Stellen Sie sicher, dass Shell-Integrationsskripte verfügbar sind
 
@@ -388,7 +388,7 @@ Aktivieren Sie das Terminal-Debugging, um zu sehen, was im Hintergrund passiert:
 1. Öffnen Sie die VS Code Command Palette (Cmd/Ctrl+Shift+P)
 2. Führen Sie aus: „Developer: Set Log Level...“
 3. Wählen Sie „Trace“
-4. Prüfen Sie das Output-Panel → „Caret“ auf Terminal-Logs
+4. Prüfen Sie das Output-Panel → „Careti“ auf Terminal-Logs
 
 ### Manueller Shell-Integrationstest
 
@@ -402,13 +402,13 @@ echo $VSCODE_SHELL_INTEGRATION  # Sollte "1" sein
 
 ## FAQ
 
-### Warum erstellt Caret so viele Terminals?
+### Warum erstellt Careti so viele Terminals?
 
-Wenn die Shell-Integration fehlschlägt, kann Caret Terminals nicht sicher wiederverwenden (da sie möglicherweise noch langlaufende Prozesse ausführen). Aktivieren Sie die Shell-Integration oder passen Sie die Einstellung für die Terminal-Wiederverwendung an.
+Wenn die Shell-Integration fehlschlägt, kann Careti Terminals nicht sicher wiederverwenden (da sie möglicherweise noch langlaufende Prozesse ausführen). Aktivieren Sie die Shell-Integration oder passen Sie die Einstellung für die Terminal-Wiederverwendung an.
 
 ### Kann ich meine benutzerdefinierte Shell verwenden (nushell, xonsh, etc.)?
 
-Caret unterstützt offiziell bash, zsh, fish und PowerShell. Benutzerdefinierte Shells funktionieren möglicherweise, werden aber nicht garantiert. Verwenden Sie bash als Fallback.
+Careti unterstützt offiziell bash, zsh, fish und PowerShell. Benutzerdefinierte Shells funktionieren möglicherweise, werden aber nicht garantiert. Verwenden Sie bash als Fallback.
 
 ### Warum funktionieren einige Befehle, andere aber nicht?
 
@@ -416,7 +416,7 @@ Befehle, die interaktive Funktionen nutzen (Pager, Fortschrittsbalken, Curses), 
 
 ### Woher weiß ich, ob die Shell-Integration funktioniert?
 
-Eine funktionierende Integration zeigt die Befehlsausgabe im Chat von Caret an. Eine fehlgeschlagene Integration zeigt „Shell Integration Unavailable“ oder „[Command is running but producing no output]“.
+Eine funktionierende Integration zeigt die Befehlsausgabe im Chat von Careti an. Eine fehlgeschlagene Integration zeigt „Shell Integration Unavailable“ oder „[Command is running but producing no output]“.
 
 ## Immer noch Probleme?
 
@@ -433,7 +433,7 @@ Wenn Sie alles versucht haben:
     ```
 
 2. **Problem melden**:
-    - Verwenden Sie `/reportbug` in den Caret GitHub Issues
+    - Verwenden Sie `/reportbug` in den Careti GitHub Issues
     - Fügen Sie Ihre Debug-Infos bei
     - Erwähnen Sie, welche Lösungen Sie bereits ausprobiert haben
 

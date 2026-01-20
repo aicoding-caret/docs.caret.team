@@ -1,16 +1,16 @@
 ```
 ---
 title: "Configuration des serveurs MCP"
-description: "Configurer et gérer les serveurs MCP dans Caret."
+description: "Configurer et gérer les serveurs MCP dans Careti."
 ---
 
 ## Mode d'inclusion globale des serveurs MCP
 
-L'utilisation des serveurs MCP augmentera votre consommation de tokens. Caret offre la possibilité de restreindre ou de désactiver la fonctionnalité des serveurs MCP selon vos besoins.
+L'utilisation des serveurs MCP augmentera votre consommation de tokens. Careti offre la possibilité de restreindre ou de désactiver la fonctionnalité des serveurs MCP selon vos besoins.
 
-1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Caret.
+1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Careti.
 2. Sélectionnez l'onglet "Configure", puis cliquez sur le lien "Advanced MCP Settings" au bas de ce panneau.
-3. Caret ouvrira une nouvelle fenêtre de paramètres. Recherchez `Caret>Mcp:Mode` et faites votre sélection dans le menu déroulant.
+3. Careti ouvrira une nouvelle fenêtre de paramètres. Recherchez `Careti>Mcp:Mode` et faites votre sélection dans le menu déroulant.
 
 <Frame>
 	<img
@@ -23,7 +23,7 @@ L'utilisation des serveurs MCP augmentera votre consommation de tokens. Caret of
 
 Chaque serveur MCP possède son propre panneau de configuration où vous pouvez modifier les paramètres, gérer les outils et contrôler son fonctionnement. Pour accéder à ces paramètres :
 
-1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Caret.
+1. Cliquez sur l'icône "MCP Servers" dans la barre de navigation supérieure de l'extension Careti.
 2. Localisez le serveur MCP que vous souhaitez gérer dans la liste et ouvrez-le en cliquant sur son nom.
 
 <Frame>
@@ -57,7 +57,7 @@ Pour définir le temps maximal d'attente d'une réponse après un appel d'outil 
 
 Les paramètres de tous les serveurs MCP installés se trouvent dans le fichier `cline_mcp_settings.json` :
 
-1. Cliquez sur l'icône MCP Servers dans la barre de navigation supérieure du panneau Caret.
+1. Cliquez sur l'icône MCP Servers dans la barre de navigation supérieure du panneau Careti.
 2. Sélectionnez l'onglet "Configure".
 3. Cliquez sur le bouton "Configure MCP Servers" au bas du panneau.
 
@@ -79,7 +79,7 @@ Le fichier utilise un format JSON avec un objet `mcpServers` contenant des confi
 }
 ```
 
-_Exemple de configuration de serveur MCP dans Caret (transport STDIO)_
+_Exemple de configuration de serveur MCP dans Careti (transport STDIO)_
 
 ---
 
@@ -150,10 +150,10 @@ Exemple de configuration SSE :
 
 ## Utilisation des outils MCP dans votre workflow
 
-Après avoir configuré un serveur MCP, Caret détectera automatiquement les outils et ressources disponibles. Pour les utiliser :
+Après avoir configuré un serveur MCP, Careti détectera automatiquement les outils et ressources disponibles. Pour les utiliser :
 
-1. Tapez votre requête dans la fenêtre de conversation de Caret
-2. Caret identifiera quand un outil MCP peut vous aider dans votre tâche
+1. Tapez votre requête dans la fenêtre de conversation de Careti
+2. Careti identifiera quand un outil MCP peut vous aider dans votre tâche
 3. Approuvez l'utilisation de l'outil lorsque vous y êtes invité (ou utilisez l'approbation automatique)
 
 Exemple : "Analyze the performance of my API" pourrait utiliser un outil MCP qui teste les endpoints d'API.

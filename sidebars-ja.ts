@@ -175,10 +175,10 @@ const sidebars: SidebarsConfig = {
 				},
 			],
 		},
-		/* Caret CLI hidden for v0.4.4.
+		/* Careti CLI hidden for v0.4.4.
 		{
 			type: "category",
-			label: "Caret CLI",
+			label: "Careti CLI",
 			items: [
 				"caret-cli/overview",
 				"caret-cli/installation",

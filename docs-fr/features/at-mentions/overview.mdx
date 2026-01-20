@@ -4,68 +4,68 @@ title: "Aperçu des @ Mentions"
 sidebarTitle: "Aperçu"
 ---
 
-Les @ mentions sont l'une des fonctionnalités les plus puissantes de Caret, vous permettant d'intégrer de manière transparente le contexte externe dans vos conversations. Au lieu de copier-coller du code, des messages d'erreur ou de la documentation, vous pouvez simplement les référencer avec un symbole @.
+Les @ mentions sont l'une des fonctionnalités les plus puissantes de Careti, vous permettant d'intégrer de manière transparente le contexte externe dans vos conversations. Au lieu de copier-coller du code, des messages d'erreur ou de la documentation, vous pouvez simplement les référencer avec un symbole @.
 
 <Frame>
 	<img src="https://storage.googleapis.com/cline_public_images/docs/assets/at-mentions.png" alt="@ Mentions Overview" />
 </Frame>
 
-Lorsque vous tapez `@` dans la zone de saisie du chat, Caret affiche un menu des types de mentions disponibles. Ces mentions vous permettent de référencer des fichiers, des dossiers, des problèmes, la sortie du terminal, les changements `git`, et même le contenu web directement dans vos conversations.
+Lorsque vous tapez `@` dans la zone de saisie du chat, Careti affiche un menu des types de mentions disponibles. Ces mentions vous permettent de référencer des fichiers, des dossiers, des problèmes, la sortie du terminal, les changements `git`, et même le contenu web directement dans vos conversations.
 
 ## @ Mentions disponibles
 
-Caret prend en charge plusieurs types de @ mentions, chacun étant conçu pour apporter différents types de contexte à vos conversations :
+Careti prend en charge plusieurs types de @ mentions, chacun étant conçu pour apporter différents types de contexte à vos conversations :
 
 <Columns cols={2}>
   <Card title="File Mentions" icon="file" href="/french/features/at-mentions/file-mentions">
-    Référencez n'importe quel fichier de votre espace de travail avec `@/path/to/file`. Caret voit le contenu complet du fichier, y compris les importations, les fonctions associées et le contexte environnant.
+    Référencez n'importe quel fichier de votre espace de travail avec `@/path/to/file`. Careti voit le contenu complet du fichier, y compris les importations, les fonctions associées et le contexte environnant.
   </Card>
 
 {" "}
 
 <Card title="Folder Mentions" icon="folder" href="/french/features/at-mentions/folder-mentions">
-	Référencez des répertoires entiers avec `@/path/to/folder/`. Caret voit la structure du dossier et tout le contenu des fichiers, ce qui est parfait pour
+	Référencez des répertoires entiers avec `@/path/to/folder/`. Careti voit la structure du dossier et tout le contenu des fichiers, ce qui est parfait pour
 	comprendre les interactions complexes entre plusieurs fichiers.
 </Card>
 
 {" "}
 
 <Card title="Problem Mentions" icon="triangle-exclamation" href="/french/features/at-mentions/problem-mentions">
-	Utilisez `@problems` pour montrer à Caret toutes les erreurs et tous les avertissements de votre espace de travail. Caret voit la liste complète avec les emplacements des fichiers
+	Utilisez `@problems` pour montrer à Careti toutes les erreurs et tous les avertissements de votre espace de travail. Careti voit la liste complète avec les emplacements des fichiers
 	et les messages d'erreur.
 </Card>
 
 {" "}
 
 <Card title="Terminal Mentions" icon="terminal" href="/french/features/at-mentions/terminal-mentions">
-	Utilisez `@terminal` pour partager votre sortie de terminal récente. Caret voit la sortie complète avec la mise en forme préservée, ce qui est parfait pour
+	Utilisez `@terminal` pour partager votre sortie de terminal récente. Careti voit la sortie complète avec la mise en forme préservée, ce qui est parfait pour
 	déboguer les erreurs de build ou les échecs de test.
 </Card>
 
 {" "}
 
 <Card title="Git Mentions" icon="code-branch" href="/french/features/at-mentions/git-mentions">
-	Référencez les modifications non validées avec `@git-changes` ou des commits spécifiques avec `@[commit-hash]`. Caret voit le diff complet,
+	Référencez les modifications non validées avec `@git-changes` ou des commits spécifiques avec `@[commit-hash]`. Careti voit le diff complet,
 	le message de commit et d'autres informations pertinentes.
 </Card>
 
   <Card title="URL Mentions" icon="globe" href="/french/features/at-mentions/url-mentions">
-    Référencez du contenu web avec `@https://example.com`. Caret récupère et voit le contenu complet de la page web, ce qui est parfait pour
+    Référencez du contenu web avec `@https://example.com`. Careti récupère et voit le contenu complet de la page web, ce qui est parfait pour
     référencer la documentation ou les problèmes GitHub.
   </Card>
 </Columns>
 
 ## Pourquoi les @ Mentions sont importantes
 
-Les @ mentions transforment votre façon d'interagir avec Caret en :
+Les @ mentions transforment votre façon d'interagir avec Careti en :
 
 1. **Éliminant le copier-coller** : Plus besoin de copier-coller du code, des messages d'erreur ou la sortie du terminal. Référencez-les simplement directement.
 
-2. **Préservant le contexte** : Caret voit le contexte complet, y compris les importations, les fonctions associées et le code environnant qui pourrait être pertinent.
+2. **Préservant le contexte** : Careti voit le contexte complet, y compris les importations, les fonctions associées et le code environnant qui pourrait être pertinent.
 
 3. **Maintenant la mise en forme** : La sortie du terminal, les messages d'erreur et le contenu web conservent leur mise en forme, ce qui les rend plus faciles à comprendre.
 
-4. **Permettant des flux de travail complexes** : Combinez plusieurs @ mentions pour donner à Caret une image complète de votre problème :
+4. **Permettant des flux de travail complexes** : Combinez plusieurs @ mentions pour donner à Careti une image complète de votre problème :
 
     ```
     Je reçois ces erreurs : @problems
@@ -87,16 +87,16 @@ Pour utiliser les @ mentions :
 3. Pour les fichiers et les dossiers, naviguez dans la structure de votre espace de travail
 4. Envoyez votre message comme d'habitude
 
-Caret traitera automatiquement les mentions et inclura le contenu référencé dans le contexte envoyé à l'IA.
+Careti traitera automatiquement les mentions et inclura le contenu référencé dans le contexte envoyé à l'IA.
 
-Essayez d'utiliser les @ mentions lors de votre prochaine conversation avec Caret : vous serez étonné de voir à quel point vos interactions deviennent plus efficaces lorsque vous pouvez intégrer de manière transparente un contexte externe.
+Essayez d'utiliser les @ mentions lors de votre prochaine conversation avec Careti : vous serez étonné de voir à quel point vos interactions deviennent plus efficaces lorsque vous pouvez intégrer de manière transparente un contexte externe.
 
 ## Comment cela fonctionne en coulisses
 
 Lorsque vous utilisez des @ mentions dans vos messages, un processus sophistiqué se déroule en arrière-plan :
 
-1. **Détection** : Lorsque vous envoyez un message, Caret analyse le texte à la recherche de modèles de @ mention à l'aide d'expressions régulières
-2. **Traitement** : Pour chaque mention détectée, Caret :
+1. **Détection** : Lorsque vous envoyez un message, Careti analyse le texte à la recherche de modèles de @ mention à l'aide d'expressions régulières
+2. **Traitement** : Pour chaque mention détectée, Careti :
     - Détermine le type de mention (fichier, dossier, problèmes, terminal, `git`, URL)
     - Récupère le contenu pertinent (contenu du fichier, sortie du terminal, etc.)
     - Met en forme le contenu de manière appropriée

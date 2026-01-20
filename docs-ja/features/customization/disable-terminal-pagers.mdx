@@ -1,24 +1,24 @@
 ---
-title: "Caret セッション中のターミナルページャーを無効化"
-description: "Caret がコマンドを実行する際に less などのページャーを無効化して非対話出力にする"
+title: "Careti セッション中のターミナルページャーを無効化"
+description: "Careti がコマンドを実行する際に less などのページャーを無効化して非対話出力にする"
 ---
 
-多くの CLI ツール(Git など)は `less` などのページャーを使用します。Caret がターミナルでコマンドを実行する際、このインタラクティブな挙動が止まりの原因になることがあります。Caret セッションだけページャーを無効化する設定が可能です。
+多くの CLI ツール(Git など)は `less` などのページャーを使用します。Careti がターミナルでコマンドを実行する際、このインタラクティブな挙動が止まりの原因になることがあります。Careti セッションだけページャーを無効化する設定が可能です。
 
 ## 仕組み
 
-Caret はコマンド実行用ターミナルに環境変数を設定します:
+Careti はコマンド実行用ターミナルに環境変数を設定します:
 
-- `CLINE_ACTIVE` — Caret によって起動されたシェルで非空
+- `CLINE_ACTIVE` — Careti によって起動されたシェルで非空
 
-この変数をシェル設定で検出し、Caret セッションのみ設定を変更します。
+この変数をシェル設定で検出し、Careti セッションのみ設定を変更します。
 
 ## クイック設定 (Zsh/Bash)
 
 `~/.zshrc`、`~/.bashrc`、`~/.bash_profile` に追加:
 
 ```bash
-# Caret セッションでページャーを無効化
+# Careti セッションでページャーを無効化
 if [[ -n "$CLINE_ACTIVE" ]]; then
   export PAGER=cat
   export GIT_PAGER=cat
@@ -38,7 +38,7 @@ fi
 
 ## 確認
 
-- Caret でターミナルを実行後、次を確認:
+- Careti でターミナルを実行後、次を確認:
   - `echo "$CLINE_ACTIVE"` が非空
   - `git log` などが止まらず出力
 - 反映されない場合:
@@ -58,7 +58,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-- Caret セッションのみ alias を設定する方法:
+- Careti セッションのみ alias を設定する方法:
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then

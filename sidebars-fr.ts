@@ -69,7 +69,7 @@ const sidebars: SidebarsConfig = {
 				{
 					type: "doc",
 					id: "caret-exclusive/caret-provider",
-					label: "^ Fournisseur Caret",
+					label: "^ Fournisseur Careti",
 				},
 				{
 					type: "doc",
@@ -158,10 +158,10 @@ const sidebars: SidebarsConfig = {
 				},
 			],
 		},
-		/* Caret CLI hidden for v0.4.4.
+		/* Careti CLI hidden for v0.4.4.
 		{
 			type: "category",
-			label: "Caret CLI",
+			label: "Careti CLI",
 			items: [
 				"caret-cli/overview",
 				"caret-cli/installation",
@@ -181,7 +181,7 @@ const sidebars: SidebarsConfig = {
 		*/
 		{
 			type: "category",
-			label: "Exploring Caret's Tools",
+			label: "Exploring Careti's Tools",
 			items: [
 				"exploring-carets-tools/caret-tools-guide",
 				"exploring-carets-tools/document-tools",

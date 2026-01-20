@@ -1,23 +1,23 @@
 ---
 title: "Three Core Flows"
-description: "Learn the three ways to use Caret CLI: interactive mode, headless automation, and multi-instance parallelization"
+description: "Learn the three ways to use Careti CLI: interactive mode, headless automation, and multi-instance parallelization"
 ---
 
 Two concepts to understand:
 
-**Task** - A single job for Caret to complete ("add tests to utils.js"). You describe what you want, Caret plans how to do it, then executes the plan. Tasks run on instances.
+**Task** - A single job for Careti to complete ("add tests to utils.js"). You describe what you want, Careti plans how to do it, then executes the plan. Tasks run on instances.
 
-**Instance** - An independent Caret workspace. Each instance runs one task at a time. Create multiple instances to run multiple tasks that work on different parts of your project in parallel.
+**Instance** - An independent Careti workspace. Each instance runs one task at a time. Create multiple instances to run multiple tasks that work on different parts of your project in parallel.
 
 ## 1. Interactive mode: Plan first, then act
 
-Start here to see how Caret works. Interactive mode opens a chat session where you can review plans before execution.
+Start here to see how Careti works. Interactive mode opens a chat session where you can review plans before execution.
 
 ```bash
 caret
 ```
 
-Caret opens an interactive session in your current directory. Type your task as a message. Caret enters Plan mode and proposes a step-by-step strategy.
+Careti opens an interactive session in your current directory. Type your task as a message. Careti enters Plan mode and proposes a step-by-step strategy.
 
 Review or edit the plan in chat. When you're ready, switch to execution:
 
@@ -25,7 +25,7 @@ Review or edit the plan in chat. When you're ready, switch to execution:
 /act
 ```
 
-Caret executes the approved steps—reading files, writing code, running commands. You maintain control throughout the process.
+Careti executes the approved steps—reading files, writing code, running commands. You maintain control throughout the process.
 
 ## 2. Headless single-shot: Complete a task without chat
 
@@ -36,7 +36,7 @@ caret instance new --default
 caret task new -y "Generate unit tests for all Go files"
 ```
 
-With the `-y` (YOLO) flag, Caret plans and executes autonomously without interactive chat. Perfect for CI, cron jobs, or scripts.
+With the `-y` (YOLO) flag, Careti plans and executes autonomously without interactive chat. Perfect for CI, cron jobs, or scripts.
 
 Examples:
 
@@ -115,8 +115,8 @@ Keep track of instance addresses returned by `caret instance new`. When scriptin
 
 ## Choosing the right flow
 
-- **Interactive mode**: Best for exploring new problems, learning how Caret works, or when you want to review plans before execution
-- **Headless single-shot**: Perfect for automation, CI/CD, and tasks where you trust Caret to execute without supervision
+- **Interactive mode**: Best for exploring new problems, learning how Careti works, or when you want to review plans before execution
+- **Headless single-shot**: Perfect for automation, CI/CD, and tasks where you trust Careti to execute without supervision
 - **Multi-instance**: Use when you need to parallelize work or maintain separate contexts for different parts of your project
 
 <Tip>
@@ -139,6 +139,6 @@ For in-depth commands and flags, check out the [CLI reference](/en/caret-cli/cli
   </Card>
   
   <Card title="Task management" icon="clipboard-check" href="/getting-started/task-management">
-    Learn how Caret tracks and manages tasks, including saving and restoring state from checkpoints.
+    Learn how Careti tracks and manages tasks, including saving and restoring state from checkpoints.
   </Card>
 </Columns>

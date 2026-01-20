@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // Brand configuration for multi-domain deployment
 type BrandType = 'caret' | 'careti';
 const BRANDS = {
-  caret: { name: 'Caret', domain: 'docs.caret.team', serviceDomain: 'caret.team' },
+  caret: { name: 'Careti', domain: 'docs.careti.ai', serviceDomain: 'caret.team' },
   careti: { name: 'Careti', domain: 'docs.careti.ai', serviceDomain: 'careti.ai' },
 };
 const brand: BrandType = (process.env.BRAND === 'caret' || process.env.BRAND === 'careti')
@@ -55,7 +55,7 @@ const config: Config = {
         path: './docs-en',
         routeBasePath: 'en',
         sidebarPath: './sidebars-en.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-en/',
+        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-en/',
       },
     ],
     [
@@ -65,7 +65,7 @@ const config: Config = {
         path: './docs-ko',
         routeBasePath: 'ko',
         sidebarPath: './sidebars-ko.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ko/',
+        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-ko/',
       },
     ],
     [
@@ -75,7 +75,7 @@ const config: Config = {
         path: './docs-zh',
         routeBasePath: 'zh',
         sidebarPath: './sidebars-zh.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-zh/',
+        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-zh/',
       },
     ],
     [
@@ -85,7 +85,7 @@ const config: Config = {
         path: './docs-ja',
         routeBasePath: 'ja',
         sidebarPath: './sidebars-ja.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.caret.team/tree/main/docs-ja/',
+        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-ja/',
       },
     ],
   ],

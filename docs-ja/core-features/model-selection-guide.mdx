@@ -3,7 +3,7 @@ title: "モデル選択ガイド"
 description: "最終更新: 2025年8月20日。"
 ---
 
-新しいモデルが継続的に登場するため、このガイドは現在 Caret に最適なモデル選択に焦点を当てています。環境の変化に合わせて更新していきます。
+新しいモデルが継続的に登場するため、このガイドは現在 Careti に最適なモデル選択に焦点を当てています。環境の変化に合わせて更新していきます。
 
 <Callout type="tip">
 **モデル選びが初めてですか?** モデル比較とコンテキスト設定をまとめた [モデル比較ガイド](/ja/model-config/model-comparison) と [コンテキストウィンドウガイド](/ja/model-config/context-windows) を先に確認してください。
@@ -11,15 +11,15 @@ description: "最終更新: 2025年8月20日。"
 
 ## AIモデルとは?
 
-AIモデルは Caret の「頭脳」です。コード作成、バグ修正、リファクタリングを依頼したときに理解し、応答を生成する主体がモデルです。
+AIモデルは Careti の「頭脳」です。コード作成、バグ修正、リファクタリングを依頼したときに理解し、応答を生成する主体がモデルです。
 
 **重要ポイント:**
 - **モデルは自然言語とコードを理解するように学習されたAIシステム**
 - **モデルごとに強みが異なる** 推論に強いものもあれば、速度やコスト重視のものもあります
-- **Caret が使うモデルを自分で選べる** 作業タイプに合う専門家を選ぶイメージです
+- **Careti が使うモデルを自分で選べる** 作業タイプに合う専門家を選ぶイメージです
 - **モデルはAPIプロバイダー経由で利用** Anthropic、OpenAI、OpenRouter などがモデルをホスティング
 
-**なぜ重要?** 選んだモデルは Caret の性能、応答品質、速度、コストに直結します。高性能モデルは複雑なリファクタリングに強い一方で高価になりがちで、低コストモデルは日常作業に効率的です。
+**なぜ重要?** 選んだモデルは Careti の性能、応答品質、速度、コストに直結します。高性能モデルは複雑なリファクタリングに強い一方で高価になりがちで、低コストモデルは日常作業に効率的です。
 
 ## Caretでモデルを選ぶ
 
@@ -27,14 +27,14 @@ AIモデルは Caret の「頭脳」です。コード作成、バグ修正、�
 
 ### ステップ1: Caret設定を開く
 
-まず Caret の設定パネルにアクセスします。
+まず Careti の設定パネルにアクセスします。
 
 **設定を開く2つの方法:**
-- **クイック**: Caret チャットUI右上の **歯車(⚙️)** をクリック
-- **コマンドパレット**: **Cmd/Ctrl + Shift + P** → "Caret: Open Settings" と入力
+- **クイック**: Careti チャットUI右上の **歯車(⚙️)** をクリック
+- **コマンドパレット**: **Cmd/Ctrl + Shift + P** → "Careti: Open Settings" と入力
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Caret Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Careti Settings Panel" />
 </Frame>
 
 設定パネルを開くと上部に「API Provider」項目が表示されます。
@@ -49,14 +49,14 @@ AIモデルは Caret の「頭脳」です。コード作成、バグ修正、�
 
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Caret Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Careti Settings Panel" />
 </Frame>
 
 **人気プロバイダーの目安:**
 
 | プロバイダー | おすすめ用途 | 備考 |
 |----------|----------|-------|
-| **Caret** | 最も簡単な開始 | APIキー不要、stealthモデル含む複数モデルにアクセス |
+| **Careti** | 最も簡単な開始 | APIキー不要、stealthモデル含む複数モデルにアクセス |
 | **OpenRouter** | コスパ重視 | 多数のモデルと競争力ある価格 |
 | **Anthropic** | 安定性 | Claudeモデル、ツール使用が安定 |
 | **OpenAI** | 最新技術 | GPTモデル |
@@ -67,18 +67,18 @@ AIモデルは Caret の「頭脳」です。コード作成、バグ修正、�
 Cerebras、Vertex AI、Azure などさらに多くの選択肢は [プロバイダー設定ガイド](/ja/provider-config/anthropic) を参照してください。
 
 <Info>
-**初めての方におすすめ:** まず **Caret** プロバイダーから始めましょう。APIキー管理が不要で複数モデルにすぐアクセスでき、パートナープロバイダー経由で無料推論が提供されることもあります。
+**初めての方におすすめ:** まず **Careti** プロバイダーから始めましょう。APIキー管理が不要で複数モデルにすぐアクセスでき、パートナープロバイダー経由で無料推論が提供されることもあります。
 </Info>
 
 ### ステップ3: APIキーを追加 (またはログイン)
 
 選択したプロバイダーによって次の手順が変わります。
 
-#### **Caret プロバイダーを選んだ場合:**
+#### **Careti プロバイダーを選んだ場合:**
 
 - **APIキーは不要** で、CaretアカウントへのログインだけでOK
 - 画面の案内に従って **Sign In** をクリック
-- [caret.team](https://caret.team) に移動して認証
+- [caret.team](https://careti.ai) に移動して認証
 - 認証後にIDEへ戻る
 
 #### その他のプロバイダーを選んだ場合:
@@ -96,12 +96,12 @@ Cerebras、Vertex AI、Azure などさらに多くの選択肢は [プロバイ�
 
 3. **APIキーをコピー**
 
-4. Caret 設定の **"API Key"** 欄に貼り付け
+4. Careti 設定の **"API Key"** 欄に貼り付け
 
 5. **自動保存** - キーはエディタのシークレットストレージに安全に保存されます
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Caret API Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Careti API Selection" />
 </Frame>
 
 <Warning>
@@ -113,7 +113,7 @@ Cerebras、Vertex AI、Azure などさらに多くの選択肢は [プロバイ�
 APIキーを入力またはログインすると **"Model"** ドロップダウンが有効になります。
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Caret Model Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Careti Model Selection" />
 </Frame>
 
 **クイックモデル選択ガイド:**
@@ -144,11 +144,11 @@ APIキーを入力またはログインすると **"Model"** ドロップダウ�
 - **ローカル:** Ollama ホストモデル  
 - **最新機能:** GPT-5
 
-### ステップ5: Caret を始める
+### ステップ5: Careti を始める
 
-**設定完了!** これで Caret でコーディングを始められます:
+**設定完了!** これで Careti でコーディングを始められます:
 
-1. **Caret チャットにリクエストを入力**
+1. **Careti チャットにリクエストを入力**
    - 例: "Create a React component for a login form"
    - 例: "Debug this TypeScript error"
    - 例: "Refactor this function to be more efficient"
@@ -207,4 +207,4 @@ APIキーを入力またはログインすると **"Model"** ドロップダウ�
 
 ## みんなが使っているモデル
 
-コミュニティの利用傾向は [OpenRouter の Caret 利用統計](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F) を確認してください。
+コミュニティの利用傾向は [OpenRouter の Careti 利用統計](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F) を確認してください。

@@ -1,13 +1,13 @@
 ---
 title: "MCP 服务器开发协议"
-description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过程。"
+description: "此协议旨在简化使用 Careti 构建 MCP 服务器的开发过程。"
 ---
 
-> 🚀 **构建并与世界分享您的 MCP 服务器。** 创建出色的 MCP 服务器后，将其提交到 [Caret MCP 市场](https://github.com/caret/mcp-marketplace)，使其可被数千名开发人员发现并一键安装。
+> 🚀 **构建并与世界分享您的 MCP 服务器。** 创建出色的 MCP 服务器后，将其提交到 [Careti MCP 市场](https://github.com/caret/mcp-marketplace)，使其可被数千名开发人员发现并一键安装。
 
 ## 什么是 MCP 服务器？
 
-模型上下文协议（MCP）服务器通过赋予 AI 助手（如 Caret）以下能力来扩展它们：
+模型上下文协议（MCP）服务器通过赋予 AI 助手（如 Careti）以下能力来扩展它们：
 
 -   访问外部 API 和服务
 -   检索实时数据
@@ -18,14 +18,14 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 
 ## 开发协议
 
-有效 MCP 服务器开发的核心是遵循结构化协议。该协议通过位于 MCP 工作目录**根目录**（/Users/your-name/Documents/Caret/MCP）的 `.agents/context` 文件实现。
+有效 MCP 服务器开发的核心是遵循结构化协议。该协议通过位于 MCP 工作目录**根目录**（/Users/your-name/Documents/Careti/MCP）的 `.agents/context` 文件实现。
 
 ### 使用 `.agents/context` 文件
 
-`.agents/context` 文件是 Caret 在其所在目录工作时自动读取的特殊配置。这些文件：
+`.agents/context` 文件是 Careti 在其所在目录工作时自动读取的特殊配置。这些文件：
 
--   配置 Caret 的行为并强制执行最佳实践
--   将 Caret 切换到专门的 MCP 开发模式
+-   配置 Careti 的行为并强制执行最佳实践
+-   将 Careti 切换到专门的 MCP 开发模式
 -   提供构建服务器的分步协议
 -   实施安全措施，如防止过早完成
 -   引导您完成规划、实施和测试阶段
@@ -160,7 +160,7 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 -   ⛔️ 永远不要在完成前跳过测试
 ````
 
-当此 `.agents/context` 文件存在于您的工作目录中时，Caret 将：
+当此 `.agents/context` 文件存在于您的工作目录中时，Careti 将：
 
 1. 在**PLAN 模式**下启动，在实施之前设计您的服务器
 2. 在**ACT 模式**下强制执行适当的实施模式
@@ -173,11 +173,11 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 
 ### 1. 创建 `.agents/context` 文件（🚨 重要）
 
-首先，使用上述协议将 `.agents/context` 文件添加到 MCP 工作目录的根目录。此文件配置 Caret 在此文件夹中工作时使用 MCP 开发协议。
+首先，使用上述协议将 `.agents/context` 文件添加到 MCP 工作目录的根目录。此文件配置 Careti 在此文件夹中工作时使用 MCP 开发协议。
 
 ### 2. 从清晰的描述开始聊天
 
-通过清晰地描述您想要构建的内容来开始您的 Caret 聊天。具体说明：
+通过清晰地描述您想要构建的内容来开始您的 Careti 聊天。具体说明：
 
 -   MCP 服务器的目的
 -   您想要集成的 API 或服务
@@ -193,7 +193,7 @@ description: "此协议旨在简化使用 Caret 构建 MCP 服务器的开发过
 
 ### 3. 完成协议
 
-Caret 将自动在 PLAN 模式下启动，引导您完成规划过程：
+Careti 将自动在 PLAN 模式下启动，引导您完成规划过程：
 
 -   讨论问题范围
 -   审查 API 文档
@@ -204,20 +204,20 @@ Caret 将自动在 PLAN 模式下启动，引导您完成规划过程：
 
 ### 4. 尽早提供 API 文档
 
-帮助 Caret 构建 MCP 服务器的最有效方法之一是在开始时就分享官方 API 文档：
+帮助 Careti 构建 MCP 服务器的最有效方法之一是在开始时就分享官方 API 文档：
 
 ```plaintext
 这是该服务的 API 文档：
 [在此粘贴 API 文档]
 ```
 
-提供全面的 API 详细信息（端点、身份验证、数据结构）显著提高了 Caret 实现有效 MCP 服务器的能力。
+提供全面的 API 详细信息（端点、身份验证、数据结构）显著提高了 Careti 实现有效 MCP 服务器的能力。
 
 ## 理解两种模式
 
 ### PLAN 模式
 
-在此协作阶段，您与 Caret 一起设计 MCP 服务器：
+在此协作阶段，您与 Careti 一起设计 MCP 服务器：
 
 -   定义问题范围
 -   选择适当的 API
@@ -227,7 +227,7 @@ Caret 将自动在 PLAN 模式下启动，引导您完成规划过程：
 
 ### ACT 模式
 
-规划完成后，Caret 帮助实施服务器：
+规划完成后，Careti 帮助实施服务器：
 
 -   设置项目结构
 -   编写实施代码
@@ -598,7 +598,7 @@ try {
 
 ## MCP 资源
 
-资源让您的 MCP 服务器在不执行代码的情况下向 Caret 公开数据。它们非常适合提供上下文，如文件、API 响应或 Caret 在对话期间可以引用的数据库记录。
+资源让您的 MCP 服务器在不执行代码的情况下向 Careti 公开数据。它们非常适合提供上下文，如文件、API 响应或 Careti 在对话期间可以引用的数据库记录。
 
 ### 向 MCP 服务器添加资源
 
@@ -639,7 +639,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 })
 ```
 
-资源使您的 MCP 服务器更具上下文感知能力，允许 Caret 访问特定信息而无需您复制/粘贴。有关更多信息，请参阅[官方文档](https://modelcontextprotocol.io/docs/concepts/resources)。
+资源使您的 MCP 服务器更具上下文感知能力，允许 Careti 访问特定信息而无需您复制/粘贴。有关更多信息，请参阅[官方文档](https://modelcontextprotocol.io/docs/concepts/resources)。
 
 ## 常见挑战和解决方案
 

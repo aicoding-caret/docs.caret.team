@@ -1,16 +1,16 @@
 ---
 sidebar_position: 8
 title: ^ Standardisierung von AI-Organisationswissen & Regeln
-description: Erfahren Sie mehr über das Kernsystem von Caret, das sicherstellt, dass die AI die Regeln und Standards Ihres Teams präzise befolgt.
+description: Erfahren Sie mehr über das Kernsystem von Careti, das sicherstellt, dass die AI die Regeln und Standards Ihres Teams präzise befolgt.
 ---
 
 # ^ Standardisierung von AI-Organisationswissen & Regeln
 
-Caret ist so konzipiert, dass die AI **die Coding-Regeln und Standards Ihres Teams präzise versteht und befolgt**. Durch dieses System fungiert die AI als echtes Teammitglied, das den Projektkontext versteht, und nicht nur als einfaches Tool zur Code-Generierung.
+Careti ist so konzipiert, dass die AI **die Coding-Regeln und Standards Ihres Teams präzise versteht und befolgt**. Durch dieses System fungiert die AI als echtes Teammitglied, das den Projektkontext versteht, und nicht nur als einfaches Tool zur Code-Generierung.
 
 ## Warum ist Wissenssynchronisation wichtig?
 
-| Situation | Generische AI-Tools | Caret |
+| Situation | Generische AI-Tools | Careti |
 |---|---|---|
 | **Einhaltung von Teamregeln** | Kennt die Regeln nicht | ✅ Erkennt Regeldateien automatisch |
 | **Projektkontext** | Benötigt jedes Mal eine Erklärung | ✅ Persistentes Gedächtnis |
@@ -19,7 +19,7 @@ Caret ist so konzipiert, dass die AI **die Coding-Regeln und Standards Ihres Tea
 
 ## Kernkonzept 1: Duale Verzeichnisarchitektur
 
-Caret berücksichtigt, dass **Dokumente für die AI und für Menschen unterschiedliche Zwecke erfüllen**. Um dies zu adressieren, werden zwei Verzeichnisse verwendet:
+Careti berücksichtigt, dass **Dokumente für die AI und für Menschen unterschiedliche Zwecke erfüllen**. Um dies zu adressieren, werden zwei Verzeichnisse verwendet:
 
 ```
 your-project/
@@ -53,7 +53,7 @@ your-project/
 
 ## Kernkonzept 2: Atomares Wissenssystem
 
-Caret nutzt einen **Atomic Knowledge** Ansatz. Anstatt eines einzelnen massiven Dokuments wird das Wissen in minimale Einheiten (Atome) zerlegt und bei Bedarf kombiniert.
+Careti nutzt einen **Atomic Knowledge** Ansatz. Anstatt eines einzelnen massiven Dokuments wird das Wissen in minimale Einheiten (Atome) zerlegt und bei Bedarf kombiniert.
 
 ### Wie es funktioniert
 
@@ -78,7 +78,7 @@ Caret nutzt einen **Atomic Knowledge** Ansatz. Anstatt eines einzelnen massiven 
 
 ## Kernkonzept 3: Speicherort der Regeln & Priorität
 
-Caret nutzt den Ordner **`.agents/context/`** als Single Source of Truth für Regeln. Dies stellt sicher, dass die AI im gesamten Projekt konsistente Standards einhält.
+Careti nutzt den Ordner **`.agents/context/`** als Single Source of Truth für Regeln. Dies stellt sicher, dass die AI im gesamten Projekt konsistente Standards einhält.
 
 ### Speicherorte der Regeln
 
@@ -86,7 +86,7 @@ Caret nutzt den Ordner **`.agents/context/`** als Single Source of Truth für Re
 |------|------|------|
 | **Workspace-Regeln** | `.agents/context/` | Projektspezifische Regeln |
 | **Verzeichnis-Scope** | `AGENTS.md` | Gilt nur für bestimmte Ordner |
-| **Globale Regeln** | `Documents/Caret/Rules` | Gilt für alle Projekte |
+| **Globale Regeln** | `Documents/Careti/Rules` | Gilt für alle Projekte |
 | **Workflows** | `.agents/workflows/` | On-Demand-Laden |
 
 ### Warum ist Standardisierung wichtig?
@@ -183,7 +183,7 @@ Zusammenführungspriorität: Lokal > Projekt > Organisation > Global
 Wenn Ihr Projekt nicht über die Standardstruktur verfügt, können Sie diese mit dem `/init`-Befehl automatisch generieren lassen.
 
 ```bash
-# In Caret chat
+# In Careti chat
 /init
 ```
 
@@ -228,7 +228,7 @@ Entwickler können durch den `.agents/`-Ordner klar sehen, wie die AI arbeitet.
 
 ## Vollständiger Vergleich mit Cline
 
-| Punkt | Cline | Caret |
+| Punkt | Cline | Careti |
 |------|-------|-------|
 | **Wissensaustausch** | Einzelne Datei (Plain Text) | Atomic Knowledge System |
 | **Effizienz** | Lädt immer alle Regeln | On-Demand Loading |
@@ -241,19 +241,19 @@ Entwickler können durch den `.agents/`-Ordner klar sehen, wie die AI arbeitet.
 
 ### Methode 1: Automatische Initialisierung (Empfohlen)
 ```bash
-# In Caret chat
+# In Careti chat
 /init
 ```
 
 ### Methode 2: Manuelles Setup
 1. Erstellen Sie den Ordner `.agents/context/` im Projekt-Root
 2. Schreiben Sie Regeln in Markdown-Dateien
-3. Starten Sie den Chat mit Caret
+3. Starten Sie den Chat mit Careti
 
-Für detaillierte Richtlinien zum Schreiben von Regeln siehe die Dokumentation zum [Caret Rules Feature](/german/features/caret-rules).
+Für detaillierte Richtlinien zum Schreiben von Regeln siehe die Dokumentation zum [Careti Rules Feature](/german/features/caret-rules).
 
 ## Verwandte Dokumentation
 
-- [Caret Rules Feature](/german/features/caret-rules) - Leitfaden zum Schreiben von Regeln
+- [Careti Rules Feature](/german/features/caret-rules) - Leitfaden zum Schreiben von Regeln
 - [Document Reading Tools](/german/caret-exclusive/document-tools) - AI liest Dokumente direkt
 - [Image Tools](/german/caret-exclusive/image-tools) - AI Bildgenerierung/Analyse

@@ -1,9 +1,9 @@
 ---
 title: "Vercel AI Gateway"
-description: "Nutzen Sie das Vercel AI Gateway in Caret, um über 100 Modelle über einen einzigen Endpoint mit Routing, Retries und Spend-Observability zu erreichen."
+description: "Nutzen Sie das Vercel AI Gateway in Careti, um über 100 Modelle über einen einzigen Endpoint mit Routing, Retries und Spend-Observability zu erreichen."
 ---
 
-Vercel AI Gateway bietet Ihnen eine einzige API, um auf Modelle von vielen Providern zuzugreifen. Sie wechseln einfach per model id, ohne SDKs austauschen oder mehrere Keys verwalten zu müssen. Caret lässt sich direkt integrieren, sodass Sie ein Gateway-Modell im Dropdown-Menü auswählen, es wie jeden anderen Provider nutzen und die Token- sowie Cache-Nutzung im Stream sehen können.
+Vercel AI Gateway bietet Ihnen eine einzige API, um auf Modelle von vielen Providern zuzugreifen. Sie wechseln einfach per model id, ohne SDKs austauschen oder mehrere Keys verwalten zu müssen. Careti lässt sich direkt integrieren, sodass Sie ein Gateway-Modell im Dropdown-Menü auswählen, es wie jeden anderen Provider nutzen und die Token- sowie Cache-Nutzung im Stream sehen können.
 
 Nützliche Links:
 - Team-Dashboard: https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai
@@ -25,12 +25,12 @@ Nützliche Links:
 
 Weitere Informationen zu Authentifizierung und OIDC-Optionen finden Sie unter https://vercel.com/docs/ai-gateway/authentication
 
-## Konfiguration in Caret
+## Konfiguration in Careti
 
-1. Öffnen Sie die Caret-Einstellungen
+1. Öffnen Sie die Careti-Einstellungen
 2. Wählen Sie **Vercel AI Gateway** als API Provider aus
 3. Fügen Sie Ihren Gateway API Key ein
-4. Wählen Sie ein Modell aus der Liste. Caret ruft den Katalog automatisch ab. Sie können auch eine genaue ID einfügen.
+4. Wählen Sie ein Modell aus der Liste. Careti ruft den Katalog automatisch ab. Sie können auch eine genaue ID einfügen.
 
 Hinweise:
 - Model-IDs folgen oft dem Schema `provider/model`. Kopieren Sie die exakte ID aus dem Katalog.
@@ -62,7 +62,7 @@ Nutzen Sie dies für:
 
 ## Unterstützte Modelle
 
-Das Gateway unterstützt eine große und sich ständig ändernde Auswahl an Modellen. Caret ruft die Liste über die Gateway API ab und speichert sie lokal zwischen. Den aktuellen Katalog finden Sie unter https://vercel.com/ai-gateway/models
+Das Gateway unterstützt eine große und sich ständig ändernde Auswahl an Modellen. Careti ruft die Liste über die Gateway API ab und speichert sie lokal zwischen. Den aktuellen Katalog finden Sie unter https://vercel.com/ai-gateway/models
 
 ## Tipps
 
@@ -87,7 +87,7 @@ Vercel fügt keine Rate Limits hinzu. Upstream-Provider können dies jedoch tun.
 
 ## Inspiration
 
-- Multi-Modell-Evaluierungen – tauschen Sie in Caret nur die Model-ID aus und vergleichen Sie Latenz und Output-Tokens
+- Multi-Modell-Evaluierungen – tauschen Sie in Careti nur die Model-ID aus und vergleichen Sie Latenz und Output-Tokens
 - Progressive Rollout – leiten Sie einen kleinen Prozentsatz im Dashboard an ein neues Modell weiter und skalieren Sie anhand der Metriken
 - Budget-Erzwingung – legen Sie Limits pro Projekt ohne Code-Änderungen fest
 

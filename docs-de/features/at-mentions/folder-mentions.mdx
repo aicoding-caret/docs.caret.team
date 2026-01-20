@@ -2,12 +2,12 @@
 ---
 title: "Ordner-Erwähnungen"
 sidebarTitle: "Ordner-Erwähnungen"
-description: "Erwähne ganze Ordner in deinen Gesprächen mit Caret und gib Caret Zugriff auf die Ordnerstruktur und deren Inhalt."
+description: "Erwähne ganze Ordner in deinen Gesprächen mit Careti und gib Careti Zugriff auf die Ordnerstruktur und deren Inhalt."
 ---
 
-Mit Ordner-Erwähnungen kannst du ganze Verzeichnisse in deine Konversation mit Caret einbringen. Gib einfach `@/` gefolgt von einem Ordnerpfad mit einem abschließenden Schrägstrich ein, und Caret erhält Zugriff auf die Ordnerstruktur und deren Inhalt.
+Mit Ordner-Erwähnungen kannst du ganze Verzeichnisse in deine Konversation mit Careti einbringen. Gib einfach `@/` gefolgt von einem Ordnerpfad mit einem abschließenden Schrägstrich ein, und Careti erhält Zugriff auf die Ordnerstruktur und deren Inhalt.
 
-Wenn du `@/` im Chat eingibst, zeigt Caret deine Workspace-Dateien und -Ordner an. Navigiere zu dem gewünschten Ordner und achte darauf, dass du den abschließenden Schrägstrich hinzufügst. Caret sieht dann die Struktur und den Inhalt des Ordners.
+Wenn du `@/` im Chat eingibst, zeigt Careti deine Workspace-Dateien und -Ordner an. Navigiere zu dem gewünschten Ordner und achte darauf, dass du den abschließenden Schrägstrich hinzufügst. Careti sieht dann die Struktur und den Inhalt des Ordners.
 
 Ich verwende Ordner-Erwähnungen, wenn ich Hilfe beim Verständnis oder der Umstrukturierung eines ganzen Abschnitts meines Codes benötige. Anstatt einzelne Dateien nacheinander zu referenzieren, kann ich einfach auf das gesamte Verzeichnis verweisen:
 
@@ -16,22 +16,22 @@ Ich versuche zu verstehen, wie der Authentifizierungsfluss in meiner App funktio
 Kannst du die Struktur und die Beziehungen zwischen den Dateien in @/src/auth/? erklären?
 ```
 
-Caret kann dann alle Dateien im Auth-Verzeichnis, deren Inhalte und deren Beziehungen zueinander sehen. Dies gibt ihm den vollständigen Kontext, um komplexe Interaktionen zwischen mehreren Dateien zu erklären.
+Careti kann dann alle Dateien im Auth-Verzeichnis, deren Inhalte und deren Beziehungen zueinander sehen. Dies gibt ihm den vollständigen Kontext, um komplexe Interaktionen zwischen mehreren Dateien zu erklären.
 
-Ordner-Erwähnungen eignen sich auch hervorragend, um Hilfe bei der Projektorganisation zu erhalten. Wenn ich mir nicht sicher bin, ob meine Projektstruktur sinnvoll ist, bitte ich Caret, sie zu überprüfen:
+Ordner-Erwähnungen eignen sich auch hervorragend, um Hilfe bei der Projektorganisation zu erhalten. Wenn ich mir nicht sicher bin, ob meine Projektstruktur sinnvoll ist, bitte ich Careti, sie zu überprüfen:
 
 ```
 Ich richte gerade ein neues React-Projekt ein. Ist diese Ordnerstruktur sinnvoll? @/src/
 Was würdest du ändern, um sie mit dem Wachstum des Projekts wartungsfreundlicher zu gestalten?
 ```
 
-Wenn du das nächste Mal mit mehreren zusammengehörigen Dateien arbeitest, verwende Ordner-Erwähnungen, anstatt jede Datei einzeln zu referenzieren. Du erhältst umfassendere Hilfe, da Caret das Gesamtbild der Zusammenhänge erkennen kann.
+Wenn du das nächste Mal mit mehreren zusammengehörigen Dateien arbeitest, verwende Ordner-Erwähnungen, anstatt jede Datei einzeln zu referenzieren. Du erhältst umfassendere Hilfe, da Careti das Gesamtbild der Zusammenhänge erkennen kann.
 
 ## Wie es im Hintergrund funktioniert
 
 Wenn du eine Ordner-Erwähnung in deiner Nachricht verwendest, passiert Folgendes im Hintergrund:
 
-1. Wenn du deine Nachricht sendest, erkennt Caret das Muster `@/path/to/folder/` (mit abschließendem Schrägstrich) in deinem Text.
+1. Wenn du deine Nachricht sendest, erkennt Careti das Muster `@/path/to/folder/` (mit abschließendem Schrägstrich) in deinem Text.
 2. Die Extension löst den Ordnerpfad relativ zum Workspace-Root auf.
 3. Sie ruft `fs.readdir()` auf, um eine Liste aller Dateien und Unterverzeichnisse in diesem Ordner zu erhalten.
 4. Für jede Datei im Verzeichnis wird geprüft, ob es sich um eine binäre oder textbasierte Datei handelt.

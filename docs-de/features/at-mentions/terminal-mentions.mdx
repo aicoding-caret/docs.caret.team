@@ -1,12 +1,12 @@
 ---
 title: "Terminal-Erwähnungen"
 sidebarTitle: "Terminal-Erwähnungen"
-description: "Bringen Sie Ihre Terminalausgabe direkt in Ihre Konversation mit Caret ein, indem Sie @terminal verwenden."
+description: "Bringen Sie Ihre Terminalausgabe direkt in Ihre Konversation mit Careti ein, indem Sie @terminal verwenden."
 ---
 
-Die Terminal-Erwähnung ermöglicht es Ihnen, Ihre Terminalausgabe direkt in Ihre Konversation mit Caret einzubringen. Geben Sie einfach `@terminal` ein und Caret kann die aktuelle Ausgabe Ihres Terminals sehen.
+Die Terminal-Erwähnung ermöglicht es Ihnen, Ihre Terminalausgabe direkt in Ihre Konversation mit Careti einzubringen. Geben Sie einfach `@terminal` ein und Careti kann die aktuelle Ausgabe Ihres Terminals sehen.
 
-Wenn Sie im Chat `@` eingeben, wählen Sie "Terminal" aus dem Menü oder geben Sie einfach direkt `@terminal` ein. Caret sieht sofort die aktuelle Ausgabe Ihres aktiven Terminals, einschließlich Fehlermeldungen, Build-Logs oder Befehlsergebnisse.
+Wenn Sie im Chat `@` eingeben, wählen Sie "Terminal" aus dem Menü oder geben Sie einfach direkt `@terminal` ein. Careti sieht sofort die aktuelle Ausgabe Ihres aktiven Terminals, einschließlich Fehlermeldungen, Build-Logs oder Befehlsergebnisse.
 
 Ich verwende die Terminal-Erwähnung ständig, wenn ich mit Build-Fehlern, Testfehlern oder Debugging-Ausgaben zu tun habe. Anstatt zu versuchen, die Terminalausgabe zu kopieren und einzufügen (was oft die Formatierung verliert), frage ich einfach:
 
@@ -16,7 +16,7 @@ Ich bekomme diesen Fehler beim Ausführen meiner Tests: @terminal
 Was verursacht das und wie kann ich es beheben?
 ```
 
-Dies gibt Caret die vollständige Terminalausgabe mit all ihrer Formatierung. Caret kann dann die Fehlermeldungen, Stacktraces und den umgebenden Kontext analysieren, um genauere Hilfe zu leisten.
+Dies gibt Careti die vollständige Terminalausgabe mit all ihrer Formatierung. Careti kann dann die Fehlermeldungen, Stacktraces und den umgebenden Kontext analysieren, um genauere Hilfe zu leisten.
 
 Die Terminal-Erwähnung ist besonders leistungsstark in Kombination mit Dateierwähnungen. Wenn ich einen fehlgeschlagenen API-Aufruf debugge, referenziere ich beides:
 
@@ -29,15 +29,15 @@ Und die Endpoint-Implementierung: @/src/server/routes/users.js
 Was mache ich falsch?
 ```
 
-Dieser Ansatz gibt Caret alles, was es braucht - die genaue Fehlerausgabe, den Client-Code und die Server-Implementierung - alles, ohne dass ich etwas manuell kopieren muss.
+Dieser Ansatz gibt Careti alles, was es braucht - die genaue Fehlerausgabe, den Client-Code und die Server-Implementierung - alles, ohne dass ich etwas manuell kopieren muss.
 
-Wenn Sie das nächste Mal Probleme mit der Befehlsausgabe oder Build-Fehlern haben, versuchen Sie, `@terminal` anstelle des Kopierens der Ausgabe zu verwenden. Sie erhalten genauere Hilfe, da Caret den vollständigen Terminalkontext mit korrekter Formatierung sehen kann.
+Wenn Sie das nächste Mal Probleme mit der Befehlsausgabe oder Build-Fehlern haben, versuchen Sie, `@terminal` anstelle des Kopierens der Ausgabe zu verwenden. Sie erhalten genauere Hilfe, da Careti den vollständigen Terminalkontext mit korrekter Formatierung sehen kann.
 
 ## Wie es unter der Haube funktioniert
 
 Wenn Sie die Terminal-Erwähnung in Ihrer Nachricht verwenden, passiert Folgendes im Hintergrund:
 
-1. Wenn Sie Ihre Nachricht senden, erkennt Caret das `@terminal` Muster in Ihrem Text
+1. Wenn Sie Ihre Nachricht senden, erkennt Careti das `@terminal` Muster in Ihrem Text
 2. Die Extension ruft `getLatestTerminalOutput()` auf, welches auf die Terminal API von VS Code zugreift
 3. Es erfasst den aktuellen Ausgabepuffer von Ihrem aktiven Terminal
 4. Die Terminalausgabe wird Ihrer Nachricht in einem strukturierten Format hinzugefügt:
@@ -67,8 +67,8 @@ Wenn Sie Probleme mit Terminal-Erwähnungen oder der Terminalintegration im Allg
 Häufige Probleme sind:
 
 -   Terminal-Erwähnungen erfassen keine Ausgabe
--   "Shell-Integration nicht verfügbar"-Meldungen im Caret-Chat
--   Befehle werden ausgeführt, aber die Ausgabe ist für Caret nicht sichtbar
+-   "Shell-Integration nicht verfügbar"-Meldungen im Careti-Chat
+-   Befehle werden ausgeführt, aber die Ausgabe ist für Careti nicht sichtbar
 -   Terminalintegration funktioniert inkonsistent
 
 Der Leitfaden zur Fehlerbehebung bietet plattformspezifische Lösungen und detaillierte Konfigurationsschritte zur Behebung dieser Probleme.

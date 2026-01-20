@@ -1,16 +1,16 @@
-# Caret Documentation Site
+# Careti Documentation Site
 
 [English](README.md) | [한국어](README.ko.md)
 
-🌍 **Multilingual Documentation Site for Caret AI Coding Assistant**
+🌍 **Multilingual Documentation Site for Careti AI Coding Assistant**
 
-This repository contains the source code for [docs.caret.team](https://docs.caret.team), the official multilingual documentation website for Caret - an AI-powered coding assistant based on [Cline](https://github.com/cline/cline).
+This repository contains the source code for [docs.careti.ai](https://docs.careti.ai), the official multilingual documentation website for Careti - an AI-powered coding assistant based on [Cline](https://github.com/cline/cline).
 
 ## 🎯 About This Project
 
-Caret is built on the proven foundation of [Cline](https://github.com/cline/cline), adding enhanced features and comprehensive multilingual support. This documentation site serves developers worldwide with comprehensive guides, tutorials, and reference materials in multiple languages.
+Careti is built on the proven foundation of [Cline](https://github.com/cline/cline), adding enhanced features and comprehensive multilingual support. This documentation site serves developers worldwide with comprehensive guides, tutorials, and reference materials in multiple languages.
 
-### ✨ Why Choose Caret? 6 Key Reasons
+### ✨ Why Choose Careti? 6 Key Reasons
 
 1. **🔄 One-Click Mode Switching** - Perfect Cline compatibility, switch anytime
 2. **🎭 Personalized AI Companion** - Your unique persona for enjoyable coding
@@ -19,7 +19,7 @@ Caret is built on the proven foundation of [Cline](https://github.com/cline/clin
 5. **⌨️ Enhanced UX** - Prompt history, automatic model fetching, and more
 6. **🎯 31 Providers, 266 Models** - Cline v3.32.7 fully compatible + extended
 
-👉 **See all exclusive features**: [Complete Features Overview](https://docs.caret.team/en/caret-exclusive/overview)
+👉 **See all exclusive features**: [Complete Features Overview](https://docs.careti.ai/en/caret-exclusive/overview)
 
 ### Supported Languages
 - 🇺🇸 **English** (`/en`) - Complete documentation
@@ -37,8 +37,8 @@ Caret is built on the proven foundation of [Cline](https://github.com/cline/clin
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/aicoding-caret/docs.caret.team.git
-   cd docs.caret.team
+   git clone https://github.com/aicoding-caret/docs.careti.ai.git
+   cd docs.careti.ai
    ```
 
 2. **Install dependencies**
@@ -134,7 +134,7 @@ GIT_USER=<Your GitHub username> yarn deploy
 # Rename files from 'cline' to 'caret'
 ./scripts/cline-to-caret-renamer.sh [directory]
 
-# Replace 'Cline' text with 'Caret' (preserves what-is-caret.mdx attribution)
+# Replace 'Cline' text with 'Careti' (preserves what-is-caret.mdx attribution)
 ./scripts/cline-to-caret-content-replacer.sh [directory]
 
 # Fix component formatting issues
@@ -224,31 +224,31 @@ We welcome contributions to improve the documentation! Here's how to help:
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ### Attribution
-- **Caret Documentation**: Apache 2.0 © 2025 Caretive INC.
+- **Careti Documentation**: Apache 2.0 © 2025 Caretive INC.
 - **Based on Cline**: This project builds upon [Cline](https://github.com/cline/cline) (Apache 2.0 © 2025 Cline Bot Inc.)
 - **Docusaurus Framework**: MIT License © Meta Platforms, Inc.
 
-## 🔄 Synchronization with Caret Main Repository
+## 🔄 Synchronization with Careti Main Repository
 
-This documentation site is synchronized with the [Caret main repository](https://github.com/aicoding-caret/caret) following the Cline merge process.
+This documentation site is synchronized with the [Careti main repository](https://github.com/aicoding-caret/caret) following the Cline merge process.
 
 ### For Developers: Syncing Latest Cline Documentation
 
-When Caret merges upstream Cline updates, new documentation must be synced to this site:
+When Careti merges upstream Cline updates, new documentation must be synced to this site:
 
-1. **Follow the Caret Merge Strategy Guide**:
+1. **Follow the Careti Merge Strategy Guide**:
    - [English Version](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
    - [Korean Version](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **Detailed Sync Analysis**:
    See the comprehensive synchronization plan:
-   - [docs.caret.team Sync Analysis (Korean)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
+   - [docs.careti.ai Sync Analysis (Korean)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
 
 3. **Quick Start**:
    ```bash
-   # Clone this repo inside Caret main repo
+   # Clone this repo inside Careti main repo
    cd /path/to/caret
-   git clone https://github.com/aicoding-caret/docs.caret.team
+   git clone https://github.com/aicoding-caret/docs.careti.ai
 
    # Follow the merge strategy guide for synchronization
    ```
@@ -257,31 +257,31 @@ When Caret merges upstream Cline updates, new documentation must be synced to th
 
 ```mermaid
 graph LR
-    A[Cline Upstream] --> B[Caret Main Repo]
+    A[Cline Upstream] --> B[Careti Main Repo]
     B --> C[caret/docs/]
-    C --> D[docs.caret.team/docs-en/]
+    C --> D[docs.careti.ai/docs-en/]
     D --> E[Translate to ko, ja, zh]
-    E --> F[Deploy to https://docs.caret.team]
+    E --> F[Deploy to https://docs.careti.ai]
 ```
 
 **Key Process**:
-1. Caret merges from Cline upstream
+1. Careti merges from Cline upstream
 2. New Cline docs appear in `caret/docs/`
-3. Brand conversion: Cline → Caret
-4. Sync to `docs.caret.team/docs-en/`
+3. Brand conversion: Cline → Careti
+4. Sync to `docs.careti.ai/docs-en/`
 5. Translate to Korean, Japanese, Chinese
 6. Build and deploy
 
 ## 🔗 Related Projects
 
-- **[Caret Extension](https://github.com/aicoding-caret/caret)** - Main Caret VS Code extension
+- **[Careti Extension](https://github.com/aicoding-caret/caret)** - Main Careti VS Code extension
 - **[Cline Project](https://github.com/cline/cline)** - Original Cline autonomous coding agent
-- **[Caret Website](https://caret.team)** - Official Caret website
+- **[Careti Website](https://careti.ai)** - Official Careti website
 
 ## 📞 Support
 
-- **Documentation Issues**: [GitHub Issues](https://github.com/aicoding-caret/docs.caret.team/issues)
-- **Caret Support**: [Caret GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
+- **Documentation Issues**: [GitHub Issues](https://github.com/aicoding-caret/docs.careti.ai/issues)
+- **Careti Support**: [Careti GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
 - **Community**: Join our developer community for questions and discussions
 
 ---

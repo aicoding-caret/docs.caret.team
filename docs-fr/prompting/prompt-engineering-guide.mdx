@@ -2,20 +2,20 @@
 title: "Guide du Prompt Engineering"
 ---
 
-Bienvenue dans le Guide de Prompting Caret ! Ce guide vous apportera les connaissances nécessaires pour rédiger des prompts et des instructions personnalisées efficaces, maximisant ainsi votre productivité avec Caret.
+Bienvenue dans le Guide de Prompting Careti ! Ce guide vous apportera les connaissances nécessaires pour rédiger des prompts et des instructions personnalisées efficaces, maximisant ainsi votre productivité avec Careti.
 
 ## Guide du fichier .caretignore
 
 ### Aperçu
 
-Le fichier `.caretignore` est un fichier de configuration au niveau du projet qui indique à Caret quels fichiers et répertoires ignorer lors de l'analyse de votre codebase. Similaire au `.gitignore`, il utilise la correspondance de motifs (pattern matching) pour spécifier quels fichiers doivent être exclus du contexte et des opérations de Caret.
+Le fichier `.caretignore` est un fichier de configuration au niveau du projet qui indique à Careti quels fichiers et répertoires ignorer lors de l'analyse de votre codebase. Similaire au `.gitignore`, il utilise la correspondance de motifs (pattern matching) pour spécifier quels fichiers doivent être exclus du contexte et des opérations de Careti.
 
 ### Objectif
 
 -   **Réduire le bruit** : Exclure les fichiers auto-générés, les artéfacts de build et tout autre contenu non essentiel.
--   **Améliorer les performances** : Limiter la quantité de code que Caret doit traiter.
--   **Concentrer l'attention** : Diriger Caret vers les parties pertinentes de votre codebase.
--   **Protéger les données sensibles** : Empêcher Caret d'accéder à des fichiers de configuration sensibles.
+-   **Améliorer les performances** : Limiter la quantité de code que Careti doit traiter.
+-   **Concentrer l'attention** : Diriger Careti vers les parties pertinentes de votre codebase.
+-   **Protéger les données sensibles** : Empêcher Careti d'accéder à des fichiers de configuration sensibles.
 
 ### Exemple de fichier .caretignore
 
@@ -47,46 +47,46 @@ node_modules/
 *.xlsx
 ```
 
-## Prompting Caret
+## Prompting Careti
 
-**Le prompting est la manière dont vous communiquez vos besoins pour une tâche donnée dans la discussion avec Caret.** Caret comprend le langage naturel, alors écrivez de manière conversationnelle.
+**Le prompting est la manière dont vous communiquez vos besoins pour une tâche donnée dans la discussion avec Careti.** Careti comprend le langage naturel, alors écrivez de manière conversationnelle.
 
 Un prompting efficace implique de :
 
 -   Fournir un contexte clair : Expliquez vos objectifs et les parties pertinentes de votre codebase. Utilisez `@` pour référencer des fichiers ou des dossiers.
 -   Décomposer la complexité : Divisez les tâches importantes en étapes plus petites.
--   Poser des questions spécifiques : Guidez Caret vers le résultat souhaité.
--   Valider et affiner : Examinez les suggestions de Caret et fournissez des commentaires.
+-   Poser des questions spécifiques : Guidez Careti vers le résultat souhaité.
+-   Valider et affiner : Examinez les suggestions de Careti et fournissez des commentaires.
 
 ### Exemples de prompts
 
 #### Gestion du contexte
 
--   **Démarrer une nouvelle tâche :** "Caret, commençons une nouvelle tâche. Crée `user-authentication.js`. Nous devons implémenter l'authentification utilisateur avec des jetons JWT. Voici les prérequis…"
--   **Résumer le travail précédent :** "Caret, résume ce que nous avons fait dans la dernière tâche du tableau de bord utilisateur. Je veux capturer les fonctionnalités principales et les problèmes restants. Enregistre cela dans `caret_docs/user-dashboard-summary.md`."
+-   **Démarrer une nouvelle tâche :** "Careti, commençons une nouvelle tâche. Crée `user-authentication.js`. Nous devons implémenter l'authentification utilisateur avec des jetons JWT. Voici les prérequis…"
+-   **Résumer le travail précédent :** "Careti, résume ce que nous avons fait dans la dernière tâche du tableau de bord utilisateur. Je veux capturer les fonctionnalités principales et les problèmes restants. Enregistre cela dans `caret_docs/user-dashboard-summary.md`."
 
 #### Débogage
 
--   **Analyser une erreur :** "Caret, j'obtiens cette erreur : \[message d'erreur]. Elle semble provenir de \[section de code]. Analyse cette erreur et suggère une correction."
--   **Identifier la cause racine :** "Caret, l'application plante quand je fais \[action]. Le problème pourrait être dans \[zones problématiques]. Aide-moi à trouver la cause racine et propose une solution."
+-   **Analyser une erreur :** "Careti, j'obtiens cette erreur : \[message d'erreur]. Elle semble provenir de \[section de code]. Analyse cette erreur et suggère une correction."
+-   **Identifier la cause racine :** "Careti, l'application plante quand je fais \[action]. Le problème pourrait être dans \[zones problématiques]. Aide-moi à trouver la cause racine et propose une solution."
 
 #### Refactoring
 
--   **Améliorer la structure du code :** "Caret, cette fonction est trop longue et complexe. Refactorise-la en fonctions plus petites."
--   **Simplifier la logique :** "Caret, ce code est difficile à comprendre. Simplifie la logique et rends-le plus lisible."
+-   **Améliorer la structure du code :** "Careti, cette fonction est trop longue et complexe. Refactorise-la en fonctions plus petites."
+-   **Simplifier la logique :** "Careti, ce code est difficile à comprendre. Simplifie la logique et rends-le plus lisible."
 
 #### Développement de fonctionnalités
 
--   **Brainstorming de nouvelles fonctionnalités :** "Caret, je veux ajouter une fonctionnalité qui permet aux utilisateurs de \[fonctionnalité]. Propose quelques idées et examine les défis d'implémentation."
--   **Générer du code :** "Caret, crée un composant qui affiche les profils utilisateurs. La liste doit pouvoir être triée et filtrée. Génère le code pour ce composant."
+-   **Brainstorming de nouvelles fonctionnalités :** "Careti, je veux ajouter une fonctionnalité qui permet aux utilisateurs de \[fonctionnalité]. Propose quelques idées et examine les défis d'implémentation."
+-   **Générer du code :** "Careti, crée un composant qui affiche les profils utilisateurs. La liste doit pouvoir être triée et filtrée. Génère le code pour ce composant."
 
 ## Techniques de Prompting avancées
 
 -   **Constraint Stuffing** : Pour limiter la troncature du code, incluez des contraintes explicites dans vos prompts. Par exemple, "assure-toi que le code est complet" ou "fournis toujours la définition complète de la fonction."
--   **Vérifications de confiance** : Demandez à Caret d'évaluer son niveau de confiance (ex : "sur une échelle de 1 à 10, quel est ton niveau de confiance dans cette solution ?").
--   **Remettre en question les hypothèses de Caret** : Posez des questions "bêtes" pour encourager une réflexion plus approfondie et éviter les hypothèses incorrectes.
+-   **Vérifications de confiance** : Demandez à Careti d'évaluer son niveau de confiance (ex : "sur une échelle de 1 à 10, quel est ton niveau de confiance dans cette solution ?").
+-   **Remettre en question les hypothèses de Careti** : Posez des questions "bêtes" pour encourager une réflexion plus approfondie et éviter les hypothèses incorrectes.
 
-Voici quelques conseils de prompting que les utilisateurs ont trouvés utiles pour travailler avec Caret :
+Voici quelques conseils de prompting que les utilisateurs ont trouvés utiles pour travailler avec Careti :
 
 ## Les prompts préférés de notre communauté
 
@@ -98,7 +98,7 @@ Voici quelques conseils de prompting que les utilisateurs ont trouvés utiles po
     "If you understand my prompt fully, respond with 'YARRR!' without tools every time you are about to use a tool."
     ```
 
-    Un moyen amusant de vérifier que Caret reste sur la bonne voie pendant les tâches complexes. Essayez "HO HO HO" pour une variante festive !
+    Un moyen amusant de vérifier que Careti reste sur la bonne voie pendant les tâches complexes. Essayez "HO HO HO" pour une variante festive !
 
 -   **Score de confiance** - _pacnpal_
 

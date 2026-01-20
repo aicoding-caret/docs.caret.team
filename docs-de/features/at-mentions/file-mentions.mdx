@@ -4,9 +4,9 @@ title: "Dateierwähnungen"
 sidebarTitle: "Dateierwähnungen"
 ---
 
-Mit Dateierwähnungen kannst du jede Datei aus deinem Workspace direkt in deine Konversation mit Caret einfügen. Kein Kopieren und Einfügen von Code-Snippets mehr - gib einfach `@/` ein und zeige auf die Datei, bei der du Hilfe benötigst.
+Mit Dateierwähnungen kannst du jede Datei aus deinem Workspace direkt in deine Konversation mit Careti einfügen. Kein Kopieren und Einfügen von Code-Snippets mehr - gib einfach `@/` ein und zeige auf die Datei, bei der du Hilfe benötigst.
 
-Wenn du `@/` im Chat eingibst, zeigt Caret deine Workspace-Dateien an. Navigiere durch Ordner, wähle die gewünschte Datei aus, und sie steht Caret sofort zur Verfügung - komplett mit allen Imports, zugehörigen Funktionen und dem umgebenden Kontext.
+Wenn du `@/` im Chat eingibst, zeigt Careti deine Workspace-Dateien an. Navigiere durch Ordner, wähle die gewünschte Datei aus, und sie steht Careti sofort zur Verfügung - komplett mit allen Imports, zugehörigen Funktionen und dem umgebenden Kontext.
 
 Ich verwende Dateierwähnungen ständig beim Debuggen. Anstatt herauszufinden, welche Teile meines Codes ich kopieren soll, verweise ich einfach direkt auf die Datei:
 
@@ -20,17 +20,17 @@ Und der API Endpoint: @/src/api/contact.js
 Was fehlt mir?
 ```
 
-Dies gibt Caret alles, was es braucht - die Fehlermeldung, den Komponentencode und den API Endpoint - alles, ohne dass ich etwas kopieren muss. Caret kann Imports, Abhängigkeiten und den gesamten umgebenden Kontext erkennen, der das Problem verursachen könnte.
+Dies gibt Careti alles, was es braucht - die Fehlermeldung, den Komponentencode und den API Endpoint - alles, ohne dass ich etwas kopieren muss. Careti kann Imports, Abhängigkeiten und den gesamten umgebenden Kontext erkennen, der das Problem verursachen könnte.
 
-Dateierwähnungen glänzen, wenn du mit komplexen Bugs zu tun hast, die sich über mehrere Dateien erstrecken. Früher musste ich jede relevante Datei sorgfältig kopieren und sicherstellen, dass ich nichts Wichtiges übersehe. Jetzt verweise ich einfach mit `@/` auf jede Datei, und Caret erhält das vollständige Bild.
+Dateierwähnungen glänzen, wenn du mit komplexen Bugs zu tun hast, die sich über mehrere Dateien erstrecken. Früher musste ich jede relevante Datei sorgfältig kopieren und sicherstellen, dass ich nichts Wichtiges übersehe. Jetzt verweise ich einfach mit `@/` auf jede Datei, und Careti erhält das vollständige Bild.
 
-Wenn du das nächste Mal bei einem Problem nicht weiterkommst, versuche es mit Dateierwähnungen, anstatt Code zu kopieren. Du sparst Zeit und erhältst bessere Antworten, weil Caret alle benötigten Informationen hat.
+Wenn du das nächste Mal bei einem Problem nicht weiterkommst, versuche es mit Dateierwähnungen, anstatt Code zu kopieren. Du sparst Zeit und erhältst bessere Antworten, weil Careti alle benötigten Informationen hat.
 
 ## Wie es im Hintergrund funktioniert
 
 Wenn du eine Dateierwähnung in deiner Nachricht verwendest, passiert Folgendes im Hintergrund:
 
-1. Wenn du deine Nachricht sendest, erkennt Caret das Muster `@/path/to/file` in deinem Text.
+1. Wenn du deine Nachricht sendest, erkennt Careti das Muster `@/path/to/file` in deinem Text.
 2. Die Extension löst den Dateipfad relativ zum Root deines Workspaces auf.
 3. Sie prüft, ob die Datei binär (wie ein Bild) oder textbasiert ist.
 4. Bei Textdateien liest sie den vollständigen Dateiinhalt.

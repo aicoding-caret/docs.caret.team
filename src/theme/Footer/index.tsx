@@ -18,7 +18,7 @@ const hasExplicitLocale = (pathname: string): boolean =>
 	localePrefixes.some((locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`))
 
 const buildFooterLinks = (locale: Locale) => {
-	const caretTeam = `https://caret.team/${locale}`
+	const caretTeam = `https://careti.ai/${locale}`
 	const docsHome = `/${locale}/getting-started/what-is-caret`
 	const brochure = `${caretTeam}/brochure`
 	const caretiveLocale = locale === "ko" ? "ko" : "en"
@@ -30,7 +30,7 @@ const buildFooterLinks = (locale: Locale) => {
 		product: [
 			{ label: "Download (VS Code)", href: "https://marketplace.visualstudio.com/items?itemName=caretive.caret" },
 			{ label: "Download (Open VSX)", href: "https://open-vsx.org/extension/Caretive/caret" },
-			{ label: "Caret Enterprise Brochure", href: brochure },
+			{ label: "Careti Enterprise Brochure", href: brochure },
 			{ label: "Features", href: `${caretTeam}/#features` },
 			{ label: "Pricing", href: `${caretTeam}/#pricing` },
 			{ label: "Docs", href: docsHome },
@@ -83,7 +83,7 @@ const localizedCopy: Record<
 			{ title: "Company", items: footerLinks.en.company },
 			{ title: "Legal", items: footerLinks.en.legal },
 		],
-		copyright: "© 2025 Caretive INC / Caret. All rights reserved.",
+		copyright: "© 2025 Caretive INC / Careti. All rights reserved.",
 	},
 	ko: {
 		description: "",
@@ -127,7 +127,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "ⓒ 2025 Caretive INC / Caret. All rights reserved.",
+		copyright: "ⓒ 2025 Caretive INC / Careti. All rights reserved.",
 		addressLines: [
 			"(주)캐럿티브 | 대표: 김기환 | 사업자등록번호: 459-81-03703 | 통신판매업 신고번호: 2025-화성동탄-3022호",
 			"주소: 경기도 성남시 금토로 52 경기 스타트업 브릿지 811호 | 대표번호: 070-8064-2510 | 문의/제휴: support@caretive.ai",
@@ -141,7 +141,7 @@ const localizedCopy: Record<
 				items: [
 					{ label: "ダウンロード (VS Code)", href: footerLinks.ja.product[0].href },
 					{ label: "ダウンロード (Open VSX)", href: footerLinks.ja.product[1].href },
-					{ label: "Caret エンタープライズ資料", href: footerLinks.ja.product[2].href },
+					{ label: "Careti エンタープライズ資料", href: footerLinks.ja.product[2].href },
 					{ label: "機能", href: footerLinks.ja.product[3].href },
 					{ label: "価格", href: footerLinks.ja.product[4].href },
 					{ label: "ドキュメント", href: footerLinks.ja.product[5].href },
@@ -175,7 +175,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "© 2025 Caretive INC / Caret. All rights reserved.",
+		copyright: "© 2025 Caretive INC / Careti. All rights reserved.",
 	},
 	zh: {
 		description: "",
@@ -185,7 +185,7 @@ const localizedCopy: Record<
 				items: [
 					{ label: "下载 (VS Code)", href: footerLinks.zh.product[0].href },
 					{ label: "下载 (Open VSX)", href: footerLinks.zh.product[1].href },
-					{ label: "Caret 企业版资料", href: footerLinks.zh.product[2].href },
+					{ label: "Careti 企业版资料", href: footerLinks.zh.product[2].href },
 					{ label: "功能", href: footerLinks.zh.product[3].href },
 					{ label: "价格", href: footerLinks.zh.product[4].href },
 					{ label: "文档", href: footerLinks.zh.product[5].href },
@@ -219,7 +219,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "© 2025 Caretive INC / Caret. 保留所有权利。",
+		copyright: "© 2025 Caretive INC / Careti. 保留所有权利。",
 	},
 	fr: {
 		description: "",
@@ -229,7 +229,7 @@ const localizedCopy: Record<
 				items: [
 					{ label: "Télécharger (VS Code)", href: footerLinks.fr.product[0].href },
 					{ label: "Télécharger (Open VSX)", href: footerLinks.fr.product[1].href },
-					{ label: "Brochure Caret Enterprise", href: footerLinks.fr.product[2].href },
+					{ label: "Brochure Careti Enterprise", href: footerLinks.fr.product[2].href },
 					{ label: "Fonctionnalités", href: footerLinks.fr.product[3].href },
 					{ label: "Tarifs", href: footerLinks.fr.product[4].href },
 					{ label: "Documentation", href: footerLinks.fr.product[5].href },
@@ -263,7 +263,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "© 2025 Caretive INC / Caret. Tous droits réservés.",
+		copyright: "© 2025 Caretive INC / Careti. Tous droits réservés.",
 	},
 	de: {
 		description: "",
@@ -273,7 +273,7 @@ const localizedCopy: Record<
 				items: [
 					{ label: "Download (VS Code)", href: footerLinks.de.product[0].href },
 					{ label: "Download (Open VSX)", href: footerLinks.de.product[1].href },
-					{ label: "Caret Enterprise-Broschüre", href: footerLinks.de.product[2].href },
+					{ label: "Careti Enterprise-Broschüre", href: footerLinks.de.product[2].href },
 					{ label: "Funktionen", href: footerLinks.de.product[3].href },
 					{ label: "Preise", href: footerLinks.de.product[4].href },
 					{ label: "Dokumentation", href: footerLinks.de.product[5].href },
@@ -307,7 +307,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "© 2025 Caretive INC / Caret. Alle Rechte vorbehalten.",
+		copyright: "© 2025 Caretive INC / Careti. Alle Rechte vorbehalten.",
 	},
 	ru: {
 		description: "",
@@ -317,7 +317,7 @@ const localizedCopy: Record<
 				items: [
 					{ label: "Скачать (VS Code)", href: footerLinks.ru.product[0].href },
 					{ label: "Скачать (Open VSX)", href: footerLinks.ru.product[1].href },
-					{ label: "Брошюра Caret Enterprise", href: footerLinks.ru.product[2].href },
+					{ label: "Брошюра Careti Enterprise", href: footerLinks.ru.product[2].href },
 					{ label: "Функции", href: footerLinks.ru.product[3].href },
 					{ label: "Цены", href: footerLinks.ru.product[4].href },
 					{ label: "Документация", href: footerLinks.ru.product[5].href },
@@ -351,7 +351,7 @@ const localizedCopy: Record<
 				],
 			},
 		],
-		copyright: "© 2025 Caretive INC / Caret. Все права защищены.",
+		copyright: "© 2025 Caretive INC / Careti. Все права защищены.",
 	},
 }
 

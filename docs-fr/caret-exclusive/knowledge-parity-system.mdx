@@ -1,16 +1,16 @@
 ---
 sidebar_position: 8
 title: ^ Standardisation des règles et des connaissances de l'organisation pour l'IA
-description: Découvrez le système central de Caret qui garantit que l'IA suit précisément les règles et les standards de votre équipe.
+description: Découvrez le système central de Careti qui garantit que l'IA suit précisément les règles et les standards de votre équipe.
 ---
 
 # ^ Standardisation des règles et des connaissances de l'organisation pour l'IA
 
-Caret est conçu pour que l'IA **comprenne et suive précisément les règles et les standards de codage de votre équipe**. Grâce à ce système, l'IA fonctionne comme un véritable membre de l'équipe qui comprend le contexte du projet, et pas seulement comme un simple outil de génération de code.
+Careti est conçu pour que l'IA **comprenne et suive précisément les règles et les standards de codage de votre équipe**. Grâce à ce système, l'IA fonctionne comme un véritable membre de l'équipe qui comprend le contexte du projet, et pas seulement comme un simple outil de génération de code.
 
 ## Pourquoi la synchronisation des connaissances est-elle importante ?
 
-| Situation | Outils d'IA génériques | Caret |
+| Situation | Outils d'IA génériques | Careti |
 |---|---|---|
 | **Respect des règles d'équipe** | Ne connaît pas les règles | ✅ Reconnaît automatiquement les fichiers de règles |
 | **Contexte du projet** | Nécessite des explications à chaque fois | ✅ Mémoire persistante |
@@ -19,7 +19,7 @@ Caret est conçu pour que l'IA **comprenne et suive précisément les règles et
 
 ## Concept clé 1 : Architecture à double répertoire
 
-Caret reconnaît que les **documents destinés à l'IA et aux humains répondent à des besoins différents**. Pour résoudre cela, il utilise deux répertoires :
+Careti reconnaît que les **documents destinés à l'IA et aux humains répondent à des besoins différents**. Pour résoudre cela, il utilise deux répertoires :
 
 ```
 your-project/
@@ -53,7 +53,7 @@ your-project/
 
 ## Concept clé 2 : Système de connaissances atomiques
 
-Caret utilise une approche de **Connaissances Atomiques**. Au lieu d'un seul document massif, les connaissances sont divisées en unités minimales (Atomes) et combinées selon les besoins.
+Careti utilise une approche de **Connaissances Atomiques**. Au lieu d'un seul document massif, les connaissances sont divisées en unités minimales (Atomes) et combinées selon les besoins.
 
 ### Comment ça marche
 
@@ -78,7 +78,7 @@ Caret utilise une approche de **Connaissances Atomiques**. Au lieu d'un seul doc
 
 ## Concept clé 3 : Emplacement et priorité des règles
 
-Caret utilise le dossier **`.agents/context/`** comme source unique de vérité pour les règles. Cela garantit que l'IA suit des standards cohérents dans tout le projet.
+Careti utilise le dossier **`.agents/context/`** comme source unique de vérité pour les règles. Cela garantit que l'IA suit des standards cohérents dans tout le projet.
 
 ### Emplacements des règles
 
@@ -86,7 +86,7 @@ Caret utilise le dossier **`.agents/context/`** comme source unique de vérité 
 |------|------|------|
 | **Règles de l'espace de travail** | `.agents/context/` | Règles spécifiques au projet |
 | **Portée du répertoire** | `AGENTS.md` | S'applique uniquement à des dossiers spécifiques |
-| **Règles globales** | `Documents/Caret/Rules` | S'applique à tous les projets |
+| **Règles globales** | `Documents/Careti/Rules` | S'applique à tous les projets |
 | **Workflows** | `.agents/workflows/` | Chargement à la demande |
 
 ### Pourquoi la standardisation est-elle importante ?
@@ -183,7 +183,7 @@ Priorité de fusion : Locale > Projet > Organisation > Globale
 Si votre projet n'a pas la structure standard, vous pouvez la générer automatiquement avec la commande `/init`.
 
 ```bash
-# Dans le chat Caret
+# Dans le chat Careti
 /init
 ```
 
@@ -228,7 +228,7 @@ Les développeurs peuvent voir clairement comment l'IA fonctionne via le dossier
 
 ## Comparaison complète avec Cline
 
-| Élément | Cline | Caret |
+| Élément | Cline | Careti |
 |------|-------|-------|
 | **Partage de connaissances** | Fichier unique (texte brut) | Système de connaissances atomiques |
 | **Efficacité** | Charge toujours toutes les règles | Chargement à la demande (On-Demand Loading) |
@@ -241,19 +241,19 @@ Les développeurs peuvent voir clairement comment l'IA fonctionne via le dossier
 
 ### Méthode 1 : Initialisation automatique (recommandé)
 ```bash
-# Dans le chat Caret
+# Dans le chat Careti
 /init
 ```
 
 ### Méthode 2 : Configuration manuelle
 1. Créez le dossier `.agents/context/` à la racine du projet
 2. Rédigez les règles dans des fichiers Markdown
-3. Commencez à discuter avec Caret
+3. Commencez à discuter avec Careti
 
-Pour des directives détaillées sur la rédaction des règles, consultez la documentation sur la [Fonctionnalité des règles Caret](/french/features/caret-rules).
+Pour des directives détaillées sur la rédaction des règles, consultez la documentation sur la [Fonctionnalité des règles Careti](/french/features/caret-rules).
 
 ## Documentation associée
 
-- [Fonctionnalité des règles Caret](/french/features/caret-rules) - Guide de rédaction des règles
+- [Fonctionnalité des règles Careti](/french/features/caret-rules) - Guide de rédaction des règles
 - [Outils de lecture de documents](/french/caret-exclusive/document-tools) - L'IA lit directement les documents
 - [Outils d'image](/french/caret-exclusive/image-tools) - Génération et analyse d'images par l'IA

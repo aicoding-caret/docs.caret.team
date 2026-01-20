@@ -2,10 +2,10 @@
 ---
 title: "Générer un message de commit"
 sidebarTitle: "Générer un message de commit"
-description: "L'intégration Git de Caret apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur."
+description: "L'intégration Git de Careti apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur."
 ---
 
-L'intégration Git de Caret apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur.
+L'intégration Git de Careti apporte une assistance IA directement à votre flux de travail de contrôle de version. Générez des messages de commit sans quitter votre éditeur.
 
 ## Générer un message de commit
 
@@ -14,13 +14,13 @@ L'une des intégrations Git les plus utiles est la possibilité de générer aut
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/generate-commit-message-with-caret.png"
-		alt="Generate Commit Message with Caret"
+		alt="Generate Commit Message with Careti"
 	/>
 </Frame>
 
 1. Effectuez vos modifications et préparez-les dans Git
-2. Cliquez sur l'icône de robot dans la vue Source Control ou exécutez la commande "Generate Commit Message with Caret"
-3. Caret analyse vos modifications et génère un message de commit descriptif
+2. Cliquez sur l'icône de robot dans la vue Source Control ou exécutez la commande "Generate Commit Message with Careti"
+3. Careti analyse vos modifications et génère un message de commit descriptif
 4. Le message est automatiquement inséré dans la zone de saisie du message de commit
 
 Les messages de commit générés :
@@ -39,14 +39,14 @@ Cette fonctionnalité permet de gagner du temps et garantit que votre historique
 
 ## Comment ça marche
 
-Lorsque vous utilisez la fonction de génération de messages de commit de Caret, voici ce qui se passe en arrière-plan :
+Lorsque vous utilisez la fonction de génération de messages de commit de Careti, voici ce qui se passe en arrière-plan :
 
-1. Caret récupère le Git diff actuel à l'aide de `getWorkingState()`
+1. Careti récupère le Git diff actuel à l'aide de `getWorkingState()`
 2. Il formate ce diff en une invite spécialisée pour l'IA
 3. L'IA analyse les modifications et génère un message de commit approprié
 4. Le message est extrait et inséré dans la zone de saisie du message de commit Git
 
-Ce processus utilise votre configuration actuelle de Caret API, de sorte que la qualité des messages générés corresponde au modèle d'IA que vous avez choisi.
+Ce processus utilise votre configuration actuelle de Careti API, de sorte que la qualité des messages générés corresponde au modèle d'IA que vous avez choisi.
 
 ## Conseils pour une utilisation efficace
 
@@ -63,12 +63,12 @@ Ce processus utilise votre configuration actuelle de Caret API, de sorte que la 
 La génération de messages de commit exploite l'extension Git API de VSCode pour accéder aux informations du dépôt :
 
 1. Lorsque vous déclenchez la commande :
-    - Caret obtient le diff actuel
+    - Careti obtient le diff actuel
     - Il l'envoie à l'IA avec des instructions spécifiques pour le formatage du message de commit
     - Il analyse la réponse de l'IA
     - Il accède à l'extension Git API pour définir le message de commit
 
 Cette intégration avec Git facilite la génération de messages de commit de haute qualité sans perturber votre flux de travail.
 
-La prochaine fois que vous aurez du mal à écrire un bon message de commit, essayez d'utiliser la génération de messages de commit de Caret. Vous gagnerez du temps et améliorerez votre flux de travail de contrôle de version grâce à l'assistance de l'IA là où vous en avez besoin.
+La prochaine fois que vous aurez du mal à écrire un bon message de commit, essayez d'utiliser la génération de messages de commit de Careti. Vous gagnerez du temps et améliorerez votre flux de travail de contrôle de version grâce à l'assistance de l'IA là où vous en avez besoin.
 ```

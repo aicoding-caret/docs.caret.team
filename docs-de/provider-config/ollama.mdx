@@ -2,7 +2,7 @@
 title: "Ollama"
 ---
 
-Caret unterstützt das lokale Ausführen von Modellen mithilfe von Ollama. Dieser Ansatz bietet Datenschutz, Offline-Zugriff und potenziell geringere Kosten. Er erfordert eine gewisse Ersteinrichtung und einen ausreichend leistungsstarken Computer. Aufgrund des aktuellen Stands der Hardware für Endverbraucher wird die Nutzung von Ollama mit Caret nicht empfohlen, da die Performance bei durchschnittlichen Hardwarekonfigurationen wahrscheinlich schlecht sein wird.
+Careti unterstützt das lokale Ausführen von Modellen mithilfe von Ollama. Dieser Ansatz bietet Datenschutz, Offline-Zugriff und potenziell geringere Kosten. Er erfordert eine gewisse Ersteinrichtung und einen ausreichend leistungsstarken Computer. Aufgrund des aktuellen Stands der Hardware für Endverbraucher wird die Nutzung von Ollama mit Careti nicht empfohlen, da die Performance bei durchschnittlichen Hardwarekonfigurationen wahrscheinlich schlecht sein wird.
 
 **Website:** [https://ollama.com/](https://ollama.com/)
 
@@ -39,7 +39,7 @@ Caret unterstützt das lokale Ausführen von Modellen mithilfe von Ollama. Diese
     ```
 
 3.  **Das Context Window des Modells konfigurieren:**
-    Standardmäßig verwenden Ollama-Modelle oft ein Context Window von 2048 Token, was für viele Caret-Anfragen unzureichend sein kann. Ein Minimum von 12.000 Token ist für ordentliche Ergebnisse ratsam, wobei 32.000 Token ideal sind. Um dies anzupassen, modifizieren Sie die Parameter des Modells und speichern es als neue Version.
+    Standardmäßig verwenden Ollama-Modelle oft ein Context Window von 2048 Token, was für viele Careti-Anfragen unzureichend sein kann. Ein Minimum von 12.000 Token ist für ordentliche Ergebnisse ratsam, wobei 32.000 Token ideal sind. Um dies anzupassen, modifizieren Sie die Parameter des Modells und speichern es als neue Version.
 
     Laden Sie zuerst das Modell (am Beispiel von `qwen2.5-coder:32b`):
 
@@ -61,18 +61,18 @@ Caret unterstützt das lokale Ausführen von Modellen mithilfe von Ollama. Diese
 
     (Ersetzen Sie `your_custom_model_name` durch einen Namen Ihrer Wahl.)
 
-4.  **Caret konfigurieren:**
-    -   Öffnen Sie die Caret-Sidebar (normalerweise durch das Caret-Icon gekennzeichnet).
+4.  **Careti konfigurieren:**
+    -   Öffnen Sie die Careti-Sidebar (normalerweise durch das Careti-Icon gekennzeichnet).
     -   Klicken Sie auf das Zahnrad-Icon für die Einstellungen (⚙️).
     -   Wählen Sie „ollama“ als API Provider aus.
     -   Geben Sie den Namen des Modells ein, den Sie im vorherigen Schritt gespeichert haben (z. B. `your_custom_model_name`).
     -   (Optional) Passen Sie die Basis-URL an, falls Ollama auf einem anderen Rechner oder Port läuft. Der Standardwert ist `http://localhost:11434`.
-    -   (Optional) Konfigurieren Sie die Model context size in den Advanced-Einstellungen von Caret. Dies hilft Caret, sein Context Window effektiv mit Ihrem angepassten Ollama-Modell zu verwalten.
+    -   (Optional) Konfigurieren Sie die Model context size in den Advanced-Einstellungen von Careti. Dies hilft Careti, sein Context Window effektiv mit Ihrem angepassten Ollama-Modell zu verwalten.
 
 ### Tipps und Hinweise
 
 -   **Ressourcenbedarf:** Das lokale Ausführen von großen Sprachmodellen kann hohe Anforderungen an die Systemressourcen stellen. Stellen Sie sicher, dass Ihr Computer die Anforderungen für das gewählte Modell erfüllt.
 -   **Modellauswahl:** Experimentieren Sie mit verschiedenen Modellen, um herauszufinden, welches am besten zu Ihren spezifischen Aufgaben und Vorlieben passt.
--   **Offline-Fähigkeit:** Nach dem Herunterladen eines Modells können Sie Caret mit diesem Modell auch ohne Internetverbindung nutzen.
--   **Tracking der Token-Nutzung:** Caret verfolgt die Token-Nutzung für Modelle, auf die über Ollama zugegriffen wird, sodass Sie den Verbrauch überwachen können.
+-   **Offline-Fähigkeit:** Nach dem Herunterladen eines Modells können Sie Careti mit diesem Modell auch ohne Internetverbindung nutzen.
+-   **Tracking der Token-Nutzung:** Careti verfolgt die Token-Nutzung für Modelle, auf die über Ollama zugegriffen wird, sodass Sie den Verbrauch überwachen können.
 -   **Eigene Dokumentation von Ollama:** Weitere detaillierte Informationen finden Sie in der offiziellen [Ollama-Dokumentation](https://ollama.com/docs).

@@ -1,10 +1,10 @@
 ```
 ---
 title: "CLI-Referenz"
-description: "Vollständige Befehlsreferenz für die Caret CLI, einschließlich Konfiguration, Instanzverwaltung und Aufgabenbefehle"
+description: "Vollständige Befehlsreferenz für die Careti CLI, einschließlich Konfiguration, Instanzverwaltung und Aufgabenbefehle"
 ---
 
-Vollständige Befehlsreferenz für die Caret CLI. Verwenden Sie dies für detaillierte Dokumentation zu allen Befehlen, Optionen und Konfigurationen.
+Vollständige Befehlsreferenz für die Careti CLI. Verwenden Sie dies für detaillierte Dokumentation zu allen Befehlen, Optionen und Konfigurationen.
 
 Für schnelle Hilfe in Ihrem Terminal:
 
@@ -16,13 +16,13 @@ man caret            # Zeigt die vollständige Handbuchseite an
 
 ## Handbuchseite
 
-Die vollständige Handbuchseite für die Caret CLI:
+Die vollständige Handbuchseite für die Careti CLI:
 
 ```
 CARET(1)                         User Commands                        CARET(1)
 
 NAME
-       caret - orchestriert und interagiert mit Caret AI-Codierungsagenten
+       caret - orchestriert und interagiert mit Careti AI-Codierungsagenten
 
 SYNOPSIS
        caret [prompt] [options]
@@ -32,15 +32,15 @@ SYNOPSIS
 DESCRIPTION
        Versuchen Sie: cat README.md | caret "Fasse dies für mich zusammen:"
 
-       caret ist eine Befehlszeilenschnittstelle zum Orchestrieren mehrerer Caret AI
-       Codierungsagenten. Caret ist ein autonomer KI-Agent, der Code in Ihren Projekten lesen, schreiben
-       und ausführen kann. Er arbeitet über eine Client-Server-Architektur, in der Caret Core als
+       caret ist eine Befehlszeilenschnittstelle zum Orchestrieren mehrerer Careti AI
+       Codierungsagenten. Careti ist ein autonomer KI-Agent, der Code in Ihren Projekten lesen, schreiben
+       und ausführen kann. Er arbeitet über eine Client-Server-Architektur, in der Careti Core als
        eigenständiger Dienst läuft und die CLI als skriptfähige Schnittstelle zum Verwalten von Aufgaben,
        Instanzen und Agenteninteraktionen dient.
 
        Die CLI ist sowohl für die interaktive Nutzung als auch für die Automatisierung konzipiert und eignet
        sich ideal für CI/CD-Pipelines, parallele Aufgabenbearbeitung und terminalbasierte
-       Workflows. Mehrere Frontends (CLI, VSCode, JetBrains) können sich mit derselben Caret Core-Instanz
+       Workflows. Mehrere Frontends (CLI, VSCode, JetBrains) können sich mit derselben Careti Core-Instanz
        verbinden und ermöglichen so eine nahtlose Aufgabenübergabe zwischen Umgebungen.
 
 MODES OF OPERATION
@@ -55,15 +55,15 @@ MODES OF OPERATION
               Authentifizierung und Konfiguration.
 
 AGENT BEHAVIOR
-       Caret arbeitet in zwei primären Modi:
+       Careti arbeitet in zwei primären Modi:
 
        ACT MODE
-              Caret verwendet aktiv Werkzeuge, um Aufgaben zu erledigen. Er kann Dateien lesen, Code
+              Careti verwendet aktiv Werkzeuge, um Aufgaben zu erledigen. Er kann Dateien lesen, Code
               schreiben, Befehle ausführen, einen Headless-Browser verwenden und vieles mehr. Dies ist der
               Standardmodus für die Ausführung von Aufgaben.
 
        PLAN MODE
-              Caret sammelt Informationen und erstellt einen detaillierten Plan vor der
+              Careti sammelt Informationen und erstellt einen detaillierten Plan vor der
               Implementierung. Er erkundet die Codebasis, stellt klärende Fragen und präsentiert
               eine Strategie zur Genehmigung durch den Benutzer, bevor er in den ACT MODE wechselt.
 
@@ -72,7 +72,7 @@ INSTANT TASK OPTIONS
        Verfügung:
 
        -o, --oneshot
-              Vollständig autonomer Modus. Caret schließt die Aufgabe ab und stoppt die
+              Vollständig autonomer Modus. Careti schließt die Aufgabe ab und stoppt die
               Nachverfolgung nach Abschluss. Beispiel: caret -o "was ist 6 + 8?"
 
        -s, --setting setting value
@@ -114,7 +114,7 @@ COMMANDS
               Schlüssel angegeben wird, fordert er den Schlüssel an oder startet den entsprechenden OAuth-Flow.
 
    Instance Management
-       Caret Core-Instanzen sind unabhängige Agentenprozesse, die im Hintergrund
+       Careti Core-Instanzen sind unabhängige Agentenprozesse, die im Hintergrund
        laufen können. Es können mehrere Instanzen gleichzeitig laufen, was die parallele
        Aufgabenbearbeitung ermöglicht.
 
@@ -126,13 +126,13 @@ COMMANDS
        caret instance new [-d|--default]
 
        caret i n [-d|--default]
-              Erzeugt eine neue Caret Core-Instanz. Verwenden Sie --default, um sie als
+              Erzeugt eine neue Careti Core-Instanz. Verwenden Sie --default, um sie als
               Standardinstanz für nachfolgende Befehle festzulegen.
 
        caret instance list
 
        caret i l
-              Listet alle laufenden Caret Core-Instanzen mit ihren Adressen und ihrem
+              Listet alle laufenden Careti Core-Instanzen mit ihren Adressen und ihrem
               Status auf.
 
        caret instance default address
@@ -144,18 +144,18 @@ COMMANDS
        caret instance kill address [-a|--all]
 
        caret i k address [-a|--all]
-              Beendet eine Caret Core-Instanz. Verwenden Sie --all, um alle laufenden
+              Beendet eine Careti Core-Instanz. Verwenden Sie --all, um alle laufenden
               Instanzen zu beenden.
 
    Task Management
-       Aufgaben stellen einzelne Arbeitselemente dar, die Caret ausführt. Aufgaben
+       Aufgaben stellen einzelne Arbeitselemente dar, die Careti ausführt. Aufgaben
        pflegen den Konversationsverlauf, Checkpoints und Einstellungen.
 
        caret task [-a|--address ADDR]
 
        caret t [-a|--address ADDR]
               Zeigt die Hilfe zur Aufgabenverwaltung an. Das Flag --address gibt an,
-              welche Caret Core-Instanz verwendet werden soll (z. B. localhost:50052).
+              welche Careti Core-Instanz verwendet werden soll (z. B. localhost:50052).
 
        caret task new prompt [options]
 
@@ -187,19 +187,19 @@ COMMANDS
 
        caret t c
               Wechselt in den interaktiven Chat-Modus für die aktuelle Aufgabe. Ermöglicht
-              Gespräche mit Caret.
+              Gespräche mit Careti.
 
        caret task send [message] [options]
 
        caret t s [message] [options]
-              Sendet eine Nachricht an Caret. Wenn keine Nachricht angegeben wird, liest er von
+              Sendet eine Nachricht an Careti. Wenn keine Nachricht angegeben wird, liest er von
               stdin. Optionen:
 
               -a, --approve
-                     Genehmigt die von Caret vorgeschlagene Aktion.
+                     Genehmigt die von Careti vorgeschlagene Aktion.
 
               -d, --deny
-                     Lehnt die von Caret vorgeschlagene Aktion ab.
+                     Lehnt die von Careti vorgeschlagene Aktion ab.
 
               -f, --file FILE
                      Hängt eine Datei an die Nachricht an.
@@ -269,7 +269,7 @@ NOTES & EXAMPLES
               echo "Refactor this code" | caret -y
 
    Instance Management
-       Verwalten Sie mehrere Caret-Instanzen:
+       Verwalten Sie mehrere Careti-Instanzen:
 
               # Starten Sie eine neue Instanz und machen Sie sie zur Standardinstanz
               caret instance new --default
@@ -299,20 +299,20 @@ NOTES & EXAMPLES
               caret task chat
 
 ARCHITECTURE
-       Caret arbeitet mit einer dreischichtigen Architektur:
+       Careti arbeitet mit einer dreischichtigen Architektur:
 
        Presentation Layer
-              Benutzeroberflächen (CLI, VSCode, JetBrains), die sich über gRPC mit Caret
+              Benutzeroberflächen (CLI, VSCode, JetBrains), die sich über gRPC mit Careti
               Core verbinden
 
-       Caret Core
+       Careti Core
               Der autonome Agentendienst, der Aufgabenverwaltung, AI-Modellintegration,
               Zustandsverwaltung, Werkzeugorchestrierung und Echtzeit-Streaming-Updates
               verarbeitet.
 
        Host Provider Layer
               Umgebungsspezifische Integrationen (VSCode APIs, JetBrains APIs, Shell APIs), die
-              Caret Core verwendet, um mit dem Hostsystem zu interagieren.
+              Careti Core verwendet, um mit dem Hostsystem zu interagieren.
 
 BUGS
        Melden Sie Fehler unter: <https://github.com/caret/caret/issues>
@@ -324,10 +324,10 @@ SEE ALSO
        Vollständige Dokumentation: <https://docs.caret.bot>
 
 AUTHORS
-       Caret wird von Caret Bot Inc. und der Open-Source-Community entwickelt.
+       Careti wird von Careti Bot Inc. und der Open-Source-Community entwickelt.
 
 COPYRIGHT
-       Copyright © 2025 Caret Bot Inc. Lizenziert unter der Apache License 2.0.
+       Copyright © 2025 Careti Bot Inc. Lizenziert unter der Apache License 2.0.
 ```
 
 ### Shell Completion
@@ -382,10 +382,10 @@ caret version
 
 #### CLINE_DIR
 
-Überschreiben Sie den Standardspeicherort des Caret-Verzeichnisses:
+Überschreiben Sie den Standardspeicherort des Careti-Verzeichnisses:
 
 ```bash
-# Override default Caret directory
+# Override default Careti directory
 export CLINE_DIR=/custom/path
 
 # Default: ~/.caret

@@ -1,7 +1,7 @@
 ---
 title: "Skills-System"
 sidebarTitle: "Skills"
-description: "Erweitern Sie die Funktionen von Caret mit wiederverwendbaren Wissensmodulen."
+description: "Erweitern Sie die Funktionen von Careti mit wiederverwendbaren Wissensmodulen."
 ---
 
 <Note>
@@ -10,14 +10,14 @@ Skills ist eine experimentelle Funktion. Aktivieren Sie diese in den Settings �
 
 Skills sind wiederverwendbare Anweisungssätze für spezifische Aufgaben. Jeder Skill bündelt detaillierte Anleitungen, Workflows und zusätzliche Ressourcen, die nur geladen werden, wenn sie für Ihre Anfrage relevant sind.
 
-Im Gegensatz zu Rules (die immer aktiv sind), laden Skills **on-demand**. Sie können Dutzende von Skills installieren, ohne den Kontext oder die Performance zu beeinträchtigen, da Caret nur den Namen und die Beschreibung des Skills sieht, bis dieser tatsächlich benötigt wird.
+Im Gegensatz zu Rules (die immer aktiv sind), laden Skills **on-demand**. Sie können Dutzende von Skills installieren, ohne den Kontext oder die Performance zu beeinträchtigen, da Careti nur den Namen und die Beschreibung des Skills sieht, bis dieser tatsächlich benötigt wird.
 
 ## Warum Skills?
 
 Stellen Sie sich vor, wie Sie ein neues Teammitglied einarbeiten würden: Sie würden ihm nicht alle Dokumente auf einmal geben. Sie geben ihm einen kurzen Überblick und weisen ihn dann auf detaillierte Handbücher hin, wenn er an spezifischen Aufgaben arbeitet.
 
 Skills funktionieren genauso:
-- **Beim Start**: Caret sieht nur eine kurze Beschreibung jedes Skills
+- **Beim Start**: Careti sieht nur eine kurze Beschreibung jedes Skills
 - **Bei Auslösung**: Die vollständigen Anweisungen für diesen Skill werden geladen
 - **Nach Bedarf**: Zusätzliche Dateien, die mit Skills gebündelt sind, werden erst gelesen, wenn auf sie verwiesen wird
 
@@ -46,7 +46,7 @@ description: Brief description of what this skill does and when to use it.
 
 # My Skill
 
-Detailed instructions for Caret to follow when this skill is activated.
+Detailed instructions for Careti to follow when this skill is activated.
 
 ## Steps
 
@@ -57,9 +57,9 @@ Detailed instructions for Caret to follow when this skill is activated.
 
 **Erforderliche Felder:**
 - `name`: Muss exakt mit dem Verzeichnisnamen übereinstimmen
-- `description`: Teilt Caret mit, wann dieser Skill verwendet werden soll (max. 1024 Zeichen)
+- `description`: Teilt Careti mit, wann dieser Skill verwendet werden soll (max. 1024 Zeichen)
 
-Die Beschreibung ist entscheidend, da Caret anhand dieser entscheidet, ob ein Skill aktiviert werden soll. Seien Sie präzise darüber, was der Skill macht und wann er eingesetzt werden sollte.
+Die Beschreibung ist entscheidend, da Careti anhand dieser entscheidet, ob ein Skill aktiviert werden soll. Seien Sie präzise darüber, was der Skill macht und wann er eingesetzt werden sollte.
 
 ## Wo Skills gespeichert werden
 
@@ -75,7 +75,7 @@ Skills können an zwei Orten gespeichert werden:
 Wenn ein globaler Skill und ein Projekt-Skill denselben Namen haben, haben **globale Skills Vorrang**. Dies ermöglicht es Ihnen, Skills für Ihren persönlichen Workflow anzupassen, während Sie weiterhin die Projektstandards nutzen.
 
 <Note>
-**Caret-Standardisierung**: Caret nutzt eine duale Verzeichnisarchitektur.
+**Careti-Standardisierung**: Careti nutzt eine duale Verzeichnisarchitektur.
 - `.agents/` - Für die AI (Token-optimiert)
 - `.users/` - Für Menschen (detaillierte Erklärungen)
 
@@ -93,9 +93,9 @@ Klicken Sie auf das Waage-Icon unter dem Chat-Eingabefeld, um das Rules- und Wor
 
 Skills sind standardmäßig aktiviert, wenn sie erkannt werden. Schalten Sie sie aus, wenn sie verfügbar, aber für das aktuelle Projekt nicht aktiv sein sollen.
 
-## Wie Caret Skills verwendet
+## Wie Careti Skills verwendet
 
-Wenn Sie eine Nachricht senden, sieht Caret eine Liste der verfügbaren Skills mit deren Beschreibungen. Wenn Ihre Anfrage zur Beschreibung eines Skills passt, aktiviert Caret diesen über das `use_skill`-Tool, welches die vollständigen Anweisungen lädt.
+Wenn Sie eine Nachricht senden, sieht Careti eine Liste der verfügbaren Skills mit deren Beschreibungen. Wenn Ihre Anfrage zur Beschreibung eines Skills passt, aktiviert Careti diesen über das `use_skill`-Tool, welches die vollständigen Anweisungen lädt.
 
 Wenn Sie beispielsweise einen Skill für das Deployment auf AWS haben:
 
@@ -106,7 +106,7 @@ description: Deploy applications to AWS using CDK. Use when deploying, updating 
 ---
 ```
 
-Die Frage "deploy this to AWS" würde Caret dazu veranlassen, den Skill zu aktivieren, seine detaillierten Anweisungen zu laden und diese zu befolgen, um Ihre Anfrage abzuschließen.
+Die Frage "deploy this to AWS" würde Careti dazu veranlassen, den Skill zu aktivieren, seine detaillierten Anweisungen zu laden und diese zu befolgen, um Ihre Anfrage abzuschließen.
 
 ## Beispiel: Datenanalyse-Skill
 
@@ -165,7 +165,7 @@ Für Visualisierungen bevorzugen Sie matplotlib oder seaborn, je nach Komplexit�
 
 ## Bundling von unterstützenden Dateien
 
-Skills können zusätzliche Dateien enthalten, auf die Caret nur bei Bedarf zugreift:
+Skills können zusätzliche Dateien enthalten, auf die Careti nur bei Bedarf zugreift:
 
 ```
 complex-skill/
@@ -192,7 +192,7 @@ python scripts/validate.py
 ```
 ````
 
-Caret liest diese Dateien mit `read_file`, wenn die Anweisungen darauf verweisen. Scripts können direkt ausgeführt werden, wobei nur der Output in den Kontext gelangt (nicht der Code des Scripts selbst).
+Careti liest diese Dateien mit `read_file`, wenn die Anweisungen darauf verweisen. Scripts können direkt ausgeführt werden, wobei nur der Output in den Kontext gelangt (nicht der Code des Scripts selbst).
 
 ## Ideen für Skills
 
@@ -217,7 +217,7 @@ Die besten Skills kodieren institutionelles Wissen, das sonst nur in den Köpfen
 
 | Feature | Zweck | Wann aktiv |
 |---------|---------|-------------|
-| **Rules** | Definiert, wie Caret sich verhalten soll | Immer (oder kontextabhängig) |
+| **Rules** | Definiert, wie Careti sich verhalten soll | Immer (oder kontextabhängig) |
 | **Workflows** | Schritt-für-Schritt-Aufgabenautomatisierung | Aufgerufen mit `/workflow.md` |
 | **Skills** | Fachwissen, das on-demand geladen wird | Ausgelöst durch passende Anfragen |
 
@@ -225,7 +225,7 @@ Die besten Skills kodieren institutionelles Wissen, das sonst nur in den Köpfen
 
 **Workflows** sind explizite Sequenzen, die Sie für spezifische Aufgaben aufrufen (wie `/release.md` für einen Release-Prozess).
 
-**Skills** sind Fachwissen, das Caret automatisch aktiviert, wenn es relevant ist (wie Datenanalyse-Kenntnisse, wenn Sie mit CSV-Dateien arbeiten).
+**Skills** sind Fachwissen, das Careti automatisch aktiviert, wenn es relevant ist (wie Datenanalyse-Kenntnisse, wenn Sie mit CSV-Dateien arbeiten).
 
 Verwenden Sie Rules für dauerhafte Einschränkungen, Workflows für explizite Automatisierung und Skills für Fachwissen, das verfügbar, aber nicht immer aktiv sein sollte.
 

@@ -1,20 +1,20 @@
 ---
 title: "LM Studio"
-description: "Eine Kurzanleitung zur Einrichtung von LM Studio für die lokale Ausführung von KI-Modellen mit Caret."
+description: "Eine Kurzanleitung zur Einrichtung von LM Studio für die lokale Ausführung von KI-Modellen mit Careti."
 ---
 
 <Note>
-Dies ist ein Dokument auf Basis von Caret. Es bezieht sich auf den Caret v3.38.1 Merge-Stand. Falls es Caret-spezifische Richtlinien gibt (unterstützte lokale Runtimes, Authentifizierung/Routing, Modellbeschränkungen), werden diese im Text durch ein `<Note>` gekennzeichnet.
+Dies ist ein Dokument auf Basis von Careti. Es bezieht sich auf den Careti v3.38.1 Merge-Stand. Falls es Careti-spezifische Richtlinien gibt (unterstützte lokale Runtimes, Authentifizierung/Routing, Modellbeschränkungen), werden diese im Text durch ein `<Note>` gekennzeichnet.
 </Note>
 
-## LM Studio mit Caret einrichten
+## LM Studio mit Careti einrichten
 
-Führen Sie KI-Modelle lokal mit LM Studio und Caret aus.
+Führen Sie KI-Modelle lokal mit LM Studio und Careti aus.
 
 ### Voraussetzungen
 
 -   Windows, macOS oder Linux Computer mit AVX2-Unterstützung
--   In VS Code installiertes Caret
+-   In VS Code installiertes Careti
 
 ### Einrichtungsschritte
 
@@ -65,23 +65,23 @@ Führen Sie KI-Modelle lokal mit LM Studio und Caret aus.
 	/>
 </Frame>
 
-#### 5. Caret konfigurieren
+#### 5. Careti konfigurieren
 
 1. Öffnen Sie VS Code
-2. Klicken Sie auf das Caret-Einstellungen-Symbol
+2. Klicken Sie auf das Careti-Einstellungen-Symbol
 3. Wählen Sie „LM Studio“ als API provider aus
 4. Wählen Sie Ihr Modell aus den verfügbaren Optionen aus
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-select-model-caret.gif"
-		alt="Configuring Caret with LM Studio"
+		alt="Configuring Careti with LM Studio"
 	/>
 </Frame>
 
 ### Empfohlenes Modell und Einstellungen
 
-Für die beste Erfahrung mit Caret verwenden Sie **Qwen3 Coder 30B A3B Instruct**. Dieses Modell bietet eine starke Coding-Performance und eine zuverlässige Tool-Nutzung.
+Für die beste Erfahrung mit Careti verwenden Sie **Qwen3 Coder 30B A3B Instruct**. Dieses Modell bietet eine starke Coding-Performance und eine zuverlässige Tool-Nutzung.
 
 #### Kritische Einstellungen
 
@@ -106,20 +106,20 @@ Wählen Sie die Quantisierung basierend auf Ihrem RAM:
 
 ### Compact Prompts aktivieren
 
-Für eine optimale Performance mit lokalen Modellen aktivieren Sie Compact Prompts in den Caret-Einstellungen. Dies reduziert die Prompt-Größe um 90 %, während die Kernfunktionalität erhalten bleibt.
+Für eine optimale Performance mit lokalen Modellen aktivieren Sie Compact Prompts in den Careti-Einstellungen. Dies reduziert die Prompt-Größe um 90 %, während die Kernfunktionalität erhalten bleibt.
 
-Navigieren Sie zu Caret Settings → Features → Use Compact Prompt und schalten Sie es ein.
+Navigieren Sie zu Careti Settings → Features → Use Compact Prompt und schalten Sie es ein.
 
 ### Wichtige Hinweise
 
--   Starten Sie LM Studio, bevor Sie es mit Caret verwenden
+-   Starten Sie LM Studio, bevor Sie es mit Careti verwenden
 -   Lassen Sie LM Studio im Hintergrund laufen
 -   Der erste Modell-Download kann je nach Größe einige Minuten dauern
 -   Modelle werden nach dem Download lokal gespeichert
 
 ### Fehlerbehebung
 
-1. Wenn Caret keine Verbindung zu LM Studio herstellen kann:
+1. Wenn Careti keine Verbindung zu LM Studio herstellen kann:
 2. Überprüfen Sie, ob der LM Studio Server läuft (Developer-Tab prüfen)
 3. Stellen Sie sicher, dass ein Modell geladen ist
 4. Überprüfen Sie, ob Ihr System die Hardwareanforderungen erfüllt

@@ -1,14 +1,14 @@
 ---
 title: "GitHub Issue RCA Sample"
-description: "Automated GitHub issue analysis using Caret CLI to identify root causes."
+description: "Automated GitHub issue analysis using Careti CLI to identify root causes."
 ---
 
 # GitHub Root Cause Analysis
 
-Automated GitHub issue analysis using Caret CLI. This script uses Caret's autonomous AI capabilities to fetch, analyze, and identify root causes of GitHub issues, outputting clean, parseable results that can be easily integrated into your development workflows.
+Automated GitHub issue analysis using Careti CLI. This script uses Careti's autonomous AI capabilities to fetch, analyze, and identify root causes of GitHub issues, outputting clean, parseable results that can be easily integrated into your development workflows.
 
 <Note>
-**New to Caret CLI?** This sample assumes you have already completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and authenticated with `caret auth`. If you haven't set up Caret CLI yet, please start there first.
+**New to Careti CLI?** This sample assumes you have already completed the [Installation Guide](https://docs.caret.bot/caret-cli/installation) and authenticated with `caret auth`. If you haven't set up Careti CLI yet, please start there first.
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Automated GitHub issue analysis using Caret CLI. This script uses Caret's autono
 
 This sample assumes you have already:
 
-- **Caret CLI** installed and authenticated ([Installation Guide](https://docs.caret.bot/caret-cli/installation))
+- **Careti CLI** installed and authenticated ([Installation Guide](https://docs.caret.bot/caret-cli/installation))
 - **At least one AI model provider** configured (e.g., OpenRouter, Anthropic, OpenAI)
-- **Basic familiarity** with Caret CLI commands
+- **Basic familiarity** with Careti CLI commands
 
 Additionally, you'll need:
 
@@ -79,7 +79,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -96,7 +96,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -135,9 +135,9 @@ Ask specific questions about the issue:
 ./analyze-issue.sh https://github.com/owner/repo/issues/456 "What is the security impact?"
 ```
 
-### Using Specific Caret Instance
+### Using Specific Careti Instance
 
-Target a particular Caret instance by address:
+Target a particular Careti instance by address:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -147,13 +147,13 @@ Target a particular Caret instance by address:
 
 <Warning>
 This is useful when:
-- Running multiple Caret instances
-- Using a remote Caret server
+- Running multiple Careti instances
+- Using a remote Careti server
 - Testing with specific configurations
 </Warning>
 
 <Note>
-The script will automatically handle everything: fetching the issue, analyzing it with Caret, and displaying the results. The analysis typically takes 30-60 seconds depending on the issue complexity.
+The script will automatically handle everything: fetching the issue, analyzing it with Careti, and displaying the results. The analysis typically takes 30-60 seconds depending on the issue complexity.
 </Note>
 
 ## How It Works
@@ -178,7 +178,7 @@ fi
 - Validates required GitHub issue URL
 - Shows clear usage examples
 - Supports optional custom prompt
-- Supports optional Caret instance address
+- Supports optional Careti instance address
 
 ### Argument Parsing
 
@@ -203,7 +203,7 @@ fi
 This is where the magic happens:
 
 ```bash
-# Ask Caret for his analysis, showing only the summary
+# Ask Careti for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -218,7 +218,7 @@ caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
 
 **2. `--mode act`**
    - Enables act mode for active investigation
-   - Allows Caret to use tools (read files, run commands, etc.)
+   - Allows Careti to use tools (read files, run commands, etc.)
 
 **3. `$ADDRESS`**
    - Optional address flag for specific instance
@@ -366,10 +366,10 @@ Get second opinions on proposed changes:
 
 ## Conclusion
 
-This sample demonstrates how to build an autonomous GitHub issue analysis tool using Caret CLI:
+This sample demonstrates how to build an autonomous GitHub issue analysis tool using Careti CLI:
 
-1. **Building autonomous CLI tools** using Caret's capabilities
-2. **Parsing structured JSON output** from Caret CLI
+1. **Building autonomous CLI tools** using Careti's capabilities
+2. **Parsing structured JSON output** from Careti CLI
 3. **Creating flexible automation scripts** with custom prompting
 4. **Integrating with GitHub** for issue analysis
 5. **Handling command-line arguments** effectively

@@ -1,7 +1,7 @@
 ```
 ---
 title: "Intégration GitHub Actions"
-description: "Répondez automatiquement aux *issues* GitHub en mentionnant @caret dans les commentaires en utilisant Caret CLI dans GitHub Actions."
+description: "Répondez automatiquement aux *issues* GitHub en mentionnant @caret dans les commentaires en utilisant Careti CLI dans GitHub Actions."
 ---
 
 # Exemple d'intégration GitHub
@@ -9,21 +9,21 @@ description: "Répondez automatiquement aux *issues* GitHub en mentionnant @care
 Automatisez l'analyse des *issues* GitHub avec l'IA. Mentionnez `@caret` dans n'importe quel commentaire d'*issue* pour déclencher une investigation autonome qui lit les fichiers, analyse le code et fournit des informations exploitables - le tout s'exécutant automatiquement dans GitHub Actions.
 
 <Note>
-**Nouveau sur Caret CLI ?** Cet exemple suppose que vous comprenez les bases de Caret CLI et que vous avez terminé le [Guide d'installation](https://docs.caret.bot/french/caret-cli/installation). Si vous êtes novice en Caret CLI, nous vous recommandons de commencer par l'[exemple GitHub RCA](/french/caret-cli/samples/github-issue-rca) en premier, car il est plus simple et vous aidera à comprendre les fondamentaux avant de configurer GitHub Actions.
+**Nouveau sur Careti CLI ?** Cet exemple suppose que vous comprenez les bases de Careti CLI et que vous avez terminé le [Guide d'installation](https://docs.caret.bot/french/caret-cli/installation). Si vous êtes novice en Careti CLI, nous vous recommandons de commencer par l'[exemple GitHub RCA](/french/caret-cli/samples/github-issue-rca) en premier, car il est plus simple et vous aidera à comprendre les fondamentaux avant de configurer GitHub Actions.
 </Note>
 
 ## Le Workflow
 
-Déclenchez Caret en mentionnant `@caret` dans n'importe quel commentaire d'*issue* :
+Déclenchez Careti en mentionnant `@caret` dans n'importe quel commentaire d'*issue* :
 
 <Frame>
   <img src="https://storage.googleapis.com/cline_public_images/ss0a-comment.png" alt="Issue comment with @caret mention" width="600" />
 </Frame>
 
-L'analyse automatisée de Caret apparaît sous forme de nouveau commentaire, avec des informations tirées de votre base de code réelle :
+L'analyse automatisée de Careti apparaît sous forme de nouveau commentaire, avec des informations tirées de votre base de code réelle :
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Caret" width="600" />
+  <img src="https://storage.googleapis.com/cline_public_images/ss0b-final.png" alt="Automated analysis response from Careti" width="600" />
 </Frame>
 
 L'ensemble de l'investigation s'exécute de manière autonome dans GitHub Actions - de l'exploration des fichiers à la publication des résultats.
@@ -34,7 +34,7 @@ Configurons votre référentiel.
 
 Avant de commencer, vous aurez besoin de :
 
-- **Connaissance de Caret CLI** - Avoir terminé le [Guide d'installation](https://docs.caret.bot/french/caret-cli/installation) et comprendre l'utilisation de base
+- **Connaissance de Careti CLI** - Avoir terminé le [Guide d'installation](https://docs.caret.bot/french/caret-cli/installation) et comprendre l'utilisation de base
 - **Référentiel GitHub** - Avec un accès administrateur pour configurer les Actions et les secrets
 - **Familiarité avec GitHub Actions** - Compréhension de base des *workflows* et de l'intégration/déploiement continu (CI/CD)
 - **Compte de fournisseur d'API** - OpenRouter, Anthropic ou similaire avec clé d'API
@@ -55,7 +55,7 @@ Alternativement, vous pouvez copier le fichier de *workflow* complet directement
 
 <Accordion title="Cliquez pour voir le workflow caret-responder.yml complet">
 ```yaml
-name: Caret Issue Assistant
+name: Careti Issue Assistant
 
 on:
   issue_comment:
@@ -86,19 +86,19 @@ jobs:
         if: steps.detect.outputs.hit == 'true'
         uses: actions/checkout@v4
 
-      # Node v20 is needed for Caret CLI on GitHub Actions Linux
+      # Node v20 is needed for Careti CLI on GitHub Actions Linux
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Setup Caret CLI
+      - name: Setup Careti CLI
         if: steps.detect.outputs.hit == 'true'
         run: |
-          # Install the Caret CLI
+          # Install the Careti CLI
           sudo npm install -g caret
 
-      - name: Create Caret Instance
+      - name: Create Careti Instance
         if: steps.detect.outputs.hit == 'true'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -177,7 +177,7 @@ export GITREPO="myproject"
 Cela indique au *workflow* où télécharger le script d'analyse depuis votre référentiel après l'avoir validé à l'étape 3.
 </Warning>
 
-Le *workflow* recherchera les *issues* nouvelles ou mises à jour, vérifiera les mentions `@caret`, puis démarrera une instance de Caret CLI pour examiner l'*issue*, en fournissant une réponse sous forme de commentaire à l'*issue*.
+Le *workflow* recherchera les *issues* nouvelles ou mises à jour, vérifiera les mentions `@caret`, puis démarrera une instance de Careti CLI pour examiner l'*issue*, en fournissant une réponse sous forme de commentaire à l'*issue*.
 
 ### 2. Configurez les clés d'API
 
@@ -205,7 +205,7 @@ Ajoutez vos clés d'API de fournisseur d'IA en tant que secrets de référentiel
      <img src="https://storage.googleapis.com/cline_public_images/ss03-ready.png" alt="API key configured" width="600" />
    </Frame>
 
-Vous êtes maintenant prêt à fournir à Caret les informations d'identification dont il a besoin dans une GitHub Action.
+Vous êtes maintenant prêt à fournir à Careti les informations d'identification dont il a besoin dans une GitHub Action.
 
 ### 3. Ajoutez le script d'analyse
 
@@ -234,7 +234,7 @@ nano git-scripts/analyze-issue.sh  # or use vim, code, etc.
 <Accordion title="Cliquez pour voir le script analyze-issue.sh complet">
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -251,7 +251,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -264,14 +264,14 @@ chmod +x git-scripts/analyze-issue.sh
 ```
 </Accordion>
 
-Ce script d'analyse appelle Caret pour exécuter une invite sur une *issue* GitHub, en résumant la sortie pour remplir la réponse à l'*issue*.
+Ce script d'analyse appelle Careti pour exécuter une invite sur une *issue* GitHub, en résumant la sortie pour remplir la réponse à l'*issue*.
 
 ### 4. Validez et Poussez
 
 ```bash
 git add .github/workflows/caret-responder.yml
 git add git-scripts/analyze-issue.sh
-git commit -m "Add Caret issue assistant workflow"
+git commit -m "Add Careti issue assistant workflow"
 git push
 ```
 
@@ -289,10 +289,10 @@ Une fois configuré, mentionnez simplement `@caret` dans n'importe quel commenta
 
 GitHub Actions va :
 1. Détecter la mention `@caret`
-2. Démarrer une instance de Caret CLI
+2. Démarrer une instance de Careti CLI
 3. Télécharger le script d'analyse
 4. Analyser l'*issue* en utilisant le mode `act` avec `yolo` (entièrement autonome)
-5. Publier l'analyse de Caret sous forme de nouveau commentaire
+5. Publier l'analyse de Careti sous forme de nouveau commentaire
 
 **Remarque :** Le *workflow* ne se déclenche que sur les commentaires d'*issue*, pas sur les commentaires de *pull request*.
 
@@ -302,8 +302,8 @@ Le *workflow* (`caret-responder.yml`) :
 
 1. Se **déclenche** sur les commentaires d'*issue* (créés ou modifiés)
 2. **Détecte** les mentions `@caret` (insensible à la casse)
-3. **Installe** Caret CLI globalement en utilisant `npm`
-4. **Crée** une instance de Caret en utilisant `caret instance new`
+3. **Installe** Careti CLI globalement en utilisant `npm`
+4. **Crée** une instance de Careti en utilisant `caret instance new`
 5. **Configure** l'authentification en utilisant `caret config set open-router-api-key=...
    --address ...`
 6. **Télécharge** le script réutilisable `analyze-issue.sh` de l'exemple

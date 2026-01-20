@@ -4,9 +4,9 @@ title: "Mentions de fichiers"
 sidebarTitle: "Mentions de Fichiers"
 ---
 
-Les mentions de fichiers vous permettent d'intégrer n'importe quel fichier de votre workspace directement dans votre conversation avec Caret. Plus besoin de copier-coller des extraits de code - tapez simplement `@/` et indiquez le fichier pour lequel vous avez besoin d'aide.
+Les mentions de fichiers vous permettent d'intégrer n'importe quel fichier de votre workspace directement dans votre conversation avec Careti. Plus besoin de copier-coller des extraits de code - tapez simplement `@/` et indiquez le fichier pour lequel vous avez besoin d'aide.
 
-Lorsque vous tapez `@/` dans le chat, Caret affiche les fichiers de votre workspace. Naviguez à travers les dossiers, sélectionnez le fichier souhaité, et il est instantanément disponible pour Caret - avec tous les imports, les fonctions associées et le contexte environnant.
+Lorsque vous tapez `@/` dans le chat, Careti affiche les fichiers de votre workspace. Naviguez à travers les dossiers, sélectionnez le fichier souhaité, et il est instantanément disponible pour Careti - avec tous les imports, les fonctions associées et le contexte environnant.
 
 J'utilise constamment les mentions de fichiers lors du débogage. Au lieu d'essayer de déterminer quelles parties de mon code copier, je fais simplement référence directement au fichier :
 
@@ -20,17 +20,17 @@ Et l'endpoint API : @/src/api/contact.js
 Qu'est-ce que j'oublie ?
 ```
 
-Cela donne à Caret tout ce dont il a besoin - le message d'erreur, le code du composant et l'endpoint API - sans que j'aie à copier quoi que ce soit. Caret peut voir les imports, les dépendances et tout le contexte environnant qui pourrait être à l'origine du problème.
+Cela donne à Careti tout ce dont il a besoin - le message d'erreur, le code du composant et l'endpoint API - sans que j'aie à copier quoi que ce soit. Careti peut voir les imports, les dépendances et tout le contexte environnant qui pourrait être à l'origine du problème.
 
-Les mentions de fichiers brillent lorsque vous traitez des bugs complexes qui s'étendent sur plusieurs fichiers. Auparavant, je devais copier soigneusement chaque fichier pertinent, en m'assurant de ne rien manquer d'important. Maintenant, je fais simplement référence à chaque fichier avec `@/` et Caret obtient une image complète.
+Les mentions de fichiers brillent lorsque vous traitez des bugs complexes qui s'étendent sur plusieurs fichiers. Auparavant, je devais copier soigneusement chaque fichier pertinent, en m'assurant de ne rien manquer d'important. Maintenant, je fais simplement référence à chaque fichier avec `@/` et Careti obtient une image complète.
 
-La prochaine fois que vous êtes bloqué sur un problème, essayez d'utiliser les mentions de fichiers au lieu de copier du code. Vous gagnerez du temps et obtiendrez de meilleures réponses car Caret dispose de tout le contexte dont il a besoin.
+La prochaine fois que vous êtes bloqué sur un problème, essayez d'utiliser les mentions de fichiers au lieu de copier du code. Vous gagnerez du temps et obtiendrez de meilleures réponses car Careti dispose de tout le contexte dont il a besoin.
 
 ## Comment ça marche en interne
 
 Lorsque vous utilisez une mention de fichier dans votre message, voici ce qui se passe en coulisses :
 
-1. Lorsque vous envoyez votre message, Caret détecte le pattern `@/path/to/file` dans votre texte
+1. Lorsque vous envoyez votre message, Careti détecte le pattern `@/path/to/file` dans votre texte
 2. L'extension résout le chemin de fichier par rapport à la racine de votre workspace
 3. Il vérifie si le fichier est binaire (comme une image) ou textuel
 4. Pour les fichiers texte, il lit le contenu complet du fichier

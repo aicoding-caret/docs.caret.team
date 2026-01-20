@@ -1,25 +1,25 @@
 ```
 ---
-title: "Désactiver les pagers de terminal pendant les sessions Caret"
-description: "Rendre la sortie CLI non interactive lorsque Caret exécute des commandes en détectant la variable d'environnement CLINE_ACTIVE et en désactivant les pagers comme less."
+title: "Désactiver les pagers de terminal pendant les sessions Careti"
+description: "Rendre la sortie CLI non interactive lorsque Careti exécute des commandes en détectant la variable d'environnement CLINE_ACTIVE et en désactivant les pagers comme less."
 ---
 
-De nombreux outils CLI (comme Git) utilisent un pager tel que `less` pour une sortie interactive et défilable. Lorsque Caret exécute des commandes dans votre terminal, cette interactivité devient gênante : le pager peut se bloquer sur la première page et interrompre la progression. Vous pouvez configurer votre shell de sorte que lorsqu'un terminal est lancé par Caret, les pagers soient désactivés et que la sortie soit diffusée normalement.
+De nombreux outils CLI (comme Git) utilisent un pager tel que `less` pour une sortie interactive et défilable. Lorsque Careti exécute des commandes dans votre terminal, cette interactivité devient gênante : le pager peut se bloquer sur la première page et interrompre la progression. Vous pouvez configurer votre shell de sorte que lorsqu'un terminal est lancé par Careti, les pagers soient désactivés et que la sortie soit diffusée normalement.
 
 ## Comment ça marche
 
-Caret définit une variable d'environnement pour les terminaux qu'il ouvre pour exécuter des commandes :
+Careti définit une variable d'environnement pour les terminaux qu'il ouvre pour exécuter des commandes :
 
-- `CLINE_ACTIVE` : non vide lorsque le shell s'exécute sous Caret
+- `CLINE_ACTIVE` : non vide lorsque le shell s'exécute sous Careti
 
-Vous pouvez détecter cette variable dans votre fichier de démarrage de shell et ajuster les variables d'environnement ou les alias uniquement pour les sessions exécutées par Caret. Cela permet de conserver vos terminaux interactifs normaux inchangés.
+Vous pouvez détecter cette variable dans votre fichier de démarrage de shell et ajuster les variables d'environnement ou les alias uniquement pour les sessions exécutées par Careti. Cela permet de conserver vos terminaux interactifs normaux inchangés.
 
 ## Configuration rapide (Zsh/Bash)
 
 Ajoutez ce qui suit à votre fichier `~/.zshrc`, `~/.bashrc` ou `~/.bash_profile` :
 
 ```bash
-# Disable pagers when the terminal is launched by Caret
+# Disable pagers when the terminal is launched by Careti
 if [[ -n "$CLINE_ACTIVE" ]]; then
   export PAGER=cat
   export GIT_PAGER=cat
@@ -39,7 +39,7 @@ Cette configuration s'applique uniquement lorsque `CLINE_ACTIVE` est défini, de
 
 ## Vérifier
 
-- Ouvrez une tâche dans Caret qui exécute des commandes de terminal et vérifiez :
+- Ouvrez une tâche dans Careti qui exécute des commandes de terminal et vérifiez :
   - `echo "$CLINE_ACTIVE"` affiche une valeur non vide
   - `git log` ou d'autres sorties longues doivent être diffusées sans pause
 - Si les modifications ne prennent pas effet :
@@ -59,7 +59,7 @@ journalctl --no-pager -u nginx -n 200
 less -FRX README.md
 ```
 
-- Vous pouvez également remplacer la pagination via des alias de shell limités aux sessions Caret en utilisant des options plutôt que des variables d'environnement :
+- Vous pouvez également remplacer la pagination via des alias de shell limités aux sessions Careti en utilisant des options plutôt que des variables d'environnement :
 
 ```bash
 if [[ -n "$CLINE_ACTIVE" ]]; then
@@ -75,7 +75,7 @@ fi
 - Si vous préférez les variables d'environnement, de nombreuses CLI respectent également une variable de pager générique ou spécifique à l'outil :
   - Git : `GIT_PAGER=cat`
   - Systemd : `SYSTEMD_PAGER=cat`
-  - Pages de manuel : `MANPAGER=cat` (généralement pas nécessaire pour les commandes pilotées par Caret)
+  - Pages de manuel : `MANPAGER=cat` (généralement pas nécessaire pour les commandes pilotées par Careti)
 
 - Les alias affectent le shell interactif actuel, tandis que les variables d'environnement se propagent aux processus enfants. Choisissez l'approche qui convient le mieux à votre flux de travail.
 ```

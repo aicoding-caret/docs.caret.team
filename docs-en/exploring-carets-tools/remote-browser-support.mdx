@@ -1,20 +1,20 @@
 ---
 title: "Remote Browser Support"
-description: "Remote browser support allows Caret to utilize a remote Chrome instance, leveraging authentication tokens and session cookies relevant to certain web development test cases."
+description: "Remote browser support allows Careti to utilize a remote Chrome instance, leveraging authentication tokens and session cookies relevant to certain web development test cases."
 ---
 
-The Remote Browser feature in Caret allows the AI assistant to interact with web content directly through a controlled browser instance. This enables several powerful capabilities:
+The Remote Browser feature in Careti allows the AI assistant to interact with web content directly through a controlled browser instance. This enables several powerful capabilities:
 
 -   Viewing and interacting with websites
 -   Testing locally running web applications
 -   Monitoring console logs and errors
 -   Performing browser actions like clicking, typing, and scrolling
 
-## Remote Browser in Caret
+## Remote Browser in Careti
 
 ### What is Remote Browser?
 
-Remote Browser allows Caret to view and interact with websites directly. This feature enables Caret to:
+Remote Browser allows Careti to view and interact with websites directly. This feature enables Careti to:
 
 -   Visit websites and view their content
 -   Test your locally running web applications
@@ -26,7 +26,7 @@ Remote Browser allows Caret to view and interact with websites directly. This fe
 
 #### Basic Commands
 
-You can ask Caret to use the browser with simple instructions:
+You can ask Careti to use the browser with simple instructions:
 
 -   **Open a website**: "Use the browser to check the website at [https://example.com](https://example.com/)"
 -   **Click on elements**: "Click the login button"
@@ -58,32 +58,32 @@ Please go to https://example.com/contact, fill out the contact form with some te
 
 #### One Browser at a Time
 
-Caret can only use one browser at a time. If you want to visit a different website, you can either:
+Careti can only use one browser at a time. If you want to visit a different website, you can either:
 
--   Ask Caret to navigate to a new URL within the same browser session
--   Ask Caret to close the current browser and open a new one
+-   Ask Careti to navigate to a new URL within the same browser session
+-   Ask Careti to close the current browser and open a new one
 
 #### Browser Must Be Closed Before Using Other Tools
 
-If you want Caret to edit files or run commands after using the browser, you must first ask it to close the browser:
+If you want Careti to edit files or run commands after using the browser, you must first ask it to close the browser:
 
 ```javascript
 Close the browser and then update the CSS file to fix the alignment issue we saw.
 ```
 
-#### What Caret Sees
+#### What Careti Sees
 
-The browser has a fixed viewport size (900x600 pixels by default), similar to a small laptop screen. Caret will share screenshots after each action so you can see exactly what it sees.
+The browser has a fixed viewport size (900x600 pixels by default), similar to a small laptop screen. Careti will share screenshots after each action so you can see exactly what it sees.
 
 #### Console Logs
 
-Caret captures browser console logs, which can be helpful for debugging web applications. These logs are included with each screenshot.
+Careti captures browser console logs, which can be helpful for debugging web applications. These logs are included with each screenshot.
 
 ### Common Use Cases
 
 -   **Web Development**: Test your websites and web applications
 -   **UI/UX Review**: Get feedback on website design and usability
--   **Content Research**: Have Caret browse websites to gather information
+-   **Content Research**: Have Careti browse websites to gather information
 -   **Form Testing**: Verify that forms work correctly
 -   **Responsive Design Testing**: Check how websites look at different screen sizes
 
@@ -91,7 +91,7 @@ Caret captures browser console logs, which can be helpful for debugging web appl
 
 -   **If a website doesn't load**: Try providing a direct URL with the http:// or https:// prefix
 -   **If clicking doesn't work**: Try describing the location of the element more precisely
--   **If the browser seems stuck**: Ask Caret to close the browser and try again
+-   **If the browser seems stuck**: Ask Careti to close the browser and try again
 
 ### Using Remote Browser with VS Code in WSL
 
@@ -104,10 +104,10 @@ When running VS Code in WSL, you'll need to configure Windows to allow WSL to co
 New-NetFirewallRule -DisplayName "WSL Chrome Debug" -Direction Inbound -LocalPort 9222 -Protocol TCP -Action Allow
 ```
 
-#### Configure Caret in VS Code:
+#### Configure Careti in VS Code:
 
 1. Open VS Code settings
-2. Search for "Caret: Chrome Executable Path"
+2. Search for "Careti: Chrome Executable Path"
 3. Set the value to the path of your Chrome executable (e.g., `C:\Program Files\Google\Chrome\Application\chrome.exe`)
 
-Caret should now be able to use the Remote Browser feature from within WSL.
+Careti should now be able to use the Remote Browser feature from within WSL.

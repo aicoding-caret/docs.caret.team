@@ -2,7 +2,7 @@
 title: "Focus Chain"
 ---
 
-Focus Chain est une fonctionnalité d'amélioration de la gestion des tâches dans Caret qui offre une gestion automatique de la liste de tâches avec un suivi de la progression en temps réel tout au long de vos tâches. 
+Focus Chain est une fonctionnalité d'amélioration de la gestion des tâches dans Careti qui offre une gestion automatique de la liste de tâches avec un suivi de la progression en temps réel tout au long de vos tâches. 
 
 <figure>
 	<img
@@ -11,17 +11,17 @@ Focus Chain est une fonctionnalité d'amélioration de la gestion des tâches da
 	/>
 </figure>
 
-Cela permet à Caret de travailler sur des tâches à long terme, en gérant de manière transparente le contexte envoyé aux LLMs, et en maintenant Caret sur la bonne voie malgré les nombreuses réinitialisations de la context window.
+Cela permet à Careti de travailler sur des tâches à long terme, en gérant de manière transparente le contexte envoyé aux LLMs, et en maintenant Careti sur la bonne voie malgré les nombreuses réinitialisations de la context window.
 
 :::tip
-  Focus Chain fonctionne particulièrement bien avec la [Deep Planning slash command](/french/features/slash-commands/deep-planning) de Caret, offrant un suivi de progression fluide pour les tâches d'implémentation créées via le [planning process](/french/features/plan-and-act).
+  Focus Chain fonctionne particulièrement bien avec la [Deep Planning slash command](/french/features/slash-commands/deep-planning) de Careti, offrant un suivi de progression fluide pour les tâches d'implémentation créées via le [planning process](/french/features/plan-and-act).
 :::
 
 ## Fonctionnalités clés
 
 ### Génération automatique de listes de tâches
 
-Caret analyse votre tâche et crée automatiquement une liste de tâches complète avec :
+Careti analyse votre tâche et crée automatiquement une liste de tâches complète avec :
 - Des éléments clairs et exploitables au format checklist markdown
 - Une décomposition logique des tâches complexes en étapes gérables
 - Des mises à jour en temps réel à mesure que le travail progresse
@@ -31,7 +31,7 @@ Caret analyse votre tâche et crée automatiquement une liste de tâches complè
 Les listes de tâches sont stockées sous forme de fichiers markdown modifiables :
 - Modification directe via votre éditeur markdown préféré
 - Détection automatique des modifications que vous apportez
-- Intégration transparente dans le workflow de Caret
+- Intégration transparente dans le workflow de Careti
 - Accès rapide via le bouton d'édition dans l'en-tête de la tâche
 
 ### Suivi visuel de la progression
@@ -53,24 +53,24 @@ Des rappels configurables garantissent que les listes de tâches restent à jour
 ## Prise en main
 
 <Steps>
-  <Step title="Ouvrir les paramètres de Caret">
-      - Cliquez sur l'icône d'engrenage dans la barre latérale de Caret
+  <Step title="Ouvrir les paramètres de Careti">
+      - Cliquez sur l'icône d'engrenage dans la barre latérale de Careti
       - Naviguez vers la section "Features"
   </Step>
   <Step title="Activer Focus Chain">
       - Cochez "Enable Focus Chain"
-      - Ajustez éventuellement le "Remind Caret Interval" (par défaut : 6 messages)
+      - Ajustez éventuellement le "Remind Careti Interval" (par défaut : 6 messages)
   </Step>
   <Step title="Démarrer une nouvelle tâche">
       - Commencez une nouvelle tâche
-      - Caret commencera automatiquement à créer et à gérer des listes de tâches
+      - Careti commencera automatiquement à créer et à gérer des listes de tâches
   </Step>
 </Steps>
 
 | Paramètre | Par défaut | Plage | Description |
 |-----------|------------|-------|-------------|
 | Enable Focus Chain | Désactivé | On/Off | Active le suivi amélioré de la progression des tâches |
-| Remind Caret Interval | 6 | 1-100 messages | Fréquence à laquelle Caret met à jour la liste de tâches |
+| Remind Careti Interval | 6 | 1-100 messages | Fréquence à laquelle Careti met à jour la liste de tâches |
 
 ## Exemples d'utilisation
 
@@ -81,12 +81,12 @@ Lorsque vous démarrez une nouvelle tâche avec Focus Chain activé :
 ``` markdown User Request
 User: "Create a user authentication system for my React app"
 
-Caret: [Analyzes request and creates todo list]
+Careti: [Analyzes request and creates todo list]
 ```
 
 #### 2. Liste de tâches créée
 
-Caret crée un plan complet pour la tâche, stocké dans un fichier markdown :
+Careti crée un plan complet pour la tâche, stocké dans un fichier markdown :
 
 ```markdown Todo List Created
 - [ ] Set up project structure
@@ -101,7 +101,7 @@ Caret crée un plan complet pour la tâche, stocké dans un fichier markdown :
 
 #### 3. Suivi de la progression
 
-À mesure que Caret travaille, l'en-tête de la tâche affiche la progression en temps réel :
+À mesure que Careti travaille, l'en-tête de la tâche affiche la progression en temps réel :
 
 ```markdown Todo List Header
 [3/8] Implement login functionality     ⌄
@@ -155,7 +155,7 @@ Besoin d'ajuster la liste de tâches ? Aucun problème.
     Ajoutez, supprimez ou réorganisez les éléments selon vos besoins
   </Step>
   <Step title="Enregistrer le fichier">
-    Caret détecte et utilise automatiquement vos mises à jour
+    Careti détecte et utilise automatiquement vos mises à jour
   </Step>
 </Steps>
 
@@ -198,7 +198,7 @@ Les fichiers de tâches utilisent la syntaxe standard des checklists markdown :
 
 ## Intégration avec le Plan/Act Mode
 
-Focus Chain fonctionne de manière transparente avec le [Plan/Act mode](/french/features/plan-and-act) de Caret :
+Focus Chain fonctionne de manière transparente avec le [Plan/Act mode](/french/features/plan-and-act) de Careti :
 
 - **Plan Mode** : Listes de tâches optionnelles pour présenter des étapes concrètes
 - **Act Mode** : Création automatique de tâches lors du passage du Plan Mode
@@ -217,7 +217,7 @@ Focus Chain fonctionne de manière transparente avec le [Plan/Act mode](/french/
       - Mentionnez les technologies ou approches préférées
 
     2. **Réviser les listes générées**
-      - Vérifiez que la décomposition de Caret correspond à vos attentes
+      - Vérifiez que la décomposition de Careti correspond à vos attentes
       - Vérifiez que toutes les étapes importantes sont incluses
       - Assurez-vous que l'ordre est logique pour votre projet
 
@@ -241,7 +241,7 @@ Focus Chain fonctionne de manière transparente avec le [Plan/Act mode](/french/
     3. **Révisions régulières**
       - Vérifiez périodiquement la progression lors des tâches longues
       - Mettez à jour les listes de tâches à mesure que les exigences évoluent
-      - Communiquez les changements à Caret via des modifications
+      - Communiquez les changements à Careti via des modifications
   :::
   :::details Accordion
     1. **Partager les fichiers de tâches**
@@ -277,7 +277,7 @@ Vous rencontrez des problèmes ? Essayez ces solutions rapides :
   :::
 :::
 
-Toujours bloqué ? Utilisez la commande [/reportbug](/french/features/slash-commands/report-bug) dans Caret pour obtenir de l'aide.
+Toujours bloqué ? Utilisez la commande [/reportbug](/french/features/slash-commands/report-bug) dans Careti pour obtenir de l'aide.
 
 ## Détails techniques (pour les curieux)
 
@@ -299,4 +299,4 @@ Toujours bloqué ? Utilisez la commande [/reportbug](/french/features/slash-comm
   :::
 :::
 
-Focus Chain transforme Caret en votre gestionnaire de projet personnel, vous permettant de rester sur la bonne voie et de garder vos tâches organisées. Essayez-le pour votre prochain projet !
+Focus Chain transforme Careti en votre gestionnaire de projet personnel, vous permettant de rester sur la bonne voie et de garder vos tâches organisées. Essayez-le pour votre prochain projet !

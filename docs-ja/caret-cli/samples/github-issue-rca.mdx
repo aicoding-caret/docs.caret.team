@@ -1,14 +1,14 @@
 ---
 title: "GitHub イシュー RCA サンプル"
-description: "Caret CLI で GitHub イシューを自動分析し根本原因を特定します。"
+description: "Careti CLI で GitHub イシューを自動分析し根本原因を特定します。"
 ---
 
 # GitHub 根本原因分析
 
-Caret CLI を使った GitHub イシューの自動分析サンプルです。Caret の自律 AI によりイシューを取得・分析し、根本原因を特定します。解析結果はワークフローに組み込みやすい形式で出力されます。
+Careti CLI を使った GitHub イシューの自動分析サンプルです。Careti の自律 AI によりイシューを取得・分析し、根本原因を特定します。解析結果はワークフローに組み込みやすい形式で出力されます。
 
 <Note>
-**Caret CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了し、`caret auth` で認証済みであることを前提にしています。
+**Careti CLI が初めての方へ** このサンプルは [インストールガイド](/ja/caret-cli/installation) を完了し、`caret auth` で認証済みであることを前提にしています。
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Caret CLI を使った GitHub イシューの自動分析サンプルです。Ca
 
 このサンプルでは以下が完了していることを想定します:
 
-- **Caret CLI** のインストールと認証 ([インストールガイド](/ja/caret-cli/installation))
+- **Careti CLI** のインストールと認証 ([インストールガイド](/ja/caret-cli/installation))
 - **少なくとも 1 つのモデルプロバイダー** 設定 (例: OpenRouter、Anthropic、OpenAI)
-- **Caret CLI の基本操作** の理解
+- **Careti CLI の基本操作** の理解
 
 追加で必要:
 
@@ -79,7 +79,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Caret CLI
+# Analyze a GitHub issue using Careti CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -96,7 +96,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Caret for its analysis, showing only the summary
+# Ask Careti for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -137,7 +137,7 @@ chmod +x analyze-issue.sh
 
 ### 特定インスタンスの使用
 
-特定の Caret インスタンスを指定:
+特定の Careti インスタンスを指定:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -148,7 +148,7 @@ chmod +x analyze-issue.sh
 <Warning>
 次のケースで有効です:
 - 複数インスタンスを運用している
-- リモート Caret サーバーを使用している
+- リモート Careti サーバーを使用している
 - 特定設定で検証したい
 </Warning>
 
@@ -199,7 +199,7 @@ fi
 ### コア解析パイプライン
 
 ```bash
-# Ask Caret for his analysis, showing only the summary
+# Ask Careti for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -348,8 +348,8 @@ scalability.
 
 このサンプルは以下を示します:
 
-1. Caret を使った **自律 CLI ツール** の構築
-2. Caret CLI の **JSON 出力解析**
+1. Careti を使った **自律 CLI ツール** の構築
+2. Careti CLI の **JSON 出力解析**
 3. **カスタムプロンプト**による柔軟な自動化
 4. GitHub イシュー分析への **統合**
 5. **コマンドライン引数**の扱い

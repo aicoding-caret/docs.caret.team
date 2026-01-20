@@ -1,10 +1,10 @@
 ---
 title: "Hooks"
 sidebarTitle: "Hooks"
-description: "Integrieren Sie benutzerdefinierte Logik in den Workflow von Caret, um Operationen zu validieren, die Tool-Nutzung zu überwachen und KI-Entscheidungen zu beeinflussen"
+description: "Integrieren Sie benutzerdefinierte Logik in den Workflow von Careti, um Operationen zu validieren, die Tool-Nutzung zu überwachen und KI-Entscheidungen zu beeinflussen"
 ---
 
-Hooks ermöglichen es Ihnen, an entscheidenden Stellen benutzerdefinierte Logik in den Workflow von Caret zu integrieren. Betrachten Sie sie als automatisierte Kontrollpunkte, an denen Sie Operationen vor ihrer Ausführung validieren, die Tool-Nutzung in Echtzeit überwachen und die Entscheidungsfindung von Caret steuern können.
+Hooks ermöglichen es Ihnen, an entscheidenden Stellen benutzerdefinierte Logik in den Workflow von Careti zu integrieren. Betrachten Sie sie als automatisierte Kontrollpunkte, an denen Sie Operationen vor ihrer Ausführung validieren, die Tool-Nutzung in Echtzeit überwachen und die Entscheidungsfindung von Careti steuern können.
 
 Hooks werden automatisch ausgeführt, wenn während der Entwicklung bestimmte Ereignisse eintreten. Sie erhalten detaillierte Informationen zu jeder Operation, können problematische Aktionen blockieren, bevor sie zu Fehlern führen, und Kontext einfügen, der zukünftige KI-Entscheidungen leitet.
 
@@ -26,14 +26,14 @@ Hooks werden derzeit nur auf macOS und Linux unterstützt. Windows-Support ist n
 	<img src="https://storage.googleapis.com/cline_public_images/hooks.gif" alt="Hooks in action" />
 </Frame>
 
-Das Aktivieren von Hooks in Caret ist unkompliziert. Hier ist die Vorgehensweise:
+Das Aktivieren von Hooks in Careti ist unkompliziert. Hier ist die Vorgehensweise:
 
 <Steps>
 <Step title="Hooks in den Einstellungen aktivieren">
-Öffnen Sie die Caret-Einstellungen und aktivieren Sie das Kontrollkästchen **"Enable Hooks"**.
+Öffnen Sie die Careti-Einstellungen und aktivieren Sie das Kontrollkästchen **"Enable Hooks"**.
 
 Sie finden diese Einstellung wie folgt:
-1. Öffnen Sie Caret
+1. Öffnen Sie Careti
 2. Klicken Sie auf die Schaltfläche "Settings" in der oberen rechten Ecke
 3. Klicken Sie auf den Bereich "Feature" im Navigationsmenü auf der linken Seite.
 4. Scrollen Sie nach unten, bis Sie das Kontrollkästchen "Enable Hooks" sehen, und aktivieren Sie es. 
@@ -84,7 +84,7 @@ chmod +x .agents/hooks/TaskStart
 </Step>
 
 <Step title="Testen Sie Ihren Hook">
-Starten Sie einen Task in Caret und überprüfen Sie, ob Ihr Hook ausgeführt wird.
+Starten Sie einen Task in Careti und überprüfen Sie, ob Ihr Hook ausgeführt wird.
 </Step>
 </Steps>
 
@@ -115,12 +115,12 @@ Sobald Sie die Grundlagen verstanden haben, eröffnen Hooks kreative Möglichkei
   </Card>
 </CardGroup>
 
-Der Schlüssel liegt in der Kombination von Hooks mit externen Tools. Ein Hook kann das Bindeglied zwischen dem Workflow von Caret und dem Rest Ihres Entwicklungs-Ökosystems sein.
+Der Schlüssel liegt in der Kombination von Hooks mit externen Tools. Ein Hook kann das Bindeglied zwischen dem Workflow von Careti und dem Rest Ihres Entwicklungs-Ökosystems sein.
 
 
 ## Hook-Typen
 
-Caret bietet mehrere Hook-Typen, mit denen Sie auf verschiedene Phasen des KI-Workflows zugreifen können. Sie sind in Kategorien unterteilt, basierend auf ihren Trigger-Punkten und Anwendungsfällen.
+Careti bietet mehrere Hook-Typen, mit denen Sie auf verschiedene Phasen des KI-Workflows zugreifen können. Sie sind in Kategorien unterteilt, basierend auf ihren Trigger-Punkten und Anwendungsfällen.
 
 <Note>
 Die unten aufgeführten Hook-Namen sind die exakten Dateinamen, die Sie erstellen müssen. Um beispielsweise den TaskStart-Hook zu verwenden, erstellen Sie eine Datei namens `TaskStart` (ohne Dateiendung) in Ihrem Hooks-Verzeichnis.
@@ -177,11 +177,11 @@ Wird nach Abschluss eines Tools ausgeführt. Nutzen Sie ihn, um aus den Ergebnis
 
 ### Benutzerinteraktion
 
-Diese Hooks überwachen und verbessern die Kommunikation des Benutzers mit Caret. Verwenden Sie sie, um Eingaben zu validieren, Kontext einzufügen und Interaktionsmuster zu verfolgen.
+Diese Hooks überwachen und verbessern die Kommunikation des Benutzers mit Careti. Verwenden Sie sie, um Eingaben zu validieren, Kontext einzufügen und Interaktionsmuster zu verfolgen.
 
 #### UserPromptSubmit
 
-Wird ausgeführt, wenn ein Benutzer eine Nachricht an Caret sendet. Verwenden Sie ihn, um Eingaben zu validieren, Kontext basierend auf dem Prompt einzufügen und Interaktionsmuster zu verfolgen.
+Wird ausgeführt, wenn ein Benutzer eine Nachricht an Careti sendet. Verwenden Sie ihn, um Eingaben zu validieren, Kontext basierend auf dem Prompt einzufügen und Interaktionsmuster zu verfolgen.
 
 **Input-Felder:**
 ```json
@@ -205,7 +205,7 @@ Diese Hooks überwachen und reagieren auf Änderungen des Task-Status vom Start 
 
 #### TaskStart
 
-Wird ausgeführt, wenn ein neuer Task beginnt. Verwenden Sie ihn, um den Projekttyp zu erkennen, das Tracking zu initialisieren und den initialen Kontext einzufügen, der die Herangehensweise von Caret an die Arbeit prägt.
+Wird ausgeführt, wenn ein neuer Task beginnt. Verwenden Sie ihn, um den Projekttyp zu erkennen, das Tracking zu initialisieren und den initialen Kontext einzufügen, der die Herangehensweise von Careti an die Arbeit prägt.
 
 **Input-Felder:**
 ```json
@@ -302,7 +302,7 @@ Wird ausgeführt, wenn ein Task erfolgreich abgeschlossen wurde. Verwenden Sie i
 
 ### Systemereignisse
 
-Diese Hooks überwachen interne Caret-Operationen und Ereignisse auf Systemebene. Verwenden Sie sie, um die Kontextnutzung zu verfolgen, das Systemverhalten zu protokollieren und Performance-Muster zu analysieren.
+Diese Hooks überwachen interne Careti-Operationen und Ereignisse auf Systemebene. Verwenden Sie sie, um die Kontextnutzung zu verfolgen, das Systemverhalten zu protokollieren und Performance-Muster zu analysieren.
 
 {/*
 #### PreCompact
@@ -340,7 +340,7 @@ Hooks empfangen JSON über stdin und geben JSON über stdout zurück.
 }
 ```
 
-Ihr Hook-Skript kann während der Ausführung Logging- oder Diagnoseinformationen auf stdout ausgeben, solange die JSON-Antwort das letzte ist, was geschrieben wird. Caret parst nur das finale JSON-Objekt von stdout.
+Ihr Hook-Skript kann während der Ausführung Logging- oder Diagnoseinformationen auf stdout ausgeben, solange die JSON-Antwort das letzte ist, was geschrieben wird. Careti parst nur das finale JSON-Objekt von stdout.
 
 Zum Beispiel:
 ```bash
@@ -373,7 +373,7 @@ Das bedeutet, dass PreToolUse-Hooks zum Blockieren fehlerhafter Aktionen dienen,
 - Stellen Sie sicher, dass die Einstellung "Enable Hooks" aktiviert ist
 - Überprüfen Sie, ob die Hook-Datei ausführbar ist (`chmod +x hookname`)
 - Überprüfen Sie die Hook-Datei auf Syntaxfehler
-- Suchen Sie nach Fehlern im Output-Panel von VS Code (Caret-Kanal)
+- Suchen Sie nach Fehlern im Output-Panel von VS Code (Careti-Kanal)
 
 ### Zeitüberschreitung des Hooks
 - Reduzieren Sie die Komplexität des Hook-Skripts
@@ -381,7 +381,7 @@ Das bedeutet, dass PreToolUse-Hooks zum Blockieren fehlerhafter Aktionen dienen,
 - Erwägen Sie, komplexe Logik in einen Hintergrundprozess auszulagern
 
 ### Kontext beeinflusst das Verhalten nicht
-Denken Sie daran, dass Kontextänderungen zukünftige KI-Entscheidungen beeinflussen, nicht die aktuelle Operation. Das aktuelle Verhalten der KI basiert auf dem vorangegangenen "API Request..."-Block, und Ihre `contextModification` wird in den nächsten "API Request..."-Block eingefügt. Das bedeutet, wenn Sie eine sofortige Wirkung benötigen, sollten Sie PreToolUse-Hooks zur Validierung verwenden und `cancel: true` in der JSON-Antwort Ihres Hooks zurückgeben, um Caret an der Fortsetzung zu hindern.
+Denken Sie daran, dass Kontextänderungen zukünftige KI-Entscheidungen beeinflussen, nicht die aktuelle Operation. Das aktuelle Verhalten der KI basiert auf dem vorangegangenen "API Request..."-Block, und Ihre `contextModification` wird in den nächsten "API Request..."-Block eingefügt. Das bedeutet, wenn Sie eine sofortige Wirkung benötigen, sollten Sie PreToolUse-Hooks zur Validierung verwenden und `cancel: true` in der JSON-Antwort Ihres Hooks zurückgeben, um Careti an der Fortsetzung zu hindern.
 
 Stellen Sie beim Hinzufügen von Kontext sicher, dass Ihre Änderungen klar und handlungsorientiert sind, damit die KI sie verstehen und effektiv anwenden kann. Überprüfen Sie auch, ob Ihr Kontext nicht aufgrund des 50KB-Limits gekürzt wird, da dies verhindern könnte, dass wichtige Informationen die KI erreichen.
 
@@ -412,8 +412,8 @@ Hooks werden mit denselben Berechtigungen wie VS Code ausgeführt. Sie können a
 
 ## Verwandte Funktionen
 
-Hooks ergänzen andere Caret-Funktionen:
+Hooks ergänzen andere Careti-Funktionen:
 
-- [Caret Rules](/german/features/caret-rules) definieren übergeordnete Richtlinien, die durch Hooks durchgesetzt werden können
+- [Careti Rules](/german/features/caret-rules) definieren übergeordnete Richtlinien, die durch Hooks durchgesetzt werden können
 - [Checkpoints](/german/features/checkpoints) ermöglichen es Ihnen, Änderungen rückgängig zu machen, falls ein Hook ein Problem nicht erkannt hat
 - [Auto-Approve](/german/features/auto-approve) funktioniert gut mit Hooks als Sicherheitsnetz für automatisierte Operationen

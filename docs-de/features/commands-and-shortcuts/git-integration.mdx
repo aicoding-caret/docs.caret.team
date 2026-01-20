@@ -12,13 +12,13 @@ Eine der nützlichsten Git-Integrationen ist die Möglichkeit, automatisch aussa
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/generate-commit-message-with-caret.png"
-		alt="Generate Commit Message with Caret"
+		alt="Generate Commit Message with Careti"
 	/>
 </Frame>
 
 1. Nehmen Sie Ihre Änderungen vor und stagen Sie diese in Git.
-2. Klicken Sie auf das Roboter-Symbol in der Source Control-Ansicht oder führen Sie den Befehl "Generate Commit Message with Caret" aus.
-3. Caret analysiert Ihre Änderungen und generiert eine beschreibende Commit-Nachricht.
+2. Klicken Sie auf das Roboter-Symbol in der Source Control-Ansicht oder führen Sie den Befehl "Generate Commit Message with Careti" aus.
+3. Careti analysiert Ihre Änderungen und generiert eine beschreibende Commit-Nachricht.
 4. Die Nachricht wird automatisch in das Eingabefeld für die Commit-Nachricht eingefügt.
 
 Die generierten Commit-Nachrichten:
@@ -37,14 +37,14 @@ Diese Funktion spart Zeit und stellt sicher, dass Ihre Commit-Historie konsisten
 
 ## Funktionsweise
 
-Wenn Sie die Commit-Nachrichten-Generierungsfunktion von Caret verwenden, passiert Folgendes im Hintergrund:
+Wenn Sie die Commit-Nachrichten-Generierungsfunktion von Careti verwenden, passiert Folgendes im Hintergrund:
 
-1. Caret ruft den aktuellen Git-Diff mit `getWorkingState()` ab.
+1. Careti ruft den aktuellen Git-Diff mit `getWorkingState()` ab.
 2. Es formatiert diesen Diff in einen speziellen Prompt für die KI.
 3. Die KI analysiert die Änderungen und generiert eine passende Commit-Nachricht.
 4. Die Nachricht wird extrahiert und in das Git-Commit-Nachrichten-Eingabefeld eingefügt.
 
-Dieser Prozess verwendet Ihre aktuelle Caret API-Konfiguration, sodass die Qualität der generierten Nachrichten mit Ihrem gewählten KI-Modell übereinstimmt.
+Dieser Prozess verwendet Ihre aktuelle Careti API-Konfiguration, sodass die Qualität der generierten Nachrichten mit Ihrem gewählten KI-Modell übereinstimmt.
 
 ## Tipps für eine effektive Nutzung
 
@@ -61,7 +61,7 @@ Dieser Prozess verwendet Ihre aktuelle Caret API-Konfiguration, sodass die Quali
 Die Generierung von Commit-Nachrichten nutzt die VSCode Git Extension API, um auf Repository-Informationen zuzugreifen:
 
 1. Wenn Sie den Befehl auslösen:
-    - Caret ruft den aktuellen Diff ab
+    - Careti ruft den aktuellen Diff ab
     - Es sendet diesen mit spezifischen Anweisungen zur Formatierung von Commit-Nachrichten an die KI
     - Es analysiert die Antwort der KI
     - Es greift auf die Git Extension API zu, um die Commit-Nachricht festzulegen

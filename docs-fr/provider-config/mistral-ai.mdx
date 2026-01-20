@@ -1,17 +1,17 @@
 ---
 title: "Mistral"
-description: "Apprenez à configurer et à utiliser les modèles Mistral AI, y compris Codestral, avec Caret. Couvre la configuration de la clé API et la sélection du modèle."
+description: "Apprenez à configurer et à utiliser les modèles Mistral AI, y compris Codestral, avec Careti. Couvre la configuration de la clé API et la sélection du modèle."
 ---
 
 <Note>
-Ceci est la documentation de référence pour Caret. Elle suit la version fusionnée de Caret v3.38.1. Si des politiques spécifiques à Caret (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
+Ceci est la documentation de référence pour Careti. Elle suit la version fusionnée de Careti v3.38.1. Si des politiques spécifiques à Careti (modèles autorisés/bloqués, restrictions régionales, authentification/routage) s'appliquent, elles seront indiquées par une balise `<Note>` dans le texte.
 </Note>
 
 <Note>
-Amélioration de la configuration du Provider : selon `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du Provider et l'UX de Caret peuvent être renforcées. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du Caret Router.
+Amélioration de la configuration du Provider : selon `caret-docs/features/f09-enhanced-provider-setup.md`, la validation de la configuration du Provider et l'UX de Careti peuvent être renforcées. Veuillez noter que les modèles autorisés ou bloqués peuvent varier en fonction des politiques de compte/organisation ou de l'application du Careti Router.
 </Note>
 
-Caret permet d'accéder aux modèles via l'API Mistral AI, incluant à la fois les modèles Mistral standards et le modèle spécialisé pour le code, Codestral.
+Careti permet d'accéder aux modèles via l'API Mistral AI, incluant à la fois les modèles Mistral standards et le modèle spécialisé pour le code, Codestral.
 
 **Site Web :** [https://mistral.ai/](https://mistral.ai/)
 
@@ -24,7 +24,7 @@ Caret permet d'accéder aux modèles via l'API Mistral AI, incluant à la fois l
 
 ### Modèles pris en charge
 
-Caret prend en charge les modèles Mistral suivants :
+Careti prend en charge les modèles Mistral suivants :
 
 -   pixtral-large-2411
 -   ministral-3b-2410
@@ -41,9 +41,9 @@ Caret prend en charge les modèles Mistral suivants :
 **Note :** La disponibilité et les spécifications des modèles peuvent changer.
 Reportez-vous à la [documentation Mistral AI](https://docs.mistral.ai/api/) et à l'aperçu des modèles Mistral ([Mistral Model Overview](https://docs.mistral.ai/getting-started/models/models_overview/)) pour les informations les plus récentes.
 
-### Configuration dans Caret
+### Configuration dans Careti
 
-1.  **Ouvrir les paramètres Caret :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Caret.
+1.  **Ouvrir les paramètres Careti :** Cliquez sur l'icône des paramètres (⚙️) dans le panneau Careti.
 2.  **Sélectionner le Provider :** Choisissez "Mistral" dans le menu déroulant "API Provider".
 3.  **Saisir la clé API :** Collez votre clé API Mistral dans le champ "Mistral API Key" si vous utilisez un modèle `mistral` standard. Si vous prévoyez d'utiliser `codestral-latest`, consultez la section "Utiliser Codestral" ci-dessous.
 4.  **Sélectionner le modèle :** Choisissez le modèle souhaité dans le menu déroulant "Model".
@@ -54,8 +54,8 @@ Reportez-vous à la [documentation Mistral AI](https://docs.mistral.ai/api/) et 
 Pour Codestral, vous pouvez utiliser différents endpoints (par défaut : codestral.mistral.ai).
 Si vous utilisez la clé API de La Plateforme pour Codestral, changez l'URL de base (**Codestral Base Url**) en : `https://api.mistral.ai`
 
-Pour utiliser Codestral avec Caret :
+Pour utiliser Codestral avec Careti :
 
-1.  **Sélectionnez "Mistral" comme API Provider dans les paramètres Caret.**
+1.  **Sélectionnez "Mistral" comme API Provider dans les paramètres Careti.**
 2.  **Sélectionnez un modèle Codestral** (par ex., `codestral-latest`) dans le menu déroulant "Model".
-3.  **Saisissez votre clé API Codestral** (provenant de `codestral.mistral.ai`) ou votre clé API La Plateforme (provenant de `api.mistral.ai`) dans le champ de clé API approprié dans Caret.
+3.  **Saisissez votre clé API Codestral** (provenant de `codestral.mistral.ai`) ou votre clé API La Plateforme (provenant de `api.mistral.ai`) dans le champ de clé API approprié dans Careti.

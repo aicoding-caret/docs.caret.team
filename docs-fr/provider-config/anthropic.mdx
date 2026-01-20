@@ -1,14 +1,14 @@
 ---
 title: "Anthropic"
-description: "Apprenez à configurer et à utiliser les modèles Anthropic Claude avec Caret. Couvre la configuration de la clé API, la sélection du modèle et les fonctionnalités avancées comme le prompt caching."
+description: "Apprenez à configurer et à utiliser les modèles Anthropic Claude avec Careti. Couvre la configuration de la clé API, la sélection du modèle et les fonctionnalités avancées comme le prompt caching."
 ---
 
 <Note>
-Ceci est un document de référence pour Caret. Il suit la version Caret v3.38.2. Toute politique spécifique à Caret (modèles supportés/bloqués, restrictions régionales, authentification/routage) sera signalée par une `<Note>` dans le texte.
+Ceci est un document de référence pour Careti. Il suit la version Careti v3.38.2. Toute politique spécifique à Careti (modèles supportés/bloqués, restrictions régionales, authentification/routage) sera signalée par une `<Note>` dans le texte.
 </Note>
 
 <Note>
-Renforcement de la configuration du Provider : Selon `caret-docs/features/f09-enhanced-provider-setup.md`, Caret peut avoir une validation de configuration ou une UX de Provider renforcée. Veuillez noter que les modèles autorisés ou bloqués peuvent varier selon les politiques de votre compte ou de votre organisation.
+Renforcement de la configuration du Provider : Selon `caret-docs/features/f09-enhanced-provider-setup.md`, Careti peut avoir une validation de configuration ou une UX de Provider renforcée. Veuillez noter que les modèles autorisés ou bloqués peuvent varier selon les politiques de votre compte ou de votre organisation.
 </Note>
 
 **Website :** [https://www.anthropic.com/](https://www.anthropic.com/)
@@ -17,12 +17,12 @@ Renforcement de la configuration du Provider : Selon `caret-docs/features/f09-en
 
 1.  **Sign Up/Sign In :** Accédez à la [Anthropic Console](https://console.anthropic.com/). Créez un compte ou connectez-vous.
 2.  **Navigate to API Keys :** Allez dans la section [API keys](https://console.anthropic.com/settings/keys).
-3.  **Create a Key :** Cliquez sur « Create Key ». Donnez à votre clé un nom descriptif (ex : « Caret »).
+3.  **Create a Key :** Cliquez sur « Create Key ». Donnez à votre clé un nom descriptif (ex : « Careti »).
 4.  **Copy the Key :** **Important :** Copiez la clé API *immédiatement*. Vous ne pourrez plus la voir par la suite. Conservez-la en lieu sûr.
 
 ### Supported Models
 
-Caret supporte les modèles Anthropic Claude suivants :
+Careti supporte les modèles Anthropic Claude suivants :
 
 -   `claude-haiku-4-5-20251001`
 -   `claude-opus-4-5-20251101`
@@ -37,9 +37,9 @@ Caret supporte les modèles Anthropic Claude suivants :
 
 Consultez la [documentation des modèles d'Anthropic](https://docs.anthropic.com/en/docs/about-claude/models) pour plus de détails sur les capacités de chaque modèle.
 
-### Configuration in Caret
+### Configuration in Careti
 
-1.  **Open Caret Settings :** Cliquez sur l'icône de paramètres (⚙️) dans le panneau Caret.
+1.  **Open Careti Settings :** Cliquez sur l'icône de paramètres (⚙️) dans le panneau Careti.
 2.  **Select Provider :** Choisissez « Anthropic » dans le menu déroulant « API Provider ».
 3.  **Enter API Key :** Collez votre clé API Anthropic dans le champ « Anthropic API Key ».
 4.  **Select Model :** Choisissez le modèle Claude souhaité dans le menu déroulant « Model ».
@@ -49,8 +49,8 @@ Consultez la [documentation des modèles d'Anthropic](https://docs.anthropic.com
 
 Les modèles Anthropic proposent une fonctionnalité « Extended Thinking », conçue pour leur donner des capacités de raisonnement accrues pour les tâches complexes. Cette fonctionnalité permet au modèle d'afficher son processus de réflexion étape par étape avant de livrer une réponse finale, offrant ainsi une transparence et permettant une analyse plus approfondie pour les prompts difficiles.
 
-Lorsque l'Extended Thinking est activé dans Caret, le modèle génère des blocs de contenu `thinking` qui détaillent son raisonnement interne. Ces réflexions sont ensuite incorporées dans sa réponse finale.
-Les utilisateurs de Caret peuvent en profiter en cochant la case « Enable Extended Thinking » située sous le menu de sélection du modèle après avoir choisi un modèle Claude de n'importe quel provider.
+Lorsque l'Extended Thinking est activé dans Careti, le modèle génère des blocs de contenu `thinking` qui détaillent son raisonnement interne. Ces réflexions sont ensuite incorporées dans sa réponse finale.
+Les utilisateurs de Careti peuvent en profiter en cochant la case « Enable Extended Thinking » située sous le menu de sélection du modèle après avoir choisi un modèle Claude de n'importe quel provider.
 
 **Aspects clés de l'Extended Thinking :**
 

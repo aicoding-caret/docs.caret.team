@@ -1,16 +1,16 @@
 ---
 sidebar_position: 8
 title: ^ AI Organization Knowledge & Rules Standardization
-description: Learn about Caret's core system that ensures AI accurately follows your team's rules and standards.
+description: Learn about Careti's core system that ensures AI accurately follows your team's rules and standards.
 ---
 
 # ^ AI Organization Knowledge & Rules Standardization
 
-Caret is designed so that AI **accurately understands and follows your team's coding rules and standards**. Through this system, AI functions as a true team member that understands project context, not just a simple code generation tool.
+Careti is designed so that AI **accurately understands and follows your team's coding rules and standards**. Through this system, AI functions as a true team member that understands project context, not just a simple code generation tool.
 
 ## Why Is Knowledge Synchronization Important?
 
-| Situation | Generic AI Tools | Caret |
+| Situation | Generic AI Tools | Careti |
 |---|---|---|
 | **Team Rule Compliance** | Doesn't know rules | ✅ Automatically recognizes rule files |
 | **Project Context** | Needs explanation every time | ✅ Persistent memory |
@@ -19,7 +19,7 @@ Caret is designed so that AI **accurately understands and follows your team's co
 
 ## Core Concept 1: Dual Directory Architecture
 
-Caret acknowledges that **documents for AI and humans serve different purposes**. To address this, it uses two directories:
+Careti acknowledges that **documents for AI and humans serve different purposes**. To address this, it uses two directories:
 
 ```
 your-project/
@@ -53,7 +53,7 @@ your-project/
 
 ## Core Concept 2: Atomic Knowledge System
 
-Caret uses an **Atomic Knowledge** approach. Instead of a single massive document, knowledge is broken into minimal units (Atoms) and combined as needed.
+Careti uses an **Atomic Knowledge** approach. Instead of a single massive document, knowledge is broken into minimal units (Atoms) and combined as needed.
 
 ### How It Works
 
@@ -78,7 +78,7 @@ Caret uses an **Atomic Knowledge** approach. Instead of a single massive documen
 
 ## Core Concept 3: Rule Location & Priority
 
-Caret uses the **`.agents/context/`** folder as the single source of rules. This ensures AI follows consistent standards across the entire project.
+Careti uses the **`.agents/context/`** folder as the single source of rules. This ensures AI follows consistent standards across the entire project.
 
 ### Rule Locations
 
@@ -86,7 +86,7 @@ Caret uses the **`.agents/context/`** folder as the single source of rules. This
 |------|------|------|
 | **Workspace Rules** | `.agents/context/` | Project-specific rules |
 | **Directory Scope** | `AGENTS.md` | Apply to specific folders only |
-| **Global Rules** | `Documents/Caret/Rules` | Apply to all projects |
+| **Global Rules** | `Documents/Careti/Rules` | Apply to all projects |
 | **Workflows** | `.agents/workflows/` | On-demand loading |
 
 ### Why Is Standardization Important?
@@ -183,7 +183,7 @@ Merge Priority: Local > Project > Organization > Global
 If your project doesn't have the standard structure, you can auto-generate it with the `/init` command.
 
 ```bash
-# In Caret chat
+# In Careti chat
 /init
 ```
 
@@ -228,7 +228,7 @@ Developers can clearly see how AI works through the `.agents/` folder.
 
 ## Full Comparison with Cline
 
-| Item | Cline | Caret |
+| Item | Cline | Careti |
 |------|-------|-------|
 | **Knowledge Sharing** | Single file (plain text) | Atomic Knowledge System |
 | **Efficiency** | Always loads all rules | On-Demand Loading |
@@ -241,19 +241,19 @@ Developers can clearly see how AI works through the `.agents/` folder.
 
 ### Method 1: Auto Initialization (Recommended)
 ```bash
-# In Caret chat
+# In Careti chat
 /init
 ```
 
 ### Method 2: Manual Setup
 1. Create `.agents/context/` folder in project root
 2. Write rules in Markdown files
-3. Start chatting with Caret
+3. Start chatting with Careti
 
-For detailed rule writing guidelines, see the [Caret Rules Feature](/en/features/caret-rules) documentation.
+For detailed rule writing guidelines, see the [Careti Rules Feature](/en/features/caret-rules) documentation.
 
 ## Related Documentation
 
-- [Caret Rules Feature](/en/features/caret-rules) - Rule writing guide
+- [Careti Rules Feature](/en/features/caret-rules) - Rule writing guide
 - [Document Reading Tools](/en/caret-exclusive/document-tools) - AI directly reads documents
 - [Image Tools](/en/caret-exclusive/image-tools) - AI image generation/analysis

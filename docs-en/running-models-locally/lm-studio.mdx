@@ -1,20 +1,20 @@
 ---
 title: "LM Studio"
-description: "A quick guide to setting up LM Studio for local AI model execution with Caret."
+description: "A quick guide to setting up LM Studio for local AI model execution with Careti."
 ---
 
 <Note>
-캐럿(Caret) 기준 문서입니다. Caret v3.38.1 머지본을 따르며, 캐럿 전용 정책(지원 로컬 런타임, 인증/라우팅, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
+캐러티(Careti) 기준 문서입니다. Careti v3.38.1 머지본을 따르며, 캐러티 전용 정책(지원 로컬 런타임, 인증/라우팅, 모델 제한)이 있을 경우 본문에서 `<Note>`로 표시합니다.
 </Note>
 
-## Setting Up LM Studio with Caret
+## Setting Up LM Studio with Careti
 
-Run AI models locally using LM Studio with Caret.
+Run AI models locally using LM Studio with Careti.
 
 ### Prerequisites
 
 -   Windows, macOS, or Linux computer with AVX2 support
--   Caret installed in VS Code
+-   Careti installed in VS Code
 
 ### Setup Steps
 
@@ -65,23 +65,23 @@ Run AI models locally using LM Studio with Caret.
 	/>
 </Frame>
 
-#### 5. Configure Caret
+#### 5. Configure Careti
 
 1. Open VS Code
-2. Click Caret settings icon
+2. Click Careti settings icon
 3. Select "LM Studio" as API provider
 4. Select your model from the available options
 
 <Frame>
 	<img
 		src="https://storage.googleapis.com/cline_public_images/docs/assets/lm-studio-select-model-caret.gif"
-		alt="Configuring Caret with LM Studio"
+		alt="Configuring Careti with LM Studio"
 	/>
 </Frame>
 
 ### Recommended Model and Settings
 
-For the best experience with Caret, use **Qwen3 Coder 30B A3B Instruct**. This model delivers strong coding performance and reliable tool use.
+For the best experience with Careti, use **Qwen3 Coder 30B A3B Instruct**. This model delivers strong coding performance and reliable tool use.
 
 #### Critical Settings
 
@@ -106,20 +106,20 @@ Choose quantization based on your RAM:
 
 ### Enable Compact Prompts
 
-For optimal performance with local models, enable compact prompts in Caret settings. This reduces the prompt size by 90% while maintaining core functionality.
+For optimal performance with local models, enable compact prompts in Careti settings. This reduces the prompt size by 90% while maintaining core functionality.
 
-Navigate to Caret Settings → Features → Use Compact Prompt and toggle it on.
+Navigate to Careti Settings → Features → Use Compact Prompt and toggle it on.
 
 ### Important Notes
 
--   Start LM Studio before using with Caret
+-   Start LM Studio before using with Careti
 -   Keep LM Studio running in background
 -   First model download may take several minutes depending on size
 -   Models are stored locally after download
 
 ### Troubleshooting
 
-1. If Caret can't connect to LM Studio:
+1. If Careti can't connect to LM Studio:
 2. Verify LM Studio server is running (check Developer tab)
 3. Ensure a model is loaded
 4. Check your system meets hardware requirements
