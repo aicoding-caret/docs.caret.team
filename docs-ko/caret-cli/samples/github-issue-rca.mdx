@@ -1,14 +1,14 @@
 ---
 title: "GitHub 이슈 RCA 샘플"
-description: "Careti CLI로 GitHub 이슈를 자동 분석해 근본 원인을 찾습니다."
+description: "캐러티 CLI로 GitHub 이슈를 자동 분석해 근본 원인을 찾습니다."
 ---
 
 # GitHub 근본 원인 분석
 
-Careti CLI를 사용한 GitHub 이슈 자동 분석 샘플입니다. Caret의 자율 AI 기능으로 이슈를 가져오고 분석해 근본 원인을 찾으며, 워크플로우에 쉽게 통합할 수 있는 깔끔한 출력 결과를 제공합니다.
+캐러티 CLI를 사용한 GitHub 이슈 자동 분석 샘플입니다. 캐러티의 자율 AI 기능으로 이슈를 가져오고 분석해 근본 원인을 찾으며, 워크플로우에 쉽게 통합할 수 있는 깔끔한 출력 결과를 제공합니다.
 
 <Note>
-**Careti CLI가 처음이신가요?** 이 샘플은 [설치 가이드](/ko/caret-cli/installation)를 완료하고 `caret auth`로 인증했다고 가정합니다. 아직 Careti CLI를 설정하지 않았다면 먼저 설치를 완료하세요.
+**캐러티 CLI가 처음이신가요?** 이 샘플은 [설치 가이드](/ko/caret-cli/installation)를 완료하고 `caret auth`로 인증했다고 가정합니다. 아직 캐러티 CLI를 설정하지 않았다면 먼저 설치를 완료하세요.
 </Note>
 
 <Frame>
@@ -19,9 +19,9 @@ Careti CLI를 사용한 GitHub 이슈 자동 분석 샘플입니다. Caret의 �
 
 이 샘플은 다음을 이미 완료했다고 가정합니다:
 
-- **Careti CLI** 설치 및 인증 완료 ([설치 가이드](/ko/caret-cli/installation))
+- **캐러티 CLI** 설치 및 인증 완료 ([설치 가이드](/ko/caret-cli/installation))
 - **최소 1개의 AI 모델 프로바이더** 설정 (예: OpenRouter, Anthropic, OpenAI)
-- **Careti CLI 기본 사용법** 이해
+- **캐러티 CLI 기본 사용법** 이해
 
 추가로 다음이 필요합니다:
 
@@ -79,7 +79,7 @@ curl -O https://raw.githubusercontent.com/caret/caret/main/src/samples/cli/githu
 
 ```bash
 #!/bin/bash
-# Analyze a GitHub issue using Careti CLI
+# Analyze a GitHub issue using 캐러티 CLI
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <github-issue-url> [prompt] [address]"
@@ -96,7 +96,7 @@ if [ -n "$3" ]; then
     ADDRESS="--address $3"
 fi
 
-# Ask Careti for its analysis, showing only the summary
+# Ask 캐러티 for its analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -137,7 +137,7 @@ chmod +x analyze-issue.sh
 
 ### 특정 인스턴스 사용
 
-특정 Careti 인스턴스 주소를 지정해 분석할 수 있습니다:
+특정 캐러티 인스턴스 주소를 지정해 분석할 수 있습니다:
 
 ```bash
 ./analyze-issue.sh https://github.com/owner/repo/issues/123 \
@@ -147,13 +147,13 @@ chmod +x analyze-issue.sh
 
 <Warning>
 다음 상황에서 유용합니다:
-- 여러 Careti 인스턴스를 실행 중인 경우
-- 원격 Careti 서버를 사용하는 경우
+- 여러 캐러티 인스턴스를 실행 중인 경우
+- 원격 캐러티 서버를 사용하는 경우
 - 특정 구성으로 테스트하려는 경우
 </Warning>
 
 <Note>
-스크립트가 이슈를 가져오고 Caret로 분석한 뒤 결과를 표시하는 모든 작업을 자동으로 처리합니다. 이슈 복잡도에 따라 보통 30~60초가 소요됩니다.
+스크립트가 이슈를 가져오고 캐러티로 분석한 뒤 결과를 표시하는 모든 작업을 자동으로 처리합니다. 이슈 복잡도에 따라 보통 30~60초가 소요됩니다.
 </Note>
 
 ## 동작 원리
@@ -178,7 +178,7 @@ fi
 - GitHub 이슈 URL 필수 검증
 - 명확한 사용 예시 제공
 - 커스텀 프롬프트 지원
-- Careti 인스턴스 주소 선택 지원
+- 캐러티 인스턴스 주소 선택 지원
 
 ### 인자 파싱
 
@@ -203,7 +203,7 @@ fi
 실제 분석이 일어나는 부분입니다:
 
 ```bash
-# Ask Careti for his analysis, showing only the summary
+# Ask 캐러티 for his analysis, showing only the summary
 caret -y "$PROMPT: $ISSUE_URL" --mode act $ADDRESS -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
@@ -362,10 +362,10 @@ scalability.
 
 ## 결론
 
-이 샘플은 Careti CLI로 GitHub 이슈 분석 도구를 구축하는 방법을 보여줍니다:
+이 샘플은 캐러티 CLI로 GitHub 이슈 분석 도구를 구축하는 방법을 보여줍니다:
 
-1. Caret의 기능을 활용한 **자율 CLI 도구** 구축
-2. Careti CLI **JSON 출력 파싱**
+1. 캐러티의 기능을 활용한 **자율 CLI 도구** 구축
+2. 캐러티 CLI **JSON 출력 파싱**
 3. 커스텀 프롬프트 기반 **유연한 자동화 스크립트** 작성
 4. GitHub 이슈 분석 **통합**
 5. **명령줄 인자 처리**의 모범 패턴

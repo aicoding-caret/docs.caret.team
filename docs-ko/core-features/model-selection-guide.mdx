@@ -3,7 +3,7 @@ title: "모델 선택 가이드"
 description: "최종 업데이트: 2025년 8월 20일."
 ---
 
-새로운 모델이 계속 출시되므로, 이 가이드는 현재 Caret과 잘 맞는 모델 선택에 집중합니다. 환경이 바뀌면 지속적으로 업데이트합니다.
+새로운 모델이 계속 출시되므로, 이 가이드는 현재 캐러티와 잘 맞는 모델 선택에 집중합니다. 환경이 바뀌면 지속적으로 업데이트합니다.
 
 <Callout type="tip">
 **모델 선택이 처음인가요?** 모델 비교와 컨텍스트 설정을 함께 다루는 [모델 비교 안내](/ko/model-config/model-comparison)와 [컨텍스트 윈도우 가이드](/ko/model-config/context-windows)를 먼저 참고해 보세요.
@@ -11,30 +11,30 @@ description: "최종 업데이트: 2025년 8월 20일."
 
 ## AI 모델이란?
 
-AI 모델은 Caret을 움직이는 “두뇌”라고 생각하면 됩니다. Caret에게 코드를 작성하거나, 버그를 수정하거나, 리팩터링을 요청하면 실제로 이해하고 응답을 생성하는 주체가 바로 모델입니다.
+AI 모델은 캐러티를 움직이는 “두뇌”라고 생각하면 됩니다. 캐러티에게 코드를 작성하거나, 버그를 수정하거나, 리팩터링을 요청하면 실제로 이해하고 응답을 생성하는 주체가 바로 모델입니다.
 
 **핵심 포인트:**
 - **모델은 자연어와 코드를 이해하도록 학습된 AI 시스템**입니다
 - **모델마다 강점이 다릅니다** 복잡한 추론에 강한 모델도 있고, 속도나 비용을 우선하는 모델도 있습니다
-- **Caret이 사용할 모델을 직접 선택합니다** 작업 유형에 맞는 전문가를 고르는 것과 같습니다
+- **캐러티가 사용할 모델을 직접 선택합니다** 작업 유형에 맞는 전문가를 고르는 것과 같습니다
 - **모델은 API 프로바이더를 통해 접근합니다** Anthropic, OpenAI, OpenRouter 등이 모델을 호스팅합니다
 
-**왜 중요한가요?** 선택한 모델은 Caret의 성능, 응답 품질, 속도, 비용에 직접 영향을 줍니다. 고급 모델은 복잡한 리팩터링에 강하지만 비용이 높을 수 있고, 예산형 모델은 일상적인 작업에 효율적입니다.
+**왜 중요한가요?** 선택한 모델은 캐러티의 성능, 응답 품질, 속도, 비용에 직접 영향을 줍니다. 고급 모델은 복잡한 리팩터링에 강하지만 비용이 높을 수 있고, 예산형 모델은 일상적인 작업에 효율적입니다.
 
-## Caret에서 모델 선택하기
+## 캐러티에서 모델 선택하기
 
 아래 5단계로 원하는 모델을 설정할 수 있습니다.
 
-### 1단계: Careti 설정 열기
+### 1단계: 캐러티 설정 열기
 
-먼저 Caret의 설정 패널에 접근합니다.
+먼저 캐러티의 설정 패널에 접근합니다.
 
 **설정을 여는 두 가지 방법:**
-- **빠른 방법**: Careti 채팅 UI 우측 상단의 **톱니바퀴(⚙️)** 클릭
-- **명령 팔레트**: **Cmd/Ctrl + Shift + P** → "Careti: Open Settings" 입력
+- **빠른 방법**: 캐러티 채팅 UI 우측 상단의 **톱니바퀴(⚙️)** 클릭
+- **명령 팔레트**: **Cmd/Ctrl + Shift + P** → "캐러티: Open Settings" 입력
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="Careti Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step1-config.png" alt="캐러티 Settings Panel" />
 </Frame>
 
 설정 패널이 열리면 상단에 "API Provider" 항목이 보입니다.
@@ -49,14 +49,14 @@ AI 모델은 Caret을 움직이는 “두뇌”라고 생각하면 됩니다. Ca
 
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="Careti Settings Panel" />
+  <img src="https://storage.googleapis.com/cline_public_images/step2-provider.png" alt="캐러티 Settings Panel" />
 </Frame>
 
 **인기 프로바이더 한눈에 보기:**
 
 | 프로바이더 | 추천 용도 | 비고 |
 |----------|----------|-------|
-| **Careti** | 가장 쉬운 시작 | API 키 없이 사용 가능, stealth 모델 포함 다수 모델 접근 |
+| **캐러티** | 가장 쉬운 시작 | API 키 없이 사용 가능, stealth 모델 포함 다수 모델 접근 |
 | **OpenRouter** | 가성비 | 다양한 모델과 경쟁력 있는 가격 |
 | **Anthropic** | 안정성 | Claude 모델, 도구 사용 안정성 높음 |
 | **OpenAI** | 최신 기술 | GPT 모델 |
@@ -67,16 +67,16 @@ AI 모델은 Caret을 움직이는 “두뇌”라고 생각하면 됩니다. Ca
 Cerebras, Vertex AI, Azure 등 더 많은 옵션은 [프로바이더 설정 가이드](/ko/provider-config/anthropic)에서 확인하세요.
 
 <Info>
-**처음 사용자 추천:** **Careti** 프로바이더부터 시작하세요. API 키 관리가 필요 없고 여러 모델에 즉시 접근할 수 있으며, 파트너 프로바이더를 통한 무료 추론이 제공될 때도 있습니다.
+**처음 사용자 추천:** **캐러티** 프로바이더부터 시작하세요. API 키 관리가 필요 없고 여러 모델에 즉시 접근할 수 있으며, 파트너 프로바이더를 통한 무료 추론이 제공될 때도 있습니다.
 </Info>
 
 ### 3단계: API 키 추가 (또는 로그인)
 
 선택한 프로바이더에 따라 다음 단계가 달라집니다.
 
-#### **Careti** 프로바이더를 선택한 경우:
+#### **캐러티** 프로바이더를 선택한 경우:
 
-- **API 키가 필요 없습니다.** Careti 계정으로 로그인만 하면 됩니다
+- **API 키가 필요 없습니다.** 캐러티 계정으로 로그인만 하면 됩니다
 - 안내에 따라 **Sign In** 버튼 클릭
 - [caret.team](https://careti.ai)으로 이동해 인증
 - 인증 후 IDE로 돌아오기
@@ -96,12 +96,12 @@ Cerebras, Vertex AI, Azure 등 더 많은 옵션은 [프로바이더 설정 가�
 
 3. **API 키 복사**
 
-4. Careti 설정의 **"API Key"** 필드에 붙여넣기
+4. 캐러티 설정의 **"API Key"** 필드에 붙여넣기
 
 5. **자동 저장** - 키는 에디터의 시크릿 스토리지에 안전하게 저장됩니다
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="Careti API Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step3-API.png" alt="캐러티 API Selection" />
 </Frame>
 
 <Warning>
@@ -113,7 +113,7 @@ Cerebras, Vertex AI, Azure 등 더 많은 옵션은 [프로바이더 설정 가�
 API 키를 입력하거나 로그인하면 **"Model"** 드롭다운이 활성화됩니다.
 
 <Frame>
-  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="Careti Model Selection" />
+  <img src="https://storage.googleapis.com/cline_public_images/step4-model.png" alt="캐러티 Model Selection" />
 </Frame>
 
 **빠른 모델 선택 가이드:**
@@ -144,11 +144,11 @@ API 키를 입력하거나 로그인하면 **"Model"** 드롭다운이 활성화
 - **로컬:** Ollama 호스팅 모델  
 - **최신 기능:** GPT-5
 
-### 5단계: Careti 시작하기
+### 5단계: 캐러티 시작하기
 
-**설정이 끝났습니다!** 이제 Caret으로 코딩을 시작해 보세요:
+**설정이 끝났습니다!** 이제 캐러티으로 코딩을 시작해 보세요:
 
-1. **Careti 채팅창에 요청 입력**
+1. **캐러티 채팅창에 요청 입력**
    - 예: "Create a React component for a login form"
    - 예: "Debug this TypeScript error"
    - 예: "Refactor this function to be more efficient"
@@ -207,4 +207,4 @@ API 키를 입력하거나 로그인하면 **"Model"** 드롭다운이 활성화
 
 ## 다른 사람들이 사용하는 모델
 
-커뮤니티의 사용 패턴을 보려면 [OpenRouter의 Careti 사용 통계](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F)를 확인하세요.
+커뮤니티의 사용 패턴을 보려면 [OpenRouter의 캐러티 사용 통계](https://openrouter.ai/apps?url=https%3A%2F%2Fcaret.team%2F)를 확인하세요.
