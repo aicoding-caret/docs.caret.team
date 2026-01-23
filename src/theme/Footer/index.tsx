@@ -63,9 +63,9 @@ const buildFooterLinks = (locale: Locale) => {
 		],
 		community: [
 			{ label: "Blog", href: `${caretTeam}/blog` },
-			{ label: "YouTube", href: "https://www.youtube.com/@aicoding-caret" },
+			{ label: "YouTube", href: "https://www.youtube.com/@careti-ai" },
 			{ label: "Discord", href: "https://discord.gg/K3mU3EEvWm" },
-			{ label: "GitHub", href: "https://github.com/aicoding-caret/caret" },
+			{ label: "GitHub", href: "https://github.com/caretive-ai/project-careti" },
 		],
 		company: [
 			{ label: "About", href: "https://caretive.ai" },

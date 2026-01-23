@@ -37,7 +37,7 @@ Caret은 검증된 [Cline](https://github.com/cline/cline)을 기반으로, 강�
 
 1. **저장소 클론**
    ```bash
-   git clone https://github.com/aicoding-caret/docs.careti.ai.git
+   git clone https://github.com/caretive-ai/project-docs.careti.ai.git
    cd docs.careti.ai
    ```
 
@@ -230,25 +230,25 @@ npm run typecheck      # TypeScript 타입 체크
 
 ## 🔄 Careti 메인 저장소와의 동기화
 
-이 문서 사이트는 [Careti 메인 저장소](https://github.com/aicoding-caret/caret)와 Cline 병합 프로세스를 따라 동기화됩니다.
+이 문서 사이트는 [Careti 메인 저장소](https://github.com/caretive-ai/project-careti)와 Cline 병합 프로세스를 따라 동기화됩니다.
 
 ### 개발자를 위한 최신 Cline 문서 동기화
 
 Caret이 Cline 업스트림을 병합할 때, 새 문서는 이 사이트와 동기화해야 합니다.
 
 1. **Careti 병합 전략 가이드 확인**:
-   - [영어 버전](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
-   - [한국어 버전](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
+   - [영어 버전](https://github.com/caretive-ai/project-careti/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
+   - [한국어 버전](https://github.com/caretive-ai/project-careti/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **상세 동기화 분석**:
    종합적인 동기화 계획을 확인하세요:
-   - [docs.careti.ai 동기화 분석 (한국어)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
+   - [docs.careti.ai 동기화 분석 (한국어)](https://github.com/caretive-ai/project-careti/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
 
 3. **빠른 시작**:
    ```bash
    # Careti 메인 저장소 안에 이 저장소 클론
    cd /path/to/caret
-   git clone https://github.com/aicoding-caret/docs.careti.ai
+   git clone https://github.com/caretive-ai/project-docs.careti.ai
 
    # 동기화는 병합 전략 가이드를 따릅니다
    ```
@@ -274,14 +274,14 @@ graph LR
 
 ## 🔗 연관 프로젝트
 
-- **[Careti Extension](https://github.com/aicoding-caret/caret)** - 주요 Careti VS Code 확장
+- **[Careti Extension](https://github.com/caretive-ai/project-careti)** - 주요 Careti VS Code 확장
 - **[Cline Project](https://github.com/cline/cline)** - 오리지널 Cline 자율 코딩 에이전트
 - **[Careti Website](https://careti.ai)** - 공식 Careti 웹사이트
 
 ## 📞 지원
 
-- **문서 이슈**: [GitHub Issues](https://github.com/aicoding-caret/docs.careti.ai/issues)
-- **Careti 지원**: [Careti GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
+- **문서 이슈**: [GitHub Issues](https://github.com/caretive-ai/project-docs.careti.ai/issues)
+- **Careti 지원**: [Careti GitHub Discussions](https://github.com/caretive-ai/project-careti/discussions)  
 - **커뮤니티**: 개발자 커뮤니티에서 질문과 토론에 참여하세요
 
 ---

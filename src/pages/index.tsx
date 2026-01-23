@@ -254,7 +254,7 @@ export default function Home(): ReactNode {
                         <a href="https://marketplace.visualstudio.com/items?itemName=caretive.caret" className="button button--primary margin-right--sm">
                           📥 Download from VS Code Marketplace
                         </a>
-                        <a href="https://github.com/aicoding-caret/caret" className="button button--outline button--primary margin-right--sm">
+                        <a href="https://github.com/caretive-ai/project-careti" className="button button--outline button--primary margin-right--sm">
                           🌟 GitHub Repository
                         </a>
                         <a href={`https://${brandServiceDomain}`} className="button button--outline button--secondary">

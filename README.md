@@ -37,7 +37,7 @@ Careti is built on the proven foundation of [Cline](https://github.com/cline/cli
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/aicoding-caret/docs.careti.ai.git
+   git clone https://github.com/caretive-ai/project-docs.careti.ai.git
    cd docs.careti.ai
    ```
 
@@ -230,25 +230,25 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 
 ## 🔄 Synchronization with Careti Main Repository
 
-This documentation site is synchronized with the [Careti main repository](https://github.com/aicoding-caret/caret) following the Cline merge process.
+This documentation site is synchronized with the [Careti main repository](https://github.com/caretive-ai/project-careti) following the Cline merge process.
 
 ### For Developers: Syncing Latest Cline Documentation
 
 When Careti merges upstream Cline updates, new documentation must be synced to this site:
 
 1. **Follow the Careti Merge Strategy Guide**:
-   - [English Version](https://github.com/aicoding-caret/caret/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
-   - [Korean Version](https://github.com/aicoding-caret/caret/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
+   - [English Version](https://github.com/caretive-ai/project-careti/blob/main/.agents/context/workflows/merge-strategy.md#5-documentation-site-synchronization-docscaret​team)
+   - [Korean Version](https://github.com/caretive-ai/project-careti/blob/main/caret-docs/development/workflows/merge-strategy.md#5-문서-사이트-동기화-docscaret​team)
 
 2. **Detailed Sync Analysis**:
    See the comprehensive synchronization plan:
-   - [docs.careti.ai Sync Analysis (Korean)](https://github.com/aicoding-caret/caret/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
+   - [docs.careti.ai Sync Analysis (Korean)](https://github.com/caretive-ai/project-careti/blob/main/caret-docs/work-logs/luke/2025-10-14-docs-caret-team-sync-analysis.md)
 
 3. **Quick Start**:
    ```bash
    # Clone this repo inside Careti main repo
    cd /path/to/caret
-   git clone https://github.com/aicoding-caret/docs.careti.ai
+   git clone https://github.com/caretive-ai/project-docs.careti.ai
 
    # Follow the merge strategy guide for synchronization
    ```
@@ -274,14 +274,14 @@ graph LR
 
 ## 🔗 Related Projects
 
-- **[Careti Extension](https://github.com/aicoding-caret/caret)** - Main Careti VS Code extension
+- **[Careti Extension](https://github.com/caretive-ai/project-careti)** - Main Careti VS Code extension
 - **[Cline Project](https://github.com/cline/cline)** - Original Cline autonomous coding agent
 - **[Careti Website](https://careti.ai)** - Official Careti website
 
 ## 📞 Support
 
-- **Documentation Issues**: [GitHub Issues](https://github.com/aicoding-caret/docs.careti.ai/issues)
-- **Careti Support**: [Careti GitHub Discussions](https://github.com/aicoding-caret/caret/discussions)  
+- **Documentation Issues**: [GitHub Issues](https://github.com/caretive-ai/project-docs.careti.ai/issues)
+- **Careti Support**: [Careti GitHub Discussions](https://github.com/caretive-ai/project-careti/discussions)  
 - **Community**: Join our developer community for questions and discussions
 
 ---
