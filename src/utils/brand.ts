@@ -1,7 +1,6 @@
 /**
  * Brand configuration for multi-domain deployment
- * - docs.caret.team: Legacy domain (Caret/캐럿)
- * - docs.careti.ai: New standard domain (Careti/캐러티)
+ * - docs.careti.ai: Standard domain (Careti/캐러티)
  */
 
 export type BrandType = "caret" | "careti"
@@ -16,8 +15,6 @@ export interface BrandConfig {
 
 // Domain to brand mapping
 export const BRAND_DOMAINS: Record<string, BrandType> = {
-  "docs.caret.team": "caret",
-  "caret.team": "caret",
   "docs.careti.ai": "careti",
   "careti.ai": "careti",
   "localhost": "careti", // Development default
@@ -25,12 +22,6 @@ export const BRAND_DOMAINS: Record<string, BrandType> = {
 
 // Brand configurations
 export const BRANDS: Record<BrandType, BrandConfig> = {
-  caret: {
-    name: "Caret",
-    nameKo: "캐럿",
-    domain: "docs.caret.team",
-    serviceDomain: "caret.team",
-  },
   careti: {
     name: "Careti",
     nameKo: "캐러티",

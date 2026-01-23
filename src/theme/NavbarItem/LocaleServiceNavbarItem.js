@@ -31,7 +31,7 @@ export default function LocaleServiceNavbarItem(props) {
 	const [locale, setLocale] = useState(() => resolveLocale(pathname))
 	const labels = props.labels ?? {}
 	const label = labels[locale] ?? props.label
-	const href = `https://caret.team/${locale}`
+	const href = `https://careti.ai/${locale}`
 
 	useEffect(() => {
 		setLocale(resolveLocale(pathname))

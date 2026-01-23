@@ -6,8 +6,8 @@ const sidebars: SidebarsConfig = {
 			type: "category",
 			label: "Getting Started",
 			items: [
-				"getting-started/what-is-caret",
-				"getting-started/installing-caret",
+				"getting-started/what-is-careti",
+				"getting-started/installing-careti",
 				"getting-started/model-selection-guide",
 				"getting-started/selecting-your-model",
 				"getting-started/your-first-project",

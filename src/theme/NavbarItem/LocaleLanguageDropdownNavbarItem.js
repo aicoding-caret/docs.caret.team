@@ -28,13 +28,13 @@ const resolveLocale = (pathname) => {
 }
 
 const languageItems = [
-	{ label: "English", href: "/en/getting-started/what-is-caret" },
-	{ label: "한국어", href: "/ko/getting-started/what-is-caret" },
-	{ label: "日本語", href: "/ja/getting-started/what-is-caret" },
-	{ label: "中文", href: "/zh/getting-started/what-is-caret" },
-	{ label: "Français", href: "/fr/getting-started/what-is-caret" },
-	{ label: "Deutsch", href: "/de/getting-started/what-is-caret" },
-	{ label: "Русский", href: "/ru/getting-started/what-is-caret" },
+	{ label: "English", href: "/en/getting-started/what-is-careti" },
+	{ label: "한국어", href: "/ko/getting-started/what-is-careti" },
+	{ label: "日本語", href: "/ja/getting-started/what-is-careti" },
+	{ label: "中文", href: "/zh/getting-started/what-is-careti" },
+	{ label: "Français", href: "/fr/getting-started/what-is-careti" },
+	{ label: "Deutsch", href: "/de/getting-started/what-is-careti" },
+	{ label: "Русский", href: "/ru/getting-started/what-is-careti" },
 ]
 
 export default function LocaleLanguageDropdownNavbarItem({ labels, ...props }) {

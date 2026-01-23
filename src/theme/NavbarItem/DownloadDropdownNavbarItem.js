@@ -38,7 +38,7 @@ const buildItems = (locale) => [
 	},
 	{
 		label: "Brochure",
-		href: `https://caret.team/${locale}/brochure`,
+		href: `https://careti.ai/${locale}/brochure`,
 	},
 ]
 

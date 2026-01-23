@@ -12,8 +12,8 @@ from typing import Tuple
 import subprocess
 
 # Configuration
-DOCS_EN_DIR = Path("/home/luke/dev/caret/docs.caret.team/docs-en")
-DOCS_DE_DIR = Path("/home/luke/dev/caret/docs.caret.team/docs-de")
+DOCS_EN_DIR = Path("/home/luke/dev/caret/docs.careti.ai/docs-en")
+DOCS_DE_DIR = Path("/home/luke/dev/caret/docs.careti.ai/docs-de")
 
 # Technical terms that should NOT be translated
 PRESERVE_TERMS = {

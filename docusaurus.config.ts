@@ -5,14 +5,11 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 // Brand configuration for multi-domain deployment
-type BrandType = 'caret' | 'careti';
+type BrandType = 'careti';
 const BRANDS = {
-  caret: { name: 'Caret', nameKo: '캐럿', domain: 'docs.caret.team', serviceDomain: 'caret.team' },
   careti: { name: 'Careti', nameKo: '캐러티', domain: 'docs.careti.ai', serviceDomain: 'careti.ai' },
 };
-const brand: BrandType = (process.env.BRAND === 'caret' || process.env.BRAND === 'careti')
-  ? process.env.BRAND
-  : 'careti'; // Default: new standard
+const brand: BrandType = 'careti';
 const brandConfig = BRANDS[brand];
 
 const config: Config = {
@@ -55,7 +52,7 @@ const config: Config = {
         path: './docs-en',
         routeBasePath: 'en',
         sidebarPath: './sidebars-en.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-en/',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-en/',
       },
     ],
     [
@@ -65,7 +62,7 @@ const config: Config = {
         path: './docs-ko',
         routeBasePath: 'ko',
         sidebarPath: './sidebars-ko.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-ko/',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-ko/',
       },
     ],
     [
@@ -75,7 +72,7 @@ const config: Config = {
         path: './docs-zh',
         routeBasePath: 'zh',
         sidebarPath: './sidebars-zh.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-zh/',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-zh/',
       },
     ],
     [
@@ -85,7 +82,7 @@ const config: Config = {
         path: './docs-ja',
         routeBasePath: 'ja',
         sidebarPath: './sidebars-ja.ts',
-        editUrl: 'https://github.com/aicoding-caret/docs.careti.ai/tree/main/docs-ja/',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-ja/',
       },
     ],
   ],
@@ -142,14 +139,14 @@ const config: Config = {
           label: 'Language',
           position: 'right',
           items: [
-            { label: 'English', href: '/en/getting-started/what-is-caret' },
-            { label: '한국어', href: '/ko/getting-started/what-is-caret' },
-            { label: '日本語', href: '/ja/getting-started/what-is-caret' },
-            { label: '中文', href: '/zh/getting-started/what-is-caret' },
+            { label: 'English', href: '/en/getting-started/what-is-careti' },
+            { label: '한국어', href: '/ko/getting-started/what-is-careti' },
+            { label: '日本語', href: '/ja/getting-started/what-is-careti' },
+            { label: '中文', href: '/zh/getting-started/what-is-careti' },
           ],
         },
         {
-          href: 'https://github.com/aicoding-caret/caret',
+          href: 'https://github.com/caretive-ai/project-careti',
           label: 'GitHub',
           position: 'right',
         },
@@ -167,7 +164,7 @@ const config: Config = {
             },
             {
               label: `${brandConfig.name} GitHub`,
-              href: 'https://github.com/aicoding-caret/caret',
+              href: 'https://github.com/caretive-ai/project-careti',
             },
             {
               label: 'Service Introduction',

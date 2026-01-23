@@ -81,8 +81,8 @@ function shouldSkipReplacement(content, index, pattern) {
     return true;
   }
 
-  // Skip if domain name (caret.team, careti.ai, docs.caret.team, etc.)
-  if (/\.(team|ai)\s*$/.test(before + pattern) || /^[a-z]*\.(team|ai)/.test(pattern + after)) {
+  // Skip if domain name (careti.ai, docs.careti.ai, etc.)
+  if (/\.ai\s*$/.test(before + pattern) || /^[a-z]*\.ai/.test(pattern + after)) {
     return true;
   }
 

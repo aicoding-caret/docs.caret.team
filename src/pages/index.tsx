@@ -9,8 +9,6 @@ type BrandType = 'caret' | 'careti';
 
 // Domain to brand mapping for runtime detection
 const BRAND_DOMAINS: Record<string, BrandType> = {
-  'docs.caret.team': 'caret',
-  'caret.team': 'caret',
   'docs.careti.ai': 'careti',
   'careti.ai': 'careti',
   'localhost': 'careti', // Development default
@@ -57,10 +55,10 @@ const getCopy = (brandName: string, brandNameKo: string): Record<Locale, LangCop
     heroSubtitle: 'AI-powered coding assistant based on Cline',
     chooseLanguage: 'Choose Your Language',
     cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
+      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
+      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
+      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
+      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
     ],
     aboutTitle: `About ${brandName}`,
     aboutLines: [
@@ -75,10 +73,10 @@ const getCopy = (brandName: string, brandNameKo: string): Record<Locale, LangCop
     heroSubtitle: 'Cline을 기반으로 한 AI 코딩 어시스턴트',
     chooseLanguage: '언어를 선택하세요',
     cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
+      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
+      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
+      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
+      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
     ],
     aboutTitle: `About ${brandName}`,
     aboutLines: [
@@ -93,10 +91,10 @@ const getCopy = (brandName: string, brandNameKo: string): Record<Locale, LangCop
     heroSubtitle: 'Cline を基盤とした AI コーディングアシスタント',
     chooseLanguage: '言語を選択してください',
     cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
+      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
+      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
+      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
+      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
     ],
     aboutTitle: `About ${brandName}`,
     aboutLines: [
@@ -111,10 +109,10 @@ const getCopy = (brandName: string, brandNameKo: string): Record<Locale, LangCop
     heroSubtitle: '基于 Cline 的 AI 编码助手',
     chooseLanguage: '请选择语言',
     cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-caret', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-caret', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-caret', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-caret', locale: 'ja'},
+      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
+      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
+      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
+      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
     ],
     aboutTitle: `About ${brandName}`,
     aboutLines: [
@@ -156,7 +154,7 @@ export default function Home(): ReactNode {
   // Derive brand info from detected brand
   const brandName = brandNames[brand].en;
   const brandNameKo = brandNames[brand].ko;
-  const brandServiceDomain = brand === 'caret' ? 'caret.team' : 'careti.ai';
+  const brandServiceDomain = 'careti.ai';
 
   const copy = useMemo(() => getCopy(brandName, brandNameKo), [brandName, brandNameKo]);
   const strings = useMemo(() => copy[lang] ?? copy.en, [copy, lang]);

@@ -6,9 +6,9 @@ const sidebars: SidebarsConfig = {
 			type: "category",
 			label: "始めよう",
 			items: [
-				"getting-started/what-is-caret",
+				"getting-started/what-is-careti",
 				"getting-started/model-selection-guide",
-				"getting-started/installing-caret",
+				"getting-started/installing-careti",
 				"getting-started/selecting-your-model",
 				"getting-started/your-first-project",
 				"getting-started/task-management",

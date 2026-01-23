@@ -13,7 +13,7 @@ const getLocaleFromPath = (pathname) => {
 export default function LocaleBrochureNavbarItem(props) {
 	const { pathname } = useLocation()
 	const locale = getLocaleFromPath(pathname)
-	const href = `https://caret.team/${locale}/brochure`
+	const href = `https://careti.ai/${locale}/brochure`
 
 	return (
 		<a className={clsx("navbar__item", "navbar__link", props.className)} href={href} rel="noreferrer" target="_self">

@@ -1,4 +1,4 @@
-// CARET MODIFICATION: Custom footer aligned with caret.team content and locale routing.
+// CARET MODIFICATION: Custom footer aligned with careti.ai content and locale routing.
 
 import Link from "@docusaurus/Link"
 import { useLocation } from "@docusaurus/router"
@@ -9,8 +9,6 @@ type BrandType = "caret" | "careti"
 
 // Domain to brand mapping
 const BRAND_DOMAINS: Record<string, BrandType> = {
-	"docs.caret.team": "caret",
-	"caret.team": "caret",
 	"docs.careti.ai": "careti",
 	"careti.ai": "careti",
 	localhost: "careti",
@@ -45,7 +43,7 @@ const hasExplicitLocale = (pathname: string): boolean =>
 
 const buildFooterLinks = (locale: Locale) => {
 	const caretTeam = `https://careti.ai/${locale}`
-	const docsHome = `/${locale}/getting-started/what-is-caret`
+	const docsHome = `/${locale}/getting-started/what-is-careti`
 	const brochure = `${caretTeam}/brochure`
 	const caretiveLocale = locale === "ko" ? "ko" : "en"
 	const caretiveBase = `https://www.caretive.ai/${caretiveLocale}`

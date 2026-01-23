@@ -57,9 +57,9 @@
 			{
 				"group": "Getting Started",
 				"pages": [
-					"getting-started/what-is-caret",
+					"getting-started/what-is-careti",
 					"getting-started/selecting-your-model",
-					"getting-started/installing-caret",
+					"getting-started/installing-careti",
 					"getting-started/your-first-project",
 					"getting-started/understanding-context-management"
 				]
@@ -210,7 +210,7 @@
 		{
 			"name": "What is Caret",
 			"icon": "house",
-			"url": "getting-started/what-is-caret"
+			"url": "getting-started/what-is-careti"
 		}
 	],
 	"search": {
