@@ -100,6 +100,7 @@ const sidebars: SidebarsConfig = {
 				"features/caret-rules",
 				"features/editing-messages",
 				"features/hooks",
+				"features/claude-code-compatibility",
 				{
 					type: "category",
 					label: "@ 멘션",
