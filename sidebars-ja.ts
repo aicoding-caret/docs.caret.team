@@ -120,6 +120,7 @@ const sidebars: SidebarsConfig = {
 				"features/checkpoints",
 				"features/caret-rules",
 				"features/editing-messages",
+				"features/markdown-rendering",
 				"features/hooks",
 				{
 					type: "category",

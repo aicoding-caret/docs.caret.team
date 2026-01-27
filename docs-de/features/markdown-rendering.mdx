@@ -1,0 +1,73 @@
+---
+title: "Markdown-Rendering"
+description: "Volle Unterstützung für GitHub Flavored Markdown einschließlich Tabellen und Durchstreichungen"
+---
+
+# Markdown-Rendering
+
+<BrandName /> unterstützt GitHub Flavored Markdown (GFM) vollständig in KI-Antworten. Tabellen, Durchstreichungen, Codeblöcke und mehr werden schön dargestellt, was Informationen leichter verständlich macht.
+
+## Unterstützte Funktionen
+
+### GFM-Tabellen
+
+Wenn die KI mit Vergleichstabellen oder Optionslisten antwortet, werden diese in einem strukturierten Format angezeigt.
+
+```markdown
+| Funktion | Cline | Careti |
+|----------|-------|--------|
+| GFM-Tabellen | ❌ | ✅ |
+| Durchstreichung | ❌ | ✅ |
+| Mermaid | ✅ | ✅ |
+```
+
+**Gerendetes Ergebnis:**
+
+| Funktion | Cline | Careti |
+|----------|-------|--------|
+| GFM-Tabellen | ❌ | ✅ |
+| Durchstreichung | ❌ | ✅ |
+| Mermaid | ✅ | ✅ |
+
+### Tabellenausrichtung
+
+Sie können die Spaltenausrichtung in Tabellen festlegen:
+
+- `:---` - Linksbündig
+- `:---:` - Zentriert
+- `---:` - Rechtsbündig
+
+### Durchstreichung
+
+Verwenden Sie das Format `~~Text~~`, um durchgestrichenen Text anzuzeigen.
+
+```markdown
+~~Dieser Text ist gelöscht~~
+```
+
+**Gerendetes Ergebnis:** ~~Dieser Text ist gelöscht~~
+
+### Mermaid-Diagramme
+
+Flussdiagramme, Sequenzdiagramme und mehr werden visuell gerendert.
+
+### Code-Hervorhebung
+
+Syntaxhervorhebung für verschiedene Programmiersprachen wird unterstützt.
+
+## Unterschiede zu Cline
+
+<BrandName /> fügt GFM-Erweiterungsunterstützung hinzu, die im Original-Cline nicht verfügbar ist:
+
+| Funktion | Cline | <BrandName /> |
+|----------|-------|---------------|
+| Basis-Markdown | ✅ | ✅ |
+| GFM-Tabellen | ❌ Rohtext | ✅ Tabellen-Rendering |
+| Tabellenausrichtung | ❌ | ✅ |
+| Durchstreichung | ❌ Rohtext | ✅ Durchstreichungs-Rendering |
+| Mermaid | ✅ | ✅ |
+| Code-Hervorhebung | ✅ | ✅ |
+
+## Technische Informationen
+
+Diese Funktion wird mit dem `remark-gfm`-Plugin implementiert. Version `remark-gfm@1.0.0` wird für die Kompatibilität mit `react-remark` verwendet.

@@ -1,0 +1,73 @@
+---
+title: "Rendu Markdown"
+description: "Support complet de GitHub Flavored Markdown incluant tableaux et texte barré"
+---
+
+# Rendu Markdown
+
+<BrandName /> prend entièrement en charge GitHub Flavored Markdown (GFM) dans les réponses de l'IA. Les tableaux, le texte barré, les blocs de code et plus sont magnifiquement rendus, rendant l'information plus facile à comprendre.
+
+## Fonctionnalités Supportées
+
+### Tableaux GFM
+
+Lorsque l'IA répond avec des tableaux comparatifs ou des listes d'options, ils sont affichés dans un format structuré.
+
+```markdown
+| Fonctionnalité | Cline | Careti |
+|----------------|-------|--------|
+| Tableaux GFM | ❌ | ✅ |
+| Texte barré | ❌ | ✅ |
+| Mermaid | ✅ | ✅ |
+```
+
+**Résultat rendu:**
+
+| Fonctionnalité | Cline | Careti |
+|----------------|-------|--------|
+| Tableaux GFM | ❌ | ✅ |
+| Texte barré | ❌ | ✅ |
+| Mermaid | ✅ | ✅ |
+
+### Alignement des Tableaux
+
+Vous pouvez spécifier l'alignement des colonnes dans les tableaux:
+
+- `:---` - Aligné à gauche
+- `:---:` - Centré
+- `---:` - Aligné à droite
+
+### Texte Barré
+
+Utilisez le format `~~texte~~` pour afficher du texte barré.
+
+```markdown
+~~Ce texte est supprimé~~
+```
+
+**Résultat rendu:** ~~Ce texte est supprimé~~
+
+### Diagrammes Mermaid
+
+Les organigrammes, diagrammes de séquence et plus sont rendus visuellement.
+
+### Coloration Syntaxique
+
+La coloration syntaxique pour divers langages de programmation est supportée.
+
+## Différences avec Cline
+
+<BrandName /> ajoute le support des extensions GFM qui n'est pas disponible dans Cline original:
+
+| Fonctionnalité | Cline | <BrandName /> |
+|----------------|-------|---------------|
+| Markdown basique | ✅ | ✅ |
+| Tableaux GFM | ❌ texte brut | ✅ rendu tableau |
+| Alignement tableau | ❌ | ✅ |
+| Texte barré | ❌ texte brut | ✅ rendu barré |
+| Mermaid | ✅ | ✅ |
+| Coloration syntaxique | ✅ | ✅ |
+
+## Informations Techniques
+
+Cette fonctionnalité est implémentée en utilisant le plugin `remark-gfm`. La version `remark-gfm@1.0.0` est utilisée pour la compatibilité avec `react-remark`.
