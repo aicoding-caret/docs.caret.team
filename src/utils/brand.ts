@@ -3,22 +3,23 @@
  * - docs.careti.ai: Standard domain (Careti/캐러티)
  */
 
-export type BrandType = "caret" | "careti"
-export type Locale = "en" | "ko" | "ja" | "zh" | "fr" | "de" | "ru"
+export type BrandType = "caret" | "careti";
+export type Locale = "en" | "ko" | "ja" | "zh" | "fr" | "de" | "ru";
 
 export interface BrandConfig {
-  name: string
-  nameKo: string
-  domain: string
-  serviceDomain: string
+  name: string;
+  nameKo: string;
+  domain: string;
+  serviceDomain: string;
 }
 
 // Domain to brand mapping
 export const BRAND_DOMAINS: Record<string, BrandType> = {
   "docs.careti.ai": "careti",
   "careti.ai": "careti",
-  "localhost": "careti", // Development default
-}
+  "vercel.app": "careti",
+  localhost: "careti", // Development default
+};
 
 // Brand configurations
 export const BRANDS: Record<BrandType, BrandConfig> = {
@@ -28,33 +29,56 @@ export const BRANDS: Record<BrandType, BrandConfig> = {
     domain: "docs.careti.ai",
     serviceDomain: "careti.ai",
   },
-}
+  caret: {
+    name: "Careti",
+    nameKo: "캐러티",
+    domain: "docs.caret.team",
+    serviceDomain: "careti.ai",
+  },
+};
 
 // Brand names by locale
 export const BRAND_NAMES: Record<BrandType, Record<Locale, string>> = {
-  caret: { en: "Caret", ko: "캐럿", ja: "Caret", zh: "Caret", fr: "Caret", de: "Caret", ru: "Caret" },
-  careti: { en: "Careti", ko: "캐러티", ja: "Careti", zh: "Careti", fr: "Careti", de: "Careti", ru: "Careti" },
-}
+  caret: {
+    en: "Caret",
+    ko: "캐럿",
+    ja: "Caret",
+    zh: "Caret",
+    fr: "Caret",
+    de: "Caret",
+    ru: "Caret",
+  },
+  careti: {
+    en: "Careti",
+    ko: "캐러티",
+    ja: "Careti",
+    zh: "Careti",
+    fr: "Careti",
+    de: "Careti",
+    ru: "Careti",
+  },
+};
 
 /**
  * Get brand from hostname (client-side)
  */
 export function getBrandFromHost(hostname?: string): BrandType {
-  const host = hostname || (typeof window !== "undefined" ? window.location.hostname : "")
+  const host =
+    hostname || (typeof window !== "undefined" ? window.location.hostname : "");
 
   // Check exact match first
   if (BRAND_DOMAINS[host]) {
-    return BRAND_DOMAINS[host]
+    return BRAND_DOMAINS[host];
   }
 
   // Check if hostname contains the domain
   for (const [domain, brand] of Object.entries(BRAND_DOMAINS)) {
     if (host.includes(domain)) {
-      return brand
+      return brand;
     }
   }
 
-  return getBrandFromEnv()
+  return getBrandFromEnv();
 }
 
 /**
@@ -62,23 +86,23 @@ export function getBrandFromHost(hostname?: string): BrandType {
  * Use BRAND env var (not NEXT_PUBLIC_ since this is Docusaurus)
  */
 export function getBrandFromEnv(): BrandType {
-  const envBrand = process.env.BRAND
+  const envBrand = process.env.BRAND;
   if (envBrand === "caret" || envBrand === "careti") {
-    return envBrand
+    return envBrand;
   }
-  return "careti" // Default: new standard
+  return "careti"; // Default: new standard
 }
 
 /**
  * Get brand configuration
  */
 export function getBrandConfig(brand?: BrandType): BrandConfig {
-  return BRANDS[brand || getBrandFromEnv()]
+  return BRANDS[brand || getBrandFromEnv()];
 }
 
 /**
  * Get brand name for locale
  */
 export function getBrandName(brand: BrandType, locale: Locale): string {
-  return BRAND_NAMES[brand][locale] || BRAND_NAMES[brand].en
+  return BRAND_NAMES[brand][locale] || BRAND_NAMES[brand].en;
 }
