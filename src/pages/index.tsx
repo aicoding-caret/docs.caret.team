@@ -4,7 +4,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-type Locale = 'en' | 'ko' | 'ja' | 'zh';
+type Locale = 'en' | 'ko' | 'ja' | 'zh' | 'de' | 'fr' | 'ru';
 type BrandType = 'caret' | 'careti';
 
 // Domain to brand mapping for runtime detection
@@ -15,9 +15,9 @@ const BRAND_DOMAINS: Record<string, BrandType> = {
 };
 
 // Brand-specific content mapping
-const brandNames: Record<BrandType, {en: string; ko: string; ja: string; zh: string}> = {
-  caret: {en: 'Caret', ko: '캐럿', ja: 'Caret', zh: 'Caret'},
-  careti: {en: 'Careti', ko: '캐러티', ja: 'Careti', zh: 'Careti'},
+const brandNames: Record<BrandType, {en: string; ko: string; ja: string; zh: string; de: string; fr: string; ru: string}> = {
+  caret: {en: 'Caret', ko: '캐럿', ja: 'Caret', zh: 'Caret', de: 'Caret', fr: 'Caret', ru: 'Caret'},
+  careti: {en: 'Careti', ko: '캐러티', ja: 'Careti', zh: 'Careti', de: 'Careti', fr: 'Careti', ru: 'Careti'},
 };
 
 // Detect brand from hostname (client-side)
@@ -37,7 +37,7 @@ const detectBrandFromHost = (defaultBrand: BrandType): BrandType => {
   return defaultBrand;
 };
 
-const localeList: Locale[] = ['en', 'ko', 'ja', 'zh'];
+const localeList: Locale[] = ['en', 'ko', 'ja', 'zh', 'de', 'fr', 'ru'];
 
 type LangCopy = {
   heroTitle: string;
@@ -48,78 +48,108 @@ type LangCopy = {
   aboutLines: string[];
 };
 
+// Common card definitions for all locales
+const getCards = () => [
+  {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'English Docs', href: '/en/getting-started/what-is-careti', locale: 'en' as Locale},
+  {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서', href: '/ko/getting-started/what-is-careti', locale: 'ko' as Locale},
+  {flag: '🇯🇵', title: '日本語', desc: 'パーソナライズド AI コーディングパートナー', button: '日本語ドキュメント', href: '/ja/getting-started/what-is-careti', locale: 'ja' as Locale},
+  {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh' as Locale},
+  {flag: '🇩🇪', title: 'Deutsch', desc: 'Ihr personalisierter KI-Codierungspartner', button: 'Deutsche Docs', href: '/de/getting-started/what-is-careti', locale: 'de' as Locale},
+  {flag: '🇫🇷', title: 'Français', desc: 'Votre partenaire IA de codage personnalisé', button: 'Docs Français', href: '/fr/getting-started/what-is-careti', locale: 'fr' as Locale},
+  {flag: '🇷🇺', title: 'Русский', desc: 'Ваш персонализированный AI-помощник', button: 'Русская документация', href: '/ru/getting-started/what-is-careti', locale: 'ru' as Locale},
+];
+
 // Generate copy with brand name substitution
 const getCopy = (brandName: string, brandNameKo: string): Record<Locale, LangCopy> => ({
   en: {
     heroTitle: `Welcome to ${brandName} Documentation`,
     heroSubtitle: 'AI-powered coding assistant based on Cline',
     chooseLanguage: 'Choose Your Language',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
-    ],
+    cards: getCards(),
     aboutTitle: `About ${brandName}`,
     aboutLines: [
-      `${brandName} = Cline v3.38.2 + Dual Mode + Persona + Full Localization`,
-      'Keep Cline 100% compatible while adding personalized AI companions, Chatbot/Agent flows, and native docs/UI in 4 languages.',
-      `🎭 Persona | 🔄 Dual Mode (${brandName}/Cline) | 🌍 4 languages | 🤖 251 models / 20 providers`,
-      `Official ${brandName} provider: monthly free credits to start instantly (Gemini first; ChatGPT/Claude/others to follow).`,
+      `${brandName} = Cline + Dual Mode + Persona + 7 Languages + Image/Document Tools`,
+      'Keep Cline 100% compatible while adding personalized AI companions, Chatbot/Agent flows, and native docs/UI in 7 languages.',
+      `🎭 Persona | 🔄 Dual Mode (${brandName}/Cline) | 🌍 7 Languages | 🤖 266 models / 31 providers`,
+      `Official ${brandName} provider: monthly free credits to start instantly.`,
     ],
   },
   ko: {
     heroTitle: `${brandNameKo} 문서에 오신 것을 환영합니다`,
     heroSubtitle: 'Cline을 기반으로 한 AI 코딩 어시스턴트',
     chooseLanguage: '언어를 선택하세요',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
-    ],
+    cards: getCards(),
     aboutTitle: `About ${brandName}`,
     aboutLines: [
-      `${brandName} = Cline v3.38.2 + 듀얼 모드 + 페르소나 + 풀 로컬라이제이션`,
-      'Cline 100% 호환을 유지하면서 개인화 페르소나, Chatbot/Agent 흐름, 4개 언어 UI/문서를 제공합니다.',
-      `🎭 페르소나 | 🔄 듀얼 모드(${brandName}/Cline) | 🌍 4개 언어 | 🤖 251개 모델/20개 프로바이더`,
-      `공식 ${brandName} 프로바이더: 매월 무료 크레딧으로 즉시 시작(Gemini 우선, ChatGPT/Claude 등 순차 지원).`,
+      `${brandName} = Cline + 듀얼 모드 + 페르소나 + 7개 언어 + 이미지/문서 도구`,
+      'Cline 100% 호환을 유지하면서 개인화 페르소나, Chatbot/Agent 흐름, 7개 언어 UI/문서를 제공합니다.',
+      `🎭 페르소나 | 🔄 듀얼 모드(${brandName}/Cline) | 🌍 7개 언어 | 🤖 266개 모델/31개 프로바이더`,
+      `공식 ${brandName} 프로바이더: 매월 무료 크레딧으로 즉시 시작.`,
     ],
   },
   ja: {
     heroTitle: `${brandName} ドキュメントへようこそ`,
     heroSubtitle: 'Cline を基盤とした AI コーディングアシスタント',
     chooseLanguage: '言語を選択してください',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
-    ],
+    cards: getCards(),
     aboutTitle: `About ${brandName}`,
     aboutLines: [
-      `${brandName} = Cline v3.38.2 + デュアルモード + ペルソナ + 多言語化`,
-      'Cline 互換を保ちつつ、ペルソナ/Chatbot・Agent フロー、4言語 UI/ドキュメントを提供します。',
-      `🎭 ペルソナ | 🔄 デュアルモード(${brandName}/Cline) | 🌍 4言語 | 🤖 251モデル/20プロバイダー`,
-      `公式 ${brandName} プロバイダー: 毎月の無料クレジットで即スタート(Gemini から順次)。`,
+      `${brandName} = Cline + デュアルモード + ペルソナ + 7言語 + 画像/ドキュメントツール`,
+      'Cline 互換を保ちつつ、ペルソナ/Chatbot・Agent フロー、7言語 UI/ドキュメントを提供します。',
+      `🎭 ペルソナ | 🔄 デュアルモード(${brandName}/Cline) | 🌍 7言語 | 🤖 266モデル/31プロバイダー`,
+      `公式 ${brandName} プロバイダー: 毎月の無料クレジットで即スタート。`,
     ],
   },
   zh: {
     heroTitle: `欢迎使用 ${brandName} 文档`,
     heroSubtitle: '基于 Cline 的 AI 编码助手',
     chooseLanguage: '请选择语言',
-    cards: [
-      {flag: '🇺🇸', title: 'English', desc: 'Your personalized AI coding partner', button: 'Go to English Docs', href: '/en/getting-started/what-is-careti', locale: 'en'},
-      {flag: '🇰🇷', title: '한국어', desc: '나만의 개인화된 AI 코딩 파트너', button: '한국어 문서 보기', href: '/ko/getting-started/what-is-careti', locale: 'ko'},
-      {flag: '🇨🇳', title: '中文', desc: '您的个性化 AI 编程伙伴', button: '查看中文文档', href: '/zh/getting-started/what-is-careti', locale: 'zh'},
-      {flag: '🇯🇵', title: '日本語', desc: 'あなた専用のパーソナライズド AI コーディングパートナー', button: '日本語ドキュメントを見る', href: '/ja/getting-started/what-is-careti', locale: 'ja'},
-    ],
+    cards: getCards(),
     aboutTitle: `About ${brandName}`,
     aboutLines: [
-      `${brandName} = Cline v3.38.2 + 双模式 + 人格系统 + 全面本地化`,
-      '保持与 Cline 完全兼容，同时提供个性化人格、Chatbot/Agent 流程及 4 种语言的 UI/文档。',
-      `🎭 人格 | 🔄 双模式(${brandName}/Cline) | 🌍 4 种语言 | 🤖 251 模型/20 提供方`,
-      `官方 ${brandName} 提供方：每月免费额度可立即开始（先支持 Gemini，后续 ChatGPT/Claude 等）。`,
+      `${brandName} = Cline + 双模式 + 人格系统 + 7种语言 + 图像/文档工具`,
+      '保持与 Cline 完全兼容，同时提供个性化人格、Chatbot/Agent 流程及 7 种语言的 UI/文档。',
+      `🎭 人格 | 🔄 双模式(${brandName}/Cline) | 🌍 7 种语言 | 🤖 266 模型/31 提供方`,
+      `官方 ${brandName} 提供方：每月免费额度可立即开始。`,
+    ],
+  },
+  de: {
+    heroTitle: `Willkommen zur ${brandName} Dokumentation`,
+    heroSubtitle: 'KI-gestützter Codierungsassistent basierend auf Cline',
+    chooseLanguage: 'Wählen Sie Ihre Sprache',
+    cards: getCards(),
+    aboutTitle: `Über ${brandName}`,
+    aboutLines: [
+      `${brandName} = Cline + Dual Mode + Persona + 7 Sprachen + Bild-/Dokumenttools`,
+      '100% Cline-kompatibel mit personalisierten KI-Begleitern, Chatbot/Agent-Flows und UI/Docs in 7 Sprachen.',
+      `🎭 Persona | 🔄 Dual Mode (${brandName}/Cline) | 🌍 7 Sprachen | 🤖 266 Modelle / 31 Anbieter`,
+      `Offizieller ${brandName}-Anbieter: Monatliche Gratis-Credits zum sofortigen Start.`,
+    ],
+  },
+  fr: {
+    heroTitle: `Bienvenue dans la documentation ${brandName}`,
+    heroSubtitle: 'Assistant de codage IA basé sur Cline',
+    chooseLanguage: 'Choisissez votre langue',
+    cards: getCards(),
+    aboutTitle: `À propos de ${brandName}`,
+    aboutLines: [
+      `${brandName} = Cline + Mode Dual + Persona + 7 Langues + Outils Image/Document`,
+      '100% compatible Cline avec des compagnons IA personnalisés, flux Chatbot/Agent, et UI/docs en 7 langues.',
+      `🎭 Persona | 🔄 Mode Dual (${brandName}/Cline) | 🌍 7 Langues | 🤖 266 modèles / 31 fournisseurs`,
+      `Fournisseur officiel ${brandName}: Crédits gratuits mensuels pour démarrer instantanément.`,
+    ],
+  },
+  ru: {
+    heroTitle: `Добро пожаловать в документацию ${brandName}`,
+    heroSubtitle: 'AI-ассистент программирования на базе Cline',
+    chooseLanguage: 'Выберите язык',
+    cards: getCards(),
+    aboutTitle: `О ${brandName}`,
+    aboutLines: [
+      `${brandName} = Cline + Dual Mode + Персоны + 7 Языков + Инструменты изображений/документов`,
+      '100% совместимость с Cline + персонализированные AI-компаньоны, потоки Chatbot/Agent и UI/документация на 7 языках.',
+      `🎭 Персоны | 🔄 Dual Mode (${brandName}/Cline) | 🌍 7 Языков | 🤖 266 моделей / 31 провайдер`,
+      `Официальный провайдер ${brandName}: Ежемесячные бесплатные кредиты для мгновенного старта.`,
     ],
   },
 });
@@ -183,10 +213,13 @@ export default function Home(): ReactNode {
                 </p>
                 <div className="lang-switch">
                   {[
-                    {locale: 'en', label: 'English'},
-                    {locale: 'ko', label: '한국어'},
-                    {locale: 'ja', label: '日本語'},
-                    {locale: 'zh', label: '中文'},
+                    {locale: 'en', label: 'EN'},
+                    {locale: 'ko', label: '한'},
+                    {locale: 'ja', label: '日'},
+                    {locale: 'zh', label: '中'},
+                    {locale: 'de', label: 'DE'},
+                    {locale: 'fr', label: 'FR'},
+                    {locale: 'ru', label: 'RU'},
                   ].map((opt) => (
                     <button
                       key={opt.locale}
@@ -201,8 +234,8 @@ export default function Home(): ReactNode {
                 <div className="margin-vert--lg">
                   <h2>{strings.chooseLanguage}</h2>
                   <div className="row">
-                    {strings.cards.slice(0, 2).map((card) => (
-                      <div key={card.locale} className="col col--6">
+                    {strings.cards.slice(0, 4).map((card) => (
+                      <div key={card.locale} className="col col--3">
                         <div className="card lang-card">
                           <div className="card__header">
                             <h3>{`${card.flag} ${card.title}`}</h3>
@@ -219,10 +252,10 @@ export default function Home(): ReactNode {
                       </div>
                     ))}
                   </div>
-                  
-                  <div className="row margin-top--md">
-                    {strings.cards.slice(2).map((card) => (
-                      <div key={card.locale} className="col col--6">
+
+                  <div className="row margin-top--md" style={{justifyContent: 'center'}}>
+                    {strings.cards.slice(4).map((card) => (
+                      <div key={card.locale} className="col col--3">
                         <div className="card lang-card">
                           <div className="card__header">
                             <h3>{`${card.flag} ${card.title}`}</h3>
