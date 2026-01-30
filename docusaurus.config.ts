@@ -85,6 +85,37 @@ const config: Config = {
         editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-ja/',
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs-de',
+        path: './docs-de',
+        routeBasePath: 'de',
+        sidebarPath: './sidebars-de.ts',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-de/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs-fr',
+        path: './docs-fr',
+        routeBasePath: 'fr',
+        sidebarPath: './sidebars-fr.ts',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-fr/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs-ru',
+        path: './docs-ru',
+        routeBasePath: 'ru',
+        sidebarPath: './sidebars-ru.ts',
+        editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-ru/',
+      },
+    ],
+    '@docusaurus/plugin-sitemap',
   ],
   presets: [
     [
@@ -143,6 +174,9 @@ const config: Config = {
             { label: '한국어', href: '/ko/getting-started/what-is-careti' },
             { label: '日本語', href: '/ja/getting-started/what-is-careti' },
             { label: '中文', href: '/zh/getting-started/what-is-careti' },
+            { label: 'Deutsch', href: '/de/getting-started/what-is-careti' },
+            { label: 'Français', href: '/fr/getting-started/what-is-careti' },
+            { label: 'Русский', href: '/ru/getting-started/what-is-careti' },
           ],
         },
         {
