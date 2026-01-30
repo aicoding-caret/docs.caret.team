@@ -1,0 +1,211 @@
+---
+title: "Claude Code互換性"
+sidebarTitle: "Claude Code互換"
+description: "Claude CodeユーザーのためのCaretiマイグレーションガイド。Skills、Commands、Hooks完全互換。"
+---
+
+<Info>
+**Claude Codeユーザーの方へ**: Caretiは Claude Codeのすべてのシステムと**100%互換**です。さらにチーム/企業環境向けのWorkflowsシステムを提供しています。
+</Info>
+
+## Caretiについて
+
+**Careti**は[Cline](https://github.com/cline/cline)ベースのAIコーディングアシスタントで、以下を追加でサポートします：
+
+- **266以上のモデルサポート**: Claude、GPT、Gemini、DeepSeek、Qwen、GLMなど
+- **Claude Code完全互換**: Skills、Commands、Hooksシステム
+- **Workflowsシステム**: チーム/企業向けの明示的なプロセス定義
+- **多言語サポート**: 日本語、韓国語、中国語など7言語
+
+## Claude Code vs Careti 構造マッピング
+
+| コンポーネント | Claude Code パス | Careti パス | 互換性 |
+|--------------|-----------------|-------------|--------|
+| Commands | `.claude/commands/` | `.agents/commands/` | ✅ 完全互換 |
+| Skills | `.claude/skills/` | `.agents/skills/` | ✅ 完全互換 |
+| Hooks | `.claude/hooks/` | `.agents/hooks/` | ✅ 完全互換 |
+| Settings | `.claude/settings.json` | `.agents/settings.json` | ✅ 完全互換 |
+| **Workflows** | ❌ なし | `.agents/workflows/` | Careti拡張 |
+
+## Skillシステム互換
+
+Claude Codeのすべてのスキルfrontmatterフィールドをサポートしています：
+
+```yaml
+---
+description: コードレビュースキル
+disable-model-invocation: true  # AI自動呼び出し無効化
+user-invocable: true            # スラッシュメニューに表示
+allowed-tools: Read, Grep, Glob # 許可ツール制限
+context: fork                   # 分離実行
+agent: reviewer                 # エージェントタイプ
+---
+
+現在のブランチ: !`git branch --show-current`
+
+# コードレビュー指示
+変更されたファイルをレビューしてフィードバックを提供してください。
+```
+
+### サポートフィールド
+
+| フィールド | Claude Code | Careti | 説明 |
+|-----------|-------------|--------|------|
+| `description` | ✅ | ✅ | スキル説明（必須） |
+| `argument-hint` | ✅ | ✅ | 引数ヒント |
+| `disable-model-invocation` | ✅ | ✅ | AI自動呼び出し無効化 |
+| `user-invocable` | ✅ | ✅ | スラッシュメニューに表示 |
+| `allowed-tools` | ✅ | ✅ | 許可ツールリスト |
+| `context` | ✅ | ✅ | 実行コンテキスト (`fork` \| `inline`) |
+| `agent` | ✅ | ✅ | forkのエージェントタイプ |
+
+### 前処理構文 (`!`command``)
+
+スキル読み込み時にシェルコマンドを実行し、結果を置換します：
+
+```markdown
+現在のブランチ: !`git branch --show-current`
+今日の日付: !`date +%Y-%m-%d`
+Git状態:
+!`git status --short`
+```
+
+## Hooksシステム互換
+
+### サポートイベント
+
+| Hookイベント | Claude Code | Careti | 説明 |
+|-------------|-------------|--------|------|
+| PreToolUse | ✅ | ✅ | ツール実行前 |
+| PostToolUse | ✅ | ✅ | ツール実行後 |
+| UserPromptSubmit | ✅ | ✅ | ユーザー入力時 |
+| PreCompact | ✅ | ✅ | コンパクト前 |
+| SessionStart | ✅ | ✅ | セッション開始 |
+| SessionEnd | ✅ | ✅ | セッション終了 |
+| Stop | ✅ | ✅ | 中断時 |
+| **TaskStart** | ❌ | ✅ | タスク開始（Careti拡張） |
+| **TaskResume** | ❌ | ✅ | タスク再開（Careti拡張） |
+| **TaskCancel** | ❌ | ✅ | タスクキャンセル（Careti拡張） |
+
+### Matcherパターン
+
+特定のツールにのみ適用されるフックを作成できます：
+
+```
+.agents/hooks/
+├── PreToolUse           # すべてのツールに適用
+├── PreToolUse.Edit_Write # Edit、Writeツールのみ
+├── PreToolUse.Bash      # Bashツールのみ
+├── PostToolUse.Read     # Readツールのみ
+└── SessionEnd           # セッション終了時
+```
+
+**パターン構文**:
+- `PreToolUse.Edit_Write` → `Edit|Write`（正規表現）
+- `PostToolUse.Bash` → `Bash`
+
+### 優先順位
+
+Claude Codeと同じ：
+1. **Personal** (`~/Documents/.agents/`) - ユーザー個人設定
+2. **Project** (`.agents/`) - プロジェクト設定
+3. **Enterprise**（将来サポート） - 組織設定
+
+## 設計哲学の違い
+
+### Claude Codeのアプローチ
+
+```
+ユーザーリクエスト → AIが分解 → Skills組み合わせ → 完了
+```
+
+Claude Codeは**モデルの推論能力への強い信頼**に基づいて：
+- Claudeモデルが複雑なタスクを**自ら分解**
+- 明示的なワークフローなしに柔軟に対応
+- 個人開発者に最適化
+
+### Caretiのアプローチ
+
+```
+ユーザーリクエスト → Workflow参照 → ステップ進行 → Skills/Commands → 完了
+```
+
+Caretiは**多様な環境とモデル**をサポート：
+- 明示的なワークフローで**一貫性保証**
+- チーム/企業環境に最適化
+- 様々なモデル品質に対応
+
+### 比較
+
+| 観点 | Claude Code | Careti |
+|------|-------------|--------|
+| **対象モデル** | Claudeのみ | 266以上のモデル |
+| **使用環境** | 個人開発者 | 個人 + チーム/企業 |
+| **プロセス** | 柔軟性優先 | 一貫性オプション |
+| **ワークフロー** | 暗黙的（AI判断） | 明示的 + 暗黙的 |
+
+## Workflows: Careti拡張機能
+
+<Note>
+WorkflowsはClaude Codeにない Careti固有の機能です。Workflowsを使用しなくてもClaude Codeの機能だけで十分に動作します。
+</Note>
+
+### いつWorkflowsが必要か？
+
+| シナリオ | Claude Code | Careti |
+|---------|-------------|--------|
+| 個人開発者が一人で作業 | ✅ 十分 | ✅ 十分 |
+| チームで一貫したプロセス | 🟡 モデル依存 | ✅ Workflows |
+| 監査証跡 / コンプライアンス | 🟡 モデル依存 | ✅ Workflows |
+| 低性能モデルの使用 | ❌ 不安定 | ✅ Workflowsガイド |
+| 新人オンボーディング | 🟡 個人差 | ✅ Workflows標準化 |
+
+### 階層構造
+
+```
+Workflows（最上位） - 複雑な多段階手順
+  └── Commands/Skills（中間） - スラッシュで呼び出す単一タスク
+       └── Tools（最下位） - Read、Write、Bashなど基本ツール
+```
+
+## マイグレーションガイド
+
+### Caret（v0.4.4以下）からCaretiへ
+
+<Warning>
+- **v0.4.5**: ディレクトリ構造が `.caretrules/` から `.agents/` に変更
+- **v0.4.6**: ブランドがCaretから**Careti**に変更（パスは `.agents/` のまま）
+</Warning>
+
+### Claude CodeからCaretiへ
+
+1. **パス変更**（オプション）:
+   ```bash
+   # Claude Code構造をそのまま使用（シンボリックリンク）
+   ln -s .claude .agents
+
+   # またはコピー
+   cp -r .claude/* .agents/
+   ```
+
+2. **ファイル形式**: 変更なし（100%互換）
+
+3. **Hooks**: そのまま動作
+
+4. **追加機能**（オプション）:
+   - Workflowsを追加
+   - Task Hooksを活用
+
+### 互換性保証
+
+- **レガシーサポート**: `.caret/` パスもフォールバックとしてサポート（非推奨）
+- **マイグレーションコスト**: パス変更のみ必要
+- **既存のskills/hooks**: 100%動作
+- **CI/CD**: パス更新が必要
+
+## 関連ドキュメント
+
+- [スキルシステム](/ja/features/skills) - スキルの作成と管理
+- [フック](/ja/features/hooks) - イベントフック設定
+- [ルールシステム](/ja/features/caret-rules) - プロジェクトルール設定
+- [ワークフロー](/ja/features/slash-commands/workflows) - Caretiワークフローシステム

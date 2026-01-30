@@ -1,0 +1,261 @@
+---
+title: "Claude Code Compatibility"
+sidebarTitle: "Claude Code Compat"
+description: "Migration guide from Claude Code to Careti. 100% compatible with Skills, Commands, and Hooks."
+---
+
+<Info>
+**Claude Code users**: Careti is **100% compatible** with all Claude Code systems. We also offer a Workflows system for team/enterprise environments.
+</Info>
+
+## About Careti
+
+**Careti** is an AI coding assistant based on [Cline](https://github.com/cline/cline), with additional support for:
+
+- **266+ models**: Claude, GPT, Gemini, DeepSeek, Qwen, GLM, and more
+- **Full Claude Code compatibility**: Skills, Commands, Hooks systems
+- **Workflows system**: Explicit process definitions for teams/enterprises
+- **Multilingual support**: 7 languages including English, Korean, Japanese, Chinese
+
+## Claude Code vs Careti Structure Mapping
+
+| Component | Claude Code Path | Careti Path | Compatibility |
+|-----------|-----------------|-------------|---------------|
+| Commands | `.claude/commands/` | `.agents/commands/` | ✅ Fully compatible |
+| Skills | `.claude/skills/` | `.agents/skills/` | ✅ Fully compatible |
+| Hooks | `.claude/hooks/` | `.agents/hooks/` | ✅ Fully compatible |
+| Settings | `.claude/settings.json` | `.agents/settings.json` | ✅ Fully compatible |
+| **Workflows** | ❌ None | `.agents/workflows/` | Careti extension |
+
+## Skill System Compatibility
+
+All Claude Code Skill frontmatter fields are supported:
+
+```yaml
+---
+description: Code review skill
+disable-model-invocation: true  # Disable AI auto-invocation
+user-invocable: true            # Show in slash menu
+allowed-tools: Read, Grep, Glob # Limit allowed tools
+context: fork                   # Isolated execution
+agent: reviewer                 # Agent type
+---
+
+Current branch: !`git branch --show-current`
+
+# Code Review Instructions
+Review the changed files and provide feedback.
+```
+
+### Supported Fields
+
+| Field | Claude Code | Careti | Description |
+|-------|-------------|--------|-------------|
+| `description` | ✅ | ✅ | Skill description (required) |
+| `argument-hint` | ✅ | ✅ | Argument hint |
+| `disable-model-invocation` | ✅ | ✅ | Disable AI auto-invocation |
+| `user-invocable` | ✅ | ✅ | Show in slash menu |
+| `allowed-tools` | ✅ | ✅ | Allowed tools list |
+| `context` | ✅ | ✅ | Execution context (`fork` \| `inline`) |
+| `agent` | ✅ | ✅ | Agent type for fork |
+
+### Preprocessing Syntax (`!`command``)
+
+Execute shell commands when the skill loads and substitute the results:
+
+```markdown
+Current branch: !`git branch --show-current`
+Today's date: !`date +%Y-%m-%d`
+Git status:
+!`git status --short`
+```
+
+## Hooks System Compatibility
+
+### Supported Events
+
+| Hook Event | Claude Code | Careti | Description |
+|------------|-------------|--------|-------------|
+| PreToolUse | ✅ | ✅ | Before tool execution |
+| PostToolUse | ✅ | ✅ | After tool execution |
+| UserPromptSubmit | ✅ | ✅ | On user input |
+| PreCompact | ✅ | ✅ | Before compaction |
+| SessionStart | ✅ | ✅ | Session start |
+| SessionEnd | ✅ | ✅ | Session end |
+| Stop | ✅ | ✅ | On stop |
+| **TaskStart** | ❌ | ✅ | Task start (Careti extension) |
+| **TaskResume** | ❌ | ✅ | Task resume (Careti extension) |
+| **TaskCancel** | ❌ | ✅ | Task cancel (Careti extension) |
+
+### Matcher Patterns
+
+Create hooks that apply only to specific tools:
+
+```
+.agents/hooks/
+├── PreToolUse           # Applies to all tools
+├── PreToolUse.Edit_Write # Edit, Write tools only
+├── PreToolUse.Bash      # Bash tool only
+├── PostToolUse.Read     # Read tool only
+└── SessionEnd           # On session end
+```
+
+**Pattern syntax**:
+- `PreToolUse.Edit_Write` → `Edit|Write` (regex)
+- `PostToolUse.Bash` → `Bash`
+
+### Priority
+
+Same as Claude Code:
+1. **Personal** (`~/Documents/.agents/`) - User personal settings
+2. **Project** (`.agents/`) - Project settings
+3. **Enterprise** (future support) - Organization settings
+
+## Design Philosophy Differences
+
+### Claude Code's Approach
+
+```
+User request → AI decomposes → Skills combination → Complete
+```
+
+Claude Code is based on **strong trust in model reasoning ability**:
+- Claude model **decomposes complex tasks itself**
+- Responds flexibly without explicit workflows
+- Optimized for individual developers
+
+### Careti's Approach
+
+```
+User request → Reference Workflow → Step-by-step → Skills/Commands → Complete
+```
+
+Careti supports **diverse environments and models**:
+- Explicit workflows ensure **consistency**
+- Optimized for team/enterprise environments
+- Handles varying model quality
+
+### Comparison
+
+| Aspect | Claude Code | Careti |
+|--------|-------------|--------|
+| **Target models** | Claude only | 266+ models |
+| **Use environment** | Individual developers | Individual + Team/Enterprise |
+| **Process** | Flexibility first | Consistency option |
+| **Workflows** | Implicit (AI judgment) | Explicit + Implicit |
+
+## Workflows: Careti Extension
+
+<Note>
+Workflows is a Careti-exclusive feature not in Claude Code. You can work perfectly fine using only Claude Code features without Workflows.
+</Note>
+
+### When Do You Need Workflows?
+
+| Scenario | Claude Code | Careti |
+|----------|-------------|--------|
+| Individual developer working alone | ✅ Sufficient | ✅ Sufficient |
+| Consistent processes in teams | 🟡 Model dependent | ✅ Workflows |
+| Audit trails / Compliance | 🟡 Model dependent | ✅ Workflows |
+| Using lower performance models | ❌ Unstable | ✅ Workflows guidance |
+| Onboarding new team members | 🟡 Varies | ✅ Workflows standardization |
+
+### Hierarchy Structure
+
+```
+Workflows (top level) - Complex multi-step procedures
+  └── Commands/Skills (middle) - Single tasks invoked with slash
+       └── Tools (bottom) - Read, Write, Bash, etc. basic tools
+```
+
+### Example: feature-development.md
+
+```markdown
+# Feature Development Workflow
+
+## Step 1: Analysis
+- Understand requirements
+- Check impact scope
+- Complete checklist A
+
+## Step 2: Design
+- Decide architecture
+- Define interfaces
+
+## Step 3: Implementation
+- TDD - tests first
+- Minimal implementation
+
+## Step 4: Verification
+- Test coverage 80%+
+- Code review
+```
+
+## Migration Guide
+
+### From Caret (v0.4.4 and below) to Careti
+
+<Warning>
+- **v0.4.5**: Directory structure changed from `.caretrules/` to `.agents/`
+- **v0.4.6**: Brand changed from Caret to **Careti** (paths remain `.agents/`)
+</Warning>
+
+**Project-level path changes**:
+
+| v0.4.4 and below (Caret) | v0.4.5+ |
+|--------------------------|---------|
+| `.caretrules/` | `.agents/context/` |
+| `.caretrules/workflows/` | `.agents/workflows/` |
+| (none) | `.agents/commands/` |
+| (none) | `.agents/skills/` |
+| (none) | `.agents/hooks/` |
+
+**Global path changes**:
+
+| v0.4.4 and below (Caret) | v0.4.5+ |
+|--------------------------|---------|
+| `~/Documents/Caret/Rules/` | `~/Documents/.agents/context/` |
+| `~/Documents/Caret/Workflows/` | `~/Documents/.agents/workflows/` |
+| (none) | `~/Documents/.agents/commands/` |
+| (none) | `~/Documents/.agents/hooks/` |
+
+```bash
+# Migration (symbolic link)
+ln -s .caret .agents
+
+# Or copy and rename
+mv .caret .agents
+```
+
+### From Claude Code to Careti
+
+1. **Path change** (optional):
+   ```bash
+   # Use Claude Code structure as-is (symbolic link)
+   ln -s .claude .agents
+
+   # Or copy
+   cp -r .claude/* .agents/
+   ```
+
+2. **File format**: No changes (100% compatible)
+
+3. **Hooks**: Work as-is
+
+4. **Additional features** (optional):
+   - Add Workflows
+   - Use Task Hooks
+
+### Compatibility Guarantee
+
+- **Legacy support**: `.caret/` path also supported as fallback (not recommended)
+- **Migration cost**: Only path changes needed
+- **Existing skills/hooks**: 100% functional
+- **CI/CD**: Path updates required
+
+## Related Documentation
+
+- [Skills System](/en/features/skills) - Creating and managing skills
+- [Hooks](/en/features/hooks) - Event hook setup
+- [Rules System](/en/features/caret-rules) - Project rules configuration
+- [Workflows](/en/features/slash-commands/workflows) - Careti workflows system

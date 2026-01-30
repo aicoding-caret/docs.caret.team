@@ -105,6 +105,7 @@ const sidebars: SidebarsConfig = {
 				"features/editing-messages",
 				"features/markdown-rendering",
 				"features/hooks",
+				"features/claude-code-compatibility",
 				{
 					type: "category",
 					label: "@ Упоминания",

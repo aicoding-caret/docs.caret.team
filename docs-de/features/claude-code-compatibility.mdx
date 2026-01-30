@@ -1,0 +1,196 @@
+---
+title: "Claude Code Kompatibilität"
+sidebarTitle: "Claude Code Compat"
+description: "Migrationsanleitung von Claude Code zu Careti. 100% kompatibel mit Skills, Commands und Hooks."
+---
+
+<Info>
+**Claude Code Benutzer**: Careti ist **100% kompatibel** mit allen Claude Code Systemen. Wir bieten zusätzlich ein Workflows-System für Team-/Unternehmensumgebungen.
+</Info>
+
+## Über Careti
+
+**Careti** ist ein KI-Codierungsassistent basierend auf [Cline](https://github.com/cline/cline), mit zusätzlicher Unterstützung für:
+
+- **266+ Modelle**: Claude, GPT, Gemini, DeepSeek, Qwen, GLM und mehr
+- **Volle Claude Code Kompatibilität**: Skills, Commands, Hooks Systeme
+- **Workflows-System**: Explizite Prozessdefinitionen für Teams/Unternehmen
+- **Mehrsprachig**: 7 Sprachen inkl. Deutsch, Englisch, Koreanisch, Japanisch
+
+## Claude Code vs Careti Strukturzuordnung
+
+| Komponente | Claude Code Pfad | Careti Pfad | Kompatibilität |
+|------------|-----------------|-------------|----------------|
+| Commands | `.claude/commands/` | `.agents/commands/` | ✅ Voll kompatibel |
+| Skills | `.claude/skills/` | `.agents/skills/` | ✅ Voll kompatibel |
+| Hooks | `.claude/hooks/` | `.agents/hooks/` | ✅ Voll kompatibel |
+| Settings | `.claude/settings.json` | `.agents/settings.json` | ✅ Voll kompatibel |
+| **Workflows** | ❌ Keine | `.agents/workflows/` | Careti Erweiterung |
+
+## Skill-System Kompatibilität
+
+Alle Claude Code Skill Frontmatter-Felder werden unterstützt:
+
+```yaml
+---
+description: Code-Review Skill
+disable-model-invocation: true  # KI-Auto-Aufruf deaktivieren
+user-invocable: true            # Im Slash-Menü anzeigen
+allowed-tools: Read, Grep, Glob # Erlaubte Tools einschränken
+context: fork                   # Isolierte Ausführung
+agent: reviewer                 # Agententyp
+---
+
+Aktueller Branch: !`git branch --show-current`
+
+# Code-Review Anweisungen
+Überprüfen Sie die geänderten Dateien und geben Sie Feedback.
+```
+
+### Unterstützte Felder
+
+| Feld | Claude Code | Careti | Beschreibung |
+|------|-------------|--------|--------------|
+| `description` | ✅ | ✅ | Skill-Beschreibung (erforderlich) |
+| `argument-hint` | ✅ | ✅ | Argument-Hinweis |
+| `disable-model-invocation` | ✅ | ✅ | KI-Auto-Aufruf deaktivieren |
+| `user-invocable` | ✅ | ✅ | Im Slash-Menü anzeigen |
+| `allowed-tools` | ✅ | ✅ | Liste erlaubter Tools |
+| `context` | ✅ | ✅ | Ausführungskontext (`fork` \| `inline`) |
+| `agent` | ✅ | ✅ | Agententyp für fork |
+
+### Vorverarbeitungssyntax (`!`command``)
+
+Shell-Befehle beim Laden des Skills ausführen und Ergebnisse ersetzen:
+
+```markdown
+Aktueller Branch: !`git branch --show-current`
+Heutiges Datum: !`date +%Y-%m-%d`
+Git-Status:
+!`git status --short`
+```
+
+## Hooks-System Kompatibilität
+
+### Unterstützte Events
+
+| Hook Event | Claude Code | Careti | Beschreibung |
+|------------|-------------|--------|--------------|
+| PreToolUse | ✅ | ✅ | Vor Tool-Ausführung |
+| PostToolUse | ✅ | ✅ | Nach Tool-Ausführung |
+| UserPromptSubmit | ✅ | ✅ | Bei Benutzereingabe |
+| PreCompact | ✅ | ✅ | Vor Kompaktierung |
+| SessionStart | ✅ | ✅ | Sitzungsstart |
+| SessionEnd | ✅ | ✅ | Sitzungsende |
+| Stop | ✅ | ✅ | Bei Stopp |
+| **TaskStart** | ❌ | ✅ | Aufgabenstart (Careti Erweiterung) |
+| **TaskResume** | ❌ | ✅ | Aufgabenfortsetzung (Careti Erweiterung) |
+| **TaskCancel** | ❌ | ✅ | Aufgabenabbruch (Careti Erweiterung) |
+
+### Matcher-Muster
+
+Erstellen Sie Hooks, die nur für bestimmte Tools gelten:
+
+```
+.agents/hooks/
+├── PreToolUse           # Gilt für alle Tools
+├── PreToolUse.Edit_Write # Nur Edit, Write Tools
+├── PreToolUse.Bash      # Nur Bash Tool
+├── PostToolUse.Read     # Nur Read Tool
+└── SessionEnd           # Bei Sitzungsende
+```
+
+**Mustersyntax**:
+- `PreToolUse.Edit_Write` → `Edit|Write` (Regex)
+- `PostToolUse.Bash` → `Bash`
+
+### Priorität
+
+Wie bei Claude Code:
+1. **Personal** (`~/Documents/.agents/`) - Persönliche Benutzereinstellungen
+2. **Project** (`.agents/`) - Projekteinstellungen
+3. **Enterprise** (zukünftige Unterstützung) - Organisationseinstellungen
+
+## Designphilosophie-Unterschiede
+
+### Claude Codes Ansatz
+
+```
+Benutzeranfrage → KI zerlegt → Skills-Kombination → Fertig
+```
+
+Claude Code basiert auf **starkem Vertrauen in Modell-Reasoning**:
+- Claude-Modell **zerlegt komplexe Aufgaben selbst**
+- Reagiert flexibel ohne explizite Workflows
+- Optimiert für einzelne Entwickler
+
+### Caretis Ansatz
+
+```
+Benutzeranfrage → Workflow referenzieren → Schrittweise → Skills/Commands → Fertig
+```
+
+Careti unterstützt **diverse Umgebungen und Modelle**:
+- Explizite Workflows gewährleisten **Konsistenz**
+- Optimiert für Team-/Unternehmensumgebungen
+- Handhabt unterschiedliche Modellqualität
+
+### Vergleich
+
+| Aspekt | Claude Code | Careti |
+|--------|-------------|--------|
+| **Zielmodelle** | Nur Claude | 266+ Modelle |
+| **Nutzungsumgebung** | Einzelentwickler | Einzeln + Team/Unternehmen |
+| **Prozess** | Flexibilität zuerst | Konsistenzoption |
+| **Workflows** | Implizit (KI-Urteil) | Explizit + Implizit |
+
+## Workflows: Careti-Erweiterung
+
+<Note>
+Workflows ist eine Careti-exklusive Funktion, die es in Claude Code nicht gibt. Sie können auch nur mit Claude Code-Funktionen ohne Workflows perfekt arbeiten.
+</Note>
+
+### Wann brauchen Sie Workflows?
+
+| Szenario | Claude Code | Careti |
+|----------|-------------|--------|
+| Einzelentwickler arbeitet allein | ✅ Ausreichend | ✅ Ausreichend |
+| Konsistente Prozesse in Teams | 🟡 Modellabhängig | ✅ Workflows |
+| Audit-Trails / Compliance | 🟡 Modellabhängig | ✅ Workflows |
+| Verwendung leistungsschwächerer Modelle | ❌ Instabil | ✅ Workflows-Anleitung |
+| Onboarding neuer Teammitglieder | 🟡 Variiert | ✅ Workflows-Standardisierung |
+
+## Migrationsanleitung
+
+### Von Claude Code zu Careti
+
+1. **Pfadänderung** (optional):
+   ```bash
+   # Claude Code Struktur direkt verwenden (symbolischer Link)
+   ln -s .claude .agents
+
+   # Oder kopieren
+   cp -r .claude/* .agents/
+   ```
+
+2. **Dateiformat**: Keine Änderungen (100% kompatibel)
+
+3. **Hooks**: Funktionieren direkt
+
+4. **Zusätzliche Funktionen** (optional):
+   - Workflows hinzufügen
+   - Task Hooks nutzen
+
+### Kompatibilitätsgarantie
+
+- **Legacy-Unterstützung**: `.caret/` Pfad auch als Fallback unterstützt (nicht empfohlen)
+- **Migrationskosten**: Nur Pfadänderungen erforderlich
+- **Bestehende Skills/Hooks**: 100% funktional
+- **CI/CD**: Pfadaktualisierungen erforderlich
+
+## Verwandte Dokumentation
+
+- [Skills-System](/de/features/skills) - Skills erstellen und verwalten
+- [Hooks](/de/features/hooks) - Event-Hook-Einrichtung
+- [Regelsystem](/de/features/caret-rules) - Projektregelkonfiguration
+- [Workflows](/de/features/slash-commands/workflows) - Careti Workflows-System
