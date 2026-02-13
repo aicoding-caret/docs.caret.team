@@ -115,7 +115,6 @@ const config: Config = {
         editUrl: 'https://github.com/caretive-ai/project-docs.careti.ai/tree/main/docs-ru/',
       },
     ],
-    '@docusaurus/plugin-sitemap',
   ],
   presets: [
     [
